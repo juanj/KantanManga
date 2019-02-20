@@ -7,7 +7,7 @@ target 'MangaReader' do
 
   # Pods for MangaReader
   pod 'UIImageViewAlignedSwift'
-
+  pod 'GCDWebServer/WebUploader', '~> 3.0'
   target 'MangaReaderTests' do
     inherit! :search_paths
     # Pods for testing

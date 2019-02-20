@@ -1,16 +1,22 @@
 PODS:
+  - GCDWebServer/Core (3.5.2)
+  - GCDWebServer/WebUploader (3.5.2):
+    - GCDWebServer/Core
   - UIImageViewAlignedSwift (0.6.1)
 
 DEPENDENCIES:
+  - GCDWebServer/WebUploader (~> 3.0)
   - UIImageViewAlignedSwift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - GCDWebServer
     - UIImageViewAlignedSwift
 
 SPEC CHECKSUMS:
+  GCDWebServer: ead88cd14596dd4eae4f5830b8877c87c8728990
   UIImageViewAlignedSwift: 4f35dca94ad7a9d7160b38ea4a27423136248361
 
-PODFILE CHECKSUM: f1076c0600b73e907cfda8d271ed5294a929fde6
+PODFILE CHECKSUM: 615685b890000b4f61891093179df45331b06ea2
 
 COCOAPODS: 1.5.3
