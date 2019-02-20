@@ -44,10 +44,11 @@ class AddMangasCoordinator: NSObject{
     
     func createMangaWith(name: String, filePath path: String) {
         do {
-            let reader = try CBZReader(filePath: path)
+            let fileName = (path as NSString).lastPathComponent
+            let reader = try CBZReader(fileName: fileName)
             reader.readFirstEntry { (data) in
                 if let data = data {
-                    let _ = CoreDataManager.sharedManager.insertManga(title: name, totalPages: Int16(reader.fileEntries.count), filePath: path, currentPage: 0, coverImage: data)
+                    let _ = CoreDataManager.sharedManager.insertManga(title: name, totalPages: Int16(reader.fileEntries.count), filePath: fileName, currentPage: 0, coverImage: data)
                 }
             }
         } catch {

@@ -14,13 +14,16 @@ enum CBZReaderError: Error {
 }
 
 class CBZReader {
-    var filePath = ""
+    var fileName = ""
     var archive: Archive
     var fileEntries = [Entry]()
     var observer: NSKeyValueObservation?
     
-    init(filePath: String) throws {
-        let filePath = URL(fileURLWithPath: filePath)
+    init(fileName: String) throws {
+        self.fileName = fileName
+        let fileManager = FileManager.default
+        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let filePath = documentsDirectory.appendingPathComponent(fileName)
         guard let archive = Archive(url: filePath, accessMode: .read) else {
             throw CBZReaderError.errorCreatingArhive
         }
