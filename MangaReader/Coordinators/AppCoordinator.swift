@@ -16,6 +16,7 @@ class AppCoordinator {
     }
     
     func start() {
-        self.navigationController.pushViewController(UIViewController(), animated: false)
+        let library = LibraryViewController()
+        self.navigationController.pushViewController(library, animated: false)
     }
 }

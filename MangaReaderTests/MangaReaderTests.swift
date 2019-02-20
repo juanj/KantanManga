@@ -10,11 +10,11 @@ import XCTest
 @testable import MangaReader
 
 class AppCoordinatorTests: XCTestCase {
-    func testCallingStartPushEmptyViewController() {
+    func testCallingStartPushLibraryViewController() {
         let navigation = UINavigationController()
         let appCoordinator = AppCoordinator(navigation: navigation)
         appCoordinator.start()
         
-        XCTAssertNotNil(navigation.viewControllers.first)
+        XCTAssertTrue(navigation.viewControllers.first is LibraryViewController)
     }
 }
