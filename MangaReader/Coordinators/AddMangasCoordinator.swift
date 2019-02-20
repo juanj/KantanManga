@@ -45,8 +45,14 @@ class AddMangasCoordinator: NSObject{
 extension AddMangasCoordinator: GCDWebUploaderDelegate {
     func webUploader(_ uploader: GCDWebUploader, didUploadFileAtPath path: String) {
         let alert = UIAlertController(title: "Uploaded", message: "A new file was uploaded.\nDo you want to create a manga entry for it now?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+        alert.addTextField { (textField) in
+            textField.placeholder = "Manga name"
+        }
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+            if let text = alert.textFields?[0].text, text != "" {
+                print(text)
+            }
+        }))
         self.navigationController.present(alert, animated: true, completion: nil)
     }
 }
