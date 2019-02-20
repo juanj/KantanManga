@@ -11,6 +11,7 @@ import CoreData
 
 class AppCoordinator {
     var navigationController: UINavigationController
+    var childCoordinators = [Any]()
     
     init(navigation: UINavigationController) {
         self.navigationController = navigation
@@ -28,8 +29,19 @@ class AppCoordinator {
     }
 }
 
+// MARK: LibraryViewControllerDelegate
 extension AppCoordinator: LibraryViewControllerDelegate {
     func didSelectAdd(_ libraryViewController: LibraryViewController) {
-        
+        let addMangasCoordinator = AddMangasCoordinator(navigation: self.navigationController)
+        addMangasCoordinator.delegate = self
+        self.childCoordinators.append(addMangasCoordinator)
+        addMangasCoordinator.start()
+    }
+}
+
+// MARK: AddMangasCoordinatorDelegate
+extension AppCoordinator: AddMangasCoordinatorDelegate {
+    func didEnd(_ addMangasCoordinator: AddMangasCoordinator) {
+        self.childCoordinators.removeLast()
     }
 }
