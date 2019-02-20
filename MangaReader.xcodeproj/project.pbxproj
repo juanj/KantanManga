@@ -18,6 +18,7 @@
 		84A83219221D923800CEE1C9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A83218221D923800CEE1C9 /* AppCoordinator.swift */; };
 		84A8321D221D951500CEE1C9 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8321B221D951500CEE1C9 /* LibraryViewController.swift */; };
 		84A8321E221D951500CEE1C9 /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A8321C221D951500CEE1C9 /* LibraryViewController.xib */; };
+		84A83221221D9F7000CEE1C9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A83220221D9F7000CEE1C9 /* CoreDataManager.swift */; };
 		C236795ADDD5F8B005824580 /* Pods_MangaReaderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9CF3EF06DC7DAF652B13D2F /* Pods_MangaReaderTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		84A83218221D923800CEE1C9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		84A8321B221D951500CEE1C9 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		84A8321C221D951500CEE1C9 /* LibraryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
+		84A83220221D9F7000CEE1C9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		8B52D48335DF1FCD9AF209A0 /* Pods-MangaReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-MangaReader/Pods-MangaReader.release.xcconfig"; sourceTree = "<group>"; };
 		B5312D435FC7B69256070F18 /* Pods-MangaReaderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaReaderUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MangaReaderUITests/Pods-MangaReaderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA8018811D3665B1CC081AAA /* Pods-MangaReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MangaReader/Pods-MangaReader.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,13 +130,13 @@
 		84A831E5221D90CA00CEE1C9 /* MangaReader */ = {
 			isa = PBXGroup;
 			children = (
+				84A8321F221D9F5700CEE1C9 /* Model */,
 				84A8321A221D94D400CEE1C9 /* Views */,
 				84A83217221D922200CEE1C9 /* Coordinators */,
 				84A831E6221D90CA00CEE1C9 /* AppDelegate.swift */,
 				84A831F0221D90CC00CEE1C9 /* Assets.xcassets */,
 				84A831F2221D90CC00CEE1C9 /* LaunchScreen.storyboard */,
 				84A831F5221D90CC00CEE1C9 /* Info.plist */,
-				84A831ED221D90CA00CEE1C9 /* MangaReader.xcdatamodeld */,
 			);
 			path = MangaReader;
 			sourceTree = "<group>";
@@ -172,6 +174,15 @@
 				84A8321C221D951500CEE1C9 /* LibraryViewController.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		84A8321F221D9F5700CEE1C9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84A831ED221D90CA00CEE1C9 /* MangaReader.xcdatamodeld */,
+				84A83220221D9F7000CEE1C9 /* CoreDataManager.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		93D8060B8DF929B1DE48D612 /* Pods */ = {
@@ -381,6 +392,7 @@
 				84A83219221D923800CEE1C9 /* AppCoordinator.swift in Sources */,
 				84A831E7221D90CA00CEE1C9 /* AppDelegate.swift in Sources */,
 				84A8321D221D951500CEE1C9 /* LibraryViewController.swift in Sources */,
+				84A83221221D9F7000CEE1C9 /* CoreDataManager.swift in Sources */,
 				84A831EF221D90CA00CEE1C9 /* MangaReader.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

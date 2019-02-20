@@ -24,13 +24,10 @@ class AppCoordinator {
     
     func loadMangas() -> [Manga] {
         var mangas = [Manga]()
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return mangas
-        }
         
         let mangaFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Manga")
         do {
-            let fetched = try appDelegate.persistentContainer.viewContext.fetch(mangaFetch)
+            let fetched = try CoreDataManager.sharedManager.persistentContainer.viewContext.fetch(mangaFetch)
             if let fetched = fetched as? [Manga] {
                 mangas = fetched
             }
