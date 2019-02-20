@@ -13,6 +13,7 @@ class AppCoordinator {
     var navigationController: UINavigationController
     var childCoordinators = [Any]()
     
+    var libraryView: LibraryViewController?
     init(navigation: UINavigationController) {
         self.navigationController = navigation
     }
@@ -22,6 +23,7 @@ class AppCoordinator {
         library.delegate = self
         library.mangas = self.loadMangas()
         self.navigationController.pushViewController(library, animated: false)
+        self.libraryView = library
     }
     
     func loadMangas() -> [Manga] {
@@ -43,5 +45,7 @@ extension AppCoordinator: LibraryViewControllerDelegate {
 extension AppCoordinator: AddMangasCoordinatorDelegate {
     func didEnd(_ addMangasCoordinator: AddMangasCoordinator) {
         self.childCoordinators.removeLast()
+        let mangas = self.loadMangas()
+        self.libraryView?.mangas = mangas
     }
 }

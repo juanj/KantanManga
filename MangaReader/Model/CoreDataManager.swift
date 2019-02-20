@@ -35,6 +35,10 @@ class CoreDataManager {
         }
     }
     
+    func createMangaWith(title: String, andFilePath path: String) {
+        
+    }
+    
     func insertManga(title: String, totalPages: Int16, filePath: String, currentPage: Int16 = 0, coverImage: Data = Data()) -> Manga? {
         let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Manga", in: managedContext)!

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ZIPFoundation
 
 protocol AddMangasCoordinatorDelegate {
     func didEnd(_ addMangasCoordinator: AddMangasCoordinator)
@@ -40,6 +41,19 @@ class AddMangasCoordinator: NSObject{
         self.uploadServer?.delegate = self
         self.uploadServer?.start()
     }
+    
+    func createMangaWith(name: String, filePath path: String) {
+        do {
+            let reader = try CBZReader(filePath: path)
+            reader.readFirstEntry { (data) in
+                if let data = data {
+                    let _ = CoreDataManager.sharedManager.insertManga(title: name, totalPages: Int16(reader.fileEntries.count), filePath: path, currentPage: 0, coverImage: data)
+                }
+            }
+        } catch {
+            print("Error creating CBZReader")
+        }
+    }
 }
 
 extension AddMangasCoordinator: GCDWebUploaderDelegate {
@@ -50,7 +64,7 @@ extension AddMangasCoordinator: GCDWebUploaderDelegate {
         }
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
             if let text = alert.textFields?[0].text, text != "" {
-                print(text)
+                self.createMangaWith(name: text, filePath: path)
             }
         }))
         self.navigationController.present(alert, animated: true, completion: nil)

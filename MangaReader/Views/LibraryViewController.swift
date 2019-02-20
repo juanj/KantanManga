@@ -25,6 +25,10 @@ class LibraryViewController: UIViewController {
         self.configureNavigationBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.collectionView.reloadData()
+    }
+    
     func configureCollectionView() {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
