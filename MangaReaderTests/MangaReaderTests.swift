@@ -18,3 +18,15 @@ class AppCoordinatorTests: XCTestCase {
         XCTAssertTrue(navigation.viewControllers.first is LibraryViewController)
     }
 }
+
+class LibraryViewControllerTests: XCTestCase {
+    func testCollectionViewDelegateAndDataSourceAreSetToViewController() {
+        let libraryViewController = LibraryViewController()
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout())
+        libraryViewController.collectionView = collectionView
+        libraryViewController.configureCollectionView()
+        
+        XCTAssertEqual(libraryViewController.collectionView.delegate as? LibraryViewController, libraryViewController)
+        XCTAssertEqual(libraryViewController.collectionView.dataSource as? LibraryViewController, libraryViewController)
+    }
+}
