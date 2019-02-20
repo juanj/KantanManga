@@ -1,3 +1,16 @@
-PODFILE CHECKSUM: 2357e1ed2955da1dba05a0a6aa847212ba19bae8
+PODS:
+  - UIImageViewAlignedSwift (0.6.1)
+
+DEPENDENCIES:
+  - UIImageViewAlignedSwift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - UIImageViewAlignedSwift
+
+SPEC CHECKSUMS:
+  UIImageViewAlignedSwift: 4f35dca94ad7a9d7160b38ea4a27423136248361
+
+PODFILE CHECKSUM: f1076c0600b73e907cfda8d271ed5294a929fde6
 
 COCOAPODS: 1.5.3

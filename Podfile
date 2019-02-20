@@ -6,6 +6,7 @@ target 'MangaReader' do
   use_frameworks!
 
   # Pods for MangaReader
+  pod 'UIImageViewAlignedSwift'
 
   target 'MangaReaderTests' do
     inherit! :search_paths

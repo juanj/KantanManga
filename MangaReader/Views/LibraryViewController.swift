@@ -23,7 +23,7 @@ class LibraryViewController: UIViewController {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         
-        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "empty")
+        self.collectionView.register(UINib.init(nibName: "MangaCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MangaCell")
     }
 }
 
@@ -33,7 +33,22 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "empty", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MangaCell", for: indexPath) as! MangaCollectionViewCell
+        
+        let manga = self.mangas[indexPath.row]
+        if let data = manga.coverImage {
+            cell.coverImageView.image = UIImage(data: data)
+        }
+        cell.pageLabel.text = "\(manga.currentPage)/\(manga.totalPages)"
+        
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 200, height: 300)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25)
     }
 }

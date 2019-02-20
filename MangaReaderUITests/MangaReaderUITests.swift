@@ -2,7 +2,7 @@
 //  MangaReaderUITests.swift
 //  MangaReaderUITests
 //
-//  Created by admin on 2/20/19.
+//  Created by Juan on 2/20/19.
 //  Copyright © 2019 Bakura. All rights reserved.
 //
 
