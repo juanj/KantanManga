@@ -81,7 +81,7 @@ class CoreDataManager {
         }
     }
     
-    func fetchAllMangass() -> [Manga]?{
+    func fetchAllMangas() -> [Manga]? {
         let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Manga")
         
@@ -93,5 +93,19 @@ class CoreDataManager {
             return nil
         }
         
+    }
+    
+    func flushData() {
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: "Manga")
+        do {
+            let objs = try CoreDataManager.sharedManager.persistentContainer.viewContext.fetch(fetchRequest)
+            for case let obj as NSManagedObject in objs {
+                CoreDataManager.sharedManager.persistentContainer.viewContext.delete(obj)
+            }
+            
+            try CoreDataManager.sharedManager.persistentContainer.viewContext.save()
+        } catch let error as NSError {
+            print("Could not flush data. \(error), \(error.userInfo)")
+        }
     }
 }

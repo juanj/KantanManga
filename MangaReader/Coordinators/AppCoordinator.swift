@@ -23,6 +23,6 @@ class AppCoordinator {
     }
     
     func loadMangas() -> [Manga] {
-        return CoreDataManager.sharedManager.fetchAllMangass() ?? [Manga]()
+        return CoreDataManager.sharedManager.fetchAllMangas() ?? [Manga]()
     }
 }
