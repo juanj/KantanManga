@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AppCoordinator {
     var navigationController: UINavigationController
@@ -17,6 +18,26 @@ class AppCoordinator {
     
     func start() {
         let library = LibraryViewController()
+        library.mangas = self.loadMangas()
         self.navigationController.pushViewController(library, animated: false)
+    }
+    
+    func loadMangas() -> [Manga] {
+        var mangas = [Manga]()
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return mangas
+        }
+        
+        let mangaFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Manga")
+        do {
+            let fetched = try appDelegate.persistentContainer.viewContext.fetch(mangaFetch)
+            if let fetched = fetched as? [Manga] {
+                mangas = fetched
+            }
+        } catch {
+            fatalError("Failed to fetch mangas: \(error)")
+        }
+        
+        return mangas
     }
 }
