@@ -23,18 +23,6 @@ class AppCoordinator {
     }
     
     func loadMangas() -> [Manga] {
-        var mangas = [Manga]()
-        
-        let mangaFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Manga")
-        do {
-            let fetched = try CoreDataManager.sharedManager.persistentContainer.viewContext.fetch(mangaFetch)
-            if let fetched = fetched as? [Manga] {
-                mangas = fetched
-            }
-        } catch {
-            fatalError("Failed to fetch mangas: \(error)")
-        }
-        
-        return mangas
+        return CoreDataManager.sharedManager.fetchAllMangass() ?? [Manga]()
     }
 }
