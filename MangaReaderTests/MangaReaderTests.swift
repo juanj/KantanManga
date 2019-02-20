@@ -18,6 +18,19 @@ class AppCoordinatorTests: XCTestCase {
         
         XCTAssertTrue(navigation.viewControllers.first is LibraryViewController)
     }
+    
+    func testLoadMangas() {
+        let navigation = UINavigationController()
+        let appCoordinator = AppCoordinator(navigation: navigation)
+        
+        XCTAssertNotNil(appCoordinator.loadMangas())
+        
+        let _ = CoreDataManager.sharedManager.insertManga(title: "Test", totalPages: 100, filePath: "test.cbz")
+        
+        XCTAssertEqual(appCoordinator.loadMangas().count, 1)
+        
+        CoreDataManager.sharedManager.flushData()
+    }
 }
 
 class LibraryViewControllerTests: XCTestCase {
@@ -38,8 +51,8 @@ class CoreDataManagerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         coreDataManager = CoreDataManager.sharedManager
-        
     }
+    
     func testInitCoreDataManager(){
         let instance = CoreDataManager.sharedManager
         XCTAssertNotNil(instance)
@@ -67,6 +80,7 @@ class CoreDataManagerTests: XCTestCase {
     }
     
     func testRemoveManga() {
+        let _ = coreDataManager.insertManga(title: "Manga 1", totalPages: 100, filePath: "file.cbz")
         let items = coreDataManager.fetchAllMangas()
         let manga = items![0]
         let numberOfItems = items?.count
