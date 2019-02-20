@@ -18,11 +18,18 @@ class AppCoordinator {
     
     func start() {
         let library = LibraryViewController()
+        library.delegate = self
         library.mangas = self.loadMangas()
         self.navigationController.pushViewController(library, animated: false)
     }
     
     func loadMangas() -> [Manga] {
         return CoreDataManager.sharedManager.fetchAllMangas() ?? [Manga]()
+    }
+}
+
+extension AppCoordinator: LibraryViewControllerDelegate {
+    func didSelectAdd(_ libraryViewController: LibraryViewController) {
+        
     }
 }

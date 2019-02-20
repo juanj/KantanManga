@@ -8,15 +8,21 @@
 
 import UIKit
 
+protocol LibraryViewControllerDelegate {
+    func didSelectAdd(_ libraryViewController: LibraryViewController)
+}
+
 class LibraryViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var delegate: LibraryViewControllerDelegate?
     var mangas = [Manga]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Library"
         self.configureCollectionView()
+        self.configureNavigationBar()
     }
     
     func configureCollectionView() {
@@ -24,6 +30,15 @@ class LibraryViewController: UIViewController {
         self.collectionView.dataSource = self
         
         self.collectionView.register(UINib.init(nibName: "MangaCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MangaCell")
+    }
+    
+    func configureNavigationBar() {
+        let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .plain, target: self, action: #selector(add))
+        self.navigationItem.leftBarButtonItem = addButton
+    }
+    
+    @objc func add() {
+        self.delegate?.didSelectAdd(self)
     }
 }
 
