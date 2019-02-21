@@ -35,10 +35,6 @@ class CoreDataManager {
         }
     }
     
-    func createMangaWith(title: String, andFilePath path: String) {
-        
-    }
-    
     func insertManga(title: String, totalPages: Int16, filePath: String, currentPage: Int16 = 0, coverImage: Data = Data()) -> Manga? {
         let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Manga", in: managedContext)!
@@ -67,6 +63,18 @@ class CoreDataManager {
         manga.filePath = filePath
         manga.currentPage = currentPage
         manga.coverImage = coverImage
+        do {
+            try context.save()
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+    }
+    
+    func updatePage(manga: Manga, newPage: Int16) {
+        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
+        
+        manga.currentPage = newPage
+        
         do {
             try context.save()
         } catch let error as NSError  {

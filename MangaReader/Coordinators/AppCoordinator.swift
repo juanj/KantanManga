@@ -53,6 +53,7 @@ class AppCoordinator: NSObject {
         var viewControllers = [UIViewController]()
         
         let page1 = PageViewController()
+        page1.delegate = self
         page1.page = 0
         self.currentMangaReader?.readEntityAt(index: page1.page, { (data) in
             if let data = data {
@@ -62,9 +63,16 @@ class AppCoordinator: NSObject {
         if UIApplication.shared.statusBarOrientation == .portrait || UIApplication.shared.statusBarOrientation == .portraitUpsideDown {
             spineLocation = .max
             doublePaged = false
+            page1.doublePaged = doublePaged
             viewControllers = [page1]
         } else {
+            spineLocation = .mid
+            doublePaged = true
+            
             let page2 = PageViewController()
+            page1.doublePaged = doublePaged
+            page2.doublePaged = doublePaged
+            page2.delegate = self
             page2.page = 1
             self.currentMangaReader?.readEntityAt(index: page2.page, { (data) in
                 if let data = data{
@@ -72,8 +80,6 @@ class AppCoordinator: NSObject {
                 }
             })
             viewControllers = [page2, page1]
-            spineLocation = .mid
-            doublePaged = true
         }
         
         let pageController = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: [.spineLocation: spineLocation.rawValue])
@@ -92,6 +98,7 @@ extension AppCoordinator: LibraryViewControllerDelegate {
         self.currentManga = manga
         if let pageContorller = self.createPageController() {
             self.navigationController.pushViewController(pageContorller, animated: true)
+            self.navigationController.setNavigationBarHidden(true, animated: true)
         }
     }
     
@@ -114,11 +121,13 @@ extension AppCoordinator: AddMangasCoordinatorDelegate {
 
 extension AppCoordinator: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let currentReader = self.currentMangaReader else {
-            return PageViewController()
-        }
         let view = PageViewController()
+        view.delegate = self
+        guard let currentReader = self.currentMangaReader else {
+            return view
+        }
         if let viewController = viewController as? PageViewController {
+            view.doublePaged = viewController.doublePaged
             view.page = viewController.page + 1
         }
         if view.page > currentReader.fileEntries.count {
@@ -133,11 +142,13 @@ extension AppCoordinator: UIPageViewControllerDelegate, UIPageViewControllerData
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let currentReader = self.currentMangaReader else {
-            return PageViewController()
-        }
         let view = PageViewController()
+        view.delegate = self
+        guard let currentReader = self.currentMangaReader else {
+            return view
+        }
         if let viewController = viewController as? PageViewController {
+            view.doublePaged = viewController.doublePaged
             view.page = viewController.page - 1
         }
         
@@ -164,7 +175,10 @@ extension AppCoordinator: UIPageViewControllerDelegate, UIPageViewControllerData
                     viewController = viewControllers[0]
                 }
             }
-            
+            if let viewController = viewController as? PageViewController {
+                viewController.doublePaged = false
+                viewController.refreshView()
+            }
             pageViewController.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
             pageViewController.isDoubleSided = false
             return .max
@@ -177,6 +191,8 @@ extension AppCoordinator: UIPageViewControllerDelegate, UIPageViewControllerData
                 } else {
                     let viewController = pageViewControllers[0]
                     if let pageController = viewController as? PageViewController {
+                        pageController.doublePaged = true
+                        pageController.refreshView()
                         if pageController.page % 2 == 0 {
                             if let viewController2 = self.pageViewController(pageViewController, viewControllerBefore: viewController) {
                                 viewControllers = [viewController2, viewController]
@@ -193,5 +209,18 @@ extension AppCoordinator: UIPageViewControllerDelegate, UIPageViewControllerData
             pageViewController.isDoubleSided = true
             return .mid
         }
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if let pageView = pageViewController.viewControllers?[0] as? PageViewController, let manga = self.currentManga {
+            CoreDataManager.sharedManager.updatePage(manga: manga, newPage: Int16(pageView.page))
+        }
+    }
+}
+
+extension AppCoordinator: PageViewControllerDelegate {
+    func didSelectBack(_ pageViewController: PageViewController) {
+        self.navigationController.popViewController(animated: true)
+        self.navigationController.setNavigationBarHidden(false, animated: true)
     }
 }

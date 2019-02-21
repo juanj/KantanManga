@@ -8,9 +8,16 @@
 
 import UIKit
 
+protocol PageViewControllerDelegate {
+    func didSelectBack(_ pageViewController: PageViewController)
+}
+
 class PageViewController: UIViewController {
     @IBOutlet weak var pageImageView: UIImageView!
+    @IBOutlet weak var backButton: UIButton!
     
+    var delegate: PageViewControllerDelegate?
+    var doublePaged = false
     var pageData = Data() {
         didSet {
             if self.pageImageView != nil {
@@ -21,12 +28,29 @@ class PageViewController: UIViewController {
     var page = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.refreshView()
+    }
+    
+    func refreshView() {
         self.loadImage()
+        if self.doublePaged {
+            if self.page % 2 == 1 {
+                self.backButton.isHidden = false
+            } else {
+                self.backButton.isHidden = true
+            }
+        } else {
+            self.backButton.isHidden = false
+        }
     }
     
     func loadImage() {
         if let pageImage = UIImage(data: self.pageData) {
             self.pageImageView.image = pageImage
         }
+    }
+    
+    @IBAction func back(_ sender: Any) {
+        self.delegate?.didSelectBack(self)
     }
 }
