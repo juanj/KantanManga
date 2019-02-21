@@ -16,6 +16,7 @@ class AppCoordinator: NSObject {
     var currentManga: Manga?
     var currentMangaDataSource: MangaDataSource?
     var libraryView: LibraryViewController?
+    var pageController: FullScreenPageViewController?
     
     var isPageAnimating = false
     init(navigation: UINavigationController) {
@@ -34,7 +35,7 @@ class AppCoordinator: NSObject {
         return CoreDataManager.sharedManager.fetchAllMangas() ?? [Manga]()
     }
     
-    func createPageController() -> UIPageViewController? {
+    func createPageController() -> FullScreenPageViewController? {
         guard let manga = self.currentManga else {
             return nil
         }
@@ -73,7 +74,7 @@ class AppCoordinator: NSObject {
             }
         }
         
-        let pageController = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: [.spineLocation: spineLocation.rawValue])
+        let pageController = FullScreenPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: [.spineLocation: spineLocation.rawValue])
         pageController.isDoubleSided = doublePaged
         pageController.delegate = self
         pageController.dataSource = self
@@ -87,6 +88,7 @@ extension AppCoordinator: LibraryViewControllerDelegate {
     func didSelectManga(_ libraryViewController: LibraryViewController, manga: Manga) {
         self.currentManga = manga
         if let pageContorller = self.createPageController() {
+            self.pageController = pageContorller
             self.navigationController.pushViewController(pageContorller, animated: true)
             self.navigationController.setNavigationBarHidden(true, animated: true)
         }
@@ -196,6 +198,17 @@ extension AppCoordinator: UIPageViewControllerDelegate, UIPageViewControllerData
 }
 
 extension AppCoordinator: PageViewControllerDelegate {
+    func didTap(_ pageViewController: PageViewController) {
+        if let pageController = self.pageController {
+            pageController.troggleFullscreen()
+            if let pages = pageController.viewControllers as? [PageViewController] {
+                for page in pages {
+                    page.toggleBars()
+                }
+            }
+        }
+    }
+    
     func didSelectBack(_ pageViewController: PageViewController) {
         self.navigationController.popViewController(animated: true)
         self.navigationController.setNavigationBarHidden(false, animated: true)

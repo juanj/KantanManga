@@ -13,8 +13,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PageViewController" customModule="MangaReader" customModuleProvider="target">
             <connections>
                 <outlet property="backButton" destination="Bdy-2B-NuI" id="jwX-TJ-0cx"/>
+                <outlet property="bottomConstraint" destination="1lh-DU-Anb" id="2bj-X2-Da5"/>
                 <outlet property="pageImageView" destination="Ntt-ZO-Net" id="L5O-9U-lr9"/>
                 <outlet property="pageLabel" destination="V6z-at-x6L" id="CT7-q0-zuM"/>
+                <outlet property="topConstraint" destination="NBu-IA-EIB" id="kNz-xn-evM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,9 +25,6 @@
             <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ntt-ZO-Net" customClass="UIImageViewAligned" customModule="UIImageViewAlignedSwift">
-                    <rect key="frame" x="0.0" y="65" width="1024" height="658"/>
-                </imageView>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bdy-2B-NuI">
                     <rect key="frame" x="0.0" y="20" width="70" height="45"/>
                     <constraints>
@@ -43,6 +42,9 @@
                     <color key="textColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ntt-ZO-Net" customClass="UIImageViewAligned" customModule="UIImageViewAlignedSwift">
+                    <rect key="frame" x="0.0" y="65" width="1024" height="658"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.96400282120000003" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>

@@ -11,6 +11,7 @@ import UIImageViewAlignedSwift
 
 protocol PageViewControllerDelegate {
     func didSelectBack(_ pageViewController: PageViewController)
+    func didTap(_ pageViewController: PageViewController)
 }
 
 class PageViewController: UIViewController {
@@ -18,9 +19,12 @@ class PageViewController: UIViewController {
     @IBOutlet weak var pageImageView: UIImageViewAligned?
     @IBOutlet weak var backButton: UIButton?
     @IBOutlet weak var pageLabel: UILabel?
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var delegate: PageViewControllerDelegate?
     var doublePaged = false
+    var fullScreen = false
     var pageData = Data() {
         didSet {
             if self.pageImageView != nil {
@@ -32,6 +36,17 @@ class PageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.refreshView()
+        
+        if self.fullScreen {
+            self.topConstraint.constant = 0
+            self.bottomConstraint.constant = 0
+            self.backButton?.alpha = 0
+            self.view.layoutIfNeeded()
+        }
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
+        tapGesture.numberOfTapsRequired = 1
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     func refreshView() {
@@ -58,6 +73,31 @@ class PageViewController: UIViewController {
         if let pageImage = UIImage(data: self.pageData) {
             self.pageImageView?.image = pageImage
         }
+    }
+    
+    func toggleBars() {
+        if self.fullScreen {
+            self.fullScreen = false
+            self.topConstraint.constant = 45
+            self.bottomConstraint.constant = 45
+            UIView.animate(withDuration: 0.5) {
+                self.view.layoutIfNeeded()
+                self.backButton?.alpha = 1
+            }
+        } else {
+            self.fullScreen = true
+            self.topConstraint.constant = 0
+            self.bottomConstraint.constant = 0
+            UIView.animate(withDuration: 0.5) {
+                self.view.layoutIfNeeded()
+                self.backButton?.alpha = 0
+            }
+        }
+        self.setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    @objc func tap() {
+        self.delegate?.didTap(self)
     }
     
     @IBAction func back(_ sender: Any) {

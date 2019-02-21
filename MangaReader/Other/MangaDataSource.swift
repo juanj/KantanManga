@@ -25,11 +25,12 @@ class MangaDataSource {
         }
     }
     
-    func createPage(index: Int, doublePaged: Bool, delegate: PageViewControllerDelegate? = nil) -> PageViewController {
+    func createPage(index: Int, doublePaged: Bool, delegate: PageViewControllerDelegate? = nil, fullScreen: Bool = false) -> PageViewController {
         let page = PageViewController()
         page.doublePaged = doublePaged
         page.page = index
         page.delegate = delegate
+        page.fullScreen = fullScreen
         
         // Load image to page
         self.mangaReader.readEntityAt(index: page.page, { (data) in
@@ -52,7 +53,7 @@ class MangaDataSource {
             return nil
         }
         
-        return self.createPage(index: index, doublePaged: currentPage.doublePaged, delegate: currentPage.delegate)
+        return self.createPage(index: index, doublePaged: currentPage.doublePaged, delegate: currentPage.delegate, fullScreen: currentPage.fullScreen)
     }
     
     func previousPage(currentPage: UIViewController) -> UIViewController? {
@@ -66,6 +67,6 @@ class MangaDataSource {
             return nil
         }
         
-        return self.createPage(index: index, doublePaged: currentPage.doublePaged, delegate: currentPage.delegate)
+        return self.createPage(index: index, doublePaged: currentPage.doublePaged, delegate: currentPage.delegate, fullScreen: currentPage.fullScreen)
     }
 }
