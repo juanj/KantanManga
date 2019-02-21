@@ -119,50 +119,55 @@ extension AppCoordinator: UIPageViewControllerDelegate, UIPageViewControllerData
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, spineLocationFor orientation: UIInterfaceOrientation) -> UIPageViewController.SpineLocation {
-        if orientation == .portrait || orientation == .portraitUpsideDown {
-            var viewController = UIViewController()
-            
-            if let viewControllers = pageViewController.viewControllers {
-                if viewControllers.count == 2 {
-                    viewController = viewControllers[1]
+        let spineLocation: UIPageViewController.SpineLocation
+        let doublePaged: Bool
+        var viewControllers = [PageViewController]()
+        
+        switch orientation {
+        case .portrait, .portraitUpsideDown:
+            spineLocation = .max
+            doublePaged = false
+            if let pages = pageViewController.viewControllers as? [PageViewController] {
+                if pages.count == 2 {
+                    // Two pages. Keep the one on the right.
+                    viewControllers = [pages[1]]
                 } else {
-                    viewController = viewControllers[0]
+                    // Just one page. Use the same
+                    viewControllers = pages
                 }
             }
-            if let viewController = viewController as? PageViewController {
-                viewController.doublePaged = false
-                viewController.refreshView()
-            }
-            pageViewController.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
-            pageViewController.isDoubleSided = false
-            return .max
-        } else {
-            var viewControllers = [UIViewController(), UIViewController()]
-            
-            if let pageViewControllers = pageViewController.viewControllers {
-                if pageViewControllers.count == 2 {
-                    viewControllers = pageViewControllers
+        case .landscapeLeft, .landscapeRight, .unknown:
+            spineLocation = .mid
+            doublePaged = true
+            if let pages = pageViewController.viewControllers as? [PageViewController] {
+                if pages.count == 2 {
+                    viewControllers = pages
                 } else {
-                    let viewController = pageViewControllers[0]
-                    if let pageController = viewController as? PageViewController {
-                        pageController.doublePaged = true
-                        pageController.refreshView()
-                        if pageController.page % 2 == 0 {
-                            if let viewController2 = self.pageViewController(pageViewController, viewControllerBefore: viewController) {
-                                viewControllers = [viewController2, viewController]
-                            }
-                        } else {
-                            if let viewController2 = self.pageViewController(pageViewController, viewControllerAfter: viewController) {
-                                viewControllers = [viewController, viewController2]
-                            }
+                    let page = pages[0]
+                    if page.page % 2 == 0 {
+                        // If first page is even, get next page
+                        if let page2 = self.currentMangaDataSource?.nextPage(currentPage: page) as? PageViewController {
+                            viewControllers = [page2, page]
+                        }
+                    } else {
+                        // If first page is odd, get previous page
+                        if let page2 = self.currentMangaDataSource?.previousPage(currentPage: page) as? PageViewController {
+                            viewControllers = [page, page2]
                         }
                     }
                 }
             }
-            pageViewController.setViewControllers(viewControllers, direction: .forward, animated: true, completion: nil)
-            pageViewController.isDoubleSided = true
-            return .mid
         }
+        
+        for page in viewControllers {
+            page.doublePaged = doublePaged
+            page.refreshView()
+        }
+        
+        pageViewController.setViewControllers(viewControllers, direction: .forward, animated: true, completion: nil)
+        pageViewController.isDoubleSided = doublePaged
+        
+        return spineLocation
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {

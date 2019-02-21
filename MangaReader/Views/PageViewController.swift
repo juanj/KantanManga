@@ -13,8 +13,9 @@ protocol PageViewControllerDelegate {
 }
 
 class PageViewController: UIViewController {
-    @IBOutlet weak var pageImageView: UIImageView!
-    @IBOutlet weak var backButton: UIButton!
+    // Some times refreshView is called before the nib is loaded. Kepp these optional to prevent a crash
+    @IBOutlet weak var pageImageView: UIImageView?
+    @IBOutlet weak var backButton: UIButton?
     
     var delegate: PageViewControllerDelegate?
     var doublePaged = false
@@ -35,18 +36,18 @@ class PageViewController: UIViewController {
         self.loadImage()
         if self.doublePaged {
             if self.page % 2 == 1 {
-                self.backButton.isHidden = false
+                self.backButton?.isHidden = false
             } else {
-                self.backButton.isHidden = true
+                self.backButton?.isHidden = true
             }
         } else {
-            self.backButton.isHidden = false
+            self.backButton?.isHidden = false
         }
     }
     
     func loadImage() {
         if let pageImage = UIImage(data: self.pageData) {
-            self.pageImageView.image = pageImage
+            self.pageImageView?.image = pageImage
         }
     }
     
