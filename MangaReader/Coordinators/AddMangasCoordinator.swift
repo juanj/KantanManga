@@ -41,35 +41,11 @@ class AddMangasCoordinator: NSObject{
         self.uploadServer?.delegate = self
         self.uploadServer?.start()
     }
-    
-    func createMangaWith(name: String, filePath path: String) {
-        do {
-            let fileName = (path as NSString).lastPathComponent
-            let reader = try CBZReader(fileName: fileName)
-            let data = Data()
-            reader.readFirstEntry { (data) in
-                if let data = data {
-                    let _ = CoreDataManager.sharedManager.insertManga(title: name, totalPages: Int16(reader.fileEntries.count), filePath: fileName, currentPage: 0, coverImage: data)
-                }
-            }
-        } catch {
-            print("Error creating CBZReader")
-        }
-    }
 }
 
 extension AddMangasCoordinator: GCDWebUploaderDelegate {
     func webUploader(_ uploader: GCDWebUploader, didUploadFileAtPath path: String) {
-        let alert = UIAlertController(title: "Uploaded", message: "A new file was uploaded.\nDo you want to create a manga entry for it now?", preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.placeholder = "Manga name"
-        }
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
-            if let text = alert.textFields?[0].text, text != "" {
-                self.createMangaWith(name: text, filePath: path)
-            }
-        }))
-        self.navigationController.present(alert, animated: true, completion: nil)
+        CoreDataManager.sharedManager.createMangaWith(filePath: path)
     }
 }
 
