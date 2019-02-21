@@ -17,7 +17,8 @@ class CBZReader {
     var fileName = ""
     var archive: Archive
     var fileEntries = [Entry]()
-    var observer: NSKeyValueObservation?
+    var observers = [NSKeyValueObservation]()
+    var progresses = [Progress]()
     
     init(fileName: String) throws {
         self.fileName = fileName
@@ -36,21 +37,31 @@ class CBZReader {
     }
     
     func readFirstEntry(_ callBack: @escaping (_: Data?) -> Void) {
-        let progress = Progress()
+        self.readEntityAt(index: 0, callBack)
+    }
+    
+    func readEntityAt(index: Int, _ callBack: @escaping (_: Data?) -> Void) {
+        guard index >= 0 && index < self.fileEntries.count else {
+            callBack(nil)
+            return
+        }
         var tempData = Data()
-        self.observer = progress.observe(\.fractionCompleted, changeHandler: { (progress, value) in
+        let progress = Progress()
+        self.progresses.append(progress)
+        self.observers.append(progress.observe(\.fractionCompleted, changeHandler: { (progress, value) in
             if progress.fractionCompleted == 1 {
                 callBack(tempData)
+                self.progresses = self.progresses.filter {$0 != progress}
+                let _ = self.observers.popLast()
             }
-        })
-        if let entry = self.fileEntries.first {
-            do {
-                let _ = try archive.extract(entry, bufferSize: UInt32(16*1024), progress: progress, consumer: { (aData) in
-                    tempData.append(aData)
-                })
-            } catch {
-                callBack(nil)
-            }
+        }))
+        let entry = self.fileEntries[index]
+        do {
+            let _ = try archive.extract(entry, bufferSize: UInt32(16*1024), progress: progress, consumer: { (aData) in
+                tempData.append(aData)
+            })
+        } catch {
+            callBack(nil)
         }
     }
 }

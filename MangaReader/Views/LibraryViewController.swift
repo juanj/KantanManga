@@ -10,6 +10,7 @@ import UIKit
 
 protocol LibraryViewControllerDelegate {
     func didSelectAdd(_ libraryViewController: LibraryViewController)
+    func didSelectManga(_ libraryViewController: LibraryViewController, manga: Manga)
 }
 
 class LibraryViewController: UIViewController {
@@ -61,6 +62,11 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         cell.pageLabel.text = "\(manga.currentPage)/\(manga.totalPages)"
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let manga = self.mangas[indexPath.row]
+        self.delegate?.didSelectManga(self, manga: manga)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
