@@ -40,6 +40,14 @@ class AppCoordinator: NSObject {
         guard let filePath = manga.filePath else {
             return nil
         }
+        
+        do {
+            self.currentMangaReader = try CBZReader(fileName: filePath)
+        } catch {
+            print("Error creating CBZReader for path \(filePath)")
+            return nil
+        }
+        
         let spineLocation: UIPageViewController.SpineLocation
         let doublePaged: Bool
         var viewControllers = [UIViewController]()
@@ -69,12 +77,6 @@ class AppCoordinator: NSObject {
         }
         
         let pageController = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: [.spineLocation: spineLocation.rawValue])
-        do {
-            self.currentMangaReader = try CBZReader(fileName: filePath)
-        } catch {
-            print("Error creating CBZReader for path \(filePath)")
-            return nil
-        }
         pageController.isDoubleSided = doublePaged
         pageController.delegate = self
         pageController.dataSource = self
