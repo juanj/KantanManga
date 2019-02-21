@@ -54,16 +54,16 @@ class AppCoordinator: NSObject {
         
         let page1 = PageViewController()
         page1.delegate = self
-        page1.page = 0
-        self.currentMangaReader?.readEntityAt(index: page1.page, { (data) in
-            if let data = data {
-                page1.pageData.append(data)
-            }
-        })
+        page1.page = Int(manga.currentPage)
         if UIApplication.shared.statusBarOrientation == .portrait || UIApplication.shared.statusBarOrientation == .portraitUpsideDown {
             spineLocation = .max
             doublePaged = false
             page1.doublePaged = doublePaged
+            self.currentMangaReader?.readEntityAt(index: page1.page, { (data) in
+                if let data = data {
+                    page1.pageData.append(data)
+                }
+            })
             viewControllers = [page1]
         } else {
             spineLocation = .mid
@@ -73,10 +73,21 @@ class AppCoordinator: NSObject {
             page1.doublePaged = doublePaged
             page2.doublePaged = doublePaged
             page2.delegate = self
-            page2.page = 1
+            
+            if page1.page % 2 == 1 {
+                page2.page = page1.page
+                page1.page -= 1
+            } else {
+                page2.page = page1.page + 1
+            }
             self.currentMangaReader?.readEntityAt(index: page2.page, { (data) in
                 if let data = data{
                     page2.pageData.append(data)
+                }
+            })
+            self.currentMangaReader?.readEntityAt(index: page1.page, { (data) in
+                if let data = data {
+                    page1.pageData.append(data)
                 }
             })
             viewControllers = [page2, page1]
@@ -130,7 +141,7 @@ extension AppCoordinator: UIPageViewControllerDelegate, UIPageViewControllerData
             view.doublePaged = viewController.doublePaged
             view.page = viewController.page + 1
         }
-        if view.page > currentReader.fileEntries.count {
+        if view.page >= currentReader.fileEntries.count {
             return nil
         }
         currentReader.readEntityAt(index: view.page, { (data) in
