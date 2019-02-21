@@ -53,7 +53,7 @@ class AppCoordinator: NSObject {
         if UIApplication.shared.statusBarOrientation == .portrait || UIApplication.shared.statusBarOrientation == .portraitUpsideDown {
             spineLocation = .max
             doublePaged = false
-            let page = dataSource.createPage(index: Int(manga.currentPage), doublePaged: doublePaged)
+            let page = dataSource.createPage(index: Int(manga.currentPage), doublePaged: doublePaged, delegate: self)
             viewControllers = [page]
         } else {
             spineLocation = .mid
