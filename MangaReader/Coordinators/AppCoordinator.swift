@@ -14,7 +14,7 @@ class AppCoordinator: NSObject {
     var childCoordinators = [Any]()
     
     var currentManga: Manga?
-    var currentMangaReader: CBZReader?
+    var currentMangaDataSource: MangaDataSource?
     var libraryView: LibraryViewController?
     init(navigation: UINavigationController) {
         self.navigationController = navigation
@@ -37,68 +37,45 @@ class AppCoordinator: NSObject {
             return nil
         }
         
-        guard let filePath = manga.filePath else {
+        guard let dataSource = MangaDataSource(manga: manga) else {
             return nil
         }
         
-        do {
-            self.currentMangaReader = try CBZReader(fileName: filePath)
-        } catch {
-            print("Error creating CBZReader for path \(filePath)")
-            return nil
-        }
+        self.currentMangaDataSource = dataSource
         
         let spineLocation: UIPageViewController.SpineLocation
         let doublePaged: Bool
         var viewControllers = [UIViewController]()
         
-        let page1 = PageViewController()
-        page1.delegate = self
-        page1.page = Int(manga.currentPage)
         if UIApplication.shared.statusBarOrientation == .portrait || UIApplication.shared.statusBarOrientation == .portraitUpsideDown {
             spineLocation = .max
             doublePaged = false
-            page1.doublePaged = doublePaged
-            self.currentMangaReader?.readEntityAt(index: page1.page, { (data) in
-                if let data = data {
-                    page1.pageData.append(data)
-                }
-            })
-            viewControllers = [page1]
+            let page = dataSource.createPage(index: Int(manga.currentPage), doublePaged: doublePaged)
+            viewControllers = [page]
         } else {
             spineLocation = .mid
             doublePaged = true
             
-            let page2 = PageViewController()
-            page1.doublePaged = doublePaged
-            page2.doublePaged = doublePaged
-            page2.delegate = self
-            
-            if page1.page % 2 == 1 {
-                page2.page = page1.page
-                page1.page -= 1
+            if manga.currentPage % 2 == 1 {
+                let page1 = dataSource.createPage(index: Int(manga.currentPage - 1), doublePaged: doublePaged, delegate: self)
+                let page2 = dataSource.createPage(index: Int(manga.currentPage), doublePaged: doublePaged, delegate: self)
+                
+                // Set view controllers in this order to make manga RTL
+                viewControllers = [page2, page1]
             } else {
-                page2.page = page1.page + 1
+                let page1 = dataSource.createPage(index: Int(manga.currentPage), doublePaged: doublePaged, delegate: self)
+                let page2 = dataSource.createPage(index: Int(manga.currentPage + 1), doublePaged: doublePaged, delegate: self)
+                
+                // Set view controllers in this order to make manga RTL
+                viewControllers = [page2, page1]
             }
-            self.currentMangaReader?.readEntityAt(index: page2.page, { (data) in
-                if let data = data{
-                    page2.pageData.append(data)
-                }
-            })
-            self.currentMangaReader?.readEntityAt(index: page1.page, { (data) in
-                if let data = data {
-                    page1.pageData.append(data)
-                }
-            })
-            viewControllers = [page2, page1]
         }
         
         let pageController = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: [.spineLocation: spineLocation.rawValue])
         pageController.isDoubleSided = doublePaged
         pageController.delegate = self
         pageController.dataSource = self
-        
-        pageController.setViewControllers(viewControllers, direction: .reverse, animated: true, completion: nil)
+        pageController.setViewControllers(viewControllers, direction: .forward, animated: true, completion: nil)
         return pageController
     }
 }
@@ -132,47 +109,13 @@ extension AppCoordinator: AddMangasCoordinatorDelegate {
 
 extension AppCoordinator: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        let view = PageViewController()
-        view.delegate = self
-        guard let currentReader = self.currentMangaReader else {
-            return view
-        }
-        if let viewController = viewController as? PageViewController {
-            view.doublePaged = viewController.doublePaged
-            view.page = viewController.page + 1
-        }
-        if view.page >= currentReader.fileEntries.count {
-            return nil
-        }
-        currentReader.readEntityAt(index: view.page, { (data) in
-            if let data = data{
-                view.pageData.append(data)
-            }
-        })
-        return view
+        // Return next page to make manga RTL
+        return self.currentMangaDataSource?.nextPage(currentPage: viewController)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        let view = PageViewController()
-        view.delegate = self
-        guard let currentReader = self.currentMangaReader else {
-            return view
-        }
-        if let viewController = viewController as? PageViewController {
-            view.doublePaged = viewController.doublePaged
-            view.page = viewController.page - 1
-        }
-        
-        if view.page < 0 {
-            return nil
-        }
-        
-        currentReader.readEntityAt(index: view.page, { (data) in
-            if let data = data{
-                view.pageData.append(data)
-            }
-        })
-        return view
+        // Return previous page to make manga RTL
+        return self.currentMangaDataSource?.previousPage(currentPage: viewController)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, spineLocationFor orientation: UIInterfaceOrientation) -> UIPageViewController.SpineLocation {
