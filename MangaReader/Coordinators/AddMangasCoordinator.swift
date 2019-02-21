@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 import ZIPFoundation
 
 protocol AddMangasCoordinatorDelegate {
@@ -45,7 +46,16 @@ class AddMangasCoordinator: NSObject{
 
 extension AddMangasCoordinator: GCDWebUploaderDelegate {
     func webUploader(_ uploader: GCDWebUploader, didUploadFileAtPath path: String) {
+        let soundID: SystemSoundID = 1307
+        AudioServicesPlaySystemSound(soundID)
         CoreDataManager.sharedManager.createMangaWith(filePath: path)
+    }
+    
+    func webUploader(_ uploader: GCDWebUploader, didDeleteItemAtPath path: String) {
+        let fileName = (path as NSString).lastPathComponent
+        if let manga = CoreDataManager.sharedManager.getMangaWith(filePath: fileName) {
+            CoreDataManager.sharedManager.delete(manga: manga)
+        }
     }
 }
 

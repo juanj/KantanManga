@@ -136,4 +136,18 @@ class CoreDataManager {
             print("Error creating CBZReader")
         }
     }
+    
+    func getMangaWith(filePath path: String) -> Manga? {
+        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Manga")
+        fetchRequest.predicate = NSPredicate(format: "filePath=%@", path)
+        
+        do {
+            let manga = try context.fetch(fetchRequest)
+            return manga[0] as? Manga
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            return nil
+        }
+    }
 }
