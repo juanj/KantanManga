@@ -16,6 +16,8 @@ class AppCoordinator: NSObject {
     var currentManga: Manga?
     var currentMangaDataSource: MangaDataSource?
     var libraryView: LibraryViewController?
+    
+    var isPageAnimating = false
     init(navigation: UINavigationController) {
         self.navigationController = navigation
     }
@@ -109,11 +111,17 @@ extension AppCoordinator: AddMangasCoordinatorDelegate {
 
 extension AppCoordinator: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        if self.isPageAnimating {
+            return nil
+        }
         // Return next page to make manga RTL
         return self.currentMangaDataSource?.nextPage(currentPage: viewController)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        if self.isPageAnimating {
+            return nil
+        }
         // Return previous page to make manga RTL
         return self.currentMangaDataSource?.previousPage(currentPage: viewController)
     }
@@ -122,6 +130,8 @@ extension AppCoordinator: UIPageViewControllerDelegate, UIPageViewControllerData
         let spineLocation: UIPageViewController.SpineLocation
         let doublePaged: Bool
         var viewControllers = [PageViewController]()
+        
+        self.isPageAnimating = false
         
         switch orientation {
         case .portrait, .portraitUpsideDown:
@@ -174,6 +184,14 @@ extension AppCoordinator: UIPageViewControllerDelegate, UIPageViewControllerData
         if let pageView = pageViewController.viewControllers?[0] as? PageViewController, let manga = self.currentManga {
             CoreDataManager.sharedManager.updatePage(manga: manga, newPage: Int16(pageView.page))
         }
+        
+        if completed || finished {
+            self.isPageAnimating = false
+        }
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        self.isPageAnimating = true
     }
 }
 
