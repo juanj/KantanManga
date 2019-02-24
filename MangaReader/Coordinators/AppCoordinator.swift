@@ -12,17 +12,17 @@ import CoreData
 class AppCoordinator: NSObject {
     var navigationController: UINavigationController
     var childCoordinators = [Any]()
-    
+
     var currentManga: Manga?
     var currentMangaDataSource: MangaDataSource?
     var libraryView: LibraryViewController?
     var pageController: FullScreenPageViewController?
-    
+
     var isPageAnimating = false
     init(navigation: UINavigationController) {
         self.navigationController = navigation
     }
-    
+
     func start() {
         let library = LibraryViewController()
         library.delegate = self
@@ -30,26 +30,26 @@ class AppCoordinator: NSObject {
         self.navigationController.pushViewController(library, animated: false)
         self.libraryView = library
     }
-    
+
     func loadMangas() -> [Manga] {
         return CoreDataManager.sharedManager.fetchAllMangas() ?? [Manga]()
     }
-    
+
     func createPageController() -> FullScreenPageViewController? {
         guard let manga = self.currentManga else {
             return nil
         }
-        
+
         guard let dataSource = MangaDataSource(manga: manga) else {
             return nil
         }
-        
+
         self.currentMangaDataSource = dataSource
-        
+
         let spineLocation: UIPageViewController.SpineLocation
         let doublePaged: Bool
         var viewControllers = [UIViewController]()
-        
+
         if UIApplication.shared.statusBarOrientation == .portrait || UIApplication.shared.statusBarOrientation == .portraitUpsideDown {
             spineLocation = .max
             doublePaged = false
@@ -58,22 +58,22 @@ class AppCoordinator: NSObject {
         } else {
             spineLocation = .mid
             doublePaged = true
-            
+
             if manga.currentPage % 2 == 1 {
                 let page1 = dataSource.createPage(index: Int(manga.currentPage - 1), doublePaged: doublePaged, delegate: self)
                 let page2 = dataSource.createPage(index: Int(manga.currentPage), doublePaged: doublePaged, delegate: self)
-                
+
                 // Set view controllers in this order to make manga RTL
                 viewControllers = [page2, page1]
             } else {
                 let page1 = dataSource.createPage(index: Int(manga.currentPage), doublePaged: doublePaged, delegate: self)
                 let page2 = dataSource.createPage(index: Int(manga.currentPage + 1), doublePaged: doublePaged, delegate: self)
-                
+
                 // Set view controllers in this order to make manga RTL
                 viewControllers = [page2, page1]
             }
         }
-        
+
         let pageController = FullScreenPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: [.spineLocation: spineLocation.rawValue])
         pageController.isDoubleSided = doublePaged
         pageController.delegate = self
@@ -85,6 +85,12 @@ class AppCoordinator: NSObject {
 
 // MARK: LibraryViewControllerDelegate
 extension AppCoordinator: LibraryViewControllerDelegate {
+    func didSelectDeleteManga(_ libraryViewController: LibraryViewController, manga: Manga) {
+        CoreDataManager.sharedManager.delete(manga: manga)
+        libraryViewController.mangas = self.loadMangas()
+        libraryViewController.collectionView.reloadData()
+    }
+
     func didSelectManga(_ libraryViewController: LibraryViewController, manga: Manga) {
         self.currentManga = manga
         if let pageContorller = self.createPageController() {
@@ -93,7 +99,7 @@ extension AppCoordinator: LibraryViewControllerDelegate {
             self.navigationController.setNavigationBarHidden(true, animated: true)
         }
     }
-    
+
     func didSelectAdd(_ libraryViewController: LibraryViewController) {
         let addMangasCoordinator = AddMangasCoordinator(navigation: self.navigationController)
         addMangasCoordinator.delegate = self
@@ -119,7 +125,7 @@ extension AppCoordinator: UIPageViewControllerDelegate, UIPageViewControllerData
         // Return next page to make manga RTL
         return self.currentMangaDataSource?.nextPage(currentPage: viewController)
     }
-    
+
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         if self.isPageAnimating {
             return nil
@@ -127,14 +133,14 @@ extension AppCoordinator: UIPageViewControllerDelegate, UIPageViewControllerData
         // Return previous page to make manga RTL
         return self.currentMangaDataSource?.previousPage(currentPage: viewController)
     }
-    
+
     func pageViewController(_ pageViewController: UIPageViewController, spineLocationFor orientation: UIInterfaceOrientation) -> UIPageViewController.SpineLocation {
         let spineLocation: UIPageViewController.SpineLocation
         let doublePaged: Bool
         var viewControllers = [PageViewController]()
-        
+
         self.isPageAnimating = false
-        
+
         switch orientation {
         case .portrait, .portraitUpsideDown:
             spineLocation = .max
@@ -170,28 +176,28 @@ extension AppCoordinator: UIPageViewControllerDelegate, UIPageViewControllerData
                 }
             }
         }
-        
+
         for page in viewControllers {
             page.doublePaged = doublePaged
             page.refreshView()
         }
-        
+
         pageViewController.setViewControllers(viewControllers, direction: .forward, animated: true, completion: nil)
         pageViewController.isDoubleSided = doublePaged
-        
+
         return spineLocation
     }
-    
+
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if let pageView = pageViewController.viewControllers?[0] as? PageViewController, let manga = self.currentManga {
             CoreDataManager.sharedManager.updatePage(manga: manga, newPage: Int16(pageView.page))
         }
-        
+
         if completed || finished {
             self.isPageAnimating = false
         }
     }
-    
+
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         self.isPageAnimating = true
     }
@@ -208,7 +214,7 @@ extension AppCoordinator: PageViewControllerDelegate {
             }
         }
     }
-    
+
     func didSelectBack(_ pageViewController: PageViewController) {
         self.navigationController.popViewController(animated: true)
         self.navigationController.setNavigationBarHidden(false, animated: true)

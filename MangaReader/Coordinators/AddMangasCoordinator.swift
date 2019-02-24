@@ -10,19 +10,19 @@ import UIKit
 import AVFoundation
 import ZIPFoundation
 
-protocol AddMangasCoordinatorDelegate {
+protocol AddMangasCoordinatorDelegate: AnyObject {
     func didEnd(_ addMangasCoordinator: AddMangasCoordinator)
 }
 
-class AddMangasCoordinator: NSObject{
+class AddMangasCoordinator: NSObject {
     var navigationController: UINavigationController!
-    var delegate: AddMangasCoordinatorDelegate?
+    weak var delegate: AddMangasCoordinatorDelegate?
     var uploadServer: GCDWebUploader?
-    
+
     init(navigation: UINavigationController) {
         self.navigationController = navigation
     }
-    
+
     func start() {
         self.initWebServer()
         let webServerViewcontroller = WebServerViewController()
@@ -32,7 +32,7 @@ class AddMangasCoordinator: NSObject{
         }
         self.navigationController.pushViewController(webServerViewcontroller, animated: true)
     }
-    
+
     func initWebServer() {
         guard let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
             return
@@ -50,7 +50,7 @@ extension AddMangasCoordinator: GCDWebUploaderDelegate {
         AudioServicesPlaySystemSound(soundID)
         CoreDataManager.sharedManager.createMangaWith(filePath: path)
     }
-    
+
     func webUploader(_ uploader: GCDWebUploader, didDeleteItemAtPath path: String) {
         let fileName = (path as NSString).lastPathComponent
         if let manga = CoreDataManager.sharedManager.getMangaWith(filePath: fileName) {

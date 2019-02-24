@@ -9,7 +9,7 @@
 import UIKit
 import UIImageViewAlignedSwift
 
-protocol PageViewControllerDelegate {
+protocol PageViewControllerDelegate: AnyObject {
     func didSelectBack(_ pageViewController: PageViewController)
     func didTap(_ pageViewController: PageViewController)
 }
@@ -21,8 +21,8 @@ class PageViewController: UIViewController {
     @IBOutlet weak var pageLabel: UILabel?
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    
-    var delegate: PageViewControllerDelegate?
+
+    weak var delegate: PageViewControllerDelegate?
     var doublePaged = false
     var fullScreen = false
     var pageData = Data() {
@@ -36,19 +36,19 @@ class PageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.refreshView()
-        
+
         if self.fullScreen {
             self.topConstraint.constant = 0
             self.bottomConstraint.constant = 0
             self.backButton?.alpha = 0
             self.view.layoutIfNeeded()
         }
-        
+
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
         tapGesture.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(tapGesture)
     }
-    
+
     func refreshView() {
         self.loadImage()
         if self.doublePaged {
@@ -68,13 +68,13 @@ class PageViewController: UIViewController {
         }
         self.pageLabel?.text = "\(self.page + 1)"
     }
-    
+
     func loadImage() {
         if let pageImage = UIImage(data: self.pageData) {
             self.pageImageView?.image = pageImage
         }
     }
-    
+
     func toggleBars() {
         if self.fullScreen {
             self.fullScreen = false
@@ -95,11 +95,11 @@ class PageViewController: UIViewController {
         }
         self.setNeedsStatusBarAppearanceUpdate()
     }
-    
+
     @objc func tap() {
         self.delegate?.didTap(self)
     }
-    
+
     @IBAction func back(_ sender: Any) {
         self.delegate?.didSelectBack(self)
     }

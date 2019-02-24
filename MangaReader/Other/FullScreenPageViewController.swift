@@ -10,11 +10,11 @@ import UIKit
 
 class FullScreenPageViewController: UIPageViewController {
     public var fullScreen = false
-    
+
     override var prefersStatusBarHidden: Bool {
         return self.fullScreen
     }
-    
+
     public func troggleFullscreen() {
         self.fullScreen = !self.fullScreen
         self.setNeedsStatusBarAppearanceUpdate()

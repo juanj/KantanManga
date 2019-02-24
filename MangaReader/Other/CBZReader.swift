@@ -19,7 +19,7 @@ class CBZReader {
     var fileEntries = [Entry]()
     var observers = [NSKeyValueObservation]()
     var progresses = [Progress]()
-    
+
     init(fileName: String) throws {
         self.fileName = fileName
         let fileManager = FileManager.default
@@ -29,17 +29,15 @@ class CBZReader {
             throw CBZReaderError.errorCreatingArhive
         }
         self.archive = archive
-        for entry in self.archive.makeIterator() {
-            if entry.type == .file {
-                self.fileEntries.append(entry)
-            }
+        for entry in self.archive.makeIterator() where entry.type == .file {
+            self.fileEntries.append(entry)
         }
     }
-    
+
     func readFirstEntry(_ callBack: @escaping (_: Data?) -> Void) {
         self.readEntityAt(index: 0, callBack)
     }
-    
+
     func readEntityAt(index: Int, _ callBack: @escaping (_: Data?) -> Void) {
         guard index >= 0 && index < self.fileEntries.count else {
             callBack(nil)
@@ -48,16 +46,16 @@ class CBZReader {
         var tempData = Data()
         let progress = Progress()
         self.progresses.append(progress)
-        self.observers.append(progress.observe(\.fractionCompleted, changeHandler: { (progress, value) in
+        self.observers.append(progress.observe(\.fractionCompleted, changeHandler: { (progress, _) in
             if progress.fractionCompleted == 1 {
                 callBack(tempData)
                 self.progresses = self.progresses.filter {$0 != progress}
-                let _ = self.observers.popLast()
+                _ = self.observers.popLast()
             }
         }))
         let entry = self.fileEntries[index]
         do {
-            let _ = try archive.extract(entry, bufferSize: UInt32(16*1024), progress: progress, consumer: { (aData) in
+            _ = try archive.extract(entry, bufferSize: UInt32(16*1024), progress: progress, consumer: { (aData) in
                 tempData.append(aData)
             })
         } catch {

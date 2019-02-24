@@ -8,26 +8,26 @@
 
 import UIKit
 
-protocol WebServerViewControllerDelegate {
+protocol WebServerViewControllerDelegate: AnyObject {
     func didSelectBack(_ webServerViewController: WebServerViewController)
 }
 
 class WebServerViewController: UIViewController {
     @IBOutlet weak var openLabel: UILabel!
-    
-    var delegate: WebServerViewControllerDelegate?
+
+    weak var delegate: WebServerViewControllerDelegate?
     var serverUrl = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.openLabel.text = "Open your browser at \(self.serverUrl)"
         self.configureNavigationBar()
     }
-    
+
     func configureNavigationBar() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(back))
     }
-    
+
     @objc func back() {
         self.delegate?.didSelectBack(self)
     }
