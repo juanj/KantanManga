@@ -204,6 +204,14 @@ extension AppCoordinator: UIPageViewControllerDelegate, UIPageViewControllerData
 }
 
 extension AppCoordinator: PageViewControllerDelegate {
+    func didLongPress(_ pageViewController: PageViewController) {
+        let detail = PageDetailViewController()
+        detail.image = pageViewController.pageImageView?.image
+        detail.delegate = self
+        self.navigationController.setNavigationBarHidden(false, animated: true)
+        self.navigationController.pushViewController(detail, animated: true)
+    }
+
     func didTap(_ pageViewController: PageViewController) {
         if let pageController = self.pageController {
             pageController.troggleFullscreen()
@@ -218,5 +226,12 @@ extension AppCoordinator: PageViewControllerDelegate {
     func didSelectBack(_ pageViewController: PageViewController) {
         self.navigationController.popViewController(animated: true)
         self.navigationController.setNavigationBarHidden(false, animated: true)
+    }
+}
+
+extension AppCoordinator: PageDetailViewControllerDelegate {
+    func didSelectBack(_ pageDetailViewController: PageDetailViewController) {
+        self.navigationController.setNavigationBarHidden(true, animated: true)
+        self.navigationController.popViewController(animated: true)
     }
 }

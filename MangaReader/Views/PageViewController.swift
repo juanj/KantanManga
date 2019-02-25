@@ -12,6 +12,7 @@ import UIImageViewAlignedSwift
 protocol PageViewControllerDelegate: AnyObject {
     func didSelectBack(_ pageViewController: PageViewController)
     func didTap(_ pageViewController: PageViewController)
+    func didLongPress(_ pageViewController: PageViewController)
 }
 
 class PageViewController: UIViewController {
@@ -47,6 +48,9 @@ class PageViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
         tapGesture.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(tapGesture)
+
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress(sender:)))
+        self.view.addGestureRecognizer(longPressGesture)
     }
 
     func refreshView() {
@@ -98,6 +102,12 @@ class PageViewController: UIViewController {
 
     @objc func tap() {
         self.delegate?.didTap(self)
+    }
+
+    @objc func longPress(sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            self.delegate?.didLongPress(self)
+        }
     }
 
     @IBAction func back(_ sender: Any) {

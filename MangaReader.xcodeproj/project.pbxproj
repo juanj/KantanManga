@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4210C463A6A18BA4DDE78173 /* Pods_MangaReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FD908038762DEE3A978F955 /* Pods_MangaReader.framework */; };
 		6B3FC32AFC97A3EEBF5989C6 /* Pods_MangaReaderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F13E9F51127395F4C02644A /* Pods_MangaReaderUITests.framework */; };
+		840944DA22249E82002183D6 /* PageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840944D822249E82002183D6 /* PageDetailViewController.swift */; };
+		840944DB22249E82002183D6 /* PageDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840944D922249E82002183D6 /* PageDetailViewController.xib */; };
 		84186960222474EC00C689DC /* LibraryCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418695F222474EC00C689DC /* LibraryCollectionViewLayout.swift */; };
 		8418696D222495FE00C689DC /* Manga.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418696B222495FD00C689DC /* Manga.swift */; };
 		8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */; };
@@ -56,6 +58,8 @@
 		06DADBF3922C1A6DDC6C798A /* Pods-MangaReaderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaReaderUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MangaReaderUITests/Pods-MangaReaderUITests.release.xcconfig"; sourceTree = "<group>"; };
 		0FD908038762DEE3A978F955 /* Pods_MangaReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangaReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F13E9F51127395F4C02644A /* Pods_MangaReaderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangaReaderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		840944D822249E82002183D6 /* PageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageDetailViewController.swift; sourceTree = "<group>"; };
+		840944D922249E82002183D6 /* PageDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageDetailViewController.xib; sourceTree = "<group>"; };
 		8418695F222474EC00C689DC /* LibraryCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewLayout.swift; sourceTree = "<group>"; };
 		8418696B222495FD00C689DC /* Manga.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manga.swift; sourceTree = "<group>"; };
 		8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Manga+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -219,6 +223,8 @@
 				843FA7E1221DF0C300B86B52 /* WebServerViewController.xib */,
 				843FA7EA221E0BE900B86B52 /* PageViewController.swift */,
 				843FA7EB221E0BE900B86B52 /* PageViewController.xib */,
+				840944D822249E82002183D6 /* PageDetailViewController.swift */,
+				840944D922249E82002183D6 /* PageDetailViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -358,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84A831F4221D90CC00CEE1C9 /* LaunchScreen.storyboard in Resources */,
+				840944DB22249E82002183D6 /* PageDetailViewController.xib in Resources */,
 				84A831F1221D90CC00CEE1C9 /* Assets.xcassets in Resources */,
 				84A8321E221D951500CEE1C9 /* LibraryViewController.xib in Resources */,
 				843FA7ED221E0BE900B86B52 /* PageViewController.xib in Resources */,
@@ -491,6 +498,7 @@
 				841B795E221F6DF400659FA2 /* FullScreenPageViewController.swift in Sources */,
 				84186960222474EC00C689DC /* LibraryCollectionViewLayout.swift in Sources */,
 				8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */,
+				840944DA22249E82002183D6 /* PageDetailViewController.swift in Sources */,
 				84A831E7221D90CA00CEE1C9 /* AppDelegate.swift in Sources */,
 				84A8321D221D951500CEE1C9 /* LibraryViewController.swift in Sources */,
 				843FA7E2221DF0C300B86B52 /* WebServerViewController.swift in Sources */,
