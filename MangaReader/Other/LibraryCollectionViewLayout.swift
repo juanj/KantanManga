@@ -45,14 +45,26 @@ class LibraryCollectionViewLayout: UICollectionViewLayout {
         }
 
         self.cache = [UICollectionViewLayoutAttributes]()
+        self.contentHeight = 0
 
         var column: CGFloat = 0
         var row: CGFloat = 0
-        let padding = (self.contentWidth - (CGFloat(self.numberOfColumns) * self.cellWidth)) / (CGFloat(self.numberOfColumns) - 1)
+        let padding: CGFloat
+        if self.numberOfColumns == 1 {
+            // Prevent division by 0
+            padding = (self.contentWidth - self.cellWidth) / 2
+        } else {
+            padding = (self.contentWidth - (CGFloat(self.numberOfColumns) * self.cellWidth)) / (CGFloat(self.numberOfColumns) - 1)
+        }
         for item in 0 ..< collectionView.numberOfItems(inSection: 0) {
             let indexPath = IndexPath(item: item, section: 0)
             let height = self.delegate.collectionView(collectionView, heightForMangaAtIndexPath: indexPath)
-            let frame = CGRect(x: column * (self.cellWidth + padding), y: row * (self.cellHeight + self.cellVerticalPadding) + self.cellHeight - height, width: self.cellWidth, height: height)
+            var xPos = column * (self.cellWidth + padding)
+            if column == 0 && self.numberOfColumns == 1 {
+                xPos += padding
+            }
+            let yPos = row * (self.cellHeight + self.cellVerticalPadding) + self.cellHeight - height
+            let frame = CGRect(x: xPos, y: yPos, width: self.cellWidth, height: height)
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             attributes.frame = frame
             self.cache.append(attributes)
