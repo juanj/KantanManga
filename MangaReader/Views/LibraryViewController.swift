@@ -31,19 +31,40 @@ class LibraryViewController: UIViewController {
         self.collectionView.reloadData()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.collectionView.collectionViewLayout.invalidateLayout()
+    }
+
     func configureCollectionView() {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        self.collectionView.contentInset = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
 
         self.collectionView.register(UINib.init(nibName: "MangaCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MangaCell")
 
         let deleteMenuItem = UIMenuItem(title: "Delete", action: NSSelectorFromString("deleteCollectionCell"))
         UIMenuController.shared.menuItems = [deleteMenuItem]
+
+        let layout = LibraryCollectionViewLayout()
+        layout.delegate = self
+        self.collectionView.collectionViewLayout = layout
     }
 
     func configureNavigationBar() {
         let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .plain, target: self, action: #selector(add))
         self.navigationItem.leftBarButtonItem = addButton
+    }
+
+    func heightForImageWith(maxWidth: CGFloat, maxHeight: CGFloat, image: UIImage) -> CGFloat {
+        let widthScale = image.size.width / maxWidth
+        let heightScale = image.size.height / maxHeight
+
+        if widthScale > heightScale {
+            return (image.size.height / widthScale)
+        } else {
+            return maxHeight
+        }
     }
 
     @objc func add() {
@@ -74,11 +95,14 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 200, height: 300)
-    }
+        let manga = self.mangas[indexPath.row]
+        if let data = manga.coverImage, let image = UIImage(data: data) {
+            let height = self.heightForImageWith(maxWidth: 200, maxHeight: 263, image: image) + 37
+            return CGSize(width: 200, height: height)
+        }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25)
+        // Default size
+        return CGSize(width: 200, height: 300)
     }
 
     func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
@@ -91,5 +115,16 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
 
     func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
         self.delegate?.didSelectDeleteManga(self, manga: self.mangas[indexPath.row])
+    }
+}
+
+extension LibraryViewController: LibraryCollectionViewLayoutDelegate {
+    func collectionView(_ collectionView: UICollectionView, heightForMangaAtIndexPath indexPath: IndexPath) -> CGFloat {
+        let manga = self.mangas[indexPath.row]
+        if let data = manga.coverImage, let image = UIImage(data: data) {
+            let height = self.heightForImageWith(maxWidth: 200, maxHeight: 263, image: image) + 37
+            return height
+        }
+        return 300
     }
 }
