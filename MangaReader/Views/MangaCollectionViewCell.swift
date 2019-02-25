@@ -17,6 +17,11 @@ class MangaCollectionViewCell: UICollectionViewCell {
         return action == NSSelectorFromString("deleteCollectionCell")
     }
 
+    override func prepareForReuse() {
+        self.pageLabel.text = "0/0"
+        self.coverImageView.image = nil
+    }
+
     @objc func deleteCollectionCell() {
         if let collectionView = self.superview as? UICollectionView, let delegate = collectionView.delegate {
             delegate.collectionView!(collectionView, performAction: NSSelectorFromString("deleteCollectionCell"), forItemAt: collectionView.indexPath(for: self)!, withSender: self)

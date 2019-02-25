@@ -42,7 +42,7 @@ class CoreDataManager {
         manga.totalPages = totalPages
         manga.filePath = filePath
         manga.currentPage = currentPage
-        manga.coverImage = coverImage
+        manga.coverData = coverImage
         manga.createdAt = Date()
         manga.lastViewedAt = Date()
 
@@ -61,7 +61,7 @@ class CoreDataManager {
         manga.totalPages = totalPages
         manga.filePath = filePath
         manga.currentPage = currentPage
-        manga.coverImage = coverImage
+        manga.coverData = coverImage
         manga.lastViewedAt = Date()
 
         do {
@@ -145,7 +145,11 @@ class CoreDataManager {
 
         do {
             let manga = try context.fetch(fetchRequest)
-            return manga[0] as? Manga
+            if manga.count > 0 {
+                return manga[0] as? Manga
+            } else {
+                return nil
+            }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
             return nil

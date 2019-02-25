@@ -81,8 +81,12 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MangaCell", for: indexPath) as! MangaCollectionViewCell // swiftlint:disable:this force_cast
 
         let manga = self.mangas[indexPath.row]
-        if let data = manga.coverImage {
-            cell.coverImageView.image = UIImage(data: data)
+        if let image = manga.coverImage {
+            cell.coverImageView.image = image
+        } else if let data = manga.coverData, let image = UIImage(data: data) {
+            // If image is not yet loaded, load it and set it as the coverImage
+            cell.coverImageView.image = image
+            manga.coverImage = image
         }
         cell.pageLabel.text = "\(manga.currentPage)/\(manga.totalPages)"
 
@@ -96,7 +100,7 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let manga = self.mangas[indexPath.row]
-        if let data = manga.coverImage, let image = UIImage(data: data) {
+        if let image = manga.coverImage {
             let height = self.heightForImageWith(maxWidth: 200, maxHeight: 263, image: image) + 37
             return CGSize(width: 200, height: height)
         }
@@ -121,7 +125,7 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
 extension LibraryViewController: LibraryCollectionViewLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForMangaAtIndexPath indexPath: IndexPath) -> CGFloat {
         let manga = self.mangas[indexPath.row]
-        if let data = manga.coverImage, let image = UIImage(data: data) {
+        if let image = manga.coverImage {
             let height = self.heightForImageWith(maxWidth: 200, maxHeight: 263, image: image) + 37
             return height
         }
