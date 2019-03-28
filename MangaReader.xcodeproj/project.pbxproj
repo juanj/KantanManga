@@ -449,7 +449,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MangaReader/Pods-MangaReader-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MangaReader/Pods-MangaReader-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GCDWebServer/GCDWebServer.framework",
 				"${BUILT_PRODUCTS_DIR}/UIImageViewAlignedSwift/UIImageViewAlignedSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/ZIPFoundation/ZIPFoundation.framework",
@@ -462,7 +462,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MangaReader/Pods-MangaReader-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MangaReader/Pods-MangaReader-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EA039F059F557E0A6B94B376 /* [CP] Check Pods Manifest.lock */ = {
