@@ -47,8 +47,17 @@ class LibraryCollectionViewLayout: UICollectionViewLayout {
         self.cache = [UICollectionViewLayoutAttributes]()
         self.contentHeight = 0
 
-        var column: CGFloat = 0
-        var row: CGFloat = 0
+        var column: Int = 0
+        var row = 0
+        var rowsHeight: [CGFloat] = {
+            var rows = [CGFloat]()
+            for _ in 0 ..< self.numberOfColumns {
+                rows.append(0.0)
+            }
+            return rows
+        }()
+        var currentRow = [UICollectionViewLayoutAttributes]()
+        var totalHeight: CGFloat = 0
         let padding: CGFloat
         if self.numberOfColumns == 1 {
             // Prevent division by 0
@@ -56,27 +65,33 @@ class LibraryCollectionViewLayout: UICollectionViewLayout {
         } else {
             padding = (self.contentWidth - (CGFloat(self.numberOfColumns) * self.cellWidth)) / (CGFloat(self.numberOfColumns) - 1)
         }
-        for item in 0 ..< collectionView.numberOfItems(inSection: 0) {
+        let numberOfItems = collectionView.numberOfItems(inSection: 0)
+        for item in 0 ..< numberOfItems {
             let indexPath = IndexPath(item: item, section: 0)
             let height = self.delegate.collectionView(collectionView, heightForMangaAtIndexPath: indexPath)
-            var xPos = column * (self.cellWidth + padding)
+            rowsHeight[row] = max(rowsHeight[row], height)
+            var xPos = CGFloat(column) * (self.cellWidth + padding)
             if column == 0 && self.numberOfColumns == 1 {
                 xPos += padding
             }
-            let yPos = row * (self.cellHeight + self.cellVerticalPadding) + self.cellHeight - height
-            let frame = CGRect(x: xPos, y: yPos, width: self.cellWidth, height: height)
+            let frame = CGRect(x: xPos, y: height, width: self.cellWidth, height: height)
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             attributes.frame = frame
-            self.cache.append(attributes)
-
-            self.contentHeight = max(self.contentHeight, frame.maxY)
+            currentRow.append(attributes)
 
             column += 1
-            if Int(column) >= self.numberOfColumns {
+            if column >= self.numberOfColumns || item == numberOfItems - 1 {
+                for attributes in currentRow {
+                    attributes.frame.origin.y = totalHeight + self.cellVerticalPadding + rowsHeight[row] - attributes.frame.origin.y
+                    self.cache.append(attributes)
+                }
+                currentRow = [UICollectionViewLayoutAttributes]()
+                totalHeight += rowsHeight[row]
                 row += 1
                 column = 0
             }
         }
+        self.contentHeight = max(self.contentHeight, self.cache.last?.frame.maxY ?? 0)
     }
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
