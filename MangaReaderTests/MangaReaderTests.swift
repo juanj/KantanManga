@@ -25,7 +25,7 @@ class AppCoordinatorTests: XCTestCase {
 
         XCTAssertNotNil(appCoordinator.loadMangas())
 
-        _ = CoreDataManager.sharedManager.insertManga(title: "Test", totalPages: 100, filePath: "test.cbz")
+        _ = CoreDataManager.sharedManager.insertManga(totalPages: 100, filePath: "test.cbz")
 
         XCTAssertEqual(appCoordinator.loadMangas().count, 1)
 
@@ -53,6 +53,11 @@ class CoreDataManagerTests: XCTestCase {
         coreDataManager = CoreDataManager.sharedManager
     }
 
+    override func tearDown() {
+        super.tearDown()
+        coreDataManager.flushData()
+    }
+
     func testInitCoreDataManager() {
         let instance = CoreDataManager.sharedManager
         XCTAssertNotNil(instance)
@@ -64,48 +69,47 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testCreateManga() {
-        let manga1 = coreDataManager.insertManga(title: "Manga 1", totalPages: 100, filePath: "file.cbz")
+        let manga1 = coreDataManager.insertManga(totalPages: 100, filePath: "file.cbz")
         XCTAssertNotNil(manga1)
 
-        let manga2 = coreDataManager.insertManga(title: "Manga 2", totalPages: 120, filePath: "file2.cbz")
+        let manga2 = coreDataManager.insertManga(totalPages: 120, filePath: "file2.cbz")
         XCTAssertNotNil(manga2)
 
-        let manga3 = coreDataManager.insertManga(title: "Manga 3", totalPages: 57, filePath: "file3.cbz", currentPage: 14, coverImage: Data())
+        let manga3 = coreDataManager.insertManga(totalPages: 57, filePath: "file3.cbz", currentPage: 14, coverImage: Data())
         XCTAssertNotNil(manga3)
     }
 
     func testFetchAllManga() {
+        _ = coreDataManager.insertManga(totalPages: 100, filePath: "file.cbz")
+        _ = coreDataManager.insertManga(totalPages: 100, filePath: "file.cbz")
+        _ = coreDataManager.insertManga(totalPages: 100, filePath: "file.cbz")
         let results = coreDataManager.fetchAllMangas()
         XCTAssertEqual(results?.count, 3)
     }
 
     func testRemoveManga() {
-        _ = coreDataManager.insertManga(title: "Manga 1", totalPages: 100, filePath: "file.cbz")
+        _ = coreDataManager.insertManga(totalPages: 100, filePath: "file.cbz")
         let items = coreDataManager.fetchAllMangas()
         let manga = items![0]
-        let numberOfItems = items?.count
         coreDataManager.delete(manga: manga)
-        XCTAssertEqual(coreDataManager.fetchAllMangas()?.count, numberOfItems!-1)
+        XCTAssertEqual(coreDataManager.fetchAllMangas()?.count, 0)
     }
 
     func testUpdateManga() {
-        let items = coreDataManager.fetchAllMangas()
-        let manga = items![0]
-        let title = "New Manga Name"
+        let manga = coreDataManager.insertManga(totalPages: 100, filePath: "file.cbz")!
         let totalPages = Int16(999)
         let filePath = "NewPath.cbz"
         let currentpage = Int16(850)
         let coverImage = "Test".data(using: .utf8)!
 
-        CoreDataManager.sharedManager.update(manga: manga, title: title, totalPages: totalPages, filePath: filePath, currentPage: currentpage, coverImage: coverImage)
+        CoreDataManager.sharedManager.update(manga: manga, totalPages: totalPages, filePath: filePath, currentPage: currentpage, coverImage: coverImage)
 
         let itemsFetched = coreDataManager.fetchAllMangas()
         let mangaFetched = itemsFetched![0]
-        XCTAssertEqual(title, mangaFetched.title)
         XCTAssertEqual(totalPages, mangaFetched.totalPages)
         XCTAssertEqual(filePath, mangaFetched.filePath)
         XCTAssertEqual(currentpage, mangaFetched.currentPage)
-        XCTAssertEqual(coverImage, mangaFetched.coverImage)
+        XCTAssertEqual(coverImage, mangaFetched.coverData)
 
     }
 
