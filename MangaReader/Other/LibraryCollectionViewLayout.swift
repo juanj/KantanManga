@@ -51,7 +51,7 @@ class LibraryCollectionViewLayout: UICollectionViewLayout {
         var row = 0
         var rowsHeight: [CGFloat] = {
             var rows = [CGFloat]()
-            for _ in 0 ..< self.numberOfColumns {
+            for _ in 0 ..< self.calculateNumberOfRows() {
                 rows.append(0.0)
             }
             return rows
@@ -108,5 +108,15 @@ class LibraryCollectionViewLayout: UICollectionViewLayout {
 
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return self.cache[indexPath.item]
+    }
+
+    private func calculateNumberOfRows() -> Int {
+        guard let collectionView = self.collectionView else {
+            return 0
+        }
+        let numberOfItems = collectionView.numberOfItems(inSection: 0)
+        let numberOfRows = ceil(Float(numberOfItems) / Float(self.numberOfColumns))
+
+        return Int(numberOfRows)
     }
 }
