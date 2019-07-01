@@ -9,6 +9,7 @@ target 'MangaReader' do
   pod 'UIImageViewAlignedSwift'
   pod 'ZIPFoundation', '~> 0.9'
   pod 'GCDWebServer/WebUploader', '~> 3.0'
+  pod 'Firebase/Core'
   target 'MangaReaderTests' do
     inherit! :search_paths
     # Pods for testing
