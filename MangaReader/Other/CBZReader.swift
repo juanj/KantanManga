@@ -14,11 +14,13 @@ enum CBZReaderError: Error {
 }
 
 class CBZReader {
-    var fileName = ""
-    var archive: Archive
-    var fileEntries = [Entry]()
-    var observers = [NSKeyValueObservation]()
-    var progresses = [Progress]()
+    private var fileName = ""
+    private var archive: Archive
+    private var fileEntries = [Entry]()
+    private var observers = [NSKeyValueObservation]()
+    private var progresses = [Progress]()
+    private var cache = [Int: Data]()
+    public var numberOfPages = 0
 
     init(fileName: String) throws {
         self.fileName = fileName
@@ -32,6 +34,7 @@ class CBZReader {
         for entry in self.archive.makeIterator() where entry.type == .file {
             self.fileEntries.append(entry)
         }
+        self.numberOfPages = fileEntries.count
     }
 
     func readFirstEntry(_ callBack: @escaping (_: Data?) -> Void) {
@@ -43,12 +46,19 @@ class CBZReader {
             callBack(nil)
             return
         }
+
+        if let entry = self.cache[index] {
+            callBack(entry)
+            return
+        }
+
         var tempData = Data()
         let progress = Progress()
         self.progresses.append(progress)
         self.observers.append(progress.observe(\.fractionCompleted, changeHandler: { (progress, _) in
             if progress.fractionCompleted == 1 {
                 callBack(tempData)
+                self.cache[index] = tempData
                 self.progresses = self.progresses.filter {$0 != progress}
                 _ = self.observers.popLast()
             }

@@ -130,7 +130,7 @@ class CoreDataManager {
             let reader = try CBZReader(fileName: fileName)
             reader.readFirstEntry { (data) in
                 if let data = data {
-                    _ = CoreDataManager.sharedManager.insertManga(totalPages: Int16(reader.fileEntries.count), filePath: fileName, currentPage: 0, coverImage: data)
+                    _ = CoreDataManager.sharedManager.insertManga(totalPages: Int16(reader.numberOfPages), filePath: fileName, currentPage: 0, coverImage: data)
                 }
             }
         } catch {

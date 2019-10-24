@@ -62,7 +62,7 @@ DEPENDENCIES:
   - ZIPFoundation (~> 0.9)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -88,4 +88,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: e932538b8c2c0dd8332feed5966f7cd9938f4029
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.8.3

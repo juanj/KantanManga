@@ -48,7 +48,7 @@ class MangaDataSource {
         }
 
         let index = currentPage.page + 1
-        guard index < self.mangaReader.fileEntries.count else {
+        guard index < self.mangaReader.numberOfPages else {
             // End of manga
             return nil
         }
