@@ -10,7 +10,7 @@ import ZIPFoundation
 
 enum CBZReaderError: Error {
     case invalidFilePath
-    case errorCreatingArhive
+    case errorCreatingArchive
 }
 
 class CBZReader {
@@ -22,7 +22,6 @@ class CBZReader {
     private var fileEntries = [Entry]()
     private var observers = [Int: NSKeyValueObservation]()
     private var progresses = [Int: Progress]()
-    private var archives = [Int: Archive]()
     private var cache = [Int: Data]()
     private let filePath: URL
 
@@ -36,25 +35,25 @@ class CBZReader {
 
     private func loadEntries() throws {
         guard let archive = Archive(url: self.filePath, accessMode: .read) else {
-            throw CBZReaderError.errorCreatingArhive
+            throw CBZReaderError.errorCreatingArchive
         }
         for entry in archive.makeIterator() where entry.type == .file {
             self.fileEntries.append(entry)
         }
     }
 
-    func readFirstEntry(_ callBack: @escaping (_: Data?) -> Void) {
+    func readFirstEntry(_ callBack: @escaping (Data?) -> Void) {
         self.readEntityAt(index: 0, callBack)
     }
 
-    func readEntityAt(index: Int, _ callBack: @escaping (_: Data?) -> Void) {
+    func readEntityAt(index: Int, _ callBack: ((Data?) -> Void)?) {
         guard index >= 0 && index < self.fileEntries.count else {
-            callBack(nil)
+            callBack?(nil)
             return
         }
 
         if let entry = self.cache[index] {
-            callBack(entry)
+            callBack?(entry)
             return
         }
 
@@ -63,24 +62,24 @@ class CBZReader {
         self.progresses[index] = progress
         self.observers[index] = progress.observe(\.fractionCompleted, changeHandler: { (progress, _) in
             if progress.fractionCompleted == 1 {
-                callBack(tempData)
+                callBack?(tempData)
                 self.cache[index] = tempData
                 self.progresses.removeValue(forKey: index)
                 self.observers.removeValue(forKey: index)
             }
         })
         let entry = self.fileEntries[index]
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .userInitiated).async {
             do {
                 guard let archive = Archive(url: self.filePath, accessMode: .read) else {
-                    callBack(nil)
+                    callBack?(nil)
                     return
                 }
                 _ = try archive.extract(entry, bufferSize: UInt32(16*1024), progress: progress, consumer: { (aData) in
                     tempData.append(aData)
                 })
             } catch {
-                callBack(nil)
+                callBack?(nil)
             }
         }
     }

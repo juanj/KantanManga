@@ -19,6 +19,8 @@ class MangaDataSource {
         }
         do {
             self.mangaReader = try CBZReader(fileName: path)
+            self.preloadNextPages(start: Int(manga.currentPage), pages: 10)
+            self.preloadPreviousPages(start: Int(manga.currentPage), pages: 10)
         } catch {
             print("Error creating MangaDataSource")
             return nil
@@ -54,7 +56,7 @@ class MangaDataSource {
             // End of manga
             return nil
         }
-
+        self.preloadNextPages(start: index + 10, pages: 2)
         return self.createPage(index: index, doublePaged: currentPage.doublePaged, delegate: currentPage.delegate, fullScreen: currentPage.fullScreen)
     }
 
@@ -68,7 +70,23 @@ class MangaDataSource {
             // End of manga
             return nil
         }
-
+        self.preloadPreviousPages(start: index - 10, pages: 2)
         return self.createPage(index: index, doublePaged: currentPage.doublePaged, delegate: currentPage.delegate, fullScreen: currentPage.fullScreen)
+    }
+
+    private func preloadNextPages(start: Int, pages: Int) {
+        let startPage = min(start, Int(self.manga.totalPages))
+        let endPage = min(startPage + pages, Int(self.manga.totalPages))
+        for page in startPage...endPage {
+            self.mangaReader.readEntityAt(index: page, nil)
+        }
+    }
+
+    private func preloadPreviousPages(start: Int, pages: Int) {
+        let startPage = max(start, 0)
+        let endPage = max(startPage - pages, 0)
+        for page in endPage...startPage {
+            self.mangaReader.readEntityAt(index: page, nil)
+        }
     }
 }
