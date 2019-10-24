@@ -22,6 +22,7 @@ class PageViewController: UIViewController {
     @IBOutlet weak var pageLabel: UILabel?
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     weak var delegate: PageViewControllerDelegate?
     var doublePaged = false
@@ -75,6 +76,7 @@ class PageViewController: UIViewController {
 
     func loadImage() {
         if let pageImage = UIImage(data: self.pageData) {
+            self.activityIndicator.stopAnimating()
             self.pageImageView?.image = pageImage
         }
     }

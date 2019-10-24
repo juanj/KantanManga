@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PageViewController" customModule="MangaReader" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="2x2-XT-MoY" id="LaB-Ut-h3H"/>
                 <outlet property="backButton" destination="Bdy-2B-NuI" id="jwX-TJ-0cx"/>
                 <outlet property="bottomConstraint" destination="1lh-DU-Anb" id="2bj-X2-Da5"/>
                 <outlet property="pageImageView" destination="Ntt-ZO-Net" id="L5O-9U-lr9"/>
@@ -43,6 +44,10 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ntt-ZO-Net" customClass="UIImageViewAligned" customModule="UIImageViewAlignedSwift">
                     <rect key="frame" x="0.0" y="45" width="1024" height="678"/>
                 </imageView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="2x2-XT-MoY">
+                    <rect key="frame" x="502" y="374" width="20" height="20"/>
+                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="0.96400282120000003" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -50,10 +55,12 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ntt-ZO-Net" secondAttribute="trailing" id="8US-Vo-GcB"/>
                 <constraint firstItem="Ntt-ZO-Net" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="45" id="NBu-IA-EIB"/>
                 <constraint firstItem="V6z-at-x6L" firstAttribute="top" secondItem="Ntt-ZO-Net" secondAttribute="bottom" constant="12" id="Ooc-Bc-GoI"/>
+                <constraint firstItem="2x2-XT-MoY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TWG-m8-Aad"/>
                 <constraint firstItem="Ntt-ZO-Net" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Wbr-Qo-W4T"/>
                 <constraint firstItem="V6z-at-x6L" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fjg-xt-L4g"/>
                 <constraint firstItem="Bdy-2B-NuI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="gFu-oC-nXa"/>
                 <constraint firstItem="Bdy-2B-NuI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nAx-vm-X7x"/>
+                <constraint firstItem="2x2-XT-MoY" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ug1-Bw-ugy"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="132" y="154"/>

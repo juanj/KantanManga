@@ -14,27 +14,33 @@ enum CBZReaderError: Error {
 }
 
 class CBZReader {
+    public var numberOfPages: Int {
+        return self.fileEntries.count
+    }
+
     private var fileName = ""
-    private var archive: Archive
     private var fileEntries = [Entry]()
-    private var observers = [NSKeyValueObservation]()
-    private var progresses = [Progress]()
+    private var observers = [Int: NSKeyValueObservation]()
+    private var progresses = [Int: Progress]()
+    private var archives = [Int: Archive]()
     private var cache = [Int: Data]()
-    public var numberOfPages = 0
+    private let filePath: URL
 
     init(fileName: String) throws {
         self.fileName = fileName
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let filePath = documentsDirectory.appendingPathComponent(fileName)
-        guard let archive = Archive(url: filePath, accessMode: .read) else {
+        self.filePath = documentsDirectory.appendingPathComponent(fileName)
+        try self.loadEntries()
+    }
+
+    private func loadEntries() throws {
+        guard let archive = Archive(url: self.filePath, accessMode: .read) else {
             throw CBZReaderError.errorCreatingArhive
         }
-        self.archive = archive
-        for entry in self.archive.makeIterator() where entry.type == .file {
+        for entry in archive.makeIterator() where entry.type == .file {
             self.fileEntries.append(entry)
         }
-        self.numberOfPages = fileEntries.count
     }
 
     func readFirstEntry(_ callBack: @escaping (_: Data?) -> Void) {
@@ -54,22 +60,28 @@ class CBZReader {
 
         var tempData = Data()
         let progress = Progress()
-        self.progresses.append(progress)
-        self.observers.append(progress.observe(\.fractionCompleted, changeHandler: { (progress, _) in
+        self.progresses[index] = progress
+        self.observers[index] = progress.observe(\.fractionCompleted, changeHandler: { (progress, _) in
             if progress.fractionCompleted == 1 {
                 callBack(tempData)
                 self.cache[index] = tempData
-                self.progresses = self.progresses.filter {$0 != progress}
-                _ = self.observers.popLast()
+                self.progresses.removeValue(forKey: index)
+                self.observers.removeValue(forKey: index)
             }
-        }))
+        })
         let entry = self.fileEntries[index]
-        do {
-            _ = try archive.extract(entry, bufferSize: UInt32(16*1024), progress: progress, consumer: { (aData) in
-                tempData.append(aData)
-            })
-        } catch {
-            callBack(nil)
+        DispatchQueue.global(qos: .background).async {
+            do {
+                guard let archive = Archive(url: self.filePath, accessMode: .read) else {
+                    callBack(nil)
+                    return
+                }
+                _ = try archive.extract(entry, bufferSize: UInt32(16*1024), progress: progress, consumer: { (aData) in
+                    tempData.append(aData)
+                })
+            } catch {
+                callBack(nil)
+            }
         }
     }
 }

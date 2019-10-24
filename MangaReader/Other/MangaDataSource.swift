@@ -35,7 +35,9 @@ class MangaDataSource {
         // Load image to page
         self.mangaReader.readEntityAt(index: page.page, { (data) in
             if let data = data {
-                page.pageData.append(data)
+                DispatchQueue.main.async {
+                    page.pageData.append(data)
+                }
             }
         })
 
