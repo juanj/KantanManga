@@ -17,8 +17,8 @@ public class Manga: NSManagedObject {
     override public func awakeFromFetch() {
         super.awakeFromFetch()
 
-        if let data = self.coverData, let image = UIImage(data: data) {
-            self.coverImage = image
+        if let data = coverData, let image = UIImage(data: data) {
+            coverImage = image
         }
     }
 }

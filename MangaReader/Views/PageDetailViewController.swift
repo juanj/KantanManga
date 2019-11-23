@@ -22,25 +22,25 @@ class PageDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.scrollView.delegate = self
-        self.scrollView.minimumZoomScale = 1.0
-        self.scrollView.maximumZoomScale = 10.0
-        self.pageImageView.image = self.image
+        scrollView.delegate = self
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 10.0
+        pageImageView.image = image
 
-        self.configureNavigationBar()
+        configureNavigationBar()
     }
 
     func configureNavigationBar() {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(back))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(back))
     }
 
     @objc func back() {
-        self.delegate?.didSelectBack(self)
+        delegate?.didSelectBack(self)
     }
 }
 
 extension PageDetailViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return self.pageImageView
+        return pageImageView
     }
 }

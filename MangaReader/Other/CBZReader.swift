@@ -15,7 +15,7 @@ enum CBZReaderError: Error {
 
 class CBZReader {
     public var numberOfPages: Int {
-        return self.fileEntries.count
+        return fileEntries.count
     }
 
     private var fileName = ""
@@ -29,38 +29,38 @@ class CBZReader {
         self.fileName = fileName
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        self.filePath = documentsDirectory.appendingPathComponent(fileName)
-        try self.loadEntries()
+        filePath = documentsDirectory.appendingPathComponent(fileName)
+        try loadEntries()
     }
 
     private func loadEntries() throws {
-        guard let archive = Archive(url: self.filePath, accessMode: .read) else {
+        guard let archive = Archive(url: filePath, accessMode: .read) else {
             throw CBZReaderError.errorCreatingArchive
         }
         for entry in archive.makeIterator() where entry.type == .file {
-            self.fileEntries.append(entry)
+            fileEntries.append(entry)
         }
     }
 
     func readFirstEntry(_ callBack: @escaping (Data?) -> Void) {
-        self.readEntityAt(index: 0, callBack)
+        readEntityAt(index: 0, callBack)
     }
 
     func readEntityAt(index: Int, _ callBack: ((Data?) -> Void)?) {
-        guard index >= 0 && index < self.fileEntries.count else {
+        guard index >= 0 && index < fileEntries.count else {
             callBack?(nil)
             return
         }
 
-        if let entry = self.cache[index] {
+        if let entry = cache[index] {
             callBack?(entry)
             return
         }
 
         var tempData = Data()
         let progress = Progress()
-        self.progresses[index] = progress
-        self.observers[index] = progress.observe(\.fractionCompleted, changeHandler: { (progress, _) in
+        progresses[index] = progress
+        observers[index] = progress.observe(\.fractionCompleted, changeHandler: { (progress, _) in
             if progress.fractionCompleted == 1 {
                 callBack?(tempData)
                 self.cache[index] = tempData
@@ -68,7 +68,7 @@ class CBZReader {
                 self.observers.removeValue(forKey: index)
             }
         })
-        let entry = self.fileEntries[index]
+        let entry = fileEntries[index]
         DispatchQueue.global(qos: .userInitiated).async {
             do {
                 guard let archive = Archive(url: self.filePath, accessMode: .read) else {

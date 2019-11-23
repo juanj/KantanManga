@@ -20,27 +20,27 @@ class AddMangasCoordinator: NSObject {
     var uploadServer: GCDWebUploader?
 
     init(navigation: UINavigationController) {
-        self.navigationController = navigation
+        navigationController = navigation
     }
 
     func start() {
-        self.initWebServer()
+        initWebServer()
         let webServerViewcontroller = WebServerViewController()
         webServerViewcontroller.delegate = self
-        if let url = self.uploadServer?.serverURL?.absoluteString {
+        if let url = uploadServer?.serverURL?.absoluteString {
             webServerViewcontroller.serverUrl = url
         }
-        self.navigationController.pushViewController(webServerViewcontroller, animated: true)
+        navigationController.pushViewController(webServerViewcontroller, animated: true)
     }
 
     func initWebServer() {
         guard let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
             return
         }
-        self.uploadServer = GCDWebUploader(uploadDirectory: documentPath)
-        self.uploadServer?.allowedFileExtensions = ["cbz", "zip"]
-        self.uploadServer?.delegate = self
-        self.uploadServer?.start()
+        uploadServer = GCDWebUploader(uploadDirectory: documentPath)
+        uploadServer?.allowedFileExtensions = ["cbz", "zip"]
+        uploadServer?.delegate = self
+        uploadServer?.start()
     }
 }
 
@@ -61,8 +61,8 @@ extension AddMangasCoordinator: GCDWebUploaderDelegate {
 
 extension AddMangasCoordinator: WebServerViewControllerDelegate {
     func didSelectBack(_ webServerViewController: WebServerViewController) {
-        self.navigationController.popViewController(animated: true)
-        self.uploadServer?.stop()
-        self.delegate?.didEnd(self)
+        navigationController.popViewController(animated: true)
+        uploadServer?.stop()
+        delegate?.didEnd(self)
     }
 }

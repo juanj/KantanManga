@@ -31,94 +31,94 @@ class PageViewController: UIViewController {
     var fullScreen = false
     var pageData = Data() {
         didSet {
-            if self.pageImageView != nil {
-                self.loadImage()
+            if pageImageView != nil {
+                loadImage()
             }
         }
     }
     var page = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.refreshView()
+        refreshView()
 
-        if self.fullScreen {
-            self.topConstraint.constant = 0
-            self.bottomConstraint.constant = 0
-            self.backButton?.alpha = 0
-            self.view.layoutIfNeeded()
+        if fullScreen {
+            topConstraint.constant = 0
+            bottomConstraint.constant = 0
+            backButton?.alpha = 0
+            view.layoutIfNeeded()
         }
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
         tapGesture.numberOfTapsRequired = 1
-        self.view.addGestureRecognizer(tapGesture)
+        view.addGestureRecognizer(tapGesture)
 
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress(sender:)))
-        self.view.addGestureRecognizer(longPressGesture)
+        view.addGestureRecognizer(longPressGesture)
     }
 
     func refreshView() {
-        self.loadImage()
-        if self.doublePaged {
-            if self.page % 2 == 1 {
-                self.leftGradientImage?.isHidden = true
-                self.rightGradientImage?.isHidden = false
-                self.backButton?.isHidden = false
-                self.pageImageView?.alignLeft = false
-                self.pageImageView?.alignRight = true
+        loadImage()
+        if doublePaged {
+            if page % 2 == 1 {
+                leftGradientImage?.isHidden = true
+                rightGradientImage?.isHidden = false
+                backButton?.isHidden = false
+                pageImageView?.alignLeft = false
+                pageImageView?.alignRight = true
             } else {
-                self.leftGradientImage?.isHidden = false
-                self.rightGradientImage?.isHidden = true
-                self.backButton?.isHidden = true
-                self.pageImageView?.alignLeft = true
-                self.pageImageView?.alignRight = false
+                leftGradientImage?.isHidden = false
+                rightGradientImage?.isHidden = true
+                backButton?.isHidden = true
+                pageImageView?.alignLeft = true
+                pageImageView?.alignRight = false
             }
         } else {
-            self.backButton?.isHidden = false
-            self.pageImageView?.alignLeft = false
-            self.pageImageView?.alignRight = false
+            backButton?.isHidden = false
+            pageImageView?.alignLeft = false
+            pageImageView?.alignRight = false
         }
-        self.pageLabel?.text = "\(self.page + 1)"
+        pageLabel?.text = "\(page + 1)"
     }
 
     func loadImage() {
-        if let pageImage = UIImage(data: self.pageData) {
-            self.activityIndicator.stopAnimating()
-            self.pageImageView?.image = pageImage
+        if let pageImage = UIImage(data: pageData) {
+            activityIndicator.stopAnimating()
+            pageImageView?.image = pageImage
         }
     }
 
     func toggleBars() {
-        if self.fullScreen {
-            self.fullScreen = false
-            self.topConstraint.constant = 45
-            self.bottomConstraint.constant = 45
+        if fullScreen {
+            fullScreen = false
+            topConstraint.constant = 45
+            bottomConstraint.constant = 45
             UIView.animate(withDuration: 0.5) {
                 self.view.layoutIfNeeded()
                 self.backButton?.alpha = 1
             }
         } else {
-            self.fullScreen = true
-            self.topConstraint.constant = 0
-            self.bottomConstraint.constant = 0
+            fullScreen = true
+            topConstraint.constant = 0
+            bottomConstraint.constant = 0
             UIView.animate(withDuration: 0.5) {
                 self.view.layoutIfNeeded()
                 self.backButton?.alpha = 0
             }
         }
-        self.setNeedsStatusBarAppearanceUpdate()
+        setNeedsStatusBarAppearanceUpdate()
     }
 
     @objc func tap() {
-        self.delegate?.didTap(self)
+        delegate?.didTap(self)
     }
 
     @objc func longPress(sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
-            self.delegate?.didLongPress(self)
+            delegate?.didLongPress(self)
         }
     }
 
     @IBAction func back(_ sender: Any) {
-        self.delegate?.didSelectBack(self)
+        delegate?.didSelectBack(self)
     }
 }

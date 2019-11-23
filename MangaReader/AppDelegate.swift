@@ -17,14 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.backgroundColor = UIColor.white
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.backgroundColor = UIColor.white
 
         let navigationController = UINavigationController()
-        self.window?.rootViewController = navigationController
-        self.appCoordinator = AppCoordinator(navigation: navigationController)
-        self.appCoordinator.start()
-        self.window?.makeKeyAndVisible()
+        window?.rootViewController = navigationController
+        appCoordinator = AppCoordinator(navigation: navigationController)
+        appCoordinator.start()
+        window?.makeKeyAndVisible()
         return true
     }
 

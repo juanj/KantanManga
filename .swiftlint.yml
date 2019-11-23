@@ -1,6 +1,4 @@
 disabled_rules:
   - line_length
-analyzer_rules:
-  - explicit_self
 excluded:
   - Pods

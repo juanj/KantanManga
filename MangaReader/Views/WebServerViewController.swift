@@ -20,15 +20,15 @@ class WebServerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.openLabel.text = "Open your browser at \(self.serverUrl)"
-        self.configureNavigationBar()
+        openLabel.text = "Open your browser at \(serverUrl)"
+        configureNavigationBar()
     }
 
     func configureNavigationBar() {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(back))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(back))
     }
 
     @objc func back() {
-        self.delegate?.didSelectBack(self)
+        delegate?.didSelectBack(self)
     }
 }

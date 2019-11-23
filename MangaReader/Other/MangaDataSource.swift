@@ -14,13 +14,13 @@ class MangaDataSource {
 
     init?(manga: Manga) {
         self.manga = manga
-        guard let path = self.manga.filePath else {
+        guard let path = manga.filePath else {
             return nil
         }
         do {
-            self.mangaReader = try CBZReader(fileName: path)
-            self.preloadNextPages(start: Int(manga.currentPage), pages: 10)
-            self.preloadPreviousPages(start: Int(manga.currentPage), pages: 10)
+            mangaReader = try CBZReader(fileName: path)
+            preloadNextPages(start: Int(manga.currentPage), pages: 10)
+            preloadPreviousPages(start: Int(manga.currentPage), pages: 10)
         } catch {
             print("Error creating MangaDataSource")
             return nil
@@ -35,7 +35,7 @@ class MangaDataSource {
         page.fullScreen = fullScreen
 
         // Load image to page
-        self.mangaReader.readEntityAt(index: page.page, { (data) in
+        mangaReader.readEntityAt(index: page.page, { (data) in
             if let data = data {
                 DispatchQueue.main.async {
                     page.pageData.append(data)
@@ -52,12 +52,12 @@ class MangaDataSource {
         }
 
         let index = currentPage.page + 1
-        guard index < self.mangaReader.numberOfPages else {
+        guard index < mangaReader.numberOfPages else {
             // End of manga
             return nil
         }
-        self.preloadNextPages(start: index + 10, pages: 2)
-        return self.createPage(index: index, doublePaged: currentPage.doublePaged, delegate: currentPage.delegate, fullScreen: currentPage.fullScreen)
+        preloadNextPages(start: index + 10, pages: 2)
+        return createPage(index: index, doublePaged: currentPage.doublePaged, delegate: currentPage.delegate, fullScreen: currentPage.fullScreen)
     }
 
     func previousPage(currentPage: UIViewController) -> UIViewController? {
@@ -70,15 +70,15 @@ class MangaDataSource {
             // End of manga
             return nil
         }
-        self.preloadPreviousPages(start: index - 10, pages: 2)
-        return self.createPage(index: index, doublePaged: currentPage.doublePaged, delegate: currentPage.delegate, fullScreen: currentPage.fullScreen)
+        preloadPreviousPages(start: index - 10, pages: 2)
+        return createPage(index: index, doublePaged: currentPage.doublePaged, delegate: currentPage.delegate, fullScreen: currentPage.fullScreen)
     }
 
     private func preloadNextPages(start: Int, pages: Int) {
-        let startPage = min(start, Int(self.manga.totalPages))
-        let endPage = min(startPage + pages, Int(self.manga.totalPages))
+        let startPage = min(start, Int(manga.totalPages))
+        let endPage = min(startPage + pages, Int(manga.totalPages))
         for page in startPage...endPage {
-            self.mangaReader.readEntityAt(index: page, nil)
+            mangaReader.readEntityAt(index: page, nil)
         }
     }
 
@@ -86,7 +86,7 @@ class MangaDataSource {
         let startPage = max(start, 0)
         let endPage = max(startPage - pages, 0)
         for page in endPage...startPage {
-            self.mangaReader.readEntityAt(index: page, nil)
+            mangaReader.readEntityAt(index: page, nil)
         }
     }
 }
