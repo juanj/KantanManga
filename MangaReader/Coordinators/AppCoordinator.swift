@@ -50,7 +50,7 @@ class AppCoordinator: NSObject {
         let doublePaged: Bool
         var viewControllers = [UIViewController]()
 
-        if UIApplication.shared.statusBarOrientation == .portrait || UIApplication.shared.statusBarOrientation == .portraitUpsideDown {
+        if let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation, orientation == .portraitUpsideDown || orientation == .portrait {
             spineLocation = .max
             doublePaged = false
             let page = dataSource.createPage(index: Int(manga.currentPage), doublePaged: doublePaged, delegate: self)
@@ -154,7 +154,8 @@ extension AppCoordinator: UIPageViewControllerDelegate, UIPageViewControllerData
                     viewControllers = pages
                 }
             }
-        case .landscapeLeft, .landscapeRight, .unknown:
+        default:
+            //.landscapeLeft, .landscapeRight, .unknown:
             spineLocation = .mid
             doublePaged = true
             if let pages = pageViewController.viewControllers as? [PageViewController] {
