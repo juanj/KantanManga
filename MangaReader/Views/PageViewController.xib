@@ -13,8 +13,10 @@
                 <outlet property="activityIndicator" destination="2x2-XT-MoY" id="LaB-Ut-h3H"/>
                 <outlet property="backButton" destination="Bdy-2B-NuI" id="jwX-TJ-0cx"/>
                 <outlet property="bottomConstraint" destination="1lh-DU-Anb" id="2bj-X2-Da5"/>
+                <outlet property="leftGradientImage" destination="IOL-3A-IjI" id="STT-hI-nG8"/>
                 <outlet property="pageImageView" destination="Ntt-ZO-Net" id="L5O-9U-lr9"/>
                 <outlet property="pageLabel" destination="V6z-at-x6L" id="CT7-q0-zuM"/>
+                <outlet property="rightGradientImage" destination="rnv-Pi-734" id="M8E-NF-wBN"/>
                 <outlet property="topConstraint" destination="NBu-IA-EIB" id="kNz-xn-evM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -48,14 +50,26 @@
                     <rect key="frame" x="502" y="374" width="20" height="20"/>
                     <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </activityIndicatorView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradientLtR" translatesAutoresizingMaskIntoConstraints="NO" id="IOL-3A-IjI">
+                    <rect key="frame" x="0.0" y="0.0" width="20" height="768"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradientRtL" translatesAutoresizingMaskIntoConstraints="NO" id="rnv-Pi-734">
+                    <rect key="frame" x="1004" y="0.0" width="20" height="768"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.96400282120000003" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ntt-ZO-Net" secondAttribute="bottom" constant="45" id="1lh-DU-Anb"/>
+                <constraint firstItem="IOL-3A-IjI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2Oh-Ev-yBc"/>
+                <constraint firstAttribute="trailing" secondItem="rnv-Pi-734" secondAttribute="trailing" id="4iQ-u5-HGi"/>
+                <constraint firstAttribute="bottom" secondItem="IOL-3A-IjI" secondAttribute="bottom" id="84Q-hU-aJQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ntt-ZO-Net" secondAttribute="trailing" id="8US-Vo-GcB"/>
+                <constraint firstItem="IOL-3A-IjI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="A8C-29-pN7"/>
                 <constraint firstItem="Ntt-ZO-Net" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="45" id="NBu-IA-EIB"/>
                 <constraint firstItem="V6z-at-x6L" firstAttribute="top" secondItem="Ntt-ZO-Net" secondAttribute="bottom" constant="12" id="Ooc-Bc-GoI"/>
+                <constraint firstAttribute="bottom" secondItem="rnv-Pi-734" secondAttribute="bottom" id="QHY-Ad-YbG"/>
                 <constraint firstItem="2x2-XT-MoY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TWG-m8-Aad"/>
+                <constraint firstItem="rnv-Pi-734" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UzS-CL-hHk"/>
                 <constraint firstItem="Ntt-ZO-Net" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Wbr-Qo-W4T"/>
                 <constraint firstItem="V6z-at-x6L" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fjg-xt-L4g"/>
                 <constraint firstItem="Bdy-2B-NuI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="gFu-oC-nXa"/>
@@ -66,4 +80,8 @@
             <point key="canvasLocation" x="132" y="154"/>
         </view>
     </objects>
+    <resources>
+        <image name="gradientLtR" width="20" height="100"/>
+        <image name="gradientRtL" width="20" height="100"/>
+    </resources>
 </document>

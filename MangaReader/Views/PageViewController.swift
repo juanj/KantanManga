@@ -20,6 +20,8 @@ class PageViewController: UIViewController {
     @IBOutlet weak var pageImageView: UIImageViewAligned?
     @IBOutlet weak var backButton: UIButton?
     @IBOutlet weak var pageLabel: UILabel?
+    @IBOutlet weak var leftGradientImage: UIImageView?
+    @IBOutlet weak var rightGradientImage: UIImageView?
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -58,10 +60,14 @@ class PageViewController: UIViewController {
         self.loadImage()
         if self.doublePaged {
             if self.page % 2 == 1 {
+                self.leftGradientImage?.isHidden = true
+                self.rightGradientImage?.isHidden = false
                 self.backButton?.isHidden = false
                 self.pageImageView?.alignLeft = false
                 self.pageImageView?.alignRight = true
             } else {
+                self.leftGradientImage?.isHidden = false
+                self.rightGradientImage?.isHidden = true
                 self.backButton?.isHidden = true
                 self.pageImageView?.alignLeft = true
                 self.pageImageView?.alignRight = false
