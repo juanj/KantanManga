@@ -10,6 +10,7 @@ target 'MangaReader' do
   pod 'ZIPFoundation', '~> 0.9'
   pod 'GCDWebServer/WebUploader', '~> 3.0'
   pod 'Firebase/Core'
+  pod 'Firebase/MLVision'
   target 'MangaReaderTests' do
     inherit! :search_paths
     # Pods for testing

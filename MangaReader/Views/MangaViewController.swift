@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol MangaViewControllerDelegate: AnyObject {
     func didTapPage(mangaViewController: MangaViewController, pageViewController: PageViewController)
@@ -19,9 +20,11 @@ class MangaViewController: UIViewController {
     private weak var delegate: MangaViewControllerDelegate?
 
     private var pageController: UIPageViewController!
+    private var selectionView = SelectionView()
 
     private var isPageAnimating = false
     private var fullScreen = false
+    private var ocrEnabled = false
     override var prefersStatusBarHidden: Bool {
         return fullScreen
     }
@@ -42,13 +45,28 @@ class MangaViewController: UIViewController {
         configureNavBar()
         createPageController()
         configurePageControllerConstraints()
+        configureSelectionView()
+    }
+
+    private func configureSelectionView() {
+        view.addSubview(selectionView)
+        selectionView.translatesAutoresizingMaskIntoConstraints = false
+        selectionView.isHidden = true
+        selectionView.delegate = self
+
+        let topConstraint = selectionView.topAnchor.constraint(equalTo: view.topAnchor)
+        let bottomConstraint = selectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        let leadingConstraint = selectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        let trailingConstraint = selectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+
+        view.addConstraints([topConstraint, bottomConstraint, leadingConstraint, trailingConstraint])
     }
 
     private func configureNavBar() {
         let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(back))
         navigationItem.leftBarButtonItem = backButton
 
-        let ocrButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass.circle", withConfiguration: nil), style: .plain, target: self, action: #selector(startOcr))
+        let ocrButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass.circle", withConfiguration: nil), style: .plain, target: self, action: #selector(toggleOcr))
         navigationItem.rightBarButtonItem = ocrButton
     }
 
@@ -112,20 +130,16 @@ class MangaViewController: UIViewController {
         delegate?.back(mangaViewController: self)
     }
 
-    @objc func startOcr() {
-        guard let viewControllers = pageController.viewControllers else { return }
-        for page in viewControllers {
-            if let page = page as? PageViewController {
-                page.startOcr()
-            }
-        }
+    @objc func toggleOcr() {
+        ocrEnabled = !ocrEnabled
+        selectionView.isHidden = !selectionView.isHidden
     }
 }
 
 // MARK: PageViewControllerDelegate
 extension MangaViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if isPageAnimating {
+        if isPageAnimating || ocrEnabled {
             return nil
         }
         // Return next page to make manga RTL
@@ -133,7 +147,7 @@ extension MangaViewController: UIPageViewControllerDelegate, UIPageViewControlle
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if isPageAnimating {
+        if isPageAnimating || ocrEnabled {
             return nil
         }
         // Return previous page to make manga RTL
@@ -214,5 +228,44 @@ extension MangaViewController: UIPageViewControllerDelegate, UIPageViewControlle
 extension MangaViewController: PageViewControllerDelegate {
     func didTap(_ pageViewController: PageViewController) {
         delegate?.didTapPage(mangaViewController: self, pageViewController: pageViewController)
+    }
+}
+
+// MARK: SelectionViewDelegate
+extension MangaViewController: SelectionViewDelegate {
+    func didSelectSection(_ selectionView: SelectionView, section: CGRect) {
+        UIGraphicsBeginImageContextWithOptions(section.size, true, 1)
+        self.view.drawHierarchy(in: CGRect(x: -section.origin.x, y: -section.origin.y, width: self.view.frame.width, height: self.view.frame.height), afterScreenUpdates: true)
+        let capturedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        let vision = Vision.vision()
+        let options = VisionCloudTextRecognizerOptions()
+        options.languageHints = ["ja"]
+        let textRecognizer = vision.cloudTextRecognizer()
+
+        guard let image = capturedImage else { return }
+        let visionImage = VisionImage(image: image)
+        textRecognizer.process(visionImage) { result, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            guard let result = result else { return }
+
+            let text = result.text.replacingOccurrences(of: "\n", with: " ")
+            let resultView = UIView(frame: CGRect(x: 0, y: self.view.frame.height - 200, width: self.view.frame.width, height: 200))
+            resultView.backgroundColor = .white
+            let label = UILabel()
+            label.text = text
+            label.font = .boldSystemFont(ofSize: 100)
+            label.textColor = .black
+            label.sizeToFit()
+            label.frame.origin.x = 50
+            label.frame.origin.y = 50
+            resultView.addSubview(label)
+            DispatchQueue.main.async {
+                self.view.addSubview(resultView)
+            }
+        }
     }
 }
