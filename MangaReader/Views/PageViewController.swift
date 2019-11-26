@@ -12,19 +12,16 @@ import UIImageViewAlignedSwift
 protocol PageViewControllerDelegate: AnyObject {
     func didSelectBack(_ pageViewController: PageViewController)
     func didTap(_ pageViewController: PageViewController)
-    func didLongPress(_ pageViewController: PageViewController)
 }
 
 class PageViewController: UIViewController {
     // Some times refreshView is called before the nib is loaded. Kepp these optional to prevent a crash
     @IBOutlet weak var pageImageView: UIImageViewAligned?
-    @IBOutlet weak var backButton: UIButton?
     @IBOutlet weak var pageLabel: UILabel?
     @IBOutlet weak var leftGradientImage: UIImageView?
     @IBOutlet weak var rightGradientImage: UIImageView?
-    @IBOutlet weak var topConstraint: NSLayoutConstraint!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var scrollView: UIScrollView!
 
     weak var delegate: PageViewControllerDelegate?
     var doublePaged = false
@@ -37,23 +34,21 @@ class PageViewController: UIViewController {
         }
     }
     var page = 0
+    private var lastContentOffset: CGFloat = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshView()
 
         if fullScreen {
-            topConstraint.constant = 0
-            bottomConstraint.constant = 0
-            backButton?.alpha = 0
-            view.layoutIfNeeded()
+            pageLabel?.alpha = 0
         }
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
         tapGesture.numberOfTapsRequired = 1
         view.addGestureRecognizer(tapGesture)
 
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress(sender:)))
-        view.addGestureRecognizer(longPressGesture)
+        scrollView.delegate = self
+        scrollView.maximumZoomScale = 3
     }
 
     func refreshView() {
@@ -62,18 +57,15 @@ class PageViewController: UIViewController {
             if page % 2 == 1 {
                 leftGradientImage?.isHidden = true
                 rightGradientImage?.isHidden = false
-                backButton?.isHidden = false
                 pageImageView?.alignLeft = false
                 pageImageView?.alignRight = true
             } else {
                 leftGradientImage?.isHidden = false
                 rightGradientImage?.isHidden = true
-                backButton?.isHidden = true
                 pageImageView?.alignLeft = true
                 pageImageView?.alignRight = false
             }
         } else {
-            backButton?.isHidden = false
             pageImageView?.alignLeft = false
             pageImageView?.alignRight = false
         }
@@ -87,38 +79,17 @@ class PageViewController: UIViewController {
         }
     }
 
-    func toggleBars() {
-        if fullScreen {
-            fullScreen = false
-            topConstraint.constant = 45
-            bottomConstraint.constant = 45
-            UIView.animate(withDuration: 0.5) {
-                self.view.layoutIfNeeded()
-                self.backButton?.alpha = 1
-            }
-        } else {
-            fullScreen = true
-            topConstraint.constant = 0
-            bottomConstraint.constant = 0
-            UIView.animate(withDuration: 0.5) {
-                self.view.layoutIfNeeded()
-                self.backButton?.alpha = 0
-            }
-        }
-        setNeedsStatusBarAppearanceUpdate()
-    }
-
     @objc func tap() {
         delegate?.didTap(self)
     }
 
-    @objc func longPress(sender: UILongPressGestureRecognizer) {
-        if sender.state == .began {
-            delegate?.didLongPress(self)
-        }
-    }
-
     @IBAction func back(_ sender: Any) {
         delegate?.didSelectBack(self)
+    }
+}
+
+extension PageViewController: UIScrollViewDelegate {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return scrollView.subviews.first
     }
 }

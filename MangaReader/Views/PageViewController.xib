@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,13 +10,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PageViewController" customModule="MangaReader" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="2x2-XT-MoY" id="LaB-Ut-h3H"/>
-                <outlet property="backButton" destination="Bdy-2B-NuI" id="jwX-TJ-0cx"/>
-                <outlet property="bottomConstraint" destination="1lh-DU-Anb" id="2bj-X2-Da5"/>
                 <outlet property="leftGradientImage" destination="IOL-3A-IjI" id="STT-hI-nG8"/>
                 <outlet property="pageImageView" destination="Ntt-ZO-Net" id="L5O-9U-lr9"/>
                 <outlet property="pageLabel" destination="V6z-at-x6L" id="CT7-q0-zuM"/>
                 <outlet property="rightGradientImage" destination="rnv-Pi-734" id="M8E-NF-wBN"/>
-                <outlet property="topConstraint" destination="NBu-IA-EIB" id="kNz-xn-evM"/>
+                <outlet property="scrollView" destination="7dh-d6-g46" id="L8T-Mn-9yy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,30 +23,34 @@
             <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bdy-2B-NuI">
-                    <rect key="frame" x="0.0" y="0.0" width="70" height="45"/>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="2x2-XT-MoY">
+                    <rect key="frame" x="502" y="374" width="20" height="20"/>
+                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </activityIndicatorView>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7dh-d6-g46">
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ntt-ZO-Net" customClass="UIImageViewAligned" customModule="UIImageViewAlignedSwift">
+                            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        </imageView>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="45" id="MTr-h5-33c"/>
-                        <constraint firstAttribute="width" constant="70" id="UgQ-4t-jce"/>
+                        <constraint firstItem="Ntt-ZO-Net" firstAttribute="height" secondItem="kZA-gE-fHI" secondAttribute="height" id="LrN-eR-hRe"/>
+                        <constraint firstItem="Ntt-ZO-Net" firstAttribute="width" secondItem="kZA-gE-fHI" secondAttribute="width" id="UDb-H5-NL2"/>
+                        <constraint firstItem="Ntt-ZO-Net" firstAttribute="trailing" secondItem="i7Z-2g-ogT" secondAttribute="trailing" id="XCv-nb-MUT"/>
+                        <constraint firstItem="Ntt-ZO-Net" firstAttribute="leading" secondItem="i7Z-2g-ogT" secondAttribute="leading" id="n1o-cK-3qV"/>
+                        <constraint firstItem="Ntt-ZO-Net" firstAttribute="top" secondItem="i7Z-2g-ogT" secondAttribute="top" id="rpN-zw-i21"/>
+                        <constraint firstItem="Ntt-ZO-Net" firstAttribute="bottom" secondItem="i7Z-2g-ogT" secondAttribute="bottom" id="yd2-LR-nQW"/>
                     </constraints>
-                    <state key="normal" title="Back"/>
-                    <connections>
-                        <action selector="back:" destination="-1" eventType="touchUpInside" id="FWF-Wj-1d4"/>
-                    </connections>
-                </button>
+                    <viewLayoutGuide key="contentLayoutGuide" id="i7Z-2g-ogT"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="kZA-gE-fHI"/>
+                </scrollView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6z-at-x6L">
                     <rect key="frame" x="507" y="735" width="10.5" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ntt-ZO-Net" customClass="UIImageViewAligned" customModule="UIImageViewAlignedSwift">
-                    <rect key="frame" x="0.0" y="45" width="1024" height="678"/>
-                </imageView>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="2x2-XT-MoY">
-                    <rect key="frame" x="502" y="374" width="20" height="20"/>
-                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </activityIndicatorView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradientLtR" translatesAutoresizingMaskIntoConstraints="NO" id="IOL-3A-IjI">
                     <rect key="frame" x="0.0" y="0.0" width="20" height="768"/>
                 </imageView>
@@ -59,21 +60,19 @@
             </subviews>
             <color key="backgroundColor" white="0.96400282120000003" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ntt-ZO-Net" secondAttribute="bottom" constant="45" id="1lh-DU-Anb"/>
                 <constraint firstItem="IOL-3A-IjI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2Oh-Ev-yBc"/>
                 <constraint firstAttribute="trailing" secondItem="rnv-Pi-734" secondAttribute="trailing" id="4iQ-u5-HGi"/>
                 <constraint firstAttribute="bottom" secondItem="IOL-3A-IjI" secondAttribute="bottom" id="84Q-hU-aJQ"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ntt-ZO-Net" secondAttribute="trailing" id="8US-Vo-GcB"/>
                 <constraint firstItem="IOL-3A-IjI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="A8C-29-pN7"/>
-                <constraint firstItem="Ntt-ZO-Net" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="45" id="NBu-IA-EIB"/>
-                <constraint firstItem="V6z-at-x6L" firstAttribute="top" secondItem="Ntt-ZO-Net" secondAttribute="bottom" constant="12" id="Ooc-Bc-GoI"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7dh-d6-g46" secondAttribute="trailing" id="Cpa-JZ-fqm"/>
+                <constraint firstItem="7dh-d6-g46" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="HAe-qm-CbN"/>
                 <constraint firstAttribute="bottom" secondItem="rnv-Pi-734" secondAttribute="bottom" id="QHY-Ad-YbG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7dh-d6-g46" secondAttribute="bottom" id="QJx-ii-VOT"/>
                 <constraint firstItem="2x2-XT-MoY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TWG-m8-Aad"/>
                 <constraint firstItem="rnv-Pi-734" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UzS-CL-hHk"/>
-                <constraint firstItem="Ntt-ZO-Net" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Wbr-Qo-W4T"/>
+                <constraint firstItem="7dh-d6-g46" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="VeG-Ll-fRk"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="V6z-at-x6L" secondAttribute="bottom" constant="12" id="dY3-z3-ia2"/>
                 <constraint firstItem="V6z-at-x6L" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fjg-xt-L4g"/>
-                <constraint firstItem="Bdy-2B-NuI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="gFu-oC-nXa"/>
-                <constraint firstItem="Bdy-2B-NuI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nAx-vm-X7x"/>
                 <constraint firstItem="2x2-XT-MoY" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ug1-Bw-ugy"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
