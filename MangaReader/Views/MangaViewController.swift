@@ -10,6 +10,7 @@ import UIKit
 
 protocol MangaViewControllerDelegate: AnyObject {
     func didTapPage(mangaViewController: MangaViewController, pageViewController: PageViewController)
+    func back(mangaViewController: MangaViewController)
 }
 
 class MangaViewController: UIViewController {
@@ -38,8 +39,17 @@ class MangaViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavBar()
         createPageController()
         configurePageControllerConstraints()
+    }
+
+    private func configureNavBar() {
+        let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(back))
+        navigationItem.leftBarButtonItem = backButton
+
+        let ocrButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass.circle", withConfiguration: nil), style: .plain, target: self, action: #selector(startOcr))
+        navigationItem.rightBarButtonItem = ocrButton
     }
 
     private func createPageController() {
@@ -96,6 +106,19 @@ class MangaViewController: UIViewController {
     func toggleFullscreen() {
         fullScreen = !fullScreen
         setNeedsStatusBarAppearanceUpdate()
+    }
+
+    @objc func back() {
+        delegate?.back(mangaViewController: self)
+    }
+
+    @objc func startOcr() {
+        guard let viewControllers = pageController.viewControllers else { return }
+        for page in viewControllers {
+            if let page = page as? PageViewController {
+                page.startOcr()
+            }
+        }
     }
 }
 

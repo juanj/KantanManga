@@ -43,4 +43,9 @@ extension ViewMangaCoordinator: MangaViewControllerDelegate {
         navigationController.setNavigationBarHidden(!navigationController.isNavigationBarHidden, animated: true)
         mangaViewController.toggleFullscreen()
     }
+
+    func back(mangaViewController: MangaViewController) {
+        navigationController.popViewController(animated: true)
+        delegate?.didEnd(viewMangaCoordinator: self)
+    }
 }

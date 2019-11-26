@@ -78,6 +78,10 @@ class PageViewController: UIViewController {
         }
     }
 
+    func startOcr() {
+        
+    }
+
     @objc func tap() {
         delegate?.didTap(self)
     }
