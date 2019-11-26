@@ -15,7 +15,6 @@ class AppCoordinator: NSObject {
 
     var currentMangaDataSource: MangaDataSource?
     var libraryView: LibraryViewController?
-    var pageController: FullScreenPageViewController?
 
     init(navigation: UINavigationController) {
         navigationController = navigation
@@ -66,5 +65,9 @@ extension AppCoordinator: AddMangasCoordinatorDelegate {
 }
 
 extension AppCoordinator: ViewMangaCoordinatorDelegate {
-
+    func didEnd(viewMangaCoordinator: ViewMangaCoordinator) {
+        for (index, coordinator) in childCoordinators.enumerated() where coordinator is ViewMangaCoordinator {
+            childCoordinators.remove(at: index)
+        }
+    }
 }

@@ -10,7 +10,6 @@ import UIKit
 import UIImageViewAlignedSwift
 
 protocol PageViewControllerDelegate: AnyObject {
-    func didSelectBack(_ pageViewController: PageViewController)
     func didTap(_ pageViewController: PageViewController)
 }
 
@@ -81,10 +80,6 @@ class PageViewController: UIViewController {
 
     @objc func tap() {
         delegate?.didTap(self)
-    }
-
-    @IBAction func back(_ sender: Any) {
-        delegate?.didSelectBack(self)
     }
 }
 
