@@ -1,0 +1,3 @@
+[submodule "mecab-ios"]
+	path = mecab-ios
+	url = https://github.com/landonepps/mecab-ios.git

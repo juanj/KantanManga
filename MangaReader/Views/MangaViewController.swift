@@ -254,14 +254,32 @@ extension MangaViewController: SelectionViewDelegate {
 
             let text = result.text.replacingOccurrences(of: "\n", with: " ")
             let resultView = UIView(frame: CGRect(x: 0, y: self.view.frame.height - 200, width: self.view.frame.width, height: 200))
-            resultView.backgroundColor = .white
+            resultView.backgroundColor = .clear
+
+            let blurEffect = UIBlurEffect(style: .light)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+
+            blurEffectView.frame = self.view.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            resultView.addSubview(blurEffectView)
+
             let label = UILabel()
-            label.text = text
             label.font = .boldSystemFont(ofSize: 100)
             label.textColor = .black
-            label.sizeToFit()
             label.frame.origin.x = 50
             label.frame.origin.y = 50
+
+            let tokenizer = Tokenizer()
+            let tokens = tokenizer.parse(text)
+            let mutableString = NSMutableAttributedString()
+            for token: Token in tokens {
+                let partOfString = NSAttributedString(string: token.surface, attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
+                mutableString.append(partOfString)
+                mutableString.append(NSAttributedString(string: " "))
+            }
+            label.attributedText = mutableString
+            label.sizeToFit()
+
             resultView.addSubview(label)
             DispatchQueue.main.async {
                 self.view.addSubview(resultView)

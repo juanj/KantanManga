@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		0D463D7222CA9B0D0020FD5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D463D7122CA9B0C0020FD5A /* GoogleService-Info.plist */; };
+		320F276B23C2039100D9930F /* mecabrc in Resources */ = {isa = PBXBuildFile; fileRef = 320F276A23C2039100D9930F /* mecabrc */; };
+		320F276E23C203E300D9930F /* mecab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F276923C202FF00D9930F /* mecab.framework */; };
+		320F276F23C203E300D9930F /* mecab.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 320F276923C202FF00D9930F /* mecab.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		320F277323C2046900D9930F /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277123C2046900D9930F /* Token.swift */; };
+		320F277423C2046900D9930F /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277223C2046900D9930F /* Tokenizer.swift */; };
+		320F278A23C20A1500D9930F /* rewrite.def in Resources */ = {isa = PBXBuildFile; fileRef = 320F278123C20A1500D9930F /* rewrite.def */; };
+		320F278B23C20A1500D9930F /* left-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 320F278223C20A1500D9930F /* left-id.def */; };
+		320F278C23C20A1500D9930F /* pos-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 320F278323C20A1500D9930F /* pos-id.def */; };
+		320F278D23C20A1500D9930F /* matrix.bin in Resources */ = {isa = PBXBuildFile; fileRef = 320F278423C20A1500D9930F /* matrix.bin */; };
+		320F278E23C20A1500D9930F /* unk.dic in Resources */ = {isa = PBXBuildFile; fileRef = 320F278523C20A1500D9930F /* unk.dic */; };
+		320F278F23C20A1500D9930F /* sys.dic in Resources */ = {isa = PBXBuildFile; fileRef = 320F278623C20A1500D9930F /* sys.dic */; };
+		320F279023C20A1500D9930F /* dicrc in Resources */ = {isa = PBXBuildFile; fileRef = 320F278723C20A1500D9930F /* dicrc */; };
+		320F279123C20A1500D9930F /* right-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 320F278823C20A1500D9930F /* right-id.def */; };
+		320F279223C20A1500D9930F /* char.bin in Resources */ = {isa = PBXBuildFile; fileRef = 320F278923C20A1500D9930F /* char.bin */; };
 		323205AE238DBCE4009E8362 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323205AD238DBCE4009E8362 /* SelectionView.swift */; };
 		328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DFB08238D96300095CBAB /* MangaViewController.swift */; };
 		328DFB0B238D96300095CBAB /* MangaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328DFB09238D96300095CBAB /* MangaViewController.xib */; };
@@ -39,6 +53,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		320F276823C202FF00D9930F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 320F276423C202FF00D9930F /* mecab.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 44C74468207357D7008F46FD;
+			remoteInfo = mecab;
+		};
 		84A831FB221D90CC00CEE1C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 84A831DB221D90CA00CEE1C9 /* Project object */;
@@ -55,10 +76,37 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		320F277023C203E300D9930F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				320F276F23C203E300D9930F /* mecab.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		06DADBF3922C1A6DDC6C798A /* Pods-MangaReaderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaReaderUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MangaReaderUITests/Pods-MangaReaderUITests.release.xcconfig"; sourceTree = "<group>"; };
 		0D463D7122CA9B0C0020FD5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0FD908038762DEE3A978F955 /* Pods_MangaReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangaReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		320F276423C202FF00D9930F /* mecab.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mecab.xcodeproj; path = "mecab-ios/mecab.xcodeproj"; sourceTree = "<group>"; };
+		320F276A23C2039100D9930F /* mecabrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mecabrc; sourceTree = "<group>"; };
+		320F277123C2046900D9930F /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		320F277223C2046900D9930F /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
+		320F278123C20A1500D9930F /* rewrite.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rewrite.def; sourceTree = "<group>"; };
+		320F278223C20A1500D9930F /* left-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "left-id.def"; sourceTree = "<group>"; };
+		320F278323C20A1500D9930F /* pos-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pos-id.def"; sourceTree = "<group>"; };
+		320F278423C20A1500D9930F /* matrix.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = matrix.bin; sourceTree = "<group>"; };
+		320F278523C20A1500D9930F /* unk.dic */ = {isa = PBXFileReference; lastKnownFileType = file; path = unk.dic; sourceTree = "<group>"; };
+		320F278623C20A1500D9930F /* sys.dic */ = {isa = PBXFileReference; lastKnownFileType = file; path = sys.dic; sourceTree = "<group>"; };
+		320F278723C20A1500D9930F /* dicrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dicrc; sourceTree = "<group>"; };
+		320F278823C20A1500D9930F /* right-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "right-id.def"; sourceTree = "<group>"; };
+		320F278923C20A1500D9930F /* char.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = char.bin; sourceTree = "<group>"; };
 		323205AD238DBCE4009E8362 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
 		328DFB08238D96300095CBAB /* MangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaViewController.swift; sourceTree = "<group>"; };
 		328DFB09238D96300095CBAB /* MangaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MangaViewController.xib; sourceTree = "<group>"; };
@@ -105,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4210C463A6A18BA4DDE78173 /* Pods_MangaReader.framework in Frameworks */,
+				320F276E23C203E300D9930F /* mecab.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +176,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		320F276523C202FF00D9930F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				320F276923C202FF00D9930F /* mecab.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		320F277523C2047800D9930F /* Mecab */ = {
+			isa = PBXGroup;
+			children = (
+				320F277123C2046900D9930F /* Token.swift */,
+				320F277223C2046900D9930F /* Tokenizer.swift */,
+			);
+			path = Mecab;
+			sourceTree = "<group>";
+		};
+		320F277B23C208FB00D9930F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				320F278023C20A1500D9930F /* ipadic */,
+				320F276A23C2039100D9930F /* mecabrc */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		320F278023C20A1500D9930F /* ipadic */ = {
+			isa = PBXGroup;
+			children = (
+				320F278123C20A1500D9930F /* rewrite.def */,
+				320F278223C20A1500D9930F /* left-id.def */,
+				320F278323C20A1500D9930F /* pos-id.def */,
+				320F278423C20A1500D9930F /* matrix.bin */,
+				320F278523C20A1500D9930F /* unk.dic */,
+				320F278623C20A1500D9930F /* sys.dic */,
+				320F278723C20A1500D9930F /* dicrc */,
+				320F278823C20A1500D9930F /* right-id.def */,
+				320F278923C20A1500D9930F /* char.bin */,
+			);
+			name = ipadic;
+			path = "mecab-ios/ipadic";
+			sourceTree = "<group>";
+		};
 		7EAAD1907EAA228FF69A9323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +232,7 @@
 		841B795A221F303900659FA2 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				320F277523C2047800D9930F /* Mecab */,
 				843FA7E8221DFE9E00B86B52 /* CBZReader.swift */,
 				841B795B221F305A00659FA2 /* MangaDataSource.swift */,
 				8418695F222474EC00C689DC /* LibraryCollectionViewLayout.swift */,
@@ -151,6 +244,8 @@
 		84A831DA221D90CA00CEE1C9 = {
 			isa = PBXGroup;
 			children = (
+				320F277B23C208FB00D9930F /* Resources */,
+				320F276423C202FF00D9930F /* mecab.xcodeproj */,
 				84A831E5221D90CA00CEE1C9 /* MangaReader */,
 				84A831FD221D90CC00CEE1C9 /* MangaReaderTests */,
 				84A831E4221D90CA00CEE1C9 /* Products */,
@@ -259,6 +354,7 @@
 				84A831E1221D90CA00CEE1C9 /* Resources */,
 				D1FBAE1E0464DE3A1AB9215B /* [CP] Embed Pods Frameworks */,
 				8418695E222346F000C689DC /* ShellScript */,
+				320F277023C203E300D9930F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -343,6 +439,12 @@
 			mainGroup = 84A831DA221D90CA00CEE1C9;
 			productRefGroup = 84A831E4221D90CA00CEE1C9 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 320F276523C202FF00D9930F /* Products */;
+					ProjectRef = 320F276423C202FF00D9930F /* mecab.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				84A831E2221D90CA00CEE1C9 /* MangaReader */,
@@ -352,17 +454,37 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		320F276923C202FF00D9930F /* mecab.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = mecab.framework;
+			remoteRef = 320F276823C202FF00D9930F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		84A831E1221D90CA00CEE1C9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				320F276B23C2039100D9930F /* mecabrc in Resources */,
+				320F279123C20A1500D9930F /* right-id.def in Resources */,
+				320F278D23C20A1500D9930F /* matrix.bin in Resources */,
 				84A831F4221D90CC00CEE1C9 /* LaunchScreen.storyboard in Resources */,
+				320F278E23C20A1500D9930F /* unk.dic in Resources */,
 				0D463D7222CA9B0D0020FD5A /* GoogleService-Info.plist in Resources */,
 				84A831F1221D90CC00CEE1C9 /* Assets.xcassets in Resources */,
+				320F279223C20A1500D9930F /* char.bin in Resources */,
+				320F278F23C20A1500D9930F /* sys.dic in Resources */,
+				320F278A23C20A1500D9930F /* rewrite.def in Resources */,
 				328DFB0B238D96300095CBAB /* MangaViewController.xib in Resources */,
 				84A8321E221D951500CEE1C9 /* LibraryViewController.xib in Resources */,
+				320F279023C20A1500D9930F /* dicrc in Resources */,
+				320F278C23C20A1500D9930F /* pos-id.def in Resources */,
 				843FA7ED221E0BE900B86B52 /* PageViewController.xib in Resources */,
+				320F278B23C20A1500D9930F /* left-id.def in Resources */,
 				843FA7E3221DF0C300B86B52 /* WebServerViewController.xib in Resources */,
 				84A83225221DB10400CEE1C9 /* MangaCollectionViewCell.xib in Resources */,
 			);
@@ -481,6 +603,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				323205AE238DBCE4009E8362 /* SelectionView.swift in Sources */,
+				320F277423C2046900D9930F /* Tokenizer.swift in Sources */,
 				84A83219221D923800CEE1C9 /* AppCoordinator.swift in Sources */,
 				843FA7EC221E0BE900B86B52 /* PageViewController.swift in Sources */,
 				8418696D222495FE00C689DC /* Manga.swift in Sources */,
@@ -489,6 +612,7 @@
 				84186960222474EC00C689DC /* LibraryCollectionViewLayout.swift in Sources */,
 				8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */,
 				328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */,
+				320F277323C2046900D9930F /* Token.swift in Sources */,
 				84A831E7221D90CA00CEE1C9 /* AppDelegate.swift in Sources */,
 				328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */,
 				84A8321D221D951500CEE1C9 /* LibraryViewController.swift in Sources */,
