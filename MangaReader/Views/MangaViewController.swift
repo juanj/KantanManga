@@ -21,10 +21,13 @@ class MangaViewController: UIViewController {
 
     private var pageController: UIPageViewController!
     private var selectionView = SelectionView()
+    private var sentenceView: AnalyzeTextViewController!
+    private var sentenceViewTopConstraint: NSLayoutConstraint!
 
     private var isPageAnimating = false
     private var fullScreen = false
     private var ocrEnabled = false
+
     override var prefersStatusBarHidden: Bool {
         return fullScreen
     }
@@ -46,6 +49,7 @@ class MangaViewController: UIViewController {
         createPageController()
         configurePageControllerConstraints()
         configureSelectionView()
+        configureSentenceView()
     }
 
     private func configureSelectionView() {
@@ -121,9 +125,31 @@ class MangaViewController: UIViewController {
         view.addConstraints([topConstraint, bottomConstraint, leadingConstraint, trailingConstraint])
     }
 
+    private func configureSentenceView() {
+        sentenceView = AnalyzeTextViewController(sentence: [])
+        view.addSubview(sentenceView)
+
+        sentenceViewTopConstraint = sentenceView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100)
+        let leftConstraint = sentenceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor)
+        let rightConstraint = sentenceView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
+
+        view.addConstraints([sentenceViewTopConstraint, leftConstraint, rightConstraint])
+    }
+
     func toggleFullscreen() {
         fullScreen = !fullScreen
         setNeedsStatusBarAppearanceUpdate()
+        if fullScreen && sentenceViewTopConstraint.constant < 0 {
+            sentenceViewTopConstraint.constant = 0
+            UIView.animate(withDuration: 0.15) {
+                self.view.layoutIfNeeded()
+            }
+        } else if !fullScreen && sentenceViewTopConstraint.constant == 0 {
+            sentenceViewTopConstraint.constant = -100
+            UIView.animate(withDuration: 0.15) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
 
     @objc func back() {
@@ -253,36 +279,12 @@ extension MangaViewController: SelectionViewDelegate {
             guard let result = result else { return }
 
             let text = result.text.replacingOccurrences(of: "\n", with: " ")
-            let resultView = UIView(frame: CGRect(x: 0, y: self.view.frame.height - 200, width: self.view.frame.width, height: 200))
-            resultView.backgroundColor = .clear
-
-            let blurEffect = UIBlurEffect(style: .light)
-            let blurEffectView = UIVisualEffectView(effect: blurEffect)
-
-            blurEffectView.frame = self.view.bounds
-            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            resultView.addSubview(blurEffectView)
-
-            let label = UILabel()
-            label.font = .boldSystemFont(ofSize: 100)
-            label.textColor = .black
-            label.frame.origin.x = 50
-            label.frame.origin.y = 50
 
             let tokenizer = Tokenizer()
             let tokens = tokenizer.parse(text)
-            let mutableString = NSMutableAttributedString()
-            for token: Token in tokens {
-                let partOfString = NSAttributedString(string: token.surface, attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
-                mutableString.append(partOfString)
-                mutableString.append(NSAttributedString(string: " "))
-            }
-            label.attributedText = mutableString
-            label.sizeToFit()
-
-            resultView.addSubview(label)
+            let sentence = tokens.map {JapaneseWord(text: $0.surface, rootForm: $0.originalForm ?? $0.surface, furigana: $0.pronunciation != nil ? [Furigana(kana: $0.pronunciation!, range: NSRange(location: 0, length: $0.surface.count))] : [] )}
             DispatchQueue.main.async {
-                self.view.addSubview(resultView)
+                self.sentenceView.sentence = sentence
             }
         }
     }
