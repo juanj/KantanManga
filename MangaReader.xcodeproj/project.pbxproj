@@ -13,16 +13,17 @@
 		320F276F23C203E300D9930F /* mecab.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 320F276923C202FF00D9930F /* mecab.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		320F277323C2046900D9930F /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277123C2046900D9930F /* Token.swift */; };
 		320F277423C2046900D9930F /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277223C2046900D9930F /* Tokenizer.swift */; };
-		320F278A23C20A1500D9930F /* rewrite.def in Resources */ = {isa = PBXBuildFile; fileRef = 320F278123C20A1500D9930F /* rewrite.def */; };
-		320F278B23C20A1500D9930F /* left-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 320F278223C20A1500D9930F /* left-id.def */; };
-		320F278C23C20A1500D9930F /* pos-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 320F278323C20A1500D9930F /* pos-id.def */; };
-		320F278D23C20A1500D9930F /* matrix.bin in Resources */ = {isa = PBXBuildFile; fileRef = 320F278423C20A1500D9930F /* matrix.bin */; };
-		320F278E23C20A1500D9930F /* unk.dic in Resources */ = {isa = PBXBuildFile; fileRef = 320F278523C20A1500D9930F /* unk.dic */; };
-		320F278F23C20A1500D9930F /* sys.dic in Resources */ = {isa = PBXBuildFile; fileRef = 320F278623C20A1500D9930F /* sys.dic */; };
-		320F279023C20A1500D9930F /* dicrc in Resources */ = {isa = PBXBuildFile; fileRef = 320F278723C20A1500D9930F /* dicrc */; };
-		320F279123C20A1500D9930F /* right-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 320F278823C20A1500D9930F /* right-id.def */; };
-		320F279223C20A1500D9930F /* char.bin in Resources */ = {isa = PBXBuildFile; fileRef = 320F278923C20A1500D9930F /* char.bin */; };
 		323205AE238DBCE4009E8362 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323205AD238DBCE4009E8362 /* SelectionView.swift */; };
+		3259D1B423C4D9A2003BA7C2 /* FuriganaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */; };
+		3259D1E323C4E5CA003BA7C2 /* left-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 3259D1DA23C4E5C9003BA7C2 /* left-id.def */; };
+		3259D1E423C4E5CA003BA7C2 /* pos-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 3259D1DB23C4E5C9003BA7C2 /* pos-id.def */; };
+		3259D1E523C4E5CA003BA7C2 /* char.bin in Resources */ = {isa = PBXBuildFile; fileRef = 3259D1DC23C4E5C9003BA7C2 /* char.bin */; };
+		3259D1E623C4E5CA003BA7C2 /* sys.dic in Resources */ = {isa = PBXBuildFile; fileRef = 3259D1DD23C4E5C9003BA7C2 /* sys.dic */; };
+		3259D1E723C4E5CA003BA7C2 /* matrix.bin in Resources */ = {isa = PBXBuildFile; fileRef = 3259D1DE23C4E5CA003BA7C2 /* matrix.bin */; };
+		3259D1E823C4E5CA003BA7C2 /* rewrite.def in Resources */ = {isa = PBXBuildFile; fileRef = 3259D1DF23C4E5CA003BA7C2 /* rewrite.def */; };
+		3259D1E923C4E5CA003BA7C2 /* unk.dic in Resources */ = {isa = PBXBuildFile; fileRef = 3259D1E023C4E5CA003BA7C2 /* unk.dic */; };
+		3259D1EA23C4E5CA003BA7C2 /* dicrc in Resources */ = {isa = PBXBuildFile; fileRef = 3259D1E123C4E5CA003BA7C2 /* dicrc */; };
+		3259D1EB23C4E5CA003BA7C2 /* right-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 3259D1E223C4E5CA003BA7C2 /* right-id.def */; };
 		328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DFB08238D96300095CBAB /* MangaViewController.swift */; };
 		328DFB0B238D96300095CBAB /* MangaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328DFB09238D96300095CBAB /* MangaViewController.xib */; };
 		328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */; };
@@ -99,16 +100,17 @@
 		320F276A23C2039100D9930F /* mecabrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mecabrc; sourceTree = "<group>"; };
 		320F277123C2046900D9930F /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		320F277223C2046900D9930F /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
-		320F278123C20A1500D9930F /* rewrite.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rewrite.def; sourceTree = "<group>"; };
-		320F278223C20A1500D9930F /* left-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "left-id.def"; sourceTree = "<group>"; };
-		320F278323C20A1500D9930F /* pos-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pos-id.def"; sourceTree = "<group>"; };
-		320F278423C20A1500D9930F /* matrix.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = matrix.bin; sourceTree = "<group>"; };
-		320F278523C20A1500D9930F /* unk.dic */ = {isa = PBXFileReference; lastKnownFileType = file; path = unk.dic; sourceTree = "<group>"; };
-		320F278623C20A1500D9930F /* sys.dic */ = {isa = PBXFileReference; lastKnownFileType = file; path = sys.dic; sourceTree = "<group>"; };
-		320F278723C20A1500D9930F /* dicrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dicrc; sourceTree = "<group>"; };
-		320F278823C20A1500D9930F /* right-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "right-id.def"; sourceTree = "<group>"; };
-		320F278923C20A1500D9930F /* char.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = char.bin; sourceTree = "<group>"; };
 		323205AD238DBCE4009E8362 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
+		3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuriganaUtils.swift; sourceTree = "<group>"; };
+		3259D1DA23C4E5C9003BA7C2 /* left-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "left-id.def"; sourceTree = "<group>"; };
+		3259D1DB23C4E5C9003BA7C2 /* pos-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pos-id.def"; sourceTree = "<group>"; };
+		3259D1DC23C4E5C9003BA7C2 /* char.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = char.bin; sourceTree = "<group>"; };
+		3259D1DD23C4E5C9003BA7C2 /* sys.dic */ = {isa = PBXFileReference; lastKnownFileType = file; path = sys.dic; sourceTree = "<group>"; };
+		3259D1DE23C4E5CA003BA7C2 /* matrix.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = matrix.bin; sourceTree = "<group>"; };
+		3259D1DF23C4E5CA003BA7C2 /* rewrite.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rewrite.def; sourceTree = "<group>"; };
+		3259D1E023C4E5CA003BA7C2 /* unk.dic */ = {isa = PBXFileReference; lastKnownFileType = file; path = unk.dic; sourceTree = "<group>"; };
+		3259D1E123C4E5CA003BA7C2 /* dicrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dicrc; sourceTree = "<group>"; };
+		3259D1E223C4E5CA003BA7C2 /* right-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "right-id.def"; sourceTree = "<group>"; };
 		328DFB08238D96300095CBAB /* MangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaViewController.swift; sourceTree = "<group>"; };
 		328DFB09238D96300095CBAB /* MangaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MangaViewController.xib; sourceTree = "<group>"; };
 		328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMangaCoordinator.swift; sourceTree = "<group>"; };
@@ -207,15 +209,15 @@
 		320F278023C20A1500D9930F /* ipadic */ = {
 			isa = PBXGroup;
 			children = (
-				320F278123C20A1500D9930F /* rewrite.def */,
-				320F278223C20A1500D9930F /* left-id.def */,
-				320F278323C20A1500D9930F /* pos-id.def */,
-				320F278423C20A1500D9930F /* matrix.bin */,
-				320F278523C20A1500D9930F /* unk.dic */,
-				320F278623C20A1500D9930F /* sys.dic */,
-				320F278723C20A1500D9930F /* dicrc */,
-				320F278823C20A1500D9930F /* right-id.def */,
-				320F278923C20A1500D9930F /* char.bin */,
+				3259D1DC23C4E5C9003BA7C2 /* char.bin */,
+				3259D1E123C4E5CA003BA7C2 /* dicrc */,
+				3259D1DA23C4E5C9003BA7C2 /* left-id.def */,
+				3259D1DE23C4E5CA003BA7C2 /* matrix.bin */,
+				3259D1DB23C4E5C9003BA7C2 /* pos-id.def */,
+				3259D1DF23C4E5CA003BA7C2 /* rewrite.def */,
+				3259D1E223C4E5CA003BA7C2 /* right-id.def */,
+				3259D1DD23C4E5C9003BA7C2 /* sys.dic */,
+				3259D1E023C4E5CA003BA7C2 /* unk.dic */,
 			);
 			name = ipadic;
 			path = "mecab-ios/ipadic";
@@ -239,6 +241,7 @@
 				841B795B221F305A00659FA2 /* MangaDataSource.swift */,
 				8418695F222474EC00C689DC /* LibraryCollectionViewLayout.swift */,
 				323205AD238DBCE4009E8362 /* SelectionView.swift */,
+				3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -473,23 +476,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				320F276B23C2039100D9930F /* mecabrc in Resources */,
-				320F279123C20A1500D9930F /* right-id.def in Resources */,
-				320F278D23C20A1500D9930F /* matrix.bin in Resources */,
+				3259D1EB23C4E5CA003BA7C2 /* right-id.def in Resources */,
+				3259D1E623C4E5CA003BA7C2 /* sys.dic in Resources */,
+				3259D1EA23C4E5CA003BA7C2 /* dicrc in Resources */,
+				3259D1E523C4E5CA003BA7C2 /* char.bin in Resources */,
+				3259D1E923C4E5CA003BA7C2 /* unk.dic in Resources */,
 				84A831F4221D90CC00CEE1C9 /* LaunchScreen.storyboard in Resources */,
-				320F278E23C20A1500D9930F /* unk.dic in Resources */,
 				0D463D7222CA9B0D0020FD5A /* GoogleService-Info.plist in Resources */,
 				84A831F1221D90CC00CEE1C9 /* Assets.xcassets in Resources */,
-				320F279223C20A1500D9930F /* char.bin in Resources */,
-				320F278F23C20A1500D9930F /* sys.dic in Resources */,
-				320F278A23C20A1500D9930F /* rewrite.def in Resources */,
+				3259D1E723C4E5CA003BA7C2 /* matrix.bin in Resources */,
 				328DFB0B238D96300095CBAB /* MangaViewController.xib in Resources */,
+				3259D1E323C4E5CA003BA7C2 /* left-id.def in Resources */,
 				84A8321E221D951500CEE1C9 /* LibraryViewController.xib in Resources */,
-				320F279023C20A1500D9930F /* dicrc in Resources */,
-				320F278C23C20A1500D9930F /* pos-id.def in Resources */,
 				843FA7ED221E0BE900B86B52 /* PageViewController.xib in Resources */,
-				320F278B23C20A1500D9930F /* left-id.def in Resources */,
 				843FA7E3221DF0C300B86B52 /* WebServerViewController.xib in Resources */,
+				3259D1E423C4E5CA003BA7C2 /* pos-id.def in Resources */,
 				84A83225221DB10400CEE1C9 /* MangaCollectionViewCell.xib in Resources */,
+				3259D1E823C4E5CA003BA7C2 /* rewrite.def in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,6 +621,7 @@
 				328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */,
 				320F277323C2046900D9930F /* Token.swift in Sources */,
 				84A831E7221D90CA00CEE1C9 /* AppDelegate.swift in Sources */,
+				3259D1B423C4D9A2003BA7C2 /* FuriganaUtils.swift in Sources */,
 				328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */,
 				84A8321D221D951500CEE1C9 /* LibraryViewController.swift in Sources */,
 				843FA7E2221DF0C300B86B52 /* WebServerViewController.swift in Sources */,

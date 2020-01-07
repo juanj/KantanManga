@@ -260,6 +260,7 @@ extension MangaViewController: PageViewControllerDelegate {
 // MARK: SelectionViewDelegate
 extension MangaViewController: SelectionViewDelegate {
     func didSelectSection(_ selectionView: SelectionView, section: CGRect) {
+        guard section.width != 0 && section.height != 0 else { return }
         UIGraphicsBeginImageContextWithOptions(section.size, true, 1)
         self.view.drawHierarchy(in: CGRect(x: -section.origin.x, y: -section.origin.y, width: self.view.frame.width, height: self.view.frame.height), afterScreenUpdates: true)
         let capturedImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -282,7 +283,7 @@ extension MangaViewController: SelectionViewDelegate {
 
             let tokenizer = Tokenizer()
             let tokens = tokenizer.parse(text)
-            let sentence = tokens.map {JapaneseWord(text: $0.surface, rootForm: $0.originalForm ?? $0.surface, furigana: $0.pronunciation != nil ? [Furigana(kana: $0.pronunciation!, range: NSRange(location: 0, length: $0.surface.count))] : [] )}
+            let sentence = tokens.map {JapaneseWord(text: $0.surface, rootForm: $0.originalForm ?? $0.surface, furigana: getFurigana(token: $0))}
             DispatchQueue.main.async {
                 self.sentenceView.sentence = sentence
             }
