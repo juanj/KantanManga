@@ -18,7 +18,6 @@ class ViewMangaCoordinator: NSObject {
     private let manga: Manga
 
     private var mangaDataSource: MangaDataSource!
-    //private var pageController: FullScreenPageViewController!
 
     init(navigation: UINavigationController, manga: Manga, delegate: ViewMangaCoordinatorDelegate) {
         navigationController = navigation
@@ -32,7 +31,6 @@ class ViewMangaCoordinator: NSObject {
             delegate?.didEnd(viewMangaCoordinator: self)
             return
         }
-        //pageController = createPageController()
         navigationController.pushViewController(MangaViewController(manga: manga, dataSource: mangaDataSource, delegate: self), animated: true)
     }
 }
