@@ -66,13 +66,15 @@ class AnalyzeTextViewController: UIControl {
         labels.forEach { $0.removeFromSuperview() }
         buttons.removeAll()
         labels.removeAll()
-        for word in sentence {
+        for (index, word) in sentence.enumerated() {
             let button = UIButton()
             button.translatesAutoresizingMaskIntoConstraints = false
             button.setTitleColor(UIColor.black, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 50, weight: .bold)
             button.setTitle(word.text, for: .normal)
             button.sizeToFit()
+            button.tag = index
+            button.addTarget(self, action: #selector(openDetail(button:)), for: .touchUpInside)
             addSubview(button)
 
             let heightConstraint = button.heightAnchor.constraint(equalToConstant: 100)
@@ -111,5 +113,15 @@ class AnalyzeTextViewController: UIControl {
         backgroundColor = .clear
         layer.borderWidth = 1
         layer.borderColor = UIColor.gray.cgColor
+    }
+
+    @objc func openDetail(button: UIButton) {
+        let results = JapaneseDictionary.shared.findWord(word: sentence[button.tag].rootForm)
+        for result in results {
+            print(result.word.joined(separator: " - ") + " | \(result.entryId)")
+            for meaning in result.meanings {
+                print("- \(meaning)")
+            }
+        }
     }
 }

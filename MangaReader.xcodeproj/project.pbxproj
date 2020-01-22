@@ -11,6 +11,7 @@
 		320F277323C2046900D9930F /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277123C2046900D9930F /* Token.swift */; };
 		320F277423C2046900D9930F /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277223C2046900D9930F /* Tokenizer.swift */; };
 		323205AE238DBCE4009E8362 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323205AD238DBCE4009E8362 /* SelectionView.swift */; };
+		323CD90A23CB7107007FFC58 /* jamdict.db in Resources */ = {isa = PBXBuildFile; fileRef = 323CD90923CB7107007FFC58 /* jamdict.db */; };
 		325813E423C5049A00C31E02 /* mecab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325813E323C5049000C31E02 /* mecab.framework */; };
 		325813E523C5049A00C31E02 /* mecab.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 325813E323C5049000C31E02 /* mecab.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3258141123C5051A00C31E02 /* mecabrc in Resources */ = {isa = PBXBuildFile; fileRef = 3258141023C5051A00C31E02 /* mecabrc */; };
@@ -24,6 +25,7 @@
 		3258142323C5053900C31E02 /* right-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 3258141A23C5053900C31E02 /* right-id.def */; };
 		3258142423C5053900C31E02 /* char.bin in Resources */ = {isa = PBXBuildFile; fileRef = 3258141B23C5053900C31E02 /* char.bin */; };
 		3259D1B423C4D9A2003BA7C2 /* FuriganaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */; };
+		325DA0B923C8F50700A627BD /* JapaneseDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */; };
 		328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DFB08238D96300095CBAB /* MangaViewController.swift */; };
 		328DFB0B238D96300095CBAB /* MangaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328DFB09238D96300095CBAB /* MangaViewController.xib */; };
 		328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */; };
@@ -99,6 +101,7 @@
 		320F277123C2046900D9930F /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		320F277223C2046900D9930F /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
 		323205AD238DBCE4009E8362 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
+		323CD90923CB7107007FFC58 /* jamdict.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = jamdict.db; sourceTree = "<group>"; };
 		325813DE23C5049000C31E02 /* mecab.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mecab.xcodeproj; path = "mecab-ios/mecab.xcodeproj"; sourceTree = "<group>"; };
 		3258141023C5051A00C31E02 /* mecabrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mecabrc; sourceTree = "<group>"; };
 		3258141323C5053900C31E02 /* rewrite.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rewrite.def; sourceTree = "<group>"; };
@@ -111,6 +114,7 @@
 		3258141A23C5053900C31E02 /* right-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "right-id.def"; sourceTree = "<group>"; };
 		3258141B23C5053900C31E02 /* char.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = char.bin; sourceTree = "<group>"; };
 		3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuriganaUtils.swift; sourceTree = "<group>"; };
+		325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseDictionary.swift; sourceTree = "<group>"; };
 		328DFB08238D96300095CBAB /* MangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaViewController.swift; sourceTree = "<group>"; };
 		328DFB09238D96300095CBAB /* MangaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MangaViewController.xib; sourceTree = "<group>"; };
 		328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMangaCoordinator.swift; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 		325813FC23C5050700C31E02 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				323CD90923CB7107007FFC58 /* jamdict.db */,
 				3258141223C5053900C31E02 /* ipadic */,
 				3258141023C5051A00C31E02 /* mecabrc */,
 			);
@@ -242,6 +247,7 @@
 				8418695F222474EC00C689DC /* LibraryCollectionViewLayout.swift */,
 				323205AD238DBCE4009E8362 /* SelectionView.swift */,
 				3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */,
+				325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -493,6 +499,7 @@
 				3258141D23C5053900C31E02 /* left-id.def in Resources */,
 				843FA7E3221DF0C300B86B52 /* WebServerViewController.xib in Resources */,
 				84A83225221DB10400CEE1C9 /* MangaCollectionViewCell.xib in Resources */,
+				323CD90A23CB7107007FFC58 /* jamdict.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +621,7 @@
 				84A83219221D923800CEE1C9 /* AppCoordinator.swift in Sources */,
 				843FA7EC221E0BE900B86B52 /* PageViewController.swift in Sources */,
 				8418696D222495FE00C689DC /* Manga.swift in Sources */,
+				325DA0B923C8F50700A627BD /* JapaneseDictionary.swift in Sources */,
 				843FA7DF221DEDDF00B86B52 /* AddMangasCoordinator.swift in Sources */,
 				843FA7E9221DFE9E00B86B52 /* CBZReader.swift in Sources */,
 				84186960222474EC00C689DC /* LibraryCollectionViewLayout.swift in Sources */,

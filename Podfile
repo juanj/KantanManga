@@ -11,6 +11,7 @@ target 'MangaReader' do
   pod 'GCDWebServer/WebUploader', '~> 3.0'
   pod 'Firebase/Core'
   pod 'Firebase/MLVision'
+  pod 'SQLite.swift', '~> 0.12.0'
   target 'MangaReaderTests' do
     inherit! :search_paths
     # Pods for testing

@@ -109,6 +109,9 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - Protobuf (3.11.2)
+  - SQLite.swift (0.12.2):
+    - SQLite.swift/standard (= 0.12.2)
+  - SQLite.swift/standard (0.12.2)
   - UIImageViewAlignedSwift (0.7.0)
   - ZIPFoundation (0.9.10)
 
@@ -116,6 +119,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/MLVision
   - GCDWebServer/WebUploader (~> 3.0)
+  - SQLite.swift (~> 0.12.0)
   - UIImageViewAlignedSwift
   - ZIPFoundation (~> 0.9)
 
@@ -139,6 +143,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - nanopb
     - Protobuf
+    - SQLite.swift
     - UIImageViewAlignedSwift
     - ZIPFoundation
 
@@ -161,9 +166,10 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
+  SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   UIImageViewAlignedSwift: cfd56e381a894c71bf0d020cb3ef31cb3f604634
   ZIPFoundation: 249fa8890597086cd536bb2df5c9804d84e122b0
 
-PODFILE CHECKSUM: ef01cbcc44801d73c5ed9a1015c036e604bab0fa
+PODFILE CHECKSUM: 6f32e7c218dc0f18acba1c33a0902a7ef28f4642
 
 COCOAPODS: 1.8.3
