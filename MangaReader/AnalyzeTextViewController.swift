@@ -28,6 +28,10 @@ class AnalyzeTextViewController: UIControl {
     private let margin: CGFloat = 20
     private var buttons = [UIButton]()
     private var labels = [UILabel]()
+    private var textView = UIView()
+    private var dictionaryResults = [DictionaryResult]()
+    private var dictionaryTableView = UITableView()
+    private var dictionaryTableViewHeightConstraint: NSLayoutConstraint!
 
     init(sentence: [JapaneseWord]) {
         self.sentence = sentence
@@ -42,8 +46,10 @@ class AnalyzeTextViewController: UIControl {
 
     private func initView() {
         translatesAutoresizingMaskIntoConstraints = false
-        configureBlur()
         configureStyle()
+        configureBlur()
+        configureMainConstraints()
+        configureTableView()
         loadText()
 
     }
@@ -51,14 +57,40 @@ class AnalyzeTextViewController: UIControl {
     private func configureBlur() {
         let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
         blurView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(blurView)
+        textView.addSubview(blurView)
 
-        let topConstraint = blurView.topAnchor.constraint(equalTo: topAnchor)
-        let leftConstraint = blurView.leftAnchor.constraint(equalTo: leftAnchor)
-        let rightConstraint = blurView.rightAnchor.constraint(equalTo: rightAnchor)
-        let bottomConstraint = blurView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        let topConstraint = blurView.topAnchor.constraint(equalTo: textView.topAnchor)
+        let leftConstraint = blurView.leftAnchor.constraint(equalTo: textView.leftAnchor)
+        let rightConstraint = blurView.rightAnchor.constraint(equalTo: textView.rightAnchor)
+        let bottomConstraint = blurView.bottomAnchor.constraint(equalTo: textView.bottomAnchor)
 
-        addConstraints([topConstraint, leftConstraint, rightConstraint, bottomConstraint])
+        textView.addConstraints([topConstraint, leftConstraint, rightConstraint, bottomConstraint])
+    }
+
+    private func configureMainConstraints() {
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        dictionaryTableView.translatesAutoresizingMaskIntoConstraints = false
+
+        addSubview(textView)
+        addSubview(dictionaryTableView)
+
+        let topTextViewConstraint = textView.topAnchor.constraint(equalTo: topAnchor)
+        let leftTextViewConstraint = textView.leftAnchor.constraint(equalTo: leftAnchor)
+        let rightTextViewConstraint = textView.rightAnchor.constraint(equalTo: rightAnchor)
+        let bottomTextViewConstraint = textView.bottomAnchor.constraint(equalTo: dictionaryTableView.topAnchor)
+
+        let leftDictionaryTableViewConstraint = dictionaryTableView.leftAnchor.constraint(equalTo: leftAnchor)
+        let rightDictionaryTableViewConstraint = dictionaryTableView.rightAnchor.constraint(equalTo: rightAnchor)
+        let bottomDictionaryTableViewConstraint = dictionaryTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        dictionaryTableViewHeightConstraint = dictionaryTableView.heightAnchor.constraint(equalToConstant: 0)
+
+        addConstraints([topTextViewConstraint, leftTextViewConstraint, rightTextViewConstraint, bottomTextViewConstraint, leftDictionaryTableViewConstraint, rightDictionaryTableViewConstraint, bottomDictionaryTableViewConstraint, dictionaryTableViewHeightConstraint])
+    }
+
+    private func configureTableView() {
+        dictionaryTableView.delegate = self
+        dictionaryTableView.dataSource = self
+        dictionaryTableView.isScrollEnabled = false
     }
 
     private func loadText() {
@@ -75,19 +107,19 @@ class AnalyzeTextViewController: UIControl {
             button.sizeToFit()
             button.tag = index
             button.addTarget(self, action: #selector(openDetail(button:)), for: .touchUpInside)
-            addSubview(button)
+            textView.addSubview(button)
 
             let heightConstraint = button.heightAnchor.constraint(equalToConstant: 100)
-            let topConstraint = button.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor)
-            let bottomConstraint = button.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+            let topConstraint = button.topAnchor.constraint(equalTo: textView.safeAreaLayoutGuide.topAnchor)
+            let bottomConstraint = button.bottomAnchor.constraint(equalTo: textView.safeAreaLayoutGuide.bottomAnchor)
             let leadingConstraint: NSLayoutConstraint
             if let lastButton = buttons.last {
                 leadingConstraint = button.leadingAnchor.constraint(equalTo: lastButton.trailingAnchor, constant: margin)
             } else {
-                leadingConstraint = button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: margin)
+                leadingConstraint = button.leadingAnchor.constraint(equalTo: textView.leadingAnchor, constant: margin)
             }
 
-            addConstraints([topConstraint, bottomConstraint, leadingConstraint, heightConstraint])
+            textView.addConstraints([topConstraint, bottomConstraint, leadingConstraint, heightConstraint])
             buttons.append(button)
 
             for furigana in word.furigana {
@@ -95,7 +127,7 @@ class AnalyzeTextViewController: UIControl {
                 label.translatesAutoresizingMaskIntoConstraints = false
                 label.text = furigana.kana
                 label.sizeToFit()
-                addSubview(label)
+                textView.addSubview(label)
 
                 let characterWidth = button.frame.width / CGFloat(word.text.count)
                 let center = (((CGFloat(furigana.range.length) * characterWidth) / 2) + characterWidth * CGFloat(furigana.range.location)) - label.frame.width / 2
@@ -103,7 +135,7 @@ class AnalyzeTextViewController: UIControl {
                 let bottomConstraint = label.bottomAnchor.constraint(equalTo: button.topAnchor, constant: 25)
                 let leftConstraint = label.leftAnchor.constraint(equalTo: button.leftAnchor, constant: center)
 
-                addConstraints([bottomConstraint, leftConstraint])
+                textView.addConstraints([bottomConstraint, leftConstraint])
                 labels.append(label)
             }
         }
@@ -116,12 +148,37 @@ class AnalyzeTextViewController: UIControl {
     }
 
     @objc func openDetail(button: UIButton) {
-        let results = JapaneseDictionary.shared.findWord(word: sentence[button.tag].rootForm)
-        for result in results {
-            print(result.word.joined(separator: " - ") + " | \(result.entryId)")
-            for meaning in result.meanings {
-                print("- \(meaning)")
-            }
+        dictionaryResults = JapaneseDictionary.shared.findWord(word: sentence[button.tag].rootForm)
+        dictionaryTableView.reloadData()
+    }
+}
+
+extension AnalyzeTextViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        let sections = dictionaryResults.count
+        if sections > 0 && dictionaryTableViewHeightConstraint.constant == 0 {
+            dictionaryTableViewHeightConstraint.constant = 100
         }
+        return sections
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return dictionaryResults[section].word.joined(separator: " , ")
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dictionaryResults[section].meanings.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: "cell")
+        if cell == nil {
+            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        }
+
+        cell.textLabel?.text = dictionaryResults[indexPath.section].meanings[indexPath.row]
+        dictionaryTableViewHeightConstraint.constant = tableView.contentSize.height
+        layoutIfNeeded()
+        return cell
     }
 }

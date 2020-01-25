@@ -22,7 +22,7 @@ class MangaViewController: UIViewController {
     private var pageController: UIPageViewController!
     private var selectionView = SelectionView()
     private var sentenceView: AnalyzeTextViewController!
-    private var sentenceViewTopConstraint: NSLayoutConstraint!
+    private var sentenceViewBottomConstraint: NSLayoutConstraint!
 
     private var isPageAnimating = false
     private var fullScreen = false
@@ -129,23 +129,23 @@ class MangaViewController: UIViewController {
         sentenceView = AnalyzeTextViewController(sentence: [])
         view.addSubview(sentenceView)
 
-        sentenceViewTopConstraint = sentenceView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100)
+        sentenceViewBottomConstraint = sentenceView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         let leftConstraint = sentenceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor)
         let rightConstraint = sentenceView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
 
-        view.addConstraints([sentenceViewTopConstraint, leftConstraint, rightConstraint])
+        view.addConstraints([sentenceViewBottomConstraint, leftConstraint, rightConstraint])
     }
 
     func toggleFullscreen() {
         fullScreen = !fullScreen
         setNeedsStatusBarAppearanceUpdate()
-        if fullScreen && sentenceViewTopConstraint.constant < 0 {
-            sentenceViewTopConstraint.constant = 0
+        if !fullScreen && sentenceViewBottomConstraint.constant > 0 {
+            sentenceViewBottomConstraint.constant = 0
             UIView.animate(withDuration: 0.15) {
                 self.view.layoutIfNeeded()
             }
-        } else if !fullScreen && sentenceViewTopConstraint.constant == 0 {
-            sentenceViewTopConstraint.constant = -100
+        } else if fullScreen && sentenceViewBottomConstraint.constant == 0 {
+            sentenceViewBottomConstraint.constant = sentenceView.frame.height
             UIView.animate(withDuration: 0.15) {
                 self.view.layoutIfNeeded()
             }
@@ -280,7 +280,7 @@ extension MangaViewController: SelectionViewDelegate {
             guard let result = result else { return }
 
             let text = result.text.replacingOccurrences(of: "\n", with: " ")
-
+            //let text = "昨日すき焼きを食べました"
             let tokenizer = Tokenizer()
             let tokens = tokenizer.parse(text)
             let sentence = tokens.map {JapaneseWord(text: $0.surface, rootForm: $0.originalForm ?? $0.surface, furigana: getFurigana(token: $0))}
