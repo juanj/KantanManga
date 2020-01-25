@@ -29,6 +29,7 @@ class AnalyzeTextViewController: UIControl {
     private var buttons = [UIButton]()
     private var labels = [UILabel]()
     private var textView = UIView()
+    private var scrollView = UIScrollView()
     private var dictionaryResults = [DictionaryResult]()
     private var dictionaryTableView = UITableView()
     private var dictionaryTableViewHeightConstraint: NSLayoutConstraint!
@@ -50,6 +51,7 @@ class AnalyzeTextViewController: UIControl {
         configureBlur()
         configureMainConstraints()
         configureTableView()
+        configureScrollView()
         loadText()
 
     }
@@ -69,22 +71,38 @@ class AnalyzeTextViewController: UIControl {
 
     private func configureMainConstraints() {
         textView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         dictionaryTableView.translatesAutoresizingMaskIntoConstraints = false
 
-        addSubview(textView)
+        scrollView.addSubview(textView)
         addSubview(dictionaryTableView)
+        addSubview(scrollView)
 
-        let topTextViewConstraint = textView.topAnchor.constraint(equalTo: topAnchor)
-        let leftTextViewConstraint = textView.leftAnchor.constraint(equalTo: leftAnchor)
-        let rightTextViewConstraint = textView.rightAnchor.constraint(equalTo: rightAnchor)
-        let bottomTextViewConstraint = textView.bottomAnchor.constraint(equalTo: dictionaryTableView.topAnchor)
+        let topTextViewConstraint = textView.topAnchor.constraint(equalTo: scrollView.topAnchor)
+        let leftTextViewConstraint = textView.leftAnchor.constraint(equalTo: scrollView.leftAnchor)
+        let rightTextViewConstraint = textView.rightAnchor.constraint(equalTo: scrollView.rightAnchor)
+        let bottomTextViewConstraint = textView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        let heightTextViewConstraint = textView.heightAnchor.constraint(equalToConstant: 100)
+        let minWidthTextViewConstraint = textView.widthAnchor.constraint(greaterThanOrEqualTo: scrollView.widthAnchor, multiplier: 1)
 
+        scrollView.addConstraints([heightTextViewConstraint, topTextViewConstraint, leftTextViewConstraint, rightTextViewConstraint, bottomTextViewConstraint, minWidthTextViewConstraint])
+
+        let topScrollViewConstraint = scrollView.topAnchor.constraint(equalTo: topAnchor)
+        let leftScrollViewConstraint = scrollView.leftAnchor.constraint(equalTo: leftAnchor)
+        let rightScrollViewConstraint = scrollView.rightAnchor.constraint(equalTo: rightAnchor)
+        let heightScrollViewConstraint = scrollView.heightAnchor.constraint(equalToConstant: 100)
+
+        let topDictionaryTableViewConstraint = dictionaryTableView.topAnchor.constraint(equalTo: scrollView.bottomAnchor)
         let leftDictionaryTableViewConstraint = dictionaryTableView.leftAnchor.constraint(equalTo: leftAnchor)
         let rightDictionaryTableViewConstraint = dictionaryTableView.rightAnchor.constraint(equalTo: rightAnchor)
         let bottomDictionaryTableViewConstraint = dictionaryTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        dictionaryTableViewHeightConstraint = dictionaryTableView.heightAnchor.constraint(equalToConstant: 0)
+        dictionaryTableViewHeightConstraint = dictionaryTableView.heightAnchor.constraint(equalToConstant: 200)
 
-        addConstraints([topTextViewConstraint, leftTextViewConstraint, rightTextViewConstraint, bottomTextViewConstraint, leftDictionaryTableViewConstraint, rightDictionaryTableViewConstraint, bottomDictionaryTableViewConstraint, dictionaryTableViewHeightConstraint])
+        addConstraints([topScrollViewConstraint, leftScrollViewConstraint, rightScrollViewConstraint, heightScrollViewConstraint, topDictionaryTableViewConstraint, leftDictionaryTableViewConstraint, rightDictionaryTableViewConstraint, bottomDictionaryTableViewConstraint, dictionaryTableViewHeightConstraint])
+    }
+
+    private func configureScrollView() {
+        scrollView.bounces = false
     }
 
     private func configureTableView() {
@@ -117,6 +135,10 @@ class AnalyzeTextViewController: UIControl {
                 leadingConstraint = button.leadingAnchor.constraint(equalTo: lastButton.trailingAnchor, constant: margin)
             } else {
                 leadingConstraint = button.leadingAnchor.constraint(equalTo: textView.leadingAnchor, constant: margin)
+            }
+            if index == sentence.count - 1 {
+                let trailingConstraint = button.trailingAnchor.constraint(lessThanOrEqualTo: textView.trailingAnchor, constant: -margin)
+                textView.addConstraint(trailingConstraint)
             }
 
             textView.addConstraints([topConstraint, bottomConstraint, leadingConstraint, heightConstraint])
