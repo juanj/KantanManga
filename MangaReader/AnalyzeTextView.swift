@@ -29,6 +29,9 @@ class AnalyzeTextView: UIControl {
     var isDictionaryOpen: Bool {
         return dictionaryTableViewHeightConstraint.constant > 0
     }
+    var dictionaryHeight: CGFloat {
+        return dictionaryTableViewHeightConstraint.constant
+    }
 
     private var analyzedSentence = [JapaneseWord]()
     private var maxHeight: CGFloat

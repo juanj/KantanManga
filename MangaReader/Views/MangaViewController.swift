@@ -28,6 +28,8 @@ class MangaViewController: UIViewController {
     private var fullScreen = false
     private var ocrEnabled = false
 
+    private var panInitialPosition: CGFloat = 0
+
     override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
       return .bottom
     }
@@ -191,7 +193,12 @@ class MangaViewController: UIViewController {
 
     @objc func handleEdgePan(pan: UIScreenEdgePanGestureRecognizer) {
         guard sentenceViewBottomConstraint.constant > 0 else { return }
-        sentenceViewBottomConstraint.constant = 0
+        let velocity = pan.velocity(in: view)
+        if !sentenceView.isDictionaryOpen || (sentenceView.isDictionaryOpen && velocity.y < -1300) {
+            sentenceViewBottomConstraint.constant = 0
+        } else {
+            sentenceViewBottomConstraint.constant = sentenceView.dictionaryHeight
+        }
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
@@ -332,46 +339,50 @@ extension MangaViewController: AnalyzeTextViewDelegate {
     func handlePan(analyzeTextView: AnalyzeTextView, pan: UIPanGestureRecognizer) {
         let translation = pan.translation(in: view)
         let velocity = pan.velocity(in: view)
-        print(velocity.y)
-        if pan.state == .began || pan.state == .changed {
-            sentenceViewBottomConstraint.constant = translation.y
+        if pan.state == .began {
+            panInitialPosition = sentenceViewBottomConstraint.constant
+        } else if pan.state == .changed {
+            sentenceViewBottomConstraint.constant = panInitialPosition + translation.y
             if sentenceViewBottomConstraint.constant < 0 {
                 sentenceViewBottomConstraint.constant = 0
             }
-            view.layoutIfNeeded()
-        } else if pan.state == .ended {
-            // TODO: Clean this
+
             if velocity.y > 1300 {
-                sentenceViewBottomConstraint.constant = sentenceView.frame.height
-                UIView.animate(withDuration: 0.3, animations: {
+                // Fast pan down
+                sentenceViewBottomConstraint.constant = sentenceView.isDictionaryOpen ? sentenceView.frame.height - 100 : sentenceView.dictionaryHeight
+                UIView.animate(withDuration: 0.2) {
                     self.view.layoutIfNeeded()
-                }) { (_) in
-                    if self.sentenceView.isDictionaryOpen {
-                        self.sentenceView.closeDictionary()
-                        self.sentenceViewBottomConstraint.constant = 100
-                    }
                 }
-                return
-            }
-            if sentenceView.isDictionaryOpen {
-                if sentenceViewBottomConstraint.constant > (sentenceView.frame.height - 100) / 2 &&
-                sentenceViewBottomConstraint.constant < sentenceView.frame.height + 50 {
-                    sentenceView.closeDictionary(animated: true)
-                    sentenceViewBottomConstraint.constant = 0
-                } else if sentenceViewBottomConstraint.constant > sentenceView.frame.height - 50 {
-                    sentenceView.closeDictionary()
-                    sentenceViewBottomConstraint.constant = sentenceView.frame.height
-                } else {
-                    sentenceViewBottomConstraint.constant = 0
+            } else if sentenceView.isDictionaryOpen && velocity.y < -1300 {
+                // fast pan up
+                sentenceViewBottomConstraint.constant = 0
+                UIView.animate(withDuration: 0.2) {
+                    self.view.layoutIfNeeded()
                 }
             } else {
+                view.layoutIfNeeded()
+            }
+        } else if pan.state == .ended {
+            let currentValue = sentenceViewBottomConstraint.constant
+            // Dictionary open and pan pass the middle of the dictionary
+            if sentenceView.isDictionaryOpen &&
+                sentenceViewBottomConstraint.constant > sentenceView.dictionaryHeight / 2 {
+
+                // Pan pass middle of text view
+                if sentenceViewBottomConstraint.constant > sentenceView.frame.height - 50 {
+                    sentenceViewBottomConstraint.constant = sentenceView.frame.height
+                } else {
+                    sentenceViewBottomConstraint.constant = sentenceView.dictionaryHeight
+                }
+            } else {
+                // Pan pass middle of text view
                 if sentenceViewBottomConstraint.constant > sentenceView.frame.height / 2 {
                     sentenceViewBottomConstraint.constant = sentenceView.frame.height
                 } else {
                     sentenceViewBottomConstraint.constant = 0
                 }
             }
-            UIView.animate(withDuration: 0.3) {
+            UIView.animate(withDuration: TimeInterval(abs(currentValue - sentenceViewBottomConstraint.constant) * 0.002)) {
                 self.view.layoutIfNeeded()
             }
         }
