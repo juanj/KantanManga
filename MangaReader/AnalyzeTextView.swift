@@ -166,50 +166,68 @@ class AnalyzeTextView: UIControl {
         buttons.removeAll()
         labels.removeAll()
         for (index, word) in analyzedSentence.enumerated() {
-            let button = UIButton()
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.setTitleColor(UIColor.black, for: .normal)
-            button.titleLabel?.font = .systemFont(ofSize: 50, weight: .bold)
-            button.setTitle(word.text, for: .normal)
-            button.sizeToFit()
-            button.tag = index
-            button.addTarget(self, action: #selector(openDetail(button:)), for: .touchUpInside)
+            let button = createButtonForWord(word: word, index: index)
             textView.addSubview(button)
-
-            let heightConstraint = button.heightAnchor.constraint(equalToConstant: 100)
-            let topConstraint = button.topAnchor.constraint(equalTo: textView.safeAreaLayoutGuide.topAnchor)
-            let bottomConstraint = button.bottomAnchor.constraint(equalTo: textView.safeAreaLayoutGuide.bottomAnchor)
-            let leadingConstraint: NSLayoutConstraint
-            if let lastButton = buttons.last {
-                leadingConstraint = button.leadingAnchor.constraint(equalTo: lastButton.trailingAnchor, constant: margin)
-            } else {
-                leadingConstraint = button.leadingAnchor.constraint(equalTo: textView.leadingAnchor, constant: margin)
-            }
-            if index == analyzedSentence.count - 1 {
-                let trailingConstraint = button.trailingAnchor.constraint(lessThanOrEqualTo: textView.trailingAnchor, constant: -margin)
-                textView.addConstraint(trailingConstraint)
-            }
-
-            textView.addConstraints([topConstraint, bottomConstraint, leadingConstraint, heightConstraint])
+            textView.addConstraints(createConstraintsForWordButton(button: button, index: index))
             buttons.append(button)
 
             for furigana in word.furigana {
-                let label = UILabel()
-                label.translatesAutoresizingMaskIntoConstraints = false
-                label.text = furigana.kana
-                label.sizeToFit()
+                let label = createLabelForFurigana(furigana: furigana)
                 textView.addSubview(label)
-
-                let characterWidth = button.frame.width / CGFloat(word.text.count)
-                let center = (((CGFloat(furigana.range.length) * characterWidth) / 2) + characterWidth * CGFloat(furigana.range.location)) - label.frame.width / 2
-                let bottomConstraint = label.bottomAnchor.constraint(equalTo: button.topAnchor, constant: 25)
-                let leftConstraint = label.leftAnchor.constraint(equalTo: button.leftAnchor, constant: center)
-
-                textView.addConstraints([bottomConstraint, leftConstraint])
+                textView.addConstraints(createConstraintsForFuriganaLabel(label: label, button: button, word: word, furigana: furigana))
                 labels.append(label)
             }
         }
         bringSubviewToFront(editButton)
+    }
+
+    private func createButtonForWord(word: JapaneseWord, index: Int = 0) -> UIButton {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 50, weight: .bold)
+        button.setTitle(word.text, for: .normal)
+        button.sizeToFit()
+        button.tag = index
+        button.addTarget(self, action: #selector(openDetail(button:)), for: .touchUpInside)
+
+        return button
+    }
+
+    private func createConstraintsForWordButton(button: UIButton, index: Int = 0) -> [NSLayoutConstraint] {
+        var constraints = [NSLayoutConstraint]()
+        constraints.append(button.heightAnchor.constraint(equalToConstant: 100))
+        constraints.append(button.topAnchor.constraint(equalTo: textView.safeAreaLayoutGuide.topAnchor))
+        constraints.append(button.bottomAnchor.constraint(equalTo: textView.safeAreaLayoutGuide.bottomAnchor))
+        if let lastButton = buttons.last {
+            constraints.append(button.leadingAnchor.constraint(equalTo: lastButton.trailingAnchor, constant: margin))
+        } else {
+            constraints.append(button.leadingAnchor.constraint(equalTo: textView.leadingAnchor, constant: margin))
+        }
+        if index == analyzedSentence.count - 1 {
+            constraints.append(button.trailingAnchor.constraint(lessThanOrEqualTo: textView.trailingAnchor, constant: -margin))
+        }
+
+        return constraints
+    }
+
+    private func createLabelForFurigana(furigana: Furigana) -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = furigana.kana
+        label.sizeToFit()
+
+        return label
+    }
+
+    private func createConstraintsForFuriganaLabel(label: UILabel, button: UIButton, word: JapaneseWord, furigana: Furigana) -> [NSLayoutConstraint] {
+        var constraints = [NSLayoutConstraint]()
+        let characterWidth = button.frame.width / CGFloat(word.text.count)
+        let center = (((CGFloat(furigana.range.length) * characterWidth) / 2) + characterWidth * CGFloat(furigana.range.location)) - label.frame.width / 2
+        constraints.append(label.bottomAnchor.constraint(equalTo: button.topAnchor, constant: 25))
+        constraints.append(label.leftAnchor.constraint(equalTo: button.leftAnchor, constant: center))
+
+        return constraints
     }
 
     private func configureStyle() {
@@ -254,10 +272,10 @@ class AnalyzeTextView: UIControl {
             dictionaryTableViewHeightConstraint.constant = 0
             UIView.animate(withDuration: 0.3, animations: {
                 self.layoutIfNeeded()
-            }) { (_) in
+            }, completion: { (_) in
                 self.dictionaryResults = []
                 self.dictionaryTableView.reloadData()
-            }
+            })
         } else {
             dictionaryResults = []
             dictionaryTableView.reloadData()
