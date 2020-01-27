@@ -52,10 +52,12 @@ class JapaneseDictionary {
                 var meanings = [String]()
                 let senses = try connection.prepare(sense.filter(idseqColumn == idseq))
                 for sense in senses {
+                    var senseGlosses = [String]()
                     let glosses = try connection.prepare(senseGloss.select(textColumn).filter(sidColumn == sense[idColumn]))
                     for gloss in glosses {
-                        meanings.append(gloss[textColumn])
+                        senseGlosses.append(gloss[textColumn])
                     }
+                    meanings.append(senseGlosses.joined(separator: "; "))
                 }
 
                 result.append(DictionaryResult(word: words, meanings: meanings, entryId: idseq))

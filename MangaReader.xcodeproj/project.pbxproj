@@ -228,6 +228,14 @@
 			path = "mecab-ios/ipadic";
 			sourceTree = "<group>";
 		};
+		32AAD56E23DF7038009B3BCE /* Custom Controls */ = {
+			isa = PBXGroup;
+			children = (
+				3296EA5523C24C6700DA28D7 /* AnalyzeTextView.swift */,
+			);
+			path = "Custom Controls";
+			sourceTree = "<group>";
+		};
 		7EAAD1907EAA228FF69A9323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +287,7 @@
 		84A831E5221D90CA00CEE1C9 /* MangaReader */ = {
 			isa = PBXGroup;
 			children = (
+				32AAD56E23DF7038009B3BCE /* Custom Controls */,
 				84A8321F221D9F5700CEE1C9 /* Model */,
 				84A8321A221D94D400CEE1C9 /* Views */,
 				84A83217221D922200CEE1C9 /* Coordinators */,
@@ -288,7 +297,6 @@
 				84A831F2221D90CC00CEE1C9 /* LaunchScreen.storyboard */,
 				84A831F5221D90CC00CEE1C9 /* Info.plist */,
 				0D463D7122CA9B0C0020FD5A /* GoogleService-Info.plist */,
-				3296EA5523C24C6700DA28D7 /* AnalyzeTextView.swift */,
 			);
 			path = MangaReader;
 			sourceTree = "<group>";
