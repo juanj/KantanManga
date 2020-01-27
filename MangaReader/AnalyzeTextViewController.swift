@@ -20,22 +20,30 @@ struct JapaneseWord {
 }
 
 class AnalyzeTextViewController: UIControl {
-    var sentence: [JapaneseWord] {
+    var sentence: String {
         didSet {
-            loadText()
+            analyzeText()
         }
     }
+
+    private var analyzedSentence = [JapaneseWord]()
+    private var maxHeight: CGFloat
+
     private let margin: CGFloat = 20
     private var buttons = [UIButton]()
     private var labels = [UILabel]()
     private var textView = UIView()
     private var scrollView = UIScrollView()
+    private var editButton = UIButton()
     private var dictionaryResults = [DictionaryResult]()
     private var dictionaryTableView = UITableView()
     private var dictionaryTableViewHeightConstraint: NSLayoutConstraint!
+    private var textField = UITextField()
+    private var editing = false
 
-    init(sentence: [JapaneseWord]) {
+    init(sentence: String = "", maxHeight: CGFloat = 500) {
         self.sentence = sentence
+        self.maxHeight = maxHeight
         super.init(frame: CGRect.zero)
 
         initView()
@@ -53,20 +61,22 @@ class AnalyzeTextViewController: UIControl {
         configureTableView()
         configureScrollView()
         loadText()
-
+        configureEditButton()
+        configureTextField()
+        analyzeText()
     }
 
     private func configureBlur() {
         let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
         blurView.translatesAutoresizingMaskIntoConstraints = false
-        textView.addSubview(blurView)
+        addSubview(blurView)
 
-        let topConstraint = blurView.topAnchor.constraint(equalTo: textView.topAnchor)
-        let leftConstraint = blurView.leftAnchor.constraint(equalTo: textView.leftAnchor)
-        let rightConstraint = blurView.rightAnchor.constraint(equalTo: textView.rightAnchor)
-        let bottomConstraint = blurView.bottomAnchor.constraint(equalTo: textView.bottomAnchor)
+        let topConstraint = blurView.topAnchor.constraint(equalTo: topAnchor)
+        let leftConstraint = blurView.leftAnchor.constraint(equalTo: leftAnchor)
+        let rightConstraint = blurView.rightAnchor.constraint(equalTo: rightAnchor)
+        let heightConstraint = blurView.heightAnchor.constraint(equalToConstant: 100)
 
-        textView.addConstraints([topConstraint, leftConstraint, rightConstraint, bottomConstraint])
+        addConstraints([topConstraint, leftConstraint, rightConstraint, heightConstraint])
     }
 
     private func configureMainConstraints() {
@@ -96,13 +106,43 @@ class AnalyzeTextViewController: UIControl {
         let leftDictionaryTableViewConstraint = dictionaryTableView.leftAnchor.constraint(equalTo: leftAnchor)
         let rightDictionaryTableViewConstraint = dictionaryTableView.rightAnchor.constraint(equalTo: rightAnchor)
         let bottomDictionaryTableViewConstraint = dictionaryTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        dictionaryTableViewHeightConstraint = dictionaryTableView.heightAnchor.constraint(equalToConstant: 200)
+        dictionaryTableViewHeightConstraint = dictionaryTableView.heightAnchor.constraint(equalToConstant: 0)
 
         addConstraints([topScrollViewConstraint, leftScrollViewConstraint, rightScrollViewConstraint, heightScrollViewConstraint, topDictionaryTableViewConstraint, leftDictionaryTableViewConstraint, rightDictionaryTableViewConstraint, bottomDictionaryTableViewConstraint, dictionaryTableViewHeightConstraint])
     }
 
     private func configureScrollView() {
         scrollView.bounces = false
+    }
+
+    private func configureEditButton() {
+        editButton.setBackgroundImage(UIImage(systemName: "pencil"), for: .normal)
+        editButton.translatesAutoresizingMaskIntoConstraints = false
+        editButton.addTarget(self, action: #selector(edit), for: .touchUpInside)
+
+        addSubview(editButton)
+
+        let topConstraint = editButton.topAnchor.constraint(equalTo: topAnchor, constant: 5)
+        let rightConstraint = editButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -5)
+        let heightConstraint = editButton.heightAnchor.constraint(equalToConstant: 25)
+        let widthConstraint = editButton.widthAnchor.constraint(equalToConstant: 25)
+
+        addConstraints([topConstraint, rightConstraint, heightConstraint, widthConstraint])
+    }
+
+    private func configureTextField() {
+        textField.delegate = self
+        textField.isHidden = true
+        textField.font = .systemFont(ofSize: 50, weight: .bold)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(textField)
+
+        let rightConstraint = textField.rightAnchor.constraint(equalTo: rightAnchor, constant: -margin)
+        let leftConstraint = textField.leftAnchor.constraint(equalTo: leftAnchor, constant: margin)
+        let topConstraint = textField.topAnchor.constraint(equalTo: topAnchor, constant: margin)
+        let heightContraint = textField.heightAnchor.constraint(equalToConstant: 75)
+
+        addConstraints([rightConstraint, leftConstraint, topConstraint, heightContraint])
     }
 
     private func configureTableView() {
@@ -112,11 +152,12 @@ class AnalyzeTextViewController: UIControl {
     }
 
     private func loadText() {
+        if editing { toggleEdit() }
         buttons.forEach { $0.removeFromSuperview() }
         labels.forEach { $0.removeFromSuperview() }
         buttons.removeAll()
         labels.removeAll()
-        for (index, word) in sentence.enumerated() {
+        for (index, word) in analyzedSentence.enumerated() {
             let button = UIButton()
             button.translatesAutoresizingMaskIntoConstraints = false
             button.setTitleColor(UIColor.black, for: .normal)
@@ -136,7 +177,7 @@ class AnalyzeTextViewController: UIControl {
             } else {
                 leadingConstraint = button.leadingAnchor.constraint(equalTo: textView.leadingAnchor, constant: margin)
             }
-            if index == sentence.count - 1 {
+            if index == analyzedSentence.count - 1 {
                 let trailingConstraint = button.trailingAnchor.constraint(lessThanOrEqualTo: textView.trailingAnchor, constant: -margin)
                 textView.addConstraint(trailingConstraint)
             }
@@ -153,7 +194,6 @@ class AnalyzeTextViewController: UIControl {
 
                 let characterWidth = button.frame.width / CGFloat(word.text.count)
                 let center = (((CGFloat(furigana.range.length) * characterWidth) / 2) + characterWidth * CGFloat(furigana.range.location)) - label.frame.width / 2
-
                 let bottomConstraint = label.bottomAnchor.constraint(equalTo: button.topAnchor, constant: 25)
                 let leftConstraint = label.leftAnchor.constraint(equalTo: button.leftAnchor, constant: center)
 
@@ -161,6 +201,7 @@ class AnalyzeTextViewController: UIControl {
                 labels.append(label)
             }
         }
+        bringSubviewToFront(editButton)
     }
 
     private func configureStyle() {
@@ -169,9 +210,39 @@ class AnalyzeTextViewController: UIControl {
         layer.borderColor = UIColor.gray.cgColor
     }
 
+    private func toggleEdit() {
+        editing = !editing
+        if editing {
+            dictionaryResults = []
+            dictionaryTableView.reloadData()
+            textView.alpha = 0
+            textView.isUserInteractionEnabled = false
+            textField.isHidden = false
+            textField.text = analyzedSentence.map { $0.text }.joined(separator: "  ")
+            textField.becomeFirstResponder()
+        } else {
+            textView.alpha = 1
+            textView.isUserInteractionEnabled = true
+            textField.isHidden = true
+            textField.resignFirstResponder()
+        }
+    }
+
+    private func analyzeText() {
+        let tokenizer = Tokenizer()
+        let tokens = tokenizer.parse(sentence)
+        analyzedSentence = tokens.map {JapaneseWord(text: $0.surface, rootForm: $0.originalForm ?? $0.surface, furigana: getFurigana(token: $0))}
+        loadText()
+    }
+
     @objc func openDetail(button: UIButton) {
-        dictionaryResults = JapaneseDictionary.shared.findWord(word: sentence[button.tag].rootForm)
+        dictionaryResults = JapaneseDictionary.shared.findWord(word: analyzedSentence[button.tag].rootForm)
+        dictionaryTableView.setContentOffset(.zero, animated: false)
         dictionaryTableView.reloadData()
+    }
+
+    @objc func edit() {
+        toggleEdit()
     }
 }
 
@@ -180,6 +251,8 @@ extension AnalyzeTextViewController: UITableViewDelegate, UITableViewDataSource 
         let sections = dictionaryResults.count
         if sections > 0 && dictionaryTableViewHeightConstraint.constant == 0 {
             dictionaryTableViewHeightConstraint.constant = 100
+        } else if sections == 0 {
+            dictionaryTableViewHeightConstraint.constant = 0
         }
         return sections
     }
@@ -199,8 +272,21 @@ extension AnalyzeTextViewController: UITableViewDelegate, UITableViewDataSource 
         }
 
         cell.textLabel?.text = dictionaryResults[indexPath.section].meanings[indexPath.row]
-        dictionaryTableViewHeightConstraint.constant = tableView.contentSize.height
+        dictionaryTableViewHeightConstraint.constant = min(tableView.contentSize.height, maxHeight)
+        if dictionaryTableViewHeightConstraint.constant == maxHeight {
+            tableView.isScrollEnabled = true
+        } else {
+            tableView.isScrollEnabled = false
+        }
         layoutIfNeeded()
         return cell
+    }
+}
+
+extension AnalyzeTextViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        sentence = textField.text ?? ""
+        analyzeText()
+        return true
     }
 }

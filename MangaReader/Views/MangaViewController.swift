@@ -50,6 +50,7 @@ class MangaViewController: UIViewController {
         configurePageControllerConstraints()
         configureSelectionView()
         configureSentenceView()
+        configureKeyboard()
     }
 
     private func configureSelectionView() {
@@ -126,7 +127,7 @@ class MangaViewController: UIViewController {
     }
 
     private func configureSentenceView() {
-        sentenceView = AnalyzeTextViewController(sentence: [])
+        sentenceView = AnalyzeTextViewController()
         view.addSubview(sentenceView)
 
         sentenceViewBottomConstraint = sentenceView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
@@ -134,6 +135,11 @@ class MangaViewController: UIViewController {
         let rightConstraint = sentenceView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
 
         view.addConstraints([sentenceViewBottomConstraint, leftConstraint, rightConstraint])
+    }
+
+    private func configureKeyboard() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     func toggleFullscreen() {
@@ -159,6 +165,22 @@ class MangaViewController: UIViewController {
     @objc func toggleOcr() {
         ocrEnabled = !ocrEnabled
         selectionView.isHidden = !selectionView.isHidden
+    }
+
+    @objc func handleKeyboard(notification: Notification) {
+        guard let userInfo = notification.userInfo, let frame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect, let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else { return }
+        if frame.origin.y >= view.frame.height {
+            sentenceViewBottomConstraint.constant = 0
+        } else {
+            sentenceViewBottomConstraint.constant = -frame.height
+        }
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -281,11 +303,8 @@ extension MangaViewController: SelectionViewDelegate {
 
             let text = result.text.replacingOccurrences(of: "\n", with: " ")
             //let text = "昨日すき焼きを食べました"
-            let tokenizer = Tokenizer()
-            let tokens = tokenizer.parse(text)
-            let sentence = tokens.map {JapaneseWord(text: $0.surface, rootForm: $0.originalForm ?? $0.surface, furigana: getFurigana(token: $0))}
             DispatchQueue.main.async {
-                self.sentenceView.sentence = sentence
+                self.sentenceView.sentence = text
             }
         }
     }
