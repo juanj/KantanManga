@@ -151,18 +151,21 @@ class MangaViewController: UIViewController {
 
     private func configureKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        //NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     func toggleFullscreen() {
         fullScreen = !fullScreen
         setNeedsStatusBarAppearanceUpdate()
-        if !fullScreen && sentenceViewBottomConstraint.constant > 0 {
-            sentenceViewBottomConstraint.constant = 0
+        if !fullScreen && sentenceViewBottomConstraint.constant == sentenceView.frame.height {
+            if sentenceView.isDictionaryOpen {
+                sentenceViewBottomConstraint.constant = sentenceView.dictionaryHeight
+            } else {
+                sentenceViewBottomConstraint.constant = 0
+            }
             UIView.animate(withDuration: 0.15) {
                 self.view.layoutIfNeeded()
             }
-        } else if fullScreen && sentenceViewBottomConstraint.constant == 0 {
+        } else if fullScreen && sentenceViewBottomConstraint.constant < sentenceView.frame.height {
             sentenceViewBottomConstraint.constant = sentenceView.frame.height
             UIView.animate(withDuration: 0.15) {
                 self.view.layoutIfNeeded()
