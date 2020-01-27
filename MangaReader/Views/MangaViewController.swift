@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import Firebase
 
 protocol MangaViewControllerDelegate: AnyObject {
     func didTapPage(mangaViewController: MangaViewController, pageViewController: PageViewController)
     func back(mangaViewController: MangaViewController)
+    func didSelectSectionOfImage(mangaViewController: MangaViewController, image: UIImage)
 }
 
 class MangaViewController: UIViewController {
@@ -27,6 +27,7 @@ class MangaViewController: UIViewController {
     private var isPageAnimating = false
     private var fullScreen = false
     private var ocrEnabled = false
+    private var ocrActivityIndicator = UIActivityIndicatorView(style: .medium)
 
     private var panInitialPosition: CGFloat = 0
 
@@ -78,7 +79,10 @@ class MangaViewController: UIViewController {
         navigationItem.leftBarButtonItem = backButton
 
         let ocrButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass.circle", withConfiguration: nil), style: .plain, target: self, action: #selector(toggleOcr))
-        navigationItem.rightBarButtonItem = ocrButton
+
+        ocrActivityIndicator.hidesWhenStopped = true
+        let ocrLoadingNavButton = UIBarButtonItem(customView: ocrActivityIndicator)
+        navigationItem.rightBarButtonItems = [ocrButton, ocrLoadingNavButton]
     }
 
     private func createPageController() {
@@ -155,6 +159,7 @@ class MangaViewController: UIViewController {
 
     func toggleFullscreen() {
         fullScreen = !fullScreen
+        navigationController?.setNavigationBarHidden(fullScreen, animated: true)
         setNeedsStatusBarAppearanceUpdate()
         if !fullScreen && sentenceViewBottomConstraint.constant == sentenceView.frame.height {
             if sentenceView.isDictionaryOpen {
@@ -173,6 +178,18 @@ class MangaViewController: UIViewController {
         }
     }
 
+    func setSentence(sentence: String) {
+        sentenceView.sentence = sentence
+    }
+
+    func ocrStartLoading() {
+        ocrActivityIndicator.startAnimating()
+    }
+
+    func ocrEndLoading() {
+        ocrActivityIndicator.stopAnimating()
+    }
+
     @objc func back() {
         delegate?.back(mangaViewController: self)
     }
@@ -180,6 +197,9 @@ class MangaViewController: UIViewController {
     @objc func toggleOcr() {
         ocrEnabled = !ocrEnabled
         selectionView.isHidden = !selectionView.isHidden
+        if fullScreen != ocrEnabled {
+            toggleFullscreen()
+        }
     }
 
     @objc func handleKeyboard(notification: Notification) {
@@ -315,26 +335,9 @@ extension MangaViewController: SelectionViewDelegate {
         self.view.drawHierarchy(in: CGRect(x: -section.origin.x, y: -section.origin.y, width: self.view.frame.width, height: self.view.frame.height), afterScreenUpdates: true)
         let capturedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-
-        let vision = Vision.vision()
-        let options = VisionCloudTextRecognizerOptions()
-        options.languageHints = ["ja"]
-        let textRecognizer = vision.cloudTextRecognizer()
-
+        toggleOcr()
         guard let image = capturedImage else { return }
-        let visionImage = VisionImage(image: image)
-        textRecognizer.process(visionImage) { result, error in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            guard let result = result else { return }
-
-            let text = result.text.replacingOccurrences(of: "\n", with: " ")
-            //let text = "昨日すき焼きを食べました"
-            DispatchQueue.main.async {
-                self.sentenceView.sentence = text
-            }
-        }
+        delegate?.didSelectSectionOfImage(mangaViewController: self, image: image)
     }
 }
 
