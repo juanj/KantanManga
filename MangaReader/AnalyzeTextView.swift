@@ -19,11 +19,15 @@ struct JapaneseWord {
     let furigana: [Furigana]
 }
 
-class AnalyzeTextViewController: UIControl {
+class AnalyzeTextView: UIControl {
     var sentence: String {
         didSet {
             analyzeText()
         }
+    }
+    weak var delegate: AnalyzeTextViewDelegate?
+    var isDictionaryOpen: Bool {
+        return dictionaryTableViewHeightConstraint.constant > 0
     }
 
     private var analyzedSentence = [JapaneseWord]()
@@ -63,6 +67,7 @@ class AnalyzeTextViewController: UIControl {
         loadText()
         configureEditButton()
         configureTextField()
+        configurePanGesture()
         analyzeText()
     }
 
@@ -210,11 +215,16 @@ class AnalyzeTextViewController: UIControl {
         layer.borderColor = UIColor.gray.cgColor
     }
 
+    private func configurePanGesture() {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(pan:)))
+        panGesture.delegate = self
+        textView.addGestureRecognizer(panGesture)
+    }
+
     private func toggleEdit() {
         editing = !editing
         if editing {
-            dictionaryResults = []
-            dictionaryTableView.reloadData()
+            closeDictionary()
             textView.alpha = 0
             textView.isUserInteractionEnabled = false
             textField.isHidden = false
@@ -235,6 +245,22 @@ class AnalyzeTextViewController: UIControl {
         loadText()
     }
 
+    func closeDictionary(animated: Bool = false) {
+        guard isDictionaryOpen else { return }
+        if animated {
+            dictionaryTableViewHeightConstraint.constant = 0
+            UIView.animate(withDuration: 0.3, animations: {
+                self.layoutIfNeeded()
+            }) { (_) in
+                self.dictionaryResults = []
+                self.dictionaryTableView.reloadData()
+            }
+        } else {
+            dictionaryResults = []
+            dictionaryTableView.reloadData()
+        }
+    }
+
     @objc func openDetail(button: UIButton) {
         dictionaryResults = JapaneseDictionary.shared.findWord(word: analyzedSentence[button.tag].rootForm)
         dictionaryTableView.setContentOffset(.zero, animated: false)
@@ -244,9 +270,13 @@ class AnalyzeTextViewController: UIControl {
     @objc func edit() {
         toggleEdit()
     }
+
+    @objc func handlePan(pan: UIPanGestureRecognizer) {
+        delegate?.handlePan(analyzeTextView: self, pan: pan)
+    }
 }
 
-extension AnalyzeTextViewController: UITableViewDelegate, UITableViewDataSource {
+extension AnalyzeTextView: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         let sections = dictionaryResults.count
         if sections > 0 && dictionaryTableViewHeightConstraint.constant == 0 {
@@ -283,10 +313,22 @@ extension AnalyzeTextViewController: UITableViewDelegate, UITableViewDataSource 
     }
 }
 
-extension AnalyzeTextViewController: UITextFieldDelegate {
+extension AnalyzeTextView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         sentence = textField.text ?? ""
         analyzeText()
         return true
     }
+}
+
+extension AnalyzeTextView: UIGestureRecognizerDelegate {
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer else { return false }
+        let velocity = panGestureRecognizer.velocity(in: textView)
+        return abs(velocity.y) > abs(velocity.x)
+    }
+}
+
+protocol AnalyzeTextViewDelegate: AnyObject {
+    func handlePan(analyzeTextView: AnalyzeTextView, pan: UIPanGestureRecognizer)
 }

@@ -21,12 +21,16 @@ class MangaViewController: UIViewController {
 
     private var pageController: UIPageViewController!
     private var selectionView = SelectionView()
-    private var sentenceView: AnalyzeTextViewController!
+    private var sentenceView: AnalyzeTextView!
     private var sentenceViewBottomConstraint: NSLayoutConstraint!
 
     private var isPageAnimating = false
     private var fullScreen = false
     private var ocrEnabled = false
+
+    override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
+      return .bottom
+    }
 
     override var prefersStatusBarHidden: Bool {
         return fullScreen
@@ -127,7 +131,8 @@ class MangaViewController: UIViewController {
     }
 
     private func configureSentenceView() {
-        sentenceView = AnalyzeTextViewController()
+        sentenceView = AnalyzeTextView()
+        sentenceView.delegate = self
         view.addSubview(sentenceView)
 
         sentenceViewBottomConstraint = sentenceView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
@@ -135,6 +140,11 @@ class MangaViewController: UIViewController {
         let rightConstraint = sentenceView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
 
         view.addConstraints([sentenceViewBottomConstraint, leftConstraint, rightConstraint])
+
+        let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleEdgePan(pan:)))
+        edgePan.edges = .bottom
+        edgePan.delegate = self
+        view.addGestureRecognizer(edgePan)
     }
 
     private func configureKeyboard() {
@@ -175,6 +185,14 @@ class MangaViewController: UIViewController {
             sentenceViewBottomConstraint.constant = -frame.height
         }
         UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    @objc func handleEdgePan(pan: UIScreenEdgePanGestureRecognizer) {
+        guard sentenceViewBottomConstraint.constant > 0 else { return }
+        sentenceViewBottomConstraint.constant = 0
+        UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
     }
@@ -307,5 +325,61 @@ extension MangaViewController: SelectionViewDelegate {
                 self.sentenceView.sentence = text
             }
         }
+    }
+}
+
+extension MangaViewController: AnalyzeTextViewDelegate {
+    func handlePan(analyzeTextView: AnalyzeTextView, pan: UIPanGestureRecognizer) {
+        let translation = pan.translation(in: view)
+        let velocity = pan.velocity(in: view)
+        print(velocity.y)
+        if pan.state == .began || pan.state == .changed {
+            sentenceViewBottomConstraint.constant = translation.y
+            if sentenceViewBottomConstraint.constant < 0 {
+                sentenceViewBottomConstraint.constant = 0
+            }
+            view.layoutIfNeeded()
+        } else if pan.state == .ended {
+            // TODO: Clean this
+            if velocity.y > 1300 {
+                sentenceViewBottomConstraint.constant = sentenceView.frame.height
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.view.layoutIfNeeded()
+                }) { (_) in
+                    if self.sentenceView.isDictionaryOpen {
+                        self.sentenceView.closeDictionary()
+                        self.sentenceViewBottomConstraint.constant = 100
+                    }
+                }
+                return
+            }
+            if sentenceView.isDictionaryOpen {
+                if sentenceViewBottomConstraint.constant > (sentenceView.frame.height - 100) / 2 &&
+                sentenceViewBottomConstraint.constant < sentenceView.frame.height + 50 {
+                    sentenceView.closeDictionary(animated: true)
+                    sentenceViewBottomConstraint.constant = 0
+                } else if sentenceViewBottomConstraint.constant > sentenceView.frame.height - 50 {
+                    sentenceView.closeDictionary()
+                    sentenceViewBottomConstraint.constant = sentenceView.frame.height
+                } else {
+                    sentenceViewBottomConstraint.constant = 0
+                }
+            } else {
+                if sentenceViewBottomConstraint.constant > sentenceView.frame.height / 2 {
+                    sentenceViewBottomConstraint.constant = sentenceView.frame.height
+                } else {
+                    sentenceViewBottomConstraint.constant = 0
+                }
+            }
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+}
+
+extension MangaViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
