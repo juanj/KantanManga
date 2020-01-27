@@ -393,6 +393,13 @@ extension MangaViewController: AnalyzeTextViewDelegate {
             }
         }
     }
+
+    func didOpenDictionary(analyzeTextView: AnalyzeTextView) {
+        sentenceViewBottomConstraint.constant = 0
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
 }
 
 extension MangaViewController: UIGestureRecognizerDelegate {

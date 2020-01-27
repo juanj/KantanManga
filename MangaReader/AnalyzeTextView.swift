@@ -286,6 +286,7 @@ class AnalyzeTextView: UIControl {
         dictionaryResults = JapaneseDictionary.shared.findWord(word: analyzedSentence[button.tag].rootForm)
         dictionaryTableView.setContentOffset(.zero, animated: false)
         dictionaryTableView.reloadData()
+        delegate?.didOpenDictionary(analyzeTextView: self)
     }
 
     @objc func edit() {
@@ -352,4 +353,5 @@ extension AnalyzeTextView: UIGestureRecognizerDelegate {
 
 protocol AnalyzeTextViewDelegate: AnyObject {
     func handlePan(analyzeTextView: AnalyzeTextView, pan: UIPanGestureRecognizer)
+    func didOpenDictionary(analyzeTextView: AnalyzeTextView)
 }
