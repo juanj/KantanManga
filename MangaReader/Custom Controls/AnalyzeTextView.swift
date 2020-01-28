@@ -332,6 +332,11 @@ extension AnalyzeTextView: UITableViewDelegate, UITableViewDataSource {
         layoutIfNeeded()
         return cell
     }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        let meanings = CGFloat(dictionaryResults[indexPath.row].meanings.count)
+        return 110.0 + 30.0 * meanings
+    }
 }
 
 extension AnalyzeTextView: UITextFieldDelegate {
