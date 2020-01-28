@@ -157,6 +157,9 @@ class AnalyzeTextView: UIControl {
         dictionaryTableView.delegate = self
         dictionaryTableView.dataSource = self
         dictionaryTableView.isScrollEnabled = false
+        dictionaryTableView.estimatedRowHeight = 130
+        let dictionaryCellNib = UINib(nibName: "DictionaryTableViewCell", bundle: nil)
+        dictionaryTableView.register(dictionaryCellNib, forCellReuseIdentifier: "DictionaryCell")
     }
 
     private func loadText() {
@@ -300,30 +303,26 @@ class AnalyzeTextView: UIControl {
 
 extension AnalyzeTextView: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        let sections = dictionaryResults.count
-        if sections > 0 && dictionaryTableViewHeightConstraint.constant == 0 {
-            dictionaryTableViewHeightConstraint.constant = 100
-        } else if sections == 0 {
-            dictionaryTableViewHeightConstraint.constant = 0
-        }
-        return sections
-    }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return dictionaryResults[section].word.joined(separator: " , ")
+        return 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dictionaryResults[section].meanings.count
+        let rows = dictionaryResults.count
+        if rows > 0 && dictionaryTableViewHeightConstraint.constant == 0 {
+            dictionaryTableViewHeightConstraint.constant = 100000
+        } else if rows == 0 {
+            dictionaryTableViewHeightConstraint.constant = 0
+        }
+        return rows
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: "cell")
-        if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DictionaryCell") as! DictionaryTableViewCell // swiftlint:disable:this force_cast
 
-        cell.textLabel?.text = dictionaryResults[indexPath.section].meanings[indexPath.row]
+        cell.wordLabel.text = dictionaryResults[indexPath.row].word.joined(separator: ", ")
+        cell.meaningLabel.text = dictionaryResults[indexPath.row].meanings.map { "• " + $0 } .joined(separator: "\n")
+        cell.layoutIfNeeded()
+        dictionaryTableView.layoutIfNeeded()
         dictionaryTableViewHeightConstraint.constant = min(tableView.contentSize.height, maxHeight)
         if dictionaryTableViewHeightConstraint.constant == maxHeight {
             tableView.isScrollEnabled = true

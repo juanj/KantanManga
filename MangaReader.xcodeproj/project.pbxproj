@@ -30,6 +30,8 @@
 		328DFB0B238D96300095CBAB /* MangaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328DFB09238D96300095CBAB /* MangaViewController.xib */; };
 		328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */; };
 		3296EA5623C24C6700DA28D7 /* AnalyzeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3296EA5523C24C6700DA28D7 /* AnalyzeTextView.swift */; };
+		32FD735723E0BF0A000C3A2C /* DictionaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FD735523E0BF0A000C3A2C /* DictionaryTableViewCell.swift */; };
+		32FD735823E0BF0A000C3A2C /* DictionaryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32FD735623E0BF0A000C3A2C /* DictionaryTableViewCell.xib */; };
 		4210C463A6A18BA4DDE78173 /* Pods_MangaReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FD908038762DEE3A978F955 /* Pods_MangaReader.framework */; };
 		6B3FC32AFC97A3EEBF5989C6 /* Pods_MangaReaderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F13E9F51127395F4C02644A /* Pods_MangaReaderUITests.framework */; };
 		84186960222474EC00C689DC /* LibraryCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418695F222474EC00C689DC /* LibraryCollectionViewLayout.swift */; };
@@ -119,6 +121,8 @@
 		328DFB09238D96300095CBAB /* MangaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MangaViewController.xib; sourceTree = "<group>"; };
 		328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMangaCoordinator.swift; sourceTree = "<group>"; };
 		3296EA5523C24C6700DA28D7 /* AnalyzeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeTextView.swift; sourceTree = "<group>"; };
+		32FD735523E0BF0A000C3A2C /* DictionaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryTableViewCell.swift; sourceTree = "<group>"; };
+		32FD735623E0BF0A000C3A2C /* DictionaryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DictionaryTableViewCell.xib; sourceTree = "<group>"; };
 		5F13E9F51127395F4C02644A /* Pods_MangaReaderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangaReaderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8418695F222474EC00C689DC /* LibraryCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewLayout.swift; sourceTree = "<group>"; };
 		8418696B222495FD00C689DC /* Manga.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manga.swift; sourceTree = "<group>"; };
@@ -232,6 +236,8 @@
 			isa = PBXGroup;
 			children = (
 				3296EA5523C24C6700DA28D7 /* AnalyzeTextView.swift */,
+				32FD735523E0BF0A000C3A2C /* DictionaryTableViewCell.swift */,
+				32FD735623E0BF0A000C3A2C /* DictionaryTableViewCell.xib */,
 			);
 			path = "Custom Controls";
 			sourceTree = "<group>";
@@ -502,6 +508,7 @@
 				328DFB0B238D96300095CBAB /* MangaViewController.xib in Resources */,
 				84A8321E221D951500CEE1C9 /* LibraryViewController.xib in Resources */,
 				3258142223C5053900C31E02 /* dicrc in Resources */,
+				32FD735823E0BF0A000C3A2C /* DictionaryTableViewCell.xib in Resources */,
 				3258141E23C5053900C31E02 /* pos-id.def in Resources */,
 				843FA7ED221E0BE900B86B52 /* PageViewController.xib in Resources */,
 				3258141D23C5053900C31E02 /* left-id.def in Resources */,
@@ -645,6 +652,7 @@
 				84A83224221DB10400CEE1C9 /* MangaCollectionViewCell.swift in Sources */,
 				84A83221221D9F7000CEE1C9 /* CoreDataManager.swift in Sources */,
 				84A831EF221D90CA00CEE1C9 /* MangaReader.xcdatamodeld in Sources */,
+				32FD735723E0BF0A000C3A2C /* DictionaryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
