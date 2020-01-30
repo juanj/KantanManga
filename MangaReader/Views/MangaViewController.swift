@@ -307,7 +307,8 @@ extension MangaViewController: UIPageViewControllerDelegate, UIPageViewControlle
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if let pageView = pageViewController.viewControllers?[0] as? PageViewController {
-            CoreDataManager.sharedManager.updatePage(manga: manga, newPage: Int16(pageView.page))
+            manga.currentPage = Int16(pageView.page)
+            CoreDataManager.sharedManager.updateManga(manga: manga)
         }
 
         if completed || finished {

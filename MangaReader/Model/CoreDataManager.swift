@@ -9,8 +9,9 @@
 import CoreData
 
 class CoreDataManager {
-    static let sharedManager = CoreDataManager()
 
+    // Make singletone only
+    static let sharedManager = CoreDataManager()
     private init() {}
 
     lazy var persistentContainer: NSPersistentContainer = {
@@ -24,134 +25,181 @@ class CoreDataManager {
     }()
 
     func saveContext () {
-        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
+        let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
                 try context.save()
             } catch {
                 let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                fatalError("Unresolved error when saving context. \(nserror), \(nserror.userInfo)")
             }
         }
     }
 
-    func insertManga(totalPages: Int16, filePath: String, currentPage: Int16 = 0, coverImage: Data = Data()) -> Manga? {
-        let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
+    func deleteAllData() {
+        deleteAllMangas()
+        deleteAllCategories()
+    }
 
-        let manga = Manga(context: managedContext)
-        manga.totalPages = totalPages
-        manga.filePath = filePath
-        manga.currentPage = currentPage
-        manga.coverData = coverImage
-        manga.createdAt = Date()
-        manga.lastViewedAt = Date()
-
+    // MARK: - Manga methods
+    // MARK: Insert
+    @discardableResult
+    func insertManga(coverData: Data, totalPages: Int16, filePath: String) -> Manga? {
+        let managedContext = persistentContainer.viewContext
+        let manga = Manga(context: managedContext, coverData: coverData, totalPages: totalPages, filePath: filePath)
         do {
             try managedContext.save()
             return manga
         } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            print("Couldn't save Manga. \(error), \(error.userInfo)")
             return nil
         }
     }
 
-    func update(manga: Manga, totalPages: Int16, filePath: String, currentPage: Int16, coverImage: Data) {
-        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
-
-        manga.totalPages = totalPages
-        manga.filePath = filePath
-        manga.currentPage = currentPage
-        manga.coverData = coverImage
-        manga.lastViewedAt = Date()
-
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print("Could not save \(error), \(error.userInfo)")
+    func createMangaWith(filePath path: String) {
+        let fileName = (path as NSString).lastPathComponent
+        guard let reader = try? CBZReader(fileName: fileName) else {
+            print("Error creating CBZReader")
+            return
+        }
+        reader.readFirstEntry { (data) in
+            if let data = data {
+                self.insertManga(coverData: data, totalPages: Int16(reader.numberOfPages), filePath: fileName)
+            }
         }
     }
 
-    func updatePage(manga: Manga, newPage: Int16) {
-        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
-
-        manga.currentPage = newPage
-        manga.lastViewedAt = Date()
-
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print("Could not save \(error), \(error.userInfo)")
-        }
-    }
-
+    // MARK: Delete
     func delete(manga: Manga) {
-        let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
+        let managedContext = persistentContainer.viewContext
         managedContext.delete(manga)
 
         do {
             try managedContext.save()
         } catch let error as NSError {
-            print("Could not save \(error), \(error.userInfo)")
+            print("Couldn't delete Manga \(error), \(error.userInfo)")
         }
     }
 
+    func deleteAllMangas() {
+        let fetchRequest = Manga.createFetchRequest()
+        do {
+            let mangas = try persistentContainer.viewContext.fetch(fetchRequest)
+            for case let manga as NSManagedObject in mangas {
+                persistentContainer.viewContext.delete(manga)
+            }
+
+            try persistentContainer.viewContext.save()
+        } catch let error as NSError {
+            print("Error when deleting all Mangas. \(error), \(error.userInfo)")
+        }
+    }
+
+    // MARK: Fetch
     func fetchAllMangas() -> [Manga]? {
-        let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Manga")
+        let managedContext = persistentContainer.viewContext
+        let fetchRequest = Manga.createFetchRequest()
 
         do {
             let mangas = try managedContext.fetch(fetchRequest)
-            return mangas as? [Manga]
+            return mangas
         } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+            print("Couldn't fetch all Mangas. \(error), \(error.userInfo)")
             return nil
-        }
-
-    }
-
-    func flushData() {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> =
-            NSFetchRequest<NSFetchRequestResult>(entityName: "Manga")
-        do {
-            let objs = try CoreDataManager.sharedManager.persistentContainer.viewContext.fetch(fetchRequest)
-            for case let obj as NSManagedObject in objs {
-                CoreDataManager.sharedManager.persistentContainer.viewContext.delete(obj)
-            }
-
-            try CoreDataManager.sharedManager.persistentContainer.viewContext.save()
-        } catch let error as NSError {
-            print("Could not flush data. \(error), \(error.userInfo)")
-        }
-    }
-
-    func createMangaWith(filePath path: String) {
-        do {
-            let fileName = (path as NSString).lastPathComponent
-            let reader = try CBZReader(fileName: fileName)
-            reader.readFirstEntry { (data) in
-                if let data = data {
-                    _ = CoreDataManager.sharedManager.insertManga(totalPages: Int16(reader.numberOfPages), filePath: fileName, currentPage: 0, coverImage: data)
-                }
-            }
-        } catch {
-            print("Error creating CBZReader")
         }
     }
 
     func getMangaWith(filePath path: String) -> Manga? {
-        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Manga")
-        fetchRequest.predicate = NSPredicate(format: "filePath=%@", path)
+        let context = persistentContainer.viewContext
+        let fetchRequest = Manga.createFetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "filePath = %@", path)
 
         do {
-            let manga = try context.fetch(fetchRequest)
-            if manga.count > 0 {
-                return manga[0] as? Manga
-            } else {
-                return nil
-            }
+            let result = try context.fetch(fetchRequest)
+            return result.first
         } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+            print("Could't fetch Manga. \(error), \(error.userInfo)")
+            return nil
+        }
+    }
+
+    // MARK: Update
+    func updateManga(manga: Manga) {
+        let context = persistentContainer.viewContext
+        manga.lastViewedAt = Date()
+
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("Could not update Manga \(error), \(error.userInfo)")
+        }
+    }
+
+    // MARK: - MangaCategory methods
+    // MARK: Insert
+    @discardableResult
+    func insertCategory(name: String) -> MangaCategory? {
+        let context = persistentContainer.viewContext
+        let category = MangaCategory(context: context, name: name)
+        do {
+            try context.save()
+            return category
+        } catch let error {
+            print(error)
+            return nil
+        }
+    }
+
+    // MARK: Delete
+    func delete(category: MangaCategory) {
+        let managedContext = persistentContainer.viewContext
+        managedContext.delete(category)
+
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Couldn't delete MangaCategory \(error), \(error.userInfo)")
+        }
+    }
+
+    func deleteAllCategories() {
+        let fetchRequest = MangaCategory.createFetchRequest()
+        do {
+            let categories = try persistentContainer.viewContext.fetch(fetchRequest)
+            for case let category as NSManagedObject in categories {
+                persistentContainer.viewContext.delete(category)
+            }
+
+            try persistentContainer.viewContext.save()
+        } catch let error as NSError {
+            print("Error when deleting all MangaCategories. \(error), \(error.userInfo)")
+        }
+    }
+
+    // MARK: Fetch
+    func fetchAllCategoties() -> [MangaCategory]? {
+        let managedContext = persistentContainer.viewContext
+        let fetchRequest = MangaCategory.createFetchRequest()
+
+        do {
+            let categories = try managedContext.fetch(fetchRequest)
+            return categories
+        } catch let error as NSError {
+            print("Couldn't fetch all MangaCategories. \(error), \(error.userInfo)")
+            return nil
+        }
+    }
+
+    func searchCategoriesWith(name: String) -> [MangaCategory]? {
+        let context = persistentContainer.viewContext
+        let fetchRequest = MangaCategory.createFetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name CONTAINS[cd] %@", name)
+
+        do {
+            let results = try context.fetch(fetchRequest)
+            return results
+        } catch let error as NSError {
+            print("Could't search MangaCategories. \(error), \(error.userInfo)")
             return nil
         }
     }

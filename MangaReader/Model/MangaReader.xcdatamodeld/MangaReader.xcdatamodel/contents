@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G5019" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Manga" representedClassName="Manga" syncable="YES">
-        <attribute name="coverData" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="currentPage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastViewedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="totalPages" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="coverData" optional="YES" attributeType="Binary"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="currentPage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="filePath" optional="YES" attributeType="String"/>
+        <attribute name="lastViewedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="totalPages" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MangaCategory" inverseName="mangasWithCategory" inverseEntity="MangaCategory"/>
+    </entity>
+    <entity name="MangaCategory" representedClassName="MangaCategory" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="mangasWithCategory" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Manga" inverseName="categories" inverseEntity="Manga"/>
     </entity>
     <elements>
-        <element name="Manga" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="Manga" positionX="-312" positionY="-85" width="128" height="148"/>
+        <element name="MangaCategory" positionX="-63" positionY="27" width="128" height="73"/>
     </elements>
 </model>

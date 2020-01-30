@@ -10,6 +10,8 @@
 		0D463D7222CA9B0D0020FD5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D463D7122CA9B0C0020FD5A /* GoogleService-Info.plist */; };
 		320F277323C2046900D9930F /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277123C2046900D9930F /* Token.swift */; };
 		320F277423C2046900D9930F /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277223C2046900D9930F /* Tokenizer.swift */; };
+		322A984F23E24A17009896F6 /* MangaCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322A984E23E24A17009896F6 /* MangaCategory+CoreDataProperties.swift */; };
+		322A985123E24BE4009896F6 /* MangaCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322A985023E24BE4009896F6 /* MangaCategory.swift */; };
 		323205AE238DBCE4009E8362 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323205AD238DBCE4009E8362 /* SelectionView.swift */; };
 		323CD90A23CB7107007FFC58 /* jamdict.db in Resources */ = {isa = PBXBuildFile; fileRef = 323CD90923CB7107007FFC58 /* jamdict.db */; };
 		325813E423C5049A00C31E02 /* mecab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325813E323C5049000C31E02 /* mecab.framework */; };
@@ -102,6 +104,8 @@
 		0FD908038762DEE3A978F955 /* Pods_MangaReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangaReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		320F277123C2046900D9930F /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		320F277223C2046900D9930F /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
+		322A984E23E24A17009896F6 /* MangaCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MangaCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		322A985023E24BE4009896F6 /* MangaCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCategory.swift; sourceTree = "<group>"; };
 		323205AD238DBCE4009E8362 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
 		323CD90923CB7107007FFC58 /* jamdict.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = jamdict.db; sourceTree = "<group>"; };
 		325813DE23C5049000C31E02 /* mecab.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mecab.xcodeproj; path = "mecab-ios/mecab.xcodeproj"; sourceTree = "<group>"; };
@@ -350,6 +354,8 @@
 				84A83220221D9F7000CEE1C9 /* CoreDataManager.swift */,
 				8418696B222495FD00C689DC /* Manga.swift */,
 				8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */,
+				322A984E23E24A17009896F6 /* MangaCategory+CoreDataProperties.swift */,
+				322A985023E24BE4009896F6 /* MangaCategory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -636,6 +642,7 @@
 				84A83219221D923800CEE1C9 /* AppCoordinator.swift in Sources */,
 				843FA7EC221E0BE900B86B52 /* PageViewController.swift in Sources */,
 				8418696D222495FE00C689DC /* Manga.swift in Sources */,
+				322A984F23E24A17009896F6 /* MangaCategory+CoreDataProperties.swift in Sources */,
 				325DA0B923C8F50700A627BD /* JapaneseDictionary.swift in Sources */,
 				843FA7DF221DEDDF00B86B52 /* AddMangasCoordinator.swift in Sources */,
 				843FA7E9221DFE9E00B86B52 /* CBZReader.swift in Sources */,
@@ -648,6 +655,7 @@
 				328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */,
 				84A8321D221D951500CEE1C9 /* LibraryViewController.swift in Sources */,
 				843FA7E2221DF0C300B86B52 /* WebServerViewController.swift in Sources */,
+				322A985123E24BE4009896F6 /* MangaCategory.swift in Sources */,
 				841B795C221F305A00659FA2 /* MangaDataSource.swift in Sources */,
 				84A83224221DB10400CEE1C9 /* MangaCollectionViewCell.swift in Sources */,
 				84A83221221D9F7000CEE1C9 /* CoreDataManager.swift in Sources */,

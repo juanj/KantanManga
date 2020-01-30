@@ -12,7 +12,7 @@ import CoreData
 
 extension Manga {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Manga> {
+    @nonobjc public class func createFetchRequest() -> NSFetchRequest<Manga> {
         return NSFetchRequest<Manga>(entityName: "Manga")
     }
 

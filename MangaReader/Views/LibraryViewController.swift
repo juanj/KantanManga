@@ -81,12 +81,9 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MangaCell", for: indexPath) as! MangaCollectionViewCell // swiftlint:disable:this force_cast
 
         let manga = mangas[indexPath.row]
+        manga.loadCoverImage()
         if let image = manga.coverImage {
             cell.coverImageView.image = image
-        } else if let data = manga.coverData, let image = UIImage(data: data) {
-            // If image is not yet loaded, load it and set it as the coverImage
-            cell.coverImageView.image = image
-            manga.coverImage = image
         }
         cell.pageLabel.text = "\(manga.currentPage)/\(manga.totalPages)"
         print("\(manga.currentPage)/\(manga.totalPages)")
