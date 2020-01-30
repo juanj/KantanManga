@@ -30,7 +30,7 @@ class AppCoordinatorTests: XCTestCase {
 
         XCTAssertNotNil(appCoordinator.loadMangas())
 
-        CoreDataManager.sharedManager.insertManga(coverData: Data(), totalPages: 100, filePath: "test.cbz")
+        CoreDataManager.sharedManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 100, filePath: "test.cbz")
 
         XCTAssertEqual(appCoordinator.loadMangas().count, 1)
     }
@@ -65,7 +65,6 @@ class CoreDataManagerTests: XCTestCase {
     /*
      TODO: Test theses methods
      createMangaWith
-     searchCategoriesWith
      */
     func testInitCoreDataManagerIsNotNil() {
         XCTAssertNotNil(coreDataManager)
@@ -76,12 +75,12 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testContextIsSavedCorrectly() {
-        _ = Manga(context: coreDataManager.persistentContainer.viewContext, coverData: Data(), totalPages: 0, filePath: "")
+        _ = Manga(context: coreDataManager.persistentContainer.viewContext, name: "", coverData: Data(), totalPages: 0, filePath: "")
         coreDataManager.persistentContainer.viewContext.reset()
         // Before save
         XCTAssertEqual(coreDataManager.fetchAllMangas(), [])
 
-        _ = Manga(context: coreDataManager.persistentContainer.viewContext, coverData: Data(), totalPages: 0, filePath: "")
+        _ = Manga(context: coreDataManager.persistentContainer.viewContext, name: "", coverData: Data(), totalPages: 0, filePath: "")
         coreDataManager.saveContext()
         coreDataManager.persistentContainer.viewContext.reset()
         // After Save
@@ -89,9 +88,9 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testAllDataIsDeleted() {
-        coreDataManager.insertManga(coverData: Data(), totalPages: 0, filePath: "")
-        coreDataManager.insertManga(coverData: Data(), totalPages: 0, filePath: "")
-        coreDataManager.insertManga(coverData: Data(), totalPages: 0, filePath: "")
+        coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
+        coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
+        coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
 
         coreDataManager.insertCategory(name: "")
         coreDataManager.insertCategory(name: "")
@@ -108,7 +107,7 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testMangaIsInserted() {
-        coreDataManager.insertManga(coverData: Data(), totalPages: 0, filePath: "")
+        coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
         let manga = coreDataManager.fetchAllMangas()?.first
         XCTAssertNotNil(manga)
         // Test saved data
@@ -123,10 +122,11 @@ class CoreDataManagerTests: XCTestCase {
 
         coreDataManager.deleteAllData()
 
-        coreDataManager.insertManga(coverData: "ABC".data(using: .utf8)!, totalPages: 5, filePath: "abc.cbz")
+        coreDataManager.insertManga(name: "TestManga", coverData: "ABC".data(using: .utf8)!, totalPages: 5, filePath: "abc.cbz")
         let newManga = coreDataManager.fetchAllMangas()?.first
         XCTAssertNotNil(newManga)
         // Test saved data
+        XCTAssertEqual(newManga?.name, "TestManga")
         XCTAssertEqual(newManga?.coverData, "ABC".data(using: .utf8)!)
         XCTAssertEqual(newManga?.totalPages, 5)
         XCTAssertEqual(newManga?.filePath, "abc.cbz")
@@ -138,10 +138,11 @@ class CoreDataManagerTests: XCTestCase {
 
         coreDataManager.deleteAllData()
 
-        coreDataManager.insertManga(coverData: "XYz".data(using: .utf8)!, totalPages: 1203, filePath: "abc-xyz.zip")
+        coreDataManager.insertManga(name: "TestManga2", coverData: "XYz".data(using: .utf8)!, totalPages: 1203, filePath: "abc-xyz.zip")
         let complexManga = coreDataManager.fetchAllMangas()?.first
         XCTAssertNotNil(complexManga)
         // Test saved data
+        XCTAssertEqual(complexManga?.name, "TestManga2")
         XCTAssertEqual(complexManga?.coverData, "XYz".data(using: .utf8)!)
         XCTAssertEqual(complexManga?.totalPages, 1203)
         XCTAssertEqual(complexManga?.filePath, "abc-xyz.zip")
@@ -153,7 +154,7 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testMangaIsDeleted() {
-        let manga = coreDataManager.insertManga(coverData: Data(), totalPages: 0, filePath: "")
+        let manga = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
         XCTAssertNotNil(manga)
         XCTAssertNotNil(coreDataManager.fetchAllMangas()?.first)
 
@@ -162,9 +163,9 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testAllMangasAreDeleted() {
-        coreDataManager.insertManga(coverData: Data(), totalPages: 0, filePath: "")
-        coreDataManager.insertManga(coverData: Data(), totalPages: 0, filePath: "")
-        coreDataManager.insertManga(coverData: Data(), totalPages: 0, filePath: "")
+        coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
+        coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
+        coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
         XCTAssertEqual(coreDataManager.fetchAllMangas()?.count, 3)
 
         coreDataManager.deleteAllMangas()
@@ -172,23 +173,23 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testAllMangasAreFetched() {
-        let manga1 = coreDataManager.insertManga(coverData: Data(), totalPages: 5, filePath: "")
-        let manga2 = coreDataManager.insertManga(coverData: Data(), totalPages: 10, filePath: "bc")
-        let manga3 = coreDataManager.insertManga(coverData: Data(), totalPages: 20, filePath: "de")
+        let manga1 = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 5, filePath: "")
+        let manga2 = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 10, filePath: "bc")
+        let manga3 = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 20, filePath: "de")
 
         XCTAssertEqual(coreDataManager.fetchAllMangas(), [manga1!, manga2!, manga3!])
     }
 
     func testMangaIsFetchedByFileName() {
-        let manga1 = coreDataManager.insertManga(coverData: Data(), totalPages: 10, filePath: "bc")
-        let manga2 = coreDataManager.insertManga(coverData: Data(), totalPages: 20, filePath: "de")
+        let manga1 = coreDataManager.insertManga(name: "Test A", coverData: Data(), totalPages: 10, filePath: "bc")
+        let manga2 = coreDataManager.insertManga(name: "Test B", coverData: Data(), totalPages: 20, filePath: "de")
 
         XCTAssertEqual(coreDataManager.getMangaWith(filePath: "bc"), manga1)
         XCTAssertEqual(coreDataManager.getMangaWith(filePath: "de"), manga2)
     }
 
     func testMangaIsUpdated() {
-        let manga = coreDataManager.insertManga(coverData: Data(), totalPages: 20, filePath: "")!
+        let manga = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 20, filePath: "")!
 
         XCTAssertEqual(manga.coverData, Data())
         XCTAssertEqual(manga.totalPages, 20)

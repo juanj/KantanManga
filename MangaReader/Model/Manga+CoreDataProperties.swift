@@ -20,6 +20,7 @@ extension Manga {
         return Array(categoriesOfManga ?? [])
     }
 
+    @NSManaged public var name: String?
     @NSManaged public var coverData: Data?
     @NSManaged public var createdAt: Date?
     @NSManaged public var currentPage: Int16
