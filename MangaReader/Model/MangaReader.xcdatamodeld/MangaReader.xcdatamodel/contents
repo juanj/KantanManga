@@ -7,11 +7,11 @@
         <attribute name="filePath" optional="YES" attributeType="String"/>
         <attribute name="lastViewedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="totalPages" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MangaCategory" inverseName="mangasWithCategory" inverseEntity="MangaCategory"/>
+        <relationship name="categoriesOfManga" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MangaCategory" inverseName="mangasWithCategory" inverseEntity="MangaCategory"/>
     </entity>
     <entity name="MangaCategory" representedClassName="MangaCategory" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="mangasWithCategory" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Manga" inverseName="categories" inverseEntity="Manga"/>
+        <relationship name="mangasWithCategory" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Manga" inverseName="categoriesOfManga" inverseEntity="Manga"/>
     </entity>
     <elements>
         <element name="Manga" positionX="-312" positionY="-85" width="128" height="148"/>

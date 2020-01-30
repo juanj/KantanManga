@@ -16,11 +16,16 @@ extension Manga {
         return NSFetchRequest<Manga>(entityName: "Manga")
     }
 
+    var categories: [MangaCategory] {
+        return Array(categoriesOfManga ?? [])
+    }
+
     @NSManaged public var coverData: Data?
     @NSManaged public var createdAt: Date?
     @NSManaged public var currentPage: Int16
     @NSManaged public var filePath: String?
     @NSManaged public var lastViewedAt: Date?
     @NSManaged public var totalPages: Int16
+    @NSManaged private var categoriesOfManga: Set<MangaCategory>?
 
 }
