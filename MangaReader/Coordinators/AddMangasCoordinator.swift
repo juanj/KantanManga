@@ -12,28 +12,33 @@ import ZIPFoundation
 
 protocol AddMangasCoordinatorDelegate: AnyObject {
     func didEnd(_ addMangasCoordinator: AddMangasCoordinator)
+    func cancel(_ addMangasCoordinator: AddMangasCoordinator)
 }
 
 class AddMangasCoordinator: NSObject {
-    var navigationController: UINavigationController!
-    weak var delegate: AddMangasCoordinatorDelegate?
-    var uploadServer: GCDWebUploader?
+    private var navigationController: UINavigationController!
+    private var presentedNavigationController = UINavigationController()
+    private weak var delegate: AddMangasCoordinatorDelegate?
 
-    init(navigation: UINavigationController) {
+    private var uploadServer: GCDWebUploader?
+    private var addMangaViewController: AddMangaViewController?
+
+    init(navigation: UINavigationController, delegate: AddMangasCoordinatorDelegate) {
         navigationController = navigation
+        self.delegate = delegate
     }
 
     func start() {
-        initWebServer()
-        let webServerViewcontroller = WebServerViewController()
-        webServerViewcontroller.delegate = self
-        if let url = uploadServer?.serverURL?.absoluteString {
-            webServerViewcontroller.serverUrl = url
-        }
-        navigationController.pushViewController(webServerViewcontroller, animated: true)
+        let addMangaView = AddMangaViewController(delegate: self)
+        presentedNavigationController.pushViewController(addMangaView, animated: true)
+        presentedNavigationController.modalPresentationStyle = .formSheet
+        presentedNavigationController.presentationController?.delegate = self
+        navigationController.present(presentedNavigationController, animated: true, completion: nil)
+
+        addMangaViewController = addMangaView
     }
 
-    func initWebServer() {
+    private func initWebServer() {
         guard let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
             return
         }
@@ -48,7 +53,9 @@ extension AddMangasCoordinator: GCDWebUploaderDelegate {
     func webUploader(_ uploader: GCDWebUploader, didUploadFileAtPath path: String) {
         let soundID: SystemSoundID = 1307
         AudioServicesPlaySystemSound(soundID)
-        CoreDataManager.sharedManager.createMangaWith(filePath: path)
+        addMangaViewController?.setFile(path: path)
+        presentedNavigationController.popViewController(animated: true)
+        uploadServer?.stop()
     }
 
     func webUploader(_ uploader: GCDWebUploader, didDeleteItemAtPath path: String) {
@@ -61,8 +68,39 @@ extension AddMangasCoordinator: GCDWebUploaderDelegate {
 
 extension AddMangasCoordinator: WebServerViewControllerDelegate {
     func didSelectBack(_ webServerViewController: WebServerViewController) {
-        navigationController.popViewController(animated: true)
+        presentedNavigationController.popViewController(animated: true)
         uploadServer?.stop()
-        delegate?.didEnd(self)
+    }
+}
+
+extension AddMangasCoordinator: AddMangaViewControllerDelegate {
+    func cancel(addMangaViewController: AddMangaViewController) {
+        navigationController.dismiss(animated: true, completion: nil)
+        delegate?.cancel(self)
+    }
+
+    func save(addMangaViewController: AddMangaViewController, name: String, categories: [MangaCategory], path: String) {
+        CoreDataManager.sharedManager.createMangaWith(filePath: path, name: name) { (_) in
+            DispatchQueue.main.sync {
+                self.navigationController.dismiss(animated: true, completion: nil)
+                self.delegate?.didEnd(self)
+            }
+        }
+    }
+
+    func selectManga(addMangaViewController: AddMangaViewController) {
+        initWebServer()
+        let webServerViewcontroller = WebServerViewController()
+        webServerViewcontroller.delegate = self
+        if let url = uploadServer?.serverURL?.absoluteString {
+            webServerViewcontroller.serverUrl = url
+        }
+        presentedNavigationController.pushViewController(webServerViewcontroller, animated: true)
+    }
+}
+
+extension AddMangasCoordinator: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        delegate?.cancel(self)
     }
 }

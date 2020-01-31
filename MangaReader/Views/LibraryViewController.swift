@@ -18,7 +18,12 @@ class LibraryViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
     weak var delegate: LibraryViewControllerDelegate?
-    var mangas = [Manga]()
+    var mangas = [Manga]() {
+        didSet {
+            guard collectionView != nil else { return }
+            collectionView.reloadData()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

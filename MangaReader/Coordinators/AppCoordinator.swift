@@ -48,8 +48,7 @@ extension AppCoordinator: LibraryViewControllerDelegate {
     }
 
     func didSelectAdd(_ libraryViewController: LibraryViewController) {
-        let addMangasCoordinator = AddMangasCoordinator(navigation: navigationController)
-        addMangasCoordinator.delegate = self
+        let addMangasCoordinator = AddMangasCoordinator(navigation: navigationController, delegate: self)
         childCoordinators.append(addMangasCoordinator)
         addMangasCoordinator.start()
     }
@@ -61,6 +60,10 @@ extension AppCoordinator: AddMangasCoordinatorDelegate {
         childCoordinators.removeLast()
         let mangas = loadMangas()
         libraryView?.mangas = mangas
+    }
+
+    func cancel(_ addMangasCoordinator: AddMangasCoordinator) {
+        childCoordinators.removeLast()
     }
 }
 

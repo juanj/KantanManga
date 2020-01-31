@@ -56,7 +56,7 @@ class CoreDataManager {
         }
     }
 
-    func createMangaWith(filePath path: String, name: String? = nil) {
+    func createMangaWith(filePath path: String, name: String? = nil, callback: @escaping (Manga?) -> Void) {
         let fileName = (path as NSString).lastPathComponent
         let mangaName: String
         if let name = name {
@@ -70,7 +70,8 @@ class CoreDataManager {
         }
         reader.readFirstEntry { (data) in
             if let data = data {
-                self.insertManga(name: mangaName, coverData: data, totalPages: Int16(reader.numberOfPages), filePath: fileName)
+                let manga = self.insertManga(name: mangaName, coverData: data, totalPages: Int16(reader.numberOfPages), filePath: fileName)
+                callback(manga)
             }
         }
     }
