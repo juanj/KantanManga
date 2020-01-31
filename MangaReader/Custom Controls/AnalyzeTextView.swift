@@ -218,6 +218,7 @@ class AnalyzeTextView: UIControl {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = furigana.kana
+        label.textColor = .black
         label.sizeToFit()
 
         return label
