@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0D463D7222CA9B0D0020FD5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D463D7122CA9B0C0020FD5A /* GoogleService-Info.plist */; };
 		3202824323E622E000CC3B96 /* AutoCompleteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202824223E622E000CC3B96 /* AutoCompleteTextField.swift */; };
+		3202824723E63E3F00CC3B96 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202824523E63E3F00CC3B96 /* CategoryCollectionViewCell.swift */; };
+		3202824823E63E3F00CC3B96 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3202824623E63E3F00CC3B96 /* CategoryCollectionViewCell.xib */; };
+		3202824A23E6444600CC3B96 /* TagsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202824923E6444600CC3B96 /* TagsLayout.swift */; };
 		320F277323C2046900D9930F /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277123C2046900D9930F /* Token.swift */; };
 		320F277423C2046900D9930F /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277223C2046900D9930F /* Tokenizer.swift */; };
 		322A984F23E24A17009896F6 /* MangaCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322A984E23E24A17009896F6 /* MangaCategory+CoreDataProperties.swift */; };
@@ -106,6 +109,9 @@
 		0D463D7122CA9B0C0020FD5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0FD908038762DEE3A978F955 /* Pods_MangaReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangaReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3202824223E622E000CC3B96 /* AutoCompleteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteTextField.swift; sourceTree = "<group>"; };
+		3202824523E63E3F00CC3B96 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		3202824623E63E3F00CC3B96 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
+		3202824923E6444600CC3B96 /* TagsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsLayout.swift; sourceTree = "<group>"; };
 		320F277123C2046900D9930F /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		320F277223C2046900D9930F /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
 		322A984E23E24A17009896F6 /* MangaCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MangaCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -273,6 +279,7 @@
 				323205AD238DBCE4009E8362 /* SelectionView.swift */,
 				3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */,
 				325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */,
+				3202824923E6444600CC3B96 /* TagsLayout.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -352,6 +359,8 @@
 				328DFB09238D96300095CBAB /* MangaViewController.xib */,
 				32892C0823E39FBC000B1C3E /* AddMangaViewController.swift */,
 				32892C0923E39FBC000B1C3E /* AddMangaViewController.xib */,
+				3202824523E63E3F00CC3B96 /* CategoryCollectionViewCell.swift */,
+				3202824623E63E3F00CC3B96 /* CategoryCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -530,6 +539,7 @@
 				3258141D23C5053900C31E02 /* left-id.def in Resources */,
 				843FA7E3221DF0C300B86B52 /* WebServerViewController.xib in Resources */,
 				84A83225221DB10400CEE1C9 /* MangaCollectionViewCell.xib in Resources */,
+				3202824823E63E3F00CC3B96 /* CategoryCollectionViewCell.xib in Resources */,
 				323CD90A23CB7107007FFC58 /* jamdict.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -658,12 +668,14 @@
 				325DA0B923C8F50700A627BD /* JapaneseDictionary.swift in Sources */,
 				843FA7DF221DEDDF00B86B52 /* AddMangasCoordinator.swift in Sources */,
 				843FA7E9221DFE9E00B86B52 /* CBZReader.swift in Sources */,
+				3202824723E63E3F00CC3B96 /* CategoryCollectionViewCell.swift in Sources */,
 				84186960222474EC00C689DC /* LibraryCollectionViewLayout.swift in Sources */,
 				8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */,
 				328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */,
 				320F277323C2046900D9930F /* Token.swift in Sources */,
 				84A831E7221D90CA00CEE1C9 /* AppDelegate.swift in Sources */,
 				3259D1B423C4D9A2003BA7C2 /* FuriganaUtils.swift in Sources */,
+				3202824A23E6444600CC3B96 /* TagsLayout.swift in Sources */,
 				328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */,
 				84A8321D221D951500CEE1C9 /* LibraryViewController.swift in Sources */,
 				843FA7E2221DF0C300B86B52 /* WebServerViewController.swift in Sources */,

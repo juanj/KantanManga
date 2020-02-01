@@ -2,7 +2,7 @@
 //  AutoCompleteTextField.swift
 //  MangaReader
 //
-//  Created by DevBakura on 1/02/20.
+//  Created by Juan on 1/02/20.
 //  Copyright © 2020 Bakura. All rights reserved.
 //
 

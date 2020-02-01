@@ -24,7 +24,7 @@ class AddMangaViewController: UIViewController {
 
     private weak var delegate: AddMangaViewControllerDelegate?
     private var fileName: String?
-    private var tags = [String]()
+    private var categories = [String]()
 
     init(delegate: AddMangaViewControllerDelegate) {
         self.delegate = delegate
@@ -40,6 +40,7 @@ class AddMangaViewController: UIViewController {
 
         configureNavBar()
         configureMangaImageView()
+        configureCategoriesCollectionView()
         nameTextField.addTarget(self, action: #selector(resetTextField), for: .editingChanged)
         categoriesTextField.autoCompleteDelegate = self
     }
@@ -72,6 +73,14 @@ class AddMangaViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(selectManga))
         mangaImageView.isUserInteractionEnabled = true
         mangaImageView.addGestureRecognizer(tap)
+    }
+
+    private func configureCategoriesCollectionView() {
+        let cellNib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
+        categoriesCollectionView.register(cellNib, forCellWithReuseIdentifier: "CategoryCell")
+        categoriesCollectionView.delegate = self
+        categoriesCollectionView.dataSource = self
+        categoriesCollectionView.collectionViewLayout = TagsLayout()
     }
 
     @objc func cancel() {
@@ -118,7 +127,23 @@ extension AddMangaViewController: AutoCompleteTextFieldDelegate {
     }
 
     func didSelectText(autoCompleteTextField: AutoCompleteTextField, text: String) {
-        tags.append(text)
+        categories.append(text)
         categoriesCollectionView.reloadData()
+    }
+}
+
+extension AddMangaViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        categoriesCollectionViewHeightConstraint.constant = categories.count == 0 ? 0 : 50
+        view.layoutIfNeeded()
+        return categories.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoryCollectionViewCell // swiftlint:disable:this force_cast
+        cell.categoryLabel.text = categories[indexPath.row]
+        categoriesCollectionViewHeightConstraint.constant = collectionView.contentSize.height
+        view.layoutIfNeeded()
+        return cell
     }
 }
