@@ -210,4 +210,18 @@ class CoreDataManager {
             return nil
         }
     }
+
+    func searchCategoriesStartWith(name: String) -> [MangaCategory]? {
+        let context = persistentContainer.viewContext
+        let fetchRequest = MangaCategory.createFetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name BEGINSWITH[cd] %@", name)
+
+        do {
+            let results = try context.fetch(fetchRequest)
+            return results
+        } catch let error as NSError {
+            print("Could't search MangaCategories. \(error), \(error.userInfo)")
+            return nil
+        }
+    }
 }
