@@ -11,7 +11,7 @@
             <connections>
                 <outlet property="categoriesCollectionView" destination="WWY-JD-Mac" id="LKh-Se-Dup"/>
                 <outlet property="categoriesCollectionViewHeightConstraint" destination="cva-Rn-jya" id="zBN-Di-Lpn"/>
-                <outlet property="categoriesTextField" destination="x6I-BV-jNX" id="txV-jy-RUa"/>
+                <outlet property="categoriesTextField" destination="bXd-aT-wlw" id="RgQ-1f-NIs"/>
                 <outlet property="contentView" destination="9I8-Us-shD" id="QBk-tf-wVx"/>
                 <outlet property="mangaImageView" destination="HLU-fq-8Sv" id="gxi-ww-nNV"/>
                 <outlet property="nameTextField" destination="Bgo-5I-mVB" id="FsX-mW-ydH"/>
@@ -33,13 +33,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="582.5" height="200"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new manga" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNC-za-twP">
-                                            <rect key="frame" x="0.0" y="0.0" width="582.5" height="31"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="582.5" height="30"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNx-wp-3fR">
-                                            <rect key="frame" x="0.0" y="51" width="582.5" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="50" width="582.5" height="54.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yXc-kK-jv6">
                                                     <rect key="frame" x="0.0" y="0.0" width="582.5" height="54.5"/>
@@ -73,10 +73,10 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p7l-w3-q0S">
-                                            <rect key="frame" x="0.0" y="125.5" width="582.5" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="124.5" width="582.5" height="55.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="21h-4v-Wzs">
-                                                    <rect key="frame" x="0.0" y="0.0" width="582.5" height="54.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="582.5" height="55.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ob-VI-etJ">
                                                             <rect key="frame" x="0.0" y="0.0" width="582.5" height="20.5"/>
@@ -100,14 +100,16 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                         </collectionView>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x6I-BV-jNX">
-                                                            <rect key="frame" x="0.0" y="20.5" width="582.5" height="34"/>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bXd-aT-wlw" customClass="AutoCompleteTextField" customModule="MangaReader" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="20.5" width="582.5" height="35"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="34" id="PVq-pq-iyo"/>
+                                                                <constraint firstAttribute="height" constant="35" id="5J7-g0-kqt"/>
                                                             </constraints>
+                                                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
-                                                        </textField>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
+                                                        </textView>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>

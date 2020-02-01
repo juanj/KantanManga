@@ -17,13 +17,14 @@ protocol AddMangaViewControllerDelegate: AnyObject {
 class AddMangaViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var categoriesTextField: UITextField!
+    @IBOutlet weak var categoriesTextField: AutoCompleteTextField!
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
     @IBOutlet weak var categoriesCollectionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var mangaImageView: UIImageView!
 
     private weak var delegate: AddMangaViewControllerDelegate?
     private var fileName: String?
+    private var tags = [String]()
 
     init(delegate: AddMangaViewControllerDelegate) {
         self.delegate = delegate
@@ -40,6 +41,7 @@ class AddMangaViewController: UIViewController {
         configureNavBar()
         configureMangaImageView()
         nameTextField.addTarget(self, action: #selector(resetTextField), for: .editingChanged)
+        categoriesTextField.autoCompleteDelegate = self
     }
 
     override func viewDidLayoutSubviews() {
@@ -97,5 +99,26 @@ class AddMangaViewController: UIViewController {
 
     @objc func resetTextField() {
         nameTextField.layer.borderWidth = 0
+    }
+}
+
+extension AddMangaViewController: AutoCompleteTextFieldDelegate {
+    func autoCompleteResultForText(autoCompleteTextField: AutoCompleteTextField, text: String) -> String? {
+        guard let results = CoreDataManager.sharedManager.searchCategoriesStartWith(name: text) else {
+            return nil
+        }
+        for result in results {
+            if result.name == text {
+                continue
+            } else {
+                return result.name
+            }
+        }
+        return nil
+    }
+
+    func didSelectText(autoCompleteTextField: AutoCompleteTextField, text: String) {
+        tags.append(text)
+        categoriesCollectionView.reloadData()
     }
 }
