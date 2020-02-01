@@ -91,7 +91,6 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
             cell.coverImageView.image = image
         }
         cell.pageLabel.text = "\(manga.currentPage)/\(manga.totalPages)"
-        print("\(manga.currentPage)/\(manga.totalPages)")
 
         return cell
     }
