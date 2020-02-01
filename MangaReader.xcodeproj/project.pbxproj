@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D463D7222CA9B0D0020FD5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D463D7122CA9B0C0020FD5A /* GoogleService-Info.plist */; };
+		3202824323E622E000CC3B96 /* AutoCompleteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202824223E622E000CC3B96 /* AutoCompleteTextField.swift */; };
 		320F277323C2046900D9930F /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277123C2046900D9930F /* Token.swift */; };
 		320F277423C2046900D9930F /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277223C2046900D9930F /* Tokenizer.swift */; };
 		322A984F23E24A17009896F6 /* MangaCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322A984E23E24A17009896F6 /* MangaCategory+CoreDataProperties.swift */; };
@@ -104,6 +105,7 @@
 		06DADBF3922C1A6DDC6C798A /* Pods-MangaReaderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaReaderUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MangaReaderUITests/Pods-MangaReaderUITests.release.xcconfig"; sourceTree = "<group>"; };
 		0D463D7122CA9B0C0020FD5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0FD908038762DEE3A978F955 /* Pods_MangaReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangaReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3202824223E622E000CC3B96 /* AutoCompleteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteTextField.swift; sourceTree = "<group>"; };
 		320F277123C2046900D9930F /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		320F277223C2046900D9930F /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
 		322A984E23E24A17009896F6 /* MangaCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MangaCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				3296EA5523C24C6700DA28D7 /* AnalyzeTextView.swift */,
 				32FD735523E0BF0A000C3A2C /* DictionaryTableViewCell.swift */,
 				32FD735623E0BF0A000C3A2C /* DictionaryTableViewCell.xib */,
+				3202824223E622E000CC3B96 /* AutoCompleteTextField.swift */,
 			);
 			path = "Custom Controls";
 			sourceTree = "<group>";
@@ -646,6 +649,7 @@
 				323205AE238DBCE4009E8362 /* SelectionView.swift in Sources */,
 				320F277423C2046900D9930F /* Tokenizer.swift in Sources */,
 				3296EA5623C24C6700DA28D7 /* AnalyzeTextView.swift in Sources */,
+				3202824323E622E000CC3B96 /* AutoCompleteTextField.swift in Sources */,
 				32892C0A23E39FBC000B1C3E /* AddMangaViewController.swift in Sources */,
 				84A83219221D923800CEE1C9 /* AppCoordinator.swift in Sources */,
 				843FA7EC221E0BE900B86B52 /* PageViewController.swift in Sources */,
