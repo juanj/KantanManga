@@ -38,7 +38,7 @@ class CoreDataManager {
 
     func deleteAllData() {
         deleteAllMangas()
-        deleteAllCategories()
+        deleteAllCollections()
     }
 
     // MARK: - Manga methods
@@ -142,15 +142,15 @@ class CoreDataManager {
         }
     }
 
-    // MARK: - MangaCategory methods
+    // MARK: - MangaCollection methods
     // MARK: Insert
     @discardableResult
-    func insertCategory(name: String) -> MangaCategory? {
+    func insertCollection(name: String) -> MangaCollection? {
         let context = persistentContainer.viewContext
-        let category = MangaCategory(context: context, name: name)
+        let collection = MangaCollection(context: context, name: name)
         do {
             try context.save()
-            return category
+            return collection
         } catch let error {
             print(error)
             return nil
@@ -158,69 +158,69 @@ class CoreDataManager {
     }
 
     // MARK: Delete
-    func delete(category: MangaCategory) {
+    func delete(collection: MangaCollection) {
         let managedContext = persistentContainer.viewContext
-        managedContext.delete(category)
+        managedContext.delete(collection)
 
         do {
             try managedContext.save()
         } catch let error as NSError {
-            print("Couldn't delete MangaCategory \(error), \(error.userInfo)")
+            print("Couldn't delete MangaCollection \(error), \(error.userInfo)")
         }
     }
 
-    func deleteAllCategories() {
-        let fetchRequest = MangaCategory.createFetchRequest()
+    func deleteAllCollections() {
+        let fetchRequest = MangaCollection.createFetchRequest()
         do {
-            let categories = try persistentContainer.viewContext.fetch(fetchRequest)
-            for case let category as NSManagedObject in categories {
-                persistentContainer.viewContext.delete(category)
+            let collections = try persistentContainer.viewContext.fetch(fetchRequest)
+            for case let collection as NSManagedObject in collections {
+                persistentContainer.viewContext.delete(collection)
             }
 
             try persistentContainer.viewContext.save()
         } catch let error as NSError {
-            print("Error when deleting all MangaCategories. \(error), \(error.userInfo)")
+            print("Error when deleting all MangaCollection. \(error), \(error.userInfo)")
         }
     }
 
     // MARK: Fetch
-    func fetchAllCategoties() -> [MangaCategory]? {
+    func fetchAllCollections() -> [MangaCollection]? {
         let managedContext = persistentContainer.viewContext
-        let fetchRequest = MangaCategory.createFetchRequest()
+        let fetchRequest = MangaCollection.createFetchRequest()
 
         do {
-            let categories = try managedContext.fetch(fetchRequest)
-            return categories
+            let collections = try managedContext.fetch(fetchRequest)
+            return collections
         } catch let error as NSError {
-            print("Couldn't fetch all MangaCategories. \(error), \(error.userInfo)")
+            print("Couldn't fetch all MangaCollection. \(error), \(error.userInfo)")
             return nil
         }
     }
 
-    func searchCategoriesWith(name: String) -> [MangaCategory]? {
+    func searchCollectionsWith(name: String) -> [MangaCollection]? {
         let context = persistentContainer.viewContext
-        let fetchRequest = MangaCategory.createFetchRequest()
+        let fetchRequest = MangaCollection.createFetchRequest()
         fetchRequest.predicate = NSPredicate(format: "name CONTAINS[cd] %@", name)
 
         do {
             let results = try context.fetch(fetchRequest)
             return results
         } catch let error as NSError {
-            print("Could't search MangaCategories. \(error), \(error.userInfo)")
+            print("Could't search MangaCollection. \(error), \(error.userInfo)")
             return nil
         }
     }
 
-    func searchCategoriesStartWith(name: String) -> [MangaCategory]? {
+    func searchCollectionsStartWith(name: String) -> [MangaCollection]? {
         let context = persistentContainer.viewContext
-        let fetchRequest = MangaCategory.createFetchRequest()
+        let fetchRequest = MangaCollection.createFetchRequest()
         fetchRequest.predicate = NSPredicate(format: "name BEGINSWITH[cd] %@", name)
 
         do {
             let results = try context.fetch(fetchRequest)
             return results
         } catch let error as NSError {
-            print("Could't search MangaCategories. \(error), \(error.userInfo)")
+            print("Could't search MangaCollection. \(error), \(error.userInfo)")
             return nil
         }
     }

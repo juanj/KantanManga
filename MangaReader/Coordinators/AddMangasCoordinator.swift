@@ -79,7 +79,7 @@ extension AddMangasCoordinator: AddMangaViewControllerDelegate {
         delegate?.cancel(self)
     }
 
-    func save(addMangaViewController: AddMangaViewController, name: String, categories: [MangaCategory], path: String) {
+    func save(addMangaViewController: AddMangaViewController, name: String, path: String, collection: MangaCollection?) {
         CoreDataManager.sharedManager.createMangaWith(filePath: path, name: name) { (_) in
             DispatchQueue.main.sync {
                 self.navigationController.dismiss(animated: true, completion: nil)

@@ -92,18 +92,18 @@ class CoreDataManagerTests: XCTestCase {
         coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
         coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
 
-        coreDataManager.insertCategory(name: "")
-        coreDataManager.insertCategory(name: "")
-        coreDataManager.insertCategory(name: "")
-        coreDataManager.insertCategory(name: "")
+        coreDataManager.insertCollection(name: "")
+        coreDataManager.insertCollection(name: "")
+        coreDataManager.insertCollection(name: "")
+        coreDataManager.insertCollection(name: "")
 
         XCTAssertEqual(coreDataManager.fetchAllMangas()?.count, 3)
-        XCTAssertEqual(coreDataManager.fetchAllCategoties()?.count, 4)
+        XCTAssertEqual(coreDataManager.fetchAllCollections()?.count, 4)
 
         coreDataManager.deleteAllData()
 
         XCTAssertEqual(coreDataManager.fetchAllMangas()?.count, 0)
-        XCTAssertEqual(coreDataManager.fetchAllCategoties()?.count, 0)
+        XCTAssertEqual(coreDataManager.fetchAllCollections()?.count, 0)
     }
 
     func testMangaIsInserted() {
@@ -211,52 +211,52 @@ class CoreDataManagerTests: XCTestCase {
         XCTAssertEqual(updatedManga.createdAt, manga.createdAt)
     }
 
-    func testCategoryIsInserted() {
-        XCTAssertEqual(coreDataManager.fetchAllCategoties()?.count, 0)
-        coreDataManager.insertCategory(name: "")
-        XCTAssertEqual(coreDataManager.fetchAllCategoties()?.count, 1)
-        coreDataManager.insertCategory(name: "")
-        XCTAssertEqual(coreDataManager.fetchAllCategoties()?.count, 2)
+    func testCollectionIsInserted() {
+        XCTAssertEqual(coreDataManager.fetchAllCollections()?.count, 0)
+        coreDataManager.insertCollection(name: "")
+        XCTAssertEqual(coreDataManager.fetchAllCollections()?.count, 1)
+        coreDataManager.insertCollection(name: "")
+        XCTAssertEqual(coreDataManager.fetchAllCollections()?.count, 2)
     }
 
-    func testCategoryIsDeleted() {
-        let category = coreDataManager.insertCategory(name: "Test")!
-        coreDataManager.insertCategory(name: "AAA")
+    func testCollectionIsDeleted() {
+        let collection = coreDataManager.insertCollection(name: "Test")!
+        coreDataManager.insertCollection(name: "AAA")
 
-        XCTAssertEqual(coreDataManager.fetchAllCategoties()?.count, 2)
-        coreDataManager.delete(category: category)
-        XCTAssertEqual(coreDataManager.fetchAllCategoties()?.count, 1)
-        XCTAssertEqual(coreDataManager.fetchAllCategoties()?.first?.name, "AAA")
+        XCTAssertEqual(coreDataManager.fetchAllCollections()?.count, 2)
+        coreDataManager.delete(collection: collection)
+        XCTAssertEqual(coreDataManager.fetchAllCollections()?.count, 1)
+        XCTAssertEqual(coreDataManager.fetchAllCollections()?.first?.name, "AAA")
     }
 
-    func testAllCategoriesAreDeleted() {
-        coreDataManager.insertCategory(name: "1")
-        coreDataManager.insertCategory(name: "2")
-        coreDataManager.insertCategory(name: "3")
-        coreDataManager.insertCategory(name: "4")
-        XCTAssertEqual(coreDataManager.fetchAllCategoties()?.count, 4)
+    func testAllCollectionsAreDeleted() {
+        coreDataManager.insertCollection(name: "1")
+        coreDataManager.insertCollection(name: "2")
+        coreDataManager.insertCollection(name: "3")
+        coreDataManager.insertCollection(name: "4")
+        XCTAssertEqual(coreDataManager.fetchAllCollections()?.count, 4)
 
-        coreDataManager.deleteAllCategories()
-        XCTAssertEqual(coreDataManager.fetchAllCategoties()?.count, 0)
+        coreDataManager.deleteAllCollections()
+        XCTAssertEqual(coreDataManager.fetchAllCollections()?.count, 0)
     }
 
-    func testAllCategoriesAreFetched() {
-        let category1 = coreDataManager.insertCategory(name: "1")!
-        let category2 = coreDataManager.insertCategory(name: "2")!
-        let category3 = coreDataManager.insertCategory(name: "3")!
-        let category4 = coreDataManager.insertCategory(name: "4")!
-        XCTAssertEqual(coreDataManager.fetchAllCategoties(), [category1, category2, category3, category4])
+    func testAllCollectionsAreFetched() {
+        let collection1 = coreDataManager.insertCollection(name: "1")!
+        let collection2 = coreDataManager.insertCollection(name: "2")!
+        let collection3 = coreDataManager.insertCollection(name: "3")!
+        let collection4 = coreDataManager.insertCollection(name: "4")!
+        XCTAssertEqual(coreDataManager.fetchAllCollections(), [collection1, collection2, collection3, collection4])
     }
 
-    func testCategoryIsFoundByPartOfName() {
-        let category = coreDataManager.insertCategory(name: "This is a category")!
-        let catsCategory = coreDataManager.insertCategory(name: "Cats. Lots of cats")!
-        let dogCategory = coreDataManager.insertCategory(name: "Dogs, lots of dogs")!
+    func testCollectionIsFoundByPartOfName() {
+        let collection = coreDataManager.insertCollection(name: "This is a collection")!
+        let catsCollection = coreDataManager.insertCollection(name: "Cats. Lots of cats")!
+        let dogCollection = coreDataManager.insertCollection(name: "Dogs, lots of dogs")!
 
-        XCTAssertEqual(coreDataManager.searchCategoriesWith(name: "cat")?.count, 2)
-        XCTAssertEqual(coreDataManager.searchCategoriesWith(name: "CaT"), [category, catsCategory])
-        XCTAssertEqual(coreDataManager.searchCategoriesWith(name: "DOGS")?.count, 1)
-        XCTAssertEqual(coreDataManager.searchCategoriesWith(name: "DOGS")?.first, dogCategory)
+        XCTAssertEqual(coreDataManager.searchCollectionsWith(name: "cat")?.count, 2)
+        XCTAssertEqual(coreDataManager.searchCollectionsWith(name: "CaT"), [collection, catsCollection])
+        XCTAssertEqual(coreDataManager.searchCollectionsWith(name: "DOGS")?.count, 1)
+        XCTAssertEqual(coreDataManager.searchCollectionsWith(name: "DOGS")?.first, dogCollection)
 
     }
 }

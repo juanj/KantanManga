@@ -10,21 +10,18 @@ import UIKit
 
 protocol AddMangaViewControllerDelegate: AnyObject {
     func cancel(addMangaViewController: AddMangaViewController)
-    func save(addMangaViewController: AddMangaViewController, name: String, categories: [MangaCategory], path: String)
+    func save(addMangaViewController: AddMangaViewController, name: String, path: String, collection: MangaCollection?)
     func selectManga(addMangaViewController: AddMangaViewController)
 }
 
 class AddMangaViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var categoriesTextField: AutoCompleteTextField!
-    @IBOutlet weak var categoriesCollectionView: UICollectionView!
-    @IBOutlet weak var categoriesCollectionViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var collectionTextField: AutoCompleteTextField!
     @IBOutlet weak var mangaImageView: UIImageView!
 
     private weak var delegate: AddMangaViewControllerDelegate?
     private var fileName: String?
-    private var categories = [String]()
 
     init(delegate: AddMangaViewControllerDelegate) {
         self.delegate = delegate
@@ -40,13 +37,14 @@ class AddMangaViewController: UIViewController {
 
         configureNavBar()
         configureMangaImageView()
-        configureCategoriesCollectionView()
         nameTextField.addTarget(self, action: #selector(resetTextField), for: .editingChanged)
-        categoriesTextField.autoCompleteDelegate = self
+        collectionTextField.autoCompleteDelegate = self
     }
 
     override func viewDidLayoutSubviews() {
-        self.preferredContentSize = contentView.frame.size
+        super.viewDidLayoutSubviews()
+        let resultSize = view.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)//.layoutFittingCompressedSize)
+        self.preferredContentSize = resultSize
     }
 
     func setFile(path: String) {
@@ -75,14 +73,6 @@ class AddMangaViewController: UIViewController {
         mangaImageView.addGestureRecognizer(tap)
     }
 
-    private func configureCategoriesCollectionView() {
-        let cellNib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
-        categoriesCollectionView.register(cellNib, forCellWithReuseIdentifier: "CategoryCell")
-        categoriesCollectionView.delegate = self
-        categoriesCollectionView.dataSource = self
-        categoriesCollectionView.collectionViewLayout = TagsLayout()
-    }
-
     @objc func cancel() {
         delegate?.cancel(addMangaViewController: self)
     }
@@ -98,7 +88,7 @@ class AddMangaViewController: UIViewController {
             mangaImageView.layer.borderColor = UIColor.red.cgColor
             return
         }
-        delegate?.save(addMangaViewController: self, name: name, categories: [], path: fileName)
+        delegate?.save(addMangaViewController: self, name: name, path: fileName, collection: nil)
     }
 
     @objc func selectManga() {
@@ -113,7 +103,7 @@ class AddMangaViewController: UIViewController {
 
 extension AddMangaViewController: AutoCompleteTextFieldDelegate {
     func autoCompleteResultForText(autoCompleteTextField: AutoCompleteTextField, text: String) -> String? {
-        guard let results = CoreDataManager.sharedManager.searchCategoriesStartWith(name: text) else {
+        guard let results = CoreDataManager.sharedManager.searchCollectionsStartWith(name: text) else {
             return nil
         }
         for result in results {
@@ -127,23 +117,6 @@ extension AddMangaViewController: AutoCompleteTextFieldDelegate {
     }
 
     func didSelectText(autoCompleteTextField: AutoCompleteTextField, text: String) {
-        categories.append(text)
-        categoriesCollectionView.reloadData()
-    }
-}
-
-extension AddMangaViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        categoriesCollectionViewHeightConstraint.constant = categories.count == 0 ? 0 : 50
-        view.layoutIfNeeded()
-        return categories.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoryCollectionViewCell // swiftlint:disable:this force_cast
-        cell.categoryLabel.text = categories[indexPath.row]
-        categoriesCollectionViewHeightConstraint.constant = collectionView.contentSize.height
-        view.layoutIfNeeded()
-        return cell
+        
     }
 }
