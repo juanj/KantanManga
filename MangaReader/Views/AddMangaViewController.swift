@@ -43,7 +43,7 @@ class AddMangaViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let resultSize = view.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)//.layoutFittingCompressedSize)
+        let resultSize = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         self.preferredContentSize = resultSize
     }
 
