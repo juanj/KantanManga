@@ -44,9 +44,9 @@ class CoreDataManager {
     // MARK: - Manga methods
     // MARK: Insert
     @discardableResult
-    func insertManga(name: String, coverData: Data, totalPages: Int16, filePath: String) -> Manga? {
+    func insertManga(name: String, coverData: Data, totalPages: Int16, filePath: String, collection: MangaCollection? = nil) -> Manga? {
         let managedContext = persistentContainer.viewContext
-        let manga = Manga(context: managedContext, name: name, coverData: coverData, totalPages: totalPages, filePath: filePath)
+        let manga = Manga(context: managedContext, name: name, coverData: coverData, totalPages: totalPages, filePath: filePath, collection: collection)
         do {
             try managedContext.save()
             return manga
@@ -56,7 +56,7 @@ class CoreDataManager {
         }
     }
 
-    func createMangaWith(filePath path: String, name: String? = nil, callback: @escaping (Manga?) -> Void) {
+    func createMangaWith(filePath path: String, name: String? = nil, collection: MangaCollection? = nil, callback: @escaping (Manga?) -> Void) {
         let fileName = path.lastPathComponent
         let mangaName: String
         if let name = name {
@@ -70,7 +70,7 @@ class CoreDataManager {
         }
         reader.readFirstEntry { (data) in
             if let data = data {
-                let manga = self.insertManga(name: mangaName, coverData: data, totalPages: Int16(reader.numberOfPages), filePath: fileName)
+                let manga = self.insertManga(name: mangaName, coverData: data, totalPages: Int16(reader.numberOfPages), filePath: fileName, collection: collection)
                 callback(manga)
             }
         }

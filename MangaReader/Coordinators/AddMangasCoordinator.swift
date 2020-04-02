@@ -23,6 +23,7 @@ class AddMangasCoordinator: NSObject {
     private var uploadServer: GCDWebUploader?
     private var addMangaViewController: AddMangaViewController?
     private var filePath: String?
+    private var collection: MangaCollection?
 
     init(navigation: UINavigationController, delegate: AddMangasCoordinatorDelegate) {
         navigationController = navigation
@@ -108,8 +109,14 @@ extension AddMangasCoordinator: AddMangaViewControllerDelegate {
         delegate?.cancel(self)
     }
 
-    func save(addMangaViewController: AddMangaViewController, name: String, path: String, collection: MangaCollection?) {
-        CoreDataManager.sharedManager.createMangaWith(filePath: path, name: name) { (_) in
+    func save(addMangaViewController: AddMangaViewController, name: String?) {
+        guard let name = name, !name.isEmpty else {
+            return
+        }
+        guard let file = self.filePath else {
+            return
+        }
+        CoreDataManager.sharedManager.createMangaWith(filePath: file, name: name, collection: collection) { (_) in
             DispatchQueue.main.sync {
                 self.navigationController.dismiss(animated: true, completion: nil)
                 self.delegate?.didEnd(self)
@@ -122,7 +129,7 @@ extension AddMangasCoordinator: AddMangaViewControllerDelegate {
     }
 
     func selectCollection(addMangaViewController: AddMangaViewController) {
-
+        presentedNavigationController.pushViewController(SelectCollectionTableViewController(delegate: self, collections: CoreDataManager.sharedManager.fetchAllCollections() ?? []), animated: true)
     }
 }
 
@@ -171,5 +178,22 @@ extension AddMangasCoordinator: UIDocumentPickerDelegate {
         } catch let error {
             print(error.localizedDescription)
         }
+    }
+}
+
+extension AddMangasCoordinator: SelectCollecionTableViewControllerDelegate {
+    func selectCollection(selectCollectionTableViewController: SelectCollectionTableViewController, collection: MangaCollection) {
+        self.collection = collection
+        addMangaViewController?.selectCollectionButton.setTitle(collection.name, for: .normal)
+        addMangaViewController?.selectCollectionButton.setTitleColor(.label, for: .normal)
+        presentedNavigationController.popViewController(animated: true)
+    }
+
+    func addCollection(selectCollectionTableViewController: SelectCollectionTableViewController, name: String) {
+        guard let collection = CoreDataManager.sharedManager.insertCollection(name: name) else { return }
+        self.collection = collection
+        addMangaViewController?.selectCollectionButton.setTitle(collection.name, for: .normal)
+        addMangaViewController?.selectCollectionButton.setTitleColor(.label, for: .normal)
+        presentedNavigationController.popViewController(animated: true)
     }
 }

@@ -8,7 +8,6 @@
 
 import CoreData
 
-
 extension MangaCollection {
 
   @nonobjc public class func createFetchRequest() -> NSFetchRequest<MangaCollection> {

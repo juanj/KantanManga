@@ -38,6 +38,9 @@
 		3296EA5623C24C6700DA28D7 /* AnalyzeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3296EA5523C24C6700DA28D7 /* AnalyzeTextView.swift */; };
 		329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E30E623E9CEE000AD13A3 /* MangaCollection.swift */; };
 		329E30E923E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */; };
+		32F1B9F3243685DC00AE367D /* SelectCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */; };
+		32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */; };
+		32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */; };
 		32FA3C7C24367428001EB0DF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3C7B24367428001EB0DF /* String+Extension.swift */; };
 		32FD735723E0BF0A000C3A2C /* DictionaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FD735523E0BF0A000C3A2C /* DictionaryTableViewCell.swift */; };
 		32FD735823E0BF0A000C3A2C /* DictionaryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32FD735623E0BF0A000C3A2C /* DictionaryTableViewCell.xib */; };
@@ -138,6 +141,9 @@
 		3296EA5523C24C6700DA28D7 /* AnalyzeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeTextView.swift; sourceTree = "<group>"; };
 		329E30E623E9CEE000AD13A3 /* MangaCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollection.swift; sourceTree = "<group>"; };
 		329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MangaCollection+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCollectionTableViewController.swift; sourceTree = "<group>"; };
+		32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCollectionTableViewCell.swift; sourceTree = "<group>"; };
+		32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		32FA3C7B24367428001EB0DF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		32FD735523E0BF0A000C3A2C /* DictionaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryTableViewCell.swift; sourceTree = "<group>"; };
 		32FD735623E0BF0A000C3A2C /* DictionaryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DictionaryTableViewCell.xib; sourceTree = "<group>"; };
@@ -364,6 +370,9 @@
 				32892C0923E39FBC000B1C3E /* AddMangaViewController.xib */,
 				32326F8424354ECC00FCE8E5 /* FileSourceViewController.swift */,
 				32326F8524354ECC00FCE8E5 /* FileSourceViewController.xib */,
+				32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */,
+				32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */,
+				32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -528,6 +537,7 @@
 				3258141F23C5053900C31E02 /* matrix.bin in Resources */,
 				32892C0B23E39FBC000B1C3E /* AddMangaViewController.xib in Resources */,
 				84A831F4221D90CC00CEE1C9 /* LaunchScreen.storyboard in Resources */,
+				32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */,
 				3258142023C5053900C31E02 /* unk.dic in Resources */,
 				0D463D7222CA9B0D0020FD5A /* GoogleService-Info.plist in Resources */,
 				84A831F1221D90CC00CEE1C9 /* Assets.xcassets in Resources */,
@@ -668,6 +678,7 @@
 				32892C0A23E39FBC000B1C3E /* AddMangaViewController.swift in Sources */,
 				84A83219221D923800CEE1C9 /* AppCoordinator.swift in Sources */,
 				843FA7EC221E0BE900B86B52 /* PageViewController.swift in Sources */,
+				32F1B9F3243685DC00AE367D /* SelectCollectionTableViewController.swift in Sources */,
 				8418696D222495FE00C689DC /* Manga.swift in Sources */,
 				32FA3C7C24367428001EB0DF /* String+Extension.swift in Sources */,
 				325DA0B923C8F50700A627BD /* JapaneseDictionary.swift in Sources */,
@@ -684,6 +695,7 @@
 				843FA7E2221DF0C300B86B52 /* WebServerViewController.swift in Sources */,
 				841B795C221F305A00659FA2 /* MangaDataSource.swift in Sources */,
 				329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */,
+				32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */,
 				32326F8624354ECC00FCE8E5 /* FileSourceViewController.swift in Sources */,
 				84A83224221DB10400CEE1C9 /* MangaCollectionViewCell.swift in Sources */,
 				84A83221221D9F7000CEE1C9 /* CoreDataManager.swift in Sources */,

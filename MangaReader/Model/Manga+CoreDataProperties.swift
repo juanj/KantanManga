@@ -23,6 +23,6 @@ extension Manga {
     @NSManaged public var filePath: String?
     @NSManaged public var lastViewedAt: Date?
     @NSManaged public var totalPages: Int16
-    @NSManaged private var collection: MangaCollection?
+    @NSManaged public var mangaCollection: MangaCollection?
 
 }

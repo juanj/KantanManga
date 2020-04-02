@@ -10,7 +10,7 @@ import UIKit
 
 protocol AddMangaViewControllerDelegate: AnyObject {
     func cancel(addMangaViewController: AddMangaViewController)
-    func save(addMangaViewController: AddMangaViewController, name: String, path: String, collection: MangaCollection?)
+    func save(addMangaViewController: AddMangaViewController, name: String?)
     func selectManga(addMangaViewController: AddMangaViewController)
     func selectCollection(addMangaViewController: AddMangaViewController)
 }
@@ -62,16 +62,6 @@ class AddMangaViewController: UIViewController {
     }
 
     @objc func save() {
-        /*guard let name = nameTextField.text, !name.isEmpty else {
-            nameTextField.layer.borderColor = UIColor.red.cgColor
-            nameTextField.layer.borderWidth = 1
-            return
-        }
-        guard let fileName = self.fileName else {
-            mangaImageView.layer.borderWidth = 1
-            mangaImageView.layer.borderColor = UIColor.red.cgColor
-            return
-        }
-        delegate?.save(addMangaViewController: self, name: name, path: fileName, collection: nil)*/
+        delegate?.save(addMangaViewController: self, name: nameTextField.text)
     }
 }

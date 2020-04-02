@@ -14,7 +14,7 @@ import CoreData
 public class Manga: NSManagedObject {
     private(set) public var coverImage: UIImage?
 
-    convenience init(context: NSManagedObjectContext, name: String, coverData: Data, totalPages: Int16, filePath: String, currentPage: Int16 = 0, createdAt: Date = Date(), lastViewedAt: Date? = nil) {
+    internal convenience init(context: NSManagedObjectContext, name: String, coverData: Data, totalPages: Int16, filePath: String, collection: MangaCollection?, currentPage: Int16 = 0, createdAt: Date = Date(), lastViewedAt: Date? = nil) {
         self.init(context: context)
         self.name = name
         self.coverData = coverData
@@ -23,6 +23,7 @@ public class Manga: NSManagedObject {
         self.currentPage = currentPage
         self.createdAt = createdAt
         self.lastViewedAt = lastViewedAt
+        mangaCollection = collection
     }
 
     override public func awakeFromFetch() {
