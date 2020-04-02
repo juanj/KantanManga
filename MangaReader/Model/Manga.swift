@@ -14,7 +14,7 @@ import CoreData
 public class Manga: NSManagedObject {
     private(set) public var coverImage: UIImage?
 
-    internal convenience init(context: NSManagedObjectContext, name: String, coverData: Data, totalPages: Int16, filePath: String, collection: MangaCollection?, currentPage: Int16 = 0, createdAt: Date = Date(), lastViewedAt: Date? = nil) {
+    internal convenience init(context: NSManagedObjectContext, name: String, coverData: Data, totalPages: Int16, filePath: String, collection: MangaCollection? = nil, currentPage: Int16 = 0, createdAt: Date = Date(), lastViewedAt: Date? = nil) {
         self.init(context: context)
         self.name = name
         self.coverData = coverData

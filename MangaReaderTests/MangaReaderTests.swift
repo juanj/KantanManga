@@ -259,4 +259,19 @@ class CoreDataManagerTests: XCTestCase {
         XCTAssertEqual(coreDataManager.searchCollectionsWith(name: "DOGS")?.first, dogCollection)
 
     }
+
+    func testMangaIsAddedToCollection() {
+        let collection = coreDataManager.insertCollection(name: "A")
+        let manga = coreDataManager.insertManga(name: "Test manga", coverData: Data(), totalPages: Int16(1), filePath: "file.cbz", collection: collection)!
+        XCTAssertEqual(manga.mangaCollection, collection)
+    }
+
+    func testGetMangasByCollection() {
+        let collection = coreDataManager.insertCollection(name: "A")
+        let manga1 = coreDataManager.insertManga(name: "Test manga", coverData: Data(), totalPages: Int16(1), filePath: "file.cbz", collection: collection)!
+        let manga2 = coreDataManager.insertManga(name: "New manga", coverData: Data(), totalPages: Int16(1), filePath: "file.cbz", collection: collection)!
+
+        let aCollection = coreDataManager.searchCollectionsWith(name: "A")!.first!
+        XCTAssertEqual(aCollection.mangas, [manga1, manga2])
+    }
 }
