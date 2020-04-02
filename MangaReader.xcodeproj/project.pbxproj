@@ -267,6 +267,45 @@
 			path = "Custom Controls";
 			sourceTree = "<group>";
 		};
+		32F1B9F824369CAA00AE367D /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				32F1B9F924369CC400AE367D /* Add Manga */,
+				84A8321B221D951500CEE1C9 /* LibraryViewController.swift */,
+				84A8321C221D951500CEE1C9 /* LibraryViewController.xib */,
+				84A83222221DB10400CEE1C9 /* MangaCollectionViewCell.swift */,
+				84A83223221DB10400CEE1C9 /* MangaCollectionViewCell.xib */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		32F1B9F924369CC400AE367D /* Add Manga */ = {
+			isa = PBXGroup;
+			children = (
+				843FA7E0221DF0C300B86B52 /* WebServerViewController.swift */,
+				843FA7E1221DF0C300B86B52 /* WebServerViewController.xib */,
+				32892C0823E39FBC000B1C3E /* AddMangaViewController.swift */,
+				32892C0923E39FBC000B1C3E /* AddMangaViewController.xib */,
+				32326F8424354ECC00FCE8E5 /* FileSourceViewController.swift */,
+				32326F8524354ECC00FCE8E5 /* FileSourceViewController.xib */,
+				32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */,
+				32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */,
+				32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */,
+			);
+			path = "Add Manga";
+			sourceTree = "<group>";
+		};
+		32F1B9FA24369CEB00AE367D /* Manga Viewer */ = {
+			isa = PBXGroup;
+			children = (
+				843FA7EA221E0BE900B86B52 /* PageViewController.swift */,
+				843FA7EB221E0BE900B86B52 /* PageViewController.xib */,
+				328DFB08238D96300095CBAB /* MangaViewController.swift */,
+				328DFB09238D96300095CBAB /* MangaViewController.xib */,
+			);
+			path = "Manga Viewer";
+			sourceTree = "<group>";
+		};
 		7EAAD1907EAA228FF69A9323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,23 +395,8 @@
 		84A8321A221D94D400CEE1C9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				84A8321B221D951500CEE1C9 /* LibraryViewController.swift */,
-				84A8321C221D951500CEE1C9 /* LibraryViewController.xib */,
-				84A83222221DB10400CEE1C9 /* MangaCollectionViewCell.swift */,
-				84A83223221DB10400CEE1C9 /* MangaCollectionViewCell.xib */,
-				843FA7E0221DF0C300B86B52 /* WebServerViewController.swift */,
-				843FA7E1221DF0C300B86B52 /* WebServerViewController.xib */,
-				843FA7EA221E0BE900B86B52 /* PageViewController.swift */,
-				843FA7EB221E0BE900B86B52 /* PageViewController.xib */,
-				328DFB08238D96300095CBAB /* MangaViewController.swift */,
-				328DFB09238D96300095CBAB /* MangaViewController.xib */,
-				32892C0823E39FBC000B1C3E /* AddMangaViewController.swift */,
-				32892C0923E39FBC000B1C3E /* AddMangaViewController.xib */,
-				32326F8424354ECC00FCE8E5 /* FileSourceViewController.swift */,
-				32326F8524354ECC00FCE8E5 /* FileSourceViewController.xib */,
-				32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */,
-				32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */,
-				32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */,
+				32F1B9FA24369CEB00AE367D /* Manga Viewer */,
+				32F1B9F824369CAA00AE367D /* Library */,
 			);
 			path = Views;
 			sourceTree = "<group>";
