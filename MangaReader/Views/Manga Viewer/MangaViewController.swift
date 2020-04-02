@@ -58,6 +58,8 @@ class MangaViewController: UIViewController {
         configureSelectionView()
         configureSentenceView()
         configureKeyboard()
+
+        startAtFullScreen()
     }
 
     private func configureSelectionView() {
@@ -75,6 +77,7 @@ class MangaViewController: UIViewController {
     }
 
     private func configureNavBar() {
+        title = manga.name
         let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(back))
         navigationItem.leftBarButtonItem = backButton
 
@@ -176,6 +179,14 @@ class MangaViewController: UIViewController {
                 self.view.layoutIfNeeded()
             }
         }
+    }
+
+    func startAtFullScreen() {
+        fullScreen = true
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        setNeedsStatusBarAppearanceUpdate()
+        sentenceViewBottomConstraint.constant = 100
+        self.view.layoutIfNeeded()
     }
 
     func setSentence(sentence: String) {

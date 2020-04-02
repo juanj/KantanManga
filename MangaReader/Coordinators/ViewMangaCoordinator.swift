@@ -17,13 +17,15 @@ class ViewMangaCoordinator: NSObject {
     private let navigationController: UINavigationController!
     private weak var delegate: ViewMangaCoordinatorDelegate?
     private let manga: Manga
+    private let originFrame: CGRect
 
     private var mangaDataSource: MangaDataSource!
 
-    init(navigation: UINavigationController, manga: Manga, delegate: ViewMangaCoordinatorDelegate) {
+    init(navigation: UINavigationController, manga: Manga, delegate: ViewMangaCoordinatorDelegate, originFrame: CGRect) {
         navigationController = navigation
         self.manga = manga
         self.delegate = delegate
+        self.originFrame = originFrame
         mangaDataSource = MangaDataSource(manga: manga)
     }
 
@@ -32,7 +34,10 @@ class ViewMangaCoordinator: NSObject {
             delegate?.didEnd(viewMangaCoordinator: self)
             return
         }
-        navigationController.pushViewController(MangaViewController(manga: manga, dataSource: mangaDataSource, delegate: self), animated: true)
+        let mangaView = MangaViewController(manga: manga, dataSource: mangaDataSource, delegate: self)
+        navigationController.delegate = self
+        navigationController.navigationBar.isHidden = true
+        navigationController.pushViewController(mangaView, animated: true)
     }
 }
 
@@ -71,5 +76,15 @@ extension ViewMangaCoordinator: MangaViewControllerDelegate {
                 mangaViewController.setSentence(sentence: text)
             }
         }
+    }
+}
+
+extension ViewMangaCoordinator: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if fromVC is LibraryViewController {
+            let image = manga.coverImage ?? UIImage()
+            return OpenMangaAnimationController(originFrame: originFrame, mangaCover: image)
+        }
+        return nil
     }
 }

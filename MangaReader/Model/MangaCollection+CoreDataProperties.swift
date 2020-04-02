@@ -2,7 +2,7 @@
 //  MangaCollection+CoreDataProperties.swift
 //  MangaReader
 //
-//  Created by DevBakura on 4/02/20.
+//  Created by Juan on 4/02/20.
 //  Copyright © 2020 Bakura. All rights reserved.
 //
 

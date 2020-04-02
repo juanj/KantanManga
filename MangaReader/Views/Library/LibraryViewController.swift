@@ -10,7 +10,7 @@ import UIKit
 
 protocol LibraryViewControllerDelegate: AnyObject {
     func didSelectAdd(_ libraryViewController: LibraryViewController, button: UIBarButtonItem)
-    func didSelectManga(_ libraryViewController: LibraryViewController, manga: Manga)
+    func didSelectManga(_ libraryViewController: LibraryViewController, manga: Manga, cellFrame: CGRect)
     func didSelectDeleteManga(_ libraryViewController: LibraryViewController, manga: Manga)
 }
 
@@ -96,8 +96,10 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? MangaCollectionViewCell else { return }
+        let frame = cell.convert(cell.coverImageView.frame, to: view)
         let manga = mangas[indexPath.row]
-        delegate?.didSelectManga(self, manga: manga)
+        delegate?.didSelectManga(self, manga: manga, cellFrame: frame)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -2,7 +2,7 @@
 //  JapaneseDictionary.swift
 //  MangaReader
 //
-//  Created by DevBakura on 10/01/20.
+//  Created by Juan on 10/01/20.
 //  Copyright © 2020 Bakura. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  SelectCollectionTableViewController.swift
 //  MangaReader
 //
-//  Created by DevBakura on 2/04/20.
+//  Created by Juan on 2/04/20.
 //  Copyright © 2020 Bakura. All rights reserved.
 //
 

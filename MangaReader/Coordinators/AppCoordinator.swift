@@ -41,8 +41,8 @@ extension AppCoordinator: LibraryViewControllerDelegate {
         libraryViewController.collectionView.reloadData()
     }
 
-    func didSelectManga(_ libraryViewController: LibraryViewController, manga: Manga) {
-        let viewMangaCoordinator = ViewMangaCoordinator(navigation: navigationController, manga: manga, delegate: self)
+    func didSelectManga(_ libraryViewController: LibraryViewController, manga: Manga, cellFrame: CGRect) {
+        let viewMangaCoordinator = ViewMangaCoordinator(navigation: navigationController, manga: manga, delegate: self, originFrame: cellFrame)
         childCoordinators.append(viewMangaCoordinator)
         viewMangaCoordinator.start()
     }
