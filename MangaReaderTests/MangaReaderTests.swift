@@ -249,7 +249,7 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testCollectionIsFoundByPartOfName() {
-        let collection = coreDataManager.insertCollection(name: "This is a collection")!
+        let collection = coreDataManager.insertCollection(name: "This is a collection. No Cats")!
         let catsCollection = coreDataManager.insertCollection(name: "Cats. Lots of cats")!
         let dogCollection = coreDataManager.insertCollection(name: "Dogs, lots of dogs")!
 
