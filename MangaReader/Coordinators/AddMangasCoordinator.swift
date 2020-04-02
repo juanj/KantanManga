@@ -28,10 +28,12 @@ class AddMangasCoordinator: NSObject {
         self.delegate = delegate
     }
 
-    func start() {
+    func start(button: UIBarButtonItem) {
         let addMangaView = AddMangaViewController(delegate: self)
         presentedNavigationController.pushViewController(addMangaView, animated: true)
-        presentedNavigationController.modalPresentationStyle = .formSheet
+        presentedNavigationController.modalPresentationStyle = .popover
+        presentedNavigationController.popoverPresentationController?.barButtonItem = button
+        presentedNavigationController.popoverPresentationController?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         presentedNavigationController.presentationController?.delegate = self
         navigationController.present(presentedNavigationController, animated: true, completion: nil)
 
@@ -89,6 +91,22 @@ extension AddMangasCoordinator: AddMangaViewControllerDelegate {
     }
 
     func selectManga(addMangaViewController: AddMangaViewController) {
+        presentedNavigationController.pushViewController(FileSourceViewController(delegate: self), animated: true)
+    }
+
+    func selectCollection(addMangaViewController: AddMangaViewController) {
+
+    }
+}
+
+extension AddMangasCoordinator: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        delegate?.cancel(self)
+    }
+}
+
+extension AddMangasCoordinator: FileSourceViewControllerDelegate {
+    func openWebServer(fileSourceViewController: FileSourceViewController) {
         initWebServer()
         let webServerViewcontroller = WebServerViewController()
         webServerViewcontroller.delegate = self
@@ -97,10 +115,11 @@ extension AddMangasCoordinator: AddMangaViewControllerDelegate {
         }
         presentedNavigationController.pushViewController(webServerViewcontroller, animated: true)
     }
-}
 
-extension AddMangasCoordinator: UIAdaptivePresentationControllerDelegate {
-    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        delegate?.cancel(self)
+    func openLocalFiles(fileSourceViewController: FileSourceViewController) {
+        let filesView = UIDocumentPickerViewController(documentTypes: ["public.zip-archive"], in: .import)
+        filesView.title = "Local files"
+        presentedNavigationController.preferredContentSize = CGSize(width: 500, height: 500)
+        presentedNavigationController.pushViewController(filesView, animated: true)
     }
 }

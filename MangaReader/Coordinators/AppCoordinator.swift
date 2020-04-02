@@ -47,10 +47,10 @@ extension AppCoordinator: LibraryViewControllerDelegate {
         viewMangaCoordinator.start()
     }
 
-    func didSelectAdd(_ libraryViewController: LibraryViewController) {
+    func didSelectAdd(_ libraryViewController: LibraryViewController, button: UIBarButtonItem) {
         let addMangasCoordinator = AddMangasCoordinator(navigation: navigationController, delegate: self)
         childCoordinators.append(addMangasCoordinator)
-        addMangasCoordinator.start()
+        addMangasCoordinator.start(button: button)
     }
 }
 

@@ -20,11 +20,16 @@ class WebServerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        openLabel.text = "Open your browser at \(serverUrl)"
+        openLabel.text = "Open your browser\nat\n \(serverUrl)"
         configureNavigationBar()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.preferredContentSize = CGSize(width: 400, height: 175)
+    }
+
     func configureNavigationBar() {
+        title = "Web Server"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(back))
     }
 

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol LibraryViewControllerDelegate: AnyObject {
-    func didSelectAdd(_ libraryViewController: LibraryViewController)
+    func didSelectAdd(_ libraryViewController: LibraryViewController, button: UIBarButtonItem)
     func didSelectManga(_ libraryViewController: LibraryViewController, manga: Manga)
     func didSelectDeleteManga(_ libraryViewController: LibraryViewController, manga: Manga)
 }
@@ -57,7 +57,7 @@ class LibraryViewController: UIViewController {
     }
 
     func configureNavigationBar() {
-        let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .plain, target: self, action: #selector(add))
+        let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .plain, target: self, action: #selector(add(button:)))
         navigationItem.leftBarButtonItem = addButton
     }
 
@@ -72,8 +72,8 @@ class LibraryViewController: UIViewController {
         }
     }
 
-    @objc func add() {
-        delegate?.didSelectAdd(self)
+    @objc func add(button: UIBarButtonItem) {
+        delegate?.didSelectAdd(self, button: button)
     }
 }
 

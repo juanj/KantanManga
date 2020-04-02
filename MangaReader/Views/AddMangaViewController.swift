@@ -12,14 +12,10 @@ protocol AddMangaViewControllerDelegate: AnyObject {
     func cancel(addMangaViewController: AddMangaViewController)
     func save(addMangaViewController: AddMangaViewController, name: String, path: String, collection: MangaCollection?)
     func selectManga(addMangaViewController: AddMangaViewController)
+    func selectCollection(addMangaViewController: AddMangaViewController)
 }
 
 class AddMangaViewController: UIViewController {
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var collectionTextField: AutoCompleteTextField!
-    @IBOutlet weak var mangaImageView: UIImageView!
-
     private weak var delegate: AddMangaViewControllerDelegate?
     private var fileName: String?
 
@@ -34,17 +30,13 @@ class AddMangaViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureNavBar()
-        configureMangaImageView()
-        nameTextField.addTarget(self, action: #selector(resetTextField), for: .editingChanged)
-        collectionTextField.autoCompleteDelegate = self
+        view.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let resultSize = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        self.preferredContentSize = resultSize
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.preferredContentSize = CGSize(width: 400, height: 188)
     }
 
     func setFile(path: String) {
@@ -57,28 +49,31 @@ class AddMangaViewController: UIViewController {
         reader.readFirstEntry { (data) in
             guard let data = data else { return }
             DispatchQueue.main.async {
-                self.mangaImageView.image = UIImage(data: data)
+                //self.mangaImageView.image = UIImage(data: data)
             }
         }
     }
 
     private func configureNavBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
-    }
-
-    private func configureMangaImageView() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(selectManga))
-        mangaImageView.isUserInteractionEnabled = true
-        mangaImageView.addGestureRecognizer(tap)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(save))
+        title = "Add manga"
     }
 
     @objc func cancel() {
         delegate?.cancel(addMangaViewController: self)
     }
 
+    @IBAction func selectFile() {
+        delegate?.selectManga(addMangaViewController: self)
+    }
+
+    @IBAction func selectCollection() {
+        delegate?.selectCollection(addMangaViewController: self)
+    }
+
     @objc func save() {
-        guard let name = nameTextField.text, !name.isEmpty else {
+        /*guard let name = nameTextField.text, !name.isEmpty else {
             nameTextField.layer.borderColor = UIColor.red.cgColor
             nameTextField.layer.borderWidth = 1
             return
@@ -88,35 +83,6 @@ class AddMangaViewController: UIViewController {
             mangaImageView.layer.borderColor = UIColor.red.cgColor
             return
         }
-        delegate?.save(addMangaViewController: self, name: name, path: fileName, collection: nil)
-    }
-
-    @objc func selectManga() {
-        mangaImageView.layer.borderWidth = 0
-        delegate?.selectManga(addMangaViewController: self)
-    }
-
-    @objc func resetTextField() {
-        nameTextField.layer.borderWidth = 0
-    }
-}
-
-extension AddMangaViewController: AutoCompleteTextFieldDelegate {
-    func autoCompleteResultForText(autoCompleteTextField: AutoCompleteTextField, text: String) -> String? {
-        guard let results = CoreDataManager.sharedManager.searchCollectionsStartWith(name: text) else {
-            return nil
-        }
-        for result in results {
-            if result.name == text {
-                continue
-            } else {
-                return result.name
-            }
-        }
-        return nil
-    }
-
-    func didSelectText(autoCompleteTextField: AutoCompleteTextField, text: String) {
-        
+        delegate?.save(addMangaViewController: self, name: name, path: fileName, collection: nil)*/
     }
 }

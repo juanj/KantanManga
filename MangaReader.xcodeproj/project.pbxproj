@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0D463D7222CA9B0D0020FD5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D463D7122CA9B0C0020FD5A /* GoogleService-Info.plist */; };
-		3202824323E622E000CC3B96 /* AutoCompleteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202824223E622E000CC3B96 /* AutoCompleteTextField.swift */; };
 		320F277323C2046900D9930F /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277123C2046900D9930F /* Token.swift */; };
 		320F277423C2046900D9930F /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277223C2046900D9930F /* Tokenizer.swift */; };
 		323205AE238DBCE4009E8362 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323205AD238DBCE4009E8362 /* SelectionView.swift */; };
+		32326F8624354ECC00FCE8E5 /* FileSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32326F8424354ECC00FCE8E5 /* FileSourceViewController.swift */; };
+		32326F8724354ECC00FCE8E5 /* FileSourceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32326F8524354ECC00FCE8E5 /* FileSourceViewController.xib */; };
+		32326F892435613E00FCE8E5 /* cbz.svg in Resources */ = {isa = PBXBuildFile; fileRef = 32326F882435613E00FCE8E5 /* cbz.svg */; };
+		32326F8D243566FD00FCE8E5 /* cbz.png in Resources */ = {isa = PBXBuildFile; fileRef = 32326F8C243566FD00FCE8E5 /* cbz.png */; };
 		323CD90A23CB7107007FFC58 /* jamdict.db in Resources */ = {isa = PBXBuildFile; fileRef = 323CD90923CB7107007FFC58 /* jamdict.db */; };
 		325813E423C5049A00C31E02 /* mecab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325813E323C5049000C31E02 /* mecab.framework */; };
 		325813E523C5049A00C31E02 /* mecab.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 325813E323C5049000C31E02 /* mecab.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -105,10 +108,13 @@
 		06DADBF3922C1A6DDC6C798A /* Pods-MangaReaderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaReaderUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MangaReaderUITests/Pods-MangaReaderUITests.release.xcconfig"; sourceTree = "<group>"; };
 		0D463D7122CA9B0C0020FD5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0FD908038762DEE3A978F955 /* Pods_MangaReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangaReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3202824223E622E000CC3B96 /* AutoCompleteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteTextField.swift; sourceTree = "<group>"; };
 		320F277123C2046900D9930F /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		320F277223C2046900D9930F /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
 		323205AD238DBCE4009E8362 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
+		32326F8424354ECC00FCE8E5 /* FileSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSourceViewController.swift; sourceTree = "<group>"; };
+		32326F8524354ECC00FCE8E5 /* FileSourceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileSourceViewController.xib; sourceTree = "<group>"; };
+		32326F882435613E00FCE8E5 /* cbz.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cbz.svg; sourceTree = "<group>"; };
+		32326F8C243566FD00FCE8E5 /* cbz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cbz.png; sourceTree = "<group>"; };
 		323CD90923CB7107007FFC58 /* jamdict.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = jamdict.db; sourceTree = "<group>"; };
 		325813DE23C5049000C31E02 /* mecab.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mecab.xcodeproj; path = "mecab-ios/mecab.xcodeproj"; sourceTree = "<group>"; };
 		3258141023C5051A00C31E02 /* mecabrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mecabrc; sourceTree = "<group>"; };
@@ -218,6 +224,7 @@
 		325813FC23C5050700C31E02 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				32326F882435613E00FCE8E5 /* cbz.svg */,
 				323CD90923CB7107007FFC58 /* jamdict.db */,
 				3258141223C5053900C31E02 /* ipadic */,
 				3258141023C5051A00C31E02 /* mecabrc */,
@@ -248,7 +255,6 @@
 				3296EA5523C24C6700DA28D7 /* AnalyzeTextView.swift */,
 				32FD735523E0BF0A000C3A2C /* DictionaryTableViewCell.swift */,
 				32FD735623E0BF0A000C3A2C /* DictionaryTableViewCell.xib */,
-				3202824223E622E000CC3B96 /* AutoCompleteTextField.swift */,
 			);
 			path = "Custom Controls";
 			sourceTree = "<group>";
@@ -280,6 +286,7 @@
 		84A831DA221D90CA00CEE1C9 = {
 			isa = PBXGroup;
 			children = (
+				32326F8C243566FD00FCE8E5 /* cbz.png */,
 				325813FC23C5050700C31E02 /* Resources */,
 				325813DE23C5049000C31E02 /* mecab.xcodeproj */,
 				84A831E5221D90CA00CEE1C9 /* MangaReader */,
@@ -352,6 +359,8 @@
 				328DFB09238D96300095CBAB /* MangaViewController.xib */,
 				32892C0823E39FBC000B1C3E /* AddMangaViewController.swift */,
 				32892C0923E39FBC000B1C3E /* AddMangaViewController.xib */,
+				32326F8424354ECC00FCE8E5 /* FileSourceViewController.swift */,
+				32326F8524354ECC00FCE8E5 /* FileSourceViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -511,6 +520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3258141123C5051A00C31E02 /* mecabrc in Resources */,
+				32326F8724354ECC00FCE8E5 /* FileSourceViewController.xib in Resources */,
 				3258142323C5053900C31E02 /* right-id.def in Resources */,
 				3258141F23C5053900C31E02 /* matrix.bin in Resources */,
 				32892C0B23E39FBC000B1C3E /* AddMangaViewController.xib in Resources */,
@@ -521,6 +531,7 @@
 				3258142423C5053900C31E02 /* char.bin in Resources */,
 				3258142123C5053900C31E02 /* sys.dic in Resources */,
 				3258141C23C5053900C31E02 /* rewrite.def in Resources */,
+				32326F8D243566FD00FCE8E5 /* cbz.png in Resources */,
 				328DFB0B238D96300095CBAB /* MangaViewController.xib in Resources */,
 				84A8321E221D951500CEE1C9 /* LibraryViewController.xib in Resources */,
 				3258142223C5053900C31E02 /* dicrc in Resources */,
@@ -529,6 +540,7 @@
 				843FA7ED221E0BE900B86B52 /* PageViewController.xib in Resources */,
 				3258141D23C5053900C31E02 /* left-id.def in Resources */,
 				843FA7E3221DF0C300B86B52 /* WebServerViewController.xib in Resources */,
+				32326F892435613E00FCE8E5 /* cbz.svg in Resources */,
 				84A83225221DB10400CEE1C9 /* MangaCollectionViewCell.xib in Resources */,
 				323CD90A23CB7107007FFC58 /* jamdict.db in Resources */,
 			);
@@ -650,7 +662,6 @@
 				320F277423C2046900D9930F /* Tokenizer.swift in Sources */,
 				329E30E923E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift in Sources */,
 				3296EA5623C24C6700DA28D7 /* AnalyzeTextView.swift in Sources */,
-				3202824323E622E000CC3B96 /* AutoCompleteTextField.swift in Sources */,
 				32892C0A23E39FBC000B1C3E /* AddMangaViewController.swift in Sources */,
 				84A83219221D923800CEE1C9 /* AppCoordinator.swift in Sources */,
 				843FA7EC221E0BE900B86B52 /* PageViewController.swift in Sources */,
@@ -669,6 +680,7 @@
 				843FA7E2221DF0C300B86B52 /* WebServerViewController.swift in Sources */,
 				841B795C221F305A00659FA2 /* MangaDataSource.swift in Sources */,
 				329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */,
+				32326F8624354ECC00FCE8E5 /* FileSourceViewController.swift in Sources */,
 				84A83224221DB10400CEE1C9 /* MangaCollectionViewCell.swift in Sources */,
 				84A83221221D9F7000CEE1C9 /* CoreDataManager.swift in Sources */,
 				84A831EF221D90CA00CEE1C9 /* MangaReader.xcdatamodeld in Sources */,
