@@ -57,7 +57,7 @@ class CoreDataManager {
     }
 
     func createMangaWith(filePath path: String, name: String? = nil, callback: @escaping (Manga?) -> Void) {
-        let fileName = (path as NSString).lastPathComponent
+        let fileName = path.lastPathComponent
         let mangaName: String
         if let name = name {
             mangaName = name
