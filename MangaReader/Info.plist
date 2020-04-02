@@ -2,12 +2,45 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>viewcontrollerbased</key>
-	<string></string>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<true/>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.zip-archive</string>
+			</array>
+			<key>UTTypeIdentifier</key>
+			<string>com.juanj.cbz</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>cbz</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>CFBundleTypeIconFiles</key>
+			<array>
+				<string>cbz</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Manga CBZ</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.juanj.cbz</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+		</dict>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -43,5 +76,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+	<key>viewcontrollerbased</key>
+	<string></string>
 </dict>
 </plist>

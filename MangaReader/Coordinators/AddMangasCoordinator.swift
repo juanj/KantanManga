@@ -22,6 +22,7 @@ class AddMangasCoordinator: NSObject {
 
     private var uploadServer: GCDWebUploader?
     private var addMangaViewController: AddMangaViewController?
+    private var filePath: String?
 
     init(navigation: UINavigationController, delegate: AddMangasCoordinatorDelegate) {
         navigationController = navigation
@@ -49,15 +50,41 @@ class AddMangasCoordinator: NSObject {
         uploadServer?.delegate = self
         uploadServer?.start()
     }
+
+    private func loadFile() {
+        guard let filePath = self.filePath else { return }
+        guard let addMangaViewController = self.addMangaViewController else { return }
+        guard let reader = try? CBZReader(fileName: filePath) else {
+            print("Error creating CBZReader")
+            return
+        }
+        reader.readFirstEntry { (data) in
+            guard let data = data else { return }
+            DispatchQueue.main.async {
+                addMangaViewController.coverImageView.image = UIImage(data: data)
+                addMangaViewController.selectFileButton.setTitle(filePath, for: .normal)
+                addMangaViewController.selectFileButton.setTitleColor(.label, for: .normal)
+                if addMangaViewController.nameTextField.text == nil || addMangaViewController.nameTextField.text!.isEmpty {
+                    let name: String = {
+                        var splited = filePath.split(separator: ".")
+                        splited.removeLast()
+                        return splited.joined()
+                    }()
+                    addMangaViewController.nameTextField.text = name
+                }
+            }
+        }
+        presentedNavigationController.popToRootViewController(animated: true)
+    }
 }
 
 extension AddMangasCoordinator: GCDWebUploaderDelegate {
     func webUploader(_ uploader: GCDWebUploader, didUploadFileAtPath path: String) {
         let soundID: SystemSoundID = 1307
         AudioServicesPlaySystemSound(soundID)
-        addMangaViewController?.setFile(path: path)
-        presentedNavigationController.popViewController(animated: true)
+        filePath = (path as NSString).lastPathComponent
         uploadServer?.stop()
+        loadFile()
     }
 
     func webUploader(_ uploader: GCDWebUploader, didDeleteItemAtPath path: String) {
@@ -118,8 +145,31 @@ extension AddMangasCoordinator: FileSourceViewControllerDelegate {
 
     func openLocalFiles(fileSourceViewController: FileSourceViewController) {
         let filesView = UIDocumentPickerViewController(documentTypes: ["public.zip-archive"], in: .import)
+        filesView.allowsMultipleSelection = false
         filesView.title = "Local files"
-        presentedNavigationController.preferredContentSize = CGSize(width: 500, height: 500)
-        presentedNavigationController.pushViewController(filesView, animated: true)
+        filesView.delegate = self
+        presentedNavigationController.present(filesView, animated: true, completion: nil)
+    }
+}
+
+extension AddMangasCoordinator: UIDocumentPickerDelegate {
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        guard let fileUrl = urls.first,
+              let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        let fileName = fileUrl.lastPathComponent
+        var newFileUrl = documentsUrl.appendingPathComponent(fileName)
+
+        if FileManager.default.fileExists(atPath: newFileUrl.path) {
+            let timeStamp = Date().timeIntervalSince1970
+            newFileUrl = documentsUrl.appendingPathComponent("\(Int(timeStamp))-\(fileName)")
+        }
+
+        do {
+            try FileManager.default.moveItem(at: fileUrl, to: newFileUrl)
+            filePath = fileName
+            loadFile()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
 }

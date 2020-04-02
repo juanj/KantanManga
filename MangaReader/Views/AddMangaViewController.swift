@@ -16,6 +16,10 @@ protocol AddMangaViewControllerDelegate: AnyObject {
 }
 
 class AddMangaViewController: UIViewController {
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var coverImageView: UIImageView!
+    @IBOutlet weak var selectFileButton: UIButton!
+    @IBOutlet weak var selectCollectionButton: UIButton!
     private weak var delegate: AddMangaViewControllerDelegate?
     private var fileName: String?
 
@@ -37,21 +41,6 @@ class AddMangaViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.preferredContentSize = CGSize(width: 400, height: 188)
-    }
-
-    func setFile(path: String) {
-        let fileName = (path as NSString).lastPathComponent
-        guard let reader = try? CBZReader(fileName: fileName) else {
-            print("Error creating CBZReader")
-            return
-        }
-        self.fileName = fileName
-        reader.readFirstEntry { (data) in
-            guard let data = data else { return }
-            DispatchQueue.main.async {
-                //self.mangaImageView.image = UIImage(data: data)
-            }
-        }
     }
 
     private func configureNavBar() {

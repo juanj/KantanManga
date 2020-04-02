@@ -9,6 +9,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddMangaViewController" customModule="MangaReader" customModuleProvider="target">
             <connections>
+                <outlet property="coverImageView" destination="8bi-XZ-PVG" id="eoc-TY-TfO"/>
+                <outlet property="nameTextField" destination="NA9-gW-4jy" id="pD2-OJ-865"/>
+                <outlet property="selectCollectionButton" destination="vRA-DM-ZFF" id="BHt-dc-2Tm"/>
+                <outlet property="selectFileButton" destination="96Y-jv-qWP" id="XLB-ad-W66"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
