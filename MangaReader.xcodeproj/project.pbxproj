@@ -16,6 +16,8 @@
 		32326F892435613E00FCE8E5 /* cbz.svg in Resources */ = {isa = PBXBuildFile; fileRef = 32326F882435613E00FCE8E5 /* cbz.svg */; };
 		32326F8D243566FD00FCE8E5 /* cbz.png in Resources */ = {isa = PBXBuildFile; fileRef = 32326F8C243566FD00FCE8E5 /* cbz.png */; };
 		323CD90A23CB7107007FFC58 /* jamdict.db in Resources */ = {isa = PBXBuildFile; fileRef = 323CD90923CB7107007FFC58 /* jamdict.db */; };
+		325199B42479D96400DA6908 /* ImageOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325199B32479D96400DA6908 /* ImageOCR.swift */; };
+		325199B72479D9E000DA6908 /* GoogleVisionOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325199B62479D9E000DA6908 /* GoogleVisionOCR.swift */; };
 		325813E423C5049A00C31E02 /* mecab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325813E323C5049000C31E02 /* mecab.framework */; };
 		325813E523C5049A00C31E02 /* mecab.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 325813E323C5049000C31E02 /* mecab.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3258141123C5051A00C31E02 /* mecabrc in Resources */ = {isa = PBXBuildFile; fileRef = 3258141023C5051A00C31E02 /* mecabrc */; };
@@ -121,6 +123,8 @@
 		32326F882435613E00FCE8E5 /* cbz.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cbz.svg; sourceTree = "<group>"; };
 		32326F8C243566FD00FCE8E5 /* cbz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cbz.png; sourceTree = "<group>"; };
 		323CD90923CB7107007FFC58 /* jamdict.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = jamdict.db; sourceTree = "<group>"; };
+		325199B32479D96400DA6908 /* ImageOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOCR.swift; sourceTree = "<group>"; };
+		325199B62479D9E000DA6908 /* GoogleVisionOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleVisionOCR.swift; sourceTree = "<group>"; };
 		325813DE23C5049000C31E02 /* mecab.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mecab.xcodeproj; path = "mecab-ios/mecab.xcodeproj"; sourceTree = "<group>"; };
 		3258141023C5051A00C31E02 /* mecabrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mecabrc; sourceTree = "<group>"; };
 		3258141323C5053900C31E02 /* rewrite.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rewrite.def; sourceTree = "<group>"; };
@@ -330,6 +334,8 @@
 				3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */,
 				325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */,
 				32FA3C7B24367428001EB0DF /* String+Extension.swift */,
+				325199B32479D96400DA6908 /* ImageOCR.swift */,
+				325199B62479D9E000DA6908 /* GoogleVisionOCR.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -714,6 +720,7 @@
 				843FA7E9221DFE9E00B86B52 /* CBZReader.swift in Sources */,
 				84186960222474EC00C689DC /* LibraryCollectionViewLayout.swift in Sources */,
 				8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */,
+				325199B42479D96400DA6908 /* ImageOCR.swift in Sources */,
 				328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */,
 				320F277323C2046900D9930F /* Token.swift in Sources */,
 				84A831E7221D90CA00CEE1C9 /* AppDelegate.swift in Sources */,
@@ -725,6 +732,7 @@
 				329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */,
 				32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */,
 				32326F8624354ECC00FCE8E5 /* FileSourceViewController.swift in Sources */,
+				325199B72479D9E000DA6908 /* GoogleVisionOCR.swift in Sources */,
 				84A83224221DB10400CEE1C9 /* MangaCollectionViewCell.swift in Sources */,
 				84A83221221D9F7000CEE1C9 /* CoreDataManager.swift in Sources */,
 				84A831EF221D90CA00CEE1C9 /* MangaReader.xcdatamodeld in Sources */,

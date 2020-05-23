@@ -20,6 +20,7 @@ class ViewMangaCoordinator: NSObject {
     private let originFrame: CGRect
 
     private var mangaDataSource: MangaDataSource!
+    private var ocr: ImageOCR = GoogleVistionOCR()
 
     init(navigation: UINavigationController, manga: Manga, delegate: ViewMangaCoordinatorDelegate, originFrame: CGRect) {
         navigationController = navigation
@@ -53,27 +54,19 @@ extension ViewMangaCoordinator: MangaViewControllerDelegate {
     }
 
     func didSelectSectionOfImage(mangaViewController: MangaViewController, image: UIImage) {
-        let vision = Vision.vision()
-        let options = VisionCloudTextRecognizerOptions()
-        options.languageHints = ["ja"]
-        let textRecognizer = vision.cloudTextRecognizer(options: options)
-        let visionImage = VisionImage(image: image)
-
         mangaViewController.setSentence(sentence: "")
         mangaViewController.ocrStartLoading()
-
-        textRecognizer.process(visionImage) { result, error in
+        ocr.recognize(image: image) { (result) in
             DispatchQueue.main.async {
                 mangaViewController.ocrEndLoading()
             }
-            if let error = error {
+            switch result {
+            case let .success(text):
+                DispatchQueue.main.async {
+                    mangaViewController.setSentence(sentence: text)
+                }
+            case let .failure(error):
                 print(error.localizedDescription)
-            }
-            guard let result = result else { return }
-
-            let text = result.text.replacingOccurrences(of: "\n", with: " ")
-            DispatchQueue.main.async {
-                mangaViewController.setSentence(sentence: text)
             }
         }
     }
