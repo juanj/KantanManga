@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class OpenMangaAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
     private let originFrame: CGRect
     private let mangaCover: UIImage
@@ -19,7 +18,7 @@ class OpenMangaAnimationController: NSObject, UIViewControllerAnimatedTransition
     }
 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 1.5
+        return 1.2
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -36,6 +35,12 @@ class OpenMangaAnimationController: NSObject, UIViewControllerAnimatedTransition
         imageView.contentMode = .scaleAspectFit
         imageView.frame = originFrame
 
+        let overlay = UIView()
+        overlay.frame = finalFrame
+        overlay.backgroundColor = .black
+        overlay.alpha = 0
+
+        containerView.addSubview(overlay)
         containerView.addSubview(imageView)
 
         if let indexPath = fromVC.collectionView.indexPathsForSelectedItems?.first {
@@ -43,24 +48,28 @@ class OpenMangaAnimationController: NSObject, UIViewControllerAnimatedTransition
         }
 
         let duration = transitionDuration(using: transitionContext)
-        UIView.animateKeyframes(
-          withDuration: duration,
-          delay: 0,
-          options: .calculationModeCubic,
-          animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 3/4) {
-                imageView.frame = finalFrame
-            }
-            UIView.addKeyframe(withRelativeStartTime: 3/4, relativeDuration: 1/4) {
-                imageView.alpha = 0
-                toVC.view.alpha = 1
-            }
-        },
-          completion: { _ in
-            toVC.view.isHidden = false
+
+        let animation = UIViewPropertyAnimator(duration: duration * 0.7, curve: .easeOut)
+        let secondAnimation = UIViewPropertyAnimator(duration: duration * 0.3, curve: .easeIn)
+        animation.addAnimations {
+            overlay.alpha = 1
+            fromVC.view.alpha = 0
+            imageView.frame = finalFrame
+        }
+        secondAnimation.addAnimations {
+            overlay.alpha = 0
+            imageView.alpha = 0
+        }
+        animation.startAnimation()
+        animation.addCompletion { (_) in
+            toVC.view.alpha = 1
+            secondAnimation.startAnimation()
+        }
+        secondAnimation.addCompletion { (_) in
+            fromVC.view.alpha = 1
             imageView.removeFromSuperview()
-            fromVC.view.layer.transform = CATransform3DIdentity
+            overlay.removeFromSuperview()
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-        })
+        }
     }
 }

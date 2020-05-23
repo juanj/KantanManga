@@ -58,7 +58,6 @@ class MangaViewController: UIViewController {
         configureSelectionView()
         configureSentenceView()
         configureKeyboard()
-
         startAtFullScreen()
     }
 
