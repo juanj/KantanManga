@@ -112,6 +112,7 @@ PODS:
   - SQLite.swift (0.12.2):
     - SQLite.swift/standard (= 0.12.2)
   - SQLite.swift/standard (0.12.2)
+  - TesseractOCRiOS (4.0.0)
   - UIImageViewAlignedSwift (0.7.0)
   - ZIPFoundation (0.9.10)
 
@@ -120,6 +121,7 @@ DEPENDENCIES:
   - Firebase/MLVision
   - GCDWebServer/WebUploader (~> 3.0)
   - SQLite.swift (~> 0.12.0)
+  - TesseractOCRiOS (from `git://github.com/parallaxe/Tesseract-OCR-iOS.git`, branch `macos-support`)
   - UIImageViewAlignedSwift
   - ZIPFoundation (~> 0.9)
 
@@ -147,6 +149,16 @@ SPEC REPOS:
     - UIImageViewAlignedSwift
     - ZIPFoundation
 
+EXTERNAL SOURCES:
+  TesseractOCRiOS:
+    :branch: macos-support
+    :git: git://github.com/parallaxe/Tesseract-OCR-iOS.git
+
+CHECKOUT OPTIONS:
+  TesseractOCRiOS:
+    :commit: d16bb14e136d875bd5a519febe9e3c103d212647
+    :git: git://github.com/parallaxe/Tesseract-OCR-iOS.git
+
 SPEC CHECKSUMS:
   Firebase: 0219bb4782eb1406f1b9b0628a2e625484ce910d
   FirebaseAnalytics: f68b9f3f1241385129ae0a83b63627fc420c05e5
@@ -167,9 +179,10 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
+  TesseractOCRiOS: f51bbcd27d84b9ac59950790413a7e4219e84483
   UIImageViewAlignedSwift: cfd56e381a894c71bf0d020cb3ef31cb3f604634
   ZIPFoundation: 249fa8890597086cd536bb2df5c9804d84e122b0
 
-PODFILE CHECKSUM: 6f32e7c218dc0f18acba1c33a0902a7ef28f4642
+PODFILE CHECKSUM: 1d370ff334bab2aea5825c7c83e1e20b39efd414
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.9.1

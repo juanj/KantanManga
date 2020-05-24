@@ -20,7 +20,7 @@ class ViewMangaCoordinator: NSObject {
     private let originFrame: CGRect
 
     private var mangaDataSource: MangaDataSource!
-    private var ocr: ImageOCR = GoogleVistionOCR()
+    private var ocr: ImageOCR = TesseractOCR()//GoogleVistionOCR()
 
     init(navigation: UINavigationController, manga: Manga, delegate: ViewMangaCoordinatorDelegate, originFrame: CGRect) {
         navigationController = navigation
