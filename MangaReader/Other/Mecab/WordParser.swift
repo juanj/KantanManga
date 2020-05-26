@@ -32,7 +32,7 @@ class WordPaser {
     class func parse( tokens: [Token]) -> [Word] {
         var tokens = tokens
         var words = [Word]()
-        var previos: Token?
+        var previous: Token?
 
         while tokens.first != nil {
             let token = tokens.removeFirst()
@@ -135,7 +135,7 @@ class WordPaser {
                 pos = .postposition
 
                 let inflections: [Token.InflectionType] = [.tokushuTa, .tokushuNai, .tokushuTai, .tokushuMasu, .tokushuNu]
-                if let inflectionType = token.inflectionType, (previos == nil || previos!.partsOfSpeech.count < 2 || previos?.partsOfSpeech[1] != .kakarijoshi) && inflections.contains(inflectionType) {
+                if let inflectionType = token.inflectionType, (previous == nil || previous!.partsOfSpeech.count < 2 || previous?.partsOfSpeech[1] != .kakarijoshi) && inflections.contains(inflectionType) {
                     attachToPrevious = true
                 } else if token.inflectionType == .fuhenkagata && token.originalForm == "ん" {
                     attachToPrevious = true
@@ -197,7 +197,7 @@ class WordPaser {
 
                 words.append(word)
             }
-            previos = token
+            previous = token
         }
         return words
     }
