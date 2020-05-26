@@ -14,7 +14,7 @@ func unicodeScalatToString(_ scalar: String.UnicodeScalarView.Element) -> String
     return string
 }
 
-func getFurigana(token: Token) -> [Furigana] {
+func getFurigana(text: String, reading: String?) -> [Furigana] {
     var furigana = [Furigana]()
     var parts = [(String, String)]()
 
@@ -23,7 +23,7 @@ func getFurigana(token: Token) -> [Furigana] {
     var isLastTokenKanji = false
     var substrings = [String]()
 
-    for character in token.surface.unicodeScalars {
+    for character in text.unicodeScalars {
         if character.properties.isIdeographic {
             if !isLastTokenKanji {
                 isLastTokenKanji = true
@@ -39,7 +39,7 @@ func getFurigana(token: Token) -> [Furigana] {
             pattern += unicodeScalatToString(character).applyingTransform(.hiraganaToKatakana, reverse: true) ?? unicodeScalatToString(character)
         }
     }
-    guard let regex = try? NSRegularExpression(pattern: "^\(pattern)$", options: []), let reading = token.reading?.applyingTransform(.hiraganaToKatakana, reverse: true) else {
+    guard let regex = try? NSRegularExpression(pattern: "^\(pattern)$", options: []), let reading = reading?.applyingTransform(.hiraganaToKatakana, reverse: true) else {
         return furigana
     }
     let nsrange = NSRange(reading.startIndex..<reading.endIndex, in: reading)

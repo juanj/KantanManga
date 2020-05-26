@@ -266,7 +266,8 @@ class AnalyzeTextView: UIControl {
     private func analyzeText() {
         let tokenizer = Tokenizer()
         let tokens = tokenizer.parse(sentence)
-        analyzedSentence = tokens.map {JapaneseWord(text: $0.surface, rootForm: $0.originalForm ?? $0.surface, furigana: getFurigana(token: $0))}
+        let words = WordPaser.parse(tokens: tokens)
+        analyzedSentence = words.map { JapaneseWord(text: $0.word, rootForm: $0.tokens[0].originalForm ?? $0.word, furigana: getFurigana(text: $0.word, reading: $0.reading)) }
         loadText()
     }
 
