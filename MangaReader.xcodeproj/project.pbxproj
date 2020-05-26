@@ -86,6 +86,13 @@
 			remoteGlobalIDString = 44C74468207357D7008F46FD;
 			remoteInfo = mecab;
 		};
+		3263449E247DD8A200F683AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3263449A247DD8A200F683AB /* mecab.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 44C74468207357D7008F46FD;
+			remoteInfo = mecab;
+		};
 		84A831FB221D90CC00CEE1C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 84A831DB221D90CA00CEE1C9 /* Project object */;
@@ -146,6 +153,7 @@
 		3258141B23C5053900C31E02 /* char.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = char.bin; sourceTree = "<group>"; };
 		3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuriganaUtils.swift; sourceTree = "<group>"; };
 		325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseDictionary.swift; sourceTree = "<group>"; };
+		3263449A247DD8A200F683AB /* mecab.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mecab.xcodeproj; path = "mecab-ios/mecab.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		32892C0823E39FBC000B1C3E /* AddMangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMangaViewController.swift; sourceTree = "<group>"; };
 		32892C0923E39FBC000B1C3E /* AddMangaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMangaViewController.xib; sourceTree = "<group>"; };
 		328DFB08238D96300095CBAB /* MangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaViewController.swift; sourceTree = "<group>"; };
@@ -226,16 +234,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		320F277523C2047800D9930F /* Mecab */ = {
-			isa = PBXGroup;
-			children = (
-				320F277123C2046900D9930F /* Token.swift */,
-				320F277223C2046900D9930F /* Tokenizer.swift */,
-				32350AA7247C723C002D100D /* WordParser.swift */,
-			);
-			path = Mecab;
-			sourceTree = "<group>";
-		};
 		325813DF23C5049000C31E02 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,13 +245,13 @@
 		325813FC23C5050700C31E02 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				325199B92479DE0D00DA6908 /* tessdata */,
 				32326F882435613E00FCE8E5 /* cbz.svg */,
 				323CD90923CB7107007FFC58 /* jamdict.db */,
 				3258141223C5053900C31E02 /* ipadic */,
 				3258141023C5051A00C31E02 /* mecabrc */,
 			);
 			name = Resources;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		3258141223C5053900C31E02 /* ipadic */ = {
@@ -271,6 +269,44 @@
 			);
 			name = ipadic;
 			path = "mecab-ios/ipadic";
+			sourceTree = "<group>";
+		};
+		32634498247DD89B00F683AB /* Mecab */ = {
+			isa = PBXGroup;
+			children = (
+				320F277123C2046900D9930F /* Token.swift */,
+				320F277223C2046900D9930F /* Tokenizer.swift */,
+				32350AA7247C723C002D100D /* WordParser.swift */,
+				325813FC23C5050700C31E02 /* Resources */,
+				3263449A247DD8A200F683AB /* mecab.xcodeproj */,
+			);
+			path = Mecab;
+			sourceTree = "<group>";
+		};
+		3263449B247DD8A200F683AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3263449F247DD8A200F683AB /* mecab.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		326344A0247DD92900F683AB /* File Extraction */ = {
+			isa = PBXGroup;
+			children = (
+				843FA7E8221DFE9E00B86B52 /* CBZReader.swift */,
+			);
+			path = "File Extraction";
+			sourceTree = "<group>";
+		};
+		326344A1247DD94200F683AB /* OCR */ = {
+			isa = PBXGroup;
+			children = (
+				325199B32479D96400DA6908 /* ImageOCR.swift */,
+				325199B62479D9E000DA6908 /* GoogleVisionOCR.swift */,
+				325199C32479E20700DA6908 /* TesseractOCR.swift */,
+			);
+			path = OCR;
 			sourceTree = "<group>";
 		};
 		32AAD56E23DF7038009B3BCE /* Custom Controls */ = {
@@ -336,17 +372,12 @@
 		841B795A221F303900659FA2 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				320F277523C2047800D9930F /* Mecab */,
-				843FA7E8221DFE9E00B86B52 /* CBZReader.swift */,
 				841B795B221F305A00659FA2 /* MangaDataSource.swift */,
 				8418695F222474EC00C689DC /* LibraryCollectionViewLayout.swift */,
 				323205AD238DBCE4009E8362 /* SelectionView.swift */,
 				3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */,
 				325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */,
 				32FA3C7B24367428001EB0DF /* String+Extension.swift */,
-				325199B32479D96400DA6908 /* ImageOCR.swift */,
-				325199B62479D9E000DA6908 /* GoogleVisionOCR.swift */,
-				325199C32479E20700DA6908 /* TesseractOCR.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -355,7 +386,7 @@
 			isa = PBXGroup;
 			children = (
 				32326F8C243566FD00FCE8E5 /* cbz.png */,
-				325813FC23C5050700C31E02 /* Resources */,
+				325199B92479DE0D00DA6908 /* tessdata */,
 				325813DE23C5049000C31E02 /* mecab.xcodeproj */,
 				84A831E5221D90CA00CEE1C9 /* MangaReader */,
 				84A831FD221D90CC00CEE1C9 /* MangaReaderTests */,
@@ -379,6 +410,9 @@
 		84A831E5221D90CA00CEE1C9 /* MangaReader */ = {
 			isa = PBXGroup;
 			children = (
+				326344A1247DD94200F683AB /* OCR */,
+				326344A0247DD92900F683AB /* File Extraction */,
+				32634498247DD89B00F683AB /* Mecab */,
 				32AAD56E23DF7038009B3BCE /* Custom Controls */,
 				84A8321F221D9F5700CEE1C9 /* Model */,
 				84A8321A221D94D400CEE1C9 /* Views */,
@@ -547,6 +581,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 3263449B247DD8A200F683AB /* Products */;
+					ProjectRef = 3263449A247DD8A200F683AB /* mecab.xcodeproj */;
+				},
+				{
 					ProductGroup = 325813DF23C5049000C31E02 /* Products */;
 					ProjectRef = 325813DE23C5049000C31E02 /* mecab.xcodeproj */;
 				},
@@ -566,6 +604,13 @@
 			fileType = wrapper.framework;
 			path = mecab.framework;
 			remoteRef = 325813E223C5049000C31E02 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3263449F247DD8A200F683AB /* mecab.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = mecab.framework;
+			remoteRef = 3263449E247DD8A200F683AB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
