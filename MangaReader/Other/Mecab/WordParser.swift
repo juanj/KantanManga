@@ -26,6 +26,7 @@ class WordPaser {
         var tokens = [Token]()
         var word = ""
         var partOfSpeech: PartOfSpeech?
+        var reading = ""
     }
 
     class func parse( tokens: [Token]) -> [Word] {
@@ -134,7 +135,7 @@ class WordPaser {
                 pos = .postposition
 
                 let inflections: [Token.InflectionType] = [.tokushuTa, .tokushuNai, .tokushuTai, .tokushuMasu, .tokushuNu]
-                if let inflectionType = token.inflectionType, (previos == nil || (previos!.partsOfSpeech.count > 1 && previos?.partsOfSpeech[1] != .kakarijoshi)) && inflections.contains(inflectionType) {
+                if let inflectionType = token.inflectionType, (previos == nil || previos!.partsOfSpeech.count < 2 || previos?.partsOfSpeech[1] != .kakarijoshi) && inflections.contains(inflectionType) {
                     attachToPrevious = true
                 } else if token.inflectionType == .fuhenkagata && token.originalForm == "ん" {
                     attachToPrevious = true
@@ -177,6 +178,7 @@ class WordPaser {
             if attachToPrevious && words.count > 0 {
                 words[words.count - 1].tokens.append(token)
                 words[words.count - 1].word += token.surface
+                words[words.count - 1].reading += token.reading ?? ""
                 if updatePos {
                     words[words.count - 1].partOfSpeech = pos
                 }
@@ -184,12 +186,13 @@ class WordPaser {
                 if pos == nil {
                     pos = .tdb
                 }
-                var word = Word(tokens: [token], word: token.surface, partOfSpeech: pos)
+                var word = Word(tokens: [token], word: token.surface, partOfSpeech: pos, reading: token.reading ?? token.surface)
 
                 if eatNext {
                     let following = tokens.removeFirst()
                     word.tokens.append(following)
                     word.word += following.surface
+                    word.reading += following.reading ?? following.surface
                 }
 
                 words.append(word)
