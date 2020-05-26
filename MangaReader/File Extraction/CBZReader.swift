@@ -13,7 +13,7 @@ enum CBZReaderError: Error {
     case errorCreatingArchive
 }
 
-class CBZReader {
+class CBZReader: FileExtractor {
     public var numberOfPages: Int {
         return fileEntries.count
     }
@@ -25,7 +25,7 @@ class CBZReader {
     private var cache = [Int: Data]()
     private let filePath: URL
 
-    init(fileName: String) throws {
+    required init(fileName: String) throws {
         self.fileName = fileName
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
