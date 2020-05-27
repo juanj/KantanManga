@@ -9,7 +9,7 @@
 import UIKit
 
 class MangaDataSource {
-    let mangaReader: CBZReader
+    let mangaReader: Reader
     let manga: Manga
 
     init?(manga: Manga) {
@@ -18,7 +18,11 @@ class MangaDataSource {
             return nil
         }
         do {
-            mangaReader = try CBZReader(fileName: path)
+            if path.lowercased().hasSuffix("cbz") || path.lowercased().hasSuffix("zip") {
+                mangaReader = try CBZReader(fileName: path)
+            } else {
+                mangaReader = try CBRReader(fileName: path)
+            }
             preloadNextPages(start: Int(manga.currentPage), pages: 10)
             preloadPreviousPages(start: Int(manga.currentPage), pages: 10)
         } catch {

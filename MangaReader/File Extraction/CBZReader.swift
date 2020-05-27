@@ -13,7 +13,7 @@ enum CBZReaderError: Error {
     case errorCreatingArchive
 }
 
-class CBZReader {
+class CBZReader: Reader {
     public var numberOfPages: Int {
         return fileEntries.count
     }
@@ -25,7 +25,7 @@ class CBZReader {
     private var cache = [Int: Data]()
     private let filePath: URL
 
-    init(fileName: String) throws {
+    required init(fileName: String) throws {
         self.fileName = fileName
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -42,11 +42,11 @@ class CBZReader {
         }
     }
 
-    func readFirstEntry(_ callBack: @escaping (Data?) -> Void) {
+    func readFirstEntry(_ callBack: @escaping Reader.CallBack) {
         readEntityAt(index: 0, callBack)
     }
 
-    func readEntityAt(index: Int, _ callBack: ((Data?) -> Void)?) {
+    func readEntityAt(index: Int, _ callBack: Reader.CallBack?) {
         guard index >= 0 && index < fileEntries.count else {
             callBack?(nil)
             return

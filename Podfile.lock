@@ -114,6 +114,9 @@ PODS:
   - SQLite.swift/standard (0.12.2)
   - TesseractOCRiOS (4.0.0)
   - UIImageViewAlignedSwift (0.7.0)
+  - UnrarKit (2.9):
+    - UnrarKit/unrar-lib (= 2.9)
+  - UnrarKit/unrar-lib (2.9)
   - ZIPFoundation (0.9.10)
 
 DEPENDENCIES:
@@ -123,6 +126,7 @@ DEPENDENCIES:
   - SQLite.swift (~> 0.12.0)
   - TesseractOCRiOS (from `git://github.com/parallaxe/Tesseract-OCR-iOS.git`, branch `macos-support`)
   - UIImageViewAlignedSwift
+  - UnrarKit
   - ZIPFoundation (~> 0.9)
 
 SPEC REPOS:
@@ -147,6 +151,7 @@ SPEC REPOS:
     - Protobuf
     - SQLite.swift
     - UIImageViewAlignedSwift
+    - UnrarKit
     - ZIPFoundation
 
 EXTERNAL SOURCES:
@@ -181,8 +186,9 @@ SPEC CHECKSUMS:
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   TesseractOCRiOS: f51bbcd27d84b9ac59950790413a7e4219e84483
   UIImageViewAlignedSwift: cfd56e381a894c71bf0d020cb3ef31cb3f604634
+  UnrarKit: 99e3f0222a98a212188e1a6975dcf5aa798d26dd
   ZIPFoundation: 249fa8890597086cd536bb2df5c9804d84e122b0
 
-PODFILE CHECKSUM: 1d370ff334bab2aea5825c7c83e1e20b39efd414
+PODFILE CHECKSUM: 17cb96fd47b1060cbe00e4fe9109fa544612b6a6
 
 COCOAPODS: 1.9.1
