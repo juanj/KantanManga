@@ -42,10 +42,6 @@ class CBZReader: Reader {
         }
     }
 
-    func readFirstEntry(_ callBack: @escaping Reader.CallBack) {
-        readEntityAt(index: 0, callBack)
-    }
-
     func readEntityAt(index: Int, _ callBack: Reader.CallBack?) {
         guard index >= 0 && index < fileEntries.count else {
             callBack?(nil)
