@@ -33,7 +33,7 @@ class CBRReader: Reader {
         fileEntries = try archive.listFilenames()
     }
 
-    func readFirstEntry(_ callBack: @escaping (Data?) -> Void) {
+    func readFirstEntry(_ callBack: @escaping Reader.CallBack) {
         readEntityAt(index: 0, callBack)
     }
 

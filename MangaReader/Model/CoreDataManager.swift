@@ -64,8 +64,15 @@ class CoreDataManager {
         } else {
             mangaName = String(fileName.split(separator: ".").first ?? "")
         }
-        guard let reader = try? CBZReader(fileName: fileName) else {
-            print("Error creating CBZReader")
+        let reader: Reader
+        do {
+            if fileName.lowercased().hasSuffix("cbz") || fileName.lowercased().hasSuffix("zip") {
+                reader = try CBZReader(fileName: fileName)
+            } else {
+                reader = try CBRReader(fileName: fileName)
+            }
+        } catch {
+            print("Error creating reader")
             return
         }
         reader.readFirstEntry { (data) in

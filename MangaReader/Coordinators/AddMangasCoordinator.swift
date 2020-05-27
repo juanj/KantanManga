@@ -47,7 +47,7 @@ class AddMangasCoordinator: NSObject {
             return
         }
         uploadServer = GCDWebUploader(uploadDirectory: documentPath)
-        uploadServer?.allowedFileExtensions = ["cbz", "zip"]
+        uploadServer?.allowedFileExtensions = ["cbz", "zip", "rar", "cbr"]
         uploadServer?.delegate = self
         uploadServer?.start()
     }
@@ -55,8 +55,15 @@ class AddMangasCoordinator: NSObject {
     private func loadFile() {
         guard let filePath = self.filePath else { return }
         guard let addMangaViewController = self.addMangaViewController else { return }
-        guard let reader = try? CBZReader(fileName: filePath) else {
-            print("Error creating CBZReader")
+        let reader: Reader
+        do {
+            if filePath.lowercased().hasSuffix("cbz") || filePath.lowercased().hasSuffix("zip") {
+                reader = try CBZReader(fileName: filePath)
+            } else {
+                reader = try CBRReader(fileName: filePath)
+            }
+        } catch {
+            print("Error creating reader")
             return
         }
         reader.readFirstEntry { (data) in

@@ -12,6 +12,7 @@ protocol Reader {
     typealias CallBack = (Data?) -> Void
     init(fileName: String) throws
     func readEntityAt(index: Int, _ callBack: CallBack?)
+    func readFirstEntry(_ callBack: @escaping CallBack)
 
     var numberOfPages: Int {get}
 }
