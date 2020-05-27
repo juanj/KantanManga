@@ -1,5 +1,5 @@
 //
-//  FileExtractor.swift
+//  Reader.swift
 //  MangaReader
 //
 //  Created by Juan on 26/05/20.
@@ -8,8 +8,10 @@
 
 import Foundation
 
-protocol FileExtractor {
+protocol Reader {
     typealias CallBack = (Data?) -> Void
     init(fileName: String) throws
     func readEntityAt(index: Int, _ callBack: CallBack?)
+
+    var numberOfPages: Int {get}
 }

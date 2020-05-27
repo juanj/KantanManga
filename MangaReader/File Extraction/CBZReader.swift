@@ -13,7 +13,7 @@ enum CBZReaderError: Error {
     case errorCreatingArchive
 }
 
-class CBZReader: FileExtractor {
+class CBZReader: Reader {
     public var numberOfPages: Int {
         return fileEntries.count
     }
@@ -46,7 +46,7 @@ class CBZReader: FileExtractor {
         readEntityAt(index: 0, callBack)
     }
 
-    func readEntityAt(index: Int, _ callBack: ((Data?) -> Void)?) {
+    func readEntityAt(index: Int, _ callBack: Reader.CallBack?) {
         guard index >= 0 && index < fileEntries.count else {
             callBack?(nil)
             return

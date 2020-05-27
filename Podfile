@@ -13,6 +13,7 @@ target 'MangaReader' do
   pod 'Firebase/MLVision'
   pod 'SQLite.swift', '~> 0.12.0'
   pod 'TesseractOCRiOS', :git => 'git://github.com/parallaxe/Tesseract-OCR-iOS.git', :branch => 'macos-support'
+  pod 'UnrarKit'
   target 'MangaReaderTests' do
     inherit! :search_paths
     # Pods for testing
