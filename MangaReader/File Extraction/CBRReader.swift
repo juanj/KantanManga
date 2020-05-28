@@ -16,7 +16,6 @@ class CBRReader: Reader {
 
     private var fileName = ""
     private var fileEntries = [String]()
-    private var cache = [Int: Data]()
     private let filePath: URL
 
     required init(fileName: String) throws {
@@ -39,17 +38,11 @@ class CBRReader: Reader {
             return
         }
 
-        if let entry = cache[index] {
-            callBack?(entry)
-            return
-        }
-
         let entry = fileEntries[index]
         DispatchQueue.global(qos: .userInitiated).async {
             do {
                 let archive = try URKArchive(url: self.filePath)
                 let data = try archive.extractData(fromFile: entry)
-                self.cache[index] = data
                 callBack?(data)
             } catch {
                 callBack?(nil)

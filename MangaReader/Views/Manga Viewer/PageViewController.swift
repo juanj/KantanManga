@@ -25,7 +25,7 @@ class PageViewController: UIViewController {
     weak var delegate: PageViewControllerDelegate?
     var doublePaged = false
     var fullScreen = false
-    var pageData = Data() {
+    var pageImage: UIImage? {
         didSet {
             if pageImageView != nil {
                 loadImage()
@@ -71,15 +71,13 @@ class PageViewController: UIViewController {
         pageLabel?.text = "\(page + 1)"
     }
 
-    func loadImage() {
-        if let pageImage = UIImage(data: pageData) {
-            activityIndicator.stopAnimating()
-            pageImageView?.image = pageImage
-        }
-    }
-
     @objc func tap() {
         delegate?.didTap(self)
+    }
+
+    private func loadImage() {
+        activityIndicator.stopAnimating()
+        pageImageView?.image = pageImage
     }
 }
 

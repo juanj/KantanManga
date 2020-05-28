@@ -12,6 +12,8 @@ class MangaDataSource {
     let mangaReader: Reader
     let manga: Manga
 
+    private var cache = [Int: UIImage]()
+
     init?(manga: Manga) {
         self.manga = manga
         guard let path = manga.filePath else {
@@ -23,8 +25,7 @@ class MangaDataSource {
             } else {
                 mangaReader = try CBRReader(fileName: path)
             }
-            preloadNextPages(start: Int(manga.currentPage), pages: 10)
-            preloadPreviousPages(start: Int(manga.currentPage), pages: 10)
+            preloadPages()
         } catch {
             print("Error creating MangaDataSource")
             return nil
@@ -39,13 +40,11 @@ class MangaDataSource {
         page.fullScreen = fullScreen
 
         // Load image to page
-        mangaReader.readEntityAt(index: page.page, { (data) in
-            if let data = data {
-                DispatchQueue.main.async {
-                    page.pageData.append(data)
-                }
+        getImageForPage(index: index) { (image) in
+            DispatchQueue.main.async {
+                page.pageImage = image
             }
-        })
+        }
 
         return page
     }
@@ -60,7 +59,7 @@ class MangaDataSource {
             // End of manga
             return nil
         }
-        preloadNextPages(start: index + 10, pages: 2)
+        // preloadNextPages(start: index + 10, pages: 2)
         return createPage(index: index, doublePaged: currentPage.doublePaged, delegate: currentPage.delegate, fullScreen: currentPage.fullScreen)
     }
 
@@ -74,23 +73,54 @@ class MangaDataSource {
             // End of manga
             return nil
         }
-        preloadPreviousPages(start: index - 10, pages: 2)
+        // preloadPreviousPages(start: index - 10, pages: 2)
         return createPage(index: index, doublePaged: currentPage.doublePaged, delegate: currentPage.delegate, fullScreen: currentPage.fullScreen)
     }
 
-    private func preloadNextPages(start: Int, pages: Int) {
-        let startPage = min(start, Int(manga.totalPages))
-        let endPage = min(startPage + pages, Int(manga.totalPages))
-        for page in startPage...endPage {
-            mangaReader.readEntityAt(index: page, nil)
+    private func preloadPages() {
+        let currentPage = Int(manga.currentPage)
+
+        // Load current pages
+        let serialQueue = DispatchQueue(label: "imagesPreload")
+        let group = DispatchGroup()
+
+        // Preload next 10 and previous 10 pages sequentialy
+        let nextOffsets = 1...10
+        let previouOffsets = (-10 ... -1).reversed()
+        let offsets = zip(nextOffsets, previouOffsets).flatMap { [$0.0, $0.1] }
+
+        group.enter()
+        serialQueue.async {
+            self.getImageForPage(index: currentPage) { (_) in
+                group.leave()
+            }
         }
+
+        for pageOffset in offsets {
+            serialQueue.async {
+                group.wait()
+                group.enter()
+                print(pageOffset)
+                self.getImageForPage(index: currentPage - pageOffset) { (_) in
+                    group.leave()
+                }
+            }
+        }
+
     }
 
-    private func preloadPreviousPages(start: Int, pages: Int) {
-        let startPage = max(start, 0)
-        let endPage = max(startPage - pages, 0)
-        for page in endPage...startPage {
-            mangaReader.readEntityAt(index: page, nil)
+    private func getImageForPage(index: Int, callBack: @escaping  (UIImage?) -> Void) {
+        if let imageInCache = cache[index] {
+            callBack(imageInCache)
+        } else {
+            mangaReader.readEntityAt(index: index) { (data) in
+                guard let data = data, let image = UIImage(data: data) else {
+                    callBack(nil)
+                    return
+                }
+                self.cache[index] = image
+                callBack(image)
+            }
         }
     }
 }
