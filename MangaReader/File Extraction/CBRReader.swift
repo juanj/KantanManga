@@ -31,7 +31,7 @@ class CBRReader: Reader {
         let archive = try URKArchive(url: filePath)
         fileEntries = try archive.listFilenames()
     }
-    
+
     func readEntityAt(index: Int, _ callBack: Reader.CallBack?) {
         guard index >= 0 && index < fileEntries.count else {
             callBack?(nil)

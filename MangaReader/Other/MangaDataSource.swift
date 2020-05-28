@@ -9,26 +9,33 @@
 import UIKit
 
 class MangaDataSource {
-    let mangaReader: Reader
-    let manga: Manga
+    private var mangaReader: Reader!
+    private let manga: Manga
 
     private var cache = [Int: UIImage]()
+    private var queue = [(PageViewController, Int)]()
 
     init?(manga: Manga) {
         self.manga = manga
         guard let path = manga.filePath else {
             return nil
         }
-        do {
-            if path.lowercased().hasSuffix("cbz") || path.lowercased().hasSuffix("zip") {
-                mangaReader = try CBZReader(fileName: path)
-            } else {
-                mangaReader = try CBRReader(fileName: path)
+        initReader(path: path)
+    }
+
+    private func initReader(path: String) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                if path.lowercased().hasSuffix("cbz") || path.lowercased().hasSuffix("zip") {
+                    self.mangaReader = try CBZReader(fileName: path)
+                } else {
+                    self.mangaReader = try CBRReader(fileName: path)
+                }
+            } catch let error {
+                print("Error creating reader \(error.localizedDescription)")
             }
-            preloadPages()
-        } catch {
-            print("Error creating MangaDataSource")
-            return nil
+            self.clearQueue()
+            self.preloadPages()
         }
     }
 
@@ -40,9 +47,13 @@ class MangaDataSource {
         page.fullScreen = fullScreen
 
         // Load image to page
-        getImageForPage(index: index) { (image) in
-            DispatchQueue.main.async {
-                page.pageImage = image
+        if mangaReader == nil {
+            queue.append((page, index))
+        } else {
+            getImageForPage(index: index) { (image) in
+                DispatchQueue.main.async {
+                    page.pageImage = image
+                }
             }
         }
 
@@ -50,7 +61,7 @@ class MangaDataSource {
     }
 
     func nextPage(currentPage: UIViewController) -> UIViewController? {
-        guard let currentPage = currentPage as? PageViewController else {
+        guard let currentPage = currentPage as? PageViewController, mangaReader != nil else {
             return PageViewController()
         }
 
@@ -75,6 +86,16 @@ class MangaDataSource {
         }
         // preloadPreviousPages(start: index - 10, pages: 2)
         return createPage(index: index, doublePaged: currentPage.doublePaged, delegate: currentPage.delegate, fullScreen: currentPage.fullScreen)
+    }
+
+    private func clearQueue() {
+        for (page, index) in queue {
+            getImageForPage(index: index) { (image) in
+                DispatchQueue.main.async {
+                    page.pageImage = image
+                }
+            }
+        }
     }
 
     private func preloadPages() {
@@ -110,6 +131,11 @@ class MangaDataSource {
     }
 
     private func getImageForPage(index: Int, callBack: @escaping  (UIImage?) -> Void) {
+        guard mangaReader != nil else {
+            callBack(nil)
+            return
+        }
+
         if let imageInCache = cache[index] {
             callBack(imageInCache)
         } else {

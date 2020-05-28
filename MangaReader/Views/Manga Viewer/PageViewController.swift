@@ -76,7 +76,9 @@ class PageViewController: UIViewController {
     }
 
     private func loadImage() {
-        activityIndicator.stopAnimating()
+        if pageImage != nil {
+            activityIndicator.stopAnimating()
+        }
         pageImageView?.image = pageImage
     }
 }
