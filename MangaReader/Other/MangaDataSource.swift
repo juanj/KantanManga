@@ -70,7 +70,8 @@ class MangaDataSource {
             // End of manga
             return nil
         }
-        // preloadNextPages(start: index + 10, pages: 2)
+
+        getImageForPage(index: index + 10)
         return createPage(index: index, doublePaged: currentPage.doublePaged, delegate: currentPage.delegate, fullScreen: currentPage.fullScreen)
     }
 
@@ -84,7 +85,8 @@ class MangaDataSource {
             // End of manga
             return nil
         }
-        // preloadPreviousPages(start: index - 10, pages: 2)
+
+        getImageForPage(index: index - 10)
         return createPage(index: index, doublePaged: currentPage.doublePaged, delegate: currentPage.delegate, fullScreen: currentPage.fullScreen)
     }
 
@@ -130,22 +132,22 @@ class MangaDataSource {
 
     }
 
-    private func getImageForPage(index: Int, callBack: @escaping  (UIImage?) -> Void) {
+    private func getImageForPage(index: Int, callBack: ((UIImage?) -> Void)? = nil) {
         guard mangaReader != nil else {
-            callBack(nil)
+            callBack?(nil)
             return
         }
 
         if let imageInCache = cache[index] {
-            callBack(imageInCache)
+            callBack?(imageInCache)
         } else {
             mangaReader.readEntityAt(index: index) { (data) in
                 guard let data = data, let image = UIImage(data: data) else {
-                    callBack(nil)
+                    callBack?(nil)
                     return
                 }
                 self.cache[index] = image
-                callBack(image)
+                callBack?(image)
             }
         }
     }
