@@ -2,31 +2,30 @@
 //  DictionaryView.swift
 //  MangaReader
 //
-//  Created by DevBakura on 28/05/20.
+//  Created by Juan on 28/05/20.
 //  Copyright © 2020 Bakura. All rights reserved.
 //
 
 import Foundation
 
 class DictionaryView: UIView {
+
     private let scrollView = UIScrollView()
     private let stackView = UIStackView()
     private var entries = [DictionaryResult]()
     private var entriesViews = [DictionaryEntryView]()
+    private let maxHeight: CGFloat
+    private var scrollViewHeightConstraint: NSLayoutConstraint!
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        customInit()
+    init(maxHeight: CGFloat) {
+        self.maxHeight = maxHeight
+        super.init(frame: .zero)
+        configureScrollView()
+        configureStackView()
     }
 
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        customInit()
-    }
-
-    private func customInit() {
-        configureScrollView()
-        configureStackView()
+        fatalError("init(coder:) has not been implemented")
     }
 
     private func configureScrollView() {
@@ -36,7 +35,9 @@ class DictionaryView: UIView {
         let rightConstraint = scrollView.rightAnchor.constraint(equalTo: rightAnchor)
         let topConstraint = scrollView.topAnchor.constraint(equalTo: topAnchor)
         let bottomConstraint = scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        addConstraints([leftConstraint, rightConstraint, topConstraint, bottomConstraint])
+
+        scrollViewHeightConstraint = scrollView.heightAnchor.constraint(equalToConstant: 0)
+        addConstraints([leftConstraint, rightConstraint, topConstraint, bottomConstraint, scrollViewHeightConstraint])
         scrollView.backgroundColor = .white
     }
 
@@ -65,5 +66,8 @@ class DictionaryView: UIView {
             stackView.addArrangedSubview(entryView)
             entriesViews.append(entryView)
         }
+        stackView.layoutIfNeeded()
+        scrollViewHeightConstraint?.constant = min(stackView.frame.height, maxHeight)
+        layoutIfNeeded()
     }
 }
