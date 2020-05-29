@@ -123,7 +123,6 @@ class MangaDataSource {
             serialQueue.async {
                 group.wait()
                 group.enter()
-                print(pageOffset)
                 self.getImageForPage(index: currentPage - pageOffset) { (_) in
                     group.leave()
                 }
