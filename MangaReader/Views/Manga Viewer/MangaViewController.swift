@@ -21,8 +21,8 @@ class MangaViewController: UIViewController {
 
     private var pageController: UIPageViewController!
     private var selectionView = SelectionView()
-    private var sentenceView: AnalyzeTextView!
-    private var sentenceViewBottomConstraint: NSLayoutConstraint!
+    private var japaneseHelp: JapaneseHelpViewController!
+    private var japaneseHelpBottomConstraint: NSLayoutConstraint!
 
     private var isPageAnimating = false
     private var fullScreen = false
@@ -56,23 +56,9 @@ class MangaViewController: UIViewController {
         createPageController()
         configurePageControllerConstraints()
         configureSelectionView()
-        configureSentenceView()
+        configureJapaneseHelpView()
         configureKeyboard()
         startAtFullScreen()
-    }
-
-    private func configureSelectionView() {
-        view.addSubview(selectionView)
-        selectionView.translatesAutoresizingMaskIntoConstraints = false
-        selectionView.isHidden = true
-        selectionView.delegate = self
-
-        let topConstraint = selectionView.topAnchor.constraint(equalTo: view.topAnchor)
-        let bottomConstraint = selectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let leadingConstraint = selectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let trailingConstraint = selectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-
-        view.addConstraints([topConstraint, bottomConstraint, leadingConstraint, trailingConstraint])
     }
 
     private func configureNavBar() {
@@ -124,6 +110,20 @@ class MangaViewController: UIViewController {
 
     }
 
+    private func configureSelectionView() {
+        view.addSubview(selectionView)
+        selectionView.translatesAutoresizingMaskIntoConstraints = false
+        selectionView.isHidden = true
+        selectionView.delegate = self
+
+        let topConstraint = selectionView.topAnchor.constraint(equalTo: view.topAnchor)
+        let bottomConstraint = selectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        let leadingConstraint = selectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        let trailingConstraint = selectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+
+        view.addConstraints([topConstraint, bottomConstraint, leadingConstraint, trailingConstraint])
+    }
+
     private func configurePageControllerConstraints() {
         view.addSubview(pageController.view)
         addChild(pageController)
@@ -138,16 +138,18 @@ class MangaViewController: UIViewController {
         view.addConstraints([topConstraint, bottomConstraint, leadingConstraint, trailingConstraint])
     }
 
-    private func configureSentenceView() {
-        sentenceView = AnalyzeTextView()
-        sentenceView.delegate = self
-        view.addSubview(sentenceView)
+    private func configureJapaneseHelpView() {
+        japaneseHelp = JapaneseHelpViewController(delegate: self)
+        japaneseHelp.view.translatesAutoresizingMaskIntoConstraints = false
+        addChild(japaneseHelp)
+        view.addSubview(japaneseHelp.view)
+        japaneseHelp.didMove(toParent: self)
 
-        sentenceViewBottomConstraint = sentenceView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
-        let leftConstraint = sentenceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor)
-        let rightConstraint = sentenceView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
+        let leftConstraint = japaneseHelp.view.leftAnchor.constraint(equalTo: view.leftAnchor)
+        let rightConstraint = japaneseHelp.view.rightAnchor.constraint(equalTo: view.rightAnchor)
+        japaneseHelpBottomConstraint = japaneseHelp.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 
-        view.addConstraints([sentenceViewBottomConstraint, leftConstraint, rightConstraint])
+        view.addConstraints([leftConstraint, rightConstraint, japaneseHelpBottomConstraint])
 
         let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleEdgePan(pan:)))
         edgePan.edges = .bottom
@@ -159,37 +161,37 @@ class MangaViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
 
+    func startAtFullScreen() {
+        fullScreen = true
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        setNeedsStatusBarAppearanceUpdate()
+        japaneseHelpBottomConstraint.constant = 100
+        self.view.layoutIfNeeded()
+    }
+
     func toggleFullscreen() {
         fullScreen = !fullScreen
         navigationController?.setNavigationBarHidden(fullScreen, animated: true)
         setNeedsStatusBarAppearanceUpdate()
-        if !fullScreen && sentenceViewBottomConstraint.constant == sentenceView.frame.height {
-            if sentenceView.isDictionaryOpen {
-                sentenceViewBottomConstraint.constant = sentenceView.dictionaryHeight
+        if !fullScreen && japaneseHelpBottomConstraint.constant == japaneseHelp.view.frame.height {
+            if japaneseHelp.isDictionaryOpen {
+                japaneseHelpBottomConstraint.constant = japaneseHelp.dictionaryHeight
             } else {
-                sentenceViewBottomConstraint.constant = 0
+                japaneseHelpBottomConstraint.constant = 0
             }
             UIView.animate(withDuration: 0.15) {
                 self.view.layoutIfNeeded()
             }
-        } else if fullScreen && sentenceViewBottomConstraint.constant < sentenceView.frame.height {
-            sentenceViewBottomConstraint.constant = sentenceView.frame.height
+        } else if fullScreen && japaneseHelpBottomConstraint.constant < japaneseHelp.view.frame.height {
+            japaneseHelpBottomConstraint.constant = japaneseHelp.view.frame.height
             UIView.animate(withDuration: 0.15) {
                 self.view.layoutIfNeeded()
             }
         }
     }
 
-    func startAtFullScreen() {
-        fullScreen = true
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        setNeedsStatusBarAppearanceUpdate()
-        sentenceViewBottomConstraint.constant = 100
-        self.view.layoutIfNeeded()
-    }
-
     func setSentence(sentence: String) {
-        sentenceView.sentence = sentence
+        japaneseHelp.setSentence(text: sentence)
     }
 
     func ocrStartLoading() {
@@ -215,9 +217,9 @@ class MangaViewController: UIViewController {
     @objc func handleKeyboard(notification: Notification) {
         guard let userInfo = notification.userInfo, let frame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect, let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else { return }
         if frame.origin.y >= view.frame.height {
-            sentenceViewBottomConstraint.constant = 0
+            japaneseHelpBottomConstraint.constant = 0
         } else {
-            sentenceViewBottomConstraint.constant = -frame.height
+            japaneseHelpBottomConstraint.constant = -frame.height
         }
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
@@ -225,12 +227,12 @@ class MangaViewController: UIViewController {
     }
 
     @objc func handleEdgePan(pan: UIScreenEdgePanGestureRecognizer) {
-        guard sentenceViewBottomConstraint.constant > 0 else { return }
+        guard japaneseHelpBottomConstraint.constant > 0 else { return }
         let velocity = pan.velocity(in: view)
-        if !sentenceView.isDictionaryOpen || (sentenceView.isDictionaryOpen && velocity.y < -1300) {
-            sentenceViewBottomConstraint.constant = 0
+        if !japaneseHelp.isDictionaryOpen || (japaneseHelp.isDictionaryOpen && velocity.y < -1300) {
+            japaneseHelpBottomConstraint.constant = 0
         } else {
-            sentenceViewBottomConstraint.constant = sentenceView.dictionaryHeight
+            japaneseHelpBottomConstraint.constant = japaneseHelp.dictionaryHeight
         }
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
@@ -352,27 +354,27 @@ extension MangaViewController: SelectionViewDelegate {
     }
 }
 
-extension MangaViewController: AnalyzeTextViewDelegate {
-    func handlePan(analyzeTextView: AnalyzeTextView, pan: UIPanGestureRecognizer) {
+extension MangaViewController: JapaneseHelpViewControllerDelegate {
+    func handlePan(japaneseHelpViewController: JapaneseHelpViewController, pan: UIPanGestureRecognizer) {
         let translation = pan.translation(in: view)
         let velocity = pan.velocity(in: view)
         if pan.state == .began {
-            panInitialPosition = sentenceViewBottomConstraint.constant
+            panInitialPosition = japaneseHelpBottomConstraint.constant
         } else if pan.state == .changed {
-            sentenceViewBottomConstraint.constant = panInitialPosition + translation.y
-            if sentenceViewBottomConstraint.constant < 0 {
-                sentenceViewBottomConstraint.constant = 0
+            japaneseHelpBottomConstraint.constant = panInitialPosition + translation.y
+            if japaneseHelpBottomConstraint.constant < 0 {
+                japaneseHelpBottomConstraint.constant = 0
             }
 
             if velocity.y > 1300 {
                 // Fast pan down
-                sentenceViewBottomConstraint.constant = sentenceView.isDictionaryOpen ? sentenceView.frame.height - 100 : sentenceView.dictionaryHeight
+                japaneseHelpBottomConstraint.constant = japaneseHelp.isDictionaryOpen ? japaneseHelp.view.frame.height - 100 : japaneseHelp.dictionaryHeight
                 UIView.animate(withDuration: 0.2) {
                     self.view.layoutIfNeeded()
                 }
-            } else if sentenceView.isDictionaryOpen && velocity.y < -1300 {
+            } else if japaneseHelp.isDictionaryOpen && velocity.y < -1300 {
                 // fast pan up
-                sentenceViewBottomConstraint.constant = 0
+                japaneseHelpBottomConstraint.constant = 0
                 UIView.animate(withDuration: 0.2) {
                     self.view.layoutIfNeeded()
                 }
@@ -380,35 +382,37 @@ extension MangaViewController: AnalyzeTextViewDelegate {
                 view.layoutIfNeeded()
             }
         } else if pan.state == .ended {
-            let currentValue = sentenceViewBottomConstraint.constant
+            let currentValue = japaneseHelpBottomConstraint.constant
             // Dictionary open and pan pass the middle of the dictionary
-            if sentenceView.isDictionaryOpen &&
-                sentenceViewBottomConstraint.constant > sentenceView.dictionaryHeight / 2 {
+            if japaneseHelp.isDictionaryOpen &&
+                japaneseHelpBottomConstraint.constant > japaneseHelp.dictionaryHeight / 2 {
 
                 // Pan pass middle of text view
-                if sentenceViewBottomConstraint.constant > sentenceView.frame.height - 50 {
-                    sentenceViewBottomConstraint.constant = sentenceView.frame.height
+                if japaneseHelpBottomConstraint.constant > japaneseHelp.view.frame.height - 50 {
+                    japaneseHelpBottomConstraint.constant = japaneseHelp.view.frame.height
                 } else {
-                    sentenceViewBottomConstraint.constant = sentenceView.dictionaryHeight
+                    japaneseHelpBottomConstraint.constant = japaneseHelp.dictionaryHeight
                 }
             } else {
                 // Pan pass middle of text view
-                if sentenceViewBottomConstraint.constant > sentenceView.frame.height / 2 {
-                    sentenceViewBottomConstraint.constant = sentenceView.frame.height
+                if japaneseHelpBottomConstraint.constant > japaneseHelp.view.frame.height / 2 {
+                    japaneseHelpBottomConstraint.constant = japaneseHelp.view.frame.height
                 } else {
-                    sentenceViewBottomConstraint.constant = 0
+                    japaneseHelpBottomConstraint.constant = 0
                 }
             }
-            UIView.animate(withDuration: TimeInterval(abs(currentValue - sentenceViewBottomConstraint.constant) * 0.002)) {
+            UIView.animate(withDuration: TimeInterval(abs(currentValue - japaneseHelpBottomConstraint.constant) * 0.002)) {
                 self.view.layoutIfNeeded()
             }
         }
     }
 
-    func didOpenDictionary(analyzeTextView: AnalyzeTextView) {
-        sentenceViewBottomConstraint.constant = 0
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
+    func didOpenDictionary(japaneseHelpViewController: JapaneseHelpViewController) {
+        if japaneseHelpBottomConstraint.constant != 0 {
+            japaneseHelpBottomConstraint.constant = 0
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
         }
     }
 }

@@ -137,13 +137,7 @@ class ParsedInputField: UIControl {
 
         addConstraints([rightConstraint, leftConstraint, topConstraint, heightContraint])
     }
-
-    /*private func configurePanGesture() {
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(pan:)))
-        panGesture.delegate = self
-        textView.addGestureRecognizer(panGesture)
-    }*/
-
+    
     private func loadText() {
         if editing { toggleEdit() }
         buttons.forEach { $0.removeFromSuperview() }
@@ -219,6 +213,7 @@ class ParsedInputField: UIControl {
     private func toggleEdit() {
         editing = !editing
         if editing {
+            delegate?.willBeginEditing(parsedInputField: self)
             textView.alpha = 0
             textView.isUserInteractionEnabled = false
             textField.isHidden = false
@@ -248,11 +243,6 @@ class ParsedInputField: UIControl {
     @objc func edit() {
         toggleEdit()
     }
-
-    // TODO: Check if this pan is needed
-    /*@objc func handlePan(pan: UIPanGestureRecognizer) {
-        delegate?.handlePan(analyzeTextView: self, pan: pan)
-    }*/
 }
 
 extension ParsedInputField: UITextFieldDelegate {
@@ -271,17 +261,6 @@ extension ParsedInputField: UITextFieldDelegate {
         if editing {
             toggleEdit()
         }
-    }
-}
-
-// TODO: Check why this is here
-extension ParsedInputField: UIGestureRecognizerDelegate {
-    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        guard let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer else { return false }
-
-        // Only when the gesture is vertical
-        let velocity = panGestureRecognizer.velocity(in: textView)
-        return abs(velocity.y) > abs(velocity.x)
     }
 }
 
