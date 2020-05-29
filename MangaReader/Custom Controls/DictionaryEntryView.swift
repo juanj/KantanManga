@@ -2,7 +2,7 @@
 //  DictionaryEntryView.swift
 //  MangaReader
 //
-//  Created by DevBakura on 28/05/20.
+//  Created by Juan on 28/05/20.
 //  Copyright © 2020 Bakura. All rights reserved.
 //
 
