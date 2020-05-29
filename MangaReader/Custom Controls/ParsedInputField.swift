@@ -1,5 +1,5 @@
 //
-//  AnalyzeTextViewController.swift
+//  ParsedInputField.swift
 //  MangaReader
 //
 //  Created by Juan on 5/01/20.
@@ -19,22 +19,15 @@ struct JapaneseWord {
     let furigana: [Furigana]
 }
 
-class AnalyzeTextView: UIControl {
+class ParsedInputField: UIControl {
     var sentence: String {
         didSet {
             analyzeText()
         }
     }
-    weak var delegate: AnalyzeTextViewDelegate?
-    var isDictionaryOpen: Bool {
-        return dictionaryTableViewHeightConstraint.constant > 0
-    }
-    var dictionaryHeight: CGFloat {
-        return dictionaryTableViewHeightConstraint.constant
-    }
+    weak var delegate: ParsedInputFieldDelegate?
 
     private var analyzedSentence = [JapaneseWord]()
-    private var maxHeight: CGFloat
 
     private let margin: CGFloat = 20
     private var buttons = [UIButton]()
@@ -42,17 +35,13 @@ class AnalyzeTextView: UIControl {
     private var textView = UIView()
     private var scrollView = UIScrollView()
     private var editButton = UIButton()
-    private var dictionaryResults = [DictionaryResult]()
-    private var dictionaryTableView = UITableView()
-    private var dictionaryTableViewHeightConstraint: NSLayoutConstraint!
     private var textField = UITextField()
     private var editing = false
 
-    init(sentence: String = "", maxHeight: CGFloat = 500) {
+    init(delegate: ParsedInputFieldDelegate, sentence: String = "") {
+        self.delegate = delegate
         self.sentence = sentence
-        self.maxHeight = maxHeight
-        super.init(frame: CGRect.zero)
-
+        super.init(frame: .zero)
         initView()
     }
 
@@ -61,17 +50,20 @@ class AnalyzeTextView: UIControl {
     }
 
     private func initView() {
-        translatesAutoresizingMaskIntoConstraints = false
         configureStyle()
         configureBlur()
         configureMainConstraints()
-        configureTableView()
         configureScrollView()
-        loadText()
         configureEditButton()
         configureTextField()
-        configurePanGesture()
+        loadText()
         analyzeText()
+    }
+
+    private func configureStyle() {
+        backgroundColor = .clear
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.gray.cgColor
     }
 
     private func configureBlur() {
@@ -90,10 +82,8 @@ class AnalyzeTextView: UIControl {
     private func configureMainConstraints() {
         textView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        dictionaryTableView.translatesAutoresizingMaskIntoConstraints = false
 
         scrollView.addSubview(textView)
-        addSubview(dictionaryTableView)
         addSubview(scrollView)
 
         let topTextViewConstraint = textView.topAnchor.constraint(equalTo: scrollView.topAnchor)
@@ -108,15 +98,10 @@ class AnalyzeTextView: UIControl {
         let topScrollViewConstraint = scrollView.topAnchor.constraint(equalTo: topAnchor)
         let leftScrollViewConstraint = scrollView.leftAnchor.constraint(equalTo: leftAnchor)
         let rightScrollViewConstraint = scrollView.rightAnchor.constraint(equalTo: rightAnchor)
+        let bottomScrollViewConstraint = scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
         let heightScrollViewConstraint = scrollView.heightAnchor.constraint(equalToConstant: 100)
 
-        let topDictionaryTableViewConstraint = dictionaryTableView.topAnchor.constraint(equalTo: scrollView.bottomAnchor)
-        let leftDictionaryTableViewConstraint = dictionaryTableView.leftAnchor.constraint(equalTo: leftAnchor)
-        let rightDictionaryTableViewConstraint = dictionaryTableView.rightAnchor.constraint(equalTo: rightAnchor)
-        let bottomDictionaryTableViewConstraint = dictionaryTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        dictionaryTableViewHeightConstraint = dictionaryTableView.heightAnchor.constraint(equalToConstant: 0)
-
-        addConstraints([topScrollViewConstraint, leftScrollViewConstraint, rightScrollViewConstraint, heightScrollViewConstraint, topDictionaryTableViewConstraint, leftDictionaryTableViewConstraint, rightDictionaryTableViewConstraint, bottomDictionaryTableViewConstraint, dictionaryTableViewHeightConstraint])
+        addConstraints([topScrollViewConstraint, leftScrollViewConstraint, rightScrollViewConstraint, heightScrollViewConstraint, bottomScrollViewConstraint])
     }
 
     private func configureScrollView() {
@@ -143,25 +128,16 @@ class AnalyzeTextView: UIControl {
         textField.isHidden = true
         textField.font = .systemFont(ofSize: 50, weight: .bold)
         textField.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(textField)
+        scrollView.addSubview(textField)
 
-        let rightConstraint = textField.rightAnchor.constraint(equalTo: rightAnchor, constant: -margin)
-        let leftConstraint = textField.leftAnchor.constraint(equalTo: leftAnchor, constant: margin)
-        let topConstraint = textField.topAnchor.constraint(equalTo: topAnchor, constant: margin)
+        let rightConstraint = textField.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -margin)
+        let leftConstraint = textField.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: margin)
+        let topConstraint = textField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: margin)
         let heightContraint = textField.heightAnchor.constraint(equalToConstant: 75)
 
         addConstraints([rightConstraint, leftConstraint, topConstraint, heightContraint])
     }
-
-    private func configureTableView() {
-        dictionaryTableView.delegate = self
-        dictionaryTableView.dataSource = self
-        dictionaryTableView.isScrollEnabled = false
-        dictionaryTableView.estimatedRowHeight = 130
-        let dictionaryCellNib = UINib(nibName: "DictionaryTableViewCell", bundle: nil)
-        dictionaryTableView.register(dictionaryCellNib, forCellReuseIdentifier: "DictionaryCell")
-    }
-
+    
     private func loadText() {
         if editing { toggleEdit() }
         buttons.forEach { $0.removeFromSuperview() }
@@ -234,22 +210,10 @@ class AnalyzeTextView: UIControl {
         return constraints
     }
 
-    private func configureStyle() {
-        backgroundColor = .clear
-        layer.borderWidth = 1
-        layer.borderColor = UIColor.gray.cgColor
-    }
-
-    private func configurePanGesture() {
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(pan:)))
-        panGesture.delegate = self
-        textView.addGestureRecognizer(panGesture)
-    }
-
     private func toggleEdit() {
         editing = !editing
         if editing {
-            closeDictionary()
+            delegate?.willBeginEditing(parsedInputField: self)
             textView.alpha = 0
             textView.isUserInteractionEnabled = false
             textField.isHidden = false
@@ -271,93 +235,37 @@ class AnalyzeTextView: UIControl {
         loadText()
     }
 
-    func closeDictionary(animated: Bool = false) {
-        guard isDictionaryOpen else { return }
-        if animated {
-            dictionaryTableViewHeightConstraint.constant = 0
-            UIView.animate(withDuration: 0.3, animations: {
-                self.layoutIfNeeded()
-            }, completion: { (_) in
-                self.dictionaryResults = []
-                self.dictionaryTableView.reloadData()
-            })
-        } else {
-            dictionaryResults = []
-            dictionaryTableView.reloadData()
-        }
-    }
-
     @objc func openDetail(button: UIButton) {
-        dictionaryResults = JapaneseDictionary.shared.findWord(word: analyzedSentence[button.tag].rootForm)
-        dictionaryTableView.setContentOffset(.zero, animated: false)
-        dictionaryTableView.reloadData()
-        delegate?.didOpenDictionary(analyzeTextView: self)
+        let word = analyzedSentence[button.tag]
+        delegate?.didSelectWord(parsedInputField: self, word: word)
     }
 
     @objc func edit() {
         toggleEdit()
     }
-
-    @objc func handlePan(pan: UIPanGestureRecognizer) {
-        delegate?.handlePan(analyzeTextView: self, pan: pan)
-    }
 }
 
-extension AnalyzeTextView: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let rows = dictionaryResults.count
-        if rows > 0 && dictionaryTableViewHeightConstraint.constant == 0 {
-            dictionaryTableViewHeightConstraint.constant = 100000
-        } else if rows == 0 {
-            dictionaryTableViewHeightConstraint.constant = 0
-        }
-        return rows
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DictionaryCell") as! DictionaryTableViewCell // swiftlint:disable:this force_cast
-
-        cell.wordLabel.text = dictionaryResults[indexPath.row].word.joined(separator: ", ")
-        cell.meaningLabel.text = dictionaryResults[indexPath.row].meanings.map { "• " + $0 } .joined(separator: "\n")
-        cell.layoutIfNeeded()
-        dictionaryTableView.layoutIfNeeded()
-        dictionaryTableViewHeightConstraint.constant = min(tableView.contentSize.height, maxHeight)
-        if dictionaryTableViewHeightConstraint.constant == maxHeight {
-            tableView.isScrollEnabled = true
-        } else {
-            tableView.isScrollEnabled = false
-        }
-        layoutIfNeeded()
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        let meanings = CGFloat(dictionaryResults[indexPath.row].meanings.count)
-        return 110.0 + 30.0 * meanings
-    }
-}
-
-extension AnalyzeTextView: UITextFieldDelegate {
+extension ParsedInputField: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         sentence = textField.text ?? ""
         analyzeText()
         return true
     }
-}
 
-extension AnalyzeTextView: UIGestureRecognizerDelegate {
-    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        guard let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer else { return false }
-        let velocity = panGestureRecognizer.velocity(in: textView)
-        return abs(velocity.y) > abs(velocity.x)
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        delegate?.willBeginEditing(parsedInputField: self)
+        return true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        if editing {
+            toggleEdit()
+        }
     }
 }
 
-protocol AnalyzeTextViewDelegate: AnyObject {
-    func handlePan(analyzeTextView: AnalyzeTextView, pan: UIPanGestureRecognizer)
-    func didOpenDictionary(analyzeTextView: AnalyzeTextView)
+protocol ParsedInputFieldDelegate: AnyObject {
+    //func handlePan(analyzeTextView: ParsedInputField, pan: UIPanGestureRecognizer)
+    func willBeginEditing(parsedInputField: ParsedInputField)
+    func didSelectWord(parsedInputField: ParsedInputField, word: JapaneseWord)
 }
