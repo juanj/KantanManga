@@ -242,7 +242,7 @@ class ParsedInputField: UIControl {
 
     @objc func openDetail(button: UIButton) {
         let word = analyzedSentence[button.tag]
-        delegate?.didSelectWord(analyzeTextView: self, word: word)
+        delegate?.didSelectWord(parsedInputField: self, word: word)
     }
 
     @objc func edit() {
@@ -261,6 +261,17 @@ extension ParsedInputField: UITextFieldDelegate {
         analyzeText()
         return true
     }
+
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        delegate?.willBeginEditing(parsedInputField: self)
+        return true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        if editing {
+            toggleEdit()
+        }
+    }
 }
 
 // TODO: Check why this is here
@@ -275,6 +286,7 @@ extension ParsedInputField: UIGestureRecognizerDelegate {
 }
 
 protocol ParsedInputFieldDelegate: AnyObject {
-    func handlePan(analyzeTextView: ParsedInputField, pan: UIPanGestureRecognizer)
-    func didSelectWord(analyzeTextView: ParsedInputField, word: JapaneseWord)
+    //func handlePan(analyzeTextView: ParsedInputField, pan: UIPanGestureRecognizer)
+    func willBeginEditing(parsedInputField: ParsedInputField)
+    func didSelectWord(parsedInputField: ParsedInputField, word: JapaneseWord)
 }
