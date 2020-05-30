@@ -10,44 +10,6 @@ import XCTest
 import CoreData
 @testable import MangaReader
 
-class AppCoordinatorTests: XCTestCase {
-    override func setUp() {
-        super.setUp()
-        CoreDataManager.sharedManager.deleteAllData()
-    }
-
-    func testCallingStartPushLibraryViewController() {
-        let navigation = UINavigationController()
-        let appCoordinator = AppCoordinator(navigation: navigation)
-        appCoordinator.start()
-
-        XCTAssertTrue(navigation.viewControllers.first is LibraryViewController)
-    }
-
-    func testLoadMangas() {
-        let navigation = UINavigationController()
-        let appCoordinator = AppCoordinator(navigation: navigation)
-
-        XCTAssertNotNil(appCoordinator.loadMangas())
-
-        CoreDataManager.sharedManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 100, filePath: "test.cbz")
-
-        XCTAssertEqual(appCoordinator.loadMangas().count, 1)
-    }
-}
-
-class LibraryViewControllerTests: XCTestCase {
-    func testCollectionViewDelegateAndDataSourceAreSetToViewController() {
-        let libraryViewController = LibraryViewController()
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout())
-        libraryViewController.collectionView = collectionView
-        libraryViewController.configureCollectionView()
-
-        XCTAssertEqual(libraryViewController.collectionView.delegate as? LibraryViewController, libraryViewController)
-        XCTAssertEqual(libraryViewController.collectionView.dataSource as? LibraryViewController, libraryViewController)
-    }
-}
-
 class CoreDataManagerTests: XCTestCase {
     var coreDataManager: CoreDataManager!
 
