@@ -21,9 +21,7 @@ class AppCoordinator: NSObject {
     }
 
     func start() {
-        let library = LibraryViewController()
-        library.delegate = self
-        library.mangas = loadMangas()
+        let library = LibraryViewController(delegate: self, mangas: loadMangas())
         navigationController.pushViewController(library, animated: false)
         libraryView = library
     }
@@ -37,8 +35,7 @@ class AppCoordinator: NSObject {
 extension AppCoordinator: LibraryViewControllerDelegate {
     func didSelectDeleteManga(_ libraryViewController: LibraryViewController, manga: Manga) {
         CoreDataManager.sharedManager.delete(manga: manga)
-        libraryViewController.mangas = loadMangas()
-        libraryViewController.collectionView.reloadData()
+        libraryViewController.setMangas(mangas: loadMangas())
     }
 
     func didSelectManga(_ libraryViewController: LibraryViewController, manga: Manga, cellFrame: CGRect) {
@@ -58,8 +55,7 @@ extension AppCoordinator: LibraryViewControllerDelegate {
 extension AppCoordinator: AddMangasCoordinatorDelegate {
     func didEnd(_ addMangasCoordinator: AddMangasCoordinator) {
         childCoordinators.removeLast()
-        let mangas = loadMangas()
-        libraryView?.mangas = mangas
+        libraryView?.setMangas(mangas: loadMangas())
     }
 
     func cancel(_ addMangasCoordinator: AddMangasCoordinator) {

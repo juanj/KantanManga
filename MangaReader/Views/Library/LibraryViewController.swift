@@ -17,13 +17,19 @@ protocol LibraryViewControllerDelegate: AnyObject {
 class LibraryViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
-    weak var delegate: LibraryViewControllerDelegate?
-    var mangas = [Manga]() {
-        didSet {
-            guard collectionView != nil else { return }
-            collectionView.reloadData()
-        }
+    private weak var delegate: LibraryViewControllerDelegate?
+    private var mangas = [Manga]()
+
+    init(delegate: LibraryViewControllerDelegate, mangas: [Manga] = []) {
+        self.delegate = delegate
+        self.mangas = mangas
+        super.init(nibName: nil, bundle: nil)
     }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,7 +47,12 @@ class LibraryViewController: UIViewController {
         collectionView.collectionViewLayout.invalidateLayout()
     }
 
-    func configureCollectionView() {
+    func setMangas(mangas: [Manga]) {
+        self.mangas = mangas
+        self.collectionView.reloadData()
+    }
+
+    private func configureCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.contentInset = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
@@ -56,12 +67,12 @@ class LibraryViewController: UIViewController {
         collectionView.collectionViewLayout = layout
     }
 
-    func configureNavigationBar() {
+    private func configureNavigationBar() {
         let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .plain, target: self, action: #selector(add(button:)))
         navigationItem.leftBarButtonItem = addButton
     }
 
-    func heightForImageWith(maxWidth: CGFloat, maxHeight: CGFloat, image: UIImage) -> CGFloat {
+    private func heightForImageWith(maxWidth: CGFloat, maxHeight: CGFloat, image: UIImage) -> CGFloat {
         let widthScale = image.size.width / maxWidth
         let heightScale = image.size.height / maxHeight
 
