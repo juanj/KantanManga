@@ -13,7 +13,9 @@ protocol ViewMangaCoordinatorDelegate: AnyObject {
     func didEnd(viewMangaCoordinator: ViewMangaCoordinator)
 }
 
-class ViewMangaCoordinator: NSObject {
+class ViewMangaCoordinator: NSObject, Coordinator {
+    var childCoordinators = [Coordinator]()
+
     private let navigationController: UINavigationController!
     private weak var delegate: ViewMangaCoordinatorDelegate?
     private let manga: Manga

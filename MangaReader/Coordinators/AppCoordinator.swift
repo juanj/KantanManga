@@ -9,9 +9,9 @@
 import UIKit
 import CoreData
 
-class AppCoordinator: NSObject {
+class AppCoordinator: Coordinator {
     var navigationController: UINavigationController
-    var childCoordinators = [Any]()
+    var childCoordinators = [Coordinator]()
 
     var currentMangaDataSource: MangaDataSource?
     var libraryView: LibraryViewController?
@@ -45,28 +45,26 @@ extension AppCoordinator: LibraryViewControllerDelegate {
     }
 
     func didSelectAdd(_ libraryViewController: LibraryViewController, button: UIBarButtonItem) {
-        let addMangasCoordinator = AddMangasCoordinator(navigation: navigationController, delegate: self)
+        let addMangasCoordinator = AddMangasCoordinator(navigation: navigationController, sourceButton: button, delegate: self)
         childCoordinators.append(addMangasCoordinator)
-        addMangasCoordinator.start(button: button)
+        addMangasCoordinator.start()
     }
 }
 
 // MARK: AddMangasCoordinatorDelegate
 extension AppCoordinator: AddMangasCoordinatorDelegate {
     func didEnd(_ addMangasCoordinator: AddMangasCoordinator) {
-        childCoordinators.removeLast()
+        removeChildCoordinator(type: AddMangasCoordinator.self)
         libraryView?.setMangas(mangas: loadMangas())
     }
 
     func cancel(_ addMangasCoordinator: AddMangasCoordinator) {
-        childCoordinators.removeLast()
+        removeChildCoordinator(type: AddMangasCoordinator.self)
     }
 }
 
 extension AppCoordinator: ViewMangaCoordinatorDelegate {
     func didEnd(viewMangaCoordinator: ViewMangaCoordinator) {
-        for (index, coordinator) in childCoordinators.enumerated() where coordinator is ViewMangaCoordinator {
-            childCoordinators.remove(at: index)
-        }
+        removeChildCoordinator(type: ViewMangaCoordinator.self)
     }
 }

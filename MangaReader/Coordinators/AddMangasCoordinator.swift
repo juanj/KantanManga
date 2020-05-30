@@ -15,9 +15,11 @@ protocol AddMangasCoordinatorDelegate: AnyObject {
     func cancel(_ addMangasCoordinator: AddMangasCoordinator)
 }
 
-class AddMangasCoordinator: NSObject {
+class AddMangasCoordinator: NSObject, Coordinator {
+    var childCoordinators = [Coordinator]()
     private var navigationController: UINavigationController!
     private var presentedNavigationController = UINavigationController()
+    private var sourceButton: UIBarButtonItem
     private weak var delegate: AddMangasCoordinatorDelegate?
 
     private var uploadServer: GCDWebUploader?
@@ -25,16 +27,17 @@ class AddMangasCoordinator: NSObject {
     private var filePath: String?
     private var collection: MangaCollection?
 
-    init(navigation: UINavigationController, delegate: AddMangasCoordinatorDelegate) {
+    init(navigation: UINavigationController, sourceButton: UIBarButtonItem, delegate: AddMangasCoordinatorDelegate) {
         navigationController = navigation
+        self.sourceButton = sourceButton
         self.delegate = delegate
     }
 
-    func start(button: UIBarButtonItem) {
+    func start() {
         let addMangaView = AddMangaViewController(delegate: self)
         presentedNavigationController.pushViewController(addMangaView, animated: true)
         presentedNavigationController.modalPresentationStyle = .popover
-        presentedNavigationController.popoverPresentationController?.barButtonItem = button
+        presentedNavigationController.popoverPresentationController?.barButtonItem = self.sourceButton
         presentedNavigationController.popoverPresentationController?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         presentedNavigationController.presentationController?.delegate = self
         navigationController.present(presentedNavigationController, animated: true, completion: nil)
