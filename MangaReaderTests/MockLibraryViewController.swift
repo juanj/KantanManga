@@ -11,9 +11,3 @@
 class MockLibraryViewController: LibraryViewController {
     override func setMangas(mangas: [Manga]) {}
 }
-
-class MockLibraryDelegate: LibraryViewControllerDelegate {
-    func didSelectAdd(_ libraryViewController: LibraryViewController, button: UIBarButtonItem) {}
-    func didSelectManga(_ libraryViewController: LibraryViewController, manga: Manga, cellFrame: CGRect) {}
-    func didSelectDeleteManga(_ libraryViewController: LibraryViewController, manga: Manga) {}
-}

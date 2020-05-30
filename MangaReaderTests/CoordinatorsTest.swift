@@ -40,7 +40,7 @@ class AppCoordinatorTests: XCTestCase {
         let appCoordinator = AppCoordinator(navigation: navigation)
 
         let manga = CoreDataManager.sharedManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 100, filePath: "test.cbz")!
-        let delegate = MockLibraryDelegate()
+        let delegate = DummyLibraryViewControllerDelegate()
         let libraryViewController = MockLibraryViewController(delegate: delegate)
 
         XCTAssertEqual(CoreDataManager.sharedManager.fetchAllMangas()?.count, 1)
@@ -52,7 +52,7 @@ class AppCoordinatorTests: XCTestCase {
         let navigation = UINavigationController()
         let appCoordinator = AppCoordinator(navigation: navigation)
         let manga = CoreDataManager.sharedManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 100, filePath: "test.cbz")!
-        let delegate = MockLibraryDelegate()
+        let delegate = DummyLibraryViewControllerDelegate()
         let libraryViewController = MockLibraryViewController(delegate: delegate)
 
         appCoordinator.didSelectManga(libraryViewController, manga: manga, cellFrame: .zero)
@@ -64,7 +64,7 @@ class AppCoordinatorTests: XCTestCase {
     func testLibraryDelegateSelectAddStartCoordinator() {
         let navigation = UINavigationController()
         let appCoordinator = AppCoordinator(navigation: navigation)
-        let delegate = MockLibraryDelegate()
+        let delegate = DummyLibraryViewControllerDelegate()
         let libraryViewController = MockLibraryViewController(delegate: delegate)
 
         appCoordinator.didSelectAdd(libraryViewController, button: UIBarButtonItem())
@@ -92,5 +92,21 @@ class AppCoordinatorTests: XCTestCase {
         XCTAssertEqual(appCoordinator.childCoordinators.count, 1)
         appCoordinator.cancel(addMangasCoordinator)
         XCTAssertEqual(appCoordinator.childCoordinators.count, 0)
+    }
+}
+
+class AddMangasCoordinatorTests: XCTestCase {
+    override func setUp() {
+        super.setUp()
+        CoreDataManager.sharedManager.deleteAllData()
+    }
+
+    func testCallingStarPresentsNavigationWithAddMangaViewController() {
+        let navigation = MockNavigationController()
+        let delegate = DummyAddMangasCoordinatorDelegate()
+        let addMangasCoordinator = AddMangasCoordinator(navigation: navigation, sourceButton: UIBarButtonItem(), delegate: delegate)
+        addMangasCoordinator.start()
+
+        XCTAssertTrue((navigation.presentedViewControllerTest as? UINavigationController)?.viewControllers.first is AddMangaViewController)
     }
 }
