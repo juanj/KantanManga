@@ -22,7 +22,7 @@ class AppCoordinatorTests: XCTestCase {
 
     func testCallingStartPushLibraryViewController() {
         appCoordinator.start()
-        XCTAssertTrue(navigation.viewControllers.first is LibraryViewController)
+        XCTAssertTrue(navigation.viewControllersTest.first is LibraryViewController)
     }
 
     func testLoadMangas() {
