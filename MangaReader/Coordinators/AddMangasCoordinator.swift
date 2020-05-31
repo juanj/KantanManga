@@ -20,16 +20,17 @@ class AddMangasCoordinator: NSObject, Coordinator {
     private var navigationController: UINavigationController!
     private var presentedNavigationController = UINavigationController()
     private var sourceButton: UIBarButtonItem
+    private var uploadServer: GCDWebUploader
     private weak var delegate: AddMangasCoordinatorDelegate?
 
-    private var uploadServer: GCDWebUploader?
     private var addMangaViewController: AddMangaViewController?
     private var filePath: String?
     private var collection: MangaCollection?
 
-    init(navigation: UINavigationController, sourceButton: UIBarButtonItem, delegate: AddMangasCoordinatorDelegate) {
+    init(navigation: UINavigationController, sourceButton: UIBarButtonItem, uploadServer: GCDWebUploader, delegate: AddMangasCoordinatorDelegate) {
         navigationController = navigation
         self.sourceButton = sourceButton
+        self.uploadServer = uploadServer
         self.delegate = delegate
     }
 
@@ -46,13 +47,9 @@ class AddMangasCoordinator: NSObject, Coordinator {
     }
 
     private func initWebServer() {
-        guard let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
-            return
-        }
-        uploadServer = GCDWebUploader(uploadDirectory: documentPath)
-        uploadServer?.allowedFileExtensions = ["cbz", "zip", "rar", "cbr"]
-        uploadServer?.delegate = self
-        uploadServer?.start()
+        uploadServer.allowedFileExtensions = ["cbz", "zip", "rar", "cbr"]
+        uploadServer.delegate = self
+        uploadServer.start()
     }
 
     private func loadFile() {
@@ -94,7 +91,7 @@ extension AddMangasCoordinator: GCDWebUploaderDelegate {
         let soundID: SystemSoundID = 1307
         AudioServicesPlaySystemSound(soundID)
         filePath = path.lastPathComponent
-        uploadServer?.stop()
+        uploadServer.stop()
         loadFile()
     }
 
@@ -109,7 +106,7 @@ extension AddMangasCoordinator: GCDWebUploaderDelegate {
 extension AddMangasCoordinator: WebServerViewControllerDelegate {
     func didSelectBack(_ webServerViewController: WebServerViewController) {
         presentedNavigationController.popViewController(animated: true)
-        uploadServer?.stop()
+        uploadServer.stop()
     }
 }
 
@@ -154,7 +151,7 @@ extension AddMangasCoordinator: FileSourceViewControllerDelegate {
         initWebServer()
         let webServerViewcontroller = WebServerViewController()
         webServerViewcontroller.delegate = self
-        if let url = uploadServer?.serverURL?.absoluteString {
+        if let url = uploadServer.serverURL?.absoluteString {
             webServerViewcontroller.serverUrl = url
         }
         presentedNavigationController.pushViewController(webServerViewcontroller, animated: true)

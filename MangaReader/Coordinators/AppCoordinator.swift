@@ -45,7 +45,11 @@ extension AppCoordinator: LibraryViewControllerDelegate {
     }
 
     func didSelectAdd(_ libraryViewController: LibraryViewController, button: UIBarButtonItem) {
-        let addMangasCoordinator = AddMangasCoordinator(navigation: navigationController, sourceButton: button, delegate: self)
+        guard let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
+            return
+        }
+        let uploadServer = GCDWebUploader(uploadDirectory: documentPath)
+        let addMangasCoordinator = AddMangasCoordinator(navigation: navigationController, sourceButton: button, uploadServer: uploadServer, delegate: self)
         childCoordinators.append(addMangasCoordinator)
         addMangasCoordinator.start()
     }
