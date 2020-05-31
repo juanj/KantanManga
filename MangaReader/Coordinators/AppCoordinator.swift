@@ -9,9 +9,9 @@
 import UIKit
 import CoreData
 
-class AppCoordinator: NSObject {
+class AppCoordinator: Coordinator {
     var navigationController: UINavigationController
-    var childCoordinators = [Any]()
+    var childCoordinators = [Coordinator]()
 
     var currentMangaDataSource: MangaDataSource?
     var libraryView: LibraryViewController?
@@ -21,9 +21,7 @@ class AppCoordinator: NSObject {
     }
 
     func start() {
-        let library = LibraryViewController()
-        library.delegate = self
-        library.mangas = loadMangas()
+        let library = LibraryViewController(delegate: self, mangas: loadMangas())
         navigationController.pushViewController(library, animated: false)
         libraryView = library
     }
@@ -37,40 +35,40 @@ class AppCoordinator: NSObject {
 extension AppCoordinator: LibraryViewControllerDelegate {
     func didSelectDeleteManga(_ libraryViewController: LibraryViewController, manga: Manga) {
         CoreDataManager.sharedManager.delete(manga: manga)
-        libraryViewController.mangas = loadMangas()
-        libraryViewController.collectionView.reloadData()
+        libraryViewController.setMangas(mangas: loadMangas())
     }
 
     func didSelectManga(_ libraryViewController: LibraryViewController, manga: Manga, cellFrame: CGRect) {
-        let viewMangaCoordinator = ViewMangaCoordinator(navigation: navigationController, manga: manga, delegate: self, originFrame: cellFrame)
+        let viewMangaCoordinator = ViewMangaCoordinator(navigation: navigationController, manga: manga, delegate: self, originFrame: cellFrame, ocr: TesseractOCR())
         childCoordinators.append(viewMangaCoordinator)
         viewMangaCoordinator.start()
     }
 
     func didSelectAdd(_ libraryViewController: LibraryViewController, button: UIBarButtonItem) {
-        let addMangasCoordinator = AddMangasCoordinator(navigation: navigationController, delegate: self)
+        guard let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
+            return
+        }
+        let uploadServer = GCDWebUploader(uploadDirectory: documentPath)
+        let addMangasCoordinator = AddMangasCoordinator(navigation: navigationController, sourceButton: button, uploadServer: uploadServer, delegate: self)
         childCoordinators.append(addMangasCoordinator)
-        addMangasCoordinator.start(button: button)
+        addMangasCoordinator.start()
     }
 }
 
 // MARK: AddMangasCoordinatorDelegate
 extension AppCoordinator: AddMangasCoordinatorDelegate {
     func didEnd(_ addMangasCoordinator: AddMangasCoordinator) {
-        childCoordinators.removeLast()
-        let mangas = loadMangas()
-        libraryView?.mangas = mangas
+        removeChildCoordinator(type: AddMangasCoordinator.self)
+        libraryView?.setMangas(mangas: loadMangas())
     }
 
     func cancel(_ addMangasCoordinator: AddMangasCoordinator) {
-        childCoordinators.removeLast()
+        removeChildCoordinator(type: AddMangasCoordinator.self)
     }
 }
 
 extension AppCoordinator: ViewMangaCoordinatorDelegate {
     func didEnd(viewMangaCoordinator: ViewMangaCoordinator) {
-        for (index, coordinator) in childCoordinators.enumerated() where coordinator is ViewMangaCoordinator {
-            childCoordinators.remove(at: index)
-        }
+        removeChildCoordinator(type: ViewMangaCoordinator.self)
     }
 }

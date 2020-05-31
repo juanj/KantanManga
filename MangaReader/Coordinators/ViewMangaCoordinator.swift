@@ -13,20 +13,23 @@ protocol ViewMangaCoordinatorDelegate: AnyObject {
     func didEnd(viewMangaCoordinator: ViewMangaCoordinator)
 }
 
-class ViewMangaCoordinator: NSObject {
+class ViewMangaCoordinator: NSObject, Coordinator {
+    var childCoordinators = [Coordinator]()
+
     private let navigationController: UINavigationController!
     private weak var delegate: ViewMangaCoordinatorDelegate?
     private let manga: Manga
     private let originFrame: CGRect
 
     private var mangaDataSource: MangaDataSource!
-    private var ocr: ImageOCR = TesseractOCR()//GoogleVistionOCR()
+    private var ocr: ImageOCR
 
-    init(navigation: UINavigationController, manga: Manga, delegate: ViewMangaCoordinatorDelegate, originFrame: CGRect) {
+    init(navigation: UINavigationController, manga: Manga, delegate: ViewMangaCoordinatorDelegate, originFrame: CGRect, ocr: ImageOCR) {
         navigationController = navigation
         self.manga = manga
         self.delegate = delegate
         self.originFrame = originFrame
+        self.ocr = ocr
         mangaDataSource = MangaDataSource(manga: manga)
     }
 
