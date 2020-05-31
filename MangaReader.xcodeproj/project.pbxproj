@@ -256,6 +256,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		320ED4DE24832C9700F5BECF /* Mock Classes */ = {
+			isa = PBXGroup;
+			children = (
+				320ED4D22483178C00F5BECF /* DummyDelegates.swift */,
+				322C5B5B24830C2500C0BAB1 /* MockLibraryViewController.swift */,
+				320ED4D62483189F00F5BECF /* MockNavigationController.swift */,
+				320ED4D824831D2900F5BECF /* MockUploadServer.swift */,
+				320ED4DA248326F300F5BECF /* MockAddMangasCoordinatorDelegate.swift */,
+				320ED4DC2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift */,
+			);
+			path = "Mock Classes";
+			sourceTree = "<group>";
+		};
 		325813DF23C5049000C31E02 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,15 +468,10 @@
 		84A831FD221D90CC00CEE1C9 /* MangaReaderTests */ = {
 			isa = PBXGroup;
 			children = (
-				320ED4D22483178C00F5BECF /* DummyDelegates.swift */,
+				320ED4DE24832C9700F5BECF /* Mock Classes */,
 				84A831FE221D90CC00CEE1C9 /* MangaReaderTests.swift */,
-				322C5B5B24830C2500C0BAB1 /* MockLibraryViewController.swift */,
 				32E322212481CD8D007BC017 /* CoordinatorsTest.swift */,
 				84A83200221D90CC00CEE1C9 /* Info.plist */,
-				320ED4D62483189F00F5BECF /* MockNavigationController.swift */,
-				320ED4D824831D2900F5BECF /* MockUploadServer.swift */,
-				320ED4DA248326F300F5BECF /* MockAddMangasCoordinatorDelegate.swift */,
-				320ED4DC2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift */,
 			);
 			path = MangaReaderTests;
 			sourceTree = "<group>";
