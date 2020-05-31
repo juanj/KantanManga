@@ -10,6 +10,9 @@
 		0D463D7222CA9B0D0020FD5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D463D7122CA9B0C0020FD5A /* GoogleService-Info.plist */; };
 		320ED4D32483178C00F5BECF /* DummyDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D22483178C00F5BECF /* DummyDelegates.swift */; };
 		320ED4D72483189F00F5BECF /* MockNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D62483189F00F5BECF /* MockNavigationController.swift */; };
+		320ED4D924831D2900F5BECF /* MockUploadServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D824831D2900F5BECF /* MockUploadServer.swift */; };
+		320ED4DB248326F300F5BECF /* MockAddMangasCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4DA248326F300F5BECF /* MockAddMangasCoordinatorDelegate.swift */; };
+		320ED4DD2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4DC2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift */; };
 		320F277323C2046900D9930F /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277123C2046900D9930F /* Token.swift */; };
 		320F277423C2046900D9930F /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277223C2046900D9930F /* Tokenizer.swift */; };
 		322C5B5C24830C2500C0BAB1 /* MockLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C5B5B24830C2500C0BAB1 /* MockLibraryViewController.swift */; };
@@ -137,6 +140,9 @@
 		0FD908038762DEE3A978F955 /* Pods_MangaReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangaReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		320ED4D22483178C00F5BECF /* DummyDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyDelegates.swift; sourceTree = "<group>"; };
 		320ED4D62483189F00F5BECF /* MockNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNavigationController.swift; sourceTree = "<group>"; };
+		320ED4D824831D2900F5BECF /* MockUploadServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUploadServer.swift; sourceTree = "<group>"; };
+		320ED4DA248326F300F5BECF /* MockAddMangasCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAddMangasCoordinatorDelegate.swift; sourceTree = "<group>"; };
+		320ED4DC2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAddMangaViewControllerDelegate.swift; sourceTree = "<group>"; };
 		320F277123C2046900D9930F /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		320F277223C2046900D9930F /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
 		322C5B5B24830C2500C0BAB1 /* MockLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLibraryViewController.swift; sourceTree = "<group>"; };
@@ -455,6 +461,9 @@
 				32E322212481CD8D007BC017 /* CoordinatorsTest.swift */,
 				84A83200221D90CC00CEE1C9 /* Info.plist */,
 				320ED4D62483189F00F5BECF /* MockNavigationController.swift */,
+				320ED4D824831D2900F5BECF /* MockUploadServer.swift */,
+				320ED4DA248326F300F5BECF /* MockAddMangasCoordinatorDelegate.swift */,
+				320ED4DC2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift */,
 			);
 			path = MangaReaderTests;
 			sourceTree = "<group>";
@@ -834,10 +843,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				322C5B5C24830C2500C0BAB1 /* MockLibraryViewController.swift in Sources */,
+				320ED4D924831D2900F5BECF /* MockUploadServer.swift in Sources */,
 				320ED4D72483189F00F5BECF /* MockNavigationController.swift in Sources */,
 				320ED4D32483178C00F5BECF /* DummyDelegates.swift in Sources */,
+				320ED4DD2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift in Sources */,
 				32E322222481CD8D007BC017 /* CoordinatorsTest.swift in Sources */,
 				84A831FF221D90CC00CEE1C9 /* MangaReaderTests.swift in Sources */,
+				320ED4DB248326F300F5BECF /* MockAddMangasCoordinatorDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

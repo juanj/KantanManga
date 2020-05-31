@@ -13,8 +13,3 @@ class DummyLibraryViewControllerDelegate: LibraryViewControllerDelegate {
     func didSelectManga(_ libraryViewController: LibraryViewController, manga: Manga, cellFrame: CGRect) {}
     func didSelectDeleteManga(_ libraryViewController: LibraryViewController, manga: Manga) {}
 }
-
-class DummyAddMangasCoordinatorDelegate: AddMangasCoordinatorDelegate {
-    func didEnd(_ addMangasCoordinator: AddMangasCoordinator) {}
-    func cancel(_ addMangasCoordinator: AddMangasCoordinator) {}
-}
