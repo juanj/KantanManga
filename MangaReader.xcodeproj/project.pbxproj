@@ -207,7 +207,7 @@
 		843FA7E8221DFE9E00B86B52 /* CBZReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBZReader.swift; sourceTree = "<group>"; };
 		843FA7EA221E0BE900B86B52 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		843FA7EB221E0BE900B86B52 /* PageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageViewController.xib; sourceTree = "<group>"; };
-		84A831E3221D90CA00CEE1C9 /* MangaReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MangaReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84A831E3221D90CA00CEE1C9 /* Kantan Manga.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kantan Manga.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A831E6221D90CA00CEE1C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84A831EE221D90CA00CEE1C9 /* MangaReader.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MangaReader.xcdatamodel; sourceTree = "<group>"; };
 		84A831F0221D90CC00CEE1C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -444,7 +444,7 @@
 		84A831E4221D90CA00CEE1C9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				84A831E3221D90CA00CEE1C9 /* MangaReader.app */,
+				84A831E3221D90CA00CEE1C9 /* Kantan Manga.app */,
 				84A831FA221D90CC00CEE1C9 /* MangaReaderTests.xctest */,
 				84A83205221D90CC00CEE1C9 /* MangaReaderUITests.xctest */,
 			);
@@ -549,7 +549,7 @@
 			);
 			name = MangaReader;
 			productName = MangaReader;
-			productReference = 84A831E3221D90CA00CEE1C9 /* MangaReader.app */;
+			productReference = 84A831E3221D90CA00CEE1C9 /* Kantan Manga.app */;
 			productType = "com.apple.product-type.application";
 		};
 		84A831F9221D90CC00CEE1C9 /* MangaReaderTests */ = {
@@ -1033,6 +1033,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1111,12 +1112,12 @@
 					"-framework",
 					"\"protobuf\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bakura.MangaReader;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kantanmanga;
+				PRODUCT_NAME = "Kantan Manga";
 				SWIFT_OBJC_BRIDGING_HEADER = "MangaReader-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -1134,6 +1135,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1212,11 +1214,11 @@
 					"-framework",
 					"\"protobuf\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bakura.MangaReader;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kantanmanga;
+				PRODUCT_NAME = "Kantan Manga";
 				SWIFT_OBJC_BRIDGING_HEADER = "MangaReader-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
