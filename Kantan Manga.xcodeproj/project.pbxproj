@@ -24,6 +24,7 @@
 		32326F8D243566FD00FCE8E5 /* cbz.png in Resources */ = {isa = PBXBuildFile; fileRef = 32326F8C243566FD00FCE8E5 /* cbz.png */; };
 		32350AA8247C723C002D100D /* WordParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32350AA7247C723C002D100D /* WordParser.swift */; };
 		323CD90A23CB7107007FFC58 /* jamdict.db in Resources */ = {isa = PBXBuildFile; fileRef = 323CD90923CB7107007FFC58 /* jamdict.db */; };
+		324BB93B2498302E006241E8 /* mecabrc in Resources */ = {isa = PBXBuildFile; fileRef = 3258141023C5051A00C31E02 /* mecabrc */; };
 		325199B42479D96400DA6908 /* ImageOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325199B32479D96400DA6908 /* ImageOCR.swift */; };
 		325199B72479D9E000DA6908 /* GoogleVisionOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325199B62479D9E000DA6908 /* GoogleVisionOCR.swift */; };
 		325199BB2479DE0D00DA6908 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 325199B92479DE0D00DA6908 /* tessdata */; };
@@ -32,7 +33,6 @@
 		325199CC2479E9BC00DA6908 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 325199B92479DE0D00DA6908 /* tessdata */; };
 		325813E423C5049A00C31E02 /* mecab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325813E323C5049000C31E02 /* mecab.framework */; };
 		325813E523C5049A00C31E02 /* mecab.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 325813E323C5049000C31E02 /* mecab.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3258141123C5051A00C31E02 /* mecabrc in Resources */ = {isa = PBXBuildFile; fileRef = 3258141023C5051A00C31E02 /* mecabrc */; };
 		3258141C23C5053900C31E02 /* rewrite.def in Resources */ = {isa = PBXBuildFile; fileRef = 3258141323C5053900C31E02 /* rewrite.def */; };
 		3258141D23C5053900C31E02 /* left-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 3258141423C5053900C31E02 /* left-id.def */; };
 		3258141E23C5053900C31E02 /* pos-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 3258141523C5053900C31E02 /* pos-id.def */; };
@@ -161,7 +161,7 @@
 		325199B92479DE0D00DA6908 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		325199C32479E20700DA6908 /* TesseractOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesseractOCR.swift; sourceTree = "<group>"; };
 		325813DE23C5049000C31E02 /* mecab.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mecab.xcodeproj; path = "mecab-ios/mecab.xcodeproj"; sourceTree = "<group>"; };
-		3258141023C5051A00C31E02 /* mecabrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mecabrc; sourceTree = "<group>"; };
+		3258141023C5051A00C31E02 /* mecabrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mecabrc; path = /Users/juanjosemeneses/Documents/MangaReader/mecabrc; sourceTree = "<absolute>"; };
 		3258141323C5053900C31E02 /* rewrite.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rewrite.def; sourceTree = "<group>"; };
 		3258141423C5053900C31E02 /* left-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "left-id.def"; sourceTree = "<group>"; };
 		3258141523C5053900C31E02 /* pos-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pos-id.def"; sourceTree = "<group>"; };
@@ -213,10 +213,10 @@
 		84A831F0221D90CC00CEE1C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84A831F3221D90CC00CEE1C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84A831F5221D90CC00CEE1C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		84A831FA221D90CC00CEE1C9 /* MangaReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MangaReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84A831FA221D90CC00CEE1C9 /* Kantan MangaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kantan MangaTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A831FE221D90CC00CEE1C9 /* MangaReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaReaderTests.swift; sourceTree = "<group>"; };
 		84A83200221D90CC00CEE1C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		84A83205221D90CC00CEE1C9 /* MangaReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MangaReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84A83205221D90CC00CEE1C9 /* Kantan MangaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kantan MangaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A83218221D923800CEE1C9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		84A8321B221D951500CEE1C9 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		84A8321C221D951500CEE1C9 /* LibraryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
@@ -445,8 +445,8 @@
 			isa = PBXGroup;
 			children = (
 				84A831E3221D90CA00CEE1C9 /* Kantan Manga.app */,
-				84A831FA221D90CC00CEE1C9 /* MangaReaderTests.xctest */,
-				84A83205221D90CC00CEE1C9 /* MangaReaderUITests.xctest */,
+				84A831FA221D90CC00CEE1C9 /* Kantan MangaTests.xctest */,
+				84A83205221D90CC00CEE1C9 /* Kantan MangaUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -531,9 +531,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		84A831E2221D90CA00CEE1C9 /* MangaReader */ = {
+		84A831E2221D90CA00CEE1C9 /* Kantan Manga */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84A8320E221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "MangaReader" */;
+			buildConfigurationList = 84A8320E221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan Manga" */;
 			buildPhases = (
 				47EC031D6820EED60E125F73 /* [CP] Check Pods Manifest.lock */,
 				84A831DF221D90CA00CEE1C9 /* Sources */,
@@ -547,14 +547,14 @@
 			);
 			dependencies = (
 			);
-			name = MangaReader;
+			name = "Kantan Manga";
 			productName = MangaReader;
 			productReference = 84A831E3221D90CA00CEE1C9 /* Kantan Manga.app */;
 			productType = "com.apple.product-type.application";
 		};
-		84A831F9221D90CC00CEE1C9 /* MangaReaderTests */ = {
+		84A831F9221D90CC00CEE1C9 /* Kantan MangaTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84A83211221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "MangaReaderTests" */;
+			buildConfigurationList = 84A83211221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan MangaTests" */;
 			buildPhases = (
 				EA039F059F557E0A6B94B376 /* [CP] Check Pods Manifest.lock */,
 				84A831F6221D90CC00CEE1C9 /* Sources */,
@@ -566,14 +566,14 @@
 			dependencies = (
 				84A831FC221D90CC00CEE1C9 /* PBXTargetDependency */,
 			);
-			name = MangaReaderTests;
+			name = "Kantan MangaTests";
 			productName = MangaReaderTests;
-			productReference = 84A831FA221D90CC00CEE1C9 /* MangaReaderTests.xctest */;
+			productReference = 84A831FA221D90CC00CEE1C9 /* Kantan MangaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		84A83204221D90CC00CEE1C9 /* MangaReaderUITests */ = {
+		84A83204221D90CC00CEE1C9 /* Kantan MangaUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84A83214221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "MangaReaderUITests" */;
+			buildConfigurationList = 84A83214221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan MangaUITests" */;
 			buildPhases = (
 				1E148B4D9991442BC6BF10E8 /* [CP] Check Pods Manifest.lock */,
 				84A83201221D90CC00CEE1C9 /* Sources */,
@@ -585,9 +585,9 @@
 			dependencies = (
 				84A83207221D90CC00CEE1C9 /* PBXTargetDependency */,
 			);
-			name = MangaReaderUITests;
+			name = "Kantan MangaUITests";
 			productName = MangaReaderUITests;
-			productReference = 84A83205221D90CC00CEE1C9 /* MangaReaderUITests.xctest */;
+			productReference = 84A83205221D90CC00CEE1C9 /* Kantan MangaUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -598,7 +598,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = Bakura;
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					84A831E2221D90CA00CEE1C9 = {
 						CreatedOnToolsVersion = 10.1;
@@ -615,7 +615,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 84A831DE221D90CA00CEE1C9 /* Build configuration list for PBXProject "MangaReader" */;
+			buildConfigurationList = 84A831DE221D90CA00CEE1C9 /* Build configuration list for PBXProject "Kantan Manga" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -638,9 +638,9 @@
 			);
 			projectRoot = "";
 			targets = (
-				84A831E2221D90CA00CEE1C9 /* MangaReader */,
-				84A831F9221D90CC00CEE1C9 /* MangaReaderTests */,
-				84A83204221D90CC00CEE1C9 /* MangaReaderUITests */,
+				84A831E2221D90CA00CEE1C9 /* Kantan Manga */,
+				84A831F9221D90CC00CEE1C9 /* Kantan MangaTests */,
+				84A83204221D90CC00CEE1C9 /* Kantan MangaUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -667,7 +667,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3258141123C5051A00C31E02 /* mecabrc in Resources */,
 				32326F8724354ECC00FCE8E5 /* FileSourceViewController.xib in Resources */,
 				3258142323C5053900C31E02 /* right-id.def in Resources */,
 				3258141F23C5053900C31E02 /* matrix.bin in Resources */,
@@ -681,6 +680,7 @@
 				3258142123C5053900C31E02 /* sys.dic in Resources */,
 				3258141C23C5053900C31E02 /* rewrite.def in Resources */,
 				32326F8D243566FD00FCE8E5 /* cbz.png in Resources */,
+				324BB93B2498302E006241E8 /* mecabrc in Resources */,
 				328DFB0B238D96300095CBAB /* MangaViewController.xib in Resources */,
 				325199BB2479DE0D00DA6908 /* tessdata in Resources */,
 				84A8321E221D951500CEE1C9 /* LibraryViewController.xib in Resources */,
@@ -881,12 +881,12 @@
 /* Begin PBXTargetDependency section */
 		84A831FC221D90CC00CEE1C9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 84A831E2221D90CA00CEE1C9 /* MangaReader */;
+			target = 84A831E2221D90CA00CEE1C9 /* Kantan Manga */;
 			targetProxy = 84A831FB221D90CC00CEE1C9 /* PBXContainerItemProxy */;
 		};
 		84A83207221D90CC00CEE1C9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 84A831E2221D90CA00CEE1C9 /* MangaReader */;
+			target = 84A831E2221D90CA00CEE1C9 /* Kantan Manga */;
 			targetProxy = 84A83206221D90CC00CEE1C9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1240,7 +1240,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MangaReader.app/MangaReader";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kantan Manga.app/Kantan Manga";
 			};
 			name = Debug;
 		};
@@ -1262,7 +1262,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MangaReader.app/MangaReader";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kantan Manga.app/Kantan Manga";
 			};
 			name = Release;
 		};
@@ -1311,7 +1311,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		84A831DE221D90CA00CEE1C9 /* Build configuration list for PBXProject "MangaReader" */ = {
+		84A831DE221D90CA00CEE1C9 /* Build configuration list for PBXProject "Kantan Manga" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84A8320C221D90CC00CEE1C9 /* Debug */,
@@ -1320,7 +1320,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84A8320E221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "MangaReader" */ = {
+		84A8320E221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan Manga" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84A8320F221D90CC00CEE1C9 /* Debug */,
@@ -1329,7 +1329,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84A83211221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "MangaReaderTests" */ = {
+		84A83211221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan MangaTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84A83212221D90CC00CEE1C9 /* Debug */,
@@ -1338,7 +1338,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84A83214221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "MangaReaderUITests" */ = {
+		84A83214221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan MangaUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84A83215221D90CC00CEE1C9 /* Debug */,
