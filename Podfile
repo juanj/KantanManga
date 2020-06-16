@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'MangaReader' do
+target 'Kantan-Manga' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
@@ -14,12 +14,12 @@ target 'MangaReader' do
   pod 'SQLite.swift', '~> 0.12.0'
   pod 'TesseractOCRiOS', :git => 'git://github.com/parallaxe/Tesseract-OCR-iOS.git', :branch => 'macos-support'
   pod 'UnrarKit'
-  target 'MangaReaderTests' do
+  target 'Kantan-MangaTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'MangaReaderUITests' do
+  target 'Kantan-MangaUITests' do
     inherit! :search_paths
     # Pods for testing
   end

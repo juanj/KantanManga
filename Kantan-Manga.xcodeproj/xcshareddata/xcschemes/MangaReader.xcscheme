@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "84A831E2221D90CA00CEE1C9"
                BuildableName = "Kantan Manga.app"
-               BlueprintName = "Kantan Manga"
-               ReferencedContainer = "container:Kantan Manga.xcodeproj">
+               BlueprintName = "Kantan-Manga"
+               ReferencedContainer = "container:Kantan-Manga.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "84A831E2221D90CA00CEE1C9"
             BuildableName = "Kantan Manga.app"
-            BlueprintName = "Kantan Manga"
-            ReferencedContainer = "container:Kantan Manga.xcodeproj">
+            BlueprintName = "Kantan-Manga"
+            ReferencedContainer = "container:Kantan-Manga.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <CodeCoverageTargets>
@@ -43,8 +43,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "84A831E2221D90CA00CEE1C9"
             BuildableName = "Kantan Manga.app"
-            BlueprintName = "Kantan Manga"
-            ReferencedContainer = "container:Kantan Manga.xcodeproj">
+            BlueprintName = "Kantan-Manga"
+            ReferencedContainer = "container:Kantan-Manga.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
@@ -53,9 +53,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "84A831F9221D90CC00CEE1C9"
-               BuildableName = "Kantan MangaTests.xctest"
-               BlueprintName = "Kantan MangaTests"
-               ReferencedContainer = "container:Kantan Manga.xcodeproj">
+               BuildableName = "Kantan-MangaTests.xctest"
+               BlueprintName = "Kantan-MangaTests"
+               ReferencedContainer = "container:Kantan-Manga.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -76,8 +76,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "84A831E2221D90CA00CEE1C9"
             BuildableName = "Kantan Manga.app"
-            BlueprintName = "Kantan Manga"
-            ReferencedContainer = "container:Kantan Manga.xcodeproj">
+            BlueprintName = "Kantan-Manga"
+            ReferencedContainer = "container:Kantan-Manga.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -93,8 +93,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "84A831E2221D90CA00CEE1C9"
             BuildableName = "Kantan Manga.app"
-            BlueprintName = "Kantan Manga"
-            ReferencedContainer = "container:Kantan Manga.xcodeproj">
+            BlueprintName = "Kantan-Manga"
+            ReferencedContainer = "container:Kantan-Manga.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

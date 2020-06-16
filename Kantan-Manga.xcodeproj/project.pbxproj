@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0D463D7222CA9B0D0020FD5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D463D7122CA9B0C0020FD5A /* GoogleService-Info.plist */; };
+		1873712DF054B5A5B988EC0E /* Pods_Kantan_MangaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D7326F35AB101E198FF621 /* Pods_Kantan_MangaTests.framework */; };
+		2254E6DD7D38442ABE3EBB89 /* Pods_Kantan_MangaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5534228050877F817D2A97BC /* Pods_Kantan_MangaUITests.framework */; };
 		320ED4D32483178C00F5BECF /* DummyDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D22483178C00F5BECF /* DummyDelegates.swift */; };
 		320ED4D72483189F00F5BECF /* MockNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D62483189F00F5BECF /* MockNavigationController.swift */; };
 		320ED4D924831D2900F5BECF /* MockUploadServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D824831D2900F5BECF /* MockUploadServer.swift */; };
@@ -25,23 +27,24 @@
 		32350AA8247C723C002D100D /* WordParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32350AA7247C723C002D100D /* WordParser.swift */; };
 		323CD90A23CB7107007FFC58 /* jamdict.db in Resources */ = {isa = PBXBuildFile; fileRef = 323CD90923CB7107007FFC58 /* jamdict.db */; };
 		324BB93B2498302E006241E8 /* mecabrc in Resources */ = {isa = PBXBuildFile; fileRef = 3258141023C5051A00C31E02 /* mecabrc */; };
+		324BB95A2498365E006241E8 /* mecabrc in Resources */ = {isa = PBXBuildFile; fileRef = 324BB9592498365E006241E8 /* mecabrc */; };
+		324BB96E2498369B006241E8 /* mecab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324BB958249835DD006241E8 /* mecab.framework */; };
+		324BB96F2498369B006241E8 /* mecab.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 324BB958249835DD006241E8 /* mecab.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		324BB99224983DF7006241E8 /* rewrite.def in Resources */ = {isa = PBXBuildFile; fileRef = 324BB98924983DF7006241E8 /* rewrite.def */; };
+		324BB99324983DF7006241E8 /* left-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 324BB98A24983DF7006241E8 /* left-id.def */; };
+		324BB99424983DF7006241E8 /* pos-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 324BB98B24983DF7006241E8 /* pos-id.def */; };
+		324BB99524983DF7006241E8 /* matrix.bin in Resources */ = {isa = PBXBuildFile; fileRef = 324BB98C24983DF7006241E8 /* matrix.bin */; };
+		324BB99624983DF7006241E8 /* unk.dic in Resources */ = {isa = PBXBuildFile; fileRef = 324BB98D24983DF7006241E8 /* unk.dic */; };
+		324BB99724983DF7006241E8 /* sys.dic in Resources */ = {isa = PBXBuildFile; fileRef = 324BB98E24983DF7006241E8 /* sys.dic */; };
+		324BB99824983DF7006241E8 /* dicrc in Resources */ = {isa = PBXBuildFile; fileRef = 324BB98F24983DF7006241E8 /* dicrc */; };
+		324BB99924983DF7006241E8 /* right-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 324BB99024983DF7006241E8 /* right-id.def */; };
+		324BB99A24983DF7006241E8 /* char.bin in Resources */ = {isa = PBXBuildFile; fileRef = 324BB99124983DF7006241E8 /* char.bin */; };
 		325199B42479D96400DA6908 /* ImageOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325199B32479D96400DA6908 /* ImageOCR.swift */; };
 		325199B72479D9E000DA6908 /* GoogleVisionOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325199B62479D9E000DA6908 /* GoogleVisionOCR.swift */; };
 		325199BB2479DE0D00DA6908 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 325199B92479DE0D00DA6908 /* tessdata */; };
 		325199C42479E20700DA6908 /* TesseractOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325199C32479E20700DA6908 /* TesseractOCR.swift */; };
 		325199CA2479E9B900DA6908 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 325199B92479DE0D00DA6908 /* tessdata */; };
 		325199CC2479E9BC00DA6908 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 325199B92479DE0D00DA6908 /* tessdata */; };
-		325813E423C5049A00C31E02 /* mecab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325813E323C5049000C31E02 /* mecab.framework */; };
-		325813E523C5049A00C31E02 /* mecab.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 325813E323C5049000C31E02 /* mecab.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3258141C23C5053900C31E02 /* rewrite.def in Resources */ = {isa = PBXBuildFile; fileRef = 3258141323C5053900C31E02 /* rewrite.def */; };
-		3258141D23C5053900C31E02 /* left-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 3258141423C5053900C31E02 /* left-id.def */; };
-		3258141E23C5053900C31E02 /* pos-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 3258141523C5053900C31E02 /* pos-id.def */; };
-		3258141F23C5053900C31E02 /* matrix.bin in Resources */ = {isa = PBXBuildFile; fileRef = 3258141623C5053900C31E02 /* matrix.bin */; };
-		3258142023C5053900C31E02 /* unk.dic in Resources */ = {isa = PBXBuildFile; fileRef = 3258141723C5053900C31E02 /* unk.dic */; };
-		3258142123C5053900C31E02 /* sys.dic in Resources */ = {isa = PBXBuildFile; fileRef = 3258141823C5053900C31E02 /* sys.dic */; };
-		3258142223C5053900C31E02 /* dicrc in Resources */ = {isa = PBXBuildFile; fileRef = 3258141923C5053900C31E02 /* dicrc */; };
-		3258142323C5053900C31E02 /* right-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 3258141A23C5053900C31E02 /* right-id.def */; };
-		3258142423C5053900C31E02 /* char.bin in Resources */ = {isa = PBXBuildFile; fileRef = 3258141B23C5053900C31E02 /* char.bin */; };
 		3259D1B423C4D9A2003BA7C2 /* FuriganaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */; };
 		325CFC1D2480582700110F31 /* DictionaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CFC1C2480582700110F31 /* DictionaryView.swift */; };
 		325CFC21248060AD00110F31 /* DictionaryEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CFC20248060AD00110F31 /* DictionaryEntryView.swift */; };
@@ -65,8 +68,6 @@
 		32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */; };
 		32F1B9FC24369E1100AE367D /* OpenMangaAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9FB24369E1100AE367D /* OpenMangaAnimationController.swift */; };
 		32FA3C7C24367428001EB0DF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3C7B24367428001EB0DF /* String+Extension.swift */; };
-		4210C463A6A18BA4DDE78173 /* Pods_MangaReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FD908038762DEE3A978F955 /* Pods_MangaReader.framework */; };
-		6B3FC32AFC97A3EEBF5989C6 /* Pods_MangaReaderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F13E9F51127395F4C02644A /* Pods_MangaReaderUITests.framework */; };
 		84186960222474EC00C689DC /* LibraryCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418695F222474EC00C689DC /* LibraryCollectionViewLayout.swift */; };
 		8418696D222495FE00C689DC /* Manga.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418696B222495FD00C689DC /* Manga.swift */; };
 		8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */; };
@@ -88,20 +89,13 @@
 		84A83221221D9F7000CEE1C9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A83220221D9F7000CEE1C9 /* CoreDataManager.swift */; };
 		84A83224221DB10400CEE1C9 /* MangaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A83222221DB10400CEE1C9 /* MangaCollectionViewCell.swift */; };
 		84A83225221DB10400CEE1C9 /* MangaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A83223221DB10400CEE1C9 /* MangaCollectionViewCell.xib */; };
-		C236795ADDD5F8B005824580 /* Pods_MangaReaderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9CF3EF06DC7DAF652B13D2F /* Pods_MangaReaderTests.framework */; };
+		ED0C9C9A3BB0262753847EC3 /* Pods_Kantan_Manga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4F6B672107D039F561AF88 /* Pods_Kantan_Manga.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		325813E223C5049000C31E02 /* PBXContainerItemProxy */ = {
+		324BB957249835DD006241E8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 325813DE23C5049000C31E02 /* mecab.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 44C74468207357D7008F46FD;
-			remoteInfo = mecab;
-		};
-		3263449E247DD8A200F683AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3263449A247DD8A200F683AB /* mecab.xcodeproj */;
+			containerPortal = 324BB953249835DD006241E8 /* mecab.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 44C74468207357D7008F46FD;
 			remoteInfo = mecab;
@@ -123,13 +117,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		320F277023C203E300D9930F /* Embed Frameworks */ = {
+		324BB9702498369B006241E8 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				325813E523C5049A00C31E02 /* mecab.framework in Embed Frameworks */,
+				324BB96F2498369B006241E8 /* mecab.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,7 +133,8 @@
 /* Begin PBXFileReference section */
 		06DADBF3922C1A6DDC6C798A /* Pods-MangaReaderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaReaderUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MangaReaderUITests/Pods-MangaReaderUITests.release.xcconfig"; sourceTree = "<group>"; };
 		0D463D7122CA9B0C0020FD5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		0FD908038762DEE3A978F955 /* Pods_MangaReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangaReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CF76EB31FF2FE6AA0332A68 /* Pods-Kantan-Manga.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Manga.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan-Manga/Pods-Kantan-Manga.release.xcconfig"; sourceTree = "<group>"; };
+		242210AC34B74187B27CDD7A /* Pods-Kantan MangaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan MangaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan MangaUITests/Pods-Kantan MangaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		320ED4D22483178C00F5BECF /* DummyDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyDelegates.swift; sourceTree = "<group>"; };
 		320ED4D62483189F00F5BECF /* MockNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNavigationController.swift; sourceTree = "<group>"; };
 		320ED4D824831D2900F5BECF /* MockUploadServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUploadServer.swift; sourceTree = "<group>"; };
@@ -156,26 +151,26 @@
 		32326F8C243566FD00FCE8E5 /* cbz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cbz.png; sourceTree = "<group>"; };
 		32350AA7247C723C002D100D /* WordParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordParser.swift; sourceTree = "<group>"; };
 		323CD90923CB7107007FFC58 /* jamdict.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = jamdict.db; sourceTree = "<group>"; };
+		324BB953249835DD006241E8 /* mecab.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mecab.xcodeproj; path = "mecab-ios/mecab.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		324BB9592498365E006241E8 /* mecabrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mecabrc; sourceTree = SOURCE_ROOT; };
+		324BB98924983DF7006241E8 /* rewrite.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rewrite.def; sourceTree = "<group>"; };
+		324BB98A24983DF7006241E8 /* left-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "left-id.def"; sourceTree = "<group>"; };
+		324BB98B24983DF7006241E8 /* pos-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pos-id.def"; sourceTree = "<group>"; };
+		324BB98C24983DF7006241E8 /* matrix.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = matrix.bin; sourceTree = "<group>"; };
+		324BB98D24983DF7006241E8 /* unk.dic */ = {isa = PBXFileReference; lastKnownFileType = file; path = unk.dic; sourceTree = "<group>"; };
+		324BB98E24983DF7006241E8 /* sys.dic */ = {isa = PBXFileReference; lastKnownFileType = file; path = sys.dic; sourceTree = "<group>"; };
+		324BB98F24983DF7006241E8 /* dicrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dicrc; sourceTree = "<group>"; };
+		324BB99024983DF7006241E8 /* right-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "right-id.def"; sourceTree = "<group>"; };
+		324BB99124983DF7006241E8 /* char.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = char.bin; sourceTree = "<group>"; };
 		325199B32479D96400DA6908 /* ImageOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOCR.swift; sourceTree = "<group>"; };
 		325199B62479D9E000DA6908 /* GoogleVisionOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleVisionOCR.swift; sourceTree = "<group>"; };
 		325199B92479DE0D00DA6908 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		325199C32479E20700DA6908 /* TesseractOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesseractOCR.swift; sourceTree = "<group>"; };
-		325813DE23C5049000C31E02 /* mecab.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mecab.xcodeproj; path = "mecab-ios/mecab.xcodeproj"; sourceTree = "<group>"; };
 		3258141023C5051A00C31E02 /* mecabrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mecabrc; path = /Users/juanjosemeneses/Documents/MangaReader/mecabrc; sourceTree = "<absolute>"; };
-		3258141323C5053900C31E02 /* rewrite.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rewrite.def; sourceTree = "<group>"; };
-		3258141423C5053900C31E02 /* left-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "left-id.def"; sourceTree = "<group>"; };
-		3258141523C5053900C31E02 /* pos-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pos-id.def"; sourceTree = "<group>"; };
-		3258141623C5053900C31E02 /* matrix.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = matrix.bin; sourceTree = "<group>"; };
-		3258141723C5053900C31E02 /* unk.dic */ = {isa = PBXFileReference; lastKnownFileType = file; path = unk.dic; sourceTree = "<group>"; };
-		3258141823C5053900C31E02 /* sys.dic */ = {isa = PBXFileReference; lastKnownFileType = file; path = sys.dic; sourceTree = "<group>"; };
-		3258141923C5053900C31E02 /* dicrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dicrc; sourceTree = "<group>"; };
-		3258141A23C5053900C31E02 /* right-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "right-id.def"; sourceTree = "<group>"; };
-		3258141B23C5053900C31E02 /* char.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = char.bin; sourceTree = "<group>"; };
 		3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuriganaUtils.swift; sourceTree = "<group>"; };
 		325CFC1C2480582700110F31 /* DictionaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryView.swift; sourceTree = "<group>"; };
 		325CFC20248060AD00110F31 /* DictionaryEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEntryView.swift; sourceTree = "<group>"; };
 		325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseDictionary.swift; sourceTree = "<group>"; };
-		3263449A247DD8A200F683AB /* mecab.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mecab.xcodeproj; path = "mecab-ios/mecab.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		326344A2247DD98B00F683AB /* Reader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
 		326344A4247DDAF800F683AB /* CBRReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBRReader.swift; sourceTree = "<group>"; };
 		32892C0823E39FBC000B1C3E /* AddMangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMangaViewController.swift; sourceTree = "<group>"; };
@@ -195,7 +190,9 @@
 		32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		32F1B9FB24369E1100AE367D /* OpenMangaAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMangaAnimationController.swift; sourceTree = "<group>"; };
 		32FA3C7B24367428001EB0DF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		5F13E9F51127395F4C02644A /* Pods_MangaReaderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangaReaderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5534228050877F817D2A97BC /* Pods_Kantan_MangaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		55D7326F35AB101E198FF621 /* Pods_Kantan_MangaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		617240BC1208769EA8C99836 /* Pods-Kantan-Manga.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Manga.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan-Manga/Pods-Kantan-Manga.debug.xcconfig"; sourceTree = "<group>"; };
 		8418695F222474EC00C689DC /* LibraryCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewLayout.swift; sourceTree = "<group>"; };
 		8418696B222495FD00C689DC /* Manga.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manga.swift; sourceTree = "<group>"; };
 		8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Manga+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -213,22 +210,31 @@
 		84A831F0221D90CC00CEE1C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84A831F3221D90CC00CEE1C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84A831F5221D90CC00CEE1C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		84A831FA221D90CC00CEE1C9 /* Kantan MangaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kantan MangaTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84A831FA221D90CC00CEE1C9 /* Kantan-MangaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kantan-MangaTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A831FE221D90CC00CEE1C9 /* MangaReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaReaderTests.swift; sourceTree = "<group>"; };
 		84A83200221D90CC00CEE1C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		84A83205221D90CC00CEE1C9 /* Kantan MangaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kantan MangaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84A83205221D90CC00CEE1C9 /* Kantan-MangaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kantan-MangaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A83218221D923800CEE1C9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		84A8321B221D951500CEE1C9 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		84A8321C221D951500CEE1C9 /* LibraryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
 		84A83220221D9F7000CEE1C9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		84A83222221DB10400CEE1C9 /* MangaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollectionViewCell.swift; sourceTree = "<group>"; };
 		84A83223221DB10400CEE1C9 /* MangaCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MangaCollectionViewCell.xib; sourceTree = "<group>"; };
+		88397E2323735E2420DCBF59 /* Pods-Kantan-MangaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan-MangaUITests/Pods-Kantan-MangaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8B52D48335DF1FCD9AF209A0 /* Pods-MangaReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-MangaReader/Pods-MangaReader.release.xcconfig"; sourceTree = "<group>"; };
+		8D98E5C099082172CC1B5D9F /* Pods-Kantan Manga.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan Manga.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan Manga/Pods-Kantan Manga.debug.xcconfig"; sourceTree = "<group>"; };
+		9BB91672C2D1A901F5249E39 /* Pods-Kantan MangaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan MangaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan MangaTests/Pods-Kantan MangaTests.release.xcconfig"; sourceTree = "<group>"; };
+		A2DA5F898D8C2D53A75BB008 /* Pods-Kantan MangaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan MangaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan MangaTests/Pods-Kantan MangaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A327A64E88F19F8643D71949 /* Pods-Kantan Manga.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan Manga.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan Manga/Pods-Kantan Manga.release.xcconfig"; sourceTree = "<group>"; };
+		AE5CA3834F7515F41553FC66 /* Pods-Kantan-MangaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan-MangaTests/Pods-Kantan-MangaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AEE10ABE2D65A69DEDEBECB1 /* Pods-Kantan MangaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan MangaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan MangaUITests/Pods-Kantan MangaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B5312D435FC7B69256070F18 /* Pods-MangaReaderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaReaderUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MangaReaderUITests/Pods-MangaReaderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA8018811D3665B1CC081AAA /* Pods-MangaReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MangaReader/Pods-MangaReader.debug.xcconfig"; sourceTree = "<group>"; };
 		C94EFCDFF019ADD087B49048 /* Pods-MangaReaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaReaderTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MangaReaderTests/Pods-MangaReaderTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D200AF6C1CEE3CDAFD863DDB /* Pods-Kantan-MangaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan-MangaUITests/Pods-Kantan-MangaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DAAD206ACD0500040A70A9EB /* Pods-MangaReaderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaReaderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MangaReaderTests/Pods-MangaReaderTests.release.xcconfig"; sourceTree = "<group>"; };
-		F9CF3EF06DC7DAF652B13D2F /* Pods_MangaReaderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangaReaderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE4F6B672107D039F561AF88 /* Pods_Kantan_Manga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_Manga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD200C244EEBB3C96B73AD4A /* Pods-Kantan-MangaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan-MangaTests/Pods-Kantan-MangaTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,8 +242,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4210C463A6A18BA4DDE78173 /* Pods_MangaReader.framework in Frameworks */,
-				325813E423C5049A00C31E02 /* mecab.framework in Frameworks */,
+				ED0C9C9A3BB0262753847EC3 /* Pods_Kantan_Manga.framework in Frameworks */,
+				324BB96E2498369B006241E8 /* mecab.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,7 +251,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C236795ADDD5F8B005824580 /* Pods_MangaReaderTests.framework in Frameworks */,
+				1873712DF054B5A5B988EC0E /* Pods_Kantan_MangaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,7 +259,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B3FC32AFC97A3EEBF5989C6 /* Pods_MangaReaderUITests.framework in Frameworks */,
+				2254E6DD7D38442ABE3EBB89 /* Pods_Kantan_MangaUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,61 +281,54 @@
 			path = "Mock Classes";
 			sourceTree = "<group>";
 		};
-		325813DF23C5049000C31E02 /* Products */ = {
+		324BB954249835DD006241E8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				325813E323C5049000C31E02 /* mecab.framework */,
+				324BB958249835DD006241E8 /* mecab.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		324BB98824983DF7006241E8 /* ipadic */ = {
+			isa = PBXGroup;
+			children = (
+				324BB98924983DF7006241E8 /* rewrite.def */,
+				324BB98A24983DF7006241E8 /* left-id.def */,
+				324BB98B24983DF7006241E8 /* pos-id.def */,
+				324BB98C24983DF7006241E8 /* matrix.bin */,
+				324BB98D24983DF7006241E8 /* unk.dic */,
+				324BB98E24983DF7006241E8 /* sys.dic */,
+				324BB98F24983DF7006241E8 /* dicrc */,
+				324BB99024983DF7006241E8 /* right-id.def */,
+				324BB99124983DF7006241E8 /* char.bin */,
+			);
+			name = ipadic;
+			path = "mecab-ios/ipadic";
 			sourceTree = "<group>";
 		};
 		325813FC23C5050700C31E02 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				324BB98824983DF7006241E8 /* ipadic */,
 				32326F882435613E00FCE8E5 /* cbz.svg */,
 				323CD90923CB7107007FFC58 /* jamdict.db */,
-				3258141223C5053900C31E02 /* ipadic */,
 				3258141023C5051A00C31E02 /* mecabrc */,
 			);
 			name = Resources;
 			path = ../..;
 			sourceTree = "<group>";
 		};
-		3258141223C5053900C31E02 /* ipadic */ = {
-			isa = PBXGroup;
-			children = (
-				3258141323C5053900C31E02 /* rewrite.def */,
-				3258141423C5053900C31E02 /* left-id.def */,
-				3258141523C5053900C31E02 /* pos-id.def */,
-				3258141623C5053900C31E02 /* matrix.bin */,
-				3258141723C5053900C31E02 /* unk.dic */,
-				3258141823C5053900C31E02 /* sys.dic */,
-				3258141923C5053900C31E02 /* dicrc */,
-				3258141A23C5053900C31E02 /* right-id.def */,
-				3258141B23C5053900C31E02 /* char.bin */,
-			);
-			name = ipadic;
-			path = "mecab-ios/ipadic";
-			sourceTree = "<group>";
-		};
 		32634498247DD89B00F683AB /* Mecab */ = {
 			isa = PBXGroup;
 			children = (
+				324BB9592498365E006241E8 /* mecabrc */,
+				324BB953249835DD006241E8 /* mecab.xcodeproj */,
 				320F277123C2046900D9930F /* Token.swift */,
 				320F277223C2046900D9930F /* Tokenizer.swift */,
 				32350AA7247C723C002D100D /* WordParser.swift */,
 				325813FC23C5050700C31E02 /* Resources */,
-				3263449A247DD8A200F683AB /* mecab.xcodeproj */,
 			);
 			path = Mecab;
-			sourceTree = "<group>";
-		};
-		3263449B247DD8A200F683AB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3263449F247DD8A200F683AB /* mecab.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		326344A0247DD92900F683AB /* File Extraction */ = {
@@ -406,9 +405,9 @@
 		7EAAD1907EAA228FF69A9323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0FD908038762DEE3A978F955 /* Pods_MangaReader.framework */,
-				F9CF3EF06DC7DAF652B13D2F /* Pods_MangaReaderTests.framework */,
-				5F13E9F51127395F4C02644A /* Pods_MangaReaderUITests.framework */,
+				DE4F6B672107D039F561AF88 /* Pods_Kantan_Manga.framework */,
+				55D7326F35AB101E198FF621 /* Pods_Kantan_MangaTests.framework */,
+				5534228050877F817D2A97BC /* Pods_Kantan_MangaUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -431,7 +430,6 @@
 			children = (
 				32326F8C243566FD00FCE8E5 /* cbz.png */,
 				325199B92479DE0D00DA6908 /* tessdata */,
-				325813DE23C5049000C31E02 /* mecab.xcodeproj */,
 				84A831E5221D90CA00CEE1C9 /* MangaReader */,
 				84A831FD221D90CC00CEE1C9 /* MangaReaderTests */,
 				84A831E4221D90CA00CEE1C9 /* Products */,
@@ -445,8 +443,8 @@
 			isa = PBXGroup;
 			children = (
 				84A831E3221D90CA00CEE1C9 /* Kantan Manga.app */,
-				84A831FA221D90CC00CEE1C9 /* Kantan MangaTests.xctest */,
-				84A83205221D90CC00CEE1C9 /* Kantan MangaUITests.xctest */,
+				84A831FA221D90CC00CEE1C9 /* Kantan-MangaTests.xctest */,
+				84A83205221D90CC00CEE1C9 /* Kantan-MangaUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -524,6 +522,18 @@
 				DAAD206ACD0500040A70A9EB /* Pods-MangaReaderTests.release.xcconfig */,
 				B5312D435FC7B69256070F18 /* Pods-MangaReaderUITests.debug.xcconfig */,
 				06DADBF3922C1A6DDC6C798A /* Pods-MangaReaderUITests.release.xcconfig */,
+				8D98E5C099082172CC1B5D9F /* Pods-Kantan Manga.debug.xcconfig */,
+				A327A64E88F19F8643D71949 /* Pods-Kantan Manga.release.xcconfig */,
+				A2DA5F898D8C2D53A75BB008 /* Pods-Kantan MangaTests.debug.xcconfig */,
+				9BB91672C2D1A901F5249E39 /* Pods-Kantan MangaTests.release.xcconfig */,
+				AEE10ABE2D65A69DEDEBECB1 /* Pods-Kantan MangaUITests.debug.xcconfig */,
+				242210AC34B74187B27CDD7A /* Pods-Kantan MangaUITests.release.xcconfig */,
+				617240BC1208769EA8C99836 /* Pods-Kantan-Manga.debug.xcconfig */,
+				1CF76EB31FF2FE6AA0332A68 /* Pods-Kantan-Manga.release.xcconfig */,
+				AE5CA3834F7515F41553FC66 /* Pods-Kantan-MangaTests.debug.xcconfig */,
+				FD200C244EEBB3C96B73AD4A /* Pods-Kantan-MangaTests.release.xcconfig */,
+				88397E2323735E2420DCBF59 /* Pods-Kantan-MangaUITests.debug.xcconfig */,
+				D200AF6C1CEE3CDAFD863DDB /* Pods-Kantan-MangaUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -531,9 +541,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		84A831E2221D90CA00CEE1C9 /* Kantan Manga */ = {
+		84A831E2221D90CA00CEE1C9 /* Kantan-Manga */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84A8320E221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan Manga" */;
+			buildConfigurationList = 84A8320E221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan-Manga" */;
 			buildPhases = (
 				47EC031D6820EED60E125F73 /* [CP] Check Pods Manifest.lock */,
 				84A831DF221D90CA00CEE1C9 /* Sources */,
@@ -541,20 +551,20 @@
 				84A831E1221D90CA00CEE1C9 /* Resources */,
 				D1FBAE1E0464DE3A1AB9215B /* [CP] Embed Pods Frameworks */,
 				8418695E222346F000C689DC /* ShellScript */,
-				320F277023C203E300D9930F /* Embed Frameworks */,
+				324BB9702498369B006241E8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Kantan Manga";
+			name = "Kantan-Manga";
 			productName = MangaReader;
 			productReference = 84A831E3221D90CA00CEE1C9 /* Kantan Manga.app */;
 			productType = "com.apple.product-type.application";
 		};
-		84A831F9221D90CC00CEE1C9 /* Kantan MangaTests */ = {
+		84A831F9221D90CC00CEE1C9 /* Kantan-MangaTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84A83211221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan MangaTests" */;
+			buildConfigurationList = 84A83211221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan-MangaTests" */;
 			buildPhases = (
 				EA039F059F557E0A6B94B376 /* [CP] Check Pods Manifest.lock */,
 				84A831F6221D90CC00CEE1C9 /* Sources */,
@@ -566,14 +576,14 @@
 			dependencies = (
 				84A831FC221D90CC00CEE1C9 /* PBXTargetDependency */,
 			);
-			name = "Kantan MangaTests";
+			name = "Kantan-MangaTests";
 			productName = MangaReaderTests;
-			productReference = 84A831FA221D90CC00CEE1C9 /* Kantan MangaTests.xctest */;
+			productReference = 84A831FA221D90CC00CEE1C9 /* Kantan-MangaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		84A83204221D90CC00CEE1C9 /* Kantan MangaUITests */ = {
+		84A83204221D90CC00CEE1C9 /* Kantan-MangaUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84A83214221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan MangaUITests" */;
+			buildConfigurationList = 84A83214221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan-MangaUITests" */;
 			buildPhases = (
 				1E148B4D9991442BC6BF10E8 /* [CP] Check Pods Manifest.lock */,
 				84A83201221D90CC00CEE1C9 /* Sources */,
@@ -585,9 +595,9 @@
 			dependencies = (
 				84A83207221D90CC00CEE1C9 /* PBXTargetDependency */,
 			);
-			name = "Kantan MangaUITests";
+			name = "Kantan-MangaUITests";
 			productName = MangaReaderUITests;
-			productReference = 84A83205221D90CC00CEE1C9 /* Kantan MangaUITests.xctest */;
+			productReference = 84A83205221D90CC00CEE1C9 /* Kantan-MangaUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -615,7 +625,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 84A831DE221D90CA00CEE1C9 /* Build configuration list for PBXProject "Kantan Manga" */;
+			buildConfigurationList = 84A831DE221D90CA00CEE1C9 /* Build configuration list for PBXProject "Kantan-Manga" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -628,36 +638,25 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 3263449B247DD8A200F683AB /* Products */;
-					ProjectRef = 3263449A247DD8A200F683AB /* mecab.xcodeproj */;
-				},
-				{
-					ProductGroup = 325813DF23C5049000C31E02 /* Products */;
-					ProjectRef = 325813DE23C5049000C31E02 /* mecab.xcodeproj */;
+					ProductGroup = 324BB954249835DD006241E8 /* Products */;
+					ProjectRef = 324BB953249835DD006241E8 /* mecab.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				84A831E2221D90CA00CEE1C9 /* Kantan Manga */,
-				84A831F9221D90CC00CEE1C9 /* Kantan MangaTests */,
-				84A83204221D90CC00CEE1C9 /* Kantan MangaUITests */,
+				84A831E2221D90CA00CEE1C9 /* Kantan-Manga */,
+				84A831F9221D90CC00CEE1C9 /* Kantan-MangaTests */,
+				84A83204221D90CC00CEE1C9 /* Kantan-MangaUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		325813E323C5049000C31E02 /* mecab.framework */ = {
+		324BB958249835DD006241E8 /* mecab.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = mecab.framework;
-			remoteRef = 325813E223C5049000C31E02 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3263449F247DD8A200F683AB /* mecab.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = mecab.framework;
-			remoteRef = 3263449E247DD8A200F683AB /* PBXContainerItemProxy */;
+			remoteRef = 324BB957249835DD006241E8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -667,27 +666,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				324BB95A2498365E006241E8 /* mecabrc in Resources */,
 				32326F8724354ECC00FCE8E5 /* FileSourceViewController.xib in Resources */,
-				3258142323C5053900C31E02 /* right-id.def in Resources */,
-				3258141F23C5053900C31E02 /* matrix.bin in Resources */,
 				32892C0B23E39FBC000B1C3E /* AddMangaViewController.xib in Resources */,
 				84A831F4221D90CC00CEE1C9 /* LaunchScreen.storyboard in Resources */,
 				32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */,
-				3258142023C5053900C31E02 /* unk.dic in Resources */,
+				324BB99924983DF7006241E8 /* right-id.def in Resources */,
+				324BB99324983DF7006241E8 /* left-id.def in Resources */,
 				0D463D7222CA9B0D0020FD5A /* GoogleService-Info.plist in Resources */,
 				84A831F1221D90CC00CEE1C9 /* Assets.xcassets in Resources */,
-				3258142423C5053900C31E02 /* char.bin in Resources */,
-				3258142123C5053900C31E02 /* sys.dic in Resources */,
-				3258141C23C5053900C31E02 /* rewrite.def in Resources */,
 				32326F8D243566FD00FCE8E5 /* cbz.png in Resources */,
+				324BB99724983DF7006241E8 /* sys.dic in Resources */,
+				324BB99224983DF7006241E8 /* rewrite.def in Resources */,
 				324BB93B2498302E006241E8 /* mecabrc in Resources */,
+				324BB99424983DF7006241E8 /* pos-id.def in Resources */,
 				328DFB0B238D96300095CBAB /* MangaViewController.xib in Resources */,
+				324BB99624983DF7006241E8 /* unk.dic in Resources */,
+				324BB99524983DF7006241E8 /* matrix.bin in Resources */,
+				324BB99A24983DF7006241E8 /* char.bin in Resources */,
 				325199BB2479DE0D00DA6908 /* tessdata in Resources */,
 				84A8321E221D951500CEE1C9 /* LibraryViewController.xib in Resources */,
-				3258142223C5053900C31E02 /* dicrc in Resources */,
-				3258141E23C5053900C31E02 /* pos-id.def in Resources */,
+				324BB99824983DF7006241E8 /* dicrc in Resources */,
 				843FA7ED221E0BE900B86B52 /* PageViewController.xib in Resources */,
-				3258141D23C5053900C31E02 /* left-id.def in Resources */,
 				843FA7E3221DF0C300B86B52 /* WebServerViewController.xib in Resources */,
 				32326F892435613E00FCE8E5 /* cbz.svg in Resources */,
 				84A83225221DB10400CEE1C9 /* MangaCollectionViewCell.xib in Resources */,
@@ -725,7 +725,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MangaReaderUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Kantan-MangaUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -743,7 +743,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MangaReader-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Kantan-Manga-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -773,15 +773,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MangaReader/Pods-MangaReader-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Kantan-Manga/Pods-Kantan-Manga-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MangaReader/Pods-MangaReader-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Kantan-Manga/Pods-Kantan-Manga-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MangaReader/Pods-MangaReader-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kantan-Manga/Pods-Kantan-Manga-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EA039F059F557E0A6B94B376 /* [CP] Check Pods Manifest.lock */ = {
@@ -795,7 +795,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MangaReaderTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Kantan-MangaTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -881,12 +881,12 @@
 /* Begin PBXTargetDependency section */
 		84A831FC221D90CC00CEE1C9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 84A831E2221D90CA00CEE1C9 /* Kantan Manga */;
+			target = 84A831E2221D90CA00CEE1C9 /* Kantan-Manga */;
 			targetProxy = 84A831FB221D90CC00CEE1C9 /* PBXContainerItemProxy */;
 		};
 		84A83207221D90CC00CEE1C9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 84A831E2221D90CA00CEE1C9 /* Kantan Manga */;
+			target = 84A831E2221D90CA00CEE1C9 /* Kantan-Manga */;
 			targetProxy = 84A83206221D90CC00CEE1C9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1021,7 +1021,7 @@
 		};
 		84A8320F221D90CC00CEE1C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA8018811D3665B1CC081AAA /* Pods-MangaReader.debug.xcconfig */;
+			baseConfigurationReference = 617240BC1208769EA8C99836 /* Pods-Kantan-Manga.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1123,7 +1123,7 @@
 		};
 		84A83210221D90CC00CEE1C9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B52D48335DF1FCD9AF209A0 /* Pods-MangaReader.release.xcconfig */;
+			baseConfigurationReference = 1CF76EB31FF2FE6AA0332A68 /* Pods-Kantan-Manga.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1224,7 +1224,7 @@
 		};
 		84A83212221D90CC00CEE1C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C94EFCDFF019ADD087B49048 /* Pods-MangaReaderTests.debug.xcconfig */;
+			baseConfigurationReference = AE5CA3834F7515F41553FC66 /* Pods-Kantan-MangaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1240,13 +1240,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kantan Manga.app/Kantan Manga";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kantan-Manga.app/Kantan-Manga";
 			};
 			name = Debug;
 		};
 		84A83213221D90CC00CEE1C9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DAAD206ACD0500040A70A9EB /* Pods-MangaReaderTests.release.xcconfig */;
+			baseConfigurationReference = FD200C244EEBB3C96B73AD4A /* Pods-Kantan-MangaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1262,13 +1262,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kantan Manga.app/Kantan Manga";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kantan-Manga.app/Kantan-Manga";
 			};
 			name = Release;
 		};
 		84A83215221D90CC00CEE1C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B5312D435FC7B69256070F18 /* Pods-MangaReaderUITests.debug.xcconfig */;
+			baseConfigurationReference = 88397E2323735E2420DCBF59 /* Pods-Kantan-MangaUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1289,7 +1289,7 @@
 		};
 		84A83216221D90CC00CEE1C9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 06DADBF3922C1A6DDC6C798A /* Pods-MangaReaderUITests.release.xcconfig */;
+			baseConfigurationReference = D200AF6C1CEE3CDAFD863DDB /* Pods-Kantan-MangaUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1311,7 +1311,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		84A831DE221D90CA00CEE1C9 /* Build configuration list for PBXProject "Kantan Manga" */ = {
+		84A831DE221D90CA00CEE1C9 /* Build configuration list for PBXProject "Kantan-Manga" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84A8320C221D90CC00CEE1C9 /* Debug */,
@@ -1320,7 +1320,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84A8320E221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan Manga" */ = {
+		84A8320E221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan-Manga" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84A8320F221D90CC00CEE1C9 /* Debug */,
@@ -1329,7 +1329,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84A83211221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan MangaTests" */ = {
+		84A83211221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan-MangaTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84A83212221D90CC00CEE1C9 /* Debug */,
@@ -1338,7 +1338,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84A83214221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan MangaUITests" */ = {
+		84A83214221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan-MangaUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84A83215221D90CC00CEE1C9 /* Debug */,
