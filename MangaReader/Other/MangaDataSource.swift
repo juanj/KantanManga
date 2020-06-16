@@ -145,8 +145,12 @@ class MangaDataSource {
                     callBack?(nil)
                     return
                 }
-                self.cache[index] = image
-                callBack?(image)
+
+                // Dictionaries are not thread safe.
+                DispatchQueue.main.async {
+                    self.cache[index] = image
+                    callBack?(image)
+                }
             }
         }
     }
