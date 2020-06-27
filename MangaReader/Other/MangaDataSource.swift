@@ -12,7 +12,15 @@ class MangaDataSource {
     private var mangaReader: Reader!
     private let manga: Manga
 
-    private var cache = [Int: UIImage]()
+    private var cache = [Int: UIImage]() {
+        didSet {
+            // Only keep next 20 and previous 20 pages
+            let currentPage = Int(manga.currentPage)
+            cache = cache.filter { (element) -> Bool in
+                element.key > (currentPage - 20) && element.key < (currentPage + 20)
+            }
+        }
+    }
     private var queue = [(PageViewController, Int)]()
 
     init?(manga: Manga) {
