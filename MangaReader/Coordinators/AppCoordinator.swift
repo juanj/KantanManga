@@ -53,6 +53,12 @@ extension AppCoordinator: LibraryViewControllerDelegate {
         childCoordinators.append(addMangasCoordinator)
         addMangasCoordinator.start()
     }
+
+    func didSelectSettings(_ libraryViewController: LibraryViewController) {
+        let settingsCoordinator = SettingsCoordinator(navigation: navigationController)
+        childCoordinators.append(settingsCoordinator)
+        settingsCoordinator.start()
+    }
 }
 
 // MARK: AddMangasCoordinatorDelegate

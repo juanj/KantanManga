@@ -10,6 +10,7 @@ import UIKit
 
 protocol LibraryViewControllerDelegate: AnyObject {
     func didSelectAdd(_ libraryViewController: LibraryViewController, button: UIBarButtonItem)
+    func didSelectSettings(_ libraryViewController: LibraryViewController)
     func didSelectManga(_ libraryViewController: LibraryViewController, manga: Manga, cellFrame: CGRect)
     func didSelectDeleteManga(_ libraryViewController: LibraryViewController, manga: Manga)
 }
@@ -70,6 +71,9 @@ class LibraryViewController: UIViewController {
     private func configureNavigationBar() {
         let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .plain, target: self, action: #selector(add(button:)))
         navigationItem.leftBarButtonItem = addButton
+
+        let settingsButton = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(settings(button:)))
+        navigationItem.rightBarButtonItem = settingsButton
     }
 
     private func heightForImageWith(maxWidth: CGFloat, maxHeight: CGFloat, image: UIImage) -> CGFloat {
@@ -85,6 +89,10 @@ class LibraryViewController: UIViewController {
 
     @objc func add(button: UIBarButtonItem) {
         delegate?.didSelectAdd(self, button: button)
+    }
+
+    @objc func settings(button: UIBarButtonItem) {
+        delegate?.didSelectSettings(self)
     }
 }
 
