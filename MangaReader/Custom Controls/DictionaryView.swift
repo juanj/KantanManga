@@ -38,7 +38,7 @@ class DictionaryView: UIView {
 
         scrollViewHeightConstraint = scrollView.heightAnchor.constraint(equalToConstant: 0)
         addConstraints([leftConstraint, rightConstraint, topConstraint, bottomConstraint, scrollViewHeightConstraint])
-        scrollView.backgroundColor = .white
+        scrollView.backgroundColor = .systemBackground
     }
 
     private func configureStackView() {
