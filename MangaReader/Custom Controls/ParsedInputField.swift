@@ -30,7 +30,7 @@ class ParsedInputField: UIControl {
     private var analyzedSentence = [JapaneseWord]()
 
     private let margin: CGFloat = 20
-    private var buttons = [UIButton]()
+    private var buttons = [WordButton]()
     private var labels = [UILabel]()
     private var textView = UIView()
     private var scrollView = UIScrollView()
@@ -137,7 +137,7 @@ class ParsedInputField: UIControl {
 
         addConstraints([rightConstraint, leftConstraint, topConstraint, heightContraint])
     }
-    
+
     private func loadText() {
         if editing { toggleEdit() }
         buttons.forEach { $0.removeFromSuperview() }
@@ -149,37 +149,25 @@ class ParsedInputField: UIControl {
             textView.addSubview(button)
             textView.addConstraints(createConstraintsForWordButton(button: button, index: index))
             buttons.append(button)
-
-            for furigana in word.furigana {
-                let label = createLabelForFurigana(furigana: furigana)
-                textView.addSubview(label)
-                textView.addConstraints(createConstraintsForFuriganaLabel(label: label, button: button, word: word, furigana: furigana))
-                labels.append(label)
-            }
         }
         bringSubviewToFront(editButton)
     }
 
-    private func createButtonForWord(word: JapaneseWord, index: Int = 0) -> UIButton {
-        let button = UIButton()
+    private func createButtonForWord(word: JapaneseWord, index: Int = 0) -> WordButton {
+        let button = WordButton(word: word)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 50, weight: .bold)
-        button.setTitle(word.text, for: .normal)
-        button.sizeToFit()
         button.tag = index
         button.addTarget(self, action: #selector(openDetail(button:)), for: .touchUpInside)
 
         return button
     }
 
-    private func createConstraintsForWordButton(button: UIButton, index: Int = 0) -> [NSLayoutConstraint] {
+    private func createConstraintsForWordButton(button: WordButton, index: Int = 0) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
-        constraints.append(button.heightAnchor.constraint(equalToConstant: 100))
-        constraints.append(button.topAnchor.constraint(equalTo: textView.safeAreaLayoutGuide.topAnchor))
-        constraints.append(button.bottomAnchor.constraint(equalTo: textView.safeAreaLayoutGuide.bottomAnchor))
+        constraints.append(button.heightAnchor.constraint(equalToConstant: 80))
+        constraints.append(button.centerYAnchor.constraint(equalTo: textView.centerYAnchor))
         if let lastButton = buttons.last {
-            constraints.append(button.leadingAnchor.constraint(equalTo: lastButton.trailingAnchor, constant: margin))
+            constraints.append(button.leadingAnchor.constraint(equalTo: lastButton.trailingAnchor))
         } else {
             constraints.append(button.leadingAnchor.constraint(equalTo: textView.leadingAnchor, constant: margin))
         }
@@ -236,6 +224,8 @@ class ParsedInputField: UIControl {
     }
 
     @objc func openDetail(button: UIButton) {
+        buttons.forEach { $0.isSelected = false }
+        button.isSelected = true
         let word = analyzedSentence[button.tag]
         delegate?.didSelectWord(parsedInputField: self, word: word)
     }
