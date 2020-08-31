@@ -147,9 +147,13 @@ class MangaViewController: UIViewController {
 
         let leftConstraint = japaneseHelp.view.leftAnchor.constraint(equalTo: view.leftAnchor)
         let rightConstraint = japaneseHelp.view.rightAnchor.constraint(equalTo: view.rightAnchor)
+        let topConstraint = japaneseHelp.view.topAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor)
         japaneseHelpBottomConstraint = japaneseHelp.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 
-        view.addConstraints([leftConstraint, rightConstraint, japaneseHelpBottomConstraint])
+        topConstraint.priority = .required
+        japaneseHelpBottomConstraint.priority = .defaultLow
+
+        view.addConstraints([leftConstraint, rightConstraint, topConstraint, japaneseHelpBottomConstraint])
 
         let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleEdgePan(pan:)))
         edgePan.edges = .bottom
