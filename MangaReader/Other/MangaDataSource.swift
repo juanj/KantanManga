@@ -47,12 +47,13 @@ class MangaDataSource {
         }
     }
 
-    func createPage(index: Int, doublePaged: Bool, delegate: PageViewControllerDelegate? = nil, fullScreen: Bool = false) -> PageViewController {
+    func createPage(index: Int, doublePaged: Bool, offset: Bool = false, delegate: PageViewControllerDelegate? = nil, fullScreen: Bool = false) -> PageViewController {
         let page = PageViewController()
         page.doublePaged = doublePaged
         page.page = index
         page.delegate = delegate
         page.fullScreen = fullScreen
+        page.offset = offset ? 1 : 0
 
         // Load image to page
         if mangaReader == nil {
@@ -80,7 +81,7 @@ class MangaDataSource {
         }
 
         getImageForPage(index: index + 10)
-        return createPage(index: index, doublePaged: currentPage.doublePaged, delegate: currentPage.delegate, fullScreen: currentPage.fullScreen)
+        return createPage(index: index, doublePaged: currentPage.doublePaged, offset: currentPage.offset == 1, delegate: currentPage.delegate, fullScreen: currentPage.fullScreen)
     }
 
     func previousPage(currentPage: UIViewController) -> UIViewController? {
@@ -95,7 +96,7 @@ class MangaDataSource {
         }
 
         getImageForPage(index: index - 10)
-        return createPage(index: index, doublePaged: currentPage.doublePaged, delegate: currentPage.delegate, fullScreen: currentPage.fullScreen)
+        return createPage(index: index, doublePaged: currentPage.doublePaged, offset: currentPage.offset == 1, delegate: currentPage.delegate, fullScreen: currentPage.fullScreen)
     }
 
     private func clearQueue() {

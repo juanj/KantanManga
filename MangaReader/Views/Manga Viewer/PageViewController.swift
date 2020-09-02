@@ -24,6 +24,7 @@ class PageViewController: UIViewController {
 
     weak var delegate: PageViewControllerDelegate?
     var doublePaged = false
+    var offset = 0
     var fullScreen = false
     var pageImage: UIImage? {
         didSet {
@@ -53,7 +54,7 @@ class PageViewController: UIViewController {
     func refreshView() {
         loadImage()
         if doublePaged {
-            if page % 2 == 1 {
+            if page % 2 != offset {
                 leftGradientImage?.isHidden = true
                 rightGradientImage?.isHidden = false
                 pageImageView?.alignLeft = false
