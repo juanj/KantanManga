@@ -34,6 +34,7 @@ class PageViewController: UIViewController {
         }
     }
     var page = 0
+    var isPaddingPage = false
     private var lastContentOffset: CGFloat = 0
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,10 @@ class PageViewController: UIViewController {
 
         if fullScreen {
             pageLabel?.alpha = 0
+        }
+
+        if isPaddingPage {
+            activityIndicator.stopAnimating()
         }
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
@@ -69,7 +74,11 @@ class PageViewController: UIViewController {
             pageImageView?.alignLeft = false
             pageImageView?.alignRight = false
         }
-        pageLabel?.text = "\(page + 1)"
+        if isPaddingPage {
+            pageLabel?.text = ""
+        } else {
+            pageLabel?.text = "\(page + 1)"
+        }
     }
 
     @objc func tap() {

@@ -280,7 +280,16 @@ extension MangaViewController: UIPageViewControllerDelegate, UIPageViewControlle
             return nil
         }
         // Return next page to make manga RTL
-        return dataSource.nextPage(currentPage: viewController)
+        if let previousPage = dataSource.nextPage(currentPage: viewController) {
+            return previousPage
+        } else if pageViewController.spineLocation == .mid, pagesOffset, let currentPage = viewController as? PageViewController, currentPage.page == manga.totalPages - 1 {
+            // If is double paged and is offset, return a blank padding page
+            let page = PageViewController()
+            page.isPaddingPage = true
+            page.page = currentPage.page + 1
+            return page
+        }
+        return nil
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
@@ -288,7 +297,16 @@ extension MangaViewController: UIPageViewControllerDelegate, UIPageViewControlle
             return nil
         }
         // Return previous page to make manga RTL
-        return dataSource.previousPage(currentPage: viewController)
+        if let previousPage = dataSource.previousPage(currentPage: viewController) {
+            return previousPage
+        } else if pageViewController.spineLocation == .mid, pagesOffset, let currentPage = viewController as? PageViewController, currentPage.page == 0 {
+            // If is double paged and is offset, return a blank padding page
+            let page = PageViewController()
+            page.isPaddingPage = true
+            page.page = -1
+            return page
+        }
+        return nil
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, spineLocationFor orientation: UIInterfaceOrientation) -> UIPageViewController.SpineLocation {
@@ -345,7 +363,7 @@ extension MangaViewController: UIPageViewControllerDelegate, UIPageViewControlle
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if let pageView = pageViewController.viewControllers?[0] as? PageViewController {
+        if let pageView = pageViewController.viewControllers?[0] as? PageViewController, !pageView.isPaddingPage {
             manga.currentPage = Int16(pageView.page)
             CoreDataManager.sharedManager.updateManga(manga: manga)
         }
