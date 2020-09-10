@@ -19,11 +19,11 @@ class LibraryViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
     private weak var delegate: LibraryViewControllerDelegate?
-    private var mangas = [Manga]()
+    private var collections = [MangaCollection]()
 
-    init(delegate: LibraryViewControllerDelegate, mangas: [Manga] = []) {
+    init(delegate: LibraryViewControllerDelegate, collections: [MangaCollection]) {
         self.delegate = delegate
-        self.mangas = mangas
+        self.collections = collections
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -48,8 +48,8 @@ class LibraryViewController: UIViewController {
         collectionView.collectionViewLayout.invalidateLayout()
     }
 
-    func setMangas(mangas: [Manga]) {
-        self.mangas = mangas
+    func setCollections(collections: [MangaCollection]) {
+        self.collections = collections
         self.collectionView.reloadData()
     }
 
@@ -63,8 +63,8 @@ class LibraryViewController: UIViewController {
         let deleteMenuItem = UIMenuItem(title: "Delete", action: NSSelectorFromString("deleteCollectionCell"))
         UIMenuController.shared.menuItems = [deleteMenuItem]
 
-        let layout = LibraryCollectionViewLayout()
-        layout.delegate = self
+        let layout = UICollectionViewFlowLayout()//LibraryCollectionViewLayout()
+        //layout.delegate = self
         collectionView.collectionViewLayout = layout
     }
 
@@ -97,14 +97,19 @@ class LibraryViewController: UIViewController {
 }
 
 extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return max(collections.count, 1)
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mangas.count
+        guard collections.count > 0 else { return 0 }
+        return collections[section].mangas.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MangaCell", for: indexPath) as! MangaCollectionViewCell // swiftlint:disable:this force_cast
 
-        let manga = mangas[indexPath.row]
+        let manga = collections[indexPath.section].mangas[indexPath.row]
         manga.loadCoverImage()
         if let image = manga.coverImage {
             cell.coverImageView.image = image
@@ -117,12 +122,12 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? MangaCollectionViewCell else { return }
         let frame = cell.convert(cell.coverImageView.frame, to: view)
-        let manga = mangas[indexPath.row]
+        let manga = collections[indexPath.section].mangas[indexPath.row]
         delegate?.didSelectManga(self, manga: manga, cellFrame: frame)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let manga = mangas[indexPath.row]
+        let manga = collections[indexPath.section].mangas[indexPath.row]
         if let image = manga.coverImage {
             let height = heightForImageWith(maxWidth: 200, maxHeight: 263, image: image) + 37
             return CGSize(width: 200, height: height)
@@ -141,13 +146,13 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-        delegate?.didSelectDeleteManga(self, manga: mangas[indexPath.row])
+        delegate?.didSelectDeleteManga(self, manga: collections[indexPath.section].mangas[indexPath.row])
     }
 }
 
 extension LibraryViewController: LibraryCollectionViewLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForMangaAtIndexPath indexPath: IndexPath) -> CGFloat {
-        let manga = mangas[indexPath.row]
+        let manga = collections[indexPath.section].mangas[indexPath.row]
         if let image = manga.coverImage {
             let height = heightForImageWith(maxWidth: 200, maxHeight: 263, image: image) + 37
             return height
