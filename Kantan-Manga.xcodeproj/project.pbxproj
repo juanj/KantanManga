@@ -28,6 +28,8 @@
 		32350AA8247C723C002D100D /* WordParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32350AA7247C723C002D100D /* WordParser.swift */; };
 		3238DF3A24D7840200DE8782 /* WordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3238DF3924D7840200DE8782 /* WordButton.swift */; };
 		323CD90A23CB7107007FFC58 /* jamdict.db in Resources */ = {isa = PBXBuildFile; fileRef = 323CD90923CB7107007FFC58 /* jamdict.db */; };
+		3249F2D7250BBC18004C514E /* MangaCollectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */; };
+		3249F2D8250BBC18004C514E /* MangaCollectionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3249F2D6250BBC18004C514E /* MangaCollectionCollectionViewCell.xib */; };
 		324BB93B2498302E006241E8 /* mecabrc in Resources */ = {isa = PBXBuildFile; fileRef = 3258141023C5051A00C31E02 /* mecabrc */; };
 		324BB95A2498365E006241E8 /* mecabrc in Resources */ = {isa = PBXBuildFile; fileRef = 324BB9592498365E006241E8 /* mecabrc */; };
 		324BB96E2498369B006241E8 /* mecab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324BB958249835DD006241E8 /* mecab.framework */; };
@@ -73,7 +75,6 @@
 		32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */; };
 		32F1B9FC24369E1100AE367D /* OpenMangaAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9FB24369E1100AE367D /* OpenMangaAnimationController.swift */; };
 		32FA3C7C24367428001EB0DF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3C7B24367428001EB0DF /* String+Extension.swift */; };
-		84186960222474EC00C689DC /* LibraryCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418695F222474EC00C689DC /* LibraryCollectionViewLayout.swift */; };
 		8418696D222495FE00C689DC /* Manga.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418696B222495FD00C689DC /* Manga.swift */; };
 		8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */; };
 		841B795C221F305A00659FA2 /* MangaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B795B221F305A00659FA2 /* MangaDataSource.swift */; };
@@ -158,6 +159,8 @@
 		32350AA7247C723C002D100D /* WordParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordParser.swift; sourceTree = "<group>"; };
 		3238DF3924D7840200DE8782 /* WordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordButton.swift; sourceTree = "<group>"; };
 		323CD90923CB7107007FFC58 /* jamdict.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = jamdict.db; sourceTree = "<group>"; };
+		3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollectionCollectionViewCell.swift; sourceTree = "<group>"; };
+		3249F2D6250BBC18004C514E /* MangaCollectionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MangaCollectionCollectionViewCell.xib; sourceTree = "<group>"; };
 		324BB953249835DD006241E8 /* mecab.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mecab.xcodeproj; path = "mecab-ios/mecab.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		324BB9592498365E006241E8 /* mecabrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mecabrc; sourceTree = SOURCE_ROOT; };
 		324BB98924983DF7006241E8 /* rewrite.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rewrite.def; sourceTree = "<group>"; };
@@ -203,7 +206,6 @@
 		5534228050877F817D2A97BC /* Pods_Kantan_MangaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D7326F35AB101E198FF621 /* Pods_Kantan_MangaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		617240BC1208769EA8C99836 /* Pods-Kantan-Manga.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Manga.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan-Manga/Pods-Kantan-Manga.debug.xcconfig"; sourceTree = "<group>"; };
-		8418695F222474EC00C689DC /* LibraryCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewLayout.swift; sourceTree = "<group>"; };
 		8418696B222495FD00C689DC /* Manga.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manga.swift; sourceTree = "<group>"; };
 		8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Manga+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		841B795B221F305A00659FA2 /* MangaDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDataSource.swift; sourceTree = "<group>"; };
@@ -392,6 +394,8 @@
 				84A83222221DB10400CEE1C9 /* MangaCollectionViewCell.swift */,
 				84A83223221DB10400CEE1C9 /* MangaCollectionViewCell.xib */,
 				32F1B9FB24369E1100AE367D /* OpenMangaAnimationController.swift */,
+				3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */,
+				3249F2D6250BBC18004C514E /* MangaCollectionCollectionViewCell.xib */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -437,7 +441,6 @@
 			isa = PBXGroup;
 			children = (
 				841B795B221F305A00659FA2 /* MangaDataSource.swift */,
-				8418695F222474EC00C689DC /* LibraryCollectionViewLayout.swift */,
 				323205AD238DBCE4009E8362 /* SelectionView.swift */,
 				3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */,
 				325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */,
@@ -695,6 +698,7 @@
 				84A831F4221D90CC00CEE1C9 /* LaunchScreen.storyboard in Resources */,
 				32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */,
 				324BB99924983DF7006241E8 /* right-id.def in Resources */,
+				3249F2D8250BBC18004C514E /* MangaCollectionCollectionViewCell.xib in Resources */,
 				324BB99324983DF7006241E8 /* left-id.def in Resources */,
 				0D463D7222CA9B0D0020FD5A /* GoogleService-Info.plist in Resources */,
 				84A831F1221D90CC00CEE1C9 /* Assets.xcassets in Resources */,
@@ -847,8 +851,8 @@
 				325DA0B923C8F50700A627BD /* JapaneseDictionary.swift in Sources */,
 				843FA7DF221DEDDF00B86B52 /* AddMangasCoordinator.swift in Sources */,
 				843FA7E9221DFE9E00B86B52 /* CBZReader.swift in Sources */,
-				84186960222474EC00C689DC /* LibraryCollectionViewLayout.swift in Sources */,
 				8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */,
+				3249F2D7250BBC18004C514E /* MangaCollectionCollectionViewCell.swift in Sources */,
 				325199B42479D96400DA6908 /* ImageOCR.swift in Sources */,
 				328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */,
 				32E3221C2481A67D007BC017 /* JapaneseHelpViewController.swift in Sources */,
