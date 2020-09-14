@@ -15,7 +15,7 @@ protocol PageViewControllerDelegate: AnyObject {
 
 class PageViewController: UIViewController {
     // Some times refreshView is called before the nib is loaded. Kepp these optional to prevent a crash
-    @IBOutlet weak var pageImageView: UIImageViewAligned?
+    @IBOutlet weak var pageImageView: AspectAlignImage?
     @IBOutlet weak var pageLabel: UILabel?
     @IBOutlet weak var leftGradientImage: UIImageView?
     @IBOutlet weak var rightGradientImage: UIImageView?
@@ -62,17 +62,14 @@ class PageViewController: UIViewController {
             if page % 2 != offset {
                 leftGradientImage?.isHidden = true
                 rightGradientImage?.isHidden = false
-                pageImageView?.alignLeft = false
-                pageImageView?.alignRight = true
+                pageImageView?.alignment = .right
             } else {
                 leftGradientImage?.isHidden = false
                 rightGradientImage?.isHidden = true
-                pageImageView?.alignLeft = true
-                pageImageView?.alignRight = false
+                pageImageView?.alignment = .left
             }
         } else {
-            pageImageView?.alignLeft = false
-            pageImageView?.alignRight = false
+            pageImageView?.alignment = .center
         }
         if isPaddingPage {
             pageLabel?.text = ""
