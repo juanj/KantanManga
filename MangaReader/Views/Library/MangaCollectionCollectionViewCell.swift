@@ -8,7 +8,7 @@
 import UIKit
 
 class MangaCollectionCollectionViewCell: UICollectionViewCell {
-    @IBOutlet var imageViews: [UIImageView]!
+    @IBOutlet var imageViews: [AspectAlignImage]!
     @IBOutlet weak var nameLabel: UILabel!
 
     override func awakeFromNib() {

@@ -20,6 +20,8 @@
 		322C5B5C24830C2500C0BAB1 /* MockLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C5B5B24830C2500C0BAB1 /* MockLibraryViewController.swift */; };
 		322C5B602483125A00C0BAB1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C5B5F2483125A00C0BAB1 /* Coordinator.swift */; };
 		322ECF3924FF280B0013FD21 /* Bool+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322ECF3824FF280B0013FD21 /* Bool+Extension.swift */; };
+		322EF655250FB05800F35E72 /* CGSize+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322EF654250FB05800F35E72 /* CGSize+Extension.swift */; };
+		322EF658250FB49700F35E72 /* AspectAlignImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322EF657250FB49700F35E72 /* AspectAlignImage.swift */; };
 		323205AE238DBCE4009E8362 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323205AD238DBCE4009E8362 /* SelectionView.swift */; };
 		32326F8624354ECC00FCE8E5 /* FileSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32326F8424354ECC00FCE8E5 /* FileSourceViewController.swift */; };
 		32326F8724354ECC00FCE8E5 /* FileSourceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32326F8524354ECC00FCE8E5 /* FileSourceViewController.xib */; };
@@ -151,6 +153,8 @@
 		322C5B5B24830C2500C0BAB1 /* MockLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLibraryViewController.swift; sourceTree = "<group>"; };
 		322C5B5F2483125A00C0BAB1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		322ECF3824FF280B0013FD21 /* Bool+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Extension.swift"; sourceTree = "<group>"; };
+		322EF654250FB05800F35E72 /* CGSize+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Extension.swift"; sourceTree = "<group>"; };
+		322EF657250FB49700F35E72 /* AspectAlignImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectAlignImage.swift; sourceTree = "<group>"; };
 		323205AD238DBCE4009E8362 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
 		32326F8424354ECC00FCE8E5 /* FileSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSourceViewController.swift; sourceTree = "<group>"; };
 		32326F8524354ECC00FCE8E5 /* FileSourceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileSourceViewController.xib; sourceTree = "<group>"; };
@@ -372,7 +376,7 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		32AAD56E23DF7038009B3BCE /* Custom Controls */ = {
+		32AAD56E23DF7038009B3BCE /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
 				32E322152481A531007BC017 /* ParsedInputField.swift */,
@@ -380,8 +384,9 @@
 				325CFC20248060AD00110F31 /* DictionaryEntryView.swift */,
 				32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */,
 				3238DF3924D7840200DE8782 /* WordButton.swift */,
+				322EF657250FB49700F35E72 /* AspectAlignImage.swift */,
 			);
-			path = "Custom Controls";
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 		32F1B9F824369CAA00AE367D /* Library */ = {
@@ -446,6 +451,7 @@
 				325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */,
 				32FA3C7B24367428001EB0DF /* String+Extension.swift */,
 				322ECF3824FF280B0013FD21 /* Bool+Extension.swift */,
+				322EF654250FB05800F35E72 /* CGSize+Extension.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -480,7 +486,7 @@
 				326344A1247DD94200F683AB /* OCR */,
 				326344A0247DD92900F683AB /* File Extraction */,
 				32634498247DD89B00F683AB /* Mecab */,
-				32AAD56E23DF7038009B3BCE /* Custom Controls */,
+				32AAD56E23DF7038009B3BCE /* Custom Views */,
 				84A8321F221D9F5700CEE1C9 /* Model */,
 				84A8321A221D94D400CEE1C9 /* Views */,
 				84A83217221D922200CEE1C9 /* Coordinators */,
@@ -837,6 +843,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				323205AE238DBCE4009E8362 /* SelectionView.swift in Sources */,
+				322EF658250FB49700F35E72 /* AspectAlignImage.swift in Sources */,
 				320F277423C2046900D9930F /* Tokenizer.swift in Sources */,
 				329E30E923E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift in Sources */,
 				32350AA8247C723C002D100D /* WordParser.swift in Sources */,
@@ -868,6 +875,7 @@
 				32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */,
 				32E322182481A531007BC017 /* ParsedInputField.swift in Sources */,
 				32326F8624354ECC00FCE8E5 /* FileSourceViewController.swift in Sources */,
+				322EF655250FB05800F35E72 /* CGSize+Extension.swift in Sources */,
 				325199B72479D9E000DA6908 /* GoogleVisionOCR.swift in Sources */,
 				322C5B602483125A00C0BAB1 /* Coordinator.swift in Sources */,
 				326344A3247DD98B00F683AB /* Reader.swift in Sources */,

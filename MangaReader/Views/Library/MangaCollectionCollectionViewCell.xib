@@ -16,15 +16,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3tC-X6-9eN">
-                        <rect key="frame" x="8" y="12" width="184" height="237"/>
-                    </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tRj-XD-lGr">
-                        <rect key="frame" x="8" y="12" width="184" height="237"/>
-                    </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3os-Z3-n2A">
-                        <rect key="frame" x="8" y="12" width="184" height="237"/>
-                    </imageView>
+                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ov-rh-fdV" customClass="AspectAlignImage" customModule="Kantan_Manga" customModuleProvider="target">
+                        <rect key="frame" x="8" y="8" width="184" height="248"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2s-71-kGo" customClass="AspectAlignImage" customModule="Kantan_Manga" customModuleProvider="target">
+                        <rect key="frame" x="8" y="8" width="184" height="248"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jym-IV-3ej" customClass="AspectAlignImage" customModule="Kantan_Manga" customModuleProvider="target">
+                        <rect key="frame" x="8" y="8" width="184" height="248"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTm-n3-BnY">
                         <rect key="frame" x="37" y="264" width="126" height="21"/>
                         <constraints>
@@ -37,30 +40,27 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="3tC-X6-9eN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="9w3-QO-249"/>
-                <constraint firstItem="uTm-n3-BnY" firstAttribute="top" secondItem="3os-Z3-n2A" secondAttribute="bottom" constant="15" id="CDZ-Ip-8hh"/>
-                <constraint firstItem="3os-Z3-n2A" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Cny-2J-s1l"/>
-                <constraint firstAttribute="trailing" secondItem="3os-Z3-n2A" secondAttribute="trailing" constant="8" id="G2J-LO-wp8"/>
-                <constraint firstItem="tRj-XD-lGr" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="Lkk-wj-gkH"/>
-                <constraint firstItem="tRj-XD-lGr" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="Nox-UZ-rsm"/>
-                <constraint firstAttribute="trailing" secondItem="tRj-XD-lGr" secondAttribute="trailing" constant="8" id="Vkp-B4-jsF"/>
-                <constraint firstItem="3tC-X6-9eN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="b3V-Gg-6Nk"/>
-                <constraint firstItem="uTm-n3-BnY" firstAttribute="top" secondItem="tRj-XD-lGr" secondAttribute="bottom" constant="15" id="i1Q-6O-RuP"/>
-                <constraint firstItem="tRj-XD-lGr" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="lHk-6Q-IGf"/>
-                <constraint firstItem="3os-Z3-n2A" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="p9R-Ic-wjb"/>
-                <constraint firstAttribute="trailing" secondItem="3tC-X6-9eN" secondAttribute="trailing" constant="8" id="pRG-Uq-tPo"/>
-                <constraint firstItem="3tC-X6-9eN" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="sMN-b0-NAd"/>
-                <constraint firstItem="3os-Z3-n2A" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="sYs-zF-YgV"/>
+                <constraint firstItem="uTm-n3-BnY" firstAttribute="top" secondItem="d2s-71-kGo" secondAttribute="bottom" constant="8" id="0gY-AD-9ZY"/>
+                <constraint firstItem="d2s-71-kGo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="5Vb-Bk-uiR"/>
+                <constraint firstAttribute="trailing" secondItem="4ov-rh-fdV" secondAttribute="trailing" constant="8" id="C3I-jG-UyI"/>
+                <constraint firstAttribute="trailing" secondItem="jym-IV-3ej" secondAttribute="trailing" constant="8" id="DZw-r8-gej"/>
+                <constraint firstItem="uTm-n3-BnY" firstAttribute="top" secondItem="4ov-rh-fdV" secondAttribute="bottom" constant="8" id="GBB-ne-duG"/>
+                <constraint firstItem="jym-IV-3ej" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="Sdc-ly-3aR"/>
+                <constraint firstItem="4ov-rh-fdV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="U5X-Hg-cfW"/>
+                <constraint firstItem="jym-IV-3ej" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="Y02-rr-pnu"/>
+                <constraint firstItem="uTm-n3-BnY" firstAttribute="top" secondItem="jym-IV-3ej" secondAttribute="bottom" constant="8" id="anz-jQ-6bf"/>
                 <constraint firstAttribute="bottom" secondItem="uTm-n3-BnY" secondAttribute="bottom" constant="15" id="t6J-Zd-kOx"/>
-                <constraint firstItem="uTm-n3-BnY" firstAttribute="top" secondItem="3tC-X6-9eN" secondAttribute="bottom" constant="15" id="vuD-Ue-YPU"/>
+                <constraint firstItem="4ov-rh-fdV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="u7r-kv-AHn"/>
+                <constraint firstItem="d2s-71-kGo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="uob-hC-Zh3"/>
                 <constraint firstItem="uTm-n3-BnY" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="yP7-0p-Hv1"/>
+                <constraint firstAttribute="trailing" secondItem="d2s-71-kGo" secondAttribute="trailing" constant="8" id="zjw-PH-wUP"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
                 <outlet property="nameLabel" destination="uTm-n3-BnY" id="jOH-O1-04V"/>
-                <outletCollection property="imageViews" destination="3tC-X6-9eN" collectionClass="NSMutableArray" id="J0l-Vg-v2e"/>
-                <outletCollection property="imageViews" destination="tRj-XD-lGr" collectionClass="NSMutableArray" id="5g6-f3-vkT"/>
-                <outletCollection property="imageViews" destination="3os-Z3-n2A" collectionClass="NSMutableArray" id="cCO-4s-CzS"/>
+                <outletCollection property="imageViews" destination="4ov-rh-fdV" collectionClass="NSMutableArray" id="sJh-gC-gQw"/>
+                <outletCollection property="imageViews" destination="d2s-71-kGo" collectionClass="NSMutableArray" id="sA2-jd-c9f"/>
+                <outletCollection property="imageViews" destination="jym-IV-3ej" collectionClass="NSMutableArray" id="GYK-6T-0ix"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="148.66071428571428"/>
         </collectionViewCell>
