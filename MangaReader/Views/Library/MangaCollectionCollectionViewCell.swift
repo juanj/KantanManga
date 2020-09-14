@@ -15,7 +15,7 @@ class MangaCollectionCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         imageViews = imageViews.sorted(by: { $0.tag < $1.tag })
         for imageView in imageViews {
-            imageView.transform = CGAffineTransform(rotationAngle: .random(in: -0.15...0.15))
+            imageView.transform = CGAffineTransform(rotationAngle: .random(in: -0.1...0.1))
         }
     }
 
