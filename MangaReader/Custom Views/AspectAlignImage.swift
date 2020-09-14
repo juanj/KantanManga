@@ -10,7 +10,7 @@ import UIKit
 
 class AspectAlignImage: UIView {
     enum ImageAlignment {
-        case left, top, right, bottom
+        case left, top, right, bottom, center
     }
     var image: UIImage? {
         didSet {
@@ -26,6 +26,7 @@ class AspectAlignImage: UIView {
 
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageView)
 
@@ -37,9 +38,6 @@ class AspectAlignImage: UIView {
         imageHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: frame.height)
 
         activateConstraints()
-
-        imageWidthConstraint?.isActive = true
-        imageHeightConstraint?.isActive = true
 
         return imageView
     }()
@@ -66,6 +64,8 @@ class AspectAlignImage: UIView {
         imageTopConstraint?.isActive = true
         imageLeftConstraint?.isActive = true
         imageRightConstraint?.isActive = true
+        imageWidthConstraint?.isActive = true
+        imageHeightConstraint?.isActive = true
 
         switch alignment {
         case .left:
@@ -75,7 +75,10 @@ class AspectAlignImage: UIView {
         case .right:
             imageLeftConstraint?.isActive = false
         case .bottom:
-            imageTopConstraint?.isActive = true
+            imageTopConstraint?.isActive = false
+        case .center:
+            imageHeightConstraint?.isActive = false
+            imageWidthConstraint?.isActive = false
         }
 
         layoutIfNeeded()
