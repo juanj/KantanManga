@@ -31,9 +31,18 @@ class OpenMangaAnimationController: NSObject, UIViewControllerAnimatedTransition
         containerView.addSubview(toVC.view)
         toVC.view.alpha = 0
 
+        // Take into acount bottom aligment
+        let imageAspectFit = CGSize.aspectFit(size: mangaCover.size, inside: originFrame.size)
+        let heightDifference = originFrame.size.height - imageAspectFit.height
+        var imageOffset: CGFloat = 0
+        if heightDifference > 0 {
+            imageOffset = heightDifference / 2.0
+        }
+
+        let imageFrame = CGRect(origin: CGPoint(x: originFrame.origin.x, y: originFrame.origin.y + imageOffset), size: originFrame.size)
         let imageView = UIImageView(image: mangaCover)
         imageView.contentMode = .scaleAspectFit
-        imageView.frame = originFrame
+        imageView.frame = imageFrame
 
         let overlay = UIView()
         overlay.frame = finalFrame
