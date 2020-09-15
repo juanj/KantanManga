@@ -8,7 +8,7 @@
 
 import XCTest
 import CoreData
-@testable import MangaReader
+@testable import Kantan_Manga
 
 class CoreDataManagerTests: XCTestCase {
     var coreDataManager: CoreDataManager!
@@ -171,6 +171,14 @@ class CoreDataManagerTests: XCTestCase {
         XCTAssertEqual(manga.filePath, "abc.cbz")
         XCTAssertNotNil(updatedManga.lastViewedAt)
         XCTAssertEqual(updatedManga.createdAt, manga.createdAt)
+    }
+
+    func testMangasWithoutCollectionAreFetched() {
+        let manga1 = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 5, filePath: "")
+        let manga2 = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 10, filePath: "bc")
+        let manga3 = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 20, filePath: "de")
+
+        XCTAssertEqual(coreDataManager.getMangasWithoutCollection(), [manga1!, manga2!, manga3!])
     }
 
     func testCollectionIsInserted() {

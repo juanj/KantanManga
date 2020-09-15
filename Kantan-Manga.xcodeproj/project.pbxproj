@@ -19,6 +19,8 @@
 		320F277423C2046900D9930F /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277223C2046900D9930F /* Tokenizer.swift */; };
 		3219C2A9251100D200915DE1 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219C2A7251100D200915DE1 /* CollectionViewController.swift */; };
 		3219C2AA251100D200915DE1 /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3219C2A8251100D200915DE1 /* CollectionViewController.xib */; };
+		3219C2B02511103600915DE1 /* MockCollectionViewControllerDelgate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219C2AE25110E2900915DE1 /* MockCollectionViewControllerDelgate.swift */; };
+		3219C2B22511103A00915DE1 /* MockCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219C2AC25110D7D00915DE1 /* MockCollectionViewController.swift */; };
 		322C5B5C24830C2500C0BAB1 /* MockLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C5B5B24830C2500C0BAB1 /* MockLibraryViewController.swift */; };
 		322C5B602483125A00C0BAB1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C5B5F2483125A00C0BAB1 /* Coordinator.swift */; };
 		322ECF3924FF280B0013FD21 /* Bool+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322ECF3824FF280B0013FD21 /* Bool+Extension.swift */; };
@@ -154,6 +156,8 @@
 		320F277223C2046900D9930F /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
 		3219C2A7251100D200915DE1 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		3219C2A8251100D200915DE1 /* CollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewController.xib; sourceTree = "<group>"; };
+		3219C2AC25110D7D00915DE1 /* MockCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCollectionViewController.swift; sourceTree = "<group>"; };
+		3219C2AE25110E2900915DE1 /* MockCollectionViewControllerDelgate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCollectionViewControllerDelgate.swift; sourceTree = "<group>"; };
 		322C5B5B24830C2500C0BAB1 /* MockLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLibraryViewController.swift; sourceTree = "<group>"; };
 		322C5B5F2483125A00C0BAB1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		322ECF3824FF280B0013FD21 /* Bool+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Extension.swift"; sourceTree = "<group>"; };
@@ -297,6 +301,8 @@
 				320ED4DC2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift */,
 				32C3512E24845D2800D1EB42 /* MockViewMangaCoordinatorDelegate.swift */,
 				32C351322484645700D1EB42 /* MockOCR.swift */,
+				3219C2AC25110D7D00915DE1 /* MockCollectionViewController.swift */,
+				3219C2AE25110E2900915DE1 /* MockCollectionViewControllerDelgate.swift */,
 			);
 			path = "Mock Classes";
 			sourceTree = "<group>";
@@ -906,6 +912,7 @@
 			files = (
 				322C5B5C24830C2500C0BAB1 /* MockLibraryViewController.swift in Sources */,
 				320ED4D924831D2900F5BECF /* MockUploadServer.swift in Sources */,
+				3219C2B02511103600915DE1 /* MockCollectionViewControllerDelgate.swift in Sources */,
 				320ED4D72483189F00F5BECF /* MockNavigationController.swift in Sources */,
 				320ED4D32483178C00F5BECF /* DummyDelegates.swift in Sources */,
 				320ED4DD2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift in Sources */,
@@ -913,6 +920,7 @@
 				32C3512F24845D2800D1EB42 /* MockViewMangaCoordinatorDelegate.swift in Sources */,
 				84A831FF221D90CC00CEE1C9 /* MangaReaderTests.swift in Sources */,
 				32C351332484645700D1EB42 /* MockOCR.swift in Sources */,
+				3219C2B22511103A00915DE1 /* MockCollectionViewController.swift in Sources */,
 				320ED4DB248326F300F5BECF /* MockAddMangasCoordinatorDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1290,7 +1298,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kantan-Manga.app/Kantan-Manga";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kantan Manga.app/Kantan Manga";
 			};
 			name = Debug;
 		};
@@ -1312,7 +1320,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kantan-Manga.app/Kantan-Manga";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kantan Manga.app/Kantan Manga";
 			};
 			name = Release;
 		};

@@ -6,8 +6,8 @@
 //  Copyright © 2020 Bakura. All rights reserved.
 //
 
-@testable import MangaReader
+@testable import Kantan_Manga
 
 class MockLibraryViewController: LibraryViewController {
-    override func setMangas(mangas: [Manga]) {}
+    override func setCollections(collections: [MangaCollection]) {}
 }

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import MangaReader
+@testable import Kantan_Manga
 
 class AppCoordinatorTests: XCTestCase {
     var navigation: MockNavigationController!
@@ -25,37 +25,16 @@ class AppCoordinatorTests: XCTestCase {
         XCTAssertTrue(navigation.viewControllersTest.first is LibraryViewController)
     }
 
-    func testLoadMangas() {
-        XCTAssertNotNil(appCoordinator.loadMangas())
-        CoreDataManager.sharedManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 100, filePath: "test.cbz")
-        XCTAssertEqual(appCoordinator.loadMangas().count, 1)
+    func testloadCollections() {
+        XCTAssertNotNil(appCoordinator.loadCollections())
+        CoreDataManager.sharedManager.insertCollection(name: "Test Collection")
+        XCTAssertEqual(appCoordinator.loadCollections().count, 1)
     }
 
     // MARK: LibraryViewControllerDelegate
-    func testLibraryDelegateDeleteMangaDeletesMangaFromDataBase() {
-        let manga = CoreDataManager.sharedManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 100, filePath: "test.cbz")!
-        let delegate = DummyLibraryViewControllerDelegate()
-        let libraryViewController = MockLibraryViewController(delegate: delegate)
-
-        XCTAssertEqual(CoreDataManager.sharedManager.fetchAllMangas()?.count, 1)
-        appCoordinator.didSelectDeleteManga(libraryViewController, manga: manga)
-        XCTAssertEqual(CoreDataManager.sharedManager.fetchAllMangas()?.count, 0)
-    }
-
-    func testLibraryDelegateSelectMangaStartCoordinator() {
-        let manga = CoreDataManager.sharedManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 100, filePath: "test.cbz")!
-        let delegate = DummyLibraryViewControllerDelegate()
-        let libraryViewController = MockLibraryViewController(delegate: delegate)
-
-        appCoordinator.didSelectManga(libraryViewController, manga: manga, cellFrame: .zero)
-
-        XCTAssertEqual(appCoordinator.childCoordinators.count, 1)
-        XCTAssertNotNil(appCoordinator.childCoordinators.first as? ViewMangaCoordinator)
-    }
-
     func testLibraryDelegateSelectAddStartCoordinator() {
         let delegate = DummyLibraryViewControllerDelegate()
-        let libraryViewController = MockLibraryViewController(delegate: delegate)
+        let libraryViewController = MockLibraryViewController(delegate: delegate, collections: [])
 
         appCoordinator.didSelectAdd(libraryViewController, button: UIBarButtonItem())
 
@@ -79,6 +58,18 @@ class AppCoordinatorTests: XCTestCase {
         appCoordinator.cancel(addMangasCoordinator)
         XCTAssertEqual(appCoordinator.childCoordinators.count, 0)
     }
+
+    // MARK: CollectionViewControllerDelegate
+    func testCollectionDelegateSelectMangaStartCoordinator() {
+        let manga = CoreDataManager.sharedManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 100, filePath: "test.cbz")!
+        let libraryViewController = MockCollectionViewController(delegate: MockCollectionViewControllerDelgate(), collection: MangaCollection())
+
+        appCoordinator.didSelectManga(libraryViewController, manga: manga, cellFrame: .zero)
+
+        XCTAssertEqual(appCoordinator.childCoordinators.count, 1)
+        XCTAssertNotNil(appCoordinator.childCoordinators.first as? ViewMangaCoordinator)
+    }
+
 }
 
 class AddMangasCoordinatorTests: XCTestCase {
@@ -205,7 +196,7 @@ class ViewMangaCoordinatorTests: XCTestCase {
     func testCustomTransitionForPop() {
         var animation = viewMangaCoordinator.navigationController(navigation, animationControllerFor: .pop, from: UIViewController(), to: UIViewController())
         XCTAssertNil(animation)
-        animation = viewMangaCoordinator.navigationController(navigation, animationControllerFor: .pop, from: LibraryViewController(delegate: DummyLibraryViewControllerDelegate()), to: UIViewController())
+        animation = viewMangaCoordinator.navigationController(navigation, animationControllerFor: .pop, from: CollectionViewController(delegate: MockCollectionViewControllerDelgate(), collection: MangaCollection()), to: UIViewController())
         XCTAssertTrue(animation is OpenMangaAnimationController)
     }
 }

@@ -6,10 +6,10 @@
 //  Copyright © 2020 Bakura. All rights reserved.
 //
 
-@testable import MangaReader
+@testable import Kantan_Manga
 
 class DummyLibraryViewControllerDelegate: LibraryViewControllerDelegate {
+    func didSelectSettings(_ libraryViewController: LibraryViewController) {}
+    func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollection) {}
     func didSelectAdd(_ libraryViewController: LibraryViewController, button: UIBarButtonItem) {}
-    func didSelectManga(_ libraryViewController: LibraryViewController, manga: Manga, cellFrame: CGRect) {}
-    func didSelectDeleteManga(_ libraryViewController: LibraryViewController, manga: Manga) {}
 }

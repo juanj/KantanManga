@@ -6,7 +6,7 @@
 //  Copyright © 2020 Bakura. All rights reserved.
 //
 
-@testable import MangaReader
+@testable import Kantan_Manga
 
 class MockOCR: ImageOCR {
     var image: UIImage?
