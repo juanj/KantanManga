@@ -137,6 +137,20 @@ class CoreDataManager {
         }
     }
 
+    func getMangasWithoutCollection() -> [Manga]? {
+        let context = persistentContainer.viewContext
+        let fetchRequest = Manga.createFetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "mangaCollection == nil")
+
+        do {
+            let result = try context.fetch(fetchRequest)
+            return result
+        } catch let error as NSError {
+            print("Could't fetch Mangas without a collection. \(error), \(error.userInfo)")
+            return nil
+        }
+    }
+
     // MARK: Update
     func updateManga(manga: Manga) {
         let context = persistentContainer.viewContext
