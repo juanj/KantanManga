@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MangaCollectionViewCell" customModule="MangaReader" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MangaCollectionViewCell" customModule="Kantan_Manga" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ebe-Fx-go7" customClass="UIImageViewAligned" customModule="UIImageViewAlignedSwift">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r03-bJ-Bep" customClass="AspectAlignImage" customModule="Kantan_Manga" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="263"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="alignBottom" value="YES"/>
-                        </userDefinedRuntimeAttributes>
-                    </imageView>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Re-Ao-BYt">
                         <rect key="frame" x="8" y="271" width="26" height="21"/>
                         <constraints>
@@ -35,16 +33,16 @@
             </view>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="8Re-Ao-BYt" secondAttribute="bottom" constant="8" id="02X-ui-dqA"/>
-                <constraint firstAttribute="trailing" secondItem="Ebe-Fx-go7" secondAttribute="trailing" id="FAu-GR-T5l"/>
-                <constraint firstItem="Ebe-Fx-go7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="MUi-jP-V1L"/>
-                <constraint firstItem="Ebe-Fx-go7" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Wsj-LN-VML"/>
+                <constraint firstItem="r03-bJ-Bep" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="1gz-ch-7xh"/>
+                <constraint firstAttribute="trailing" secondItem="r03-bJ-Bep" secondAttribute="trailing" id="9Sr-Ol-qia"/>
+                <constraint firstItem="8Re-Ao-BYt" firstAttribute="top" secondItem="r03-bJ-Bep" secondAttribute="bottom" constant="8" id="OMx-bZ-C0A"/>
+                <constraint firstItem="r03-bJ-Bep" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Rwp-Mt-PLw"/>
                 <constraint firstItem="8Re-Ao-BYt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="pLt-O0-3mb"/>
-                <constraint firstItem="8Re-Ao-BYt" firstAttribute="top" secondItem="Ebe-Fx-go7" secondAttribute="bottom" constant="8" id="pe3-jl-VkA"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="254" height="375"/>
             <connections>
-                <outlet property="coverImageView" destination="Ebe-Fx-go7" id="xzD-oX-1K9"/>
+                <outlet property="coverImageView" destination="r03-bJ-Bep" id="QmL-ja-2uw"/>
                 <outlet property="pageLabel" destination="8Re-Ao-BYt" id="N4k-Dk-vHB"/>
             </connections>
             <point key="canvasLocation" x="203.19999999999999" y="192.95352323838082"/>

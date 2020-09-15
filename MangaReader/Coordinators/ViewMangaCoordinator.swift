@@ -77,7 +77,7 @@ extension ViewMangaCoordinator: MangaViewControllerDelegate {
 
 extension ViewMangaCoordinator: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if fromVC is LibraryViewController {
+        if fromVC is CollectionViewController {
             let image = manga.coverImage ?? UIImage()
             return OpenMangaAnimationController(originFrame: originFrame, mangaCover: image)
         }

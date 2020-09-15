@@ -10,21 +10,17 @@ import UIKit
 import UIImageViewAlignedSwift
 
 class MangaCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var coverImageView: UIImageViewAligned!
+    @IBOutlet weak var coverImageView: AspectAlignImage!
     @IBOutlet weak var pageLabel: UILabel!
 
-    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        return action == NSSelectorFromString("deleteCollectionCell")
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        coverImageView.alignment = .bottom
     }
 
     override func prepareForReuse() {
         pageLabel.text = "0/0"
         coverImageView.image = nil
-    }
-
-    @objc func deleteCollectionCell() {
-        if let collectionView = superview as? UICollectionView, let delegate = collectionView.delegate {
-            delegate.collectionView!(collectionView, performAction: NSSelectorFromString("deleteCollectionCell"), forItemAt: collectionView.indexPath(for: self)!, withSender: self)
-        }
     }
 }

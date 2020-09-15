@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -8,41 +8,37 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LibraryViewController" customModule="Kantan_Manga" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CollectionViewController" customModule="Kantan_Manga" customModuleProvider="target">
             <connections>
-                <outlet property="collectionView" destination="D4v-1E-lta" id="wUr-w6-0ta"/>
+                <outlet property="collectionView" destination="xJ5-ZI-19I" id="bTJ-pH-PiZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="D4v-1E-lta">
-                    <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="xJ5-ZI-19I">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="crY-uv-AZD">
-                        <size key="itemSize" width="50" height="50"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ikN-NV-7gr">
+                        <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="Ths-mR-j5w"/>
-                        <outlet property="delegate" destination="-1" id="KWZ-Gj-cpY"/>
-                    </connections>
                 </collectionView>
             </subviews>
             <color key="backgroundColor" name="LibraryBackground"/>
             <constraints>
-                <constraint firstItem="D4v-1E-lta" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="1CM-uc-Yyi"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="D4v-1E-lta" secondAttribute="bottom" id="5Na-eS-J8s"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="D4v-1E-lta" secondAttribute="trailing" id="cO8-Nq-U2u"/>
-                <constraint firstItem="D4v-1E-lta" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="sY3-GW-7PE"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xJ5-ZI-19I" secondAttribute="trailing" id="B9H-7Y-tqw"/>
+                <constraint firstItem="xJ5-ZI-19I" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="aoO-6l-cUs"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="xJ5-ZI-19I" secondAttribute="bottom" id="bbg-CQ-xWx"/>
+                <constraint firstItem="xJ5-ZI-19I" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="lkw-2R-Nl6"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="132" y="113"/>
+            <point key="canvasLocation" x="133" y="129"/>
         </view>
     </objects>
     <resources>

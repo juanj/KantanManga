@@ -33,17 +33,6 @@ class AppCoordinator: Coordinator {
 
 // MARK: LibraryViewControllerDelegate
 extension AppCoordinator: LibraryViewControllerDelegate {
-    func didSelectDeleteManga(_ libraryViewController: LibraryViewController, manga: Manga) {
-        CoreDataManager.sharedManager.delete(manga: manga)
-        libraryViewController.setCollections(collections: loadCollections())
-    }
-
-    func didSelectManga(_ libraryViewController: LibraryViewController, manga: Manga, cellFrame: CGRect) {
-        let viewMangaCoordinator = ViewMangaCoordinator(navigation: navigationController, manga: manga, delegate: self, originFrame: cellFrame, ocr: TesseractOCR())
-        childCoordinators.append(viewMangaCoordinator)
-        viewMangaCoordinator.start()
-    }
-
     func didSelectAdd(_ libraryViewController: LibraryViewController, button: UIBarButtonItem) {
         guard let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
             return
@@ -58,6 +47,20 @@ extension AppCoordinator: LibraryViewControllerDelegate {
         let settingsCoordinator = SettingsCoordinator(navigation: navigationController)
         childCoordinators.append(settingsCoordinator)
         settingsCoordinator.start()
+    }
+
+    func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollection) {
+        let collectionView = CollectionViewController(delegate: self, collection: collection)
+        navigationController.pushViewController(collectionView, animated: true)
+    }
+}
+
+// MARK: CollectionViewControllerDelegate
+extension AppCoordinator: CollectionViewControllerDelegate {
+    func didSelectManga(_ collectionViewController: CollectionViewController, manga: Manga, cellFrame: CGRect) {
+        let viewMangaCoordinator = ViewMangaCoordinator(navigation: navigationController, manga: manga, delegate: self, originFrame: cellFrame, ocr: TesseractOCR())
+        childCoordinators.append(viewMangaCoordinator)
+        viewMangaCoordinator.start()
     }
 }
 

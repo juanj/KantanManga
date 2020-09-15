@@ -22,7 +22,7 @@ class OpenMangaAnimationController: NSObject, UIViewControllerAnimatedTransition
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let fromVC = transitionContext.viewController(forKey: .from) as? LibraryViewController,
+        guard let fromVC = transitionContext.viewController(forKey: .from) as? CollectionViewController,
             let toVC = transitionContext.viewController(forKey: .to) else { return }
 
         let containerView = transitionContext.containerView

@@ -17,6 +17,8 @@
 		320ED4DD2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4DC2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift */; };
 		320F277323C2046900D9930F /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277123C2046900D9930F /* Token.swift */; };
 		320F277423C2046900D9930F /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F277223C2046900D9930F /* Tokenizer.swift */; };
+		3219C2A9251100D200915DE1 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219C2A7251100D200915DE1 /* CollectionViewController.swift */; };
+		3219C2AA251100D200915DE1 /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3219C2A8251100D200915DE1 /* CollectionViewController.xib */; };
 		322C5B5C24830C2500C0BAB1 /* MockLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C5B5B24830C2500C0BAB1 /* MockLibraryViewController.swift */; };
 		322C5B602483125A00C0BAB1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C5B5F2483125A00C0BAB1 /* Coordinator.swift */; };
 		322ECF3924FF280B0013FD21 /* Bool+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322ECF3824FF280B0013FD21 /* Bool+Extension.swift */; };
@@ -150,6 +152,8 @@
 		320ED4DC2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAddMangaViewControllerDelegate.swift; sourceTree = "<group>"; };
 		320F277123C2046900D9930F /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		320F277223C2046900D9930F /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
+		3219C2A7251100D200915DE1 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		3219C2A8251100D200915DE1 /* CollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewController.xib; sourceTree = "<group>"; };
 		322C5B5B24830C2500C0BAB1 /* MockLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLibraryViewController.swift; sourceTree = "<group>"; };
 		322C5B5F2483125A00C0BAB1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		322ECF3824FF280B0013FD21 /* Bool+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Extension.swift"; sourceTree = "<group>"; };
@@ -401,6 +405,8 @@
 				32F1B9FB24369E1100AE367D /* OpenMangaAnimationController.swift */,
 				3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */,
 				3249F2D6250BBC18004C514E /* MangaCollectionCollectionViewCell.xib */,
+				3219C2A7251100D200915DE1 /* CollectionViewController.swift */,
+				3219C2A8251100D200915DE1 /* CollectionViewController.xib */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -714,6 +720,7 @@
 				324BB93B2498302E006241E8 /* mecabrc in Resources */,
 				324BB99424983DF7006241E8 /* pos-id.def in Resources */,
 				328DFB0B238D96300095CBAB /* MangaViewController.xib in Resources */,
+				3219C2AA251100D200915DE1 /* CollectionViewController.xib in Resources */,
 				324BB99624983DF7006241E8 /* unk.dic in Resources */,
 				324BB99524983DF7006241E8 /* matrix.bin in Resources */,
 				324BB99A24983DF7006241E8 /* char.bin in Resources */,
@@ -878,6 +885,7 @@
 				322EF655250FB05800F35E72 /* CGSize+Extension.swift in Sources */,
 				325199B72479D9E000DA6908 /* GoogleVisionOCR.swift in Sources */,
 				322C5B602483125A00C0BAB1 /* Coordinator.swift in Sources */,
+				3219C2A9251100D200915DE1 /* CollectionViewController.swift in Sources */,
 				326344A3247DD98B00F683AB /* Reader.swift in Sources */,
 				3238DF3A24D7840200DE8782 /* WordButton.swift in Sources */,
 				322ECF3924FF280B0013FD21 /* Bool+Extension.swift in Sources */,

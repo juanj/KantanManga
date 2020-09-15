@@ -11,8 +11,7 @@ import UIKit
 protocol LibraryViewControllerDelegate: AnyObject {
     func didSelectAdd(_ libraryViewController: LibraryViewController, button: UIBarButtonItem)
     func didSelectSettings(_ libraryViewController: LibraryViewController)
-    func didSelectManga(_ libraryViewController: LibraryViewController, manga: Manga, cellFrame: CGRect)
-    func didSelectDeleteManga(_ libraryViewController: LibraryViewController, manga: Manga)
+    func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollection)
 }
 
 class LibraryViewController: UIViewController {
@@ -59,9 +58,6 @@ class LibraryViewController: UIViewController {
         collectionView.contentInset = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
 
         collectionView.register(UINib(nibName: "MangaCollectionCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MangaCell")
-
-        let layout = UICollectionViewFlowLayout()
-        collectionView.collectionViewLayout = layout
     }
 
     private func configureNavigationBar() {
@@ -115,7 +111,7 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // Open collection
+        delegate?.didSelectCollection(self, collection: collections[indexPath.row])
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
