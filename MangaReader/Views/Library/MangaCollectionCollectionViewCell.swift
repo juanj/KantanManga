@@ -19,10 +19,15 @@ class MangaCollectionCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    override func prepareForReuse() {
+        for image in imageViews {
+            image.image = nil
+        }
+    }
+
     func setImages(_ images: [UIImage]) {
         for (image, imageView) in zip(images, imageViews) {
             imageView.image = image
         }
     }
-
 }

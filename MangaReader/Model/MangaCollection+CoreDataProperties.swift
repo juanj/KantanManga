@@ -15,10 +15,10 @@ extension MangaCollection: MangaCollectionable {
     }
 
     var mangas: [Manga] {
-        return Array(mangasInCollection ?? [])
+        return (mangasInCollection?.array as? [Manga]) ?? []
     }
 
     @NSManaged public var name: String?
-    @NSManaged private var mangasInCollection: Set<Manga>?
+    @NSManaged private var mangasInCollection: NSOrderedSet?
 
 }

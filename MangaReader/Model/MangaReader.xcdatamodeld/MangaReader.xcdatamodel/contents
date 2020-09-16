@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E266" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Manga" representedClassName="Manga" syncable="YES">
         <attribute name="coverData" optional="YES" attributeType="Binary"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -12,10 +12,10 @@
     </entity>
     <entity name="MangaCollection" representedClassName="MangaCollection" syncable="YES">
         <attribute name="name" attributeType="String"/>
-        <relationship name="mangasInCollection" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Manga" inverseName="mangaCollection" inverseEntity="Manga"/>
+        <relationship name="mangasInCollection" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Manga" inverseName="mangaCollection" inverseEntity="Manga"/>
     </entity>
     <elements>
         <element name="Manga" positionX="-312" positionY="-85" width="128" height="28"/>
-        <element name="MangaCollection" positionX="-297" positionY="-9" width="128" height="28"/>
+        <element name="MangaCollection" positionX="-297" positionY="-9" width="128" height="73"/>
     </elements>
 </model>
