@@ -8,7 +8,7 @@
 
 import CoreData
 
-extension MangaCollection {
+extension MangaCollection: MangaCollectionable {
 
   @nonobjc public class func createFetchRequest() -> NSFetchRequest<MangaCollection> {
         return NSFetchRequest<MangaCollection>(entityName: "MangaCollection")

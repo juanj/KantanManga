@@ -26,8 +26,15 @@ class AppCoordinator: Coordinator {
         libraryView = library
     }
 
-    func loadCollections() -> [MangaCollection] {
-        return CoreDataManager.sharedManager.fetchAllCollections() ?? []
+    func loadCollections() -> [MangaCollectionable] {
+        var collections = [MangaCollectionable]()
+        if let noCollectionMangas = CoreDataManager.sharedManager.getMangasWithoutCollection() {
+            collections.append(EmptyMangaCollection(mangas: noCollectionMangas))
+        }
+        if let allCollections = CoreDataManager.sharedManager.fetchAllCollections() {
+            collections.append(contentsOf: allCollections)
+        }
+        return collections
     }
 }
 
@@ -49,7 +56,7 @@ extension AppCoordinator: LibraryViewControllerDelegate {
         settingsCoordinator.start()
     }
 
-    func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollection) {
+    func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable) {
         let collectionView = CollectionViewController(delegate: self, collection: collection)
         navigationController.pushViewController(collectionView, animated: true)
     }

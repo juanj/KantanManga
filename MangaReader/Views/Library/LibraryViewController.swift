@@ -11,16 +11,16 @@ import UIKit
 protocol LibraryViewControllerDelegate: AnyObject {
     func didSelectAdd(_ libraryViewController: LibraryViewController, button: UIBarButtonItem)
     func didSelectSettings(_ libraryViewController: LibraryViewController)
-    func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollection)
+    func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable)
 }
 
 class LibraryViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
     private weak var delegate: LibraryViewControllerDelegate?
-    private var collections = [MangaCollection]()
+    private var collections = [MangaCollectionable]()
 
-    init(delegate: LibraryViewControllerDelegate, collections: [MangaCollection]) {
+    init(delegate: LibraryViewControllerDelegate, collections: [MangaCollectionable]) {
         self.delegate = delegate
         self.collections = collections
         super.init(nibName: nil, bundle: nil)
@@ -47,7 +47,7 @@ class LibraryViewController: UIViewController {
         collectionView.collectionViewLayout.invalidateLayout()
     }
 
-    func setCollections(collections: [MangaCollection]) {
+    func setCollections(collections: [MangaCollectionable]) {
         self.collections = collections
         self.collectionView.reloadData()
     }

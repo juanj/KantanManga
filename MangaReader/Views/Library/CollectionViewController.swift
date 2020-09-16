@@ -15,9 +15,9 @@ class CollectionViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
     private weak var delegate: CollectionViewControllerDelegate?
-    private var collection: MangaCollection
+    private var collection: MangaCollectionable
 
-    init(delegate: CollectionViewControllerDelegate, collection: MangaCollection) {
+    init(delegate: CollectionViewControllerDelegate, collection: MangaCollectionable) {
         self.delegate = delegate
         self.collection = collection
         super.init(nibName: nil, bundle: nil)

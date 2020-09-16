@@ -238,7 +238,6 @@ class MangaViewController: UIViewController {
     }
 
     @objc func offsetPage() {
-        // TODO: Handle posible crash for offseting at boundaries
         pagesOffset.toggle()
         reloadPageController()
     }
