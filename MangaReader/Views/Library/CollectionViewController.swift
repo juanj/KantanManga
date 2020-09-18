@@ -36,14 +36,14 @@ class CollectionViewController: UIViewController {
         configureCollectionView()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if animating {
-            animating = false
-            collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
-        } else {
-            collectionView.reloadData()
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        animating = false
     }
 
     private func configureCollectionView() {
@@ -69,11 +69,8 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
             cell.coverImageView.image = image
         }
         cell.pageLabel.text = "\(manga.currentPage)/\(manga.totalPages)"
-        if animating {
-            if indexPath.row < 3 {
-                cell.layer.zPosition = 1000 + CGFloat(3 - indexPath.row)
-            }
-            cell.center = sourcePoint
+        if indexPath.row < 3 {
+            cell.layer.zPosition = 1000 + CGFloat(3 - indexPath.row)
         }
 
         return cell
@@ -88,5 +85,17 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
         let frame = cell.convert(cell.coverImageView.frame, to: view)
         let manga = collection.mangas[indexPath.row]
         delegate?.didSelectManga(self, manga: manga, cellFrame: frame)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard animating else { return }
+        guard let cell = cell as? MangaCollectionViewCell else { return }
+        let oldCenter = cell.center
+        cell.pageLabel.alpha = 0
+        cell.center = sourcePoint
+        UIView.animate(withDuration: 0.5) {
+            cell.center = oldCenter
+            cell.pageLabel.alpha = 1
+        }
     }
 }
