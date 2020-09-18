@@ -17,7 +17,7 @@ class CollectionViewController: UIViewController {
     private weak var delegate: CollectionViewControllerDelegate?
     private var collection: MangaCollectionable
     private let sourcePoint: CGPoint
-    private var visible = false
+    private var animating = true
 
     init(delegate: CollectionViewControllerDelegate, collection: MangaCollectionable, sourcePoint: CGPoint) {
         self.delegate = delegate
@@ -38,8 +38,12 @@ class CollectionViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        visible = true
-        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
+        if animating {
+            animating = false
+            collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
+        } else {
+            collectionView.reloadData()
+        }
     }
 
     private func configureCollectionView() {
@@ -65,7 +69,12 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
             cell.coverImageView.image = image
         }
         cell.pageLabel.text = "\(manga.currentPage)/\(manga.totalPages)"
-        cell.contentView.alpha = visible ? 1 : 0
+        if animating {
+            if indexPath.row < 3 {
+                cell.layer.zPosition = 1000 + CGFloat(3 - indexPath.row)
+            }
+            cell.center = sourcePoint
+        }
 
         return cell
     }
