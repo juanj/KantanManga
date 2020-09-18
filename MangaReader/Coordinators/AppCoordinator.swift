@@ -57,7 +57,9 @@ extension AppCoordinator: LibraryViewControllerDelegate {
     }
 
     func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable) {
-        let collectionView = CollectionViewController(delegate: self, collection: collection)
+        guard let indexPath = libraryViewController.collectionView.indexPathsForSelectedItems?.first else { return }
+        guard let cellCenter = libraryViewController.collectionView.cellForItem(at: indexPath)?.center else { return }
+        let collectionView = CollectionViewController(delegate: self, collection: collection, sourcePoint: cellCenter)
         navigationController.pushViewController(collectionView, animated: true)
     }
 }

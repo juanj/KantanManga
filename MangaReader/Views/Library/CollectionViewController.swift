@@ -16,10 +16,13 @@ class CollectionViewController: UIViewController {
 
     private weak var delegate: CollectionViewControllerDelegate?
     private var collection: MangaCollectionable
+    private let sourcePoint: CGPoint
+    private var visible = false
 
-    init(delegate: CollectionViewControllerDelegate, collection: MangaCollectionable) {
+    init(delegate: CollectionViewControllerDelegate, collection: MangaCollectionable, sourcePoint: CGPoint) {
         self.delegate = delegate
         self.collection = collection
+        self.sourcePoint = sourcePoint
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -33,8 +36,10 @@ class CollectionViewController: UIViewController {
         configureCollectionView()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        collectionView.reloadData()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        visible = true
+        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
     }
 
     private func configureCollectionView() {
@@ -42,12 +47,13 @@ class CollectionViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.contentInset = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
         collectionView.register(UINib(nibName: "MangaCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MangaCell")
+        collectionView.collectionViewLayout = ExpandCollectionLayout(originPoint: sourcePoint)
     }
 }
 
 extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        collection.mangas.count
+        return collection.mangas.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -59,6 +65,7 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
             cell.coverImageView.image = image
         }
         cell.pageLabel.text = "\(manga.currentPage)/\(manga.totalPages)"
+        cell.contentView.alpha = visible ? 1 : 0
 
         return cell
     }
