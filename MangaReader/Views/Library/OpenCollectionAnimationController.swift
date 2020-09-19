@@ -72,8 +72,13 @@ class OpenCollectionAnimationController: NSObject, UIViewControllerAnimatedTrans
         UIView.animate(withDuration: duration, animations: {
             toVC.view.alpha = 1
             fromVC.view.backgroundColor = .clear
+            if let cell = toVC.collectionView.cellForItem(at: self.collectionIndexPath) as? MangaCollectionCollectionViewCell {
+                cell.nameLabel.alpha = 1
+            }
         }, completion: { _ in
-            toVC.collectionView.cellForItem(at: self.collectionIndexPath)?.contentView.alpha = 1
+            if let cell = toVC.collectionView.cellForItem(at: self.collectionIndexPath) as? MangaCollectionCollectionViewCell {
+                cell.imageViews.forEach { $0.alpha = 1 }
+            }
             context.completeTransition(!context.transitionWasCancelled)
         })
     }

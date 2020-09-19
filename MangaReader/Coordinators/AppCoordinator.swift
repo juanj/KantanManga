@@ -60,11 +60,11 @@ extension AppCoordinator: LibraryViewControllerDelegate {
         settingsCoordinator.start()
     }
 
-    func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable) {
+    func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable, rotations: [CGAffineTransform]) {
         guard let indexPath = libraryViewController.collectionView.indexPathsForSelectedItems?.first else { return }
         guard let cellCenter = libraryViewController.collectionView.cellForItem(at: indexPath)?.center else { return }
         collectionIndexPath = indexPath
-        let collectionView = CollectionViewController(delegate: self, collection: collection, sourcePoint: cellCenter)
+        let collectionView = CollectionViewController(delegate: self, collection: collection, sourcePoint: cellCenter, initialRotations: rotations)
         navigationController.pushViewController(collectionView, animated: true)
     }
 }

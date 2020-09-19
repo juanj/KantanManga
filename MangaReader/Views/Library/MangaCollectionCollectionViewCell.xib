@@ -17,19 +17,19 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ov-rh-fdV" customClass="AspectAlignImage" customModule="Kantan_Manga" customModuleProvider="target">
-                        <rect key="frame" x="8" y="8" width="184" height="248"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="263"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2s-71-kGo" customClass="AspectAlignImage" customModule="Kantan_Manga" customModuleProvider="target">
-                        <rect key="frame" x="8" y="8" width="184" height="248"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="263"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jym-IV-3ej" customClass="AspectAlignImage" customModule="Kantan_Manga" customModuleProvider="target">
-                        <rect key="frame" x="8" y="8" width="184" height="248"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="263"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTm-n3-BnY">
-                        <rect key="frame" x="37" y="264" width="126" height="21"/>
+                        <rect key="frame" x="37" y="271" width="126" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="0hk-0T-6yN"/>
                         </constraints>
@@ -41,19 +41,19 @@
             </view>
             <constraints>
                 <constraint firstItem="uTm-n3-BnY" firstAttribute="top" secondItem="d2s-71-kGo" secondAttribute="bottom" constant="8" id="0gY-AD-9ZY"/>
-                <constraint firstItem="d2s-71-kGo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="5Vb-Bk-uiR"/>
-                <constraint firstAttribute="trailing" secondItem="4ov-rh-fdV" secondAttribute="trailing" constant="8" id="C3I-jG-UyI"/>
-                <constraint firstAttribute="trailing" secondItem="jym-IV-3ej" secondAttribute="trailing" constant="8" id="DZw-r8-gej"/>
+                <constraint firstItem="d2s-71-kGo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="5Vb-Bk-uiR"/>
+                <constraint firstAttribute="trailing" secondItem="4ov-rh-fdV" secondAttribute="trailing" id="C3I-jG-UyI"/>
+                <constraint firstAttribute="trailing" secondItem="jym-IV-3ej" secondAttribute="trailing" id="DZw-r8-gej"/>
                 <constraint firstItem="uTm-n3-BnY" firstAttribute="top" secondItem="4ov-rh-fdV" secondAttribute="bottom" constant="8" id="GBB-ne-duG"/>
-                <constraint firstItem="jym-IV-3ej" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="Sdc-ly-3aR"/>
-                <constraint firstItem="4ov-rh-fdV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="U5X-Hg-cfW"/>
-                <constraint firstItem="jym-IV-3ej" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="Y02-rr-pnu"/>
+                <constraint firstItem="jym-IV-3ej" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Sdc-ly-3aR"/>
+                <constraint firstItem="4ov-rh-fdV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="U5X-Hg-cfW"/>
+                <constraint firstItem="jym-IV-3ej" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Y02-rr-pnu"/>
                 <constraint firstItem="uTm-n3-BnY" firstAttribute="top" secondItem="jym-IV-3ej" secondAttribute="bottom" constant="8" id="anz-jQ-6bf"/>
-                <constraint firstAttribute="bottom" secondItem="uTm-n3-BnY" secondAttribute="bottom" constant="15" id="t6J-Zd-kOx"/>
-                <constraint firstItem="4ov-rh-fdV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="u7r-kv-AHn"/>
-                <constraint firstItem="d2s-71-kGo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="uob-hC-Zh3"/>
+                <constraint firstAttribute="bottom" secondItem="uTm-n3-BnY" secondAttribute="bottom" constant="8" id="t6J-Zd-kOx"/>
+                <constraint firstItem="4ov-rh-fdV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="u7r-kv-AHn"/>
+                <constraint firstItem="d2s-71-kGo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="uob-hC-Zh3"/>
                 <constraint firstItem="uTm-n3-BnY" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="yP7-0p-Hv1"/>
-                <constraint firstAttribute="trailing" secondItem="d2s-71-kGo" secondAttribute="trailing" constant="8" id="zjw-PH-wUP"/>
+                <constraint firstAttribute="trailing" secondItem="d2s-71-kGo" secondAttribute="trailing" id="zjw-PH-wUP"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>

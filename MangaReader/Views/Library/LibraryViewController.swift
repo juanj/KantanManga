@@ -11,7 +11,7 @@ import UIKit
 protocol LibraryViewControllerDelegate: AnyObject {
     func didSelectAdd(_ libraryViewController: LibraryViewController, button: UIBarButtonItem)
     func didSelectSettings(_ libraryViewController: LibraryViewController)
-    func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable)
+    func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable, rotations: [CGAffineTransform])
 }
 
 class LibraryViewController: UIViewController {
@@ -21,10 +21,14 @@ class LibraryViewController: UIViewController {
 
     private weak var delegate: LibraryViewControllerDelegate?
     private var collections = [MangaCollectionable]()
+    private let rotations: [CGAffineTransform]
 
     init(delegate: LibraryViewControllerDelegate, collections: [MangaCollectionable]) {
         self.delegate = delegate
         self.collections = collections
+        rotations = [CGAffineTransform(rotationAngle: -0.05),
+                     CGAffineTransform(rotationAngle: 0.07),
+                     CGAffineTransform(rotationAngle: 0.03)]
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -60,6 +64,10 @@ class LibraryViewController: UIViewController {
         collectionView.contentInset = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
 
         collectionView.register(UINib(nibName: "MangaCollectionCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MangaCell")
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 20
+        layout.minimumInteritemSpacing = 20
+        collectionView.collectionViewLayout = layout
     }
 
     private func configureNavigationBar() {
@@ -108,17 +116,24 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         let images = mangas.map { $0.coverImage ?? UIImage() }
         cell.setImages(images)
         cell.nameLabel.text = collection.name
+        cell.rotations = rotations
 
         if indexPath == hideIndexPath {
-            // If cell.alpha is used here, is later overwrite. Instead use contenView.alpha
-            cell.contentView.alpha = 0
+            // Images start hidden
+            cell.imageViews.forEach { $0.alpha = 0 }
+
+            // Name starts hidden an fades in
+            cell.nameLabel.alpha = 0
+            UIView.animate(withDuration: 0.5) {
+                cell.nameLabel.alpha = 1
+            }
         }
 
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSelectCollection(self, collection: collections[indexPath.row])
+        delegate?.didSelectCollection(self, collection: collections[indexPath.row], rotations: rotations)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

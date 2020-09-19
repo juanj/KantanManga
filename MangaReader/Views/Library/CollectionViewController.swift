@@ -17,12 +17,14 @@ class CollectionViewController: UIViewController {
     private weak var delegate: CollectionViewControllerDelegate?
     private var collection: MangaCollectionable
     private let sourcePoint: CGPoint
+    private let initialRotations: [CGAffineTransform]
     var animating = true
 
-    init(delegate: CollectionViewControllerDelegate, collection: MangaCollectionable, sourcePoint: CGPoint) {
+    init(delegate: CollectionViewControllerDelegate, collection: MangaCollectionable, sourcePoint: CGPoint, initialRotations: [CGAffineTransform]) {
         self.delegate = delegate
         self.collection = collection
         self.sourcePoint = sourcePoint
+        self.initialRotations = initialRotations
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -60,8 +62,12 @@ class CollectionViewController: UIViewController {
                 cell.center = self.sourcePoint
                 cell.pageLabel.alpha = 0
 
-                if let indexPath = self.collectionView.indexPath(for: cell), indexPath.row > 2 {
-                    cell.alpha = 0
+                if let indexPath = self.collectionView.indexPath(for: cell) {
+                    if indexPath.row > 2 {
+                        cell.alpha = 0
+                    } else {
+                        cell.coverImageView.transform = self.initialRotations[indexPath.row]
+                    }
                 }
             }
         }
@@ -108,8 +114,11 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
         cell.center = sourcePoint
         if indexPath.row > 2 {
             cell.alpha = 0
+        } else {
+            cell.coverImageView.transform = initialRotations[indexPath.row]
         }
         UIView.animate(withDuration: 0.5) {
+            cell.coverImageView.transform = .identity
             cell.center = oldCenter
             cell.pageLabel.alpha = 1
             cell.alpha = 1
