@@ -17,7 +17,7 @@ class CollectionViewController: UIViewController {
     private weak var delegate: CollectionViewControllerDelegate?
     private var collection: MangaCollectionable
     private let sourcePoint: CGPoint
-    private var animating = true
+    var animating = true
 
     init(delegate: CollectionViewControllerDelegate, collection: MangaCollectionable, sourcePoint: CGPoint) {
         self.delegate = delegate
@@ -51,7 +51,20 @@ class CollectionViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.contentInset = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
         collectionView.register(UINib(nibName: "MangaCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MangaCell")
-        collectionView.collectionViewLayout = ExpandCollectionLayout(originPoint: sourcePoint)
+    }
+
+    func closeAnimation(duration: TimeInterval) {
+        guard let cells = collectionView.visibleCells as? [MangaCollectionViewCell] else { return }
+        for cell in cells {
+            UIView.animate(withDuration: duration) {
+                cell.center = self.sourcePoint
+                cell.pageLabel.alpha = 0
+
+                if let indexPath = self.collectionView.indexPath(for: cell), indexPath.row > 2 {
+                    cell.alpha = 0
+                }
+            }
+        }
     }
 }
 
@@ -93,9 +106,13 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
         let oldCenter = cell.center
         cell.pageLabel.alpha = 0
         cell.center = sourcePoint
+        if indexPath.row > 2 {
+            cell.alpha = 0
+        }
         UIView.animate(withDuration: 0.5) {
             cell.center = oldCenter
             cell.pageLabel.alpha = 1
+            cell.alpha = 1
         }
     }
 }

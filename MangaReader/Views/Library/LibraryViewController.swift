@@ -17,6 +17,8 @@ protocol LibraryViewControllerDelegate: AnyObject {
 class LibraryViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
+    var hideIndexPath: IndexPath?
+
     private weak var delegate: LibraryViewControllerDelegate?
     private var collections = [MangaCollectionable]()
 
@@ -106,6 +108,11 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         let images = mangas.map { $0.coverImage ?? UIImage() }
         cell.setImages(images)
         cell.nameLabel.text = collection.name
+
+        if indexPath == hideIndexPath {
+            // If cell.alpha is used here, is later overwrite. Instead use contenView.alpha
+            cell.contentView.alpha = 0
+        }
 
         return cell
     }

@@ -22,5 +22,6 @@ class MangaCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         pageLabel.text = "0/0"
         coverImageView.image = nil
+        layer.zPosition = 0
     }
 }

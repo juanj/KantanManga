@@ -9,15 +9,19 @@
 import UIKit
 import CoreData
 
-class AppCoordinator: Coordinator {
+class AppCoordinator: NSObject, Coordinator {
     var navigationController: UINavigationController
     var childCoordinators = [Coordinator]()
 
     var currentMangaDataSource: MangaDataSource?
     var libraryView: LibraryViewController?
 
+    private var collectionIndexPath: IndexPath?
+
     init(navigation: UINavigationController) {
         navigationController = navigation
+        super.init()
+        navigationController.delegate = self
     }
 
     func start() {
@@ -59,8 +63,9 @@ extension AppCoordinator: LibraryViewControllerDelegate {
     func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable) {
         guard let indexPath = libraryViewController.collectionView.indexPathsForSelectedItems?.first else { return }
         guard let cellCenter = libraryViewController.collectionView.cellForItem(at: indexPath)?.center else { return }
+        collectionIndexPath = indexPath
         let collectionView = CollectionViewController(delegate: self, collection: collection, sourcePoint: cellCenter)
-        navigationController.pushViewController(collectionView, animated: false)
+        navigationController.pushViewController(collectionView, animated: true)
     }
 }
 
@@ -88,5 +93,19 @@ extension AppCoordinator: AddMangasCoordinatorDelegate {
 extension AppCoordinator: ViewMangaCoordinatorDelegate {
     func didEnd(viewMangaCoordinator: ViewMangaCoordinator) {
         removeChildCoordinator(type: ViewMangaCoordinator.self)
+        navigationController.delegate = self
+    }
+}
+
+// MARK: UINavigationControllerDelegate
+extension AppCoordinator: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        guard (fromVC is LibraryViewController || fromVC is CollectionViewController) &&
+            (toVC is LibraryViewController || toVC is CollectionViewController),
+            let indexPath = collectionIndexPath else { return nil }
+        if operation == .pop {
+            self.collectionIndexPath = nil
+        }
+        return OpenCollectionAnimationController(operation: operation, indexPath: indexPath)
     }
 }
