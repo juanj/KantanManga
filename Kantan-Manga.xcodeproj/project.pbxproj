@@ -405,21 +405,29 @@
 			path = "Custom Views";
 			sourceTree = "<group>";
 		};
+		32C49CD82516ABBE000A9607 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				32F1B9FB24369E1100AE367D /* OpenMangaAnimationController.swift */,
+				32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */,
+			);
+			path = Transitions;
+			sourceTree = "<group>";
+		};
 		32F1B9F824369CAA00AE367D /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				32C49CD82516ABBE000A9607 /* Transitions */,
 				326FDE7724A7F81A0042CB8A /* Settings */,
 				32F1B9F924369CC400AE367D /* Add Manga */,
 				84A8321B221D951500CEE1C9 /* LibraryViewController.swift */,
 				84A8321C221D951500CEE1C9 /* LibraryViewController.xib */,
 				84A83222221DB10400CEE1C9 /* MangaCollectionViewCell.swift */,
 				84A83223221DB10400CEE1C9 /* MangaCollectionViewCell.xib */,
-				32F1B9FB24369E1100AE367D /* OpenMangaAnimationController.swift */,
 				3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */,
 				3249F2D6250BBC18004C514E /* MangaCollectionCollectionViewCell.xib */,
 				3219C2A7251100D200915DE1 /* CollectionViewController.swift */,
 				3219C2A8251100D200915DE1 /* CollectionViewController.xib */,
-				32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
