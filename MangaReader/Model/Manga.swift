@@ -33,6 +33,21 @@ public class Manga: NSManagedObject {
         loadCoverImage()
     }
 
+    public override func prepareForDeletion() {
+        super.prepareForDeletion()
+
+        // Clear local files
+        guard let filePath = filePath else { return }
+        let fileManager = FileManager.default
+        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fullPath = documentsDirectory.appendingPathComponent(filePath)
+        do {
+            try fileManager.removeItem(at: fullPath)
+        } catch let error {
+            print("Error deleting file \(fullPath), Error: \(error.localizedDescription)")
+        }
+    }
+
     public func loadCoverImage() {
         if let data = coverData, let image = UIImage(data: data) {
             coverImage = image

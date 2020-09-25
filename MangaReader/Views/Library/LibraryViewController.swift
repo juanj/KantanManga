@@ -12,6 +12,7 @@ protocol LibraryViewControllerDelegate: AnyObject {
     func didSelectAdd(_ libraryViewController: LibraryViewController, button: UIBarButtonItem)
     func didSelectSettings(_ libraryViewController: LibraryViewController)
     func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable, rotations: [CGAffineTransform])
+    func didSelectDeleteCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable)
 }
 
 class LibraryViewController: UIViewController {
@@ -140,15 +141,14 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         let collection = collections[indexPath.row]
         let identifier = NSNumber(value: indexPath.row)
         let configuration = UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { _ in
-            let menuView = UIAction(title: "Delete", image: UIImage(systemName: "trash"), identifier: nil, discoverabilityTitle: nil, attributes: .destructive, state: .on) { _ in
-                let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this collection and all it's content?", preferredStyle: .alert)
+            let menuView = UIAction(title: "Delete", image: UIImage(systemName: "trash"), identifier: nil, discoverabilityTitle: nil, attributes: .destructive) { _ in
+                let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this collection and all its content?", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
-                    // Call Delegate
+                    self.delegate?.didSelectDeleteCollection(self, collection: collection)
                 }))
                 self.present(alert, animated: true, completion: nil)
             }
-
             return UIMenu(title: collection.name ?? "", image: nil, identifier: nil, children: [menuView])
         }
 
@@ -160,7 +160,7 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
               let cell = collectionView.cellForItem(at: IndexPath(row: index.intValue, section: 0)) as? MangaCollectionCollectionViewCell else { return nil }
         let parameters = UIPreviewParameters()
         parameters.backgroundColor = .clear
-        let preview = UITargetedPreview(view: cell.imageViews[0], parameters: parameters)
+        let preview = UITargetedPreview(view: cell.imageViews[0].subviews[0], parameters: parameters)
         return preview
     }
 
@@ -168,7 +168,7 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         guard let index = configuration.identifier as? NSNumber,
               let cell = collectionView.cellForItem(at: IndexPath(row: index.intValue, section: 0)) as? MangaCollectionCollectionViewCell else { return nil }
         let parameters = UIPreviewParameters()
-        let preview = UITargetedPreview(view: cell.imageViews[0], parameters: parameters)
+        let preview = UITargetedPreview(view: cell.imageViews[0].subviews[0], parameters: parameters)
         return preview
     }
 

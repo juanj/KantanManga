@@ -67,6 +67,12 @@ extension AppCoordinator: LibraryViewControllerDelegate {
         let collectionView = CollectionViewController(delegate: self, collection: collection, sourcePoint: cellCenter, initialRotations: rotations)
         navigationController.pushViewController(collectionView, animated: true)
     }
+
+    func didSelectDeleteCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable) {
+        guard let collection = collection as? MangaCollection else { return }
+        CoreDataManager.sharedManager.delete(collection: collection)
+        libraryViewController.setCollections(collections: loadCollections())
+    }
 }
 
 // MARK: CollectionViewControllerDelegate
