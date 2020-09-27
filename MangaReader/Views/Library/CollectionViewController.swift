@@ -9,6 +9,7 @@ import UIKit
 
 protocol CollectionViewControllerDelegate: AnyObject {
     func didSelectManga(_ collectionViewController: CollectionViewController, manga: Manga, cellFrame: CGRect)
+    func didSelectDeleteManga(_ collectionViewController: CollectionViewController, manga: Manga)
 }
 
 class CollectionViewController: UIViewController {
@@ -123,5 +124,45 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
             cell.pageLabel.alpha = 1
             cell.alpha = 1
         }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let manga = collection.mangas[indexPath.row]
+        let identifier = NSNumber(value: indexPath.row)
+        let configuration = UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { _ in
+            let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), identifier: nil, discoverabilityTitle: nil, attributes: .destructive) { _ in
+                let alert = UIAlertController(title: "Delete", message: "Are you want to delete \(manga.name ?? "this manga")?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                    self.delegate?.didSelectDeleteManga(self, manga: manga)
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
+
+            let rename = UIAction(title: "Rename", image: UIImage(systemName: "pencil"), identifier: nil, discoverabilityTitle: nil) { _ in
+
+            }
+
+            let move = UIAction(title: "Move to collection", image: UIImage(systemName: "arrow.right.arrow.left.square.fill"), identifier: nil, discoverabilityTitle: nil) { _ in
+
+            }
+            return UIMenu(title: manga.name ?? "", image: nil, identifier: nil, children: [rename, move, delete])
+        }
+
+        return configuration
+    }
+
+    func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let index = configuration.identifier as? NSNumber else { return nil }
+        let indexPath = IndexPath(row: index.intValue, section: 0)
+        guard let cell = collectionView.cellForItem(at: indexPath) as? MangaCollectionViewCell, let image = cell.coverImageView.subviews.first else { return nil }
+        return UITargetedPreview(view: image)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let index = configuration.identifier as? NSNumber else { return nil }
+        let indexPath = IndexPath(row: index.intValue, section: 0)
+        guard let cell = collectionView.cellForItem(at: indexPath) as? MangaCollectionViewCell, let image = cell.coverImageView.subviews.first else { return nil }
+        return UITargetedPreview(view: image)
     }
 }

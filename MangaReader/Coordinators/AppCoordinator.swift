@@ -82,6 +82,11 @@ extension AppCoordinator: CollectionViewControllerDelegate {
         childCoordinators.append(viewMangaCoordinator)
         viewMangaCoordinator.start()
     }
+
+    func didSelectDeleteManga(_ collectionViewController: CollectionViewController, manga: Manga) {
+        CoreDataManager.sharedManager.delete(manga: manga)
+        // TODO: Refresh collection
+    }
 }
 
 // MARK: AddMangasCoordinatorDelegate
