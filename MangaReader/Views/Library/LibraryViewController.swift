@@ -13,6 +13,7 @@ protocol LibraryViewControllerDelegate: AnyObject {
     func didSelectSettings(_ libraryViewController: LibraryViewController)
     func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable, rotations: [CGAffineTransform])
     func didSelectDeleteCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable)
+    func didSelectRenameCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable, name: String?)
 }
 
 class LibraryViewController: UIViewController {
@@ -141,7 +142,7 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         let collection = collections[indexPath.row]
         let identifier = NSNumber(value: indexPath.row)
         let configuration = UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { _ in
-            let menuView = UIAction(title: "Delete", image: UIImage(systemName: "trash"), identifier: nil, discoverabilityTitle: nil, attributes: .destructive) { _ in
+            let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { _ in
                 let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this collection and all its content?", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
@@ -149,7 +150,21 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
                 }))
                 self.present(alert, animated: true, completion: nil)
             }
-            return UIMenu(title: collection.name ?? "", image: nil, identifier: nil, children: [menuView])
+
+            let rename = UIAction(title: "Rename collection", image: UIImage(systemName: "pencil")) { _ in
+                let alert = UIAlertController(title: "Rename", message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Rename", style: .default, handler: { _ in
+                    self.delegate?.didSelectRenameCollection(self, collection: collection, name: alert.textFields?.first?.text)
+                }))
+
+                alert.addTextField { textField in
+                    textField.placeholder = "Collection name"
+                    textField.text = collection.name
+                }
+                self.present(alert, animated: true, completion: nil)
+            }
+            return UIMenu(title: collection.name ?? "", image: nil, identifier: nil, children: [rename, delete])
         }
 
         return configuration

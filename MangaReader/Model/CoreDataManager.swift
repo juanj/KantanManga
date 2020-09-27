@@ -245,4 +245,14 @@ class CoreDataManager {
             return nil
         }
     }
+
+    // MARK: Update
+    func updateCollection(_ collection: MangaCollection) {
+        let context = persistentContainer.viewContext
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("Could not update Collection \(error), \(error.userInfo)")
+        }
+    }
 }

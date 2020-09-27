@@ -38,7 +38,7 @@ class AppCoordinator: NSObject, Coordinator {
         if let allCollections = CoreDataManager.sharedManager.fetchAllCollections() {
             collections.append(contentsOf: allCollections)
         }
-        return collections
+        return collections.filter { $0.mangas.count > 0 }
     }
 }
 
@@ -71,6 +71,13 @@ extension AppCoordinator: LibraryViewControllerDelegate {
     func didSelectDeleteCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable) {
         guard let collection = collection as? MangaCollection else { return }
         CoreDataManager.sharedManager.delete(collection: collection)
+        libraryViewController.setCollections(collections: loadCollections())
+    }
+
+    func didSelectRenameCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable, name: String?) {
+        guard let collection = collection as? MangaCollection, let name = name, !name.isEmpty else { return }
+        collection.name = name
+        CoreDataManager.sharedManager.updateCollection(collection)
         libraryViewController.setCollections(collections: loadCollections())
     }
 }
