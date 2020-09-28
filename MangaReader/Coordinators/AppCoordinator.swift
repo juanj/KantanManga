@@ -95,6 +95,12 @@ extension AppCoordinator: CollectionViewControllerDelegate {
         CoreDataManager.sharedManager.refreshAll()
         collectionViewController.collectionView.reloadSections(IndexSet(integer: 0))
     }
+
+    func didSelectRenameManga(_ collectionViewController: CollectionViewController, manga: Manga, name: String?) {
+        guard let name = name, !name.isEmpty else { return }
+        manga.name = name
+        CoreDataManager.sharedManager.updateManga(manga: manga)
+    }
 }
 
 // MARK: AddMangasCoordinatorDelegate

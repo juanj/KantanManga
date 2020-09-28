@@ -10,6 +10,7 @@ import UIKit
 protocol CollectionViewControllerDelegate: AnyObject {
     func didSelectManga(_ collectionViewController: CollectionViewController, manga: Manga, cellFrame: CGRect)
     func didSelectDeleteManga(_ collectionViewController: CollectionViewController, manga: Manga)
+    func didSelectRenameManga(_ collectionViewController: CollectionViewController, manga: Manga, name: String?)
 }
 
 class CollectionViewController: UIViewController {
@@ -140,7 +141,17 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
             }
 
             let rename = UIAction(title: "Rename", image: UIImage(systemName: "pencil"), identifier: nil, discoverabilityTitle: nil) { _ in
+                let alert = UIAlertController(title: "Rename", message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Rename", style: .default, handler: { _ in
+                    self.delegate?.didSelectRenameManga(self, manga: manga, name: alert.textFields?.first?.text)
+                }))
 
+                alert.addTextField { textField in
+                    textField.placeholder = "Manga name"
+                    textField.text = manga.name
+                }
+                self.present(alert, animated: true, completion: nil)
             }
 
             let move = UIAction(title: "Move to collection", image: UIImage(systemName: "arrow.right.arrow.left.square.fill"), identifier: nil, discoverabilityTitle: nil) { _ in
