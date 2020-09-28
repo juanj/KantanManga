@@ -17,6 +17,7 @@ class AppCoordinator: NSObject, Coordinator {
     var libraryView: LibraryViewController?
 
     private var collectionIndexPath: IndexPath?
+    private var movingManga: Manga?
 
     init(navigation: UINavigationController) {
         navigationController = navigation
@@ -101,6 +102,12 @@ extension AppCoordinator: CollectionViewControllerDelegate {
         manga.name = name
         CoreDataManager.sharedManager.updateManga(manga: manga)
     }
+
+    func didSelectMoveManga(_ collectionViewController: CollectionViewController, manga: Manga) {
+        let collections = CoreDataManager.sharedManager.fetchAllCollections() ?? []
+        movingManga = manga
+        navigationController.present(SelectCollectionTableViewController(delegate: self, collections: collections), animated: true, completion: nil)
+    }
 }
 
 // MARK: AddMangasCoordinatorDelegate
@@ -121,6 +128,27 @@ extension AppCoordinator: ViewMangaCoordinatorDelegate {
         navigationController.delegate = self
     }
 }
+
+extension AppCoordinator: SelectCollectionTableViewControllerDelegate {
+    func selectCollection(selectCollectionTableViewController: SelectCollectionTableViewController, collection: MangaCollection) {
+        guard let manga = movingManga else { return }
+        manga.mangaCollection = collection
+        CoreDataManager.sharedManager.updateManga(manga: manga)
+        navigationController.dismiss(animated: true, completion: nil)
+        movingManga = nil
+        // TODO: Refresh collections
+    }
+
+    func addCollection(selectCollectionTableViewController: SelectCollectionTableViewController, name: String) {
+        guard let manga = movingManga, let collection = CoreDataManager.sharedManager.insertCollection(name: name) else { return }
+        manga.mangaCollection = collection
+        CoreDataManager.sharedManager.updateManga(manga: manga)
+        navigationController.dismiss(animated: true, completion: nil)
+        movingManga = nil
+        // TODO: Refresh collections
+    }
+}
+
 
 // MARK: UINavigationControllerDelegate
 extension AppCoordinator: UINavigationControllerDelegate {

@@ -11,6 +11,7 @@ protocol CollectionViewControllerDelegate: AnyObject {
     func didSelectManga(_ collectionViewController: CollectionViewController, manga: Manga, cellFrame: CGRect)
     func didSelectDeleteManga(_ collectionViewController: CollectionViewController, manga: Manga)
     func didSelectRenameManga(_ collectionViewController: CollectionViewController, manga: Manga, name: String?)
+    func didSelectMoveManga(_ collectionViewController: CollectionViewController, manga: Manga)
 }
 
 class CollectionViewController: UIViewController {
@@ -155,7 +156,7 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
             }
 
             let move = UIAction(title: "Move to collection", image: UIImage(systemName: "arrow.right.arrow.left.square.fill"), identifier: nil, discoverabilityTitle: nil) { _ in
-
+                self.delegate?.didSelectMoveManga(self, manga: manga)
             }
             return UIMenu(title: manga.name ?? "", image: nil, identifier: nil, children: [rename, move, delete])
         }
