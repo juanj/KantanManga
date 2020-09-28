@@ -188,7 +188,7 @@ extension AddMangasCoordinator: UIDocumentPickerDelegate {
     }
 }
 
-extension AddMangasCoordinator: SelectCollecionTableViewControllerDelegate {
+extension AddMangasCoordinator: SelectCollectionTableViewControllerDelegate {
     func selectCollection(selectCollectionTableViewController: SelectCollectionTableViewController, collection: MangaCollection) {
         self.collection = collection
         addMangaViewController?.selectCollectionButton.setTitle(collection.name, for: .normal)

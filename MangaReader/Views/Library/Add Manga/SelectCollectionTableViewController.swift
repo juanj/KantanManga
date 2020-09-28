@@ -8,16 +8,16 @@
 
 import UIKit
 
-protocol SelectCollecionTableViewControllerDelegate: AnyObject {
+protocol SelectCollectionTableViewControllerDelegate: AnyObject {
     func selectCollection(selectCollectionTableViewController: SelectCollectionTableViewController, collection: MangaCollection)
     func addCollection(selectCollectionTableViewController: SelectCollectionTableViewController, name: String)
 }
 
 class SelectCollectionTableViewController: UITableViewController {
-    private weak var delegate: SelectCollecionTableViewControllerDelegate?
+    private weak var delegate: SelectCollectionTableViewControllerDelegate?
     private let collections: [MangaCollection]
 
-    init(delegate: SelectCollecionTableViewControllerDelegate, collections: [MangaCollection]) {
+    init(delegate: SelectCollectionTableViewControllerDelegate, collections: [MangaCollection]) {
         self.delegate = delegate
         self.collections = collections
         super.init(style: .plain)
