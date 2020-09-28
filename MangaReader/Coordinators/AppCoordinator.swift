@@ -92,7 +92,8 @@ extension AppCoordinator: CollectionViewControllerDelegate {
 
     func didSelectDeleteManga(_ collectionViewController: CollectionViewController, manga: Manga) {
         CoreDataManager.sharedManager.delete(manga: manga)
-        // TODO: Refresh collection
+        CoreDataManager.sharedManager.refreshAll()
+        collectionViewController.collectionView.reloadSections(IndexSet(integer: 0))
     }
 }
 

@@ -41,6 +41,10 @@ class CoreDataManager {
         deleteAllCollections()
     }
 
+    func refreshAll() {
+        persistentContainer.viewContext.refreshAllObjects()
+    }
+
     // MARK: - Manga methods
     // MARK: Insert
     @discardableResult
