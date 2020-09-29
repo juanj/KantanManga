@@ -10,15 +10,15 @@ import UIKit
 import CoreData
 
 class AppCoordinator: NSObject, Coordinator {
-    var navigationController: UINavigationController
     var childCoordinators = [Coordinator]()
 
-    var currentMangaDataSource: MangaDataSource?
-    var libraryView: LibraryViewController?
-
+    private var currentMangaDataSource: MangaDataSource?
+    private var libraryView: LibraryViewController?
+    private var collectionView: CollectionViewController?
     private var collectionIndexPath: IndexPath?
     private var movingManga: Manga?
 
+    private var navigationController: UINavigationController
     init(navigation: UINavigationController) {
         navigationController = navigation
         super.init()
@@ -67,6 +67,7 @@ extension AppCoordinator: LibraryViewControllerDelegate {
         collectionIndexPath = indexPath
         let collectionView = CollectionViewController(delegate: self, collection: collection, sourcePoint: cellCenter, initialRotations: rotations)
         navigationController.pushViewController(collectionView, animated: true)
+        self.collectionView = collectionView
     }
 
     func didSelectDeleteCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable) {
@@ -134,21 +135,24 @@ extension AppCoordinator: SelectCollectionTableViewControllerDelegate {
         guard let manga = movingManga else { return }
         manga.mangaCollection = collection
         CoreDataManager.sharedManager.updateManga(manga: manga)
+        CoreDataManager.sharedManager.refreshAll()
+        collectionView?.collectionView.reloadSections(IndexSet(integer: 0))
         navigationController.dismiss(animated: true, completion: nil)
         movingManga = nil
-        // TODO: Refresh collections
+        // TODO: Refresh "No collection" collection
     }
 
     func addCollection(selectCollectionTableViewController: SelectCollectionTableViewController, name: String) {
         guard let manga = movingManga, let collection = CoreDataManager.sharedManager.insertCollection(name: name) else { return }
         manga.mangaCollection = collection
         CoreDataManager.sharedManager.updateManga(manga: manga)
+        CoreDataManager.sharedManager.refreshAll()
+        collectionView?.collectionView.reloadSections(IndexSet(integer: 0))
         navigationController.dismiss(animated: true, completion: nil)
         movingManga = nil
-        // TODO: Refresh collections
+        // TODO: Refresh "No collection" collection
     }
 }
-
 
 // MARK: UINavigationControllerDelegate
 extension AppCoordinator: UINavigationControllerDelegate {
