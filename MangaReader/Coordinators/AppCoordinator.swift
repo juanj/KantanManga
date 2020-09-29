@@ -63,7 +63,8 @@ extension AppCoordinator: LibraryViewControllerDelegate {
 
     func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable, rotations: [CGAffineTransform]) {
         guard let indexPath = libraryViewController.collectionView.indexPathsForSelectedItems?.first else { return }
-        guard let cellCenter = libraryViewController.collectionView.cellForItem(at: indexPath)?.center else { return }
+        guard var cellCenter = libraryViewController.collectionView.cellForItem(at: indexPath)?.center else { return }
+        cellCenter.y -= libraryViewController.collectionView.contentOffset.y + libraryViewController.collectionView.contentInset.top
         collectionIndexPath = indexPath
         let collectionView = CollectionViewController(delegate: self, collection: collection, sourcePoint: cellCenter, initialRotations: rotations)
         navigationController.pushViewController(collectionView, animated: true)

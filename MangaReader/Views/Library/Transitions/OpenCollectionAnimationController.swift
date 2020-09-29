@@ -32,7 +32,6 @@ class OpenCollectionAnimationController: NSObject, UIViewControllerAnimatedTrans
         guard let fromVC = context.viewController(forKey: .from) as? LibraryViewController,
             let toVC = context.viewController(forKey: .to) as? CollectionViewController else { return }
 
-        // TODO: Rotation
         let containerView = context.containerView
         containerView.addSubview(toVC.view)
         let oldColor = toVC.view.backgroundColor

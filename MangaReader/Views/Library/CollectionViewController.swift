@@ -60,9 +60,11 @@ class CollectionViewController: UIViewController {
 
     func closeAnimation(duration: TimeInterval) {
         guard let cells = collectionView.visibleCells as? [MangaCollectionViewCell] else { return }
+        var offsetSourcePoint = sourcePoint
+        offsetSourcePoint.y += collectionView.contentOffset.y + collectionView.contentInset.top
         for cell in cells {
             UIView.animate(withDuration: duration) {
-                cell.center = self.sourcePoint
+                cell.center = offsetSourcePoint
                 cell.pageLabel.alpha = 0
 
                 if let indexPath = self.collectionView.indexPath(for: cell) {
