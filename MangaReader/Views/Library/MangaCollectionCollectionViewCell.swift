@@ -28,6 +28,7 @@ class MangaCollectionCollectionViewCell: UICollectionViewCell {
         for image in imageViews {
             image.image = nil
             image.transform = .identity
+            image.alpha = 1
         }
     }
 

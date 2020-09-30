@@ -78,6 +78,7 @@ class OpenCollectionAnimationController: NSObject, UIViewControllerAnimatedTrans
             if let cell = toVC.collectionView.cellForItem(at: self.collectionIndexPath) as? MangaCollectionCollectionViewCell {
                 cell.imageViews.forEach { $0.alpha = 1 }
             }
+            toVC.hideIndexPath = nil
             context.completeTransition(!context.transitionWasCancelled)
         })
     }
