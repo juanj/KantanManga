@@ -174,9 +174,7 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         guard let index = configuration.identifier as? NSNumber,
               let cell = collectionView.cellForItem(at: IndexPath(row: index.intValue, section: 0)) as? MangaCollectionCollectionViewCell,
               let image = cell.imageViews.first?.subviews.first else { return nil }
-        let parameters = UIPreviewParameters()
-        parameters.backgroundColor = .clear
-        let preview = UITargetedPreview(view: image, parameters: parameters)
+        let preview = UITargetedPreview(view: image)
         return preview
     }
 
@@ -184,8 +182,7 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         guard let index = configuration.identifier as? NSNumber,
               let cell = collectionView.cellForItem(at: IndexPath(row: index.intValue, section: 0)) as? MangaCollectionCollectionViewCell,
               let image = cell.imageViews.first?.subviews.first else { return nil }
-        let parameters = UIPreviewParameters()
-        let preview = UITargetedPreview(view: image, parameters: parameters)
+        let preview = UITargetedPreview(view: image)
         return preview
     }
 
