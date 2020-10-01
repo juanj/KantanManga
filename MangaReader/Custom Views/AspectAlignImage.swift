@@ -24,8 +24,32 @@ class AspectAlignImage: UIView {
         }
     }
 
-    private lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
+    private var imageView = UIImageView()
+    private var imageWidthConstraint: NSLayoutConstraint?
+    private var imageHeightConstraint: NSLayoutConstraint?
+    private var imageBottomConstraint: NSLayoutConstraint?
+    private var imageTopConstraint: NSLayoutConstraint?
+    private var imageLeftConstraint: NSLayoutConstraint?
+    private var imageRightConstraint: NSLayoutConstraint?
+    private var imageCenterXConstraint: NSLayoutConstraint?
+    private var imageCenterYConstraint: NSLayoutConstraint?
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configureImageView()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        configureImageView()
+    }
+
+    override func layoutSubviews() {
+        sizeImage()
+        super.layoutSubviews()
+    }
+
+    private func configureImageView() {
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageView)
@@ -36,18 +60,11 @@ class AspectAlignImage: UIView {
         imageRightConstraint = imageView.rightAnchor.constraint(equalTo: rightAnchor)
         imageWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: frame.width)
         imageHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: frame.height)
+        imageCenterXConstraint = imageView.centerXAnchor.constraint(equalTo: centerXAnchor)
+        imageCenterYConstraint = imageView.centerYAnchor.constraint(equalTo: centerYAnchor)
 
         activateConstraints()
-
-        return imageView
-    }()
-
-    private var imageWidthConstraint: NSLayoutConstraint?
-    private var imageHeightConstraint: NSLayoutConstraint?
-    private var imageBottomConstraint: NSLayoutConstraint?
-    private var imageTopConstraint: NSLayoutConstraint?
-    private var imageLeftConstraint: NSLayoutConstraint?
-    private var imageRightConstraint: NSLayoutConstraint?
+    }
 
     private func sizeImage() {
         imageView.image = image
@@ -60,25 +77,31 @@ class AspectAlignImage: UIView {
     }
 
     private func activateConstraints() {
-        imageBottomConstraint?.isActive = true
-        imageTopConstraint?.isActive = true
-        imageLeftConstraint?.isActive = true
-        imageRightConstraint?.isActive = true
+        imageBottomConstraint?.isActive = false
+        imageTopConstraint?.isActive = false
+        imageLeftConstraint?.isActive = false
+        imageRightConstraint?.isActive = false
+        imageCenterXConstraint?.isActive = false
+        imageCenterYConstraint?.isActive = false
         imageWidthConstraint?.isActive = true
         imageHeightConstraint?.isActive = true
 
         switch alignment {
         case .left:
-            imageRightConstraint?.isActive = false
+            imageLeftConstraint?.isActive = true
+            imageCenterYConstraint?.isActive = true
         case .top:
-            imageBottomConstraint?.isActive = false
+            imageTopConstraint?.isActive = true
+            imageCenterXConstraint?.isActive = true
         case .right:
-            imageLeftConstraint?.isActive = false
+            imageRightConstraint?.isActive = true
+            imageCenterYConstraint?.isActive = true
         case .bottom:
-            imageTopConstraint?.isActive = false
+            imageBottomConstraint?.isActive = true
+            imageCenterXConstraint?.isActive = true
         case .center:
-            imageHeightConstraint?.isActive = false
-            imageWidthConstraint?.isActive = false
+            imageCenterXConstraint?.isActive = true
+            imageCenterYConstraint?.isActive = true
         }
 
         layoutIfNeeded()
