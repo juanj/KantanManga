@@ -171,22 +171,33 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-        guard let index = configuration.identifier as? NSNumber,
-              let cell = collectionView.cellForItem(at: IndexPath(row: index.intValue, section: 0)) as? MangaCollectionCollectionViewCell,
-              let image = cell.imageViews.first?.subviews.first else { return nil }
-        let preview = UITargetedPreview(view: image)
-        return preview
+        return previewFor(configuration)
     }
 
     func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-        guard let index = configuration.identifier as? NSNumber,
-              let cell = collectionView.cellForItem(at: IndexPath(row: index.intValue, section: 0)) as? MangaCollectionCollectionViewCell,
-              let image = cell.imageViews.first?.subviews.first else { return nil }
-        let preview = UITargetedPreview(view: image)
-        return preview
+        return previewFor(configuration)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 200, height: 300)
+    }
+
+    private func previewFor(_ configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let index = configuration.identifier as? NSNumber,
+              let cell = collectionView.cellForItem(at: IndexPath(row: index.intValue, section: 0)) as? MangaCollectionCollectionViewCell else { return nil }
+
+        let path = UIBezierPath()
+        for image in cell.imageViews where image.image != nil {
+            let newPath = UIBezierPath(roundedRect: image.imageView.frame, cornerRadius: 8)
+            newPath.apply(CGAffineTransform(translationX: -(image.frame.width / 2), y: -(image.frame.height / 2)))
+            newPath.apply(image.transform)
+            newPath.apply(CGAffineTransform(translationX: image.frame.width / 2, y: image.frame.height / 2))
+            path.append(newPath)
+        }
+        let parameters = UIPreviewParameters()
+        parameters.visiblePath = path
+        parameters.backgroundColor = .clear
+        let preview = UITargetedPreview(view: cell.container, parameters: parameters)
+        return preview
     }
 }

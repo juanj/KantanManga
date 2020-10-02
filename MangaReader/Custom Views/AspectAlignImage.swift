@@ -24,7 +24,7 @@ class AspectAlignImage: UIView {
         }
     }
 
-    private var imageView = UIImageView()
+    var imageView = UIImageView()
     private var imageWidthConstraint: NSLayoutConstraint?
     private var imageHeightConstraint: NSLayoutConstraint?
     private var imageBottomConstraint: NSLayoutConstraint?

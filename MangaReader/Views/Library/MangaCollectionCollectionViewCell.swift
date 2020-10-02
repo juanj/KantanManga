@@ -10,6 +10,7 @@ import UIKit
 class MangaCollectionCollectionViewCell: UICollectionViewCell {
     @IBOutlet var imageViews: [AspectAlignImage]!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var container: UIView!
 
     var rotations = [CGAffineTransform]() {
         didSet {

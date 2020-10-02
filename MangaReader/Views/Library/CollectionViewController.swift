@@ -167,13 +167,14 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
     }
 
     func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-        guard let index = configuration.identifier as? NSNumber else { return nil }
-        let indexPath = IndexPath(row: index.intValue, section: 0)
-        guard let cell = collectionView.cellForItem(at: indexPath) as? MangaCollectionViewCell, let image = cell.coverImageView.subviews.first else { return nil }
-        return UITargetedPreview(view: image)
+        return previewFor(configuration)
     }
 
     func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        return previewFor(configuration)
+    }
+
+    private func previewFor(_ configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let index = configuration.identifier as? NSNumber else { return nil }
         let indexPath = IndexPath(row: index.intValue, section: 0)
         guard let cell = collectionView.cellForItem(at: indexPath) as? MangaCollectionViewCell, let image = cell.coverImageView.subviews.first else { return nil }

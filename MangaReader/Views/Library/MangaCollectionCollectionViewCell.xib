@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,17 +17,37 @@
                 <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ov-rh-fdV" customClass="AspectAlignImage" customModule="Kantan_Manga" customModuleProvider="target">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2l0-J2-qNE">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="263"/>
+                        <subviews>
+                            <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ov-rh-fdV" customClass="AspectAlignImage" customModule="Kantan_Manga" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="263"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2s-71-kGo" customClass="AspectAlignImage" customModule="Kantan_Manga" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="263"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jym-IV-3ej" customClass="AspectAlignImage" customModule="Kantan_Manga" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="263"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </view>
-                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2s-71-kGo" customClass="AspectAlignImage" customModule="Kantan_Manga" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="263"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jym-IV-3ej" customClass="AspectAlignImage" customModule="Kantan_Manga" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="263"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="d2s-71-kGo" firstAttribute="top" secondItem="2l0-J2-qNE" secondAttribute="top" id="4aw-rP-U0c"/>
+                            <constraint firstItem="d2s-71-kGo" firstAttribute="leading" secondItem="2l0-J2-qNE" secondAttribute="leading" id="97K-C1-Ixw"/>
+                            <constraint firstAttribute="trailing" secondItem="d2s-71-kGo" secondAttribute="trailing" id="Aut-OC-NZD"/>
+                            <constraint firstAttribute="bottom" secondItem="jym-IV-3ej" secondAttribute="bottom" id="Dcj-sq-kvk"/>
+                            <constraint firstAttribute="bottom" secondItem="d2s-71-kGo" secondAttribute="bottom" id="DhF-Gb-bI2"/>
+                            <constraint firstItem="4ov-rh-fdV" firstAttribute="leading" secondItem="2l0-J2-qNE" secondAttribute="leading" id="PhV-mq-l7j"/>
+                            <constraint firstItem="4ov-rh-fdV" firstAttribute="top" secondItem="2l0-J2-qNE" secondAttribute="top" id="Tg6-xW-J33"/>
+                            <constraint firstItem="jym-IV-3ej" firstAttribute="top" secondItem="2l0-J2-qNE" secondAttribute="top" id="Udk-s9-qky"/>
+                            <constraint firstItem="jym-IV-3ej" firstAttribute="leading" secondItem="2l0-J2-qNE" secondAttribute="leading" id="YyL-QV-Fr2"/>
+                            <constraint firstAttribute="bottom" secondItem="4ov-rh-fdV" secondAttribute="bottom" id="kzL-xV-0hK"/>
+                            <constraint firstAttribute="trailing" secondItem="4ov-rh-fdV" secondAttribute="trailing" id="nfY-GN-dxh"/>
+                            <constraint firstAttribute="trailing" secondItem="jym-IV-3ej" secondAttribute="trailing" id="sLz-Tu-3g9"/>
+                        </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTm-n3-BnY">
                         <rect key="frame" x="37" y="271" width="126" height="21"/>
@@ -39,24 +60,17 @@
                     </label>
                 </subviews>
             </view>
-            <constraints>
-                <constraint firstItem="uTm-n3-BnY" firstAttribute="top" secondItem="d2s-71-kGo" secondAttribute="bottom" constant="8" id="0gY-AD-9ZY"/>
-                <constraint firstItem="d2s-71-kGo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="5Vb-Bk-uiR"/>
-                <constraint firstAttribute="trailing" secondItem="4ov-rh-fdV" secondAttribute="trailing" id="C3I-jG-UyI"/>
-                <constraint firstAttribute="trailing" secondItem="jym-IV-3ej" secondAttribute="trailing" id="DZw-r8-gej"/>
-                <constraint firstItem="uTm-n3-BnY" firstAttribute="top" secondItem="4ov-rh-fdV" secondAttribute="bottom" constant="8" id="GBB-ne-duG"/>
-                <constraint firstItem="jym-IV-3ej" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Sdc-ly-3aR"/>
-                <constraint firstItem="4ov-rh-fdV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="U5X-Hg-cfW"/>
-                <constraint firstItem="jym-IV-3ej" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Y02-rr-pnu"/>
-                <constraint firstItem="uTm-n3-BnY" firstAttribute="top" secondItem="jym-IV-3ej" secondAttribute="bottom" constant="8" id="anz-jQ-6bf"/>
-                <constraint firstAttribute="bottom" secondItem="uTm-n3-BnY" secondAttribute="bottom" constant="8" id="t6J-Zd-kOx"/>
-                <constraint firstItem="4ov-rh-fdV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="u7r-kv-AHn"/>
-                <constraint firstItem="d2s-71-kGo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="uob-hC-Zh3"/>
-                <constraint firstItem="uTm-n3-BnY" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="yP7-0p-Hv1"/>
-                <constraint firstAttribute="trailing" secondItem="d2s-71-kGo" secondAttribute="trailing" id="zjw-PH-wUP"/>
-            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="2l0-J2-qNE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Ije-V1-iga"/>
+                <constraint firstAttribute="trailing" secondItem="2l0-J2-qNE" secondAttribute="trailing" id="TDZ-Eq-4mj"/>
+                <constraint firstItem="2l0-J2-qNE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="aSf-2J-fsx"/>
+                <constraint firstItem="uTm-n3-BnY" firstAttribute="top" secondItem="2l0-J2-qNE" secondAttribute="bottom" constant="8" id="hyJ-EH-yIb"/>
+                <constraint firstAttribute="bottom" secondItem="uTm-n3-BnY" secondAttribute="bottom" constant="8" id="t6J-Zd-kOx"/>
+                <constraint firstItem="uTm-n3-BnY" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="yP7-0p-Hv1"/>
+            </constraints>
             <connections>
+                <outlet property="container" destination="2l0-J2-qNE" id="vnl-NO-a0X"/>
                 <outlet property="nameLabel" destination="uTm-n3-BnY" id="jOH-O1-04V"/>
                 <outletCollection property="imageViews" destination="4ov-rh-fdV" collectionClass="NSMutableArray" id="sJh-gC-gQw"/>
                 <outletCollection property="imageViews" destination="d2s-71-kGo" collectionClass="NSMutableArray" id="sA2-jd-c9f"/>
