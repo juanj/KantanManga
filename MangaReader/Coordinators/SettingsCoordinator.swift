@@ -8,13 +8,19 @@
 import Foundation
 import SwiftUI
 
+protocol SettingsCoordinatorDelegate: AnyObject {
+    func didEnd(_ settingsCoordinator: SettingsCoordinator)
+}
+
 class SettingsCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
 
     private let navigationController: UINavigationController
+    private weak var delegate: SettingsCoordinatorDelegate?
     private let presentedNavigationController = UINavigationController()
-    init(navigation: UINavigationController) {
+    init(navigation: UINavigationController, delegate: SettingsCoordinatorDelegate) {
         navigationController = navigation
+        self.delegate = delegate
     }
 
     func start() {
@@ -29,5 +35,16 @@ extension SettingsCoordinator: SettingsTableViewControllerDelegate {
         let hostingView = UIHostingController(rootView: AboutView())
         hostingView.title = "About"
         presentedNavigationController.pushViewController(hostingView, animated: true)
+    }
+
+    func didSelectLoadDemo(_ settingsTableViewController: SettingsTableViewController) {
+        settingsTableViewController.startLoading()
+        CoreDataManager.sharedManager.createDemoManga {
+            DispatchQueue.main.async {
+                settingsTableViewController.endLoading()
+                self.navigationController.dismiss(animated: true, completion: nil)
+                self.delegate?.didEnd(self)
+            }
+        }
     }
 }

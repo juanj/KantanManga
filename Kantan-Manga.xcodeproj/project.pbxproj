@@ -31,6 +31,7 @@
 		32326F8724354ECC00FCE8E5 /* FileSourceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32326F8524354ECC00FCE8E5 /* FileSourceViewController.xib */; };
 		32326F892435613E00FCE8E5 /* cbz.svg in Resources */ = {isa = PBXBuildFile; fileRef = 32326F882435613E00FCE8E5 /* cbz.svg */; };
 		32326F8D243566FD00FCE8E5 /* cbz.png in Resources */ = {isa = PBXBuildFile; fileRef = 32326F8C243566FD00FCE8E5 /* cbz.png */; };
+		3232F32525276DED00DA77B8 /* demo1.cbz in Resources */ = {isa = PBXBuildFile; fileRef = 3232F32325276DED00DA77B8 /* demo1.cbz */; };
 		32350AA8247C723C002D100D /* WordParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32350AA7247C723C002D100D /* WordParser.swift */; };
 		3238DF3A24D7840200DE8782 /* WordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3238DF3924D7840200DE8782 /* WordButton.swift */; };
 		323CD90A23CB7107007FFC58 /* jamdict.db in Resources */ = {isa = PBXBuildFile; fileRef = 323CD90923CB7107007FFC58 /* jamdict.db */; };
@@ -171,6 +172,7 @@
 		32326F8524354ECC00FCE8E5 /* FileSourceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileSourceViewController.xib; sourceTree = "<group>"; };
 		32326F882435613E00FCE8E5 /* cbz.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cbz.svg; sourceTree = "<group>"; };
 		32326F8C243566FD00FCE8E5 /* cbz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cbz.png; sourceTree = "<group>"; };
+		3232F32325276DED00DA77B8 /* demo1.cbz */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo1.cbz; sourceTree = "<group>"; };
 		32350AA7247C723C002D100D /* WordParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordParser.swift; sourceTree = "<group>"; };
 		3238DF3924D7840200DE8782 /* WordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordButton.swift; sourceTree = "<group>"; };
 		323CD90923CB7107007FFC58 /* jamdict.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = jamdict.db; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 		841B795A221F303900659FA2 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				3232F32325276DED00DA77B8 /* demo1.cbz */,
 				841B795B221F305A00659FA2 /* MangaDataSource.swift */,
 				323205AD238DBCE4009E8362 /* SelectionView.swift */,
 				3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */,
@@ -730,6 +733,7 @@
 				324BB95A2498365E006241E8 /* mecabrc in Resources */,
 				32326F8724354ECC00FCE8E5 /* FileSourceViewController.xib in Resources */,
 				32892C0B23E39FBC000B1C3E /* AddMangaViewController.xib in Resources */,
+				3232F32525276DED00DA77B8 /* demo1.cbz in Resources */,
 				84A831F4221D90CC00CEE1C9 /* LaunchScreen.storyboard in Resources */,
 				32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */,
 				324BB99924983DF7006241E8 /* right-id.def in Resources */,

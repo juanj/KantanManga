@@ -10,16 +10,19 @@ import SwiftUI
 
 protocol SettingsTableViewControllerDelegate: AnyObject {
     func didSelectAbout(_ settingsTableViewController: SettingsTableViewController)
+    func didSelectLoadDemo(_ settingsTableViewController: SettingsTableViewController)
 }
 
 class SettingsTableViewController: UITableViewController {
-    enum InfoSection: String, CaseIterable {
+    private enum InfoSection: String, CaseIterable {
         case about
+        case loadDemo = "Load Demo Manga"
     }
 
-    let sections = [
+    private let sections = [
         InfoSection.allCases
     ]
+    private let activityIndicator = UIActivityIndicatorView()
 
     private weak var delegate: SettingsTableViewControllerDelegate?
     init(delegate: SettingsTableViewControllerDelegate) {
@@ -36,11 +39,30 @@ class SettingsTableViewController: UITableViewController {
 
         title = "Settings"
         configureTableView()
+        configureActivityIndicator()
+    }
+
+    func startLoading() {
+        view.isUserInteractionEnabled = false
+        activityIndicator.startAnimating()
+    }
+
+    func endLoading() {
+        view.isUserInteractionEnabled = true
+        activityIndicator.stopAnimating()
     }
 
     private func configureTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SettingsCell")
         tableView.tableFooterView = UIView()
+    }
+
+    private func configureActivityIndicator() {
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(activityIndicator)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
 }
 
@@ -70,8 +92,11 @@ extension SettingsTableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = sections[indexPath.section][indexPath.row]
-        if selectedItem == .about {
+        switch selectedItem {
+        case .about:
             delegate?.didSelectAbout(self)
+        case .loadDemo:
+            delegate?.didSelectLoadDemo(self)
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }

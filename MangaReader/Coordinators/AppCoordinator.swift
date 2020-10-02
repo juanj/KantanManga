@@ -56,7 +56,7 @@ extension AppCoordinator: LibraryViewControllerDelegate {
     }
 
     func didSelectSettings(_ libraryViewController: LibraryViewController) {
-        let settingsCoordinator = SettingsCoordinator(navigation: navigationController)
+        let settingsCoordinator = SettingsCoordinator(navigation: navigationController, delegate: self)
         childCoordinators.append(settingsCoordinator)
         settingsCoordinator.start()
     }
@@ -152,6 +152,13 @@ extension AppCoordinator: SelectCollectionTableViewControllerDelegate {
         navigationController.dismiss(animated: true, completion: nil)
         movingManga = nil
         // TODO: Refresh "No collection" collection
+    }
+}
+
+// MARK: SettingsCoordinatorDelegate
+extension AppCoordinator: SettingsCoordinatorDelegate {
+    func didEnd(_ settingsCoordinator: SettingsCoordinator) {
+        libraryView?.setCollections(collections: loadCollections())
     }
 }
 

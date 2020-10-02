@@ -259,4 +259,31 @@ class CoreDataManager {
             print("Could not update Collection \(error), \(error.userInfo)")
         }
     }
+
+    // MARK: Utils
+    func createDemoManga(completion: @escaping () -> Void) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            guard let filePath = Bundle.main.url(forResource: "demo1", withExtension: "cbz"),
+                  let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+            var fileName = filePath.lastPathComponent
+            var newFileUrl = documentsUrl.appendingPathComponent(fileName)
+
+            if FileManager.default.fileExists(atPath: documentsUrl.appendingPathComponent(fileName).path) {
+                let timeStamp = Date().timeIntervalSince1970
+                fileName = "\(Int(timeStamp))-\(fileName)"
+            }
+
+            newFileUrl = documentsUrl.appendingPathComponent(fileName)
+
+            do {
+                try FileManager.default.copyItem(at: filePath, to: newFileUrl)
+                guard let collection = self.insertCollection(name: "Demo") else { return }
+                self.createMangaWith(filePath: fileName, name: "聖☆おにいさん preview", collection: collection) { _ in
+                    completion()
+                }
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
