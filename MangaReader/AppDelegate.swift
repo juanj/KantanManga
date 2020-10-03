@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.backgroundColor = UIColor.white
+        window?.backgroundColor = .systemBackground
 
         let navigationController = UINavigationController()
         window?.rootViewController = navigationController

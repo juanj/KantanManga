@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -34,13 +36,13 @@
                                 </textField>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WKX-Cf-qsL">
                                     <rect key="frame" x="0.0" y="43.5" width="400" height="0.5"/>
-                                    <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" systemColor="separatorColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="0.5" id="aA4-Fl-TBF"/>
                                     </constraints>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="NA9-gW-4jy" secondAttribute="trailing" constant="20" id="6Uw-fc-Orp"/>
                                 <constraint firstAttribute="height" constant="44" id="9lr-Qj-oWu"/>
@@ -63,7 +65,7 @@
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4bq-UD-dY4">
                                     <rect key="frame" x="0.0" y="99.5" width="400" height="0.5"/>
-                                    <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" systemColor="separatorColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="0.5" id="8bM-b9-vVO"/>
                                     </constraints>
@@ -71,28 +73,28 @@
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Szz-8Q-Hp0">
                                     <rect key="frame" x="367.5" y="2" width="12.5" height="96"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="tintColor" systemColor="labelColor"/>
                                 </imageView>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bigAdd" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8bi-XZ-PVG">
                                     <rect key="frame" x="0.0" y="0.0" width="83.5" height="100"/>
                                     <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="tintColor" systemColor="darkTextColor"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="8bi-XZ-PVG" secondAttribute="height" multiplier="10:12" id="p8F-5a-mpk"/>
                                     </constraints>
                                 </imageView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96Y-jv-qWP">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96Y-jv-qWP">
                                     <rect key="frame" x="103.5" y="0.0" width="296.5" height="99.5"/>
-                                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="tintColor" systemColor="darkTextColor"/>
                                     <state key="normal" title="Select File">
-                                        <color key="titleColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="titleColor" systemColor="placeholderTextColor"/>
                                     </state>
                                     <connections>
                                         <action selector="selectFile" destination="-1" eventType="touchUpInside" id="LF1-w6-7IE"/>
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="96Y-jv-qWP" firstAttribute="top" secondItem="G5b-W2-nKP" secondAttribute="top" id="0nD-yu-GyT"/>
                                 <constraint firstItem="4bq-UD-dY4" firstAttribute="leading" secondItem="G5b-W2-nKP" secondAttribute="leading" id="4D3-a4-3cD"/>
@@ -114,11 +116,11 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yht-Bm-h4c">
                             <rect key="frame" x="0.0" y="144" width="400" height="44"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vRA-DM-ZFF">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vRA-DM-ZFF">
                                     <rect key="frame" x="20" y="0.0" width="380" height="43.5"/>
-                                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="tintColor" systemColor="darkTextColor"/>
                                     <state key="normal" title="Select Collection">
-                                        <color key="titleColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="titleColor" systemColor="placeholderTextColor"/>
                                     </state>
                                     <connections>
                                         <action selector="selectCollection" destination="-1" eventType="touchUpInside" id="QGt-Mp-x4z"/>
@@ -126,7 +128,7 @@
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="28U-1E-uKA">
                                     <rect key="frame" x="0.0" y="43.5" width="400" height="0.5"/>
-                                    <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" systemColor="separatorColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="0.5" id="yst-hY-MCg"/>
                                     </constraints>
@@ -134,10 +136,10 @@
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="7p4-Bb-bJN">
                                     <rect key="frame" x="367.5" y="2" width="12.5" height="40"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="tintColor" systemColor="labelColor"/>
                                 </imageView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="vRA-DM-ZFF" firstAttribute="top" secondItem="yht-Bm-h4c" secondAttribute="top" id="7Gm-gI-2DD"/>
                                 <constraint firstItem="vRA-DM-ZFF" firstAttribute="leading" secondItem="yht-Bm-h4c" secondAttribute="leading" constant="20" id="7PB-FF-wUF"/>
@@ -154,7 +156,7 @@
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NSg-w2-0X8">
                             <rect key="frame" x="0.0" y="188" width="400" height="0.0"/>
-                            <color key="backgroundColor" systemColor="tertiarySystemFillColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.50196078430000002" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                         </view>
                     </subviews>
                     <constraints>
@@ -162,7 +164,8 @@
                     </constraints>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="dTd-5H-BfZ" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="A7F-Uq-xjV"/>
                 <constraint firstItem="dTd-5H-BfZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="bgp-Ym-cw8"/>
@@ -170,12 +173,35 @@
                 <constraint firstItem="dTd-5H-BfZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hbZ-kQ-ZdC"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="267.96875" y="-99.609375"/>
         </view>
     </objects>
     <resources>
         <image name="bigAdd" width="500" height="500"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="separatorColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiarySystemFillColor">
+            <color red="0.46274509803921571" green="0.46274509803921571" blue="0.50196078431372548" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

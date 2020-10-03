@@ -71,6 +71,7 @@ class WordButton: UIControl {
         contentLabel.translatesAutoresizingMaskIntoConstraints = false
         contentLabel.font = .systemFont(ofSize: 50, weight: .bold)
         contentLabel.text = word.text
+        contentLabel.textColor = .black
         addSubview(contentLabel)
 
         let leftConstraint = contentLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10)
