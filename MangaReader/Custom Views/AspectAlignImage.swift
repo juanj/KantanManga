@@ -58,10 +58,14 @@ class AspectAlignImage: UIView {
         imageTopConstraint = imageView.topAnchor.constraint(equalTo: topAnchor)
         imageLeftConstraint = imageView.leftAnchor.constraint(equalTo: leftAnchor)
         imageRightConstraint = imageView.rightAnchor.constraint(equalTo: rightAnchor)
-        imageWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: frame.width)
-        imageHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: frame.height)
+        imageWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: bounds.width)
+        imageHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: bounds.height)
         imageCenterXConstraint = imageView.centerXAnchor.constraint(equalTo: centerXAnchor)
         imageCenterYConstraint = imageView.centerYAnchor.constraint(equalTo: centerYAnchor)
+
+        // Width and height are always active
+        imageWidthConstraint?.isActive = true
+        imageHeightConstraint?.isActive = true
 
         activateConstraints()
     }
@@ -69,7 +73,7 @@ class AspectAlignImage: UIView {
     private func sizeImage() {
         imageView.image = image
         guard let image = image else { return }
-        let size = CGSize.aspectFit(size: image.size, inside: frame.size)
+        let size = CGSize.aspectFit(size: image.size, inside: bounds.size)
         imageWidthConstraint?.constant = size.width
         imageHeightConstraint?.constant = size.height
 
@@ -83,8 +87,6 @@ class AspectAlignImage: UIView {
         imageRightConstraint?.isActive = false
         imageCenterXConstraint?.isActive = false
         imageCenterYConstraint?.isActive = false
-        imageWidthConstraint?.isActive = true
-        imageHeightConstraint?.isActive = true
 
         switch alignment {
         case .left:
