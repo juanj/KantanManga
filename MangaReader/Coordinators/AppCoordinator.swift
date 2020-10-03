@@ -125,14 +125,14 @@ extension AppCoordinator: AddMangasCoordinatorDelegate {
 }
 
 extension AppCoordinator: ViewMangaCoordinatorDelegate {
-    func didEnd(viewMangaCoordinator: ViewMangaCoordinator) {
+    func didEnd(_ viewMangaCoordinator: ViewMangaCoordinator) {
         removeChildCoordinator(type: ViewMangaCoordinator.self)
         navigationController.delegate = self
     }
 }
 
 extension AppCoordinator: SelectCollectionTableViewControllerDelegate {
-    func selectCollection(selectCollectionTableViewController: SelectCollectionTableViewController, collection: MangaCollection) {
+    func selectCollection(_ selectCollectionTableViewController: SelectCollectionTableViewController, collection: MangaCollection) {
         guard let manga = movingManga else { return }
         manga.mangaCollection = collection
         CoreDataManager.sharedManager.updateManga(manga: manga)
@@ -143,7 +143,7 @@ extension AppCoordinator: SelectCollectionTableViewControllerDelegate {
         // TODO: Refresh "No collection" collection
     }
 
-    func addCollection(selectCollectionTableViewController: SelectCollectionTableViewController, name: String) {
+    func addCollection(_ selectCollectionTableViewController: SelectCollectionTableViewController, name: String) {
         guard let manga = movingManga, let collection = CoreDataManager.sharedManager.insertCollection(name: name) else { return }
         manga.mangaCollection = collection
         CoreDataManager.sharedManager.updateManga(manga: manga)

@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 protocol ViewMangaCoordinatorDelegate: AnyObject {
-    func didEnd(viewMangaCoordinator: ViewMangaCoordinator)
+    func didEnd(_ viewMangaCoordinator: ViewMangaCoordinator)
 }
 
 class ViewMangaCoordinator: NSObject, Coordinator {
@@ -35,7 +35,7 @@ class ViewMangaCoordinator: NSObject, Coordinator {
 
     func start() {
         guard mangaDataSource != nil else {
-            delegate?.didEnd(viewMangaCoordinator: self)
+            delegate?.didEnd(self)
             return
         }
         let mangaView = MangaViewController(manga: manga, dataSource: mangaDataSource, delegate: self)
@@ -47,16 +47,16 @@ class ViewMangaCoordinator: NSObject, Coordinator {
 
 // MARK: MangaViewControllerDelegate
 extension ViewMangaCoordinator: MangaViewControllerDelegate {
-    func didTapPage(mangaViewController: MangaViewController, pageViewController: PageViewController) {
+    func didTapPage(_ mangaViewController: MangaViewController, pageViewController: PageViewController) {
         mangaViewController.toggleFullscreen()
     }
 
-    func back(mangaViewController: MangaViewController) {
+    func back(_ mangaViewController: MangaViewController) {
         navigationController.popViewController(animated: true)
-        delegate?.didEnd(viewMangaCoordinator: self)
+        delegate?.didEnd(self)
     }
 
-    func didSelectSectionOfImage(mangaViewController: MangaViewController, image: UIImage) {
+    func didSelectSectionOfImage(_ mangaViewController: MangaViewController, image: UIImage) {
         mangaViewController.setSentence(sentence: "")
         mangaViewController.ocrStartLoading()
         ocr.recognize(image: image) { (result) in

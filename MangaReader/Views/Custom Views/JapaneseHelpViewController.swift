@@ -64,20 +64,20 @@ class JapaneseHelpViewController: UIViewController {
     }
 
     @objc func handlePan(pan: UIPanGestureRecognizer) {
-        delegate?.handlePan(japaneseHelpViewController: self, pan: pan)
+        delegate?.handlePan(self, pan: pan)
     }
 }
 
 extension JapaneseHelpViewController: ParsedInputFieldDelegate {
-    func willBeginEditing(parsedInputField: ParsedInputField) {
+    func willBeginEditing(_ parsedInputField: ParsedInputField) {
         dictView.setEntries(entries: [])
     }
 
-    func didSelectWord(parsedInputField analyzeTextView: ParsedInputField, word: JapaneseWord) {
+    func didSelectWord(_ analyzeTextView: ParsedInputField, word: JapaneseWord) {
         let dict = JapaneseDictionary()
         let words = dict.findWord(word: word.rootForm)
         dictView.setEntries(entries: words)
-        delegate?.didOpenDictionary(japaneseHelpViewController: self)
+        delegate?.didOpenDictionary(self)
     }
 }
 
@@ -92,6 +92,6 @@ extension JapaneseHelpViewController: UIGestureRecognizerDelegate {
 }
 
 protocol JapaneseHelpViewControllerDelegate: AnyObject {
-    func handlePan(japaneseHelpViewController: JapaneseHelpViewController, pan: UIPanGestureRecognizer)
-    func didOpenDictionary(japaneseHelpViewController: JapaneseHelpViewController)
+    func handlePan(_ japaneseHelpViewController: JapaneseHelpViewController, pan: UIPanGestureRecognizer)
+    func didOpenDictionary(_ japaneseHelpViewController: JapaneseHelpViewController)
 }

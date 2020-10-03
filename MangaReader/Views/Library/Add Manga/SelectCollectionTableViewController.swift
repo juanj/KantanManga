@@ -9,8 +9,8 @@
 import UIKit
 
 protocol SelectCollectionTableViewControllerDelegate: AnyObject {
-    func selectCollection(selectCollectionTableViewController: SelectCollectionTableViewController, collection: MangaCollection)
-    func addCollection(selectCollectionTableViewController: SelectCollectionTableViewController, name: String)
+    func selectCollection(_ selectCollectionTableViewController: SelectCollectionTableViewController, collection: MangaCollection)
+    func addCollection(_ selectCollectionTableViewController: SelectCollectionTableViewController, name: String)
 }
 
 class SelectCollectionTableViewController: UITableViewController {
@@ -85,12 +85,12 @@ class SelectCollectionTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let collection = collections[indexPath.row]
-        delegate?.selectCollection(selectCollectionTableViewController: self, collection: collection)
+        delegate?.selectCollection(self, collection: collection)
     }
 }
 
 extension SelectCollectionTableViewController: NewCollectionTableViewCellDelegate {
     func didEnterName(name: String) {
-        delegate?.addCollection(selectCollectionTableViewController: self, name: name)
+        delegate?.addCollection(self, name: name)
     }
 }

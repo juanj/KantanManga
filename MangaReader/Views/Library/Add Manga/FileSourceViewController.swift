@@ -9,8 +9,8 @@
 import UIKit
 
 protocol FileSourceViewControllerDelegate: AnyObject {
-    func openWebServer(fileSourceViewController: FileSourceViewController)
-    func openLocalFiles(fileSourceViewController: FileSourceViewController)
+    func openWebServer(_ fileSourceViewController: FileSourceViewController)
+    func openLocalFiles(_ fileSourceViewController: FileSourceViewController)
 }
 
 class FileSourceViewController: UIViewController {
@@ -36,10 +36,10 @@ class FileSourceViewController: UIViewController {
     }
 
     @IBAction func webserver(_ sender: Any) {
-        delegate?.openWebServer(fileSourceViewController: self)
+        delegate?.openWebServer(self)
     }
 
     @IBAction func localFiles(_ sender: Any) {
-        delegate?.openLocalFiles(fileSourceViewController: self)
+        delegate?.openLocalFiles(self)
     }
 }

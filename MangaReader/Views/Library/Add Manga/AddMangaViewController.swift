@@ -9,10 +9,10 @@
 import UIKit
 
 protocol AddMangaViewControllerDelegate: AnyObject {
-    func cancel(addMangaViewController: AddMangaViewController)
-    func save(addMangaViewController: AddMangaViewController, name: String?)
-    func selectManga(addMangaViewController: AddMangaViewController)
-    func selectCollection(addMangaViewController: AddMangaViewController)
+    func cancel(_ addMangaViewController: AddMangaViewController)
+    func save(_ addMangaViewController: AddMangaViewController, name: String?)
+    func selectManga(_ addMangaViewController: AddMangaViewController)
+    func selectCollection(_ addMangaViewController: AddMangaViewController)
 }
 
 class AddMangaViewController: UIViewController {
@@ -49,18 +49,18 @@ class AddMangaViewController: UIViewController {
     }
 
     @objc func cancel() {
-        delegate?.cancel(addMangaViewController: self)
+        delegate?.cancel(self)
     }
 
     @IBAction func selectFile() {
-        delegate?.selectManga(addMangaViewController: self)
+        delegate?.selectManga(self)
     }
 
     @IBAction func selectCollection() {
-        delegate?.selectCollection(addMangaViewController: self)
+        delegate?.selectCollection(self)
     }
 
     @objc func save() {
-        delegate?.save(addMangaViewController: self, name: nameTextField.text)
+        delegate?.save(self, name: nameTextField.text)
     }
 }

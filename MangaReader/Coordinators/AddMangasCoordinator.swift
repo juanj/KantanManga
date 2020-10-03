@@ -111,12 +111,12 @@ extension AddMangasCoordinator: WebServerViewControllerDelegate {
 }
 
 extension AddMangasCoordinator: AddMangaViewControllerDelegate {
-    func cancel(addMangaViewController: AddMangaViewController) {
+    func cancel(_ addMangaViewController: AddMangaViewController) {
         navigationController.dismiss(animated: true, completion: nil)
         delegate?.cancel(self)
     }
 
-    func save(addMangaViewController: AddMangaViewController, name: String?) {
+    func save(_ addMangaViewController: AddMangaViewController, name: String?) {
         guard let name = name, !name.isEmpty else {
             return
         }
@@ -131,11 +131,11 @@ extension AddMangasCoordinator: AddMangaViewControllerDelegate {
         }
     }
 
-    func selectManga(addMangaViewController: AddMangaViewController) {
+    func selectManga(_ addMangaViewController: AddMangaViewController) {
         presentedNavigationController.pushViewController(FileSourceViewController(delegate: self), animated: true)
     }
 
-    func selectCollection(addMangaViewController: AddMangaViewController) {
+    func selectCollection(_ addMangaViewController: AddMangaViewController) {
         presentedNavigationController.pushViewController(SelectCollectionTableViewController(delegate: self, collections: CoreDataManager.sharedManager.fetchAllCollections() ?? []), animated: true)
     }
 }
@@ -147,7 +147,7 @@ extension AddMangasCoordinator: UIAdaptivePresentationControllerDelegate {
 }
 
 extension AddMangasCoordinator: FileSourceViewControllerDelegate {
-    func openWebServer(fileSourceViewController: FileSourceViewController) {
+    func openWebServer(_ fileSourceViewController: FileSourceViewController) {
         initWebServer()
         let webServerViewcontroller = WebServerViewController()
         webServerViewcontroller.delegate = self
@@ -157,7 +157,7 @@ extension AddMangasCoordinator: FileSourceViewControllerDelegate {
         presentedNavigationController.pushViewController(webServerViewcontroller, animated: true)
     }
 
-    func openLocalFiles(fileSourceViewController: FileSourceViewController) {
+    func openLocalFiles(_ fileSourceViewController: FileSourceViewController) {
         let filesView = UIDocumentPickerViewController(documentTypes: ["public.zip-archive", "com.rarlab.rar-archive"], in: .import)
         filesView.allowsMultipleSelection = false
         filesView.title = "Local files"
@@ -189,14 +189,14 @@ extension AddMangasCoordinator: UIDocumentPickerDelegate {
 }
 
 extension AddMangasCoordinator: SelectCollectionTableViewControllerDelegate {
-    func selectCollection(selectCollectionTableViewController: SelectCollectionTableViewController, collection: MangaCollection) {
+    func selectCollection(_ selectCollectionTableViewController: SelectCollectionTableViewController, collection: MangaCollection) {
         self.collection = collection
         addMangaViewController?.selectCollectionButton.setTitle(collection.name, for: .normal)
         addMangaViewController?.selectCollectionButton.setTitleColor(.label, for: .normal)
         presentedNavigationController.popViewController(animated: true)
     }
 
-    func addCollection(selectCollectionTableViewController: SelectCollectionTableViewController, name: String) {
+    func addCollection(_ selectCollectionTableViewController: SelectCollectionTableViewController, name: String) {
         guard let collection = CoreDataManager.sharedManager.insertCollection(name: name) else { return }
         self.collection = collection
         addMangaViewController?.selectCollectionButton.setTitle(collection.name, for: .normal)

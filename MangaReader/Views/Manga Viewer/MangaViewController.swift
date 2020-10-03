@@ -9,9 +9,9 @@
 import UIKit
 
 protocol MangaViewControllerDelegate: AnyObject {
-    func didTapPage(mangaViewController: MangaViewController, pageViewController: PageViewController)
-    func back(mangaViewController: MangaViewController)
-    func didSelectSectionOfImage(mangaViewController: MangaViewController, image: UIImage)
+    func didTapPage(_ mangaViewController: MangaViewController, pageViewController: PageViewController)
+    func back(_ mangaViewController: MangaViewController)
+    func didSelectSectionOfImage(_ mangaViewController: MangaViewController, image: UIImage)
 }
 
 class MangaViewController: UIViewController {
@@ -221,7 +221,7 @@ class MangaViewController: UIViewController {
     }
 
     @objc func back() {
-        delegate?.back(mangaViewController: self)
+        delegate?.back(self)
     }
 
     @objc func toggleOcr() {
@@ -380,7 +380,7 @@ extension MangaViewController: UIPageViewControllerDelegate, UIPageViewControlle
 // MARK: PageViewControllerDelegate
 extension MangaViewController: PageViewControllerDelegate {
     func didTap(_ pageViewController: PageViewController) {
-        delegate?.didTapPage(mangaViewController: self, pageViewController: pageViewController)
+        delegate?.didTapPage(self, pageViewController: pageViewController)
     }
 }
 
@@ -394,12 +394,12 @@ extension MangaViewController: SelectionViewDelegate {
         UIGraphicsEndImageContext()
         toggleOcr()
         guard let image = capturedImage else { return }
-        delegate?.didSelectSectionOfImage(mangaViewController: self, image: image)
+        delegate?.didSelectSectionOfImage(self, image: image)
     }
 }
 
 extension MangaViewController: JapaneseHelpViewControllerDelegate {
-    func handlePan(japaneseHelpViewController: JapaneseHelpViewController, pan: UIPanGestureRecognizer) {
+    func handlePan(_ japaneseHelpViewController: JapaneseHelpViewController, pan: UIPanGestureRecognizer) {
         let translation = pan.translation(in: view)
         let velocity = pan.velocity(in: view)
         if pan.state == .began {
@@ -451,7 +451,7 @@ extension MangaViewController: JapaneseHelpViewControllerDelegate {
         }
     }
 
-    func didOpenDictionary(japaneseHelpViewController: JapaneseHelpViewController) {
+    func didOpenDictionary(_ japaneseHelpViewController: JapaneseHelpViewController) {
         if japaneseHelpBottomConstraint.constant != 0 {
             japaneseHelpBottomConstraint.constant = 0
             UIView.animate(withDuration: 0.3) {

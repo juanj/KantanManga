@@ -201,7 +201,7 @@ class ParsedInputField: UIControl {
     private func toggleEdit() {
         editing = !editing
         if editing {
-            delegate?.willBeginEditing(parsedInputField: self)
+            delegate?.willBeginEditing(self)
             textView.alpha = 0
             textView.isUserInteractionEnabled = false
             textField.isHidden = false
@@ -227,7 +227,7 @@ class ParsedInputField: UIControl {
         buttons.forEach { $0.isSelected = false }
         button.isSelected = true
         let word = analyzedSentence[button.tag]
-        delegate?.didSelectWord(parsedInputField: self, word: word)
+        delegate?.didSelectWord(self, word: word)
     }
 
     @objc func edit() {
@@ -243,7 +243,7 @@ extension ParsedInputField: UITextFieldDelegate {
     }
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        delegate?.willBeginEditing(parsedInputField: self)
+        delegate?.willBeginEditing(self)
         return true
     }
 
@@ -256,6 +256,6 @@ extension ParsedInputField: UITextFieldDelegate {
 
 protocol ParsedInputFieldDelegate: AnyObject {
     //func handlePan(analyzeTextView: ParsedInputField, pan: UIPanGestureRecognizer)
-    func willBeginEditing(parsedInputField: ParsedInputField)
-    func didSelectWord(parsedInputField: ParsedInputField, word: JapaneseWord)
+    func willBeginEditing(_ parsedInputField: ParsedInputField)
+    func didSelectWord(_ parsedInputField: ParsedInputField, word: JapaneseWord)
 }
