@@ -16,7 +16,7 @@ class PageViewController: UIViewController {
     enum Side {
         case left, right, center
 
-        func oposite() -> Side {
+        func opposite() -> Side {
             if self == .center {
                 return .center
             } else {

@@ -163,7 +163,7 @@ class MangaDataSource: NSObject {
         }
 
         getImageForPage(index: index + 10)
-        return createPage(index: index, side: currentPage.pageSide.oposite(), delegate: currentPage.delegate, fullScreen: currentPage.isFullScreened)
+        return createPage(index: index, side: currentPage.pageSide.opposite(), delegate: currentPage.delegate, fullScreen: currentPage.isFullScreened)
     }
 
     func previousPage(currentPage: UIViewController) -> UIViewController? {
@@ -176,7 +176,7 @@ class MangaDataSource: NSObject {
         }
 
         getImageForPage(index: index - 10)
-        return createPage(index: index, side: currentPage.pageSide.oposite(), delegate: currentPage.delegate, fullScreen: currentPage.isFullScreened)
+        return createPage(index: index, side: currentPage.pageSide.opposite(), delegate: currentPage.delegate, fullScreen: currentPage.isFullScreened)
     }
 
     private func clearQueue() {
@@ -253,7 +253,7 @@ extension MangaDataSource: UIPageViewControllerDataSource {
             return previousPage
         } else if pageViewController.spineLocation == .mid, pagesOffset, let currentPage = viewController as? PageViewController, currentPage.pageNumber == manga.totalPages - 1 {
             // If is double paged and is offset, return a blank padding page
-            let page = PageViewController(delegate: currentPage.delegate, pageSide: currentPage.pageSide.oposite(), pageNumber: currentPage.pageNumber + 1, isPaddingPage: true)
+            let page = PageViewController(delegate: currentPage.delegate, pageSide: currentPage.pageSide.opposite(), pageNumber: currentPage.pageNumber + 1, pageText: "", isPaddingPage: true)
             return page
         }
         return nil
@@ -266,7 +266,7 @@ extension MangaDataSource: UIPageViewControllerDataSource {
             return previousPage
         } else if pageViewController.spineLocation == .mid, pagesOffset, let currentPage = viewController as? PageViewController, currentPage.pageNumber == 0 {
             // If is double paged and is offset, return a blank padding page
-            let page = PageViewController(delegate: currentPage.delegate, pageSide: currentPage.pageSide.oposite(), pageNumber: -1, isPaddingPage: true)
+            let page = PageViewController(delegate: currentPage.delegate, pageSide: currentPage.pageSide.opposite(), pageNumber: -1, pageText: "", isPaddingPage: true)
             return page
         }
         return nil
