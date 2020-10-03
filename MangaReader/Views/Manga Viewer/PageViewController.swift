@@ -13,6 +13,18 @@ protocol PageViewControllerDelegate: AnyObject {
 }
 
 class PageViewController: UIViewController {
+    enum Side {
+        case left, right, center
+
+        func oposite() -> Side {
+            if self == .center {
+                return .center
+            } else {
+                return self == .left ? .right : .left
+            }
+        }
+    }
+
     // Some times refreshView is called before the nib is loaded. Kepp these optional to prevent a crash
     @IBOutlet weak var pageImageView: AspectAlignImage?
     @IBOutlet weak var pageLabel: UILabel?
@@ -21,10 +33,6 @@ class PageViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
 
-    weak var delegate: PageViewControllerDelegate?
-    var doublePaged = false
-    var offset = 0
-    var fullScreen = false
     var pageImage: UIImage? {
         didSet {
             if pageImageView != nil {
@@ -32,20 +40,34 @@ class PageViewController: UIViewController {
             }
         }
     }
-    var page = 0
-    var isPaddingPage = false
-    private var lastContentOffset: CGFloat = 0
+
+    let pageNumber: Int
+    let isPaddingPage: Bool
+    var pageSide: Side
+    private(set) weak var delegate: PageViewControllerDelegate?
+    private let pageText: String
+    private(set) var isFullScreened: Bool
+
+    init(delegate: PageViewControllerDelegate?, pageSide: Side, pageNumber: Int, pageText: String? = nil, isFullScreened: Bool = false, isPaddingPage: Bool = false) {
+        self.delegate = delegate
+        self.pageSide = pageSide
+        self.pageNumber = pageNumber
+        self.pageText = pageText ?? "\(pageNumber + 1)"
+        self.isFullScreened = isFullScreened
+        self.isPaddingPage = isPaddingPage
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshView()
-
-        if fullScreen {
-            pageLabel?.alpha = 0
-        }
-
-        if isPaddingPage {
-            activityIndicator.stopAnimating()
-        }
+        pageLabel?.alpha = isFullScreened ? 0 : 1
+        activityIndicator.isHidden = isPaddingPage
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
         tapGesture.numberOfTapsRequired = 1
@@ -57,24 +79,20 @@ class PageViewController: UIViewController {
 
     func refreshView() {
         loadImage()
-        if doublePaged {
-            if page % 2 != offset {
-                leftGradientImage?.isHidden = true
-                rightGradientImage?.isHidden = false
-                pageImageView?.alignment = .right
-            } else {
-                leftGradientImage?.isHidden = false
-                rightGradientImage?.isHidden = true
-                pageImageView?.alignment = .left
-            }
-        } else {
+        switch pageSide {
+        case .left:
+            leftGradientImage?.isHidden = true
+            rightGradientImage?.isHidden = false
+            pageImageView?.alignment = .right
+        case .right:
+            leftGradientImage?.isHidden = false
+            rightGradientImage?.isHidden = true
+            pageImageView?.alignment = .left
+        case .center:
             pageImageView?.alignment = .center
         }
-        if isPaddingPage {
-            pageLabel?.text = ""
-        } else {
-            pageLabel?.text = "\(page + 1)"
-        }
+
+        pageLabel?.text = pageText
     }
 
     @objc func tap() {
@@ -82,10 +100,9 @@ class PageViewController: UIViewController {
     }
 
     private func loadImage() {
-        if pageImage != nil {
-            activityIndicator.stopAnimating()
-        }
-        pageImageView?.image = pageImage
+        guard let image = pageImage else { return }
+        activityIndicator.stopAnimating()
+        pageImageView?.image = image
     }
 }
 

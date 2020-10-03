@@ -26,8 +26,6 @@ class MangaViewController: UIViewController {
 
     private var isPageAnimating = false
     private var fullScreen = false
-    private var forceToggleMode = false
-    private var pagesOffset = false
     private var ocrEnabled = false
     private var ocrActivityIndicator = UIActivityIndicatorView(style: .medium)
 
@@ -46,6 +44,7 @@ class MangaViewController: UIViewController {
         self.dataSource = dataSource
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
+        dataSource.delegate = self
     }
 
     required init?(coder: NSCoder) {
@@ -78,41 +77,14 @@ class MangaViewController: UIViewController {
     }
 
     private func createPageController() {
-        let spineLocation: UIPageViewController.SpineLocation
-        var viewControllers = [UIViewController]()
-
         let orientation: UIInterfaceOrientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation ?? .portrait
-        let landscapeOrientations: [UIInterfaceOrientation] = [.landscapeLeft, .landscapeRight]
-        var doublePaged = landscapeOrientations.contains(orientation)
-        doublePaged = forceToggleMode ? !doublePaged : doublePaged
 
-        if !doublePaged {
-            spineLocation = .max
-            let page = dataSource.createPage(index: Int(manga.currentPage), doublePaged: doublePaged, delegate: self)
-            viewControllers = [page]
-        } else {
-            spineLocation = .mid
-
-            if manga.currentPage % 2 == 1 {
-                let page1 = dataSource.createPage(index: Int(manga.currentPage - 1) + pagesOffset.intValue, doublePaged: doublePaged, offset: pagesOffset, delegate: self)
-                let page2 = dataSource.createPage(index: Int(manga.currentPage) + pagesOffset.intValue, doublePaged: doublePaged, offset: pagesOffset, delegate: self)
-
-                // Set view controllers in this order to make manga RTL
-                viewControllers = [page2, page1]
-            } else {
-                let page1 = dataSource.createPage(index: Int(manga.currentPage) + pagesOffset.intValue, doublePaged: doublePaged, offset: pagesOffset, delegate: self)
-                let page2 = dataSource.createPage(index: Int(manga.currentPage + 1) + pagesOffset.intValue, doublePaged: doublePaged, offset: pagesOffset, delegate: self)
-
-                // Set view controllers in this order to make manga RTL
-                viewControllers = [page2, page1]
-            }
-        }
-
+        let (spineLocation, initialPages) = dataSource.initialConfiguration(with: orientation, and: nil, delegate: self)
         pageController = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: [.spineLocation: spineLocation.rawValue])
-        pageController.isDoubleSided = doublePaged
+        pageController.isDoubleSided = spineLocation == .mid
         pageController.delegate = self
-        pageController.dataSource = self
-        pageController.setViewControllers(viewControllers, direction: .forward, animated: true, completion: nil)
+        pageController.dataSource = dataSource
+        pageController.setViewControllers(initialPages, direction: .forward, animated: true, completion: nil)
 
     }
 
@@ -233,12 +205,12 @@ class MangaViewController: UIViewController {
     }
 
     @objc func toggleMode() {
-        forceToggleMode.toggle()
+        dataSource.forceToggleMode.toggle()
         reloadPageController()
     }
 
     @objc func offsetPage() {
-        pagesOffset.toggle()
+        dataSource.pagesOffset.toggle()
         reloadPageController()
     }
 
@@ -273,97 +245,23 @@ class MangaViewController: UIViewController {
 }
 
 // MARK: PageViewControllerDelegate
-extension MangaViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if isPageAnimating || ocrEnabled {
-            return nil
-        }
-        // Return next page to make manga RTL
-        if let previousPage = dataSource.nextPage(currentPage: viewController) {
-            return previousPage
-        } else if pageViewController.spineLocation == .mid, pagesOffset, let currentPage = viewController as? PageViewController, currentPage.page == manga.totalPages - 1 {
-            // If is double paged and is offset, return a blank padding page
-            let page = PageViewController()
-            page.isPaddingPage = true
-            page.page = currentPage.page + 1
-            return page
-        }
-        return nil
-    }
-
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if isPageAnimating || ocrEnabled {
-            return nil
-        }
-        // Return previous page to make manga RTL
-        if let previousPage = dataSource.previousPage(currentPage: viewController) {
-            return previousPage
-        } else if pageViewController.spineLocation == .mid, pagesOffset, let currentPage = viewController as? PageViewController, currentPage.page == 0 {
-            // If is double paged and is offset, return a blank padding page
-            let page = PageViewController()
-            page.isPaddingPage = true
-            page.page = -1
-            return page
-        }
-        return nil
-    }
-
+extension MangaViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, spineLocationFor orientation: UIInterfaceOrientation) -> UIPageViewController.SpineLocation {
-        let spineLocation: UIPageViewController.SpineLocation
-        var viewControllers = [PageViewController]()
+        guard orientation != .unknown else {
+            return pageViewController.spineLocation
+        }
         isPageAnimating = false
+        let (spineLocation, initialPages) = dataSource.initialConfiguration(with: orientation, and: pageViewController.viewControllers, delegate: self)
 
-        let landscapeOrientations: [UIInterfaceOrientation] = [.landscapeLeft, .landscapeRight]
-        var doublePaged = landscapeOrientations.contains(orientation)
-        doublePaged = forceToggleMode ? !doublePaged : doublePaged
-
-        if !doublePaged {
-            spineLocation = .max
-            if let pages = pageViewController.viewControllers as? [PageViewController] {
-                if pages.count == 2 {
-                    // Two pages. Keep the one on the right.
-                    viewControllers = [pages[1]]
-                } else {
-                    // Just one page. Use the same
-                    viewControllers = pages
-                }
-            }
-        } else {
-            spineLocation = .mid
-            if let pages = pageViewController.viewControllers as? [PageViewController] {
-                if pages.count == 2 {
-                    viewControllers = pages
-                } else {
-                    let page = pages[0]
-                    if page.page % 2 == 0 {
-                        // If first page is even, get next page
-                        if let page2 = dataSource.nextPage(currentPage: page) as? PageViewController {
-                            viewControllers = [page2, page]
-                        }
-                    } else {
-                        // If first page is odd, get previous page
-                        if let page2 = dataSource.previousPage(currentPage: page) as? PageViewController {
-                            viewControllers = [page, page2]
-                        }
-                    }
-                }
-            }
-        }
-
-        for page in viewControllers {
-            page.doublePaged = doublePaged
-            page.refreshView()
-        }
-
-        pageViewController.setViewControllers(viewControllers, direction: .forward, animated: true, completion: nil)
-        pageViewController.isDoubleSided = doublePaged
+        pageViewController.setViewControllers(initialPages, direction: .forward, animated: true, completion: nil)
+        pageViewController.isDoubleSided = spineLocation == .mid
 
         return spineLocation
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if let pageView = pageViewController.viewControllers?[0] as? PageViewController, !pageView.isPaddingPage {
-            manga.currentPage = Int16(pageView.page)
+        if let pageView = pageViewController.viewControllers?.last as? PageViewController, !pageView.isPaddingPage {
+            manga.currentPage = Int16(pageView.pageNumber)
             CoreDataManager.sharedManager.updateManga(manga: manga)
         }
 
@@ -464,5 +362,11 @@ extension MangaViewController: JapaneseHelpViewControllerDelegate {
 extension MangaViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+}
+
+extension MangaViewController: MangaDataSourceDelegate {
+    func shouldLoadPage(_ mangaDataSource: MangaDataSource) -> Bool {
+        return !(isPageAnimating || ocrEnabled)
     }
 }
