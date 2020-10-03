@@ -127,6 +127,7 @@ class ParsedInputField: UIControl {
         textField.delegate = self
         textField.isHidden = true
         textField.font = .systemFont(ofSize: 50, weight: .bold)
+        textField.textColor = .black
         textField.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(textField)
 
