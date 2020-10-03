@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UIImageViewAlignedSwift
 
 class MangaCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var coverImageView: AspectAlignImage!

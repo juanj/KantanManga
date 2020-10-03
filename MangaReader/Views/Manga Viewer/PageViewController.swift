@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UIImageViewAlignedSwift
 
 protocol PageViewControllerDelegate: AnyObject {
     func didTap(_ pageViewController: PageViewController)

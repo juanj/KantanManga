@@ -6,7 +6,6 @@ target 'Kantan-Manga' do
   use_frameworks!
 
   # Pods for MangaReader
-  pod 'UIImageViewAlignedSwift'
   pod 'ZIPFoundation', '~> 0.9'
   pod 'GCDWebServer/WebUploader', '~> 3.0'
   pod 'Firebase/Core'
