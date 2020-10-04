@@ -47,4 +47,10 @@ extension SettingsCoordinator: SettingsTableViewControllerDelegate {
             }
         }
     }
+
+    func didSelectAcknowledgments(_ settingsTableViewController: SettingsTableViewController) {
+        let hostingView = UIHostingController(rootView: AcknowledgmentsView())
+        hostingView.title = "Acknowledgments"
+        presentedNavigationController.pushViewController(hostingView, animated: true)
+    }
 }

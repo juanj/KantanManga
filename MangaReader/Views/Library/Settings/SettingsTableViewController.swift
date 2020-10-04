@@ -11,12 +11,14 @@ import SwiftUI
 protocol SettingsTableViewControllerDelegate: AnyObject {
     func didSelectAbout(_ settingsTableViewController: SettingsTableViewController)
     func didSelectLoadDemo(_ settingsTableViewController: SettingsTableViewController)
+    func didSelectAcknowledgments(_ settingsTableViewController: SettingsTableViewController)
 }
 
 class SettingsTableViewController: UITableViewController {
     private enum InfoSection: String, CaseIterable {
         case about
-        case loadDemo = "Load Demo Manga"
+        case loadDemo = "Load demo manga"
+        case acknowledgments
     }
 
     private let sections = [
@@ -83,7 +85,7 @@ extension SettingsTableViewController {
             cell = UITableViewCell(style: .default, reuseIdentifier: "SettingsCell")
         }
 
-        cell.textLabel?.text = sections[indexPath.section][indexPath.row].rawValue.capitalized
+        cell.textLabel?.text = sections[indexPath.section][indexPath.row].rawValue.capitalizingFirstLetter()
         cell.accessoryView = UIImageView(image: UIImage(systemName: "chevron.right"))
         cell.accessoryView?.tintColor = .label
 
@@ -97,6 +99,8 @@ extension SettingsTableViewController {
             delegate?.didSelectAbout(self)
         case .loadDemo:
             delegate?.didSelectLoadDemo(self)
+        case .acknowledgments:
+            delegate?.didSelectAcknowledgments(self)
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }

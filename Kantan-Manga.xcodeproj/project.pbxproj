@@ -80,6 +80,7 @@
 		32E322182481A531007BC017 /* ParsedInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E322152481A531007BC017 /* ParsedInputField.swift */; };
 		32E3221C2481A67D007BC017 /* JapaneseHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */; };
 		32E322222481CD8D007BC017 /* CoordinatorsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E322212481CD8D007BC017 /* CoordinatorsTest.swift */; };
+		32E37987252A6A6000ED4BAC /* AcknowledgmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */; };
 		32F1B9F3243685DC00AE367D /* SelectCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */; };
 		32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */; };
 		32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */; };
@@ -218,6 +219,7 @@
 		32E322152481A531007BC017 /* ParsedInputField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsedInputField.swift; sourceTree = "<group>"; };
 		32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseHelpViewController.swift; sourceTree = "<group>"; };
 		32E322212481CD8D007BC017 /* CoordinatorsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorsTest.swift; sourceTree = "<group>"; };
+		32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgmentsView.swift; sourceTree = "<group>"; };
 		32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCollectionTableViewController.swift; sourceTree = "<group>"; };
 		32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCollectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 			children = (
 				326FDE7824A7F8350042CB8A /* SettingsTableViewController.swift */,
 				326FDE7E24A80BB20042CB8A /* AboutView.swift */,
+				32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -909,6 +912,7 @@
 				843FA7E2221DF0C300B86B52 /* WebServerViewController.swift in Sources */,
 				841B795C221F305A00659FA2 /* MangaDataSource.swift in Sources */,
 				329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */,
+				32E37987252A6A6000ED4BAC /* AcknowledgmentsView.swift in Sources */,
 				32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */,
 				32E322182481A531007BC017 /* ParsedInputField.swift in Sources */,
 				32326F8624354ECC00FCE8E5 /* FileSourceViewController.swift in Sources */,
