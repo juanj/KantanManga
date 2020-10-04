@@ -145,7 +145,8 @@ class MangaViewController: UIViewController {
     private func configureProgressBar() {
         view.addSubview(progressBar)
         progressBar.minimumTrackTintColor = .gray
-        progressBar.maximumTrackTintColor = .systemBlue
+        progressBar.maximumTrackTintColor = .orange
+        progressBar.thumbTintColor = .darkGray
         progressBar.minimumValue = 0
         progressBar.maximumValue = Float(manga.totalPages) - 0.001
         progressBar.value = progressBar.maximumValue - Float(manga.currentPage)
@@ -153,10 +154,11 @@ class MangaViewController: UIViewController {
         if pageController.isDoubleSided {
             oldPageValue -= oldPageValue % 2
         }
+        progressBar.alpha = fullScreen ? 0 : 1
         progressBar.addTarget(self, action: #selector(movePage), for: .valueChanged)
 
         progressBar.translatesAutoresizingMaskIntoConstraints = false
-        progressBar.bottomAnchor.constraint(equalTo: japaneseHelp.view.topAnchor, constant: -50).isActive = true
+        progressBar.bottomAnchor.constraint(equalTo: japaneseHelp.view.topAnchor, constant: -10).isActive = true
         progressBar.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         progressBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
     }
@@ -177,6 +179,7 @@ class MangaViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         setNeedsStatusBarAppearanceUpdate()
         japaneseHelpBottomConstraint.constant = 100
+        progressBar.alpha = 0
         self.view.layoutIfNeeded()
     }
 
@@ -198,6 +201,10 @@ class MangaViewController: UIViewController {
             UIView.animate(withDuration: 0.15) {
                 self.view.layoutIfNeeded()
             }
+        }
+
+        UIView.animate(withDuration: 0.15) {
+            self.progressBar.alpha = self.fullScreen ? 0 : 1
         }
     }
 
