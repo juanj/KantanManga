@@ -21,6 +21,7 @@ struct AcknowledgmentsView: View {
                 SQLite.swift
                 TesseractOCRiOS
                 UnrarKit
+                MeCab - Nara Institute of Science and Technology / Taku Kudou
                 """)
             Text("Dictionary file")
                 .font(.title)
