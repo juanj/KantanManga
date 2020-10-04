@@ -92,7 +92,7 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
         if let image = manga.coverImage {
             cell.coverImageView.image = image
         }
-        cell.pageLabel.text = "\(manga.currentPage)/\(manga.totalPages)"
+        cell.pageLabel.text = "\(manga.currentPage + 1)/\(manga.totalPages)"
         if indexPath.row < 3 {
             cell.layer.zPosition = 1000 + CGFloat(3 - indexPath.row)
         }
