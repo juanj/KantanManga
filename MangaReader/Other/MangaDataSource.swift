@@ -63,7 +63,7 @@ class MangaDataSource: NSObject {
         return doublePaged ? .mid : .max
     }
 
-    func initialConfiguration(with orientation: UIInterfaceOrientation, and viewControllers: [UIViewController]?, delegate: PageViewControllerDelegate? = nil, fullScreen: Bool = true) -> (UIPageViewController.SpineLocation, [PageViewController]) {
+    func initialConfiguration(with orientation: UIInterfaceOrientation, and viewControllers: [UIViewController]? = nil, startingPage: Int, delegate: PageViewControllerDelegate? = nil, fullScreen: Bool = true) -> (UIPageViewController.SpineLocation, [PageViewController]) {
         let location = spinLocation(with: orientation)
         var pageViewControllers = [PageViewController]()
         switch location {
@@ -83,7 +83,7 @@ class MangaDataSource: NSObject {
                 pageViewControllers = [page]
             } else {
                 // Create pages
-                let page = createPage(index: Int(manga.currentPage), side: .center, delegate: delegate, fullScreen: true)
+                let page = createPage(index: startingPage, side: .center, delegate: delegate, fullScreen: true)
                 pageViewControllers = [page]
             }
         case .mid:
@@ -115,15 +115,15 @@ class MangaDataSource: NSObject {
                 }
             } else {
                 // Create pages
-                if manga.currentPage % 2 == 1 {
-                    let page1 = createPage(index: Int(manga.currentPage - 1) + pagesOffset.intValue, side: .right, delegate: delegate)
-                    let page2 = createPage(index: Int(manga.currentPage) + pagesOffset.intValue, side: .left, delegate: delegate)
+                if startingPage % 2 == 1 {
+                    let page1 = createPage(index: startingPage - 1 + pagesOffset.intValue, side: .right, delegate: delegate)
+                    let page2 = createPage(index: startingPage + pagesOffset.intValue, side: .left, delegate: delegate)
 
                     // Set view controllers in this order to make manga RTL
                     pageViewControllers = [page2, page1]
                 } else {
-                    let page1 = createPage(index: Int(manga.currentPage) + pagesOffset.intValue, side: .right, delegate: delegate)
-                    let page2 = createPage(index: Int(manga.currentPage + 1) + pagesOffset.intValue, side: .left, delegate: delegate)
+                    let page1 = createPage(index: startingPage + pagesOffset.intValue, side: .right, delegate: delegate)
+                    let page2 = createPage(index: startingPage + 1 + pagesOffset.intValue, side: .left, delegate: delegate)
 
                     // Set view controllers in this order to make manga RTL
                     pageViewControllers = [page2, page1]

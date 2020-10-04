@@ -23,6 +23,8 @@ class MangaViewController: UIViewController {
     private var selectionView = SelectionView()
     private var japaneseHelp: JapaneseHelpViewController!
     private var japaneseHelpBottomConstraint: NSLayoutConstraint!
+    private let progressBar = UISlider()
+    private var oldPageValue = 0
 
     private var isPageAnimating = false
     private var fullScreen = false
@@ -58,6 +60,7 @@ class MangaViewController: UIViewController {
         configurePageControllerConstraints()
         configureSelectionView()
         configureJapaneseHelpView()
+        configureProgressBar()
         configureKeyboard()
         startAtFullScreen()
     }
@@ -79,13 +82,12 @@ class MangaViewController: UIViewController {
     private func createPageController() {
         let orientation: UIInterfaceOrientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation ?? .portrait
 
-        let (spineLocation, initialPages) = dataSource.initialConfiguration(with: orientation, and: nil, delegate: self)
+        let (spineLocation, initialPages) = dataSource.initialConfiguration(with: orientation, startingPage: Int(manga.currentPage), delegate: self)
         pageController = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: [.spineLocation: spineLocation.rawValue])
         pageController.isDoubleSided = spineLocation == .mid
         pageController.delegate = self
         pageController.dataSource = dataSource
         pageController.setViewControllers(initialPages, direction: .forward, animated: true, completion: nil)
-
     }
 
     private func configureSelectionView() {
@@ -138,6 +140,25 @@ class MangaViewController: UIViewController {
         edgePan.edges = .bottom
         edgePan.delegate = self
         view.addGestureRecognizer(edgePan)
+    }
+
+    private func configureProgressBar() {
+        view.addSubview(progressBar)
+        progressBar.minimumTrackTintColor = .gray
+        progressBar.maximumTrackTintColor = .systemBlue
+        progressBar.minimumValue = 0
+        progressBar.maximumValue = Float(manga.totalPages) - 0.001
+        progressBar.value = progressBar.maximumValue - Float(manga.currentPage)
+        oldPageValue = Int(manga.currentPage)
+        if pageController.isDoubleSided {
+            oldPageValue -= oldPageValue % 2
+        }
+        progressBar.addTarget(self, action: #selector(movePage), for: .valueChanged)
+
+        progressBar.translatesAutoresizingMaskIntoConstraints = false
+        progressBar.bottomAnchor.constraint(equalTo: japaneseHelp.view.topAnchor, constant: -50).isActive = true
+        progressBar.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        progressBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
     }
 
     private func configureKeyboard() {
@@ -239,6 +260,23 @@ class MangaViewController: UIViewController {
         }
     }
 
+    @objc func movePage() {
+        var page = Int(floor(progressBar.maximumValue - progressBar.value))
+        let orientation: UIInterfaceOrientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation ?? .portrait
+
+        if pageController.isDoubleSided {
+            page -= page % 2
+        }
+        guard page != oldPageValue else { return }
+
+        let (_, pages) = dataSource.initialConfiguration(with: orientation, startingPage: page, delegate: self, fullScreen: fullScreen)
+
+        pageController.setViewControllers(pages, direction: page > oldPageValue ? .reverse : .forward, animated: true, completion: nil)
+        manga.currentPage = Int16(pages[0].pageNumber)
+        CoreDataManager.sharedManager.updateManga(manga: manga)
+        oldPageValue = page
+    }
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -251,7 +289,7 @@ extension MangaViewController: UIPageViewControllerDelegate {
             return pageViewController.spineLocation
         }
         isPageAnimating = false
-        let (spineLocation, initialPages) = dataSource.initialConfiguration(with: orientation, and: pageViewController.viewControllers, delegate: self)
+        let (spineLocation, initialPages) = dataSource.initialConfiguration(with: orientation, and: pageViewController.viewControllers, startingPage: Int(manga.currentPage), delegate: self)
 
         pageViewController.setViewControllers(initialPages, direction: .forward, animated: true, completion: nil)
         pageViewController.isDoubleSided = spineLocation == .mid
@@ -260,9 +298,15 @@ extension MangaViewController: UIPageViewControllerDelegate {
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if let pageView = pageViewController.viewControllers?.last as? PageViewController, !pageView.isPaddingPage {
+        if let pageView = pageViewController.viewControllers?.first as? PageViewController, !pageView.isPaddingPage {
             manga.currentPage = Int16(pageView.pageNumber)
             CoreDataManager.sharedManager.updateManga(manga: manga)
+
+            progressBar.value = progressBar.maximumValue - Float(pageView.pageNumber)
+            oldPageValue = pageView.pageNumber
+            if pageController.isDoubleSided {
+                oldPageValue -= oldPageValue % 2
+            }
         }
 
         if completed || finished {
