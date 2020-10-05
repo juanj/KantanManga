@@ -19,15 +19,7 @@ class MangaDataSource: NSObject {
     private var mangaReader: Reader!
     private let manga: Manga
 
-    private var cache = [Int: UIImage]() {
-        didSet {
-            // Only keep next 20 and previous 20 pages
-            let currentPage = Int(manga.currentPage)
-            cache = cache.filter { (element) -> Bool in
-                element.key > (currentPage - 20) && element.key < (currentPage + 20)
-            }
-        }
-    }
+    private let cache = NSCache<NSString, UIImage>()
     private var queue = [(PageViewController, Int)]()
 
     init?(manga: Manga) {
@@ -226,7 +218,7 @@ class MangaDataSource: NSObject {
             return
         }
 
-        if let imageInCache = cache[index] {
+        if let imageInCache = cache.object(forKey: String(index) as NSString) {
             callBack?(imageInCache)
         } else {
             mangaReader.readEntityAt(index: index) { (data) in
@@ -237,7 +229,7 @@ class MangaDataSource: NSObject {
 
                 // Dictionaries are not thread safe.
                 DispatchQueue.main.async {
-                    self.cache[index] = image
+                    self.cache.setObject(image, forKey: String(index) as NSString)
                     callBack?(image)
                 }
             }
