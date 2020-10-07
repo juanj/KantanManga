@@ -52,6 +52,10 @@ class DictionaryView: UIView {
         let bottomConstraint = stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         let widthConstraint = stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40)
         scrollView.addConstraints([leftConstraint, rightConstraint, topConstraint, bottomConstraint, widthConstraint])
+
+        // Add this zero frame view so the stackview can calculate its frame even when ther are no entries.
+        let zeroView = UIView(frame: .zero)
+        stackView.addArrangedSubview(zeroView)
     }
 
     func setEntries(entries: [DictionaryResult]) {
