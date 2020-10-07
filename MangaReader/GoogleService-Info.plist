@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>233350295733-j2caic8v3qc7rm0tb7146eba39bdui4v.apps.googleusercontent.com</string>
+	<string>233350295733-pccre2ulv1imekvrbi5q6isqisq3aqmt.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.233350295733-j2caic8v3qc7rm0tb7146eba39bdui4v</string>
+	<string>com.googleusercontent.apps.233350295733-pccre2ulv1imekvrbi5q6isqisq3aqmt</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDHz--WDw5eOhymdeISkyoOUQjGlWIsys4</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.bakura.MangaReader</string>
+	<string>com.kantanmanga</string>
 	<key>PROJECT_ID</key>
 	<string>man-gareader</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:233350295733:ios:40a38b9bba503793</string>
+	<string>1:233350295733:ios:8883d6038ea106b3c4cefc</string>
 	<key>DATABASE_URL</key>
 	<string>https://man-gareader.firebaseio.com</string>
 </dict>
