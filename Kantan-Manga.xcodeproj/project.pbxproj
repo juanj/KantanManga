@@ -36,7 +36,6 @@
 		323CD90A23CB7107007FFC58 /* jamdict.db in Resources */ = {isa = PBXBuildFile; fileRef = 323CD90923CB7107007FFC58 /* jamdict.db */; };
 		3249F2D7250BBC18004C514E /* MangaCollectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */; };
 		3249F2D8250BBC18004C514E /* MangaCollectionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3249F2D6250BBC18004C514E /* MangaCollectionCollectionViewCell.xib */; };
-		324BB93B2498302E006241E8 /* mecabrc in Resources */ = {isa = PBXBuildFile; fileRef = 3258141023C5051A00C31E02 /* mecabrc */; };
 		324BB95A2498365E006241E8 /* mecabrc in Resources */ = {isa = PBXBuildFile; fileRef = 324BB9592498365E006241E8 /* mecabrc */; };
 		324BB96E2498369B006241E8 /* mecab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324BB958249835DD006241E8 /* mecab.framework */; };
 		324BB96F2498369B006241E8 /* mecab.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 324BB958249835DD006241E8 /* mecab.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -674,7 +673,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					84A831E2221D90CA00CEE1C9 = {
@@ -747,7 +746,6 @@
 				32326F8D243566FD00FCE8E5 /* cbz.png in Resources */,
 				324BB99724983DF7006241E8 /* sys.dic in Resources */,
 				324BB99224983DF7006241E8 /* rewrite.def in Resources */,
-				324BB93B2498302E006241E8 /* mecabrc in Resources */,
 				324BB99424983DF7006241E8 /* pos-id.def in Resources */,
 				328DFB0B238D96300095CBAB /* MangaViewController.xib in Resources */,
 				3219C2AA251100D200915DE1 /* CollectionViewController.xib in Resources */,
@@ -1013,6 +1011,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1074,6 +1073,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
