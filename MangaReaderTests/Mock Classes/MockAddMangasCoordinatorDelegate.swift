@@ -18,6 +18,4 @@ class MockAddMangasCoordinatorDelegate: AddMangasCoordinatorDelegate {
     func cancel(_ addMangasCoordinator: AddMangasCoordinator) {
         cancelCalled = true
     }
-
-
 }

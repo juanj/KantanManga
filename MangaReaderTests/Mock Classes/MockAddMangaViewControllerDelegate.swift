@@ -29,6 +29,4 @@ class MockAddMangaViewControllerDelegate: AddMangaViewControllerDelegate {
     func selectCollection(addMangaViewController: AddMangaViewController) {
         selectCollectionCalled = true
     }
-
-
 }

@@ -74,7 +74,7 @@ class AppCoordinatorTests: XCTestCase {
 
 class AddMangasCoordinatorTests: XCTestCase {
     var navigation: MockNavigationController!
-    var delegate: MockAddMangasCoordinatorDelegate!
+    var delegate: MockAddMangasCoordinatorDelegate! // swiftlint:disable:this weak_delegate
     var mockServer: MockUploadServer!
     var addMangasCoordinator: AddMangasCoordinator!
 
@@ -135,7 +135,7 @@ class AddMangasCoordinatorTests: XCTestCase {
 
 class ViewMangaCoordinatorTests: XCTestCase {
     var navigation: MockNavigationController!
-    var delegate: MockViewMangaCoordinatorDelegate!
+    var delegate: MockViewMangaCoordinatorDelegate! // swiftlint:disable:this weak_delegate
     var viewMangaCoordinator: ViewMangaCoordinator!
     var ocr: MockOCR!
     var manga: Manga!
