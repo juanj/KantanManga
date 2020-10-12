@@ -12,7 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="Kantan_Manga" customModuleProvider="target">
             <connections>
-                <outlet property="backgroundCircleView" destination="HLG-dx-hIu" id="R9Z-B2-b17"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -83,7 +82,33 @@
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ss-2K-KLV">
                             <rect key="frame" x="375" y="0.0" width="375" height="627"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="JeD-wL-cn1">
+                                    <rect key="frame" x="20" y="263.5" width="335" height="100.5"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A word you don't know? No problem!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4n1-KM-cpd">
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="60"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use OCR to convert the image in to text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bX0-CT-cGa">
+                                            <rect key="frame" x="0.0" y="80" width="335" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="JeD-wL-cn1" secondAttribute="bottom" constant="60" id="Asz-9H-kpK"/>
+                                <constraint firstItem="JeD-wL-cn1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1Ss-2K-KLV" secondAttribute="top" constant="20" id="Dpb-hG-217"/>
+                                <constraint firstItem="JeD-wL-cn1" firstAttribute="centerY" secondItem="1Ss-2K-KLV" secondAttribute="centerY" id="J4c-x1-kQc"/>
+                                <constraint firstAttribute="trailing" secondItem="JeD-wL-cn1" secondAttribute="trailing" constant="20" id="Poa-6k-Ayk"/>
+                                <constraint firstItem="JeD-wL-cn1" firstAttribute="leading" secondItem="1Ss-2K-KLV" secondAttribute="leading" constant="20" id="dQh-S3-HhM"/>
+                            </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UFA-vj-eyH">
                             <rect key="frame" x="750" y="0.0" width="375" height="627"/>
