@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="Kantan_Manga" customModuleProvider="target">
             <connections>
+                <outlet property="pageControl" destination="9HT-CU-ns5" id="xUP-ai-Xqn"/>
+                <outlet property="scrollView" destination="Ocx-vF-ovs" id="bWB-bw-JtX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
