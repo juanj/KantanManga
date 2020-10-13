@@ -68,6 +68,7 @@
 		328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DFB08238D96300095CBAB /* MangaViewController.swift */; };
 		328DFB0B238D96300095CBAB /* MangaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328DFB09238D96300095CBAB /* MangaViewController.xib */; };
 		328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */; };
+		3292ADA22535DCF8004E8441 /* DemoOcrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3292ADA12535DCF8004E8441 /* DemoOcrView.swift */; };
 		329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E30E623E9CEE000AD13A3 /* MangaCollection.swift */; };
 		329E30E923E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */; };
 		32A1516C253260C0002B3920 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1516A253260C0002B3920 /* OnboardingViewController.swift */; };
@@ -210,6 +211,7 @@
 		328DFB08238D96300095CBAB /* MangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaViewController.swift; sourceTree = "<group>"; };
 		328DFB09238D96300095CBAB /* MangaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MangaViewController.xib; sourceTree = "<group>"; };
 		328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMangaCoordinator.swift; sourceTree = "<group>"; };
+		3292ADA12535DCF8004E8441 /* DemoOcrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoOcrView.swift; sourceTree = "<group>"; };
 		329E30E623E9CEE000AD13A3 /* MangaCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollection.swift; sourceTree = "<group>"; };
 		329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MangaCollection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32A1516A253260C0002B3920 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 			children = (
 				32A1516A253260C0002B3920 /* OnboardingViewController.swift */,
 				32A1516B253260C0002B3920 /* OnboardingViewController.xib */,
+				3292ADA12535DCF8004E8441 /* DemoOcrView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -922,6 +925,7 @@
 				32E3221C2481A67D007BC017 /* JapaneseHelpViewController.swift in Sources */,
 				320F277323C2046900D9930F /* Token.swift in Sources */,
 				84A831E7221D90CA00CEE1C9 /* AppDelegate.swift in Sources */,
+				3292ADA22535DCF8004E8441 /* DemoOcrView.swift in Sources */,
 				3259D1B423C4D9A2003BA7C2 /* FuriganaUtils.swift in Sources */,
 				328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */,
 				84A8321D221D951500CEE1C9 /* LibraryViewController.swift in Sources */,
