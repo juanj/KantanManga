@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="Kantan_Manga" customModuleProvider="target">
             <connections>
+                <outlet property="ocrDemoContainer" destination="BBt-Eg-26G" id="ijh-WH-6yx"/>
                 <outlet property="pageControl" destination="9HT-CU-ns5" id="xUP-ai-Xqn"/>
                 <outlet property="scrollView" destination="Ocx-vF-ovs" id="bWB-bw-JtX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -86,16 +87,43 @@
                             <rect key="frame" x="375" y="0.0" width="375" height="627"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="JeD-wL-cn1">
-                                    <rect key="frame" x="20" y="263.5" width="335" height="100.5"/>
+                                    <rect key="frame" x="20" y="87" width="335" height="453"/>
                                     <subviews>
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awi-lD-Ex5">
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="332.5"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo-ocr" translatesAutoresizingMaskIntoConstraints="NO" id="ASY-Sh-rXq">
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="332.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="ASY-Sh-rXq" secondAttribute="height" multiplier="163:162" id="Aee-oZ-Ccs"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBt-Eg-26G">
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="332.5"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="BBt-Eg-26G" firstAttribute="centerX" secondItem="ASY-Sh-rXq" secondAttribute="centerX" id="9Gf-2z-a1U"/>
+                                                <constraint firstItem="BBt-Eg-26G" firstAttribute="height" secondItem="ASY-Sh-rXq" secondAttribute="height" id="DIp-51-f8g"/>
+                                                <constraint firstItem="ASY-Sh-rXq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="awi-lD-Ex5" secondAttribute="leading" id="R23-Y9-eA2"/>
+                                                <constraint firstItem="ASY-Sh-rXq" firstAttribute="top" secondItem="awi-lD-Ex5" secondAttribute="top" id="SQd-NF-Y0F"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ASY-Sh-rXq" secondAttribute="trailing" id="Zk0-ut-5de"/>
+                                                <constraint firstItem="BBt-Eg-26G" firstAttribute="width" secondItem="ASY-Sh-rXq" secondAttribute="width" id="fk2-Id-b3R"/>
+                                                <constraint firstAttribute="bottom" secondItem="ASY-Sh-rXq" secondAttribute="bottom" id="gcK-WO-naU"/>
+                                                <constraint firstItem="ASY-Sh-rXq" firstAttribute="centerX" secondItem="awi-lD-Ex5" secondAttribute="centerX" id="ggf-Td-ayz"/>
+                                                <constraint firstItem="BBt-Eg-26G" firstAttribute="centerY" secondItem="ASY-Sh-rXq" secondAttribute="centerY" id="usx-PW-taM"/>
+                                            </constraints>
+                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A word you don't know? No problem!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4n1-KM-cpd">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="60"/>
+                                            <rect key="frame" x="0.0" y="352.5" width="335" height="60"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use OCR to convert the image in to text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bX0-CT-cGa">
-                                            <rect key="frame" x="0.0" y="80" width="335" height="20.5"/>
+                                            <rect key="frame" x="0.0" y="432.5" width="335" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -167,6 +195,7 @@
     </objects>
     <resources>
         <image name="demo-bundle" width="1001" height="715"/>
+        <image name="demo-ocr" width="163" height="162"/>
         <namedColor name="JapanRed">
             <color red="0.73725490196078436" green="0.0" blue="0.17647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
