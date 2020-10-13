@@ -13,6 +13,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="Kantan_Manga" customModuleProvider="target">
             <connections>
                 <outlet property="demoView" destination="Yur-xe-b5P" id="ufg-zJ-GUq"/>
+                <outlet property="loadMangaButton" destination="FG4-Dz-KuS" id="XUF-zw-Zdg"/>
+                <outlet property="notNowButton" destination="btM-rn-LNp" id="IHn-q4-j16"/>
                 <outlet property="pageControl" destination="9HT-CU-ns5" id="xUP-ai-Xqn"/>
                 <outlet property="scrollView" destination="Ocx-vF-ovs" id="bWB-bw-JtX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -124,27 +126,49 @@
                             <rect key="frame" x="750" y="0.0" width="375" height="627"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Xw6-X7-ux0">
-                                    <rect key="frame" x="20" y="118" width="335" height="391"/>
+                                    <rect key="frame" x="20" y="159" width="335" height="309.5"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5a3-Dd-BYe" customClass="DemoOcrView" customModule="Kantan_Manga" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="250"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="250" placeholder="YES" id="gaf-xy-e9B"/>
-                                            </constraints>
-                                        </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A word you don't know? No problem!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVD-CM-yFP">
-                                            <rect key="frame" x="0.0" y="270" width="335" height="60"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="漫画!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xom-qV-IGK">
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="167.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="140"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start reading!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVD-CM-yFP">
+                                            <rect key="frame" x="0.0" y="187.5" width="335" height="30"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use OCR to convert the image in to text and search it on the dictionary" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9KF-Ct-1iH">
-                                            <rect key="frame" x="0.0" y="350" width="335" height="41"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8Yj-bb-VAX">
+                                            <rect key="frame" x="0.0" y="237.5" width="335" height="72"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FG4-Dz-KuS">
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="45"/>
+                                                    <color key="backgroundColor" name="JapanRed"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="45" id="KgM-NX-cbZ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <state key="normal" title="Load demo manga">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="loadDemoManga:" destination="-1" eventType="touchUpInside" id="V1X-DC-G1q"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btM-rn-LNp">
+                                                    <rect key="frame" x="0.0" y="45" width="335" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <state key="normal" title="Not now (you can load it at any time form Settings)">
+                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="nowNow:" destination="-1" eventType="touchUpInside" id="laR-Fd-P18"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                 </stackView>
                             </subviews>
