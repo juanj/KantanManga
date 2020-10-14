@@ -8,9 +8,11 @@
 import UIKit
 
 class DemoOcrView: UIView {
-    private var shapeLayer: CAShapeLayer!
     // Create a view to hold the animations and be able to clip the content
     private var container: UIView!
+    private var shapeLayer: CAShapeLayer?
+    private var parsedView: UIView?
+    private var parsedViewBottomConstraint: NSLayoutConstraint?
     private var animating = false
 
     override init(frame: CGRect) {
@@ -65,10 +67,10 @@ class DemoOcrView: UIView {
 
     private func selectionAnimation() {
         if shapeLayer != nil {
-            shapeLayer.removeFromSuperlayer()
+            shapeLayer?.removeFromSuperlayer()
         }
         let topPoint = CGPoint(x: frame.width / 8, y: frame.width / 4)
-        shapeLayer = CAShapeLayer()
+        let shapeLayer = CAShapeLayer()
         shapeLayer.path = UIBezierPath(rect: CGRect(origin: topPoint, size: .zero)).cgPath
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineWidth = 5.0
@@ -94,6 +96,8 @@ class DemoOcrView: UIView {
         dashAnimation.toValue = 15.0
         dashAnimation.repeatCount = .infinity
         shapeLayer.add(dashAnimation, forKey: "linePhase")
+
+        self.shapeLayer = shapeLayer
     }
 
     private func loadingAnimation() {
@@ -122,7 +126,7 @@ class DemoOcrView: UIView {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             loaderView.removeFromSuperview()
-            self.shapeLayer.removeFromSuperlayer()
+            self.shapeLayer?.removeFromSuperlayer()
             self.textAnimation()
         }
     }
@@ -137,8 +141,8 @@ class DemoOcrView: UIView {
         parsedView.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.37).isActive = true
         parsedView.leftAnchor.constraint(equalTo: container.leftAnchor).isActive = true
         parsedView.rightAnchor.constraint(equalTo: container.rightAnchor).isActive = true
-        let bottomConstraint = parsedView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: container.frame.height * 0.37)
-        bottomConstraint.isActive = true
+        let parsedViewBottomConstraint = parsedView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: container.frame.height * 0.37)
+        parsedViewBottomConstraint.isActive = true
 
         let textLabel = UILabel()
         textLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -157,21 +161,71 @@ class DemoOcrView: UIView {
         textLabel.font = .systemFont(ofSize: container.frame.height * 0.1, weight: .bold)
 
         layoutIfNeeded()
-        bottomConstraint.constant = 0
+        parsedViewBottomConstraint.constant = 0
         UIView.animate(withDuration: 0.3, animations: {
             self.layoutIfNeeded()
         }, completion: { (_) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                UIView.animate(withDuration: 0.5, animations: {
-                    parsedView.alpha = 0
-                }, completion: { _ in
-                    parsedView.removeFromSuperview()
-                    self.animating = false
-                    self.startAnimation()
-                })
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.dictionaryAnimation()
             }
         })
 
+        self.parsedView = parsedView
+        self.parsedViewBottomConstraint = parsedViewBottomConstraint
+    }
+
+    private func dictionaryAnimation() {
+        guard let parsedViewBottomConstraint = parsedViewBottomConstraint,
+              let parsedView = parsedView else { return }
+
+        let titleLabel = UILabel()
+        titleLabel.text = "超, ちょう, チョー"
+        titleLabel.font = .systemFont(ofSize: container.frame.width / 19, weight: .bold)
+
+        let meaningLabel = UILabel()
+        meaningLabel.font = .systemFont(ofSize: container.frame.width / 20)
+        meaningLabel.numberOfLines = 3
+        meaningLabel.text = "• super-; ultra-; hyper-; extreme\n• extremely; really; totally; absolutely\n• over; more than"
+
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, meaningLabel])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+
+        let dictView = UIView()
+        dictView.backgroundColor = .systemBackground
+        dictView.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(dictView)
+
+        dictView.addSubview(stackView)
+
+        let padding = container.frame.width / 20
+        stackView.topAnchor.constraint(equalTo: dictView.topAnchor, constant: padding).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: dictView.bottomAnchor, constant: -padding).isActive = true
+        stackView.leftAnchor.constraint(equalTo: dictView.leftAnchor, constant: padding).isActive = true
+        stackView.rightAnchor.constraint(equalTo: dictView.rightAnchor, constant: -padding).isActive = true
+
+        dictView.heightAnchor.constraint(equalTo: parsedView.heightAnchor).isActive = true
+        dictView.leftAnchor.constraint(equalTo: container.leftAnchor).isActive = true
+        dictView.rightAnchor.constraint(equalTo: container.rightAnchor).isActive = true
+        let dictBottomConstraint = dictView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: parsedView.frame.height)
+        dictBottomConstraint.isActive = true
+        layoutIfNeeded()
+
+        parsedViewBottomConstraint.constant = -parsedView.frame.height
+        dictBottomConstraint.constant = 0
+        UIView.animate(withDuration: 0.3, animations: {
+            self.layoutIfNeeded()
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.5, delay: 2, animations: {
+                parsedView.alpha = 0
+                dictView.alpha = 0
+            }, completion: { _ in
+                parsedView.removeFromSuperview()
+                self.animating = false
+                self.startAnimation()
+            })
+        })
     }
 }
 
