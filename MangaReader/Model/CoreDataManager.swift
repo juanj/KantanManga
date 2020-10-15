@@ -277,7 +277,7 @@ class CoreDataManager {
 
             do {
                 try FileManager.default.copyItem(at: filePath, to: newFileUrl)
-                guard let collection = self.insertCollection(name: "Demo") else { return }
+                guard let collection = self.insertCollection(name: "Demo Collection") else { return }
                 self.createMangaWith(filePath: fileName, name: "聖☆おにいさん preview", collection: collection) { _ in
                     completion()
                 }
