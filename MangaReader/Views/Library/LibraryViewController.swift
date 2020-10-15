@@ -14,6 +14,7 @@ protocol LibraryViewControllerDelegate: AnyObject {
     func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable, rotations: [CGAffineTransform])
     func didSelectDeleteCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable)
     func didSelectRenameCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable, name: String?)
+    func didSelectLoadDemoManga(_ libraryViewController: LibraryViewController)
 }
 
 class LibraryViewController: UIViewController {
@@ -23,11 +24,13 @@ class LibraryViewController: UIViewController {
 
     private weak var delegate: LibraryViewControllerDelegate?
     private var collections = [MangaCollectionable]()
+    private var showOnboarding: Bool
     private let rotations: [CGAffineTransform]
 
-    init(delegate: LibraryViewControllerDelegate, collections: [MangaCollectionable]) {
+    init(delegate: LibraryViewControllerDelegate, collections: [MangaCollectionable], showOnboarding: Bool = false) {
         self.delegate = delegate
         self.collections = collections
+        self.showOnboarding = showOnboarding
         rotations = [CGAffineTransform(rotationAngle: -0.05),
                      CGAffineTransform(rotationAngle: 0.07),
                      CGAffineTransform(rotationAngle: 0.03)]
@@ -48,6 +51,10 @@ class LibraryViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         collectionView.reloadData()
+        if showOnboarding {
+            showOnboarding = false
+            present(OnboardingViewController(delegate: self), animated: true, completion: nil)
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -199,5 +206,15 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         parameters.backgroundColor = .clear
         let preview = UITargetedPreview(view: cell.container, parameters: parameters)
         return preview
+    }
+}
+
+extension LibraryViewController: OnboardingViewControllerDelegate {
+    func didSelectLoadManga(_ onboardingViewController: OnboardingViewController) {
+        delegate?.didSelectLoadDemoManga(self)
+    }
+
+    func didSelectNotNow(_ onboardingViewController: OnboardingViewController) {
+        dismiss(animated: true, completion: nil)
     }
 }

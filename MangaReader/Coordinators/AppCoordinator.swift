@@ -26,7 +26,8 @@ class AppCoordinator: NSObject, Coordinator {
     }
 
     func start() {
-        let library = LibraryViewController(delegate: self, collections: loadCollections())
+        let library = LibraryViewController(delegate: self, collections: loadCollections(), showOnboarding: !UserDefaults.standard.bool(forKey: "returning"))
+        UserDefaults.standard.setValue(true, forKey: "returning")
         navigationController.pushViewController(library, animated: false)
         libraryView = library
     }
@@ -82,6 +83,15 @@ extension AppCoordinator: LibraryViewControllerDelegate {
         collection.name = name
         CoreDataManager.sharedManager.updateCollection(collection)
         libraryViewController.setCollections(collections: loadCollections())
+    }
+
+    func didSelectLoadDemoManga(_ libraryViewController: LibraryViewController) {
+        libraryView?.dismiss(animated: true, completion: nil)
+        CoreDataManager.sharedManager.createDemoManga {
+            DispatchQueue.main.async {
+                libraryViewController.setCollections(collections: self.loadCollections())
+            }
+        }
     }
 }
 
