@@ -77,6 +77,7 @@
 		32AF5BCE2512567900E96C9F /* MangaCollectionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AF5BCD2512567900E96C9F /* MangaCollectionable.swift */; };
 		32AF5BD1251256E600E96C9F /* EmptyMangaCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AF5BD0251256E600E96C9F /* EmptyMangaCollection.swift */; };
 		32B67064252E09FF00F89D7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32B67063252E09FE00F89D7A /* GoogleService-Info.plist */; };
+		32C1EEF32539DE04001F59A0 /* FocusOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1EEF22539DE04001F59A0 /* FocusOverlayView.swift */; };
 		32C3512F24845D2800D1EB42 /* MockViewMangaCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C3512E24845D2800D1EB42 /* MockViewMangaCoordinatorDelegate.swift */; };
 		32C351332484645700D1EB42 /* MockOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C351322484645700D1EB42 /* MockOCR.swift */; };
 		32C49CD725168A0F000A9607 /* OpenCollectionAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */; };
@@ -220,6 +221,7 @@
 		32AF5BCD2512567900E96C9F /* MangaCollectionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollectionable.swift; sourceTree = "<group>"; };
 		32AF5BD0251256E600E96C9F /* EmptyMangaCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMangaCollection.swift; sourceTree = "<group>"; };
 		32B67063252E09FE00F89D7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		32C1EEF22539DE04001F59A0 /* FocusOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusOverlayView.swift; sourceTree = "<group>"; };
 		32C3512E24845D2800D1EB42 /* MockViewMangaCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockViewMangaCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		32C351322484645700D1EB42 /* MockOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOCR.swift; sourceTree = "<group>"; };
 		32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCollectionAnimationController.swift; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 				3238DF3924D7840200DE8782 /* WordButton.swift */,
 				322EF657250FB49700F35E72 /* AspectAlignImage.swift */,
 				32A1517125326D76002B3920 /* CircleView.swift */,
+				32C1EEF22539DE04001F59A0 /* FocusOverlayView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -912,6 +915,7 @@
 				32AF5BD1251256E600E96C9F /* EmptyMangaCollection.swift in Sources */,
 				32F1B9FC24369E1100AE367D /* OpenMangaAnimationController.swift in Sources */,
 				8418696D222495FE00C689DC /* Manga.swift in Sources */,
+				32C1EEF32539DE04001F59A0 /* FocusOverlayView.swift in Sources */,
 				32FA3C7C24367428001EB0DF /* String+Extension.swift in Sources */,
 				325DA0B923C8F50700A627BD /* JapaneseDictionary.swift in Sources */,
 				32AF5BCE2512567900E96C9F /* MangaCollectionable.swift in Sources */,
