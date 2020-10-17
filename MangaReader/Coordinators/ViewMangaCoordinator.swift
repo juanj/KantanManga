@@ -40,7 +40,7 @@ class ViewMangaCoordinator: NSObject, Coordinator {
         }
         let mangaView = MangaViewController(manga: manga, dataSource: mangaDataSource, delegate: self)
         navigationController.delegate = self
-        navigationController.navigationBar.isHidden = true
+        navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(mangaView, animated: true)
     }
 }

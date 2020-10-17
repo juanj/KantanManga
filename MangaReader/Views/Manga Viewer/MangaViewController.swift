@@ -65,6 +65,12 @@ class MangaViewController: UIViewController {
         startAtFullScreen()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Navigation bar is hidden for the opening animation, but if fullscreen is false it should be shown
+        navigationController?.setNavigationBarHidden(fullScreen, animated: true)
+    }
+
     private func configureNavBar() {
         title = manga.name
         let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(back))
