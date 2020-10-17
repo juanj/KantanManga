@@ -321,10 +321,6 @@ class MangaViewController: UIViewController {
         CoreDataManager.sharedManager.updateManga(manga: manga)
         oldPageValue = page
     }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
 }
 
 // MARK: PageViewControllerDelegate
