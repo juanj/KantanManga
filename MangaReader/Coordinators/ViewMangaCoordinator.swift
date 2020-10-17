@@ -38,7 +38,8 @@ class ViewMangaCoordinator: NSObject, Coordinator {
             delegate?.didEnd(self)
             return
         }
-        let mangaView = MangaViewController(manga: manga, dataSource: mangaDataSource, delegate: self)
+        let mangaView = MangaViewController(manga: manga, dataSource: mangaDataSource, delegate: self, firstTime: !UserDefaults.standard.bool(forKey: "hasSeenManga"))
+        UserDefaults.standard.setValue(true, forKey: "hasSeenManga")
         navigationController.delegate = self
         navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(mangaView, animated: true)

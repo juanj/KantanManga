@@ -26,8 +26,8 @@ class AppCoordinator: NSObject, Coordinator {
     }
 
     func start() {
-        let library = LibraryViewController(delegate: self, collections: loadCollections(), showOnboarding: !UserDefaults.standard.bool(forKey: "returning"))
-        UserDefaults.standard.setValue(true, forKey: "returning")
+        let library = LibraryViewController(delegate: self, collections: loadCollections(), showOnboarding: !UserDefaults.standard.bool(forKey: "hasSeenOnboarding"))
+        UserDefaults.standard.setValue(true, forKey: "hasSeenOnboarding")
         navigationController.pushViewController(library, animated: false)
         libraryView = library
     }

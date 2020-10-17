@@ -18,6 +18,7 @@ class MangaViewController: UIViewController {
     private let manga: Manga
     private let dataSource: MangaDataSource
     private weak var delegate: MangaViewControllerDelegate?
+    private let firstTime: Bool
 
     private var pageController: UIPageViewController!
     private var selectionView = SelectionView()
@@ -41,10 +42,11 @@ class MangaViewController: UIViewController {
         return fullScreen
     }
 
-    init(manga: Manga, dataSource: MangaDataSource, delegate: MangaViewControllerDelegate) {
+    init(manga: Manga, dataSource: MangaDataSource, delegate: MangaViewControllerDelegate, firstTime: Bool = false) {
         self.manga = manga
         self.dataSource = dataSource
         self.delegate = delegate
+        self.firstTime = firstTime
         super.init(nibName: nil, bundle: nil)
         dataSource.delegate = self
     }
@@ -62,13 +64,20 @@ class MangaViewController: UIViewController {
         configureJapaneseHelpView()
         configureProgressBar()
         configureKeyboard()
-        startAtFullScreen()
+
+        if !firstTime {
+            startAtFullScreen()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // Navigation bar is hidden for the opening animation, but if fullscreen is false it should be shown
         navigationController?.setNavigationBarHidden(fullScreen, animated: true)
+
+        if firstTime {
+            configureOverlay()
+        }
     }
 
     private func configureNavBar() {
@@ -178,6 +187,29 @@ class MangaViewController: UIViewController {
         pageController.view.removeFromSuperview()
         createPageController()
         configurePageControllerConstraints()
+    }
+
+    private func configureOverlay() {
+        guard let ocrButtonView = navigationItem.rightBarButtonItems?.first?.value(forKey: "view") as? UIView else { return }
+        let overlay = FocusOverlayView(delegate: self, centerOn: ocrButtonView, circleRadius: 50)
+        // Add overlay to window rootViewController, this way is on top of the navigationBar
+        if let window = UIApplication.shared.windows.first, let view = window.rootViewController?.view {
+            view.addSubview(overlay)
+            overlay.translatesAutoresizingMaskIntoConstraints = false
+            overlay.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            overlay.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+            overlay.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+            overlay.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+            overlay.layer.zPosition = 100
+            overlay.alpha = 0
+            UIView.animate(withDuration: 0.3, animations: {
+                overlay.alpha = 1
+            }, completion: { _ in
+                // Make sure overlay is the top most view.
+                // Without this after the navigationBar ends animating is set as the top view.
+                view.bringSubviewToFront(overlay)
+            })
+        }
     }
 
     func startAtFullScreen() {
@@ -425,5 +457,24 @@ extension MangaViewController: UIGestureRecognizerDelegate {
 extension MangaViewController: MangaDataSourceDelegate {
     func shouldLoadPage(_ mangaDataSource: MangaDataSource) -> Bool {
         return !(isPageAnimating || ocrEnabled)
+    }
+}
+
+extension MangaViewController: FocusOverlayViewDelegate {
+    func didTouchOutside(_ focusOverlayView: FocusOverlayView) {
+        UIView.animate(withDuration: 0.3) {
+            focusOverlayView.alpha = 0
+        } completion: { _ in
+            focusOverlayView.removeFromSuperview()
+        }
+    }
+
+    func didInteractWithContent(_ focusOverlayView: FocusOverlayView) {
+        toggleOcr()
+        UIView.animate(withDuration: 0.3) {
+            focusOverlayView.alpha = 0
+        } completion: { _ in
+            focusOverlayView.removeFromSuperview()
+        }
     }
 }
