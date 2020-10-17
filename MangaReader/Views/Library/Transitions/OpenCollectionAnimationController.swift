@@ -65,15 +65,13 @@ class OpenCollectionAnimationController: NSObject, UIViewControllerAnimatedTrans
         // LibraryViewController is reloaded on apper, so the selection is lost.
         // Insetad use this property to start a cell with alpha 0
         toVC.hideIndexPath = collectionIndexPath
+        toVC.fadeImages = fromVC.collectionView.indexPathsForVisibleItems.count > 0 && fromVC.collectionView.indexPathsForVisibleItems.firstIndex(of: IndexPath(item: 0, section: 0)) == nil
 
         let duration = transitionDuration(using: context)
         fromVC.closeAnimation(duration: duration)
         UIView.animate(withDuration: duration, animations: {
             toVC.view.alpha = 1
             fromVC.view.backgroundColor = .clear
-            if let cell = toVC.collectionView.cellForItem(at: self.collectionIndexPath) as? MangaCollectionCollectionViewCell {
-                cell.nameLabel.alpha = 1
-            }
         }, completion: { _ in
             if let cell = toVC.collectionView.cellForItem(at: self.collectionIndexPath) as? MangaCollectionCollectionViewCell {
                 cell.imageViews.forEach { $0.alpha = 1 }

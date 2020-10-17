@@ -21,6 +21,7 @@ class LibraryViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
     var hideIndexPath: IndexPath?
+    var fadeImages: Bool = false
 
     private weak var delegate: LibraryViewControllerDelegate?
     private var collections = [MangaCollectionable]()
@@ -135,6 +136,9 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
             cell.nameLabel.alpha = 0
             UIView.animate(withDuration: 0.5) {
                 cell.nameLabel.alpha = 1
+                if self.fadeImages {
+                    cell.imageViews.forEach { $0.alpha = 1 }
+                }
             }
         }
 
