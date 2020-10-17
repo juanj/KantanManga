@@ -33,6 +33,7 @@ class MangaViewController: UIViewController {
     private var ocrActivityIndicator = UIActivityIndicatorView(style: .medium)
 
     private var panInitialPosition: CGFloat = 0
+    private var overlay: FocusOverlayView?
 
     override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
       return .bottom
@@ -78,6 +79,11 @@ class MangaViewController: UIViewController {
         if firstTime {
             configureOverlay()
         }
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        overlay?.layoutSubviews()
     }
 
     private func configureNavBar() {
@@ -202,6 +208,17 @@ class MangaViewController: UIViewController {
             overlay.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
             overlay.layer.zPosition = 100
             overlay.alpha = 0
+            let label = UILabel()
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.text = "Tap to toggle\nOCR"
+            label.numberOfLines = 2
+            label.textAlignment = .center
+            label.font = .systemFont(ofSize: 35)
+            label.textColor = .white
+            overlay.addSubview(label)
+
+            label.trailingAnchor.constraint(equalTo: overlay.trailingAnchor, constant: -100).isActive = true
+            label.topAnchor.constraint(equalTo: overlay.topAnchor, constant: 40).isActive = true
             UIView.animate(withDuration: 0.3, animations: {
                 overlay.alpha = 1
             }, completion: { _ in
@@ -209,6 +226,8 @@ class MangaViewController: UIViewController {
                 // Without this after the navigationBar ends animating is set as the top view.
                 view.bringSubviewToFront(overlay)
             })
+
+            self.overlay = overlay
         }
     }
 

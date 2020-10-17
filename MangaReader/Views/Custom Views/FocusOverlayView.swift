@@ -49,7 +49,7 @@ class FocusOverlayView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
+        superview?.layoutIfNeeded()
         refreshOverlay()
     }
 
