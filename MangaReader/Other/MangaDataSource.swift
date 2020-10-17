@@ -60,72 +60,81 @@ class MangaDataSource: NSObject {
         var pageViewControllers = [PageViewController]()
         switch location {
         case .max:
-            if let pages = viewControllers as? [PageViewController], pages.count > 0 {
-                // Reuse current pages
-                let page: PageViewController
-                if pages.count == 2 {
-                    // Two pages. Keep the one on the right.
-                    page = pages[1]
-                } else {
-                    // Just one page. Use the same
-                    page = pages[0]
-                }
-                page.pageSide = .center
-                page.refreshView()
-                pageViewControllers = [page]
-            } else {
-                // Create pages
-                let page = createPage(index: startingPage, side: .center, delegate: delegate, fullScreen: true)
-                pageViewControllers = [page]
-            }
+            pageViewControllers = initialSinglePageConfiguration(viewControllers: viewControllers ?? [], startingPage: startingPage, delegate: delegate)
         case .mid:
-            if let pages = viewControllers as? [PageViewController], pages.count > 0 {
-                // Reuse current pages
-                if pages.count == 2 {
-                    pages[0].pageSide = .left
-                    pages[0].refreshView()
-                    pages[1].pageSide = .right
-                    pages[1].refreshView()
-                    pageViewControllers = pages
-                } else {
-                    let page = pages[0]
-                    if page.pageNumber % 2 == 0 {
-                        // If first page is even, get next page
-                        page.pageSide = .right
-                        page.refreshView()
-                        if let page2 = nextPage(currentPage: page) as? PageViewController {
-                            pageViewControllers = [page2, page]
-                        }
-                    } else {
-                        // If first page is odd, get previous page
-                        page.pageSide = .left
-                        page.refreshView()
-                        if let page2 = previousPage(currentPage: page) as? PageViewController {
-                            pageViewControllers = [page, page2]
-                        }
-                    }
-                }
-            } else {
-                // Create pages
-                if startingPage % 2 == 1 {
-                    let page1 = createPage(index: startingPage - 1 + pagesOffset.intValue, side: .right, delegate: delegate)
-                    let page2 = createPage(index: startingPage + pagesOffset.intValue, side: .left, delegate: delegate)
-
-                    // Set view controllers in this order to make manga RTL
-                    pageViewControllers = [page2, page1]
-                } else {
-                    let page1 = createPage(index: startingPage + pagesOffset.intValue, side: .right, delegate: delegate)
-                    let page2 = createPage(index: startingPage + 1 + pagesOffset.intValue, side: .left, delegate: delegate)
-
-                    // Set view controllers in this order to make manga RTL
-                    pageViewControllers = [page2, page1]
-                }
-            }
+            pageViewControllers = initialDoublePageConfiguration(viewControllers: viewControllers ?? [], startingPage: startingPage, delegate: delegate)
         default:
             break
         }
 
         return (location, pageViewControllers)
+    }
+
+    private func initialSinglePageConfiguration(viewControllers: [UIViewController], startingPage: Int, delegate: PageViewControllerDelegate?) -> [PageViewController] {
+        if let pages = viewControllers as? [PageViewController], pages.count > 0 {
+            // Reuse current pages
+            let page: PageViewController
+            if pages.count == 2 {
+                // Two pages. Keep the one on the right.
+                page = pages[1]
+            } else {
+                // Just one page. Use the same
+                page = pages[0]
+            }
+            page.pageSide = .center
+            page.refreshView()
+            return [page]
+        } else {
+            // Create pages
+            let page = createPage(index: startingPage, side: .center, delegate: delegate, fullScreen: true)
+            return [page]
+        }
+    }
+
+    private func initialDoublePageConfiguration(viewControllers: [UIViewController], startingPage: Int, delegate: PageViewControllerDelegate?) -> [PageViewController] {
+        if let pages = viewControllers as? [PageViewController], pages.count > 0 {
+            // Reuse current pages
+            if pages.count == 2 {
+                pages[0].pageSide = .left
+                pages[0].refreshView()
+                pages[1].pageSide = .right
+                pages[1].refreshView()
+                return pages
+            } else {
+                let page = pages[0]
+                if page.pageNumber % 2 == 0 {
+                    // If first page is even, get next page
+                    page.pageSide = .right
+                    page.refreshView()
+                    if let page2 = nextPage(currentPage: page) as? PageViewController {
+                        return [page2, page]
+                    }
+                } else {
+                    // If first page is odd, get previous page
+                    page.pageSide = .left
+                    page.refreshView()
+                    if let page2 = previousPage(currentPage: page) as? PageViewController {
+                        return [page, page2]
+                    }
+                }
+            }
+        } else {
+            // Create pages
+            if startingPage % 2 == 1 {
+                let page1 = createPage(index: startingPage - 1 + pagesOffset.intValue, side: .right, delegate: delegate)
+                let page2 = createPage(index: startingPage + pagesOffset.intValue, side: .left, delegate: delegate)
+
+                // Set view controllers in this order to make manga RTL
+                return [page2, page1]
+            } else {
+                let page1 = createPage(index: startingPage + pagesOffset.intValue, side: .right, delegate: delegate)
+                let page2 = createPage(index: startingPage + 1 + pagesOffset.intValue, side: .left, delegate: delegate)
+
+                // Set view controllers in this order to make manga RTL
+                return [page2, page1]
+            }
+        }
+        return []
     }
 
     func createPage(index: Int, side: PageViewController.Side = .center, delegate: PageViewControllerDelegate?, fullScreen: Bool = false) -> PageViewController {
