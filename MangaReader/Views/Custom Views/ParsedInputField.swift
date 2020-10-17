@@ -71,12 +71,8 @@ class ParsedInputField: UIControl {
         blurView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(blurView)
 
-        let topConstraint = blurView.topAnchor.constraint(equalTo: topAnchor)
-        let leftConstraint = blurView.leftAnchor.constraint(equalTo: leftAnchor)
-        let rightConstraint = blurView.rightAnchor.constraint(equalTo: rightAnchor)
-        let heightConstraint = blurView.heightAnchor.constraint(equalToConstant: 100)
-
-        addConstraints([topConstraint, leftConstraint, rightConstraint, heightConstraint])
+        blurView.addConstraintsTo(self, sides: [.horizontal, .top])
+        blurView.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
 
     private func configureMainConstraints() {
@@ -86,22 +82,12 @@ class ParsedInputField: UIControl {
         scrollView.addSubview(textView)
         addSubview(scrollView)
 
-        let topTextViewConstraint = textView.topAnchor.constraint(equalTo: scrollView.topAnchor)
-        let leftTextViewConstraint = textView.leftAnchor.constraint(equalTo: scrollView.leftAnchor)
-        let rightTextViewConstraint = textView.rightAnchor.constraint(equalTo: scrollView.rightAnchor)
-        let bottomTextViewConstraint = textView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
-        let heightTextViewConstraint = textView.heightAnchor.constraint(equalToConstant: 100)
-        let minWidthTextViewConstraint = textView.widthAnchor.constraint(greaterThanOrEqualTo: scrollView.widthAnchor, multiplier: 1)
+        textView.addConstraintsTo(scrollView)
+        textView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        textView.widthAnchor.constraint(greaterThanOrEqualTo: scrollView.widthAnchor, multiplier: 1).isActive = true
 
-        scrollView.addConstraints([heightTextViewConstraint, topTextViewConstraint, leftTextViewConstraint, rightTextViewConstraint, bottomTextViewConstraint, minWidthTextViewConstraint])
-
-        let topScrollViewConstraint = scrollView.topAnchor.constraint(equalTo: topAnchor)
-        let leftScrollViewConstraint = scrollView.leftAnchor.constraint(equalTo: leftAnchor)
-        let rightScrollViewConstraint = scrollView.rightAnchor.constraint(equalTo: rightAnchor)
-        let bottomScrollViewConstraint = scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        let heightScrollViewConstraint = scrollView.heightAnchor.constraint(equalToConstant: 100)
-
-        addConstraints([topScrollViewConstraint, leftScrollViewConstraint, rightScrollViewConstraint, heightScrollViewConstraint, bottomScrollViewConstraint])
+        scrollView.addConstraintsTo(self)
+        scrollView.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
 
     private func configureScrollView() {
@@ -115,12 +101,9 @@ class ParsedInputField: UIControl {
 
         addSubview(editButton)
 
-        let topConstraint = editButton.topAnchor.constraint(equalTo: topAnchor, constant: 5)
-        let rightConstraint = editButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -5)
-        let heightConstraint = editButton.heightAnchor.constraint(equalToConstant: 25)
-        let widthConstraint = editButton.widthAnchor.constraint(equalToConstant: 25)
-
-        addConstraints([topConstraint, rightConstraint, heightConstraint, widthConstraint])
+        editButton.addConstraintsTo(self, sides: [.top, .right], spacing: .init(top: 5, right: -5))
+        editButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        editButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
     }
 
     private func configureTextField() {
@@ -131,12 +114,8 @@ class ParsedInputField: UIControl {
         textField.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(textField)
 
-        let rightConstraint = textField.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -margin)
-        let leftConstraint = textField.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: margin)
-        let topConstraint = textField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: margin)
-        let heightContraint = textField.heightAnchor.constraint(equalToConstant: 75)
-
-        addConstraints([rightConstraint, leftConstraint, topConstraint, heightContraint])
+        textField.addConstraintsTo(scrollView, sides: [.horizontal, .top], spacing: .init(top: margin, left: margin, right: -margin))
+        textField.heightAnchor.constraint(equalToConstant: 75).isActive = true
     }
 
     private func loadText() {

@@ -42,23 +42,12 @@ class DictionaryEntryView: UIView {
         addSubview(body)
         addSubview(separator)
 
-        // Title constraints
-        let titleTopConstraint = title.topAnchor.constraint(equalTo: topAnchor)
-        let titleLeftConstraint = title.leftAnchor.constraint(equalTo: leftAnchor)
-        let titleRightConstraint = title.rightAnchor.constraint(equalTo: rightAnchor)
-
-        // Body constraints
-        let bodyTopConstraint = body.topAnchor.constraint(equalTo: title.bottomAnchor)
-        let bodyLeftConstraint = body.leftAnchor.constraint(equalTo: leftAnchor)
-        let bodyRightConstraint = body.rightAnchor.constraint(equalTo: rightAnchor)
-        let bodyBottomConstraint = body.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+        title.addConstraintsTo(self, sides: [.horizontal, .top])
+        body.addConstraintsTo(self, sides: [.horizontal, .bottom], spacing: .init(bottom: -10))
+        body.topAnchor.constraint(equalTo: title.bottomAnchor).isActive = true
 
         // Separator constraints
-        let separatorLeftConstraint = separator.leftAnchor.constraint(equalTo: leftAnchor)
-        let separatorRightConstraint = separator.rightAnchor.constraint(equalTo: rightAnchor)
-        let separatorBottomConstraint = separator.bottomAnchor.constraint(equalTo: bottomAnchor)
-        let separatorHeightConstraint = separator.heightAnchor.constraint(equalToConstant: (1.0 / UIScreen.main.scale))
-
-        addConstraints([titleTopConstraint, titleLeftConstraint, titleRightConstraint, bodyTopConstraint, bodyLeftConstraint, bodyRightConstraint, bodyBottomConstraint, separatorLeftConstraint, separatorRightConstraint, separatorBottomConstraint, separatorHeightConstraint])
+        separator.addConstraintsTo(self, sides: [.horizontal, .bottom])
+        separator.heightAnchor.constraint(equalToConstant: (1.0 / UIScreen.main.scale)).isActive = true
     }
 }

@@ -74,10 +74,8 @@ class WordButton: UIControl {
         contentLabel.textColor = .black
         addSubview(contentLabel)
 
-        let leftConstraint = contentLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10)
-        let rightConstraint = contentLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -10)
-        let centerConstraint = contentLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 7)
-        addConstraints([leftConstraint, rightConstraint, centerConstraint])
+        contentLabel.addConstraintsTo(self, sides: .horizontal, spacing: .init(left: 10, right: -10))
+        contentLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 7).isActive = true
     }
 
     private func refresh() {

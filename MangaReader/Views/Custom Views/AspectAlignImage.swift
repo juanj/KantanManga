@@ -54,14 +54,10 @@ class AspectAlignImage: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageView)
 
-        imageBottomConstraint = imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        imageTopConstraint = imageView.topAnchor.constraint(equalTo: topAnchor)
-        imageLeftConstraint = imageView.leftAnchor.constraint(equalTo: leftAnchor)
-        imageRightConstraint = imageView.rightAnchor.constraint(equalTo: rightAnchor)
+        (imageTopConstraint, imageLeftConstraint, imageBottomConstraint, imageRightConstraint) = imageView.addConstraintsTo(self)
+        (imageCenterXConstraint, imageCenterYConstraint) = imageView.addCenterConstraintsTo(self)
         imageWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: bounds.width)
         imageHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: bounds.height)
-        imageCenterXConstraint = imageView.centerXAnchor.constraint(equalTo: centerXAnchor)
-        imageCenterYConstraint = imageView.centerYAnchor.constraint(equalTo: centerYAnchor)
 
         // Width and height are always active
         imageWidthConstraint?.isActive = true

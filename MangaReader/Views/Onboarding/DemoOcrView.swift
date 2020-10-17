@@ -48,13 +48,8 @@ class DemoOcrView: UIView {
         container.backgroundColor = .blue
         container.clipsToBounds = true
         container.layer.masksToBounds = true
-
         addSubview(container)
-
-        container.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        container.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        container.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        container.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        container.addConstraintsTo(self)
     }
 
     private func addImage() {
@@ -63,10 +58,7 @@ class DemoOcrView: UIView {
         image.image = UIImage(named: "demo-ocr")
         container.addSubview(image)
         image.widthAnchor.constraint(equalTo: image.heightAnchor).isActive = true
-        image.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
-        image.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
-        image.leftAnchor.constraint(equalTo: container.leftAnchor).isActive = true
-        image.rightAnchor.constraint(equalTo: container.rightAnchor).isActive = true
+        image.addConstraintsTo(container)
     }
 
     private func selectionAnimation() {
@@ -116,18 +108,15 @@ class DemoOcrView: UIView {
         let startLocation = CGPoint(x: container.frame.width / 8, y: container.frame.width / 4)
         touchView.heightAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.1).isActive = true
         touchView.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.1).isActive = true
-        let touchViewTopConstraint = touchView.topAnchor.constraint(equalTo: container.topAnchor, constant: startLocation.y - height / 2)
-        let touchViewLeftConstraint = touchView.leftAnchor.constraint(equalTo: container.leftAnchor, constant: startLocation.x - width / 2)
 
-        touchViewTopConstraint.isActive = true
-        touchViewLeftConstraint.isActive = true
+        let (touchViewTopConstraint, touchViewLeftConstraint, _, _) = touchView.addConstraintsTo(container, sides: [.top, .left], spacing: .init(top: startLocation.y - height / 2, left: startLocation.x - width / 2))
 
         let endLocation = CGPoint(x: startLocation.x + container.frame.width / 2.4 - width / 2, y: startLocation.y + container.frame.height / 1.6 - height / 2)
 
         layoutIfNeeded()
 
-        touchViewTopConstraint.constant = endLocation.y
-        touchViewLeftConstraint.constant = endLocation.x
+        touchViewTopConstraint?.constant = endLocation.y
+        touchViewLeftConstraint?.constant = endLocation.x
 
         UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
             self.layoutIfNeeded()
@@ -147,8 +136,7 @@ class DemoOcrView: UIView {
         loaderView.layer.cornerRadius = 15
         container.addSubview(loaderView)
 
-        loaderView.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
-        loaderView.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
+        loaderView.addCenterConstraintsTo(container)
         loaderView.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.2).isActive = true
         loaderView.heightAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.2).isActive = true
 
@@ -157,8 +145,7 @@ class DemoOcrView: UIView {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         loaderView.addSubview(activityIndicator)
 
-        activityIndicator.centerYAnchor.constraint(equalTo: loaderView.centerYAnchor).isActive = true
-        activityIndicator.centerXAnchor.constraint(equalTo: loaderView.centerXAnchor).isActive = true
+        activityIndicator.addCenterConstraintsTo(loaderView)
 
         activityIndicator.startAnimating()
 
@@ -177,10 +164,7 @@ class DemoOcrView: UIView {
         container.addSubview(parsedView)
 
         parsedView.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.37).isActive = true
-        parsedView.leftAnchor.constraint(equalTo: container.leftAnchor).isActive = true
-        parsedView.rightAnchor.constraint(equalTo: container.rightAnchor).isActive = true
-        let parsedViewBottomConstraint = parsedView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: container.frame.height * 0.37)
-        parsedViewBottomConstraint.isActive = true
+        let (_, _, parsedViewBottomConstraint, _) = parsedView.addConstraintsTo(container, sides: [.horizontal, .bottom], spacing: .init(bottom: container.frame.height * 0.37))
 
         let textLabel = UILabel()
         textLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -190,16 +174,15 @@ class DemoOcrView: UIView {
 
         parsedView.contentView.addSubview(textLabel)
 
-        textLabel.centerYAnchor.constraint(equalTo: parsedView.centerYAnchor).isActive = true
         let padding = container.frame.height * 0.05
+        textLabel.centerYAnchor.constraint(equalTo: parsedView.centerYAnchor).isActive = true
         textLabel.widthAnchor.constraint(equalToConstant: container.frame.width - padding*2).isActive = true
-        textLabel.leftAnchor.constraint(equalTo: parsedView.leftAnchor, constant: padding).isActive = true
-        textLabel.rightAnchor.constraint(equalTo: parsedView.rightAnchor, constant: -padding).isActive = true
+        textLabel.addConstraintsTo(parsedView, sides: .horizontal, spacing: .init(left: padding, right: -padding))
 
         textLabel.font = .systemFont(ofSize: container.frame.height * 0.1, weight: .bold)
 
         layoutIfNeeded()
-        parsedViewBottomConstraint.constant = 0
+        parsedViewBottomConstraint?.constant = 0
         UIView.animate(withDuration: 0.3, animations: {
             self.layoutIfNeeded()
         }, completion: { (_) in
@@ -228,15 +211,11 @@ class DemoOcrView: UIView {
         selectedWordView.addSubview(selectedWordLabel)
 
         let padding = container.frame.height * 0.04
-        selectedWordLabel.topAnchor.constraint(equalTo: selectedWordView.topAnchor, constant: padding / 2).isActive = true
-        selectedWordLabel.bottomAnchor.constraint(equalTo: selectedWordView.bottomAnchor, constant: -padding / 2).isActive = true
-        selectedWordLabel.leftAnchor.constraint(equalTo: selectedWordView.leftAnchor, constant: padding).isActive = true
-        selectedWordLabel.rightAnchor.constraint(equalTo: selectedWordView.rightAnchor, constant: -padding).isActive = true
+        selectedWordLabel.addConstraintsTo(selectedWordView, spacing: .init(top: padding / 2, left: padding, bottom: -padding / 2, right: -padding))
 
         parsedView.contentView.addSubview(selectedWordView)
 
-        selectedWordView.bottomAnchor.constraint(equalTo: parsedView.bottomAnchor, constant: -container.frame.height / 25).isActive = true
-        selectedWordView.leftAnchor.constraint(equalTo: parsedView.leftAnchor, constant: container.frame.width / 100).isActive = true
+        selectedWordView.addConstraintsTo(parsedView, sides: [.bottom, .left], spacing: .init(left: container.frame.width / 100, bottom: -container.frame.height / 25))
 
         selectedWordView.alpha = 0
 
@@ -281,20 +260,15 @@ class DemoOcrView: UIView {
         dictView.addSubview(stackView)
 
         let padding = container.frame.width / 20
-        stackView.topAnchor.constraint(equalTo: dictView.topAnchor, constant: padding).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: dictView.bottomAnchor, constant: -padding).isActive = true
-        stackView.leftAnchor.constraint(equalTo: dictView.leftAnchor, constant: padding).isActive = true
-        stackView.rightAnchor.constraint(equalTo: dictView.rightAnchor, constant: -padding).isActive = true
+        stackView.addConstraintsTo(dictView, spacing: .init(top: padding, left: padding, bottom: -padding, right: -padding))
 
         dictView.heightAnchor.constraint(equalTo: parsedView.heightAnchor).isActive = true
-        dictView.leftAnchor.constraint(equalTo: container.leftAnchor).isActive = true
-        dictView.rightAnchor.constraint(equalTo: container.rightAnchor).isActive = true
-        let dictBottomConstraint = dictView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: parsedView.frame.height)
-        dictBottomConstraint.isActive = true
+
+        let (_, _, dictBottomConstraint, _) = dictView.addConstraintsTo(container, sides: [.horizontal, .bottom], spacing: .init(bottom: parsedView.frame.height))
         layoutIfNeeded()
 
         parsedViewBottomConstraint.constant = -parsedView.frame.height
-        dictBottomConstraint.constant = 0
+        dictBottomConstraint?.constant = 0
         UIView.animate(withDuration: 0.3, animations: {
             self.layoutIfNeeded()
         }, completion: { _ in

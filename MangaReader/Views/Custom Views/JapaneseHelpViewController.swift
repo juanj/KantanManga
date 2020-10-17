@@ -43,16 +43,9 @@ class JapaneseHelpViewController: UIViewController {
         view.addSubview(parsedInputView)
         view.addSubview(dictView)
 
-        let parsedInputViewLeftConstraint = parsedInputView.leftAnchor.constraint(equalTo: view.leftAnchor)
-        let parsedInputViewRightConstraint = parsedInputView.rightAnchor.constraint(equalTo: view.rightAnchor)
-        let parsedInputViewTopConstraint = parsedInputView.topAnchor.constraint(equalTo: view.topAnchor)
-
-        let dictViewLeftConstraint = dictView.leftAnchor.constraint(equalTo: view.leftAnchor)
-        let dictViewTopConstraint = dictView.topAnchor.constraint(equalTo: parsedInputView.bottomAnchor)
-        let dictViewRightConstraint = dictView.rightAnchor.constraint(equalTo: view.rightAnchor)
-        let dictViewBottomConstraint = dictView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-
-        view.addConstraints([parsedInputViewLeftConstraint, parsedInputViewRightConstraint, parsedInputViewTopConstraint, dictViewLeftConstraint, dictViewTopConstraint, dictViewRightConstraint, dictViewBottomConstraint])
+        parsedInputView.addConstraintsTo(view, sides: [.horizontal, .top])
+        dictView.addConstraintsTo(view, sides: [.horizontal, .bottom])
+        dictView.topAnchor.constraint(equalTo: parsedInputView.bottomAnchor).isActive = true
 
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(pan:)))
         panGesture.delegate = self

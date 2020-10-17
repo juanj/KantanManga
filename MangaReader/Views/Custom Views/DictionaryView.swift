@@ -31,13 +31,9 @@ class DictionaryView: UIView {
     private func configureScrollView() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(scrollView)
-        let leftConstraint = scrollView.leftAnchor.constraint(equalTo: leftAnchor)
-        let rightConstraint = scrollView.rightAnchor.constraint(equalTo: rightAnchor)
-        let topConstraint = scrollView.topAnchor.constraint(equalTo: topAnchor)
-        let bottomConstraint = scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
-
+        scrollView.addConstraintsTo(self)
         scrollViewHeightConstraint = scrollView.heightAnchor.constraint(equalToConstant: 0)
-        addConstraints([leftConstraint, rightConstraint, topConstraint, bottomConstraint, scrollViewHeightConstraint])
+        scrollViewHeightConstraint.isActive = true
         scrollView.backgroundColor = .systemBackground
     }
 
@@ -46,12 +42,9 @@ class DictionaryView: UIView {
         stackView.axis = .vertical
         stackView.spacing = 20
         scrollView.addSubview(stackView)
-        let leftConstraint = stackView.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 20)
-        let rightConstraint = stackView.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: 20)
-        let topConstraint = stackView.topAnchor.constraint(equalTo: scrollView.topAnchor)
-        let bottomConstraint = stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
-        let widthConstraint = stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40)
-        scrollView.addConstraints([leftConstraint, rightConstraint, topConstraint, bottomConstraint, widthConstraint])
+
+        stackView.addConstraintsTo(scrollView, spacing: .init(left: 20, right: -20))
+        stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40).isActive = true
 
         // Add this zero frame view so the stackview can calculate its frame even when ther are no entries.
         let zeroView = UIView(frame: .zero)

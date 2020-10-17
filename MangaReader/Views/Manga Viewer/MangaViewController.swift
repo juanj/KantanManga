@@ -116,13 +116,7 @@ class MangaViewController: UIViewController {
         selectionView.translatesAutoresizingMaskIntoConstraints = false
         selectionView.isHidden = true
         selectionView.delegate = self
-
-        let topConstraint = selectionView.topAnchor.constraint(equalTo: view.topAnchor)
-        let bottomConstraint = selectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let leadingConstraint = selectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let trailingConstraint = selectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-
-        view.addConstraints([topConstraint, bottomConstraint, leadingConstraint, trailingConstraint])
+        selectionView.addConstraintsTo(view)
     }
 
     private func configurePageControllerConstraints() {
@@ -131,13 +125,7 @@ class MangaViewController: UIViewController {
         addChild(pageController)
 
         pageController.view.translatesAutoresizingMaskIntoConstraints = false
-
-        let topConstraint = pageController.view.topAnchor.constraint(equalTo: view.topAnchor)
-        let bottomConstraint = pageController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let leadingConstraint = pageController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let trailingConstraint = pageController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-
-        view.addConstraints([topConstraint, bottomConstraint, leadingConstraint, trailingConstraint])
+        pageController.view.addConstraintsTo(view)
     }
 
     private func configureJapaneseHelpView() {
@@ -147,15 +135,11 @@ class MangaViewController: UIViewController {
         view.addSubview(japaneseHelp.view)
         japaneseHelp.didMove(toParent: self)
 
-        let leftConstraint = japaneseHelp.view.leftAnchor.constraint(equalTo: view.leftAnchor)
-        let rightConstraint = japaneseHelp.view.rightAnchor.constraint(equalTo: view.rightAnchor)
+        (_, _, japaneseHelpBottomConstraint, _) = japaneseHelp.view.addConstraintsTo(view, sides: [.horizontal, .bottom])
         let topConstraint = japaneseHelp.view.topAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor)
-        japaneseHelpBottomConstraint = japaneseHelp.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-
         topConstraint.priority = .required
         japaneseHelpBottomConstraint.priority = .defaultLow
-
-        view.addConstraints([leftConstraint, rightConstraint, topConstraint, japaneseHelpBottomConstraint])
+        topConstraint.isActive = true
 
         let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleEdgePan(pan:)))
         edgePan.edges = .bottom
@@ -179,9 +163,9 @@ class MangaViewController: UIViewController {
         progressBar.addTarget(self, action: #selector(movePage), for: .valueChanged)
 
         progressBar.translatesAutoresizingMaskIntoConstraints = false
+
+        progressBar.addConstraintsTo(view, sides: .horizontal, spacing: .init(left: 20, right: -20))
         progressBar.bottomAnchor.constraint(equalTo: japaneseHelp.view.topAnchor, constant: -10).isActive = true
-        progressBar.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        progressBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
     }
 
     private func configureKeyboard() {
@@ -202,10 +186,8 @@ class MangaViewController: UIViewController {
         if let window = UIApplication.shared.windows.first, let view = window.rootViewController?.view {
             view.addSubview(overlay)
             overlay.translatesAutoresizingMaskIntoConstraints = false
-            overlay.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-            overlay.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-            overlay.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-            overlay.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+
+            overlay.addConstraintsTo(view)
             overlay.layer.zPosition = 100
             overlay.alpha = 0
             let label = UILabel()
@@ -217,8 +199,7 @@ class MangaViewController: UIViewController {
             label.textColor = .white
             overlay.addSubview(label)
 
-            label.trailingAnchor.constraint(equalTo: overlay.trailingAnchor, constant: -100).isActive = true
-            label.topAnchor.constraint(equalTo: overlay.topAnchor, constant: 40).isActive = true
+            label.addConstraintsTo(overlay, sides: [.top, .right], spacing: .init(top: 40, right: -100))
             UIView.animate(withDuration: 0.3, animations: {
                 overlay.alpha = 1
             }, completion: { _ in
