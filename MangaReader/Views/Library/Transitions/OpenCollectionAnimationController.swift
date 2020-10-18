@@ -69,7 +69,8 @@ class OpenCollectionAnimationController: NSObject, UIViewControllerAnimatedTrans
         toVC.view.layoutIfNeeded()
 
         let duration = transitionDuration(using: context)
-        let sourcePoint = toVC.collectionView.collectionViewLayout.layoutAttributesForItem(at: collectionIndexPath)?.center ?? .zero
+        var sourcePoint = toVC.collectionView.collectionViewLayout.layoutAttributesForItem(at: collectionIndexPath)?.center ?? .zero
+        sourcePoint.y -= toVC.collectionView.contentOffset.y + toVC.collectionView.contentInset.top
         fromVC.closeAnimation(duration: duration, toPoint: sourcePoint)
         UIView.animate(withDuration: duration, animations: {
             toVC.view.alpha = 1
