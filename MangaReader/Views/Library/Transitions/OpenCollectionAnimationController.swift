@@ -66,9 +66,11 @@ class OpenCollectionAnimationController: NSObject, UIViewControllerAnimatedTrans
         // Insetad use this property to start a cell with alpha 0
         toVC.hideIndexPath = collectionIndexPath
         toVC.fadeImages = fromVC.collectionView.indexPathsForVisibleItems.count > 0 && fromVC.collectionView.indexPathsForVisibleItems.firstIndex(of: IndexPath(item: 0, section: 0)) == nil
+        toVC.view.layoutIfNeeded()
 
         let duration = transitionDuration(using: context)
-        fromVC.closeAnimation(duration: duration)
+        let sourcePoint = toVC.collectionView.collectionViewLayout.layoutAttributesForItem(at: collectionIndexPath)?.center ?? .zero
+        fromVC.closeAnimation(duration: duration, toPoint: sourcePoint)
         UIView.animate(withDuration: duration, animations: {
             toVC.view.alpha = 1
             fromVC.view.backgroundColor = .clear

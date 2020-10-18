@@ -58,9 +58,9 @@ class CollectionViewController: UIViewController {
         collectionView.register(UINib(nibName: "MangaCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MangaCell")
     }
 
-    func closeAnimation(duration: TimeInterval) {
+    func closeAnimation(duration: TimeInterval, toPoint: CGPoint) {
         guard let cells = collectionView.visibleCells as? [MangaCollectionViewCell] else { return }
-        var offsetSourcePoint = sourcePoint
+        var offsetSourcePoint = toPoint
         offsetSourcePoint.y += collectionView.contentOffset.y + collectionView.contentInset.top
         for cell in cells {
             UIView.animate(withDuration: duration) {
