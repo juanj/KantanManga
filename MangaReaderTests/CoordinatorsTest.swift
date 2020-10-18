@@ -25,9 +25,11 @@ class AppCoordinatorTests: XCTestCase {
         XCTAssertTrue(navigation.viewControllersTest.first is LibraryViewController)
     }
 
-    func testloadCollections() {
+    func testLoadCollectionsWithMangas() {
         XCTAssertNotNil(appCoordinator.loadCollections())
-        CoreDataManager.sharedManager.insertCollection(name: "Test Collection")
+        let collection = CoreDataManager.sharedManager.insertCollection(name: "Test Collection")
+        XCTAssertEqual(appCoordinator.loadCollections().count, 0)
+        CoreDataManager.sharedManager.insertManga(name: "Test", coverData: Data(), totalPages: 5, filePath: "test.cbz", collection: collection)
         XCTAssertEqual(appCoordinator.loadCollections().count, 1)
     }
 
@@ -62,7 +64,7 @@ class AppCoordinatorTests: XCTestCase {
     // MARK: CollectionViewControllerDelegate
     func testCollectionDelegateSelectMangaStartCoordinator() {
         let manga = CoreDataManager.sharedManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 100, filePath: "test.cbz")!
-        let libraryViewController = MockCollectionViewController(delegate: MockCollectionViewControllerDelgate(), collection: MangaCollection())
+        let libraryViewController = MockCollectionViewController(delegate: MockCollectionViewControllerDelgate(), collection: MangaCollection(), sourcePoint: .zero, initialRotations: [])
 
         appCoordinator.didSelectManga(libraryViewController, manga: manga, cellFrame: .zero)
 
@@ -113,7 +115,7 @@ class AddMangasCoordinatorTests: XCTestCase {
 
     // MARK: AddMangaViewControllerDelegate
     func testAddMangaDelegateCallingCancelDismissAndCancels() {
-        addMangasCoordinator.cancel(addMangaViewController: AddMangaViewController(delegate: MockAddMangaViewControllerDelegate()))
+        addMangasCoordinator.cancel(AddMangaViewController(delegate: MockAddMangaViewControllerDelegate()))
         XCTAssertTrue(delegate.cancelCalled)
         XCTAssertTrue(navigation.dismissCalled)
     }
@@ -126,7 +128,7 @@ class AddMangasCoordinatorTests: XCTestCase {
 
     // MARK: FileSourceViewControllerDelegate
     func testFileSourceDelegateCallingOpenWebServerConfiguresUploadServer() {
-        addMangasCoordinator.openWebServer(fileSourceViewController: FileSourceViewController(delegate: addMangasCoordinator))
+        addMangasCoordinator.openWebServer(FileSourceViewController(delegate: addMangasCoordinator))
         XCTAssertEqual(mockServer.allowedFileExtensions, ["cbz", "zip", "rar", "cbr"])
         XCTAssert(mockServer.delegate is AddMangasCoordinator)
         XCTAssertTrue(mockServer.startCalled)
@@ -164,7 +166,7 @@ class ViewMangaCoordinatorTests: XCTestCase {
         }
         _ = mangaView.view // Load view
         XCTAssertTrue(mangaView.prefersStatusBarHidden)
-        viewMangaCoordinator.didTapPage(mangaViewController: mangaView, pageViewController: PageViewController())
+        viewMangaCoordinator.didTapPage(mangaView, pageViewController: PageViewController(delegate: nil, pageSide: .center, pageNumber: 0))
         XCTAssertFalse(mangaView.prefersStatusBarHidden)
     }
 
@@ -175,7 +177,7 @@ class ViewMangaCoordinatorTests: XCTestCase {
             return
         }
         XCTAssertTrue(navigation.viewControllersTest.count == 1)
-        viewMangaCoordinator.back(mangaViewController: mangaView)
+        viewMangaCoordinator.back(mangaView)
         XCTAssertTrue(navigation.viewControllersTest.count == 0)
         XCTAssertTrue(delegate.didEndCalled)
     }
@@ -188,7 +190,7 @@ class ViewMangaCoordinatorTests: XCTestCase {
         }
         _ = mangaView.view // Load view
         let image = UIImage()
-        viewMangaCoordinator.didSelectSectionOfImage(mangaViewController: mangaView, image: image)
+        viewMangaCoordinator.didSelectSectionOfImage(mangaView, image: image)
         XCTAssertEqual(ocr.image, image)
     }
 
@@ -196,7 +198,7 @@ class ViewMangaCoordinatorTests: XCTestCase {
     func testCustomTransitionForPop() {
         var animation = viewMangaCoordinator.navigationController(navigation, animationControllerFor: .pop, from: UIViewController(), to: UIViewController())
         XCTAssertNil(animation)
-        animation = viewMangaCoordinator.navigationController(navigation, animationControllerFor: .pop, from: CollectionViewController(delegate: MockCollectionViewControllerDelgate(), collection: MangaCollection()), to: UIViewController())
+        animation = viewMangaCoordinator.navigationController(navigation, animationControllerFor: .pop, from: CollectionViewController(delegate: MockCollectionViewControllerDelgate(), collection: MangaCollection(), sourcePoint: .zero, initialRotations: []), to: UIViewController())
         XCTAssertTrue(animation is OpenMangaAnimationController)
     }
 }

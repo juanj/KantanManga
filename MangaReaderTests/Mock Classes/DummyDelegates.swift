@@ -9,7 +9,10 @@
 @testable import Kantan_Manga
 
 class DummyLibraryViewControllerDelegate: LibraryViewControllerDelegate {
-    func didSelectSettings(_ libraryViewController: LibraryViewController) {}
-    func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollection) {}
     func didSelectAdd(_ libraryViewController: LibraryViewController, button: UIBarButtonItem) {}
+    func didSelectSettings(_ libraryViewController: LibraryViewController) {}
+    func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable, rotations: [CGAffineTransform]) {}
+    func didSelectDeleteCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable) {}
+    func didSelectRenameCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable, name: String?) {}
+    func didSelectLoadDemoManga(_ libraryViewController: LibraryViewController) {}
 }

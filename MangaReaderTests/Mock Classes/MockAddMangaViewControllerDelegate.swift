@@ -14,19 +14,19 @@ class MockAddMangaViewControllerDelegate: AddMangaViewControllerDelegate {
     var selectMangaCalled = false
     var selectCollectionCalled = false
 
-    func cancel(addMangaViewController: AddMangaViewController) {
+    func cancel(_ addMangaViewController: AddMangaViewController) {
         cancelCalled = true
     }
 
-    func save(addMangaViewController: AddMangaViewController, name: String?) {
+    func save(_ addMangaViewController: AddMangaViewController, name: String?) {
         saveCalled = true
     }
 
-    func selectManga(addMangaViewController: AddMangaViewController) {
+    func selectManga(_ addMangaViewController: AddMangaViewController) {
         selectMangaCalled = true
     }
 
-    func selectCollection(addMangaViewController: AddMangaViewController) {
+    func selectCollection(_ addMangaViewController: AddMangaViewController) {
         selectCollectionCalled = true
     }
 }

@@ -9,5 +9,5 @@
 @testable import Kantan_Manga
 
 class MockLibraryViewController: LibraryViewController {
-    override func setCollections(collections: [MangaCollection]) {}
+    override func setCollections(collections: [MangaCollectionable]) {}
 }

@@ -10,7 +10,7 @@
 
 class MockViewMangaCoordinatorDelegate: ViewMangaCoordinatorDelegate {
     var didEndCalled = false
-    func didEnd(viewMangaCoordinator: ViewMangaCoordinator) {
+    func didEnd(_ viewMangaCoordinator: ViewMangaCoordinator) {
         didEndCalled = true
     }
 }
