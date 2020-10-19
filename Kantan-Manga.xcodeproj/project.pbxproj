@@ -61,6 +61,10 @@
 		325DA0B923C8F50700A627BD /* JapaneseDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */; };
 		326280D7253DD29F0070F5DA /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326280D6253DD29F0070F5DA /* KeyboardViewController.swift */; };
 		326280DB253DD29F0070F5DA /* Kantan-Keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 326280D4253DD29F0070F5DA /* Kantan-Keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		32628103253DD3970070F5DA /* RadicalsDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32628102253DD3970070F5DA /* RadicalsDictionary.swift */; };
+		32628109253DD4320070F5DA /* radk.sqlite.db in Resources */ = {isa = PBXBuildFile; fileRef = 32628108253DD4320070F5DA /* radk.sqlite.db */; };
+		3262810F253DD8EE0070F5DA /* Radical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3262810E253DD8EE0070F5DA /* Radical.swift */; };
+		32628170253DDAF10070F5DA /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32537155253B843E005B8EC1 /* UIView+Extension.swift */; };
 		326344A3247DD98B00F683AB /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326344A2247DD98B00F683AB /* Reader.swift */; };
 		326344A5247DDAF800F683AB /* CBRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326344A4247DDAF800F683AB /* CBRReader.swift */; };
 		326FDE7924A7F8350042CB8A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326FDE7824A7F8350042CB8A /* SettingsTableViewController.swift */; };
@@ -228,6 +232,9 @@
 		326280D4253DD29F0070F5DA /* Kantan-Keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Kantan-Keyboard.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		326280D6253DD29F0070F5DA /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		326280D8253DD29F0070F5DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32628102253DD3970070F5DA /* RadicalsDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadicalsDictionary.swift; sourceTree = "<group>"; };
+		32628108253DD4320070F5DA /* radk.sqlite.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = radk.sqlite.db; sourceTree = "<group>"; };
+		3262810E253DD8EE0070F5DA /* Radical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Radical.swift; sourceTree = "<group>"; };
 		326344A2247DD98B00F683AB /* Reader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
 		326344A4247DDAF800F683AB /* CBRReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBRReader.swift; sourceTree = "<group>"; };
 		326FDE7824A7F8350042CB8A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -403,10 +410,21 @@
 		326280D5253DD29F0070F5DA /* Kantan-Keyboard */ = {
 			isa = PBXGroup;
 			children = (
+				3262810D253DD8E10070F5DA /* Model */,
 				326280D6253DD29F0070F5DA /* KeyboardViewController.swift */,
+				32628108253DD4320070F5DA /* radk.sqlite.db */,
 				326280D8253DD29F0070F5DA /* Info.plist */,
+				32628102253DD3970070F5DA /* RadicalsDictionary.swift */,
 			);
 			path = "Kantan-Keyboard";
+			sourceTree = "<group>";
+		};
+		3262810D253DD8E10070F5DA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3262810E253DD8EE0070F5DA /* Radical.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		32634498247DD89B00F683AB /* Mecab */ = {
@@ -831,6 +849,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32628109253DD4320070F5DA /* radk.sqlite.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1006,7 +1025,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32628103253DD3970070F5DA /* RadicalsDictionary.swift in Sources */,
 				326280D7253DD29F0070F5DA /* KeyboardViewController.swift in Sources */,
+				32628170253DDAF10070F5DA /* UIView+Extension.swift in Sources */,
+				3262810F253DD8EE0070F5DA /* Radical.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
