@@ -18,6 +18,10 @@ target 'Kantan-Manga' do
     # Pods for testing
   end
 
+  target 'Kantan-Keyboard' do
+    pod 'SQLite.swift', '~> 0.12.0'
+  end
+
   target 'Kantan-MangaUITests' do
     inherit! :search_paths
     # Pods for testing

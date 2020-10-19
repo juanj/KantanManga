@@ -59,6 +59,8 @@
 		325CFC1D2480582700110F31 /* DictionaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CFC1C2480582700110F31 /* DictionaryView.swift */; };
 		325CFC21248060AD00110F31 /* DictionaryEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CFC20248060AD00110F31 /* DictionaryEntryView.swift */; };
 		325DA0B923C8F50700A627BD /* JapaneseDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */; };
+		326280D7253DD29F0070F5DA /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326280D6253DD29F0070F5DA /* KeyboardViewController.swift */; };
+		326280DB253DD29F0070F5DA /* Kantan-Keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 326280D4253DD29F0070F5DA /* Kantan-Keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		326344A3247DD98B00F683AB /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326344A2247DD98B00F683AB /* Reader.swift */; };
 		326344A5247DDAF800F683AB /* CBRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326344A4247DDAF800F683AB /* CBRReader.swift */; };
 		326FDE7924A7F8350042CB8A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326FDE7824A7F8350042CB8A /* SettingsTableViewController.swift */; };
@@ -111,6 +113,7 @@
 		84A83221221D9F7000CEE1C9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A83220221D9F7000CEE1C9 /* CoreDataManager.swift */; };
 		84A83224221DB10400CEE1C9 /* MangaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A83222221DB10400CEE1C9 /* MangaCollectionViewCell.swift */; };
 		84A83225221DB10400CEE1C9 /* MangaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A83223221DB10400CEE1C9 /* MangaCollectionViewCell.xib */; };
+		9A5B897D9022BC677A27EEB8 /* Pods_Kantan_Manga_Kantan_Keyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F028CBC2895017FA992D040 /* Pods_Kantan_Manga_Kantan_Keyboard.framework */; };
 		ED0C9C9A3BB0262753847EC3 /* Pods_Kantan_Manga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4F6B672107D039F561AF88 /* Pods_Kantan_Manga.framework */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +124,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 44C74468207357D7008F46FD;
 			remoteInfo = mecab;
+		};
+		326280D9253DD29F0070F5DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84A831DB221D90CA00CEE1C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 326280D3253DD29F0070F5DA;
+			remoteInfo = "Kantan-Keyboard";
 		};
 		84A831FB221D90CC00CEE1C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -148,6 +158,17 @@
 				324BB96F2498369B006241E8 /* mecab.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		326280DC253DD29F0070F5DA /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				326280DB253DD29F0070F5DA /* Kantan-Keyboard.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -204,6 +225,9 @@
 		325CFC1C2480582700110F31 /* DictionaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryView.swift; sourceTree = "<group>"; };
 		325CFC20248060AD00110F31 /* DictionaryEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEntryView.swift; sourceTree = "<group>"; };
 		325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseDictionary.swift; sourceTree = "<group>"; };
+		326280D4253DD29F0070F5DA /* Kantan-Keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Kantan-Keyboard.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		326280D6253DD29F0070F5DA /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		326280D8253DD29F0070F5DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		326344A2247DD98B00F683AB /* Reader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
 		326344A4247DDAF800F683AB /* CBRReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBRReader.swift; sourceTree = "<group>"; };
 		326FDE7824A7F8350042CB8A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +263,7 @@
 		5534228050877F817D2A97BC /* Pods_Kantan_MangaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D7326F35AB101E198FF621 /* Pods_Kantan_MangaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		617240BC1208769EA8C99836 /* Pods-Kantan-Manga.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Manga.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan-Manga/Pods-Kantan-Manga.debug.xcconfig"; sourceTree = "<group>"; };
+		7F028CBC2895017FA992D040 /* Pods_Kantan_Manga_Kantan_Keyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_Manga_Kantan_Keyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8418696B222495FD00C689DC /* Manga.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manga.swift; sourceTree = "<group>"; };
 		8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Manga+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		841B795B221F305A00659FA2 /* MangaDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDataSource.swift; sourceTree = "<group>"; };
@@ -279,10 +304,20 @@
 		D200AF6C1CEE3CDAFD863DDB /* Pods-Kantan-MangaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan-MangaUITests/Pods-Kantan-MangaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DAAD206ACD0500040A70A9EB /* Pods-MangaReaderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaReaderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MangaReaderTests/Pods-MangaReaderTests.release.xcconfig"; sourceTree = "<group>"; };
 		DE4F6B672107D039F561AF88 /* Pods_Kantan_Manga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_Manga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4666767C77310F60DE73652 /* Pods-Kantan-Manga-Kantan-Keyboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Manga-Kantan-Keyboard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan-Manga-Kantan-Keyboard/Pods-Kantan-Manga-Kantan-Keyboard.debug.xcconfig"; sourceTree = "<group>"; };
+		F0B36E693ED6787E4022D1BE /* Pods-Kantan-Manga-Kantan-Keyboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Manga-Kantan-Keyboard.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan-Manga-Kantan-Keyboard/Pods-Kantan-Manga-Kantan-Keyboard.release.xcconfig"; sourceTree = "<group>"; };
 		FD200C244EEBB3C96B73AD4A /* Pods-Kantan-MangaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kantan-MangaTests/Pods-Kantan-MangaTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		326280D1253DD29F0070F5DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A5B897D9022BC677A27EEB8 /* Pods_Kantan_Manga_Kantan_Keyboard.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		84A831E0221D90CA00CEE1C9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -363,6 +398,15 @@
 			);
 			name = Resources;
 			path = ../..;
+			sourceTree = "<group>";
+		};
+		326280D5253DD29F0070F5DA /* Kantan-Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				326280D6253DD29F0070F5DA /* KeyboardViewController.swift */,
+				326280D8253DD29F0070F5DA /* Info.plist */,
+			);
+			path = "Kantan-Keyboard";
 			sourceTree = "<group>";
 		};
 		32634498247DD89B00F683AB /* Mecab */ = {
@@ -493,6 +537,7 @@
 				DE4F6B672107D039F561AF88 /* Pods_Kantan_Manga.framework */,
 				55D7326F35AB101E198FF621 /* Pods_Kantan_MangaTests.framework */,
 				5534228050877F817D2A97BC /* Pods_Kantan_MangaUITests.framework */,
+				7F028CBC2895017FA992D040 /* Pods_Kantan_Manga_Kantan_Keyboard.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -519,6 +564,7 @@
 				32326F8C243566FD00FCE8E5 /* cbz.png */,
 				325199B92479DE0D00DA6908 /* tessdata */,
 				84A831E5221D90CA00CEE1C9 /* MangaReader */,
+				326280D5253DD29F0070F5DA /* Kantan-Keyboard */,
 				84A831FD221D90CC00CEE1C9 /* MangaReaderTests */,
 				84A831E4221D90CA00CEE1C9 /* Products */,
 				93D8060B8DF929B1DE48D612 /* Pods */,
@@ -533,6 +579,7 @@
 				84A831E3221D90CA00CEE1C9 /* Kantan Manga.app */,
 				84A831FA221D90CC00CEE1C9 /* Kantan-MangaTests.xctest */,
 				84A83205221D90CC00CEE1C9 /* Kantan-MangaUITests.xctest */,
+				326280D4253DD29F0070F5DA /* Kantan-Keyboard.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -626,6 +673,8 @@
 				FD200C244EEBB3C96B73AD4A /* Pods-Kantan-MangaTests.release.xcconfig */,
 				88397E2323735E2420DCBF59 /* Pods-Kantan-MangaUITests.debug.xcconfig */,
 				D200AF6C1CEE3CDAFD863DDB /* Pods-Kantan-MangaUITests.release.xcconfig */,
+				E4666767C77310F60DE73652 /* Pods-Kantan-Manga-Kantan-Keyboard.debug.xcconfig */,
+				F0B36E693ED6787E4022D1BE /* Pods-Kantan-Manga-Kantan-Keyboard.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -633,6 +682,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		326280D3253DD29F0070F5DA /* Kantan-Keyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 326280E0253DD29F0070F5DA /* Build configuration list for PBXNativeTarget "Kantan-Keyboard" */;
+			buildPhases = (
+				A827A4C86BC7780D74724223 /* [CP] Check Pods Manifest.lock */,
+				326280D0253DD29F0070F5DA /* Sources */,
+				326280D1253DD29F0070F5DA /* Frameworks */,
+				326280D2253DD29F0070F5DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Kantan-Keyboard";
+			productName = "Kantan-Keyboard";
+			productReference = 326280D4253DD29F0070F5DA /* Kantan-Keyboard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		84A831E2221D90CA00CEE1C9 /* Kantan-Manga */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84A8320E221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan-Manga" */;
@@ -644,10 +711,12 @@
 				D1FBAE1E0464DE3A1AB9215B /* [CP] Embed Pods Frameworks */,
 				8418695E222346F000C689DC /* ShellScript */,
 				324BB9702498369B006241E8 /* Embed Frameworks */,
+				326280DC253DD29F0070F5DA /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				326280DA253DD29F0070F5DA /* PBXTargetDependency */,
 			);
 			name = "Kantan-Manga";
 			productName = MangaReader;
@@ -698,10 +767,13 @@
 		84A831DB221D90CA00CEE1C9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
+					326280D3253DD29F0070F5DA = {
+						CreatedOnToolsVersion = 12.0;
+					};
 					84A831E2221D90CA00CEE1C9 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1100;
@@ -739,6 +811,7 @@
 				84A831E2221D90CA00CEE1C9 /* Kantan-Manga */,
 				84A831F9221D90CC00CEE1C9 /* Kantan-MangaTests */,
 				84A83204221D90CC00CEE1C9 /* Kantan-MangaUITests */,
+				326280D3253DD29F0070F5DA /* Kantan-Keyboard */,
 			);
 		};
 /* End PBXProject section */
@@ -754,6 +827,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		326280D2253DD29F0070F5DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		84A831E1221D90CA00CEE1C9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -862,6 +942,28 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		A827A4C86BC7780D74724223 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Kantan-Manga-Kantan-Keyboard-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D1FBAE1E0464DE3A1AB9215B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -900,6 +1002,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		326280D0253DD29F0070F5DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				326280D7253DD29F0070F5DA /* KeyboardViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		84A831DF221D90CA00CEE1C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -993,6 +1103,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		326280DA253DD29F0070F5DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 326280D3253DD29F0070F5DA /* Kantan-Keyboard */;
+			targetProxy = 326280D9253DD29F0070F5DA /* PBXContainerItemProxy */;
+		};
 		84A831FC221D90CC00CEE1C9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 84A831E2221D90CA00CEE1C9 /* Kantan-Manga */;
@@ -1017,6 +1132,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		326280DD253DD29F0070F5DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4666767C77310F60DE73652 /* Pods-Kantan-Manga-Kantan-Keyboard.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 25JHVANVX3;
+				INFOPLIST_FILE = "Kantan-Keyboard/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kantanmanga.Kantan-Keyboard";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		326280DE253DD29F0070F5DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0B36E693ED6787E4022D1BE /* Pods-Kantan-Manga-Kantan-Keyboard.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 25JHVANVX3;
+				INFOPLIST_FILE = "Kantan-Keyboard/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kantanmanga.Kantan-Keyboard";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		84A8320C221D90CC00CEE1C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1139,6 +1296,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 617240BC1208769EA8C99836 /* Pods-Kantan-Manga.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1236,6 +1394,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1CF76EB31FF2FE6AA0332A68 /* Pods-Kantan-Manga.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1417,6 +1576,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		326280E0253DD29F0070F5DA /* Build configuration list for PBXNativeTarget "Kantan-Keyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				326280DD253DD29F0070F5DA /* Debug */,
+				326280DE253DD29F0070F5DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		84A831DE221D90CA00CEE1C9 /* Build configuration list for PBXProject "Kantan-Manga" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
