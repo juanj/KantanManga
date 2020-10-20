@@ -10,4 +10,5 @@ import Foundation
 struct Radical {
     let character: String
     let strokeCount: Int
+    let rowId: Int64
 }
