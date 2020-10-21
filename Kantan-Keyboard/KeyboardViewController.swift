@@ -22,7 +22,7 @@ class KeyboardViewController: UIInputViewController {
         mainStackView.addArrangedSubview(radicalsStackView)
 
         guard let dictionary = dictionary else { return }
-        let entries = dictionary.getRadials()
+        let entries = dictionary.getRadicals()
         for row in 0..<5 {
             let rowStackView = UIStackView()
             rowStackView.axis = .horizontal

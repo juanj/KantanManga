@@ -22,7 +22,7 @@ class RadicalsDictionary {
         }
     }
 
-    func getRadials() -> [Radical] {
+    func getRadicals() -> [Radical] {
         let radicalsTable = Table("radk_radicals")
         let radicalColumn = Expression<String>("data")
         let strokeCountColumn = Expression<Int>("stroke_count")
@@ -35,7 +35,7 @@ class RadicalsDictionary {
         }
     }
 
-    func getKanjiWith(radicals: [Radical]) -> [String] {
+    func getKanjiWith(radicals: [Radical]) -> [Kanji] {
         var radicals = radicals
         let kanjiRadicalTable = Table("radk_kanji_radical")
         let kanjiIdColumn = Expression<Int64>("kanji_id")
@@ -57,9 +57,32 @@ class RadicalsDictionary {
                     .map { $0[kanjiIdColumn] }
             }
 
-            return Array(try connection.prepare(kanjiTable.filter(kanjiIds.contains(rowid))))
-                .map { $0[dataColumn] }
+            return Array(try connection.prepare(kanjiTable.select(rowid, dataColumn).filter(kanjiIds.contains(rowid))))
+                .map { Kanji(character: $0[dataColumn], rowId: $0[rowid]) }
 
+        } catch {
+            return []
+        }
+    }
+
+    func getValidRadicalsWith(selection: [Radical]) -> [Radical] {
+        guard selection.count > 0 else {
+            return getRadicals()
+        }
+
+        let kanjiIds = getKanjiWith(radicals: selection).map(\.rowId)
+        let kanjiRadicalTable = Table("radk_kanji_radical")
+        let kanjiIdColumn = Expression<Int64>("kanji_id")
+        let radicalIdColumn = Expression<Int64>("radical_id")
+
+        let radicalsTable = Table("radk_radicals")
+        let radicalColumn = Expression<String>("data")
+        let strokeCountColumn = Expression<Int>("stroke_count")
+
+        do {
+            let radicalIds = Array(try connection.prepare(kanjiRadicalTable.filter(kanjiIds.contains(kanjiIdColumn)))).map { $0[radicalIdColumn] }
+            return Array(try connection.prepare(radicalsTable.select(rowid, radicalColumn, strokeCountColumn).filter(radicalIds.contains(rowid))))
+                .map { Radical(character: $0[radicalColumn], strokeCount: $0[strokeCountColumn], rowId: $0[rowid]) }
         } catch {
             return []
         }
