@@ -20,6 +20,8 @@
 		3219C2AA251100D200915DE1 /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3219C2A8251100D200915DE1 /* CollectionViewController.xib */; };
 		3219C2B02511103600915DE1 /* MockCollectionViewControllerDelgate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219C2AE25110E2900915DE1 /* MockCollectionViewControllerDelgate.swift */; };
 		3219C2B22511103A00915DE1 /* MockCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219C2AC25110D7D00915DE1 /* MockCollectionViewController.swift */; };
+		3229B1C62541D60B00C4E166 /* KanjiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3229B1C32541D60B00C4E166 /* KanjiCollectionViewCell.swift */; };
+		3229B1C82541D60B00C4E166 /* KanjiCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3229B1C42541D60B00C4E166 /* KanjiCollectionViewCell.xib */; };
 		322C5B5C24830C2500C0BAB1 /* MockLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C5B5B24830C2500C0BAB1 /* MockLibraryViewController.swift */; };
 		322C5B602483125A00C0BAB1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C5B5F2483125A00C0BAB1 /* Coordinator.swift */; };
 		322ECF3924FF280B0013FD21 /* Bool+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322ECF3824FF280B0013FD21 /* Bool+Extension.swift */; };
@@ -193,6 +195,8 @@
 		3219C2A8251100D200915DE1 /* CollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewController.xib; sourceTree = "<group>"; };
 		3219C2AC25110D7D00915DE1 /* MockCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCollectionViewController.swift; sourceTree = "<group>"; };
 		3219C2AE25110E2900915DE1 /* MockCollectionViewControllerDelgate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCollectionViewControllerDelgate.swift; sourceTree = "<group>"; };
+		3229B1C32541D60B00C4E166 /* KanjiCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiCollectionViewCell.swift; sourceTree = "<group>"; };
+		3229B1C42541D60B00C4E166 /* KanjiCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KanjiCollectionViewCell.xib; sourceTree = "<group>"; };
 		322C5B5B24830C2500C0BAB1 /* MockLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLibraryViewController.swift; sourceTree = "<group>"; };
 		322C5B5F2483125A00C0BAB1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		322ECF3824FF280B0013FD21 /* Bool+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Extension.swift"; sourceTree = "<group>"; };
@@ -417,6 +421,8 @@
 				32628108253DD4320070F5DA /* radk.sqlite.db */,
 				326280D8253DD29F0070F5DA /* Info.plist */,
 				32628102253DD3970070F5DA /* RadicalsDictionary.swift */,
+				3229B1C32541D60B00C4E166 /* KanjiCollectionViewCell.swift */,
+				3229B1C42541D60B00C4E166 /* KanjiCollectionViewCell.xib */,
 			);
 			path = "Kantan-Keyboard";
 			sourceTree = "<group>";
@@ -852,6 +858,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3229B1C82541D60B00C4E166 /* KanjiCollectionViewCell.xib in Resources */,
 				32628109253DD4320070F5DA /* radk.sqlite.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1028,6 +1035,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3229B1C62541D60B00C4E166 /* KanjiCollectionViewCell.swift in Sources */,
 				326429DE25406FE500D7C992 /* Kanji.swift in Sources */,
 				32628103253DD3970070F5DA /* RadicalsDictionary.swift in Sources */,
 				326280D7253DD29F0070F5DA /* KeyboardViewController.swift in Sources */,

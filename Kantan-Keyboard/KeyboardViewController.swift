@@ -11,7 +11,9 @@ class KeyboardViewController: UIInputViewController {
     private let dictionary = RadicalsDictionary()
     private var selection = [Radical]()
     private var validRadicals = [Radical]()
+    private var resultKanjis = [Kanji]()
     private var radicalsStackView: UIStackView!
+    private var kanjiCollectionView: UICollectionView!
     private var pageLabel: UILabel!
     private var page = 0
     private var numberOfPages = 0
@@ -23,18 +25,32 @@ class KeyboardViewController: UIInputViewController {
 
     private func configureMainStackView() {
         let mainStackView = UIStackView()
+        mainStackView.axis = .vertical
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mainStackView)
         mainStackView.addConstraintsTo(view)
-        mainStackView.axis = .horizontal
-        mainStackView.alignment = .center
+
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 50, height: 50)
+        kanjiCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        kanjiCollectionView.dataSource = self
+        kanjiCollectionView.register(UINib(nibName: "KanjiCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "kanjiCell")
+        kanjiCollectionView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        kanjiCollectionView.backgroundColor = .white
+        mainStackView.addArrangedSubview(kanjiCollectionView)
+
+        let contentStackView = UIStackView()
+        contentStackView.axis = .horizontal
+        contentStackView.alignment = .center
+        mainStackView.addArrangedSubview(contentStackView)
 
         radicalsStackView = UIStackView()
         radicalsStackView.axis = .vertical
-        mainStackView.addArrangedSubview(radicalsStackView)
+        contentStackView.addArrangedSubview(radicalsStackView)
 
         let navigationStackView = createNavigationStackView()
-        mainStackView.addArrangedSubview(navigationStackView)
+        contentStackView.addArrangedSubview(navigationStackView)
     }
 
     private func createNavigationStackView() -> UIView {
@@ -99,12 +115,19 @@ class KeyboardViewController: UIInputViewController {
         }
     }
 
+    private func refreshKanji() {
+        guard let dictionary = dictionary else { return }
+        resultKanjis = dictionary.getKanjiWith(radicals: selection)
+        kanjiCollectionView.reloadData()
+    }
+
     @objc private func selectRadical(_ sender: UIButton) {
         UIDevice.current.playInputClick()
         guard let radical = validRadicals.first( where: { $0.rowId == sender.tag }) else { return }
         page = 0
         selection.append(radical)
         refreshRadicals()
+        refreshKanji()
     }
 
     @objc private func nextPage(_ sender: UIButton) {
@@ -115,5 +138,17 @@ class KeyboardViewController: UIInputViewController {
     @objc private func previusPage(_ sender: UIButton) {
         page = max(page - 1, 0)
         refreshRadicals()
+    }
+}
+
+extension KeyboardViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        resultKanjis.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "kanjiCell", for: indexPath) as! KanjiCollectionViewCell // swiftlint:disable:this force_cast
+        cell.kanjiLabel.text = resultKanjis[indexPath.row].character
+        return cell
     }
 }
