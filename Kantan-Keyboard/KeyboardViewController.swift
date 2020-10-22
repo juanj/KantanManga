@@ -13,6 +13,8 @@ class KeyboardViewController: UIInputViewController {
     private var validRadicals = [Radical]()
     private var radicalsStackView: UIStackView!
     private var pageLabel: UILabel!
+    private var page = 0
+    private var numberOfPages = 0
 
     override func viewDidLoad() {
         configureMainStackView()
@@ -50,9 +52,11 @@ class KeyboardViewController: UIInputViewController {
 
         let leftButton = UIButton()
         leftButton.setImage(UIImage(systemName: "chevron.left.square.fill"), for: .normal)
+        leftButton.addTarget(self, action: #selector(previusPage(_:)), for: .touchUpInside)
 
         let rightButton = UIButton()
         rightButton.setImage(UIImage(systemName: "chevron.right.square.fill"), for: .normal)
+        rightButton.addTarget(self, action: #selector(nextPage(_:)), for: .touchUpInside)
 
         arrowsStackView.addArrangedSubview(leftButton)
         arrowsStackView.addArrangedSubview(rightButton)
@@ -68,11 +72,14 @@ class KeyboardViewController: UIInputViewController {
         }
 
         validRadicals = dictionary.getValidRadicalsWith(selection: selection)
+        numberOfPages = Int(ceil(Float(validRadicals.count) / 25.0))
+        pageLabel.text = "\(page + 1)/\(numberOfPages)"
+
         for row in 0..<5 {
             let rowStackView = UIStackView()
             rowStackView.axis = .horizontal
 
-            let startIndex = row * 5
+            let startIndex = row * 5 + page * 25
             let endIndex = startIndex + 5
             for index in startIndex..<endIndex {
                 if index < validRadicals.count - 1 {
@@ -90,14 +97,23 @@ class KeyboardViewController: UIInputViewController {
 
             radicalsStackView.addArrangedSubview(rowStackView)
         }
-
-        pageLabel.text = "\(1)/\(Int(ceil(Float(validRadicals.count) / 25.0)))"
     }
 
     @objc private func selectRadical(_ sender: UIButton) {
         UIDevice.current.playInputClick()
         guard let radical = validRadicals.first( where: { $0.rowId == sender.tag }) else { return }
+        page = 0
         selection.append(radical)
+        refreshRadicals()
+    }
+
+    @objc private func nextPage(_ sender: UIButton) {
+        page = min(page + 1, numberOfPages - 1)
+        refreshRadicals()
+    }
+
+    @objc private func previusPage(_ sender: UIButton) {
+        page = max(page - 1, 0)
         refreshRadicals()
     }
 }
