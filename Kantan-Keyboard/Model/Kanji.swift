@@ -9,5 +9,6 @@ import Foundation
 
 struct Kanji {
     let character: String
+    let strokeCount: Int
     let rowId: Int64
 }

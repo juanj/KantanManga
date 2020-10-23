@@ -84,6 +84,7 @@
 		32A1516C253260C0002B3920 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1516A253260C0002B3920 /* OnboardingViewController.swift */; };
 		32A1516D253260C0002B3920 /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32A1516B253260C0002B3920 /* OnboardingViewController.xib */; };
 		32A1517225326D76002B3920 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1517125326D76002B3920 /* CircleView.swift */; };
+		32A7C1F8254317D70019D0BB /* kanjidic.sqlite.db in Resources */ = {isa = PBXBuildFile; fileRef = 32A7C1F6254317D70019D0BB /* kanjidic.sqlite.db */; };
 		32AF5BCE2512567900E96C9F /* MangaCollectionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AF5BCD2512567900E96C9F /* MangaCollectionable.swift */; };
 		32AF5BD1251256E600E96C9F /* EmptyMangaCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AF5BD0251256E600E96C9F /* EmptyMangaCollection.swift */; };
 		32B67064252E09FF00F89D7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32B67063252E09FE00F89D7A /* GoogleService-Info.plist */; };
@@ -257,6 +258,7 @@
 		32A1516A253260C0002B3920 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		32A1516B253260C0002B3920 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		32A1517125326D76002B3920 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		32A7C1F6254317D70019D0BB /* kanjidic.sqlite.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = kanjidic.sqlite.db; sourceTree = "<group>"; };
 		32AF5BCD2512567900E96C9F /* MangaCollectionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollectionable.swift; sourceTree = "<group>"; };
 		32AF5BD0251256E600E96C9F /* EmptyMangaCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMangaCollection.swift; sourceTree = "<group>"; };
 		32B67063252E09FE00F89D7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 				3262810D253DD8E10070F5DA /* Model */,
 				326280D6253DD29F0070F5DA /* KeyboardViewController.swift */,
 				32628108253DD4320070F5DA /* radk.sqlite.db */,
+				32A7C1F6254317D70019D0BB /* kanjidic.sqlite.db */,
 				326280D8253DD29F0070F5DA /* Info.plist */,
 				32628102253DD3970070F5DA /* RadicalsDictionary.swift */,
 				3229B1C32541D60B00C4E166 /* KanjiCollectionViewCell.swift */,
@@ -860,6 +863,7 @@
 			files = (
 				3229B1C82541D60B00C4E166 /* KanjiCollectionViewCell.xib in Resources */,
 				32628109253DD4320070F5DA /* radk.sqlite.db in Resources */,
+				32A7C1F8254317D70019D0BB /* kanjidic.sqlite.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
