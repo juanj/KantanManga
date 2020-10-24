@@ -1183,6 +1183,7 @@
 			baseConfigurationReference = 227CBE90351FD53139382038 /* Pods-Kantan-Keyboard.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 60;
 				DEVELOPMENT_TEAM = 25JHVANVX3;
 				INFOPLIST_FILE = "Kantan-Keyboard/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1191,6 +1192,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kantanmanga.Kantan-Keyboard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1204,6 +1206,7 @@
 			baseConfigurationReference = 879F670E43C62C1732AE798F /* Pods-Kantan-Keyboard.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 60;
 				DEVELOPMENT_TEAM = 25JHVANVX3;
 				INFOPLIST_FILE = "Kantan-Keyboard/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1212,6 +1215,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kantanmanga.Kantan-Keyboard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
