@@ -59,7 +59,7 @@ class KeyboardViewController: UIInputViewController {
         kanjiCollectionView.delegate = self
         kanjiCollectionView.register(UINib(nibName: "KanjiCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "kanjiCell")
         kanjiCollectionView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        kanjiCollectionView.backgroundColor = .white
+        kanjiCollectionView.backgroundColor = .clear
         return kanjiCollectionView
     }
 
@@ -107,13 +107,71 @@ class KeyboardViewController: UIInputViewController {
         pageLabel = UILabel()
         pageLabel.font = .systemFont(ofSize: 15, weight: .black)
 
-        let navigationStackView = UIStackView(arrangedSubviews: [pageLabel, deleteButton, rightButton, leftButton, clearButton, changeKeyboardButton])
+        var arrangedViews: [UIView] = [pageLabel, deleteButton, rightButton, leftButton, clearButton]
+        if needsInputModeSwitchKey {
+            arrangedViews.append(changeKeyboardButton)
+        }
+        let navigationStackView = UIStackView(arrangedSubviews: arrangedViews)
         navigationStackView.axis = .vertical
         navigationStackView.distribution = .equalSpacing
         navigationStackView.alignment = .center
         navigationStackView.spacing = 8
 
         return navigationStackView
+    }
+
+    private func createRadicalButton(_ radical: Radical) -> UIButton {
+        let size: CGFloat
+        let fontSize: CGFloat
+        if traitCollection.horizontalSizeClass == .compact {
+            size = 40
+            fontSize = 15
+        } else {
+            size = 60
+            fontSize = 20
+        }
+
+        let button = KeyboardButton()
+        button.backgroundColor = selection.contains(radical) ? .lightGray : .white
+        button.setTitle("\(radical.onlyRadicalPart()) \(radical.strokeCount)", for: .normal)
+        button.tag = Int(radical.rowId)
+        button.titleLabel?.font = .systemFont(ofSize: fontSize)
+        button.heightAnchor.constraint(equalToConstant: size).isActive = true
+        button.widthAnchor.constraint(equalToConstant: size).isActive = true
+        button.addTarget(self, action: #selector(selectRadical(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(playSound), for: .touchDown)
+        return button
+    }
+
+    private func createPlaceHolderButton() -> UIButton {
+        let size: CGFloat
+        if traitCollection.horizontalSizeClass == .compact {
+            size = 40
+        } else {
+            size = 60
+        }
+
+        let placeHolder = UIButton()
+        placeHolder.heightAnchor.constraint(equalToConstant: size).isActive = true
+        placeHolder.widthAnchor.constraint(equalToConstant: size).isActive = true
+        return placeHolder
+    }
+
+    private func numberOfRowsColumns() -> (rows: Int, columns: Int) {
+        let screenSize = UIScreen.main.bounds
+        let maxHeight = max(screenSize.height / 2, 274)
+        let maxWidth = screenSize.width
+        var rows = 1
+        var columns = 1
+        if traitCollection.horizontalSizeClass == .compact {
+            rows = Int(floor((maxHeight - 70) / 44.0))
+            columns = Int(floor((maxWidth - 60) / 50.0))
+        } else {
+            rows = Int(floor((maxHeight - 70) / 64.0))
+            columns = Int(floor((maxWidth - 130) / 64.0))
+        }
+
+        return (rows, columns)
     }
 
     private func refreshRadicals() {
@@ -123,33 +181,26 @@ class KeyboardViewController: UIInputViewController {
             view.removeFromSuperview()
         }
 
+        let gridSize = numberOfRowsColumns()
+
         validRadicals = dictionary.getValidRadicalsWith(selection: selection)
-        numberOfPages = Int(ceil(Float(validRadicals.count) / 25.0))
+        numberOfPages = Int(ceil(Float(validRadicals.count) / Float(gridSize.rows * gridSize.columns)))
         pageLabel.text = "\(page + 1)/\(numberOfPages)"
 
-        for row in 0..<5 {
+        for row in 0..<gridSize.rows {
             let rowStackView = UIStackView()
             rowStackView.axis = .horizontal
             rowStackView.spacing = 8
 
-            let startIndex = row * 5 + page * 25
-            let endIndex = startIndex + 5
+            let startIndex = row * gridSize.columns + page * (gridSize.rows * gridSize.columns)
+            let endIndex = startIndex + gridSize.columns
             for index in startIndex..<endIndex {
                 if index < validRadicals.count {
                     let radical = validRadicals[index]
-                    let button = KeyboardButton()
-                    button.backgroundColor = selection.contains(radical) ? .lightGray : .white
-                    button.setTitle("\(radical.onlyRadicalPart()) \(radical.strokeCount)", for: .normal)
-                    button.tag = Int(radical.rowId)
-                    button.heightAnchor.constraint(equalToConstant: 60).isActive = true
-                    button.widthAnchor.constraint(equalToConstant: 60).isActive = true
-                    button.addTarget(self, action: #selector(selectRadical(_:)), for: .touchUpInside)
-                    button.addTarget(self, action: #selector(playSound), for: .touchDown)
+                    let button = createRadicalButton(radical)
                     rowStackView.addArrangedSubview(button)
                 } else {
-                    let placeHolder = UIButton()
-                    placeHolder.heightAnchor.constraint(equalToConstant: 60).isActive = true
-                    placeHolder.widthAnchor.constraint(equalToConstant: 60).isActive = true
+                    let placeHolder = createPlaceHolderButton()
                     rowStackView.addArrangedSubview(placeHolder)
                 }
             }
