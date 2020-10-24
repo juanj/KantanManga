@@ -25,29 +25,29 @@ class KeyboardViewController: UIInputViewController {
     }
 
     private func configureMainStackView() {
-        let mainStackView = UIStackView()
-        mainStackView.axis = .vertical
-        mainStackView.spacing = 8
-        mainStackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(mainStackView)
-        mainStackView.addConstraintsTo(view, spacing: .init(top: 8, left: 8, bottom: -8, right: -8))
-
         kanjiCollectionView = createKanjiCollectionView()
-        mainStackView.addArrangedSubview(kanjiCollectionView)
+        kanjiCollectionView.translatesAutoresizingMaskIntoConstraints = false
 
-        let contentStackView = UIStackView()
-        contentStackView.axis = .horizontal
-        contentStackView.alignment = .center
-        contentStackView.spacing = 8
-        mainStackView.addArrangedSubview(contentStackView)
+        let navigationStackView = createNavigationStackView()
 
         radicalsStackView = UIStackView()
         radicalsStackView.axis = .vertical
         radicalsStackView.spacing = 8
-        contentStackView.addArrangedSubview(radicalsStackView)
 
-        let navigationStackView = createNavigationStackView()
-        contentStackView.addArrangedSubview(navigationStackView)
+        let contentStackView = UIStackView(arrangedSubviews: [navigationStackView, radicalsStackView])
+        contentStackView.axis = .horizontal
+        contentStackView.distribution = .equalSpacing
+        contentStackView.alignment = .center
+        contentStackView.spacing = 8
+        contentStackView.isLayoutMarginsRelativeArrangement = true
+        contentStackView.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        contentStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(contentStackView)
+        contentStackView.addConstraintsTo(view, sides: [.horizontal, .bottom])
+
+        view.addSubview(kanjiCollectionView)
+        kanjiCollectionView.addConstraintsTo(view, sides: [.horizontal, .top])
+        kanjiCollectionView.bottomAnchor.constraint(equalTo: contentStackView.topAnchor).isActive = true
     }
 
     private func createKanjiCollectionView() -> UICollectionView {
@@ -63,66 +63,55 @@ class KeyboardViewController: UIInputViewController {
         return kanjiCollectionView
     }
 
+    private func createActionButton(systemIcon: String) -> UIButton {
+        let size: CGSize
+        let scale: UIImage.SymbolScale
+        if traitCollection.horizontalSizeClass == .compact {
+            size = CGSize(width: 30, height: 30)
+            scale = .small
+        } else {
+            size = CGSize(width: 120, height: 60)
+            scale = .large
+        }
+
+        let symbolConfiguration = UIImage.SymbolConfiguration(scale: scale)
+        let button = KeyboardButton(type: .custom)
+        let image = UIImage(systemName: systemIcon, withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
+        button.setImage(image, for: .normal)
+        button.widthAnchor.constraint(equalToConstant: size.width).isActive = true
+        button.heightAnchor.constraint(equalToConstant: size.height).isActive = true
+        return button
+    }
+
     private func createNavigationStackView() -> UIView {
-        let navigationStackView = UIStackView()
-        navigationStackView.axis = .vertical
-        navigationStackView.alignment = .center
-
-        pageLabel = UILabel()
-        navigationStackView.addArrangedSubview(pageLabel)
-
-        let arrowsStackView = UIStackView()
-        arrowsStackView.axis = .horizontal
-        arrowsStackView.distribution = .equalSpacing
-        arrowsStackView.spacing = 8
-        navigationStackView.addArrangedSubview(arrowsStackView)
-
-        let symbolConfiguration = UIImage.SymbolConfiguration(scale: .large)
-        let clearButton = KeyboardButton(type: .custom)
-        let clearImage = UIImage(systemName: "xmark", withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
-        clearButton.setImage(clearImage, for: .normal)
+        let clearButton = createActionButton(systemIcon: "xmark")
         clearButton.addTarget(self, action: #selector(clearSelection), for: .touchUpInside)
         clearButton.addTarget(self, action: #selector(playSound), for: .touchDown)
-        clearButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        clearButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
-        let leftButton = KeyboardButton(type: .custom)
-        let leftImage = UIImage(systemName: "chevron.left", withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
-        leftButton.setImage(leftImage, for: .normal)
+        let leftButton = createActionButton(systemIcon: "chevron.left")
         leftButton.addTarget(self, action: #selector(previusPage), for: .touchUpInside)
         leftButton.addTarget(self, action: #selector(playSound), for: .touchDown)
-        leftButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        leftButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
-        let rightButton = KeyboardButton(type: .custom)
-        let rightImage = UIImage(systemName: "chevron.right", withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
-        rightButton.setImage(rightImage, for: .normal)
+        let rightButton = createActionButton(systemIcon: "chevron.right")
         rightButton.addTarget(self, action: #selector(nextPage), for: .touchUpInside)
         rightButton.addTarget(self, action: #selector(playSound), for: .touchDown)
-        rightButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        rightButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
-        let changeKeyboardButton = KeyboardButton(type: .custom)
-        let globeImage = UIImage(systemName: "globe", withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
-        changeKeyboardButton.setImage(globeImage, for: .normal)
+        let changeKeyboardButton = createActionButton(systemIcon: "globe")
         changeKeyboardButton.addTarget(self, action: #selector(changeKeyboard), for: .touchUpInside)
         changeKeyboardButton.addTarget(self, action: #selector(playSound), for: .touchDown)
-        changeKeyboardButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        changeKeyboardButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
-        let deleteButton = KeyboardButton(type: .custom)
-        let deleteImage = UIImage(systemName: "delete.left", withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
-        deleteButton.setImage(deleteImage, for: .normal)
+        let deleteButton = createActionButton(systemIcon: "delete.left")
         deleteButton.addTarget(self, action: #selector(deleteCharacter), for: .touchUpInside)
         deleteButton.addTarget(self, action: #selector(playDeleteSound), for: .touchDown)
-        deleteButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        deleteButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
-        arrowsStackView.addArrangedSubview(clearButton)
-        arrowsStackView.addArrangedSubview(leftButton)
-        arrowsStackView.addArrangedSubview(rightButton)
-        arrowsStackView.addArrangedSubview(changeKeyboardButton)
-        arrowsStackView.addArrangedSubview(deleteButton)
+        pageLabel = UILabel()
+        pageLabel.font = .systemFont(ofSize: 15, weight: .black)
+
+        let navigationStackView = UIStackView(arrangedSubviews: [pageLabel, deleteButton, rightButton, leftButton, clearButton, changeKeyboardButton])
+        navigationStackView.axis = .vertical
+        navigationStackView.distribution = .equalSpacing
+        navigationStackView.alignment = .center
+        navigationStackView.spacing = 8
 
         return navigationStackView
     }
@@ -174,7 +163,10 @@ class KeyboardViewController: UIInputViewController {
         resultKanjis = dictionary.getKanjiWith(radicals: selection)
         kanjiCollectionView.reloadData()
     }
+}
 
+// MARK: Actions
+extension KeyboardViewController {
     @objc private func playSound() {
         AudioServicesPlaySystemSound(1104)
     }
@@ -216,7 +208,6 @@ class KeyboardViewController: UIInputViewController {
     }
 
     @objc private func clearSelection() {
-        textDocumentProxy.deleteBackward()
         page = 0
         selection = []
         refreshRadicals()
@@ -224,6 +215,7 @@ class KeyboardViewController: UIInputViewController {
     }
 }
 
+// MARK: UICollection
 extension KeyboardViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         resultKanjis.count
