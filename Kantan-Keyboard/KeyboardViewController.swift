@@ -123,7 +123,7 @@ class KeyboardViewController: UIInputViewController {
             let startIndex = row * 5 + page * 25
             let endIndex = startIndex + 5
             for index in startIndex..<endIndex {
-                if index < validRadicals.count - 1 {
+                if index < validRadicals.count {
                     let radical = validRadicals[index]
                     let button = KeyboardButton()
                     button.backgroundColor = selection.contains(radical) ? .lightGray : .white
