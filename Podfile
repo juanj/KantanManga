@@ -18,10 +18,6 @@ target 'Kantan-Manga' do
     # Pods for testing
   end
 
-  target 'Kantan-Keyboard' do
-    pod 'SQLite.swift', '~> 0.12.0'
-  end
-
   target 'Kantan-MangaUITests' do
     inherit! :search_paths
     # Pods for testing
@@ -29,12 +25,15 @@ target 'Kantan-Manga' do
 
 end
 
+target 'Kantan-Keyboard' do
+  use_frameworks!
+  pod 'SQLite.swift', '~> 0.12.0'
+end
+
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      # config.build_settings['ENABLE_BITCODE'] = 'NO'
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '9.0'
-      config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'No'
     end
   end
 end
