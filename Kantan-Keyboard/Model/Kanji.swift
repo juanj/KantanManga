@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Kanji {
+struct Kanji: Equatable {
     let character: String
     let strokeCount: Int
     let rowId: Int64

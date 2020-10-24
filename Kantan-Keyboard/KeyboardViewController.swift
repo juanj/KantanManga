@@ -126,6 +126,7 @@ class KeyboardViewController: UIInputViewController {
                 if index < validRadicals.count - 1 {
                     let radical = validRadicals[index]
                     let button = KeyboardButton()
+                    button.backgroundColor = selection.contains(radical) ? .lightGray : .white
                     button.setTitle(radical.character, for: .normal)
                     button.tag = Int(radical.rowId)
                     button.heightAnchor.constraint(equalToConstant: 60).isActive = true
@@ -154,7 +155,13 @@ class KeyboardViewController: UIInputViewController {
         UIDevice.current.playInputClick()
         guard let radical = validRadicals.first( where: { $0.rowId == sender.tag }) else { return }
         page = 0
-        selection.append(radical)
+        if selection.contains(radical) {
+            if let index = selection.firstIndex(of: radical) {
+                selection.remove(at: index)
+            }
+        } else {
+            selection.append(radical)
+        }
         refreshRadicals()
         refreshKanji()
     }

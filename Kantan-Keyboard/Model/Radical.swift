@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Radical {
+struct Radical: Equatable {
     let character: String
     let strokeCount: Int
     let rowId: Int64
