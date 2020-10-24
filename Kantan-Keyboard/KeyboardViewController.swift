@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class KeyboardViewController: UIInputViewController {
     private let dictionary = RadicalsDictionary()
@@ -55,6 +56,7 @@ class KeyboardViewController: UIInputViewController {
         layout.itemSize = CGSize(width: 50, height: 50)
         let kanjiCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         kanjiCollectionView.dataSource = self
+        kanjiCollectionView.delegate = self
         kanjiCollectionView.register(UINib(nibName: "KanjiCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "kanjiCell")
         kanjiCollectionView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         kanjiCollectionView.backgroundColor = .white
@@ -80,6 +82,7 @@ class KeyboardViewController: UIInputViewController {
         let leftImage = UIImage(systemName: "chevron.left", withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
         leftButton.setImage(leftImage, for: .normal)
         leftButton.addTarget(self, action: #selector(previusPage(_:)), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(playSound), for: .touchDown)
         leftButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
         leftButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
@@ -87,6 +90,7 @@ class KeyboardViewController: UIInputViewController {
         let rightImage = UIImage(systemName: "chevron.right", withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
         rightButton.setImage(rightImage, for: .normal)
         rightButton.addTarget(self, action: #selector(nextPage(_:)), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(playSound), for: .touchDown)
         rightButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
         rightButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
@@ -94,12 +98,22 @@ class KeyboardViewController: UIInputViewController {
         let globeImage = UIImage(systemName: "globe", withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
         changeKeyboardButton.setImage(globeImage, for: .normal)
         changeKeyboardButton.addTarget(self, action: #selector(changeKeyboard), for: .touchUpInside)
+        changeKeyboardButton.addTarget(self, action: #selector(playSound), for: .touchDown)
         changeKeyboardButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
         changeKeyboardButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+
+        let deleteButton = KeyboardButton(type: .custom)
+        let deleteImage = UIImage(systemName: "delete.left", withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
+        deleteButton.setImage(deleteImage, for: .normal)
+        deleteButton.addTarget(self, action: #selector(deleteCharacter), for: .touchUpInside)
+        deleteButton.addTarget(self, action: #selector(playDeleteSound), for: .touchDown)
+        deleteButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        deleteButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
         arrowsStackView.addArrangedSubview(leftButton)
         arrowsStackView.addArrangedSubview(rightButton)
         arrowsStackView.addArrangedSubview(changeKeyboardButton)
+        arrowsStackView.addArrangedSubview(deleteButton)
 
         return navigationStackView
     }
@@ -132,6 +146,7 @@ class KeyboardViewController: UIInputViewController {
                     button.heightAnchor.constraint(equalToConstant: 60).isActive = true
                     button.widthAnchor.constraint(equalToConstant: 60).isActive = true
                     button.addTarget(self, action: #selector(selectRadical(_:)), for: .touchUpInside)
+                    button.addTarget(self, action: #selector(playSound), for: .touchDown)
                     rowStackView.addArrangedSubview(button)
                 } else {
                     let placeHolder = UIButton()
@@ -151,8 +166,15 @@ class KeyboardViewController: UIInputViewController {
         kanjiCollectionView.reloadData()
     }
 
+    @objc private func playSound() {
+        AudioServicesPlaySystemSound(1104)
+    }
+
+    @objc private func playDeleteSound() {
+        AudioServicesPlaySystemSound(1155)
+    }
+
     @objc private func selectRadical(_ sender: UIButton) {
-        UIDevice.current.playInputClick()
         guard let radical = validRadicals.first( where: { $0.rowId == sender.tag }) else { return }
         page = 0
         if selection.contains(radical) {
@@ -179,6 +201,10 @@ class KeyboardViewController: UIInputViewController {
     @objc private func changeKeyboard() {
         advanceToNextInputMode()
     }
+
+    @objc private func deleteCharacter() {
+        textDocumentProxy.deleteBackward()
+    }
 }
 
 extension KeyboardViewController: UICollectionViewDataSource {
@@ -190,5 +216,12 @@ extension KeyboardViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "kanjiCell", for: indexPath) as! KanjiCollectionViewCell // swiftlint:disable:this force_cast
         cell.kanjiLabel.text = resultKanjis[indexPath.row].character
         return cell
+    }
+}
+
+extension KeyboardViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let kanji = resultKanjis[indexPath.row]
+        textDocumentProxy.insertText(kanji.character)
     }
 }
