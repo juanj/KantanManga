@@ -26,31 +26,39 @@ class KeyboardViewController: UIInputViewController {
     private func configureMainStackView() {
         let mainStackView = UIStackView()
         mainStackView.axis = .vertical
+        mainStackView.spacing = 8
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mainStackView)
-        mainStackView.addConstraintsTo(view)
+        mainStackView.addConstraintsTo(view, spacing: .init(top: 8, left: 8, bottom: -8, right: -8))
 
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 50, height: 50)
-        kanjiCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        kanjiCollectionView.dataSource = self
-        kanjiCollectionView.register(UINib(nibName: "KanjiCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "kanjiCell")
-        kanjiCollectionView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        kanjiCollectionView.backgroundColor = .white
+        kanjiCollectionView = createKanjiCollectionView()
         mainStackView.addArrangedSubview(kanjiCollectionView)
 
         let contentStackView = UIStackView()
         contentStackView.axis = .horizontal
         contentStackView.alignment = .center
+        contentStackView.spacing = 8
         mainStackView.addArrangedSubview(contentStackView)
 
         radicalsStackView = UIStackView()
         radicalsStackView.axis = .vertical
+        radicalsStackView.spacing = 8
         contentStackView.addArrangedSubview(radicalsStackView)
 
         let navigationStackView = createNavigationStackView()
         contentStackView.addArrangedSubview(navigationStackView)
+    }
+
+    private func createKanjiCollectionView() -> UICollectionView {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 50, height: 50)
+        let kanjiCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        kanjiCollectionView.dataSource = self
+        kanjiCollectionView.register(UINib(nibName: "KanjiCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "kanjiCell")
+        kanjiCollectionView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        kanjiCollectionView.backgroundColor = .white
+        return kanjiCollectionView
     }
 
     private func createNavigationStackView() -> UIView {
@@ -64,18 +72,34 @@ class KeyboardViewController: UIInputViewController {
         let arrowsStackView = UIStackView()
         arrowsStackView.axis = .horizontal
         arrowsStackView.distribution = .equalSpacing
+        arrowsStackView.spacing = 8
         navigationStackView.addArrangedSubview(arrowsStackView)
 
-        let leftButton = UIButton()
-        leftButton.setImage(UIImage(systemName: "chevron.left.square.fill"), for: .normal)
+        let symbolConfiguration = UIImage.SymbolConfiguration(scale: .large)
+        let leftButton = KeyboardButton(type: .custom)
+        let leftImage = UIImage(systemName: "chevron.left", withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
+        leftButton.setImage(leftImage, for: .normal)
         leftButton.addTarget(self, action: #selector(previusPage(_:)), for: .touchUpInside)
+        leftButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        leftButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
-        let rightButton = UIButton()
-        rightButton.setImage(UIImage(systemName: "chevron.right.square.fill"), for: .normal)
+        let rightButton = KeyboardButton(type: .custom)
+        let rightImage = UIImage(systemName: "chevron.right", withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
+        rightButton.setImage(rightImage, for: .normal)
         rightButton.addTarget(self, action: #selector(nextPage(_:)), for: .touchUpInside)
+        rightButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        rightButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+
+        let changeKeyboardButton = KeyboardButton(type: .custom)
+        let globeImage = UIImage(systemName: "globe", withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
+        changeKeyboardButton.setImage(globeImage, for: .normal)
+        changeKeyboardButton.addTarget(self, action: #selector(changeKeyboard), for: .touchUpInside)
+        changeKeyboardButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        changeKeyboardButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
         arrowsStackView.addArrangedSubview(leftButton)
         arrowsStackView.addArrangedSubview(rightButton)
+        arrowsStackView.addArrangedSubview(changeKeyboardButton)
 
         return navigationStackView
     }
@@ -94,19 +118,24 @@ class KeyboardViewController: UIInputViewController {
         for row in 0..<5 {
             let rowStackView = UIStackView()
             rowStackView.axis = .horizontal
+            rowStackView.spacing = 8
 
             let startIndex = row * 5 + page * 25
             let endIndex = startIndex + 5
             for index in startIndex..<endIndex {
                 if index < validRadicals.count - 1 {
                     let radical = validRadicals[index]
-                    let button = UIButton()
+                    let button = KeyboardButton()
                     button.setTitle(radical.character, for: .normal)
                     button.tag = Int(radical.rowId)
+                    button.heightAnchor.constraint(equalToConstant: 60).isActive = true
+                    button.widthAnchor.constraint(equalToConstant: 60).isActive = true
                     button.addTarget(self, action: #selector(selectRadical(_:)), for: .touchUpInside)
                     rowStackView.addArrangedSubview(button)
                 } else {
                     let placeHolder = UIButton()
+                    placeHolder.heightAnchor.constraint(equalToConstant: 60).isActive = true
+                    placeHolder.widthAnchor.constraint(equalToConstant: 60).isActive = true
                     rowStackView.addArrangedSubview(placeHolder)
                 }
             }
@@ -138,6 +167,10 @@ class KeyboardViewController: UIInputViewController {
     @objc private func previusPage(_ sender: UIButton) {
         page = max(page - 1, 0)
         refreshRadicals()
+    }
+
+    @objc private func changeKeyboard() {
+        advanceToNextInputMode()
     }
 }
 
