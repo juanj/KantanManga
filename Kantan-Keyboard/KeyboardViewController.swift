@@ -141,7 +141,7 @@ class KeyboardViewController: UIInputViewController {
                     let radical = validRadicals[index]
                     let button = KeyboardButton()
                     button.backgroundColor = selection.contains(radical) ? .lightGray : .white
-                    button.setTitle(radical.character, for: .normal)
+                    button.setTitle("\(radical.character) \(radical.strokeCount)", for: .normal)
                     button.tag = Int(radical.rowId)
                     button.heightAnchor.constraint(equalToConstant: 60).isActive = true
                     button.widthAnchor.constraint(equalToConstant: 60).isActive = true
