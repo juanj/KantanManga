@@ -78,10 +78,18 @@ class KeyboardViewController: UIInputViewController {
         navigationStackView.addArrangedSubview(arrowsStackView)
 
         let symbolConfiguration = UIImage.SymbolConfiguration(scale: .large)
+        let clearButton = KeyboardButton(type: .custom)
+        let clearImage = UIImage(systemName: "xmark", withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
+        clearButton.setImage(clearImage, for: .normal)
+        clearButton.addTarget(self, action: #selector(clearSelection), for: .touchUpInside)
+        clearButton.addTarget(self, action: #selector(playSound), for: .touchDown)
+        clearButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        clearButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+
         let leftButton = KeyboardButton(type: .custom)
         let leftImage = UIImage(systemName: "chevron.left", withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
         leftButton.setImage(leftImage, for: .normal)
-        leftButton.addTarget(self, action: #selector(previusPage(_:)), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(previusPage), for: .touchUpInside)
         leftButton.addTarget(self, action: #selector(playSound), for: .touchDown)
         leftButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
         leftButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
@@ -89,7 +97,7 @@ class KeyboardViewController: UIInputViewController {
         let rightButton = KeyboardButton(type: .custom)
         let rightImage = UIImage(systemName: "chevron.right", withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
         rightButton.setImage(rightImage, for: .normal)
-        rightButton.addTarget(self, action: #selector(nextPage(_:)), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(nextPage), for: .touchUpInside)
         rightButton.addTarget(self, action: #selector(playSound), for: .touchDown)
         rightButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
         rightButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
@@ -110,6 +118,7 @@ class KeyboardViewController: UIInputViewController {
         deleteButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
         deleteButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
+        arrowsStackView.addArrangedSubview(clearButton)
         arrowsStackView.addArrangedSubview(leftButton)
         arrowsStackView.addArrangedSubview(rightButton)
         arrowsStackView.addArrangedSubview(changeKeyboardButton)
@@ -188,12 +197,12 @@ class KeyboardViewController: UIInputViewController {
         refreshKanji()
     }
 
-    @objc private func nextPage(_ sender: UIButton) {
+    @objc private func nextPage() {
         page = min(page + 1, numberOfPages - 1)
         refreshRadicals()
     }
 
-    @objc private func previusPage(_ sender: UIButton) {
+    @objc private func previusPage() {
         page = max(page - 1, 0)
         refreshRadicals()
     }
@@ -204,6 +213,14 @@ class KeyboardViewController: UIInputViewController {
 
     @objc private func deleteCharacter() {
         textDocumentProxy.deleteBackward()
+    }
+
+    @objc private func clearSelection() {
+        textDocumentProxy.deleteBackward()
+        page = 0
+        selection = []
+        refreshRadicals()
+        refreshKanji()
     }
 }
 
