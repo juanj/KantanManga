@@ -68,14 +68,9 @@ class RadicalsDictionary {
             let kanjiCharacters = kanjiRows.map { $0[radkDataColumn] }
             let kanjiInfo = Array(try kanjidicDb.prepare(kanjidicKanjiTable.select(kanjidicLiteralColumn, kanjidicStrokeCountColumn).filter(kanjiCharacters.contains(kanjidicLiteralColumn)).order(kanjidicLiteralColumn.desc)))
 
-            // TODO: This is tremendously slow
-            let kanjis = kanjiRows.map { row -> Kanji in
-                if let info = kanjiInfo.first(where: { $0[kanjidicLiteralColumn] == row[radkDataColumn] }) {
-                    return Kanji(character: row[radkDataColumn], strokeCount: info[kanjidicStrokeCountColumn], rowId: row[rowid])
-                }
-                return Kanji(character: row[radkDataColumn], strokeCount: 100, rowId: row[rowid])
-            }
-
+            // It's safe to assume all kanjis contained in radkfile are in kanjidic
+            let kanjis = zip(kanjiRows, kanjiInfo)
+                .map { Kanji(character: $0.0[radkDataColumn], strokeCount: $0.1[kanjidicStrokeCountColumn], rowId: $0.0[rowid]) }
             return kanjis.sorted(by: { $0.strokeCount < $1.strokeCount })
         } catch {
             return []
