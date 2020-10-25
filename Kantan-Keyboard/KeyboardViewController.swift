@@ -148,7 +148,7 @@ class KeyboardViewController: UIInputViewController {
 
         let button = KeyboardButton()
         button.backgroundColor = selection.contains(radical) ? .lightGray : .white
-        button.setTitle("\(radical.onlyRadicalPart()) \(radical.strokeCount)", for: .normal)
+        button.setTitle("\(radical.onlyRadicalPart())", for: .normal)
         button.tag = Int(radical.rowId)
         button.titleLabel?.font = .systemFont(ofSize: fontSize)
         button.heightAnchor.constraint(equalToConstant: size).isActive = true
@@ -172,6 +172,31 @@ class KeyboardViewController: UIInputViewController {
         return placeHolder
     }
 
+    private func createStrokesView(stroke: Int) -> UIView {
+        let size: CGFloat
+        if traitCollection.horizontalSizeClass == .compact {
+            size = 40
+        } else {
+            size = 60
+        }
+
+        let strokesView = UIView()
+        strokesView.backgroundColor = .darkGray
+        strokesView.layer.cornerRadius = 5
+        strokesView.heightAnchor.constraint(equalToConstant: size).isActive = true
+        strokesView.widthAnchor.constraint(equalToConstant: size).isActive = true
+
+        let label = UILabel()
+        label.textColor = .white
+        label.text = String(stroke)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        strokesView.addSubview(label)
+        label.centerYAnchor.constraint(equalTo: strokesView.centerYAnchor).isActive = true
+        label.centerXAnchor.constraint(equalTo: strokesView.centerXAnchor).isActive = true
+
+        return strokesView
+    }
+
     private func numberOfRowsColumns() -> (rows: Int, columns: Int) {
         let screenSize = UIScreen.main.bounds
         let fraction: CGFloat = screenSize.height > screenSize.width ? 3.0 : 2.0
@@ -191,7 +216,6 @@ class KeyboardViewController: UIInputViewController {
     }
 
     private func refreshRadicals() {
-        guard let dictionary = dictionary else { return }
         radicalsStackView.arrangedSubviews.forEach { view in
             radicalsStackView.removeArrangedSubview(view)
             view.removeFromSuperview()
@@ -199,10 +223,9 @@ class KeyboardViewController: UIInputViewController {
 
         let gridSize = numberOfRowsColumns()
 
-        validRadicals = dictionary.getValidRadicalsWith(selection: selection)
-        numberOfPages = Int(ceil(Float(validRadicals.count) / Float(gridSize.rows * gridSize.columns)))
+        let radicals = getRadicals()
+        numberOfPages = Int(ceil(Float(radicals.count) / Float(gridSize.rows * gridSize.columns)))
         pageLabel.text = "\(page + 1)/\(numberOfPages)"
-
         for row in 0..<gridSize.rows {
             let rowStackView = UIStackView()
             rowStackView.axis = .horizontal
@@ -212,10 +235,14 @@ class KeyboardViewController: UIInputViewController {
             let startIndex = row * gridSize.columns + page * (gridSize.rows * gridSize.columns)
             let endIndex = startIndex + gridSize.columns
             for index in startIndex..<endIndex {
-                if index < validRadicals.count {
-                    let radical = validRadicals[index]
-                    let button = createRadicalButton(radical)
-                    rowStackView.addArrangedSubview(button)
+                if index < radicals.count {
+                    if let radical = radicals[index] as? Radical {
+                        let button = createRadicalButton(radical)
+                        rowStackView.addArrangedSubview(button)
+                    } else if let strokeCount = radicals[index] as? Int {
+                        let strokesView = createStrokesView(stroke: strokeCount)
+                        rowStackView.addArrangedSubview(strokesView)
+                    }
                 } else {
                     let placeHolder = createPlaceHolderButton()
                     rowStackView.addArrangedSubview(placeHolder)
@@ -244,6 +271,22 @@ class KeyboardViewController: UIInputViewController {
             }
         }
         kanjiCollectionView.reloadData()
+    }
+
+    private func getRadicals() -> [Any] {
+        guard let dictionary = dictionary else { return [] }
+        validRadicals = dictionary.getValidRadicalsWith(selection: selection)
+        var paddedRadicals = [Any]()
+
+        var lastStrokeCount = 0
+        for radical in validRadicals {
+            if radical.strokeCount > lastStrokeCount {
+                lastStrokeCount = radical.strokeCount
+                paddedRadicals.append(lastStrokeCount)
+            }
+            paddedRadicals.append(radical)
+        }
+        return paddedRadicals
     }
 }
 
