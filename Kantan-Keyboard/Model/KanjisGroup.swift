@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct KanjisGroup {
+struct KanjisGroup: Equatable {
     var kanjis: [Kanji]
     let strokeCount: Int
 }

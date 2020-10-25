@@ -270,6 +270,9 @@ class KeyboardViewController: UIInputViewController {
                 container.kanjis.append(kanji)
             }
         }
+        if resultKanjis.last != container {
+            resultKanjis.append(container)
+        }
         kanjiCollectionView.reloadData()
     }
 
