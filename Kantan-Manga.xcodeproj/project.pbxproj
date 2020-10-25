@@ -70,6 +70,7 @@
 		326344A3247DD98B00F683AB /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326344A2247DD98B00F683AB /* Reader.swift */; };
 		326344A5247DDAF800F683AB /* CBRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326344A4247DDAF800F683AB /* CBRReader.swift */; };
 		326429DE25406FE500D7C992 /* Kanji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326429DD25406FE500D7C992 /* Kanji.swift */; };
+		326DC88625462DFD0003B9A3 /* KanjisGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326DC88525462DFD0003B9A3 /* KanjisGroup.swift */; };
 		326FDE7924A7F8350042CB8A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326FDE7824A7F8350042CB8A /* SettingsTableViewController.swift */; };
 		326FDE7B24A7FBFB0042CB8A /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326FDE7A24A7FBFB0042CB8A /* SettingsCoordinator.swift */; };
 		326FDE7F24A80BB20042CB8A /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326FDE7E24A80BB20042CB8A /* AboutView.swift */; };
@@ -247,6 +248,7 @@
 		326344A2247DD98B00F683AB /* Reader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
 		326344A4247DDAF800F683AB /* CBRReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBRReader.swift; sourceTree = "<group>"; };
 		326429DD25406FE500D7C992 /* Kanji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kanji.swift; sourceTree = "<group>"; };
+		326DC88525462DFD0003B9A3 /* KanjisGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjisGroup.swift; sourceTree = "<group>"; };
 		326FDE7824A7F8350042CB8A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		326FDE7A24A7FBFB0042CB8A /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		326FDE7E24A80BB20042CB8A /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 			children = (
 				3262810E253DD8EE0070F5DA /* Radical.swift */,
 				326429DD25406FE500D7C992 /* Kanji.swift */,
+				326DC88525462DFD0003B9A3 /* KanjisGroup.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1047,6 +1050,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3229B1C62541D60B00C4E166 /* KanjiCollectionViewCell.swift in Sources */,
+				326DC88625462DFD0003B9A3 /* KanjisGroup.swift in Sources */,
 				328E90252544ABB500F1CF57 /* KeyboardButton.swift in Sources */,
 				326429DE25406FE500D7C992 /* Kanji.swift in Sources */,
 				32628103253DD3970070F5DA /* RadicalsDictionary.swift in Sources */,

@@ -9,4 +9,11 @@ import UIKit
 
 class KanjiCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var kanjiLabel: UILabel!
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        kanjiLabel.backgroundColor = .clear
+        kanjiLabel.textColor = .label
+    }
 }

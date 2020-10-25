@@ -12,7 +12,7 @@ class KeyboardViewController: UIInputViewController {
     private let dictionary = RadicalsDictionary()
     private var selection = [Radical]()
     private var validRadicals = [Radical]()
-    private var resultKanjis = [Kanji]()
+    private var resultKanjis = [KanjisGroup]()
     private var radicalsStackView: UIStackView!
     private var kanjiCollectionView: UICollectionView!
     private var pageLabel: UILabel!
@@ -72,6 +72,7 @@ class KeyboardViewController: UIInputViewController {
         kanjiCollectionView.register(UINib(nibName: "KanjiCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "kanjiCell")
         kanjiCollectionView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         kanjiCollectionView.backgroundColor = .clear
+        kanjiCollectionView.contentInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         return kanjiCollectionView
     }
 
@@ -227,7 +228,21 @@ class KeyboardViewController: UIInputViewController {
 
     private func refreshKanji() {
         guard let dictionary = dictionary else { return }
-        resultKanjis = dictionary.getKanjiWith(radicals: selection)
+        let kanjis = dictionary.getKanjiWith(radicals: selection)
+        resultKanjis = []
+        var lastStrokeCount = 0
+        var container = KanjisGroup(kanjis: [], strokeCount: 0)
+        for kanji in kanjis {
+            if kanji.strokeCount > lastStrokeCount {
+                if lastStrokeCount > 0 {
+                    resultKanjis.append(container)
+                }
+                container = KanjisGroup(kanjis: [kanji], strokeCount: kanji.strokeCount)
+                lastStrokeCount = kanji.strokeCount
+            } else {
+                container.kanjis.append(kanji)
+            }
+        }
         kanjiCollectionView.reloadData()
     }
 }
@@ -284,20 +299,35 @@ extension KeyboardViewController {
 
 // MARK: UICollection
 extension KeyboardViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return resultKanjis.count
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        resultKanjis.count
+        resultKanjis[section].kanjis.count + 1
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "kanjiCell", for: indexPath) as! KanjiCollectionViewCell // swiftlint:disable:this force_cast
-        cell.kanjiLabel.text = resultKanjis[indexPath.row].character
+        if indexPath.row == 0 {
+            cell.kanjiLabel.text = String(resultKanjis[indexPath.section].strokeCount)
+            cell.kanjiLabel.backgroundColor = .black
+            cell.kanjiLabel.textColor = .white
+            cell.layer.cornerRadius = 5
+        } else {
+            cell.kanjiLabel.text = resultKanjis[indexPath.section].kanjis[indexPath.row - 1].character
+        }
         return cell
     }
 }
 
 extension KeyboardViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return indexPath.row != 0
+    }
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let kanji = resultKanjis[indexPath.row]
+        let kanji = resultKanjis[indexPath.section].kanjis[indexPath.row - 1]
         textDocumentProxy.insertText(kanji.character)
     }
 }
