@@ -31,6 +31,7 @@ class KeyboardViewController: UIInputViewController {
         super.viewDidLayoutSubviews()
         if UIScreen.main.bounds.width != lastKnownWidth {
             lastKnownWidth = UIScreen.main.bounds.width
+            page = 0
             refreshRadicals()
         }
     }
