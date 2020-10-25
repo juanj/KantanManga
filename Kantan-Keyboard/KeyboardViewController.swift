@@ -47,7 +47,7 @@ class KeyboardViewController: UIInputViewController {
 
         let contentStackView = UIStackView(arrangedSubviews: [navigationStackView, radicalsStackView])
         contentStackView.axis = .horizontal
-        contentStackView.distribution = .equalSpacing
+        contentStackView.distribution = .fill
         contentStackView.alignment = .fill
         contentStackView.spacing = 8
         contentStackView.isLayoutMarginsRelativeArrangement = true
@@ -75,13 +75,13 @@ class KeyboardViewController: UIInputViewController {
     }
 
     private func createActionButton(systemIcon: String) -> UIButton {
-        let size: CGSize
         let scale: UIImage.SymbolScale
+        let width: CGFloat
         if traitCollection.horizontalSizeClass == .compact {
-            size = CGSize(width: 30, height: 30)
+            width = 60
             scale = .small
         } else {
-            size = CGSize(width: 100, height: 50)
+            width = 100
             scale = .medium
         }
 
@@ -89,7 +89,7 @@ class KeyboardViewController: UIInputViewController {
         let button = KeyboardButton(type: .custom)
         let image = UIImage(systemName: systemIcon, withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
         button.setImage(image, for: .normal)
-        button.widthAnchor.constraint(equalToConstant: size.width).isActive = true
+        button.widthAnchor.constraint(equalToConstant: width).isActive = true
         return button
     }
 
@@ -115,6 +115,9 @@ class KeyboardViewController: UIInputViewController {
         deleteButton.addTarget(self, action: #selector(playDeleteSound), for: .touchDown)
 
         pageLabel = UILabel()
+        pageLabel.translatesAutoresizingMaskIntoConstraints = false
+        pageLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 50).isActive = true
+        pageLabel.textAlignment = .center
         pageLabel.font = .systemFont(ofSize: 15, weight: .black)
 
         var arrangedViews: [UIView] = [pageLabel, deleteButton, rightButton, leftButton, clearButton]
@@ -124,7 +127,7 @@ class KeyboardViewController: UIInputViewController {
         let navigationStackView = UIStackView(arrangedSubviews: arrangedViews)
         navigationStackView.axis = .vertical
         navigationStackView.distribution = .fillEqually
-        navigationStackView.alignment = .center
+        navigationStackView.alignment = .fill
         navigationStackView.spacing = 8
 
         return navigationStackView
@@ -147,7 +150,7 @@ class KeyboardViewController: UIInputViewController {
         button.tag = Int(radical.rowId)
         button.titleLabel?.font = .systemFont(ofSize: fontSize)
         button.heightAnchor.constraint(equalToConstant: size).isActive = true
-        button.widthAnchor.constraint(equalToConstant: size).isActive = true
+        button.widthAnchor.constraint(greaterThanOrEqualToConstant: size).isActive = true
         button.addTarget(self, action: #selector(selectRadical(_:)), for: .touchUpInside)
         button.addTarget(self, action: #selector(playSound), for: .touchDown)
         return button
@@ -170,13 +173,13 @@ class KeyboardViewController: UIInputViewController {
     private func numberOfRowsColumns() -> (rows: Int, columns: Int) {
         let screenSize = UIScreen.main.bounds
         let fraction: CGFloat = screenSize.height > screenSize.width ? 3.0 : 2.0
-        let maxHeight = (screenSize.height / fraction) - view.safeAreaInsets.bottom - 30
+        let maxHeight = max(200, (screenSize.height / fraction) - view.safeAreaInsets.bottom - 30)
         let maxWidth = screenSize.width - (view.safeAreaInsets.left + view.safeAreaInsets.right)
         var rows = 1
         var columns = 1
         if traitCollection.horizontalSizeClass == .compact {
             rows = Int(floor((maxHeight - 70) / 44.0))
-            columns = Int(floor((maxWidth - 60) / 50.0))
+            columns = Int(floor((maxWidth - 70) / 60))
         } else {
             rows = Int(floor((maxHeight - 70) / 64.0))
             columns = Int(floor((maxWidth - 130) / 64.0))
@@ -201,6 +204,7 @@ class KeyboardViewController: UIInputViewController {
         for row in 0..<gridSize.rows {
             let rowStackView = UIStackView()
             rowStackView.axis = .horizontal
+            rowStackView.distribution = .fillEqually
             rowStackView.spacing = 8
 
             let startIndex = row * gridSize.columns + page * (gridSize.rows * gridSize.columns)
