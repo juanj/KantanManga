@@ -20,6 +20,7 @@ class KeyboardViewController: UIInputViewController {
     private var numberOfPages = 0
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         configureMainStackView()
         refreshRadicals()
     }
@@ -37,7 +38,7 @@ class KeyboardViewController: UIInputViewController {
         let contentStackView = UIStackView(arrangedSubviews: [navigationStackView, radicalsStackView])
         contentStackView.axis = .horizontal
         contentStackView.distribution = .equalSpacing
-        contentStackView.alignment = .center
+        contentStackView.alignment = .fill
         contentStackView.spacing = 8
         contentStackView.isLayoutMarginsRelativeArrangement = true
         contentStackView.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
@@ -70,8 +71,8 @@ class KeyboardViewController: UIInputViewController {
             size = CGSize(width: 30, height: 30)
             scale = .small
         } else {
-            size = CGSize(width: 120, height: 60)
-            scale = .large
+            size = CGSize(width: 100, height: 50)
+            scale = .medium
         }
 
         let symbolConfiguration = UIImage.SymbolConfiguration(scale: scale)
@@ -79,7 +80,6 @@ class KeyboardViewController: UIInputViewController {
         let image = UIImage(systemName: systemIcon, withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysOriginal)
         button.setImage(image, for: .normal)
         button.widthAnchor.constraint(equalToConstant: size.width).isActive = true
-        button.heightAnchor.constraint(equalToConstant: size.height).isActive = true
         return button
     }
 
@@ -113,7 +113,7 @@ class KeyboardViewController: UIInputViewController {
         }
         let navigationStackView = UIStackView(arrangedSubviews: arrangedViews)
         navigationStackView.axis = .vertical
-        navigationStackView.distribution = .equalSpacing
+        navigationStackView.distribution = .fillEqually
         navigationStackView.alignment = .center
         navigationStackView.spacing = 8
 
@@ -159,8 +159,9 @@ class KeyboardViewController: UIInputViewController {
 
     private func numberOfRowsColumns() -> (rows: Int, columns: Int) {
         let screenSize = UIScreen.main.bounds
-        let maxHeight = max(screenSize.height / 2, 274)
-        let maxWidth = screenSize.width
+        let fraction: CGFloat = screenSize.height > screenSize.width ? 3.0 : 2.0
+        let maxHeight = (screenSize.height / fraction) - view.safeAreaInsets.bottom - 30
+        let maxWidth = screenSize.width - (view.safeAreaInsets.left + view.safeAreaInsets.right)
         var rows = 1
         var columns = 1
         if traitCollection.horizontalSizeClass == .compact {
