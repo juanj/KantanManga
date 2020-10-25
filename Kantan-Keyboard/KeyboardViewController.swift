@@ -19,10 +19,20 @@ class KeyboardViewController: UIInputViewController {
     private var page = 0
     private var numberOfPages = 0
 
+    private var lastKnownWidth: CGFloat = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMainStackView()
         refreshRadicals()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if UIScreen.main.bounds.width != lastKnownWidth {
+            lastKnownWidth = UIScreen.main.bounds.width
+            refreshRadicals()
+        }
     }
 
     private func configureMainStackView() {
