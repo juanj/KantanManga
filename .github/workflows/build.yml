@@ -28,6 +28,6 @@ jobs:
           destination: ${{ matrix.destination }}
           DEVELOPER_DIR: ${{ matrix.xcode }}
       - name: Releasing
-        run: bundle exec fastlane release
+        run: bundle exec fastlane beta
         env:
           DEVELOPER_DIR: ${{ matrix.xcode }}
