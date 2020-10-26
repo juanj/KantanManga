@@ -17,12 +17,6 @@ target 'Kantan-Manga' do
     inherit! :search_paths
     # Pods for testing
   end
-
-  target 'Kantan-MangaUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end
 
 target 'Kantan-Keyboard' do
