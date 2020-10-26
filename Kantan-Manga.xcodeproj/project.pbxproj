@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1873712DF054B5A5B988EC0E /* Pods_Kantan_MangaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D7326F35AB101E198FF621 /* Pods_Kantan_MangaTests.framework */; };
-		2254E6DD7D38442ABE3EBB89 /* Pods_Kantan_MangaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5534228050877F817D2A97BC /* Pods_Kantan_MangaUITests.framework */; };
 		320ED4D32483178C00F5BECF /* DummyDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D22483178C00F5BECF /* DummyDelegates.swift */; };
 		320ED4D72483189F00F5BECF /* MockNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D62483189F00F5BECF /* MockNavigationController.swift */; };
 		320ED4D924831D2900F5BECF /* MockUploadServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D824831D2900F5BECF /* MockUploadServer.swift */; };
@@ -55,7 +54,6 @@
 		325199BB2479DE0D00DA6908 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 325199B92479DE0D00DA6908 /* tessdata */; };
 		325199C42479E20700DA6908 /* TesseractOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325199C32479E20700DA6908 /* TesseractOCR.swift */; };
 		325199CA2479E9B900DA6908 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 325199B92479DE0D00DA6908 /* tessdata */; };
-		325199CC2479E9BC00DA6908 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 325199B92479DE0D00DA6908 /* tessdata */; };
 		32537156253B843E005B8EC1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32537155253B843E005B8EC1 /* UIView+Extension.swift */; };
 		3259D1B423C4D9A2003BA7C2 /* FuriganaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */; };
 		325CFC1D2480582700110F31 /* DictionaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CFC1C2480582700110F31 /* DictionaryView.swift */; };
@@ -143,13 +141,6 @@
 			remoteInfo = "Kantan-Keyboard";
 		};
 		84A831FB221D90CC00CEE1C9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 84A831DB221D90CA00CEE1C9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 84A831E2221D90CA00CEE1C9;
-			remoteInfo = MangaReader;
-		};
-		84A83206221D90CC00CEE1C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 84A831DB221D90CA00CEE1C9 /* Project object */;
 			proxyType = 1;
@@ -303,7 +294,6 @@
 		84A831FA221D90CC00CEE1C9 /* Kantan-MangaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kantan-MangaTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A831FE221D90CC00CEE1C9 /* MangaReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaReaderTests.swift; sourceTree = "<group>"; };
 		84A83200221D90CC00CEE1C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		84A83205221D90CC00CEE1C9 /* Kantan-MangaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kantan-MangaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A83218221D923800CEE1C9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		84A8321B221D951500CEE1C9 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		84A8321C221D951500CEE1C9 /* LibraryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
@@ -353,14 +343,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1873712DF054B5A5B988EC0E /* Pods_Kantan_MangaTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		84A83202221D90CC00CEE1C9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2254E6DD7D38442ABE3EBB89 /* Pods_Kantan_MangaUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,7 +598,6 @@
 			children = (
 				84A831E3221D90CA00CEE1C9 /* Kantan Manga.app */,
 				84A831FA221D90CC00CEE1C9 /* Kantan-MangaTests.xctest */,
-				84A83205221D90CC00CEE1C9 /* Kantan-MangaUITests.xctest */,
 				326280D4253DD29F0070F5DA /* Kantan-Keyboard.appex */,
 			);
 			name = Products;
@@ -782,25 +763,6 @@
 			productReference = 84A831FA221D90CC00CEE1C9 /* Kantan-MangaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		84A83204221D90CC00CEE1C9 /* Kantan-MangaUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 84A83214221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan-MangaUITests" */;
-			buildPhases = (
-				1E148B4D9991442BC6BF10E8 /* [CP] Check Pods Manifest.lock */,
-				84A83201221D90CC00CEE1C9 /* Sources */,
-				84A83202221D90CC00CEE1C9 /* Frameworks */,
-				84A83203221D90CC00CEE1C9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				84A83207221D90CC00CEE1C9 /* PBXTargetDependency */,
-			);
-			name = "Kantan-MangaUITests";
-			productName = MangaReaderUITests;
-			productReference = 84A83205221D90CC00CEE1C9 /* Kantan-MangaUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -821,10 +783,6 @@
 					84A831F9221D90CC00CEE1C9 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1100;
-						TestTargetID = 84A831E2221D90CA00CEE1C9;
-					};
-					84A83204221D90CC00CEE1C9 = {
-						CreatedOnToolsVersion = 10.1;
 						TestTargetID = 84A831E2221D90CA00CEE1C9;
 					};
 				};
@@ -850,7 +808,6 @@
 			targets = (
 				84A831E2221D90CA00CEE1C9 /* Kantan-Manga */,
 				84A831F9221D90CC00CEE1C9 /* Kantan-MangaTests */,
-				84A83204221D90CC00CEE1C9 /* Kantan-MangaUITests */,
 				326280D3253DD29F0070F5DA /* Kantan-Keyboard */,
 			);
 		};
@@ -921,35 +878,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		84A83203221D90CC00CEE1C9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				325199CC2479E9BC00DA6908 /* tessdata in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1E148B4D9991442BC6BF10E8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Kantan-MangaUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		47EC031D6820EED60E125F73 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1143,13 +1074,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		84A83201221D90CC00CEE1C9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1162,11 +1086,6 @@
 			isa = PBXTargetDependency;
 			target = 84A831E2221D90CA00CEE1C9 /* Kantan-Manga */;
 			targetProxy = 84A831FB221D90CC00CEE1C9 /* PBXContainerItemProxy */;
-		};
-		84A83207221D90CC00CEE1C9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 84A831E2221D90CA00CEE1C9 /* Kantan-Manga */;
-			targetProxy = 84A83206221D90CC00CEE1C9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1585,48 +1504,6 @@
 			};
 			name = Release;
 		};
-		84A83215221D90CC00CEE1C9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 88397E2323735E2420DCBF59 /* Pods-Kantan-MangaUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 25JHVANVX3;
-				INFOPLIST_FILE = MangaReaderUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bakura.MangaReaderUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MangaReader;
-			};
-			name = Debug;
-		};
-		84A83216221D90CC00CEE1C9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D200AF6C1CEE3CDAFD863DDB /* Pods-Kantan-MangaUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 25JHVANVX3;
-				INFOPLIST_FILE = MangaReaderUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bakura.MangaReaderUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MangaReader;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1662,15 +1539,6 @@
 			buildConfigurations = (
 				84A83212221D90CC00CEE1C9 /* Debug */,
 				84A83213221D90CC00CEE1C9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		84A83214221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan-MangaUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				84A83215221D90CC00CEE1C9 /* Debug */,
-				84A83216221D90CC00CEE1C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
