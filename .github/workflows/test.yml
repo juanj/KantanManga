@@ -33,12 +33,12 @@ jobs:
         run: git lfs pull
 
       - name: Cache pods
-      uses: actions/cache@v1
-        with:
-          path: Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-
+        uses: actions/cache@v1
+          with:
+            path: Pods
+            key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+            restore-keys: |
+              ${{ runner.os }}-pods-
 
       - name: Bundle Install
         run: bundle install
