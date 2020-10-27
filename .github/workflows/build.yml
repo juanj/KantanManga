@@ -16,6 +16,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+        with:
+          submodules: 'true'
+          lfs: 'true'
       - name: Bundle Install
         run: bundle install
       - name: Dependencies
