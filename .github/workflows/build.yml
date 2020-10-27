@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    name: Test
+    name: Compile and test
     runs-on: macOS-latest
     strategy:
       matrix:
@@ -52,9 +52,4 @@ jobs:
         run: bundle exec fastlane scan --destination "${destination}" --scheme "MangaReader"
         env:
           destination: ${{ matrix.destination }}
-          DEVELOPER_DIR: ${{ matrix.xcode }}
-
-      - name: Releasing
-        run: bundle exec fastlane beta
-        env:
           DEVELOPER_DIR: ${{ matrix.xcode }}
