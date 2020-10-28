@@ -60,7 +60,7 @@ jobs:
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           APPSTORE_CONNECT_API_KEY_ID: ${{ secrets.APPSTORE_CONNECT_API_KEY_ID }}
-          APPSTORE_CONNECT_API_KEY_ISSUER_ID: ${{ APPSTORE_CONNECT_API_KEY_ISSUER_ID }}
-          APPSTORE_CONNECT_API_KEY: ${{ APPSTORE_CONNECT_API_KEY }}
+          APPSTORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APPSTORE_CONNECT_API_KEY_ISSUER_ID }}
+          APPSTORE_CONNECT_API_KEY: ${{ secrets.APPSTORE_CONNECT_API_KEY }}
         if: startsWith(github.ref, 'refs/tags/v')
         run: bundle exec fastlane beta
