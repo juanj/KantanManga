@@ -18,7 +18,12 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    match(git_basic_authorization: ENV["MATCH_GIT_BASIC_AUTHORIZATION"], type: "appstore", readonly: is_ci)
+    match(
+      git_basic_authorization: ENV["MATCH_GIT_BASIC_AUTHORIZATION"],
+      type: "appstore",
+      readonly: is_ci,
+      keychain_password: ENV["MATCH_PASSWORD"]
+    )
     increment_build_number(xcodeproj: "Kantan-Manga.xcodeproj")
     build_app(workspace: "Kantan-Manga.xcworkspace", scheme: "MangaReader")
     app_store_connect_api_key(
