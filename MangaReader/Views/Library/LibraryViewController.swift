@@ -221,4 +221,13 @@ extension LibraryViewController: OnboardingViewControllerDelegate {
     func didSelectNotNow(_ onboardingViewController: OnboardingViewController) {
         dismiss(animated: true, completion: nil)
     }
+
+    func didSelectEnableKeyboard(_ onboardingViewController: OnboardingViewController) {
+        guard let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) else {
+            return
+        }
+        UIApplication.shared.open(url, options: [:]) { _ in
+            onboardingViewController.goToLastPage()
+        }
+    }
 }

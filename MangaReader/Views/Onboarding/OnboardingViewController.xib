@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad10_5" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
@@ -13,6 +13,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="Kantan_Manga" customModuleProvider="target">
             <connections>
                 <outlet property="demoView" destination="Yur-xe-b5P" id="ufg-zJ-GUq"/>
+                <outlet property="enableKeyboardButton" destination="0ud-1r-VZz" id="72H-a1-flZ"/>
+                <outlet property="keyboardImageView" destination="hjW-ll-Tvs" id="mNi-K1-nV8"/>
                 <outlet property="loadMangaButton" destination="FG4-Dz-KuS" id="XUF-zw-Zdg"/>
                 <outlet property="notNowButton" destination="btM-rn-LNp" id="IHn-q4-j16"/>
                 <outlet property="pageControl" destination="9HT-CU-ns5" id="xUP-ai-Xqn"/>
@@ -22,53 +24,53 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQ3-8S-Xgk">
-                    <rect key="frame" x="0.0" y="-250" width="0.0" height="250"/>
+                    <rect key="frame" x="0.0" y="-169" width="0.0" height="169"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="width" id="8Ip-4I-IGY"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyy-yC-F4J">
-                    <rect key="frame" x="584" y="0.0" width="250" height="0.0"/>
+                    <rect key="frame" x="206.5" y="0.0" width="168.5" height="0.0"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" id="7cw-sJ-gvD"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HLG-dx-hIu" customClass="CircleView" customModule="Kantan_Manga" customModuleProvider="target">
-                    <rect key="frame" x="-250" y="-250" width="834" height="834"/>
+                    <rect key="frame" x="-169" y="-169" width="375.5" height="375.5"/>
                     <color key="backgroundColor" name="JapanRed"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="HLG-dx-hIu" secondAttribute="height" multiplier="1:1" id="bEE-dm-G4Q"/>
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ocx-vF-ovs">
-                    <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FZN-o5-Ljg">
-                            <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7pl-a2-ftG">
-                                    <rect key="frame" x="20" y="227" width="794" height="658"/>
+                                    <rect key="frame" x="20" y="143.5" width="335" height="380"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo-bundle" translatesAutoresizingMaskIntoConstraints="NO" id="BuT-EQ-q6H">
-                                            <rect key="frame" x="0.0" y="0.0" width="794" height="567.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="239"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="BuT-EQ-q6H" secondAttribute="height" multiplier="7:5" id="U5G-v8-qSl"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Improve your Japanese by reading raw manga!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8P8-ix-FeE">
-                                            <rect key="frame" x="0.0" y="587.5" width="794" height="30"/>
+                                            <rect key="frame" x="0.0" y="259" width="335" height="60"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What better way to learn a language than immersing into it?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdO-VY-b7E">
-                                            <rect key="frame" x="0.0" y="637.5" width="794" height="20.5"/>
+                                            <rect key="frame" x="0.0" y="339" width="335" height="41"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -86,13 +88,13 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UFA-vj-eyH">
-                            <rect key="frame" x="834" y="0.0" width="834" height="1112"/>
+                            <rect key="frame" x="375" y="0.0" width="375" height="667"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="zHx-DC-8eT">
-                                    <rect key="frame" x="20" y="386" width="794" height="340.5"/>
+                                    <rect key="frame" x="20" y="138" width="335" height="391"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yur-xe-b5P" customClass="DemoOcrView" customModule="Kantan_Manga" customModuleProvider="target">
-                                            <rect key="frame" x="229.5" y="0.0" width="335" height="250"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="250"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="250" placeholder="YES" id="297-zK-6Ct"/>
@@ -100,13 +102,13 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A word you don't know? No problem!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsf-Yv-qvH">
-                                            <rect key="frame" x="184.5" y="270" width="425.5" height="30"/>
+                                            <rect key="frame" x="26" y="270" width="283" height="60"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use OCR to convert the image in to text and search it on the dictionary" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ya8-2o-tvS">
-                                            <rect key="frame" x="129.5" y="320" width="535.5" height="20.5"/>
+                                            <rect key="frame" x="0.0" y="350" width="335" height="41"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -123,29 +125,84 @@
                                 <constraint firstItem="zHx-DC-8eT" firstAttribute="centerY" secondItem="UFA-vj-eyH" secondAttribute="centerY" id="t4h-nV-PaZ"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ipz-gS-c64">
+                            <rect key="frame" x="750" y="0.0" width="375" height="667"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5GL-Bo-ZKq">
+                                    <rect key="frame" x="20" y="156" width="335" height="355"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" image="k1" translatesAutoresizingMaskIntoConstraints="NO" id="hjW-ll-Tvs">
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="138.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="512" id="A8J-7Y-V4H"/>
+                                                <constraint firstAttribute="width" secondItem="hjW-ll-Tvs" secondAttribute="height" multiplier="512:211" id="dIJ-ss-uXr"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use the radicals keyboard" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9U-aG-srn">
+                                            <rect key="frame" x="17.5" y="158.5" width="300.5" height="30"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQr-sg-kFf">
+                                            <rect key="frame" x="0.0" y="208.5" width="335" height="81.5"/>
+                                            <string key="text">Some times OCR just don't work, but you can always count with the radicals keyboard to find and write kanjis. Moreover, the keyboard can be used from anywhere!</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ud-1r-VZz">
+                                            <rect key="frame" x="41" y="310" width="253" height="45"/>
+                                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="45" id="itM-or-Zr7"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <state key="normal" title="    Enable keyboard from settings    ">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            </variation>
+                                            <connections>
+                                                <action selector="enableKeyboard:" destination="-1" eventType="touchUpInside" id="jEV-RO-B23"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="5GL-Bo-ZKq" firstAttribute="centerY" secondItem="Ipz-gS-c64" secondAttribute="centerY" id="4Ak-Tn-hKi"/>
+                                <constraint firstItem="5GL-Bo-ZKq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ipz-gS-c64" secondAttribute="top" constant="20" id="BLV-kF-Cas"/>
+                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="5GL-Bo-ZKq" secondAttribute="bottom" constant="60" id="u6N-xl-oZo"/>
+                                <constraint firstAttribute="trailing" secondItem="5GL-Bo-ZKq" secondAttribute="trailing" constant="20" id="vpf-ju-nIN"/>
+                                <constraint firstItem="5GL-Bo-ZKq" firstAttribute="leading" secondItem="Ipz-gS-c64" secondAttribute="leading" constant="20" id="yJE-Vw-Na9"/>
+                            </constraints>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ga1-gg-nGR">
-                            <rect key="frame" x="1668" y="0.0" width="834" height="1112"/>
+                            <rect key="frame" x="1125" y="0.0" width="375" height="667"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Xw6-X7-ux0">
-                                    <rect key="frame" x="20" y="406" width="794" height="300.5"/>
+                                    <rect key="frame" x="20" y="183.5" width="335" height="300.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="頑張って!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.45000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="xom-qV-IGK">
-                                            <rect key="frame" x="0.0" y="0.0" width="794" height="143.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="143.5"/>
                                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="120"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start reading!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVD-CM-yFP">
-                                            <rect key="frame" x="0.0" y="163.5" width="794" height="30"/>
+                                            <rect key="frame" x="0.0" y="163.5" width="335" height="30"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="8Yj-bb-VAX">
-                                            <rect key="frame" x="0.0" y="213.5" width="794" height="87"/>
+                                            <rect key="frame" x="0.0" y="213.5" width="335" height="87"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FG4-Dz-KuS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="794" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="45"/>
                                                     <color key="backgroundColor" name="JapanRed"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="45" id="KgM-NX-cbZ"/>
@@ -159,7 +216,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btM-rn-LNp">
-                                                    <rect key="frame" x="0.0" y="60" width="794" height="27"/>
+                                                    <rect key="frame" x="0.0" y="60" width="335" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <state key="normal" title="Not now (you can load it at any time form Settings)">
                                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -184,8 +241,11 @@
                         </view>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="Ipz-gS-c64" firstAttribute="height" secondItem="Ocx-vF-ovs" secondAttribute="height" id="2GE-0k-RYI"/>
                         <constraint firstItem="Ga1-gg-nGR" firstAttribute="width" secondItem="Ocx-vF-ovs" secondAttribute="width" id="74v-3G-Zsg"/>
+                        <constraint firstItem="Ipz-gS-c64" firstAttribute="top" secondItem="Ocx-vF-ovs" secondAttribute="top" id="Bnm-TD-CGK"/>
                         <constraint firstItem="UFA-vj-eyH" firstAttribute="width" secondItem="Ocx-vF-ovs" secondAttribute="width" id="Gwi-zn-eYy"/>
+                        <constraint firstAttribute="bottom" secondItem="Ipz-gS-c64" secondAttribute="bottom" id="LHe-Z6-VNq"/>
                         <constraint firstItem="FZN-o5-Ljg" firstAttribute="height" secondItem="Ocx-vF-ovs" secondAttribute="height" id="M7T-hN-1el"/>
                         <constraint firstAttribute="bottom" secondItem="UFA-vj-eyH" secondAttribute="bottom" id="MtF-Dk-ury"/>
                         <constraint firstItem="FZN-o5-Ljg" firstAttribute="width" secondItem="Ocx-vF-ovs" secondAttribute="width" id="O6B-6u-WgO"/>
@@ -193,17 +253,19 @@
                         <constraint firstAttribute="bottom" secondItem="Ga1-gg-nGR" secondAttribute="bottom" id="Q8Q-v1-4Cz"/>
                         <constraint firstItem="FZN-o5-Ljg" firstAttribute="top" secondItem="Ocx-vF-ovs" secondAttribute="top" id="Zke-Y6-oMo"/>
                         <constraint firstItem="Ga1-gg-nGR" firstAttribute="top" secondItem="Ocx-vF-ovs" secondAttribute="top" id="cHs-lm-hTa"/>
-                        <constraint firstItem="Ga1-gg-nGR" firstAttribute="leading" secondItem="UFA-vj-eyH" secondAttribute="trailing" id="hRj-xi-hV8"/>
                         <constraint firstItem="UFA-vj-eyH" firstAttribute="leading" secondItem="FZN-o5-Ljg" secondAttribute="trailing" id="k6x-bQ-O53"/>
+                        <constraint firstItem="Ga1-gg-nGR" firstAttribute="leading" secondItem="Ipz-gS-c64" secondAttribute="trailing" id="m7v-mF-Oaz"/>
                         <constraint firstItem="Ga1-gg-nGR" firstAttribute="height" secondItem="Ocx-vF-ovs" secondAttribute="height" id="pay-42-d6r"/>
+                        <constraint firstItem="Ipz-gS-c64" firstAttribute="leading" secondItem="UFA-vj-eyH" secondAttribute="trailing" id="pwV-0j-NEd"/>
                         <constraint firstItem="UFA-vj-eyH" firstAttribute="top" secondItem="Ocx-vF-ovs" secondAttribute="top" id="qAI-fF-fwC"/>
                         <constraint firstItem="FZN-o5-Ljg" firstAttribute="leading" secondItem="Ocx-vF-ovs" secondAttribute="leading" id="sRp-hp-8S3"/>
                         <constraint firstAttribute="trailing" secondItem="Ga1-gg-nGR" secondAttribute="trailing" id="uch-9w-U1Z"/>
                         <constraint firstAttribute="bottom" secondItem="FZN-o5-Ljg" secondAttribute="bottom" id="usD-fb-DaI"/>
+                        <constraint firstItem="Ipz-gS-c64" firstAttribute="width" secondItem="Ocx-vF-ovs" secondAttribute="width" id="yDx-qX-0cW"/>
                     </constraints>
                 </scrollView>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="9HT-CU-ns5">
-                    <rect key="frame" x="356" y="1064.5" width="122.5" height="27.5"/>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="9HT-CU-ns5">
+                    <rect key="frame" x="117" y="619.5" width="141" height="27.5"/>
                     <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </pageControl>
@@ -211,14 +273,14 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fyy-yC-F4J" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.3" id="3Up-Oz-Crg"/>
+                <constraint firstItem="fyy-yC-F4J" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.45" id="3Up-Oz-Crg"/>
                 <constraint firstItem="Ocx-vF-ovs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6Zl-dm-6nP"/>
                 <constraint firstItem="aQ3-8S-Xgk" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="top" id="6bP-JQ-iHH"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ocx-vF-ovs" secondAttribute="bottom" id="7d3-Tq-HZN"/>
                 <constraint firstItem="9HT-CU-ns5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="BP9-Pz-Chg"/>
                 <constraint firstItem="fyy-yC-F4J" firstAttribute="leading" secondItem="HLG-dx-hIu" secondAttribute="trailing" id="ENE-Qm-q4d"/>
                 <constraint firstItem="Ocx-vF-ovs" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Lzy-Yz-s3j"/>
-                <constraint firstItem="aQ3-8S-Xgk" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.3" id="RV6-ta-Vpx"/>
+                <constraint firstItem="aQ3-8S-Xgk" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.45" id="RV6-ta-Vpx"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ocx-vF-ovs" secondAttribute="trailing" id="Vpp-qF-kmn"/>
                 <constraint firstItem="HLG-dx-hIu" firstAttribute="top" secondItem="aQ3-8S-Xgk" secondAttribute="top" id="aHc-cz-kqz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="9HT-CU-ns5" secondAttribute="bottom" constant="20" id="eJk-Je-oBU"/>
@@ -232,6 +294,7 @@
     </objects>
     <resources>
         <image name="demo-bundle" width="1001" height="715"/>
+        <image name="k1" width="512" height="211"/>
         <namedColor name="JapanRed">
             <color red="0.73725490196078436" green="0.0" blue="0.17647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
