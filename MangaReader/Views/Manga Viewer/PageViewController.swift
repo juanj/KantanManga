@@ -31,13 +31,14 @@ class PageViewController: UIViewController {
     @IBOutlet weak var leftGradientImage: UIImageView?
     @IBOutlet weak var rightGradientImage: UIImageView?
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView: UIScrollView?
 
     var pageImage: UIImage? {
         didSet {
             if pageImageView != nil {
                 loadImage()
             }
+            calculateZoom()
         }
     }
 
@@ -73,8 +74,8 @@ class PageViewController: UIViewController {
         tapGesture.numberOfTapsRequired = 1
         view.addGestureRecognizer(tapGesture)
 
-        scrollView.delegate = self
-        scrollView.maximumZoomScale = 3
+        scrollView?.delegate = self
+        calculateZoom()
     }
 
     func refreshView() {
@@ -97,6 +98,14 @@ class PageViewController: UIViewController {
 
     @objc func tap() {
         delegate?.didTap(self)
+    }
+
+    private func calculateZoom() {
+        if let image = pageImage {
+            scrollView?.maximumZoomScale = max((image.size.width / view.frame.width) * 3, 3)
+        } else {
+            scrollView?.maximumZoomScale = 3
+        }
     }
 
     private func loadImage() {
