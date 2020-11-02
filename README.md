@@ -10,12 +10,19 @@ KantanManga is an application that helps you read raw manga
 # Running locally
 
 ## Cloning
-You need to clone the repository including submodules.
+1. Clone the repository including submodules.
 ```
 git clone --recurse-submodules https://github.com/juanj/KantanManga.git
 ```
-
-## Dependencies
-Dependencies are manage by Cocoapods.
-To install them you need to run
-```pod install```
+2. Use bundler to install Cocoapods
+```
+bundle install
+```
+3. Install dependencies using Cocoapods
+```
+bundle exec pod install
+```
+4. Open the workspace
+```
+open Kantan-Manga.xcworkspace
+```
