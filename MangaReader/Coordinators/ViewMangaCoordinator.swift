@@ -74,6 +74,11 @@ extension ViewMangaCoordinator: MangaViewControllerDelegate {
             }
         }
     }
+
+    func didTapSettings(_ mangaViewController: MangaViewController) {
+        let settingsNavigationController = UINavigationController(rootViewController: ViewerSettingsViewController())
+        navigationController.present(settingsNavigationController, animated: true, completion: nil)
+    }
 }
 
 extension ViewMangaCoordinator: UINavigationControllerDelegate {

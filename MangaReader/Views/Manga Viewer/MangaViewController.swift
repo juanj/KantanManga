@@ -12,6 +12,7 @@ protocol MangaViewControllerDelegate: AnyObject {
     func didTapPage(_ mangaViewController: MangaViewController, pageViewController: PageViewController)
     func back(_ mangaViewController: MangaViewController)
     func didSelectSectionOfImage(_ mangaViewController: MangaViewController, image: UIImage)
+    func didTapSettings(_ mangaViewController: MangaViewController)
 }
 
 class MangaViewController: UIViewController {
@@ -91,13 +92,14 @@ class MangaViewController: UIViewController {
         let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(back))
         navigationItem.leftBarButtonItem = backButton
 
+        let settingsButton = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(openSettings))
         let offsetButton = UIBarButtonItem(image: UIImage(systemName: "repeat.1"), style: .plain, target: self, action: #selector(offsetPage))
         let togglePageMode = UIBarButtonItem(image: UIImage(systemName: "book"), style: .plain, target: self, action: #selector(toggleMode))
         let ocrButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass.circle"), style: .plain, target: self, action: #selector(toggleOcr))
 
         ocrActivityIndicator.hidesWhenStopped = true
         let ocrLoadingNavButton = UIBarButtonItem(customView: ocrActivityIndicator)
-        navigationItem.rightBarButtonItems = [ocrButton, togglePageMode, offsetButton, ocrLoadingNavButton]
+        navigationItem.rightBarButtonItems = [ocrButton, togglePageMode, offsetButton, settingsButton, ocrLoadingNavButton]
     }
 
     private func createPageController() {
@@ -278,6 +280,10 @@ class MangaViewController: UIViewController {
     @objc func offsetPage() {
         dataSource.pagesOffset.toggle()
         reloadPageController()
+    }
+
+    @objc func openSettings() {
+        delegate?.didTapSettings(self)
     }
 
     @objc func handleKeyboard(notification: Notification) {

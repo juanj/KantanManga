@@ -36,6 +36,8 @@
 		3238DF3A24D7840200DE8782 /* WordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3238DF3924D7840200DE8782 /* WordButton.swift */; };
 		3239C5B9254DD06500EFB39A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3239C5B8254DD06500EFB39A /* Settings.bundle */; };
 		323CD90A23CB7107007FFC58 /* jamdict.db in Resources */ = {isa = PBXBuildFile; fileRef = 323CD90923CB7107007FFC58 /* jamdict.db */; };
+		3247543C2551FD120025AB06 /* ViewerSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3247543A2551FD120025AB06 /* ViewerSettingsViewController.swift */; };
+		3247543D2551FD120025AB06 /* ViewerSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3247543B2551FD120025AB06 /* ViewerSettingsViewController.xib */; };
 		3249F2D7250BBC18004C514E /* MangaCollectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */; };
 		3249F2D8250BBC18004C514E /* MangaCollectionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3249F2D6250BBC18004C514E /* MangaCollectionCollectionViewCell.xib */; };
 		324BB95A2498365E006241E8 /* mecabrc in Resources */ = {isa = PBXBuildFile; fileRef = 324BB9592498365E006241E8 /* mecabrc */; };
@@ -73,6 +75,8 @@
 		326FDE7924A7F8350042CB8A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326FDE7824A7F8350042CB8A /* SettingsTableViewController.swift */; };
 		326FDE7B24A7FBFB0042CB8A /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326FDE7A24A7FBFB0042CB8A /* SettingsCoordinator.swift */; };
 		326FDE7F24A80BB20042CB8A /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326FDE7E24A80BB20042CB8A /* AboutView.swift */; };
+		3283D1012552069700C08D02 /* ToggleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3283D0FF2552069700C08D02 /* ToggleTableViewCell.swift */; };
+		3283D1022552069700C08D02 /* ToggleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3283D1002552069700C08D02 /* ToggleTableViewCell.xib */; };
 		32892C0A23E39FBC000B1C3E /* AddMangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32892C0823E39FBC000B1C3E /* AddMangaViewController.swift */; };
 		32892C0B23E39FBC000B1C3E /* AddMangaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32892C0923E39FBC000B1C3E /* AddMangaViewController.xib */; };
 		328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DFB08238D96300095CBAB /* MangaViewController.swift */; };
@@ -209,6 +213,8 @@
 		3238DF3924D7840200DE8782 /* WordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordButton.swift; sourceTree = "<group>"; };
 		3239C5B8254DD06500EFB39A /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		323CD90923CB7107007FFC58 /* jamdict.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = jamdict.db; sourceTree = "<group>"; };
+		3247543A2551FD120025AB06 /* ViewerSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerSettingsViewController.swift; sourceTree = "<group>"; };
+		3247543B2551FD120025AB06 /* ViewerSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewerSettingsViewController.xib; sourceTree = "<group>"; };
 		3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		3249F2D6250BBC18004C514E /* MangaCollectionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MangaCollectionCollectionViewCell.xib; sourceTree = "<group>"; };
 		324BB953249835DD006241E8 /* mecab.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mecab.xcodeproj; path = "mecab-ios/mecab.xcodeproj"; sourceTree = SOURCE_ROOT; };
@@ -245,6 +251,8 @@
 		326FDE7824A7F8350042CB8A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		326FDE7A24A7FBFB0042CB8A /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		326FDE7E24A80BB20042CB8A /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		3283D0FF2552069700C08D02 /* ToggleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleTableViewCell.swift; sourceTree = "<group>"; };
+		3283D1002552069700C08D02 /* ToggleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToggleTableViewCell.xib; sourceTree = "<group>"; };
 		32892C0823E39FBC000B1C3E /* AddMangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMangaViewController.swift; sourceTree = "<group>"; };
 		32892C0923E39FBC000B1C3E /* AddMangaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMangaViewController.xib; sourceTree = "<group>"; };
 		328DFB08238D96300095CBAB /* MangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaViewController.swift; sourceTree = "<group>"; };
@@ -549,6 +557,10 @@
 				843FA7EB221E0BE900B86B52 /* PageViewController.xib */,
 				328DFB08238D96300095CBAB /* MangaViewController.swift */,
 				328DFB09238D96300095CBAB /* MangaViewController.xib */,
+				3247543A2551FD120025AB06 /* ViewerSettingsViewController.swift */,
+				3247543B2551FD120025AB06 /* ViewerSettingsViewController.xib */,
+				3283D0FF2552069700C08D02 /* ToggleTableViewCell.swift */,
+				3283D1002552069700C08D02 /* ToggleTableViewCell.xib */,
 			);
 			path = "Manga Viewer";
 			sourceTree = "<group>";
@@ -854,6 +866,7 @@
 				324BB99324983DF7006241E8 /* left-id.def in Resources */,
 				84A831F1221D90CC00CEE1C9 /* Assets.xcassets in Resources */,
 				32326F8D243566FD00FCE8E5 /* cbz.png in Resources */,
+				3283D1022552069700C08D02 /* ToggleTableViewCell.xib in Resources */,
 				324BB99724983DF7006241E8 /* sys.dic in Resources */,
 				324BB99224983DF7006241E8 /* rewrite.def in Resources */,
 				324BB99424983DF7006241E8 /* pos-id.def in Resources */,
@@ -869,6 +882,7 @@
 				843FA7ED221E0BE900B86B52 /* PageViewController.xib in Resources */,
 				843FA7E3221DF0C300B86B52 /* WebServerViewController.xib in Resources */,
 				32326F892435613E00FCE8E5 /* cbz.svg in Resources */,
+				3247543D2551FD120025AB06 /* ViewerSettingsViewController.xib in Resources */,
 				84A83225221DB10400CEE1C9 /* MangaCollectionViewCell.xib in Resources */,
 				323CD90A23CB7107007FFC58 /* jamdict.db in Resources */,
 			);
@@ -1018,6 +1032,7 @@
 				32FA3C7C24367428001EB0DF /* String+Extension.swift in Sources */,
 				325DA0B923C8F50700A627BD /* JapaneseDictionary.swift in Sources */,
 				32AF5BCE2512567900E96C9F /* MangaCollectionable.swift in Sources */,
+				3283D1012552069700C08D02 /* ToggleTableViewCell.swift in Sources */,
 				843FA7DF221DEDDF00B86B52 /* AddMangasCoordinator.swift in Sources */,
 				32A1517225326D76002B3920 /* CircleView.swift in Sources */,
 				843FA7E9221DFE9E00B86B52 /* CBZReader.swift in Sources */,
@@ -1036,6 +1051,7 @@
 				843FA7E2221DF0C300B86B52 /* WebServerViewController.swift in Sources */,
 				841B795C221F305A00659FA2 /* MangaDataSource.swift in Sources */,
 				329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */,
+				3247543C2551FD120025AB06 /* ViewerSettingsViewController.swift in Sources */,
 				32E37987252A6A6000ED4BAC /* AcknowledgmentsView.swift in Sources */,
 				32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */,
 				32E322182481A531007BC017 /* ParsedInputField.swift in Sources */,
