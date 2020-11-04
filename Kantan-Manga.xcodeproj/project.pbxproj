@@ -88,6 +88,7 @@
 		329ACA8B2552ED15002953C5 /* NumberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 329ACA892552ED15002953C5 /* NumberTableViewCell.xib */; };
 		329ACA942552EF77002953C5 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA932552EF77002953C5 /* SettingsSection.swift */; };
 		329ACA9A2552EFD7002953C5 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA992552EFD7002953C5 /* Setting.swift */; };
+		329ACA9E2552F719002953C5 /* SettingCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA9D2552F719002953C5 /* SettingCellDelegate.swift */; };
 		329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E30E623E9CEE000AD13A3 /* MangaCollection.swift */; };
 		329E30E923E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */; };
 		32A1516C253260C0002B3920 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1516A253260C0002B3920 /* OnboardingViewController.swift */; };
@@ -268,6 +269,7 @@
 		329ACA892552ED15002953C5 /* NumberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberTableViewCell.xib; sourceTree = "<group>"; };
 		329ACA932552EF77002953C5 /* SettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
 		329ACA992552EFD7002953C5 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		329ACA9D2552F719002953C5 /* SettingCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCellDelegate.swift; sourceTree = "<group>"; };
 		329E30E623E9CEE000AD13A3 /* MangaCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollection.swift; sourceTree = "<group>"; };
 		329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MangaCollection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32A1516A253260C0002B3920 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -497,6 +499,7 @@
 				3283D1002552069700C08D02 /* ToggleTableViewCell.xib */,
 				329ACA882552ED15002953C5 /* NumberTableViewCell.swift */,
 				329ACA892552ED15002953C5 /* NumberTableViewCell.xib */,
+				329ACA9D2552F719002953C5 /* SettingCellDelegate.swift */,
 			);
 			path = "Settings Cells";
 			sourceTree = "<group>";
@@ -1082,6 +1085,7 @@
 				843FA7E2221DF0C300B86B52 /* WebServerViewController.swift in Sources */,
 				841B795C221F305A00659FA2 /* MangaDataSource.swift in Sources */,
 				329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */,
+				329ACA9E2552F719002953C5 /* SettingCellDelegate.swift in Sources */,
 				3247543C2551FD120025AB06 /* ViewerSettingsViewController.swift in Sources */,
 				32E37987252A6A6000ED4BAC /* AcknowledgmentsView.swift in Sources */,
 				32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */,
