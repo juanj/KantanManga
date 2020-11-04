@@ -10,54 +10,52 @@ import UIKit
 class ViewerSettingsViewController: UIViewController {
     @IBOutlet weak var settingsTableView: UITableView!
 
+    let settingsSections = [
+        SettingsSection(title: "Page Numbers", settings: [
+            Setting(name: "Show page numbers", type: .toggle(value: true)),
+            Setting(name: "Offset page numbers by", type: .number(value: 0))
+        ]),
+        SettingsSection(title: "Pages", settings: [
+            Setting(name: "Double paged", type: .toggle(value: true)),
+            Setting(name: "Offset pages by 1 (use this to view double page spreads)", type: .toggle(value: false))
+        ])
+    ]
+
     override func viewDidLoad() {
         title = "Viewer Settings"
         settingsTableView.register(UINib(nibName: "ToggleTableViewCell", bundle: nil), forCellReuseIdentifier: "toggleSettingsCell")
+        settingsTableView.register(UINib(nibName: "NumberTableViewCell", bundle: nil), forCellReuseIdentifier: "numberSettingsCell")
         settingsTableView.dataSource = self
+        settingsTableView.allowsSelection = false
     }
 }
 
 extension ViewerSettingsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return settingsSections.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return 1
-        default:
-            return 0
-        }
+        return settingsSections[section].settings.count
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "Page Numbers"
-        case 1:
-            return "Pages"
-        default:
-            return nil
-        }
+        return settingsSections[section].title
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
+        let setting = settingsSections[indexPath.section].settings[indexPath.row]
+        switch setting.type {
+        case .toggle(let value):
             let cell = tableView.dequeueReusableCell(withIdentifier: "toggleSettingsCell") as! ToggleTableViewCell // swiftlint:disable:this force_cast
-            cell.textLabel?.text = "Show page numbers"
-            cell.switchControl.isOn = true
+            cell.label.text = setting.name
+            cell.switchControl.isOn = value
             return cell
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "toggleSettingsCell") as! ToggleTableViewCell // swiftlint:disable:this force_cast
-            cell.textLabel?.text = "Double paged"
-            cell.switchControl.isOn = true
+        case .number(let value):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "numberSettingsCell") as! NumberTableViewCell // swiftlint:disable:this force_cast
+            cell.label.text = setting.name
+            cell.textField.text = String(value)
             return cell
-        default:
-            fatalError("\(indexPath.section) section is not implemented")
         }
     }
 }

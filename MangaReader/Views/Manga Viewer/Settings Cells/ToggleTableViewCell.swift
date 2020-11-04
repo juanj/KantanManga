@@ -8,5 +8,6 @@
 import UIKit
 
 class ToggleTableViewCell: UITableViewCell {
+    @IBOutlet weak var label: UILabel!
     @IBOutlet weak var switchControl: UISwitch!
 }

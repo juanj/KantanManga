@@ -20,14 +20,24 @@
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XkI-Ct-Zb8">
                         <rect key="frame" x="255" y="6.5" width="51" height="31"/>
                     </switch>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqH-su-dRs">
+                        <rect key="frame" x="8" y="11.5" width="239" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="XkI-Ct-Zb8" secondAttribute="trailing" id="5KC-uX-tXs"/>
                     <constraint firstItem="XkI-Ct-Zb8" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Bhp-9f-gD5"/>
+                    <constraint firstItem="XkI-Ct-Zb8" firstAttribute="leading" secondItem="uqH-su-dRs" secondAttribute="trailing" constant="8" id="gmd-Zr-cLO"/>
+                    <constraint firstItem="uqH-su-dRs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="nSY-v9-VOW"/>
+                    <constraint firstItem="uqH-su-dRs" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="o7V-0J-vYM"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="label" destination="uqH-su-dRs" id="1md-Gh-oKd"/>
                 <outlet property="switchControl" destination="XkI-Ct-Zb8" id="qHM-cW-4ai"/>
             </connections>
             <point key="canvasLocation" x="139" y="138"/>
