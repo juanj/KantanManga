@@ -11,4 +11,10 @@ class NumberTableViewCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var stepper: UIStepper!
+
+    var value: Int = 0 {
+        didSet {
+            textField.text = String(value)
+        }
+    }
 }
