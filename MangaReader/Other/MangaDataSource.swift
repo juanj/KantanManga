@@ -140,7 +140,7 @@ class MangaDataSource: NSObject {
     }
 
     func createPage(index: Int, side: PageViewController.Side = .center, delegate: PageViewControllerDelegate?, fullScreen: Bool = false) -> PageViewController {
-        let page = PageViewController(delegate: delegate, pageSide: side, pageNumber: index, pageText: String(index + pageTextOffset), hidePageNumbers: hidePageLabel, isFullScreened: fullScreen)
+        let page = PageViewController(delegate: delegate, pageSide: side, pageNumber: index, pageText: String(index + 1 + pageTextOffset), hidePageNumbers: hidePageLabel, isFullScreened: fullScreen)
 
         // Load image to page
         if mangaReader == nil {
