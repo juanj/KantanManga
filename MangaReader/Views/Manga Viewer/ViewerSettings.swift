@@ -46,13 +46,13 @@ enum ViewerPagesSettings: SettingRepresentable {
 }
 
 enum ViewerPageNumberSettings: SettingRepresentable {
-    case showPageNumbers(Bool)
+    case hidePageNumbers(Bool)
     case offsetPageNumbesr(Int)
 
     var title: String {
         switch self {
-        case .showPageNumbers:
-            return "Show page numbers"
+        case .hidePageNumbers:
+            return "Hide page numbers"
         case .offsetPageNumbesr:
             return "Offset page numbers by"
         }
@@ -60,7 +60,7 @@ enum ViewerPageNumberSettings: SettingRepresentable {
 
     var value: SettingValue {
         switch self {
-        case .showPageNumbers(let value):
+        case .hidePageNumbers(let value):
             return .bool(value: value)
         case .offsetPageNumbesr(let value):
             return .number(value: value)

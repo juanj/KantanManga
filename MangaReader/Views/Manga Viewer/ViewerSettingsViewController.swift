@@ -21,7 +21,7 @@ class ViewerSettingsViewController: UIViewController {
             ViewerPagesSettings.offsetByOne(false)
         ]),
         SettingsSection(title: "Page Numbers", settings: [
-            ViewerPageNumberSettings.showPageNumbers(true),
+            ViewerPageNumberSettings.hidePageNumbers(true),
             ViewerPageNumberSettings.offsetPageNumbesr(0)
         ])
     ]

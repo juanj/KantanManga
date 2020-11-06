@@ -22,6 +22,7 @@ class ViewMangaCoordinator: NSObject, Coordinator {
     private let originFrame: CGRect
 
     private var mangaDataSource: MangaDataSource!
+    private var mangaViewController: MangaViewController?
     private var ocr: ImageOCR
 
     init(navigation: UINavigationController, manga: Manga, delegate: ViewMangaCoordinatorDelegate, originFrame: CGRect, ocr: ImageOCR) {
@@ -38,11 +39,12 @@ class ViewMangaCoordinator: NSObject, Coordinator {
             delegate?.didEnd(self)
             return
         }
-        let mangaView = MangaViewController(manga: manga, dataSource: mangaDataSource, delegate: self, firstTime: !UserDefaults.standard.bool(forKey: "hasSeenManga"))
+        let mangaViewController = MangaViewController(manga: manga, dataSource: mangaDataSource, delegate: self, firstTime: !UserDefaults.standard.bool(forKey: "hasSeenManga"))
         UserDefaults.standard.setValue(true, forKey: "hasSeenManga")
         navigationController.delegate = self
         navigationController.setNavigationBarHidden(true, animated: false)
-        navigationController.pushViewController(mangaView, animated: true)
+        navigationController.pushViewController(mangaViewController, animated: true)
+        self.mangaViewController = mangaViewController
     }
 }
 
@@ -94,19 +96,25 @@ extension ViewMangaCoordinator: UINavigationControllerDelegate {
 extension ViewMangaCoordinator: ViewerSettingsViewControllerDelegate {
     func updatePagesSetting(_ viewerSettingsViewController: ViewerSettingsViewController, setting: ViewerPagesSettings, newValue: SettingValue) {
         switch setting {
-        case .doublePaged(let value):
+        case .doublePaged:
             break
-        case .offsetByOne(let value):
-            break
+        case .offsetByOne:
+            guard case .bool(let value) = newValue else { return }
+            mangaDataSource.pagesOffset = value
+            mangaViewController?.reloadPageController()
         }
     }
 
     func updatePageNumbersSetting(_ viewerSettingsViewController: ViewerSettingsViewController, setting: ViewerPageNumberSettings, newValue: SettingValue) {
         switch setting {
-        case .offsetPageNumbesr(let value):
-            break
-        case .showPageNumbers(let value):
-            break
+        case .offsetPageNumbesr:
+            guard case .number(let value) = newValue else { return }
+            mangaDataSource.pageTextOffset = value
+            mangaViewController?.reloadPageController()
+        case .hidePageNumbers:
+            guard case .bool(let value) = newValue else { return }
+            mangaDataSource.hidePageLabel = value
+            mangaViewController?.reloadPageController()
         }
     }
 }

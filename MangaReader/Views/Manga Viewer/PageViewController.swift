@@ -47,13 +47,15 @@ class PageViewController: UIViewController {
     var pageSide: Side
     private(set) weak var delegate: PageViewControllerDelegate?
     private let pageText: String
+    private let hidePageNumbers: Bool
     private(set) var isFullScreened: Bool
 
-    init(delegate: PageViewControllerDelegate?, pageSide: Side, pageNumber: Int, pageText: String? = nil, isFullScreened: Bool = false, isPaddingPage: Bool = false) {
+    init(delegate: PageViewControllerDelegate?, pageSide: Side, pageNumber: Int, pageText: String? = nil, hidePageNumbers: Bool = false, isFullScreened: Bool = false, isPaddingPage: Bool = false) {
         self.delegate = delegate
         self.pageSide = pageSide
         self.pageNumber = pageNumber
         self.pageText = pageText ?? "\(pageNumber + 1)"
+        self.hidePageNumbers = hidePageNumbers
         self.isFullScreened = isFullScreened
         self.isPaddingPage = isPaddingPage
         super.init(nibName: nil, bundle: nil)
@@ -67,8 +69,8 @@ class PageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshView()
-        pageLabel?.alpha = isFullScreened ? 0 : 1
         activityIndicator.isHidden = isPaddingPage
+        pageLabel?.isHidden = hidePageNumbers || isPaddingPage
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
         tapGesture.numberOfTapsRequired = 1

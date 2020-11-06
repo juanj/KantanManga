@@ -93,13 +93,12 @@ class MangaViewController: UIViewController {
         navigationItem.leftBarButtonItem = backButton
 
         let settingsButton = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(openSettings))
-        let offsetButton = UIBarButtonItem(image: UIImage(systemName: "repeat.1"), style: .plain, target: self, action: #selector(offsetPage))
         let togglePageMode = UIBarButtonItem(image: UIImage(systemName: "book"), style: .plain, target: self, action: #selector(toggleMode))
         let ocrButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass.circle"), style: .plain, target: self, action: #selector(toggleOcr))
 
         ocrActivityIndicator.hidesWhenStopped = true
         let ocrLoadingNavButton = UIBarButtonItem(customView: ocrActivityIndicator)
-        navigationItem.rightBarButtonItems = [ocrButton, togglePageMode, offsetButton, settingsButton, ocrLoadingNavButton]
+        navigationItem.rightBarButtonItems = [ocrButton, togglePageMode, settingsButton, ocrLoadingNavButton]
     }
 
     private func createPageController() {
@@ -174,7 +173,7 @@ class MangaViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
 
-    private func reloadPageController() {
+    func reloadPageController() {
         pageController.removeFromParent()
         pageController.view.removeFromSuperview()
         createPageController()
@@ -274,11 +273,6 @@ class MangaViewController: UIViewController {
 
     @objc func toggleMode() {
         dataSource.forceToggleMode.toggle()
-        reloadPageController()
-    }
-
-    @objc func offsetPage() {
-        dataSource.pagesOffset.toggle()
         reloadPageController()
     }
 

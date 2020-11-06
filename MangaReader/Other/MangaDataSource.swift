@@ -15,6 +15,8 @@ protocol MangaDataSourceDelegate: AnyObject {
 class MangaDataSource: NSObject {
     var forceToggleMode = false
     var pagesOffset = false
+    var pageTextOffset = 0
+    var hidePageLabel = false
     weak var delegate: MangaDataSourceDelegate?
     private var mangaReader: Reader!
     private let manga: Manga
@@ -138,7 +140,7 @@ class MangaDataSource: NSObject {
     }
 
     func createPage(index: Int, side: PageViewController.Side = .center, delegate: PageViewControllerDelegate?, fullScreen: Bool = false) -> PageViewController {
-        let page = PageViewController(delegate: delegate, pageSide: side, pageNumber: index, isFullScreened: fullScreen)
+        let page = PageViewController(delegate: delegate, pageSide: side, pageNumber: index, pageText: String(index + pageTextOffset), hidePageNumbers: hidePageLabel, isFullScreened: fullScreen)
 
         // Load image to page
         if mangaReader == nil {
