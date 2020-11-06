@@ -7,8 +7,36 @@
 
 import UIKit
 
+protocol ViewerSettingsViewControllerDelegate: AnyObject {
+    func updatePagesSetting(_ viewerSettingsViewController: ViewerSettingsViewController, setting: ViewerPagesSettings, newValue: SettingValue)
+    func updatePageNumbersSetting(_ viewerSettingsViewController: ViewerSettingsViewController, setting: ViewerPageNumberSettings, newValue: SettingValue)
+}
+
 class ViewerSettingsViewController: UIViewController {
     @IBOutlet weak var settingsTableView: UITableView!
+
+    private let settings = [
+        SettingsSection(title: "Pages", settings: [
+            ViewerPagesSettings.doublePaged(false),
+            ViewerPagesSettings.offsetByOne(false)
+        ]),
+        SettingsSection(title: "Page Numbers", settings: [
+            ViewerPageNumberSettings.showPageNumbers(true),
+            ViewerPageNumberSettings.offsetPageNumbesr(0)
+        ])
+    ]
+
+    private weak var delegate: ViewerSettingsViewControllerDelegate?
+
+    init(delegate: ViewerSettingsViewControllerDelegate) {
+        self.delegate = delegate
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         title = "Viewer Settings"
         settingsTableView.register(UINib(nibName: "ToggleTableViewCell", bundle: nil), forCellReuseIdentifier: "toggleSettingsCell")
@@ -20,30 +48,40 @@ class ViewerSettingsViewController: UIViewController {
 
 extension ViewerSettingsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return SettingsSection.allCases.count
+        return settings.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return SettingsSection.allCases[section].settings.count
+        return settings[section].settings.count
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return SettingsSection.allCases[section].title
+        return settings[section].title
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let setting = SettingsSection.allCases[indexPath.section].settings[indexPath.row]
-        switch setting.type {
-        case .toggle(let value):
+        let setting = settings[indexPath.section].settings[indexPath.row]
+        switch setting.value {
+        case .bool:
             let cell = tableView.dequeueReusableCell(withIdentifier: "toggleSettingsCell") as! ToggleTableViewCell // swiftlint:disable:this force_cast
-            cell.label.text = setting.name
-            cell.switchControl.isOn = value
+            cell.configureFor(setting)
+            cell.delegate = self
             return cell
-        case .number(let value):
+        case .number:
             let cell = tableView.dequeueReusableCell(withIdentifier: "numberSettingsCell") as! NumberTableViewCell // swiftlint:disable:this force_cast
-            cell.label.text = setting.name
-            cell.value = value
+            cell.configureFor(setting)
+            cell.delegate = self
             return cell
+        }
+    }
+}
+
+extension ViewerSettingsViewController: SettingValueChangeDelegate {
+    func settingValueChanged(_ setting: SettingRepresentable, newValue: SettingValue) {
+        if let setting = setting as? ViewerPagesSettings {
+            delegate?.updatePagesSetting(self, setting: setting, newValue: newValue)
+        } else if let setting = setting as? ViewerPageNumberSettings {
+            delegate?.updatePageNumbersSetting(self, setting: setting, newValue: newValue)
         }
     }
 }

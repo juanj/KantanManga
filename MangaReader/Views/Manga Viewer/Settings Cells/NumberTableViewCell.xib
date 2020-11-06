@@ -17,39 +17,36 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Gk9-6v-NMH">
+                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-30" maximumValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="Gk9-6v-NMH">
                         <rect key="frame" x="210" y="6" width="94" height="32"/>
                     </stepper>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gze-Tk-SzG">
-                        <rect key="frame" x="16" y="11.5" width="128" height="21"/>
+                        <rect key="frame" x="16" y="11.5" width="41.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qys-iS-Ppx">
-                        <rect key="frame" x="152" y="5" width="50" height="34"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="50" id="dUM-kQ-aoW"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                    </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E76-hU-qRt">
+                        <rect key="frame" x="160" y="11.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="gze-Tk-SzG" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3EO-1g-pDa"/>
-                    <constraint firstItem="Qys-iS-Ppx" firstAttribute="leading" secondItem="gze-Tk-SzG" secondAttribute="trailing" constant="8" id="50q-XK-aJs"/>
-                    <constraint firstItem="Qys-iS-Ppx" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="DO4-61-tQK"/>
                     <constraint firstItem="Gk9-6v-NMH" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Tgf-82-00H"/>
+                    <constraint firstItem="Gk9-6v-NMH" firstAttribute="leading" secondItem="E76-hU-qRt" secondAttribute="trailing" constant="8" symbolic="YES" id="V6w-VP-yWa"/>
                     <constraint firstItem="Gk9-6v-NMH" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eQr-ol-pEL"/>
+                    <constraint firstItem="E76-hU-qRt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gra-v4-d8M"/>
                     <constraint firstItem="gze-Tk-SzG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="kuJ-F3-ezl"/>
-                    <constraint firstItem="Gk9-6v-NMH" firstAttribute="leading" secondItem="Qys-iS-Ppx" secondAttribute="trailing" constant="8" symbolic="YES" id="unN-13-S0W"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="label" destination="gze-Tk-SzG" id="uD7-Of-Sll"/>
                 <outlet property="stepper" destination="Gk9-6v-NMH" id="2dd-Zy-CMU"/>
-                <outlet property="textField" destination="Qys-iS-Ppx" id="o0o-mb-Khi"/>
+                <outlet property="valueLabel" destination="E76-hU-qRt" id="DYS-xj-SVC"/>
             </connections>
             <point key="canvasLocation" x="128" y="138"/>
         </tableViewCell>

@@ -76,7 +76,7 @@ extension ViewMangaCoordinator: MangaViewControllerDelegate {
     }
 
     func didTapSettings(_ mangaViewController: MangaViewController) {
-        let settingsNavigationController = UINavigationController(rootViewController: ViewerSettingsViewController())
+        let settingsNavigationController = UINavigationController(rootViewController: ViewerSettingsViewController(delegate: self))
         navigationController.present(settingsNavigationController, animated: true, completion: nil)
     }
 }
@@ -88,5 +88,25 @@ extension ViewMangaCoordinator: UINavigationControllerDelegate {
             return OpenMangaAnimationController(originFrame: originFrame, mangaCover: image)
         }
         return nil
+    }
+}
+
+extension ViewMangaCoordinator: ViewerSettingsViewControllerDelegate {
+    func updatePagesSetting(_ viewerSettingsViewController: ViewerSettingsViewController, setting: ViewerPagesSettings, newValue: SettingValue) {
+        switch setting {
+        case .doublePaged(let value):
+            break
+        case .offsetByOne(let value):
+            break
+        }
+    }
+
+    func updatePageNumbersSetting(_ viewerSettingsViewController: ViewerSettingsViewController, setting: ViewerPageNumberSettings, newValue: SettingValue) {
+        switch setting {
+        case .offsetPageNumbesr(let value):
+            break
+        case .showPageNumbers(let value):
+            break
+        }
     }
 }

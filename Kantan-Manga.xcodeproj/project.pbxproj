@@ -84,11 +84,10 @@
 		328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */; };
 		328E90252544ABB500F1CF57 /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328E90242544ABB500F1CF57 /* KeyboardButton.swift */; };
 		3292ADA22535DCF8004E8441 /* DemoOcrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3292ADA12535DCF8004E8441 /* DemoOcrView.swift */; };
+		3296181C2555943B0020C5AF /* SettingValueChangeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3296181B2555943B0020C5AF /* SettingValueChangeDelegate.swift */; };
 		329ACA8A2552ED15002953C5 /* NumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA882552ED15002953C5 /* NumberTableViewCell.swift */; };
 		329ACA8B2552ED15002953C5 /* NumberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 329ACA892552ED15002953C5 /* NumberTableViewCell.xib */; };
-		329ACA942552EF77002953C5 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA932552EF77002953C5 /* SettingsSection.swift */; };
-		329ACA9A2552EFD7002953C5 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA992552EFD7002953C5 /* Setting.swift */; };
-		329ACA9E2552F719002953C5 /* SettingCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA9D2552F719002953C5 /* SettingCellDelegate.swift */; };
+		329ACA9A2552EFD7002953C5 /* ViewerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA992552EFD7002953C5 /* ViewerSettings.swift */; };
 		329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E30E623E9CEE000AD13A3 /* MangaCollection.swift */; };
 		329E30E923E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */; };
 		32A1516C253260C0002B3920 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A1516A253260C0002B3920 /* OnboardingViewController.swift */; };
@@ -265,11 +264,10 @@
 		328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMangaCoordinator.swift; sourceTree = "<group>"; };
 		328E90242544ABB500F1CF57 /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 		3292ADA12535DCF8004E8441 /* DemoOcrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoOcrView.swift; sourceTree = "<group>"; };
+		3296181B2555943B0020C5AF /* SettingValueChangeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingValueChangeDelegate.swift; sourceTree = "<group>"; };
 		329ACA882552ED15002953C5 /* NumberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTableViewCell.swift; sourceTree = "<group>"; };
 		329ACA892552ED15002953C5 /* NumberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberTableViewCell.xib; sourceTree = "<group>"; };
-		329ACA932552EF77002953C5 /* SettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
-		329ACA992552EFD7002953C5 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
-		329ACA9D2552F719002953C5 /* SettingCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCellDelegate.swift; sourceTree = "<group>"; };
+		329ACA992552EFD7002953C5 /* ViewerSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerSettings.swift; sourceTree = "<group>"; };
 		329E30E623E9CEE000AD13A3 /* MangaCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollection.swift; sourceTree = "<group>"; };
 		329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MangaCollection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32A1516A253260C0002B3920 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -499,18 +497,9 @@
 				3283D1002552069700C08D02 /* ToggleTableViewCell.xib */,
 				329ACA882552ED15002953C5 /* NumberTableViewCell.swift */,
 				329ACA892552ED15002953C5 /* NumberTableViewCell.xib */,
-				329ACA9D2552F719002953C5 /* SettingCellDelegate.swift */,
+				3296181B2555943B0020C5AF /* SettingValueChangeDelegate.swift */,
 			);
 			path = "Settings Cells";
-			sourceTree = "<group>";
-		};
-		329ACA922552EF44002953C5 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				329ACA932552EF77002953C5 /* SettingsSection.swift */,
-				329ACA992552EFD7002953C5 /* Setting.swift */,
-			);
-			path = Settings;
 			sourceTree = "<group>";
 		};
 		32A1516025325F61002B3920 /* Onboarding */ = {
@@ -588,6 +577,7 @@
 				843FA7EB221E0BE900B86B52 /* PageViewController.xib */,
 				328DFB08238D96300095CBAB /* MangaViewController.swift */,
 				328DFB09238D96300095CBAB /* MangaViewController.xib */,
+				329ACA992552EFD7002953C5 /* ViewerSettings.swift */,
 				3247543A2551FD120025AB06 /* ViewerSettingsViewController.swift */,
 				3247543B2551FD120025AB06 /* ViewerSettingsViewController.xib */,
 				329ACA8F2552ED27002953C5 /* Settings Cells */,
@@ -712,7 +702,6 @@
 				329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */,
 				32AF5BCD2512567900E96C9F /* MangaCollectionable.swift */,
 				32AF5BD0251256E600E96C9F /* EmptyMangaCollection.swift */,
-				329ACA922552EF44002953C5 /* Settings */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1050,7 +1039,6 @@
 				320F277423C2046900D9930F /* Tokenizer.swift in Sources */,
 				32C49CD725168A0F000A9607 /* OpenCollectionAnimationController.swift in Sources */,
 				329E30E923E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift in Sources */,
-				329ACA942552EF77002953C5 /* SettingsSection.swift in Sources */,
 				32350AA8247C723C002D100D /* WordParser.swift in Sources */,
 				32892C0A23E39FBC000B1C3E /* AddMangaViewController.swift in Sources */,
 				84A83219221D923800CEE1C9 /* AppCoordinator.swift in Sources */,
@@ -1081,11 +1069,10 @@
 				328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */,
 				84A8321D221D951500CEE1C9 /* LibraryViewController.swift in Sources */,
 				326FDE7B24A7FBFB0042CB8A /* SettingsCoordinator.swift in Sources */,
-				329ACA9A2552EFD7002953C5 /* Setting.swift in Sources */,
+				329ACA9A2552EFD7002953C5 /* ViewerSettings.swift in Sources */,
 				843FA7E2221DF0C300B86B52 /* WebServerViewController.swift in Sources */,
 				841B795C221F305A00659FA2 /* MangaDataSource.swift in Sources */,
 				329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */,
-				329ACA9E2552F719002953C5 /* SettingCellDelegate.swift in Sources */,
 				3247543C2551FD120025AB06 /* ViewerSettingsViewController.swift in Sources */,
 				32E37987252A6A6000ED4BAC /* AcknowledgmentsView.swift in Sources */,
 				32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */,
@@ -1094,6 +1081,7 @@
 				322EF655250FB05800F35E72 /* CGSize+Extension.swift in Sources */,
 				325199B72479D9E000DA6908 /* GoogleVisionOCR.swift in Sources */,
 				322C5B602483125A00C0BAB1 /* Coordinator.swift in Sources */,
+				3296181C2555943B0020C5AF /* SettingValueChangeDelegate.swift in Sources */,
 				3219C2A9251100D200915DE1 /* CollectionViewController.swift in Sources */,
 				326344A3247DD98B00F683AB /* Reader.swift in Sources */,
 				329ACA8A2552ED15002953C5 /* NumberTableViewCell.swift in Sources */,
