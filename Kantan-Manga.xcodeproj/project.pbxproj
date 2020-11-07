@@ -1420,7 +1420,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 70;
 				DEVELOPMENT_TEAM = 25JHVANVX3;
@@ -1505,7 +1505,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kantanmanga;
 				PRODUCT_NAME = "Kantan Manga";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.kantanmanga";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.kantanmanga";
 				SWIFT_OBJC_BRIDGING_HEADER = "MangaReader-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
