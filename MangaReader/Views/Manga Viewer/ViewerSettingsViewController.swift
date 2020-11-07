@@ -16,9 +16,11 @@ class ViewerSettingsViewController: UIViewController {
     @IBOutlet weak var settingsTableView: UITableView!
 
     private let settings = [
-        SettingsSection(title: "Pages", settings: [
-            ViewerPagesSettings.doublePaged(false),
+        SettingsSection(title: "Pages", footer: "Use this to view double page spreads", settings: [
             ViewerPagesSettings.offsetByOne(false)
+        ]),
+        SettingsSection(footer: "By default landscape is double paged and portrait single paged", settings: [
+            ViewerPagesSettings.doublePaged(false)
         ]),
         SettingsSection(title: "Page Numbers", settings: [
             ViewerPageNumberSettings.hidePageNumbers(true),
@@ -57,6 +59,10 @@ extension ViewerSettingsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return settings[section].title
+    }
+
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return settings[section].footer
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

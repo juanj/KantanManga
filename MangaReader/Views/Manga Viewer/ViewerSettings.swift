@@ -18,8 +18,15 @@ enum SettingValue {
 }
 
 struct SettingsSection {
-    let title: String
+    let title: String?
+    let footer: String?
     var settings: [SettingRepresentable]
+
+    init(title: String?  = nil, footer: String? = nil, settings: [SettingRepresentable]) {
+        self.title = title
+        self.footer = footer
+        self.settings = settings
+    }
 }
 
 enum ViewerPagesSettings: SettingRepresentable {
@@ -29,9 +36,9 @@ enum ViewerPagesSettings: SettingRepresentable {
     var title: String {
         switch self {
         case .doublePaged:
-            return "Double paged"
+            return "Toggle page mode"
         case .offsetByOne:
-            return "Offset pages by 1 (use this to view double page spreads)"
+            return "Offset pages by 1"
         }
     }
 
