@@ -26,7 +26,7 @@ struct AboutView: View {
 
     func getVersionString() -> String {
         var string = ""
-        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, let build = Bundle.main.infoDictionary?["CFBundleInfoDictionaryVersion"] as? String {
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
             string = "\(version) (\(build))"
         }
         return string
