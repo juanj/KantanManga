@@ -19,8 +19,10 @@ class AppCoordinator: NSObject, Coordinator {
     private var movingManga: Manga?
 
     private var navigationController: UINavigationController
-    init(navigation: UINavigationController) {
+    private var coreDataManager: CoreDataManageable
+    init(navigation: UINavigationController, coreDataManager: CoreDataManageable) {
         navigationController = navigation
+        self.coreDataManager = coreDataManager
         super.init()
         navigationController.delegate = self
     }
@@ -34,10 +36,10 @@ class AppCoordinator: NSObject, Coordinator {
 
     func loadCollections() -> [MangaCollectionable] {
         var collections = [MangaCollectionable]()
-        if let noCollectionMangas = CoreDataManager.sharedManager.getMangasWithoutCollection() {
+        if let noCollectionMangas = coreDataManager.getMangasWithoutCollection() {
             collections.append(EmptyMangaCollection(mangas: noCollectionMangas))
         }
-        if let allCollections = CoreDataManager.sharedManager.fetchAllCollections() {
+        if let allCollections = coreDataManager.fetchAllCollections() {
             collections.append(contentsOf: allCollections)
         }
         return collections.filter { $0.mangas.count > 0 }
@@ -51,13 +53,13 @@ extension AppCoordinator: LibraryViewControllerDelegate {
             return
         }
         let uploadServer = GCDWebUploader(uploadDirectory: documentPath)
-        let addMangasCoordinator = AddMangasCoordinator(navigation: navigationController, sourceButton: button, uploadServer: uploadServer, delegate: self)
+        let addMangasCoordinator = AddMangasCoordinator(navigation: navigationController, sourceButton: button, uploadServer: uploadServer, coreDataManager: coreDataManager, delegate: self)
         childCoordinators.append(addMangasCoordinator)
         addMangasCoordinator.start()
     }
 
     func didSelectSettings(_ libraryViewController: LibraryViewController) {
-        let settingsCoordinator = SettingsCoordinator(navigation: navigationController, delegate: self)
+        let settingsCoordinator = SettingsCoordinator(navigation: navigationController, coreDataManager: coreDataManager, delegate: self)
         childCoordinators.append(settingsCoordinator)
         settingsCoordinator.start()
     }
@@ -74,20 +76,20 @@ extension AppCoordinator: LibraryViewControllerDelegate {
 
     func didSelectDeleteCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable) {
         guard let collection = collection as? MangaCollection else { return }
-        CoreDataManager.sharedManager.delete(collection: collection)
+        coreDataManager.delete(collection: collection)
         libraryViewController.setCollections(collections: loadCollections())
     }
 
     func didSelectRenameCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable, name: String?) {
         guard let collection = collection as? MangaCollection, let name = name, !name.isEmpty else { return }
         collection.name = name
-        CoreDataManager.sharedManager.updateCollection(collection)
+        coreDataManager.updateCollection(collection)
         libraryViewController.setCollections(collections: loadCollections())
     }
 
     func didSelectLoadDemoManga(_ libraryViewController: LibraryViewController) {
         libraryView?.dismiss(animated: true, completion: nil)
-        CoreDataManager.sharedManager.createDemoManga {
+        coreDataManager.createDemoManga {
             DispatchQueue.main.async {
                 libraryViewController.setCollections(collections: self.loadCollections())
             }
@@ -98,25 +100,25 @@ extension AppCoordinator: LibraryViewControllerDelegate {
 // MARK: CollectionViewControllerDelegate
 extension AppCoordinator: CollectionViewControllerDelegate {
     func didSelectManga(_ collectionViewController: CollectionViewController, manga: Manga, cellFrame: CGRect) {
-        let viewMangaCoordinator = ViewMangaCoordinator(navigation: navigationController, manga: manga, delegate: self, originFrame: cellFrame, ocr: TesseractOCR())
+        let viewMangaCoordinator = ViewMangaCoordinator(navigation: navigationController, coreDataManager: coreDataManager, manga: manga, delegate: self, originFrame: cellFrame, ocr: TesseractOCR())
         childCoordinators.append(viewMangaCoordinator)
         viewMangaCoordinator.start()
     }
 
     func didSelectDeleteManga(_ collectionViewController: CollectionViewController, manga: Manga) {
-        CoreDataManager.sharedManager.delete(manga: manga)
-        CoreDataManager.sharedManager.refreshAll()
+        coreDataManager.delete(manga: manga)
+        coreDataManager.refreshAll()
         collectionViewController.collectionView.reloadSections(IndexSet(integer: 0))
     }
 
     func didSelectRenameManga(_ collectionViewController: CollectionViewController, manga: Manga, name: String?) {
         guard let name = name, !name.isEmpty else { return }
         manga.name = name
-        CoreDataManager.sharedManager.updateManga(manga: manga)
+        coreDataManager.updateManga(manga: manga)
     }
 
     func didSelectMoveManga(_ collectionViewController: CollectionViewController, manga: Manga) {
-        let collections = CoreDataManager.sharedManager.fetchAllCollections() ?? []
+        let collections = coreDataManager.fetchAllCollections() ?? []
         movingManga = manga
         navigationController.present(SelectCollectionTableViewController(delegate: self, collections: collections), animated: true, completion: nil)
     }
@@ -145,8 +147,8 @@ extension AppCoordinator: SelectCollectionTableViewControllerDelegate {
     func selectCollection(_ selectCollectionTableViewController: SelectCollectionTableViewController, collection: MangaCollection) {
         guard let manga = movingManga else { return }
         manga.mangaCollection = collection
-        CoreDataManager.sharedManager.updateManga(manga: manga)
-        CoreDataManager.sharedManager.refreshAll()
+        coreDataManager.updateManga(manga: manga)
+        coreDataManager.refreshAll()
         collectionView?.collectionView.reloadSections(IndexSet(integer: 0))
         navigationController.dismiss(animated: true, completion: nil)
         movingManga = nil
@@ -154,10 +156,10 @@ extension AppCoordinator: SelectCollectionTableViewControllerDelegate {
     }
 
     func addCollection(_ selectCollectionTableViewController: SelectCollectionTableViewController, name: String) {
-        guard let manga = movingManga, let collection = CoreDataManager.sharedManager.insertCollection(name: name) else { return }
+        guard let manga = movingManga, let collection = coreDataManager.insertCollection(name: name) else { return }
         manga.mangaCollection = collection
-        CoreDataManager.sharedManager.updateManga(manga: manga)
-        CoreDataManager.sharedManager.refreshAll()
+        coreDataManager.updateManga(manga: manga)
+        coreDataManager.refreshAll()
         collectionView?.collectionView.reloadSections(IndexSet(integer: 0))
         navigationController.dismiss(animated: true, completion: nil)
         movingManga = nil

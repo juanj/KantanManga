@@ -16,10 +16,12 @@ class SettingsCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
 
     private let navigationController: UINavigationController
+    private let coreDataManager: CoreDataManageable
     private weak var delegate: SettingsCoordinatorDelegate?
     private let presentedNavigationController = UINavigationController()
-    init(navigation: UINavigationController, delegate: SettingsCoordinatorDelegate) {
+    init(navigation: UINavigationController, coreDataManager: CoreDataManageable, delegate: SettingsCoordinatorDelegate) {
         navigationController = navigation
+        self.coreDataManager = coreDataManager
         self.delegate = delegate
     }
 
@@ -39,7 +41,7 @@ extension SettingsCoordinator: SettingsTableViewControllerDelegate {
 
     func didSelectLoadDemo(_ settingsTableViewController: SettingsTableViewController) {
         settingsTableViewController.startLoading()
-        CoreDataManager.sharedManager.createDemoManga {
+        coreDataManager.createDemoManga {
             DispatchQueue.main.async {
                 settingsTableViewController.endLoading()
                 self.navigationController.dismiss(animated: true, completion: nil)

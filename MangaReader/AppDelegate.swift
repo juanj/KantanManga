@@ -13,6 +13,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var appCoordinator: AppCoordinator!
+    var coreDataManager: CoreDataManageable?
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -22,14 +23,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let navigationController = UINavigationController()
         window?.rootViewController = navigationController
-        appCoordinator = AppCoordinator(navigation: navigationController)
+        let coreDataManager = CoreDataManager()
+        appCoordinator = AppCoordinator(navigation: navigationController, coreDataManager: coreDataManager)
         appCoordinator.start()
         window?.makeKeyAndVisible()
+
+        self.coreDataManager = coreDataManager
         return true
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        CoreDataManager.sharedManager.saveContext()
+        coreDataManager?.saveContext()
     }
 
 }

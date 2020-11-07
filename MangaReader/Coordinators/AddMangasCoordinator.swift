@@ -21,16 +21,18 @@ class AddMangasCoordinator: NSObject, Coordinator {
     private var presentedNavigationController = UINavigationController()
     private var sourceButton: UIBarButtonItem
     private var uploadServer: GCDWebUploader
+    private let coreDataManager: CoreDataManageable
     private weak var delegate: AddMangasCoordinatorDelegate?
 
     private var addMangaViewController: AddMangaViewController?
     private var filePath: String?
     private var collection: MangaCollection?
 
-    init(navigation: UINavigationController, sourceButton: UIBarButtonItem, uploadServer: GCDWebUploader, delegate: AddMangasCoordinatorDelegate) {
+    init(navigation: UINavigationController, sourceButton: UIBarButtonItem, uploadServer: GCDWebUploader, coreDataManager: CoreDataManageable, delegate: AddMangasCoordinatorDelegate) {
         navigationController = navigation
         self.sourceButton = sourceButton
         self.uploadServer = uploadServer
+        self.coreDataManager = coreDataManager
         self.delegate = delegate
     }
 
@@ -97,8 +99,8 @@ extension AddMangasCoordinator: GCDWebUploaderDelegate {
 
     func webUploader(_ uploader: GCDWebUploader, didDeleteItemAtPath path: String) {
         let fileName = path.lastPathComponent
-        if let manga = CoreDataManager.sharedManager.getMangaWith(filePath: fileName) {
-            CoreDataManager.sharedManager.delete(manga: manga)
+        if let manga = coreDataManager.getMangaWith(filePath: fileName) {
+            coreDataManager.delete(manga: manga)
         }
     }
 }
@@ -123,7 +125,7 @@ extension AddMangasCoordinator: AddMangaViewControllerDelegate {
         guard let file = self.filePath else {
             return
         }
-        CoreDataManager.sharedManager.createMangaWith(filePath: file, name: name, collection: collection) { (_) in
+        coreDataManager.createMangaWith(filePath: file, name: name, collection: collection) { (_) in
             DispatchQueue.main.sync {
                 self.navigationController.dismiss(animated: true, completion: nil)
                 self.delegate?.didEnd(self)
@@ -136,7 +138,7 @@ extension AddMangasCoordinator: AddMangaViewControllerDelegate {
     }
 
     func selectCollection(_ addMangaViewController: AddMangaViewController) {
-        presentedNavigationController.pushViewController(SelectCollectionTableViewController(delegate: self, collections: CoreDataManager.sharedManager.fetchAllCollections() ?? []), animated: true)
+        presentedNavigationController.pushViewController(SelectCollectionTableViewController(delegate: self, collections: coreDataManager.fetchAllCollections() ?? []), animated: true)
     }
 }
 
@@ -197,7 +199,7 @@ extension AddMangasCoordinator: SelectCollectionTableViewControllerDelegate {
     }
 
     func addCollection(_ selectCollectionTableViewController: SelectCollectionTableViewController, name: String) {
-        guard let collection = CoreDataManager.sharedManager.insertCollection(name: name) else { return }
+        guard let collection = coreDataManager.insertCollection(name: name) else { return }
         self.collection = collection
         addMangaViewController?.selectCollectionButton.setTitle(collection.name, for: .normal)
         addMangaViewController?.selectCollectionButton.setTitleColor(.label, for: .normal)

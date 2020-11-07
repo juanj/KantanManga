@@ -17,6 +17,7 @@ class ViewMangaCoordinator: NSObject, Coordinator {
     var childCoordinators = [Coordinator]()
 
     private let navigationController: UINavigationController!
+    private let coreDataManager: CoreDataManageable
     private weak var delegate: ViewMangaCoordinatorDelegate?
     private let manga: Manga
     private let originFrame: CGRect
@@ -25,8 +26,9 @@ class ViewMangaCoordinator: NSObject, Coordinator {
     private var mangaViewController: MangaViewController?
     private var ocr: ImageOCR
 
-    init(navigation: UINavigationController, manga: Manga, delegate: ViewMangaCoordinatorDelegate, originFrame: CGRect, ocr: ImageOCR) {
+    init(navigation: UINavigationController, coreDataManager: CoreDataManageable, manga: Manga, delegate: ViewMangaCoordinatorDelegate, originFrame: CGRect, ocr: ImageOCR) {
         navigationController = navigation
+        self.coreDataManager = coreDataManager
         self.manga = manga
         self.delegate = delegate
         self.originFrame = originFrame
@@ -92,6 +94,11 @@ extension ViewMangaCoordinator: MangaViewControllerDelegate {
         ]
         let settingsNavigationController = UINavigationController(rootViewController: ViewerSettingsViewController(settings: settings, delegate: self))
         navigationController.present(settingsNavigationController, animated: true, completion: nil)
+    }
+
+    func pageDidChange(_ mangaViewController: MangaViewController, manga: Manga, newPage: Int) {
+        manga.currentPage = Int16(newPage)
+        coreDataManager.updateManga(manga: manga)
     }
 }
 

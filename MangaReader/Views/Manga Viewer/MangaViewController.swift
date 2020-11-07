@@ -13,6 +13,7 @@ protocol MangaViewControllerDelegate: AnyObject {
     func back(_ mangaViewController: MangaViewController)
     func didSelectSectionOfImage(_ mangaViewController: MangaViewController, image: UIImage)
     func didTapSettings(_ mangaViewController: MangaViewController)
+    func pageDidChange(_ mangaViewController: MangaViewController, manga: Manga, newPage: Int)
 }
 
 class MangaViewController: UIViewController {
@@ -311,8 +312,7 @@ class MangaViewController: UIViewController {
         let (_, pages) = dataSource.initialConfiguration(with: orientation, startingPage: page, delegate: self, fullScreen: fullScreen)
 
         pageController.setViewControllers(pages, direction: page > oldPageValue ? .reverse : .forward, animated: true, completion: nil)
-        manga.currentPage = Int16(pages[0].pageNumber)
-        CoreDataManager.sharedManager.updateManga(manga: manga)
+        delegate?.pageDidChange(self, manga: manga, newPage: pages[0].pageNumber)
         oldPageValue = page
     }
 }
@@ -334,8 +334,7 @@ extension MangaViewController: UIPageViewControllerDelegate {
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if let pageView = pageViewController.viewControllers?.first as? PageViewController, !pageView.isPaddingPage {
-            manga.currentPage = Int16(pageView.pageNumber)
-            CoreDataManager.sharedManager.updateManga(manga: manga)
+            delegate?.pageDidChange(self, manga: manga, newPage: pageView.pageNumber)
 
             progressBar.value = progressBar.maximumValue - Float(pageView.pageNumber)
             oldPageValue = pageView.pageNumber

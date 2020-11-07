@@ -8,13 +8,8 @@
 
 import CoreData
 
-class CoreDataManager {
-
-    // TODO: Don't use singletones
-    // Make singletone only
-    static let sharedManager = CoreDataManager()
-
-    lazy var persistentContainer: NSPersistentContainer = {
+class CoreDataManager: CoreDataManageable {
+    private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "MangaReader")
         container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {

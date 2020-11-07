@@ -111,6 +111,7 @@
 		32F998B925574C4C00897299 /* AppCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998B825574C4C00897299 /* AppCoordinatorTests.swift */; };
 		32F998BD25574C6C00897299 /* AddMangasCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998BC25574C6C00897299 /* AddMangasCoordinatorTests.swift */; };
 		32F998C125574C8E00897299 /* ViewMangaCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998C025574C8E00897299 /* ViewMangaCoordinatorTests.swift */; };
+		32F998CF25574EC800897299 /* CoreDataManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998C725574D9300897299 /* CoreDataManageable.swift */; };
 		32FA3C7C24367428001EB0DF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3C7B24367428001EB0DF /* String+Extension.swift */; };
 		8418696D222495FE00C689DC /* Manga.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418696B222495FD00C689DC /* Manga.swift */; };
 		8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */; };
@@ -293,6 +294,7 @@
 		32F998B825574C4C00897299 /* AppCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTests.swift; sourceTree = "<group>"; };
 		32F998BC25574C6C00897299 /* AddMangasCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMangasCoordinatorTests.swift; sourceTree = "<group>"; };
 		32F998C025574C8E00897299 /* ViewMangaCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMangaCoordinatorTests.swift; sourceTree = "<group>"; };
+		32F998C725574D9300897299 /* CoreDataManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManageable.swift; sourceTree = "<group>"; };
 		32FA3C7B24367428001EB0DF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		5534228050877F817D2A97BC /* Pods_Kantan_MangaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D7326F35AB101E198FF621 /* Pods_Kantan_MangaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -709,6 +711,7 @@
 			isa = PBXGroup;
 			children = (
 				84A831ED221D90CA00CEE1C9 /* MangaReader.xcdatamodeld */,
+				32F998C725574D9300897299 /* CoreDataManageable.swift */,
 				84A83220221D9F7000CEE1C9 /* CoreDataManager.swift */,
 				8418696B222495FD00C689DC /* Manga.swift */,
 				8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */,
@@ -1049,6 +1052,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				323205AE238DBCE4009E8362 /* SelectionView.swift in Sources */,
+				32F998CF25574EC800897299 /* CoreDataManageable.swift in Sources */,
 				322EF658250FB49700F35E72 /* AspectAlignImage.swift in Sources */,
 				320F277423C2046900D9930F /* Tokenizer.swift in Sources */,
 				32C49CD725168A0F000A9607 /* OpenCollectionAnimationController.swift in Sources */,
