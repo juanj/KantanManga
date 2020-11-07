@@ -103,12 +103,14 @@
 		32C49CD725168A0F000A9607 /* OpenCollectionAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */; };
 		32E322182481A531007BC017 /* ParsedInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E322152481A531007BC017 /* ParsedInputField.swift */; };
 		32E3221C2481A67D007BC017 /* JapaneseHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */; };
-		32E322222481CD8D007BC017 /* CoordinatorsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E322212481CD8D007BC017 /* CoordinatorsTest.swift */; };
 		32E37987252A6A6000ED4BAC /* AcknowledgmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */; };
 		32F1B9F3243685DC00AE367D /* SelectCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */; };
 		32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */; };
 		32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */; };
 		32F1B9FC24369E1100AE367D /* OpenMangaAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9FB24369E1100AE367D /* OpenMangaAnimationController.swift */; };
+		32F998B925574C4C00897299 /* AppCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998B825574C4C00897299 /* AppCoordinatorTests.swift */; };
+		32F998BD25574C6C00897299 /* AddMangasCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998BC25574C6C00897299 /* AddMangasCoordinatorTests.swift */; };
+		32F998C125574C8E00897299 /* ViewMangaCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998C025574C8E00897299 /* ViewMangaCoordinatorTests.swift */; };
 		32FA3C7C24367428001EB0DF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3C7B24367428001EB0DF /* String+Extension.swift */; };
 		8418696D222495FE00C689DC /* Manga.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418696B222495FD00C689DC /* Manga.swift */; };
 		8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */; };
@@ -283,12 +285,14 @@
 		32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCollectionAnimationController.swift; sourceTree = "<group>"; };
 		32E322152481A531007BC017 /* ParsedInputField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsedInputField.swift; sourceTree = "<group>"; };
 		32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseHelpViewController.swift; sourceTree = "<group>"; };
-		32E322212481CD8D007BC017 /* CoordinatorsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorsTest.swift; sourceTree = "<group>"; };
 		32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgmentsView.swift; sourceTree = "<group>"; };
 		32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCollectionTableViewController.swift; sourceTree = "<group>"; };
 		32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		32F1B9FB24369E1100AE367D /* OpenMangaAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMangaAnimationController.swift; sourceTree = "<group>"; };
+		32F998B825574C4C00897299 /* AppCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTests.swift; sourceTree = "<group>"; };
+		32F998BC25574C6C00897299 /* AddMangasCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMangasCoordinatorTests.swift; sourceTree = "<group>"; };
+		32F998C025574C8E00897299 /* ViewMangaCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMangaCoordinatorTests.swift; sourceTree = "<group>"; };
 		32FA3C7B24367428001EB0DF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		5534228050877F817D2A97BC /* Pods_Kantan_MangaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D7326F35AB101E198FF621 /* Pods_Kantan_MangaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -662,7 +666,9 @@
 			children = (
 				320ED4DE24832C9700F5BECF /* Mock Classes */,
 				84A831FE221D90CC00CEE1C9 /* CoreDataManagerTests.swift */,
-				32E322212481CD8D007BC017 /* CoordinatorsTest.swift */,
+				32F998B825574C4C00897299 /* AppCoordinatorTests.swift */,
+				32F998BC25574C6C00897299 /* AddMangasCoordinatorTests.swift */,
+				32F998C025574C8E00897299 /* ViewMangaCoordinatorTests.swift */,
 				84A83200221D90CC00CEE1C9 /* Info.plist */,
 			);
 			path = MangaReaderTests;
@@ -1104,13 +1110,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				322C5B5C24830C2500C0BAB1 /* MockLibraryViewController.swift in Sources */,
+				32F998BD25574C6C00897299 /* AddMangasCoordinatorTests.swift in Sources */,
 				320ED4D924831D2900F5BECF /* MockUploadServer.swift in Sources */,
 				3219C2B02511103600915DE1 /* MockCollectionViewControllerDelgate.swift in Sources */,
 				320ED4D72483189F00F5BECF /* MockNavigationController.swift in Sources */,
+				32F998B925574C4C00897299 /* AppCoordinatorTests.swift in Sources */,
 				320ED4D32483178C00F5BECF /* DummyDelegates.swift in Sources */,
 				320ED4DD2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift in Sources */,
-				32E322222481CD8D007BC017 /* CoordinatorsTest.swift in Sources */,
 				32C3512F24845D2800D1EB42 /* MockViewMangaCoordinatorDelegate.swift in Sources */,
+				32F998C125574C8E00897299 /* ViewMangaCoordinatorTests.swift in Sources */,
 				84A831FF221D90CC00CEE1C9 /* CoreDataManagerTests.swift in Sources */,
 				32C351332484645700D1EB42 /* MockOCR.swift in Sources */,
 				3219C2B22511103A00915DE1 /* MockCollectionViewController.swift in Sources */,
