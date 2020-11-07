@@ -93,12 +93,11 @@ class MangaViewController: UIViewController {
         navigationItem.leftBarButtonItem = backButton
 
         let settingsButton = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(openSettings))
-        let togglePageMode = UIBarButtonItem(image: UIImage(systemName: "book"), style: .plain, target: self, action: #selector(toggleMode))
         let ocrButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass.circle"), style: .plain, target: self, action: #selector(toggleOcr))
 
         ocrActivityIndicator.hidesWhenStopped = true
         let ocrLoadingNavButton = UIBarButtonItem(customView: ocrActivityIndicator)
-        navigationItem.rightBarButtonItems = [ocrButton, togglePageMode, settingsButton, ocrLoadingNavButton]
+        navigationItem.rightBarButtonItems = [ocrButton, settingsButton, ocrLoadingNavButton]
     }
 
     private func createPageController() {
@@ -269,11 +268,6 @@ class MangaViewController: UIViewController {
         if fullScreen != ocrEnabled {
             toggleFullscreen()
         }
-    }
-
-    @objc func toggleMode() {
-        dataSource.forceToggleMode.toggle()
-        reloadPageController()
     }
 
     @objc func openSettings() {
