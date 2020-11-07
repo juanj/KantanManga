@@ -15,22 +15,11 @@ protocol ViewerSettingsViewControllerDelegate: AnyObject {
 class ViewerSettingsViewController: UIViewController {
     @IBOutlet weak var settingsTableView: UITableView!
 
-    private let settings = [
-        SettingsSection(title: "Pages", footer: "Use this to view double page spreads", settings: [
-            ViewerPagesSettings.offsetByOne(false)
-        ]),
-        SettingsSection(footer: "By default landscape is double paged and portrait single paged", settings: [
-            ViewerPagesSettings.doublePaged(false)
-        ]),
-        SettingsSection(title: "Page Numbers", settings: [
-            ViewerPageNumberSettings.hidePageNumbers(true),
-            ViewerPageNumberSettings.offsetPageNumbesr(0)
-        ])
-    ]
-
+    private let settings: [SettingsSection]
     private weak var delegate: ViewerSettingsViewControllerDelegate?
 
-    init(delegate: ViewerSettingsViewControllerDelegate) {
+    init(settings: [SettingsSection], delegate: ViewerSettingsViewControllerDelegate) {
+        self.settings = settings
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }

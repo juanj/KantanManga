@@ -78,7 +78,19 @@ extension ViewMangaCoordinator: MangaViewControllerDelegate {
     }
 
     func didTapSettings(_ mangaViewController: MangaViewController) {
-        let settingsNavigationController = UINavigationController(rootViewController: ViewerSettingsViewController(delegate: self))
+        let settings = [
+            SettingsSection(title: "Pages", footer: "Use this to view double page spreads", settings: [
+                ViewerPagesSettings.offsetByOne(mangaDataSource.pagesOffset)
+            ]),
+            SettingsSection(footer: "By default landscape is double paged and portrait single paged", settings: [
+                ViewerPagesSettings.doublePaged(mangaDataSource.forceToggleMode)
+            ]),
+            SettingsSection(title: "Page Numbers", settings: [
+                ViewerPageNumberSettings.hidePageNumbers(mangaDataSource.hidePageLabel),
+                ViewerPageNumberSettings.offsetPageNumbesr(mangaDataSource.pageTextOffset)
+            ])
+        ]
+        let settingsNavigationController = UINavigationController(rootViewController: ViewerSettingsViewController(settings: settings, delegate: self))
         navigationController.present(settingsNavigationController, animated: true, completion: nil)
     }
 }
