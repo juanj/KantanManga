@@ -97,7 +97,9 @@ extension ViewMangaCoordinator: ViewerSettingsViewControllerDelegate {
     func updatePagesSetting(_ viewerSettingsViewController: ViewerSettingsViewController, setting: ViewerPagesSettings, newValue: SettingValue) {
         switch setting {
         case .doublePaged:
-            break
+            guard case .bool(let value) = newValue else { return }
+            mangaDataSource.forceToggleMode = value
+            mangaViewController?.reloadPageController()
         case .offsetByOne:
             guard case .bool(let value) = newValue else { return }
             mangaDataSource.pagesOffset = value
