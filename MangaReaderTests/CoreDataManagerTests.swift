@@ -24,19 +24,6 @@ class CoreDataManagerTests: XCTestCase {
         coreDataManager.deleteAllData()
     }
 
-    func testPersistentContainer_afterInit_isNotNil() {
-        let coreDataManager = CoreDataManager()
-        XCTAssertNotNil(coreDataManager.persistentContainer)
-    }
-
-    func testSaveContext_withPendingChanges_contextIsSaved() {
-        _ = Manga(context: coreDataManager.persistentContainer.viewContext, name: "", coverData: Data(), totalPages: 0, filePath: "")
-        coreDataManager.saveContext()
-        coreDataManager.persistentContainer.viewContext.reset()
-        // After Save
-        XCTAssertNotNil(coreDataManager.fetchAllMangas())
-    }
-
     func testDeleteAllData_afterInsertingData_deletesAllData() {
         coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
         coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
