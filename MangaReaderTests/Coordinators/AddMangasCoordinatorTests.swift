@@ -9,12 +9,12 @@ import XCTest
 @testable import Kantan_Manga
 
 class AddMangasCoordinatorTests: XCTestCase {
-    var navigation: MockNavigationController!
+    var navigation: Navigable!
     var delegate: MockAddMangasCoordinatorDelegate! // swiftlint:disable:this weak_delegate
     var mockServer: MockUploadServer!
     var addMangasCoordinator: AddMangasCoordinator!
 
-    override func setUp() {
+    /*override func setUp() {
         super.setUp()
         CoreDataManager.sharedManager.deleteAllData()
         navigation = MockNavigationController()
@@ -66,5 +66,5 @@ class AddMangasCoordinatorTests: XCTestCase {
         XCTAssertEqual(mockServer.allowedFileExtensions, ["cbz", "zip", "rar", "cbr"])
         XCTAssert(mockServer.delegate is AddMangasCoordinator)
         XCTAssertTrue(mockServer.startCalled)
-    }
+    }*/
 }

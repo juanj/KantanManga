@@ -8,33 +8,34 @@
 
 @testable import Kantan_Manga
 
-class MockNavigationController: UINavigationController {
-    var presentedViewControllerTest: UIViewController?
-    var popCalled = false
-    var pushCalled = false
-    var dismissCalled = false
-    var viewControllersTest = [UIViewController]()
+class MockNavigation: Navigable {
+    var delegate: UINavigationControllerDelegate?
+    var viewControllers = [UIViewController]()
+    var presentedViewController: UIViewController?
+    var navigationBarHidden = false
 
-    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-        presentedViewControllerTest = viewControllerToPresent
+    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+        presentedViewController = viewControllerToPresent
     }
 
-    override func popViewController(animated: Bool) -> UIViewController? {
-        popCalled = true
-        _ = viewControllers.popLast()
-        return nil
+    func popViewController(animated: Bool) -> UIViewController? {
+        let last = viewControllers.popLast()
+        return last
     }
 
-    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        pushCalled = true
-        viewControllersTest.append(viewController)
+    func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        viewControllers.append(viewController)
     }
 
-    override func setViewControllers(_ viewControllers: [UIViewController], animated: Bool) {
-        viewControllersTest = viewControllers
+    func setViewControllers(_ viewControllers: [UIViewController], animated: Bool) {
+        self.viewControllers = viewControllers
     }
 
-    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        dismissCalled = true
+    func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        presentedViewController = nil
+    }
+
+    func setNavigationBarHidden(_ hidden: Bool, animated: Bool) {
+        navigationBarHidden = hidden
     }
 }
