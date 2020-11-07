@@ -589,6 +589,16 @@
 			path = "Manga Viewer";
 			sourceTree = "<group>";
 		};
+		32F998C625574CC400897299 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				32F998B825574C4C00897299 /* AppCoordinatorTests.swift */,
+				32F998BC25574C6C00897299 /* AddMangasCoordinatorTests.swift */,
+				32F998C025574C8E00897299 /* ViewMangaCoordinatorTests.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		7EAAD1907EAA228FF69A9323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -666,9 +676,7 @@
 			children = (
 				320ED4DE24832C9700F5BECF /* Mock Classes */,
 				84A831FE221D90CC00CEE1C9 /* CoreDataManagerTests.swift */,
-				32F998B825574C4C00897299 /* AppCoordinatorTests.swift */,
-				32F998BC25574C6C00897299 /* AddMangasCoordinatorTests.swift */,
-				32F998C025574C8E00897299 /* ViewMangaCoordinatorTests.swift */,
+				32F998C625574CC400897299 /* Coordinators */,
 				84A83200221D90CC00CEE1C9 /* Info.plist */,
 			);
 			path = MangaReaderTests;
