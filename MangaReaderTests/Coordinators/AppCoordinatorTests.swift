@@ -14,7 +14,7 @@ class AppCoordinatorTests: XCTestCase {
 
     func testCallingStartPushLibraryViewController() {
         let navigation = MockNavigation()
-        let appCoordinator = AppCoordinator(navigation: navigation, coreDataManager: CoreDataManager())
+        let appCoordinator = AppCoordinator(navigation: navigation, coreDataManager: FakeCoreDataManager())
         appCoordinator.start()
         XCTAssertTrue(navigation.viewControllers.first is LibraryViewController)
     }
