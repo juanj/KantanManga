@@ -10,9 +10,9 @@ import CoreData
 
 class CoreDataManager {
 
+    // TODO: Don't use singletones
     // Make singletone only
     static let sharedManager = CoreDataManager()
-    private init() {}
 
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "MangaReader")

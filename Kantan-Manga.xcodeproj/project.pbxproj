@@ -123,7 +123,7 @@
 		84A831EF221D90CA00CEE1C9 /* MangaReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84A831ED221D90CA00CEE1C9 /* MangaReader.xcdatamodeld */; };
 		84A831F1221D90CC00CEE1C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84A831F0221D90CC00CEE1C9 /* Assets.xcassets */; };
 		84A831F4221D90CC00CEE1C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A831F2221D90CC00CEE1C9 /* LaunchScreen.storyboard */; };
-		84A831FF221D90CC00CEE1C9 /* MangaReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A831FE221D90CC00CEE1C9 /* MangaReaderTests.swift */; };
+		84A831FF221D90CC00CEE1C9 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A831FE221D90CC00CEE1C9 /* CoreDataManagerTests.swift */; };
 		84A83219221D923800CEE1C9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A83218221D923800CEE1C9 /* AppCoordinator.swift */; };
 		84A8321D221D951500CEE1C9 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8321B221D951500CEE1C9 /* LibraryViewController.swift */; };
 		84A8321E221D951500CEE1C9 /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A8321C221D951500CEE1C9 /* LibraryViewController.xib */; };
@@ -310,7 +310,7 @@
 		84A831F3221D90CC00CEE1C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84A831F5221D90CC00CEE1C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84A831FA221D90CC00CEE1C9 /* Kantan-MangaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kantan-MangaTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		84A831FE221D90CC00CEE1C9 /* MangaReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaReaderTests.swift; sourceTree = "<group>"; };
+		84A831FE221D90CC00CEE1C9 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		84A83200221D90CC00CEE1C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84A83218221D923800CEE1C9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		84A8321B221D951500CEE1C9 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
@@ -661,7 +661,7 @@
 			isa = PBXGroup;
 			children = (
 				320ED4DE24832C9700F5BECF /* Mock Classes */,
-				84A831FE221D90CC00CEE1C9 /* MangaReaderTests.swift */,
+				84A831FE221D90CC00CEE1C9 /* CoreDataManagerTests.swift */,
 				32E322212481CD8D007BC017 /* CoordinatorsTest.swift */,
 				84A83200221D90CC00CEE1C9 /* Info.plist */,
 			);
@@ -1111,7 +1111,7 @@
 				320ED4DD2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift in Sources */,
 				32E322222481CD8D007BC017 /* CoordinatorsTest.swift in Sources */,
 				32C3512F24845D2800D1EB42 /* MockViewMangaCoordinatorDelegate.swift in Sources */,
-				84A831FF221D90CC00CEE1C9 /* MangaReaderTests.swift in Sources */,
+				84A831FF221D90CC00CEE1C9 /* CoreDataManagerTests.swift in Sources */,
 				32C351332484645700D1EB42 /* MockOCR.swift in Sources */,
 				3219C2B22511103A00915DE1 /* MockCollectionViewController.swift in Sources */,
 				320ED4DB248326F300F5BECF /* MockAddMangasCoordinatorDelegate.swift in Sources */,
