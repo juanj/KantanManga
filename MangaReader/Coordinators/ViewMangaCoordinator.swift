@@ -16,7 +16,7 @@ protocol ViewMangaCoordinatorDelegate: AnyObject {
 class ViewMangaCoordinator: NSObject, Coordinator {
     var childCoordinators = [Coordinator]()
 
-    private let navigationController: UINavigationController!
+    private let navigation: Navigable
     private let coreDataManager: CoreDataManageable
     private weak var delegate: ViewMangaCoordinatorDelegate?
     private let manga: Manga
@@ -26,8 +26,8 @@ class ViewMangaCoordinator: NSObject, Coordinator {
     private var mangaViewController: MangaViewController?
     private var ocr: ImageOCR
 
-    init(navigation: UINavigationController, coreDataManager: CoreDataManageable, manga: Manga, delegate: ViewMangaCoordinatorDelegate, originFrame: CGRect, ocr: ImageOCR) {
-        navigationController = navigation
+    init(navigation: Navigable, coreDataManager: CoreDataManageable, manga: Manga, delegate: ViewMangaCoordinatorDelegate, originFrame: CGRect, ocr: ImageOCR) {
+        self.navigation = navigation
         self.coreDataManager = coreDataManager
         self.manga = manga
         self.delegate = delegate
@@ -43,9 +43,9 @@ class ViewMangaCoordinator: NSObject, Coordinator {
         }
         let mangaViewController = MangaViewController(manga: manga, dataSource: mangaDataSource, delegate: self, firstTime: !UserDefaults.standard.bool(forKey: "hasSeenManga"))
         UserDefaults.standard.setValue(true, forKey: "hasSeenManga")
-        navigationController.delegate = self
-        navigationController.setNavigationBarHidden(true, animated: false)
-        navigationController.pushViewController(mangaViewController, animated: true)
+        navigation.delegate = self
+        navigation.setNavigationBarHidden(true, animated: false)
+        navigation.pushViewController(mangaViewController, animated: true)
         self.mangaViewController = mangaViewController
     }
 }
@@ -57,7 +57,7 @@ extension ViewMangaCoordinator: MangaViewControllerDelegate {
     }
 
     func back(_ mangaViewController: MangaViewController) {
-        navigationController.popViewController(animated: true)
+        navigation.popViewController(animated: true)
         delegate?.didEnd(self)
     }
 
@@ -93,7 +93,7 @@ extension ViewMangaCoordinator: MangaViewControllerDelegate {
             ])
         ]
         let settingsNavigationController = UINavigationController(rootViewController: ViewerSettingsViewController(settings: settings, delegate: self))
-        navigationController.present(settingsNavigationController, animated: true, completion: nil)
+        navigation.present(settingsNavigationController, animated: true, completion: nil)
     }
 
     func pageDidChange(_ mangaViewController: MangaViewController, manga: Manga, newPage: Int) {

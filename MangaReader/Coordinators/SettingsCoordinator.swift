@@ -15,12 +15,12 @@ protocol SettingsCoordinatorDelegate: AnyObject {
 class SettingsCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
 
-    private let navigationController: UINavigationController
+    private let navigation: Navigable
     private let coreDataManager: CoreDataManageable
     private weak var delegate: SettingsCoordinatorDelegate?
     private let presentedNavigationController = UINavigationController()
-    init(navigation: UINavigationController, coreDataManager: CoreDataManageable, delegate: SettingsCoordinatorDelegate) {
-        navigationController = navigation
+    init(navigation: Navigable, coreDataManager: CoreDataManageable, delegate: SettingsCoordinatorDelegate) {
+        self.navigation = navigation
         self.coreDataManager = coreDataManager
         self.delegate = delegate
     }
@@ -28,7 +28,7 @@ class SettingsCoordinator: Coordinator {
     func start() {
         let settingsView = SettingsTableViewController(delegate: self)
         presentedNavigationController.setViewControllers([settingsView], animated: false)
-        navigationController.present(presentedNavigationController, animated: true, completion: nil)
+        navigation.present(presentedNavigationController, animated: true, completion: nil)
     }
 }
 
@@ -44,7 +44,7 @@ extension SettingsCoordinator: SettingsTableViewControllerDelegate {
         coreDataManager.createDemoManga {
             DispatchQueue.main.async {
                 settingsTableViewController.endLoading()
-                self.navigationController.dismiss(animated: true, completion: nil)
+                self.navigation.dismiss(animated: true, completion: nil)
                 self.delegate?.didEnd(self)
             }
         }

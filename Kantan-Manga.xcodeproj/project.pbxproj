@@ -112,6 +112,7 @@
 		32F998BD25574C6C00897299 /* AddMangasCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998BC25574C6C00897299 /* AddMangasCoordinatorTests.swift */; };
 		32F998C125574C8E00897299 /* ViewMangaCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998C025574C8E00897299 /* ViewMangaCoordinatorTests.swift */; };
 		32F998CF25574EC800897299 /* CoreDataManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998C725574D9300897299 /* CoreDataManageable.swift */; };
+		32F998D52557535500897299 /* Navigable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998D42557535500897299 /* Navigable.swift */; };
 		32FA3C7C24367428001EB0DF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3C7B24367428001EB0DF /* String+Extension.swift */; };
 		8418696D222495FE00C689DC /* Manga.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418696B222495FD00C689DC /* Manga.swift */; };
 		8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */; };
@@ -295,6 +296,7 @@
 		32F998BC25574C6C00897299 /* AddMangasCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMangasCoordinatorTests.swift; sourceTree = "<group>"; };
 		32F998C025574C8E00897299 /* ViewMangaCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMangaCoordinatorTests.swift; sourceTree = "<group>"; };
 		32F998C725574D9300897299 /* CoreDataManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManageable.swift; sourceTree = "<group>"; };
+		32F998D42557535500897299 /* Navigable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigable.swift; sourceTree = "<group>"; };
 		32FA3C7B24367428001EB0DF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		5534228050877F817D2A97BC /* Pods_Kantan_MangaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D7326F35AB101E198FF621 /* Pods_Kantan_MangaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -687,11 +689,12 @@
 		84A83217221D922200CEE1C9 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				322C5B5F2483125A00C0BAB1 /* Coordinator.swift */,
 				84A83218221D923800CEE1C9 /* AppCoordinator.swift */,
 				843FA7DE221DEDDF00B86B52 /* AddMangasCoordinator.swift */,
 				328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */,
-				322C5B5F2483125A00C0BAB1 /* Coordinator.swift */,
 				326FDE7A24A7FBFB0042CB8A /* SettingsCoordinator.swift */,
+				32F998D42557535500897299 /* Navigable.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -1102,6 +1105,7 @@
 				3296181C2555943B0020C5AF /* SettingValueChangeDelegate.swift in Sources */,
 				3219C2A9251100D200915DE1 /* CollectionViewController.swift in Sources */,
 				326344A3247DD98B00F683AB /* Reader.swift in Sources */,
+				32F998D52557535500897299 /* Navigable.swift in Sources */,
 				329ACA8A2552ED15002953C5 /* NumberTableViewCell.swift in Sources */,
 				3238DF3A24D7840200DE8782 /* WordButton.swift in Sources */,
 				322ECF3924FF280B0013FD21 /* Bool+Extension.swift in Sources */,

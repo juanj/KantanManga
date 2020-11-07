@@ -17,7 +17,7 @@ protocol AddMangasCoordinatorDelegate: AnyObject {
 
 class AddMangasCoordinator: NSObject, Coordinator {
     var childCoordinators = [Coordinator]()
-    private var navigationController: UINavigationController!
+    private var navigation: Navigable
     private var presentedNavigationController = UINavigationController()
     private var sourceButton: UIBarButtonItem
     private var uploadServer: GCDWebUploader
@@ -28,8 +28,8 @@ class AddMangasCoordinator: NSObject, Coordinator {
     private var filePath: String?
     private var collection: MangaCollection?
 
-    init(navigation: UINavigationController, sourceButton: UIBarButtonItem, uploadServer: GCDWebUploader, coreDataManager: CoreDataManageable, delegate: AddMangasCoordinatorDelegate) {
-        navigationController = navigation
+    init(navigation: Navigable, sourceButton: UIBarButtonItem, uploadServer: GCDWebUploader, coreDataManager: CoreDataManageable, delegate: AddMangasCoordinatorDelegate) {
+        self.navigation = navigation
         self.sourceButton = sourceButton
         self.uploadServer = uploadServer
         self.coreDataManager = coreDataManager
@@ -43,7 +43,7 @@ class AddMangasCoordinator: NSObject, Coordinator {
         presentedNavigationController.popoverPresentationController?.barButtonItem = self.sourceButton
         presentedNavigationController.popoverPresentationController?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         presentedNavigationController.presentationController?.delegate = self
-        navigationController.present(presentedNavigationController, animated: true, completion: nil)
+        navigation.present(presentedNavigationController, animated: true, completion: nil)
 
         addMangaViewController = addMangaView
     }
@@ -114,7 +114,7 @@ extension AddMangasCoordinator: WebServerViewControllerDelegate {
 
 extension AddMangasCoordinator: AddMangaViewControllerDelegate {
     func cancel(_ addMangaViewController: AddMangaViewController) {
-        navigationController.dismiss(animated: true, completion: nil)
+        navigation.dismiss(animated: true, completion: nil)
         delegate?.cancel(self)
     }
 
@@ -127,7 +127,7 @@ extension AddMangasCoordinator: AddMangaViewControllerDelegate {
         }
         coreDataManager.createMangaWith(filePath: file, name: name, collection: collection) { (_) in
             DispatchQueue.main.sync {
-                self.navigationController.dismiss(animated: true, completion: nil)
+                self.navigation.dismiss(animated: true, completion: nil)
                 self.delegate?.didEnd(self)
             }
         }
