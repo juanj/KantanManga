@@ -10,7 +10,7 @@ import XCTest
 
 class ViewMangaCoordinatorTests: XCTestCase {
     var navigation: Navigable!
-    var delegate: MockViewMangaCoordinatorDelegate! // swiftlint:disable:this weak_delegate
+    var delegate: FakeViewMangaCoordinatorDelegate! // swiftlint:disable:this weak_delegate
     var viewMangaCoordinator: ViewMangaCoordinator!
     var ocr: MockOCR!
     var manga: Manga!

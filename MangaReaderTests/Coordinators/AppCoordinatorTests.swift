@@ -12,58 +12,77 @@ class AppCoordinatorTests: XCTestCase {
     var navigation: Navigable!
     var appCoordinator: AppCoordinator!
 
-    func testCallingStartPushLibraryViewController() {
-        let navigation = MockNavigation()
-        let appCoordinator = AppCoordinator(navigation: navigation, coreDataManager: FakeCoreDataManager())
+    func testStart_withEmptyNavigation_pushesLibraryViewController() {
+        let mockNavigation = FakeNavigation()
+        let appCoordinator = AppCoordinator(navigation: mockNavigation, coreDataManager: FakeCoreDataManager())
         appCoordinator.start()
-        XCTAssertTrue(navigation.viewControllers.first is LibraryViewController)
+
+        let topViewController = mockNavigation.viewControllers.first
+
+        XCTAssertTrue(topViewController is LibraryViewController)
     }
 
-    /*func testLoadCollectionsWithMangas() {
-        XCTAssertNotNil(appCoordinator.loadCollections())
-        let collection = CoreDataManager.sharedManager.insertCollection(name: "Test Collection")
-        XCTAssertEqual(appCoordinator.loadCollections().count, 0)
-        CoreDataManager.sharedManager.insertManga(name: "Test", coverData: Data(), totalPages: 5, filePath: "test.cbz", collection: collection)
-        XCTAssertEqual(appCoordinator.loadCollections().count, 1)
+    func testLoadCollections_noCollections_returnsEmptyArray() {
+        let stubNavigation = FakeNavigation()
+        let appCoordinator = AppCoordinator(navigation: stubNavigation, coreDataManager: FakeCoreDataManager())
+
+        let collections = appCoordinator.loadCollections()
+
+        XCTAssertEqual(collections.count, 0)
+    }
+
+    func testLoadCollections_oneMangaWithoutCollection_returnsNoCollectionCollection() {
+        let stubNavigation = FakeNavigation()
+        let stubCoreDataManager = FakeCoreDataManager()
+        stubCoreDataManager.mangas = [Manga()]
+        let appCoordinator = AppCoordinator(navigation: stubNavigation, coreDataManager: stubCoreDataManager)
+
+        let collections = appCoordinator.loadCollections()
+
+        XCTAssertTrue(collections.first!.name!.contains("No Collection"))
     }
 
     // MARK: LibraryViewControllerDelegate
-    func testLibraryDelegateSelectAddStartCoordinator() {
-        let delegate = DummyLibraryViewControllerDelegate()
-        let libraryViewController = MockLibraryViewController(delegate: delegate, collections: [])
+    func testLibraryViewControllerDelegateDidSelectAdd_startsAddMangasCoordinator() {
+        let stubNavigation = FakeNavigation()
+        let appCoordinator = AppCoordinator(navigation: stubNavigation, coreDataManager: FakeCoreDataManager())
+        let libraryViewController = FakeLibraryViewController()
 
         appCoordinator.didSelectAdd(libraryViewController, button: UIBarButtonItem())
 
-        XCTAssertEqual(appCoordinator.childCoordinators.count, 1)
         XCTAssertNotNil(appCoordinator.childCoordinators.first as? AddMangasCoordinator)
     }
 
+    func testLibraryViewControllerDelegateDidSelectSettings_startsSettingsCoordinator() {
+        let stubNavigation = FakeNavigation()
+        let appCoordinator = AppCoordinator(navigation: stubNavigation, coreDataManager: FakeCoreDataManager())
+        let libraryViewController = FakeLibraryViewController()
+
+        appCoordinator.didSelectSettings(libraryViewController)
+
+        XCTAssertNotNil(appCoordinator.childCoordinators.first as? SettingsCoordinator)
+    }
+
     // MARK: AddMangasCoordinatorDelegate
-    func testAddMangaDelegateEndRemoveCoordinator() {
-        let addMangasCoordinator = AddMangasCoordinator(navigation: navigation, sourceButton: UIBarButtonItem(), uploadServer: MockUploadServer(), delegate: appCoordinator)
+    func testAddMangasCoordinatorDelegateDidEnd_removesCoordinator() {
+        let stubNavigation = FakeNavigation()
+        let appCoordinator = AppCoordinator(navigation: stubNavigation, coreDataManager: FakeCoreDataManager())
+        let addMangasCoordinator = AddMangasCoordinator(navigation: stubNavigation, sourceButton: UIBarButtonItem(), uploadServer: MockUploadServer(), coreDataManager: FakeCoreDataManager(), delegate: appCoordinator)
         appCoordinator.childCoordinators.append(addMangasCoordinator)
-        XCTAssertEqual(appCoordinator.childCoordinators.count, 1)
+
         appCoordinator.didEnd(addMangasCoordinator)
+
         XCTAssertEqual(appCoordinator.childCoordinators.count, 0)
     }
 
-    func testAddMangaDelegateCancelRemoveCoordinator() {
-        let addMangasCoordinator = AddMangasCoordinator(navigation: navigation, sourceButton: UIBarButtonItem(), uploadServer: MockUploadServer(), delegate: appCoordinator)
+    func testAddMangasCoordinatorDelegateCancel_removesCoordinator() {
+        let stubNavigation = FakeNavigation()
+        let appCoordinator = AppCoordinator(navigation: stubNavigation, coreDataManager: FakeCoreDataManager())
+        let addMangasCoordinator = AddMangasCoordinator(navigation: stubNavigation, sourceButton: UIBarButtonItem(), uploadServer: MockUploadServer(), coreDataManager: FakeCoreDataManager(), delegate: appCoordinator)
         appCoordinator.childCoordinators.append(addMangasCoordinator)
-        XCTAssertEqual(appCoordinator.childCoordinators.count, 1)
+
         appCoordinator.cancel(addMangasCoordinator)
+
         XCTAssertEqual(appCoordinator.childCoordinators.count, 0)
     }
-
-    // MARK: CollectionViewControllerDelegate
-    func testCollectionDelegateSelectMangaStartCoordinator() {
-        let manga = CoreDataManager.sharedManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 100, filePath: "test.cbz")!
-        let libraryViewController = MockCollectionViewController(delegate: MockCollectionViewControllerDelgate(), collection: MangaCollection(), sourcePoint: .zero, initialRotations: [])
-
-        appCoordinator.didSelectManga(libraryViewController, manga: manga, cellFrame: .zero)
-
-        XCTAssertEqual(appCoordinator.childCoordinators.count, 1)
-        XCTAssertNotNil(appCoordinator.childCoordinators.first as? ViewMangaCoordinator)
-    }*/
-
 }

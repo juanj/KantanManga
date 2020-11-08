@@ -6,8 +6,10 @@
 //
 
 import Foundation
+@testable import Kantan_Manga
 
 class FakeCoreDataManager: CoreDataManageable {
+    var mangas = [Manga]()
     func saveContext() {}
     func deleteAllData() {}
     func refreshAll() {}
@@ -28,7 +30,7 @@ class FakeCoreDataManager: CoreDataManageable {
     }
 
     func getMangasWithoutCollection() -> [Manga]? {
-        return []
+        return mangas
     }
 
     func updateManga(manga: Manga) {}

@@ -1,5 +1,5 @@
 //
-//  MockNavigationController.swift
+//  FakeNavigation.swift
 //  MangaReaderTests
 //
 //  Created by Juan on 30/05/20.
@@ -8,7 +8,7 @@
 
 @testable import Kantan_Manga
 
-class MockNavigation: Navigable {
+class FakeNavigation: Navigable {
     var delegate: UINavigationControllerDelegate?
     var viewControllers = [UIViewController]()
     var presentedViewController: UIViewController?

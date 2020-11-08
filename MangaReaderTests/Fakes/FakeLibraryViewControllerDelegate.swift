@@ -1,5 +1,5 @@
 //
-//  DummyDelegates.swift
+//  FakeLibraryViewControllerDelegate.swift
 //  MangaReaderTests
 //
 //  Created by Juan on 30/05/20.
@@ -8,7 +8,7 @@
 
 @testable import Kantan_Manga
 
-class DummyLibraryViewControllerDelegate: LibraryViewControllerDelegate {
+class FakeLibraryViewControllerDelegate: LibraryViewControllerDelegate {
     func didSelectAdd(_ libraryViewController: LibraryViewController, button: UIBarButtonItem) {}
     func didSelectSettings(_ libraryViewController: LibraryViewController) {}
     func didSelectCollection(_ libraryViewController: LibraryViewController, collection: MangaCollectionable, rotations: [CGAffineTransform]) {}

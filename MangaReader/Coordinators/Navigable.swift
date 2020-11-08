@@ -12,6 +12,7 @@ protocol Navigable: AnyObject {
     var delegate: UINavigationControllerDelegate? { get set }
     var viewControllers: [UIViewController] { get }
     func pushViewController(_ viewController: UIViewController, animated: Bool)
+    @discardableResult
     func popViewController(animated: Bool) -> UIViewController?
     func present(_ viewController: UIViewController, animated flag: Bool, completion: (() -> Void)?)
     func dismiss(animated: Bool, completion: (() -> Void)?)
