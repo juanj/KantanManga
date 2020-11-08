@@ -1,5 +1,5 @@
 //
-//  MockAddMangasCoordinatorDelegate.swift
+//  FakeAddMangasCoordinatorDelegate.swift
 //  MangaReaderTests
 //
 //  Created by Juan on 30/05/20.
@@ -8,7 +8,7 @@
 
 @testable import Kantan_Manga
 
-class MockAddMangasCoordinatorDelegate: AddMangasCoordinatorDelegate {
+class FakeAddMangasCoordinatorDelegate: AddMangasCoordinatorDelegate {
     var didEndCalled = false
     var cancelCalled = false
     func didEnd(_ addMangasCoordinator: AddMangasCoordinator) {

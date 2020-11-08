@@ -9,7 +9,9 @@ import Foundation
 @testable import Kantan_Manga
 
 class FakeCoreDataManager: CoreDataManageable {
+    var lastDeletedFile: String?
     var mangas = [Manga]()
+
     func saveContext() {}
     func deleteAllData() {}
     func refreshAll() {}

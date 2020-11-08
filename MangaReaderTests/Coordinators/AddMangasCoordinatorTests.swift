@@ -9,62 +9,40 @@ import XCTest
 @testable import Kantan_Manga
 
 class AddMangasCoordinatorTests: XCTestCase {
-    var navigation: Navigable!
-    var delegate: MockAddMangasCoordinatorDelegate! // swiftlint:disable:this weak_delegate
-    var mockServer: MockUploadServer!
-    var addMangasCoordinator: AddMangasCoordinator!
+    func testStart_presentsNavigationViewController() {
+        let mockNavigation = FakeNavigation()
+        let addMangasCoordinator = AddMangasCoordinator(navigation: mockNavigation, sourceButton: UIBarButtonItem(), uploadServer: FakeUploadServer(), coreDataManager: FakeCoreDataManager(), delegate: FakeAddMangasCoordinatorDelegate())
 
-    /*override func setUp() {
-        super.setUp()
-        CoreDataManager.sharedManager.deleteAllData()
-        navigation = MockNavigationController()
-        delegate = MockAddMangasCoordinatorDelegate()
-        mockServer = MockUploadServer()
-        addMangasCoordinator = AddMangasCoordinator(navigation: navigation, sourceButton: UIBarButtonItem(), uploadServer: mockServer, delegate: delegate)
-    }
-
-    func testCallingStarPresentsNavigationWithAddMangaViewController() {
         addMangasCoordinator.start()
-        XCTAssertTrue((navigation.presentedViewControllerTest as? UINavigationController)?.viewControllers.first is AddMangaViewController)
+        let topViewController = mockNavigation.presentedViewController
+
+        XCTAssertTrue(topViewController is UINavigationController)
     }
 
     // MARK: GCDWebUploaderDelegate
-    func testUploaderDelegateCallingDidUploadStopsServer() {
-        addMangasCoordinator.webUploader(mockServer, didUploadFileAtPath: "")
-        XCTAssertTrue(mockServer.stopCalled)
-    }
-
-    func testUploaderDelegateCallingDidDeleteRemovesManga() {
-        let manga = CoreDataManager.sharedManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 100, filePath: "test.cbz")!
-        XCTAssertEqual(CoreDataManager.sharedManager.fetchAllMangas(), [manga])
-        addMangasCoordinator.webUploader(mockServer, didDeleteItemAtPath: "test.cbz")
-        XCTAssertEqual(CoreDataManager.sharedManager.fetchAllMangas(), [])
+    func testWebUploaderDidUploadFileAtPath_stopsServer() {
+        let mockUploadServer = FakeUploadServer()
+        let addMangasCoordinator = AddMangasCoordinator(navigation: FakeNavigation(), sourceButton: UIBarButtonItem(), uploadServer: mockUploadServer, coreDataManager: FakeCoreDataManager(), delegate: FakeAddMangasCoordinatorDelegate())
+        addMangasCoordinator.webUploader(mockUploadServer, didUploadFileAtPath: "")
+        XCTAssertTrue(mockUploadServer.stopCalled)
     }
 
     // MARK: WebServerViewControllerDelegate
-    func testWebServerDelegateCallingDidSelectBackStopsServer() {
+    func testWebServerDelegateDidSelectBack_stopsServer() {
+        let mockUploadServer = FakeUploadServer()
+        let addMangasCoordinator = AddMangasCoordinator(navigation: FakeNavigation(), sourceButton: UIBarButtonItem(), uploadServer: mockUploadServer, coreDataManager: FakeCoreDataManager(), delegate: FakeAddMangasCoordinatorDelegate())
         addMangasCoordinator.didSelectBack(WebServerViewController())
-        XCTAssertTrue(mockServer.stopCalled)
+        XCTAssertTrue(mockUploadServer.stopCalled)
     }
 
     // MARK: AddMangaViewControllerDelegate
-    func testAddMangaDelegateCallingCancelDismissAndCancels() {
+    func testAddMangaViewControllerDelegateDidSelectBack_dismissesViewcontroller() {
+        let mockNavigation = FakeNavigation()
+        let addMangasCoordinator = AddMangasCoordinator(navigation: mockNavigation, sourceButton: UIBarButtonItem(), uploadServer: FakeUploadServer(), coreDataManager: FakeCoreDataManager(), delegate: FakeAddMangasCoordinatorDelegate())
+        mockNavigation.presentedViewController = UIViewController()
+
         addMangasCoordinator.cancel(AddMangaViewController(delegate: MockAddMangaViewControllerDelegate()))
-        XCTAssertTrue(delegate.cancelCalled)
-        XCTAssertTrue(navigation.dismissCalled)
-    }
 
-    // MARK: UIAdaptivePresentationControllerDelegate
-    func testPresentationDelegateCallingDidDismissEnds() {
-        addMangasCoordinator.presentationControllerDidDismiss(UIPresentationController(presentedViewController: UIViewController(), presenting: nil))
-        XCTAssertTrue(delegate.cancelCalled)
+        XCTAssertNil(mockNavigation.presentedViewController)
     }
-
-    // MARK: FileSourceViewControllerDelegate
-    func testFileSourceDelegateCallingOpenWebServerConfiguresUploadServer() {
-        addMangasCoordinator.openWebServer(FileSourceViewController(delegate: addMangasCoordinator))
-        XCTAssertEqual(mockServer.allowedFileExtensions, ["cbz", "zip", "rar", "cbr"])
-        XCTAssert(mockServer.delegate is AddMangasCoordinator)
-        XCTAssertTrue(mockServer.startCalled)
-    }*/
 }

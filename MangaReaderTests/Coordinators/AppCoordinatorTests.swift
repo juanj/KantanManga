@@ -67,7 +67,7 @@ class AppCoordinatorTests: XCTestCase {
     func testAddMangasCoordinatorDelegateDidEnd_removesCoordinator() {
         let stubNavigation = FakeNavigation()
         let appCoordinator = AppCoordinator(navigation: stubNavigation, coreDataManager: FakeCoreDataManager())
-        let addMangasCoordinator = AddMangasCoordinator(navigation: stubNavigation, sourceButton: UIBarButtonItem(), uploadServer: MockUploadServer(), coreDataManager: FakeCoreDataManager(), delegate: appCoordinator)
+        let addMangasCoordinator = AddMangasCoordinator(navigation: stubNavigation, sourceButton: UIBarButtonItem(), uploadServer: FakeUploadServer(), coreDataManager: FakeCoreDataManager(), delegate: appCoordinator)
         appCoordinator.childCoordinators.append(addMangasCoordinator)
 
         appCoordinator.didEnd(addMangasCoordinator)
@@ -78,7 +78,7 @@ class AppCoordinatorTests: XCTestCase {
     func testAddMangasCoordinatorDelegateCancel_removesCoordinator() {
         let stubNavigation = FakeNavigation()
         let appCoordinator = AppCoordinator(navigation: stubNavigation, coreDataManager: FakeCoreDataManager())
-        let addMangasCoordinator = AddMangasCoordinator(navigation: stubNavigation, sourceButton: UIBarButtonItem(), uploadServer: MockUploadServer(), coreDataManager: FakeCoreDataManager(), delegate: appCoordinator)
+        let addMangasCoordinator = AddMangasCoordinator(navigation: stubNavigation, sourceButton: UIBarButtonItem(), uploadServer: FakeUploadServer(), coreDataManager: FakeCoreDataManager(), delegate: appCoordinator)
         appCoordinator.childCoordinators.append(addMangasCoordinator)
 
         appCoordinator.cancel(addMangasCoordinator)

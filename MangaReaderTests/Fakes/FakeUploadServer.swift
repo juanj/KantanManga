@@ -1,5 +1,5 @@
 //
-//  MockUploadServer.swift
+//  FakeUploadServer.swift
 //  MangaReaderTests
 //
 //  Created by Juan on 30/05/20.
@@ -8,7 +8,7 @@
 
 @testable import Kantan_Manga
 
-class MockUploadServer: GCDWebUploader {
+class FakeUploadServer: GCDWebUploader {
     var startCalled = false
     var stopCalled = false
     override func start() -> Bool {
