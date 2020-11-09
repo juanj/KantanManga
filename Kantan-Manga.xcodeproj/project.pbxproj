@@ -82,6 +82,7 @@
 		328DFB0B238D96300095CBAB /* MangaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328DFB09238D96300095CBAB /* MangaViewController.xib */; };
 		328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */; };
 		328E90252544ABB500F1CF57 /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328E90242544ABB500F1CF57 /* KeyboardButton.swift */; };
+		328F62A7255A03D8000CA225 /* InMemoryCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F62A1255A03A7000CA225 /* InMemoryCoreDataManager.swift */; };
 		3292ADA22535DCF8004E8441 /* DemoOcrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3292ADA12535DCF8004E8441 /* DemoOcrView.swift */; };
 		3296181C2555943B0020C5AF /* SettingValueChangeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3296181B2555943B0020C5AF /* SettingValueChangeDelegate.swift */; };
 		329ACA8A2552ED15002953C5 /* NumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA882552ED15002953C5 /* NumberTableViewCell.swift */; };
@@ -269,6 +270,7 @@
 		328DFB09238D96300095CBAB /* MangaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MangaViewController.xib; sourceTree = "<group>"; };
 		328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMangaCoordinator.swift; sourceTree = "<group>"; };
 		328E90242544ABB500F1CF57 /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
+		328F62A1255A03A7000CA225 /* InMemoryCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryCoreDataManager.swift; sourceTree = "<group>"; };
 		3292ADA12535DCF8004E8441 /* DemoOcrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoOcrView.swift; sourceTree = "<group>"; };
 		3296181B2555943B0020C5AF /* SettingValueChangeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingValueChangeDelegate.swift; sourceTree = "<group>"; };
 		329ACA882552ED15002953C5 /* NumberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTableViewCell.swift; sourceTree = "<group>"; };
@@ -496,6 +498,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		328F629F255A0395000CA225 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				328F62A1255A03A7000CA225 /* InMemoryCoreDataManager.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		329ACA8F2552ED27002953C5 /* Settings Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -691,6 +701,7 @@
 		84A831FD221D90CC00CEE1C9 /* MangaReaderTests */ = {
 			isa = PBXGroup;
 			children = (
+				328F629F255A0395000CA225 /* Helpers */,
 				32F998DF2557592E00897299 /* Fakes */,
 				320ED4DE24832C9700F5BECF /* Mock Classes */,
 				84A831FE221D90CC00CEE1C9 /* CoreDataManagerTests.swift */,
@@ -1143,6 +1154,7 @@
 				320ED4D924831D2900F5BECF /* FakeUploadServer.swift in Sources */,
 				3219C2B02511103600915DE1 /* MockCollectionViewControllerDelgate.swift in Sources */,
 				320ED4D72483189F00F5BECF /* FakeNavigation.swift in Sources */,
+				328F62A7255A03D8000CA225 /* InMemoryCoreDataManager.swift in Sources */,
 				32F998B925574C4C00897299 /* AppCoordinatorTests.swift in Sources */,
 				320ED4D32483178C00F5BECF /* FakeLibraryViewControllerDelegate.swift in Sources */,
 				32A110B7255859860099A768 /* FakeLibraryViewController.swift in Sources */,

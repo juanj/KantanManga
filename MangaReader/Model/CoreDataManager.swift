@@ -9,7 +9,9 @@
 import CoreData
 
 class CoreDataManager: CoreDataManageable {
-    private lazy var persistentContainer: NSPersistentContainer = {
+    private lazy var persistentContainer: NSPersistentContainer = createContainer()
+
+    func createContainer() -> NSPersistentContainer {
         let container = NSPersistentContainer(name: "MangaReader")
         container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
@@ -17,7 +19,7 @@ class CoreDataManager: CoreDataManageable {
             }
         })
         return container
-    }()
+    }
 
     func saveContext () {
         let context = persistentContainer.viewContext
