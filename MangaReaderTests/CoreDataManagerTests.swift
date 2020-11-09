@@ -11,20 +11,8 @@ import CoreData
 @testable import Kantan_Manga
 
 class CoreDataManagerTests: XCTestCase {
-    var coreDataManager: CoreDataManager!
-
-    override func setUp() {
-        super.setUp()
-        coreDataManager = CoreDataManager()
-        coreDataManager.deleteAllData()
-    }
-
-    override func tearDown() {
-        super.tearDown()
-        coreDataManager.deleteAllData()
-    }
-
     func testDeleteAllData_afterInsertingData_deletesAllData() {
+        let coreDataManager = InMemoryCoreDataManager()
         coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
         coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
         coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
@@ -40,12 +28,14 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testInsertManga_mangaIsInserted() {
+        let coreDataManager = InMemoryCoreDataManager()
         let manga1 = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
         let manga2 = coreDataManager.fetchAllMangas()?.first
         XCTAssertEqual(manga1, manga2)
     }
 
     func testInsertManga_afterInserting_defaultFieldsArePopulated() {
+        let coreDataManager = InMemoryCoreDataManager()
         let manga = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
 
         XCTAssertNotNil(manga?.createdAt)
@@ -54,12 +44,14 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testInsertManga_mangaIsAddedToCollection() {
+        let coreDataManager = InMemoryCoreDataManager()
         let collection = coreDataManager.insertCollection(name: "A")
         let manga = coreDataManager.insertManga(name: "Test manga", coverData: Data(), totalPages: Int16(1), filePath: "file.cbz", collection: collection)!
         XCTAssertEqual(manga.mangaCollection, collection)
     }
 
     func testDelete_mangaIsDeleted() {
+        let coreDataManager = InMemoryCoreDataManager()
         let manga = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
 
         coreDataManager.delete(manga: manga!)
@@ -68,6 +60,7 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testDeleteAllMangas_allMangasAreDeleted() {
+        let coreDataManager = InMemoryCoreDataManager()
         coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
         coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
         coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
@@ -77,14 +70,17 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testFetchAllMangas_allMangasAreFetched() {
+        let coreDataManager = InMemoryCoreDataManager()
         let manga1 = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 5, filePath: "")
         let manga2 = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 10, filePath: "bc")
         let manga3 = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 20, filePath: "de")
 
-        XCTAssertEqual(coreDataManager.fetchAllMangas(), [manga1!, manga2!, manga3!])
+        // Use set so order doesn't matter
+        XCTAssertEqual(Set(coreDataManager.fetchAllMangas()!), Set([manga1!, manga2!, manga3!]))
     }
 
     func testGetMangaWith_mangaIsFetchedByFileName() {
+        let coreDataManager = InMemoryCoreDataManager()
         coreDataManager.insertManga(name: "Test A", coverData: Data(), totalPages: 10, filePath: "this_file.cbz")
         let manga = coreDataManager.insertManga(name: "Test B", coverData: Data(), totalPages: 20, filePath: "not_that_file.cbr")
 
@@ -92,6 +88,7 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testGetMangasWithoutCollection_multipleMangas_getsCorrectMangas() {
+        let coreDataManager = InMemoryCoreDataManager()
         let collection = coreDataManager.insertCollection(name: "Test Collection")
         coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 5, filePath: "", collection: collection)
         let manga = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 10, filePath: "bc")
@@ -103,6 +100,7 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testUpdateManga_afterUpdatingInfo_savesCorrectInfo() {
+        let coreDataManager = InMemoryCoreDataManager()
         let manga = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 20, filePath: "")!
 
         manga.currentPage = 5
@@ -116,6 +114,7 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testUpdateManga_updatesLastViewedDate() {
+        let coreDataManager = InMemoryCoreDataManager()
         let manga = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 20, filePath: "")!
 
         manga.currentPage = 5
@@ -125,18 +124,21 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testInsertCollection_collectionIsInserted() {
+        let coreDataManager = InMemoryCoreDataManager()
         coreDataManager.insertCollection(name: "")
 
         XCTAssertEqual(coreDataManager.fetchAllCollections()?.count, 1)
     }
 
     func testDeleteCollection_collectionIsDeleted() {
+        let coreDataManager = InMemoryCoreDataManager()
         let collection = coreDataManager.insertCollection(name: "Test")!
         coreDataManager.delete(collection: collection)
         XCTAssertEqual(coreDataManager.fetchAllCollections()?.count, 0)
     }
 
     func testDeleteAllCollections_allCollectionsAreDeleted() {
+        let coreDataManager = InMemoryCoreDataManager()
         coreDataManager.insertCollection(name: "1")
         coreDataManager.insertCollection(name: "2")
         coreDataManager.insertCollection(name: "3")
@@ -148,23 +150,28 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testFetchAllCollections_allCollectionsAreFetched() {
+        let coreDataManager = InMemoryCoreDataManager()
         let collection1 = coreDataManager.insertCollection(name: "1")!
         let collection2 = coreDataManager.insertCollection(name: "2")!
         let collection3 = coreDataManager.insertCollection(name: "3")!
         let collection4 = coreDataManager.insertCollection(name: "4")!
 
-        XCTAssertEqual(coreDataManager.fetchAllCollections(), [collection1, collection2, collection3, collection4])
+        // Use set so order doesn't matter
+        XCTAssertEqual(Set(coreDataManager.fetchAllCollections()!), Set([collection1, collection2, collection3, collection4]))
     }
 
     func testSearchCollectionsWith_collectionIsFoundByPartOfName() {
+        let coreDataManager = InMemoryCoreDataManager()
         let collection = coreDataManager.insertCollection(name: "This is a collection. No Cats")!
         let catsCollection = coreDataManager.insertCollection(name: "Cats. Lots of cats")!
-        let dogCollection = coreDataManager.insertCollection(name: "Dogs, lots of dogs")!
+        coreDataManager.insertCollection(name: "Dogs, lots of dogs")
 
-        XCTAssertEqual(coreDataManager.searchCollectionsWith(name: "cat"), [collection, catsCollection])
+        // Use set so order doesn't matter
+        XCTAssertEqual(Set(coreDataManager.searchCollectionsWith(name: "cat")!), Set([collection, catsCollection]))
     }
 
     func testSearchCollectionsWith_usingUpperCaseAndLowercase_isCaseInsensitive() {
+        let coreDataManager = InMemoryCoreDataManager()
         coreDataManager.insertCollection(name: "This is a collection. No Cats")
         coreDataManager.insertCollection(name: "Cats. Lots of cats")
         let dogCollection = coreDataManager.insertCollection(name: "Dogs, lots of dogs")!
@@ -173,6 +180,7 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testSearchCollectionsStartWith_usingFirstWord_ignoresCollectionIfDontStartWithWord() {
+        let coreDataManager = InMemoryCoreDataManager()
         coreDataManager.insertCollection(name: "This is a collection. No Cats")
         let catsCollection = coreDataManager.insertCollection(name: "Cats. I love them")!
 
@@ -180,6 +188,7 @@ class CoreDataManagerTests: XCTestCase {
     }
 
     func testUpdateCollection_afterChangingName_isUpdated() {
+        let coreDataManager = InMemoryCoreDataManager()
         let collection = coreDataManager.insertCollection(name: "Demo collection")!
 
         collection.name = "Test Collection"
@@ -189,10 +198,12 @@ class CoreDataManagerTests: XCTestCase {
         XCTAssertEqual(testCollection.name, "Test Collection")
     }
 
+    // This one is probably an integration test
     func testCreateDemoManga_createsDemoManga() {
+        let coreDataManager = InMemoryCoreDataManager()
         let expectation = XCTestExpectation(description: "Demo manga is copied from bundle and is inserted")
         coreDataManager.createDemoManga {
-            let manga = self.coreDataManager.getMangaWith(filePath: "demo1.cbz")
+            let manga = coreDataManager.getMangaWith(filePath: "demo1.cbz")
             XCTAssertNotNil(manga)
             expectation.fulfill()
         }
