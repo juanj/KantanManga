@@ -50,7 +50,7 @@ class CoreDataManagerTests: XCTestCase {
         XCTAssertEqual(manga.mangaCollection, collection)
     }
 
-    func testDelete_mangaIsDeleted() {
+    func testDeleteManga_mangaIsDeleted() {
         let coreDataManager = InMemoryCoreDataManager()
         let manga = coreDataManager.insertManga(name: "", coverData: Data(), totalPages: 0, filePath: "")
 
@@ -135,6 +135,17 @@ class CoreDataManagerTests: XCTestCase {
         let collection = coreDataManager.insertCollection(name: "Test")!
         coreDataManager.delete(collection: collection)
         XCTAssertEqual(coreDataManager.fetchAllCollections()?.count, 0)
+    }
+
+    func testDeleteCollection_withAssociatedMangas_mangasAreDeleted() {
+        let coreDataManager = InMemoryCoreDataManager()
+        let collection = coreDataManager.insertCollection(name: "Test")!
+        coreDataManager.insertManga(name: "Test1", coverData: Data(), totalPages: 0, filePath: "", collection: collection)
+        coreDataManager.insertManga(name: "Test2", coverData: Data(), totalPages: 0, filePath: "", collection: collection)
+
+        coreDataManager.delete(collection: collection)
+
+        XCTAssertEqual(coreDataManager.fetchAllMangas()?.count, 0)
     }
 
     func testDeleteAllCollections_allCollectionsAreDeleted() {
