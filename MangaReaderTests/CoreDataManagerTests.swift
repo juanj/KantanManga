@@ -197,17 +197,4 @@ class CoreDataManagerTests: XCTestCase {
 
         XCTAssertEqual(testCollection.name, "Test Collection")
     }
-
-    // This one is probably an integration test
-    func testCreateDemoManga_createsDemoManga() {
-        let coreDataManager = InMemoryCoreDataManager()
-        let expectation = XCTestExpectation(description: "Demo manga is copied from bundle and is inserted")
-        coreDataManager.createDemoManga {
-            let manga = coreDataManager.getMangaWith(filePath: "demo1.cbz")
-            XCTAssertNotNil(manga)
-            expectation.fulfill()
-        }
-
-        wait(for: [expectation], timeout: 10.0)
-    }
 }

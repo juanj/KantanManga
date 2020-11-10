@@ -43,6 +43,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "322E5FC9255ADE7C00D18266"
+               BuildableName = "Kantan MangaIntegrationTests.xctest"
+               BlueprintName = "Kantan MangaIntegrationTests"
+               ReferencedContainer = "container:Kantan-Manga.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "322E5FE5255ADFFB00D18266"
+               BuildableName = "Kantan-MangaIntegrationTests.xctest"
+               BlueprintName = "Kantan-MangaIntegrationTests"
+               ReferencedContainer = "container:Kantan-Manga.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
