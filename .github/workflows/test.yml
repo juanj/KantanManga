@@ -54,7 +54,10 @@ jobs:
         env:
           destination: ${{ matrix.destination }}
           DEVELOPER_DIR: ${{ matrix.xcode }}
-
+      - name: Upload code coverage
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        run: bash <(curl -s https://codecov.io/bash)
       - name: Upload to App Store Connect
         env:
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
