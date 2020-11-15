@@ -79,6 +79,7 @@
 		327300842561E8AB009854EE /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327300832561E8AB009854EE /* StringExtensionTests.swift */; };
 		3273008A2561EAD9009854EE /* BoolExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327300892561EAD9009854EE /* BoolExtensionTests.swift */; };
 		3273008F2561EBCF009854EE /* CGSizeExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3273008E2561EBCF009854EE /* CGSizeExtensionTests.swift */; };
+		327300942561EF6A009854EE /* UIViewExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327300932561EF6A009854EE /* UIViewExtensionTests.swift */; };
 		327BC9EE255C2AA400521574 /* demo1.cbz in Resources */ = {isa = PBXBuildFile; fileRef = 3232F32325276DED00DA77B8 /* demo1.cbz */; };
 		3283D1012552069700C08D02 /* ToggleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3283D0FF2552069700C08D02 /* ToggleTableViewCell.swift */; };
 		3283D1022552069700C08D02 /* ToggleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3283D1002552069700C08D02 /* ToggleTableViewCell.xib */; };
@@ -283,6 +284,7 @@
 		327300832561E8AB009854EE /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		327300892561EAD9009854EE /* BoolExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolExtensionTests.swift; sourceTree = "<group>"; };
 		3273008E2561EBCF009854EE /* CGSizeExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGSizeExtensionTests.swift; sourceTree = "<group>"; };
+		327300932561EF6A009854EE /* UIViewExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensionTests.swift; sourceTree = "<group>"; };
 		3283D0FF2552069700C08D02 /* ToggleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleTableViewCell.swift; sourceTree = "<group>"; };
 		3283D1002552069700C08D02 /* ToggleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToggleTableViewCell.xib; sourceTree = "<group>"; };
 		32892C0823E39FBC000B1C3E /* AddMangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMangaViewController.swift; sourceTree = "<group>"; };
@@ -751,6 +753,7 @@
 				327300832561E8AB009854EE /* StringExtensionTests.swift */,
 				327300892561EAD9009854EE /* BoolExtensionTests.swift */,
 				3273008E2561EBCF009854EE /* CGSizeExtensionTests.swift */,
+				327300932561EF6A009854EE /* UIViewExtensionTests.swift */,
 				32F998C625574CC400897299 /* Coordinators */,
 				84A83200221D90CC00CEE1C9 /* Info.plist */,
 			);
@@ -1262,6 +1265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32F998BD25574C6C00897299 /* AddMangasCoordinatorTests.swift in Sources */,
+				327300942561EF6A009854EE /* UIViewExtensionTests.swift in Sources */,
 				320ED4D924831D2900F5BECF /* FakeUploadServer.swift in Sources */,
 				327300842561E8AB009854EE /* StringExtensionTests.swift in Sources */,
 				3219C2B02511103600915DE1 /* MockCollectionViewControllerDelgate.swift in Sources */,
