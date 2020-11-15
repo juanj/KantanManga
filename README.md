@@ -1,4 +1,6 @@
 ![CI](https://github.com/juanj/KantanManga/workflows/CI/badge.svg?branch=development)
+[![codecov](https://codecov.io/gh/juanj/KantanManga/branch/development/graph/badge.svg)](https://codecov.io/gh/juanj/KantanManga)
+
 
 ![kantan manga logo](/img/repo-header.png)
 
