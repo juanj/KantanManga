@@ -76,6 +76,9 @@
 		326FDE7924A7F8350042CB8A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326FDE7824A7F8350042CB8A /* SettingsTableViewController.swift */; };
 		326FDE7B24A7FBFB0042CB8A /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326FDE7A24A7FBFB0042CB8A /* SettingsCoordinator.swift */; };
 		326FDE7F24A80BB20042CB8A /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326FDE7E24A80BB20042CB8A /* AboutView.swift */; };
+		327300842561E8AB009854EE /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327300832561E8AB009854EE /* StringExtensionTests.swift */; };
+		3273008A2561EAD9009854EE /* BoolExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327300892561EAD9009854EE /* BoolExtensionTests.swift */; };
+		3273008F2561EBCF009854EE /* CGSizeExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3273008E2561EBCF009854EE /* CGSizeExtensionTests.swift */; };
 		327BC9EE255C2AA400521574 /* demo1.cbz in Resources */ = {isa = PBXBuildFile; fileRef = 3232F32325276DED00DA77B8 /* demo1.cbz */; };
 		3283D1012552069700C08D02 /* ToggleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3283D0FF2552069700C08D02 /* ToggleTableViewCell.swift */; };
 		3283D1022552069700C08D02 /* ToggleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3283D1002552069700C08D02 /* ToggleTableViewCell.xib */; };
@@ -277,6 +280,9 @@
 		326FDE7824A7F8350042CB8A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		326FDE7A24A7FBFB0042CB8A /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		326FDE7E24A80BB20042CB8A /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		327300832561E8AB009854EE /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
+		327300892561EAD9009854EE /* BoolExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolExtensionTests.swift; sourceTree = "<group>"; };
+		3273008E2561EBCF009854EE /* CGSizeExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGSizeExtensionTests.swift; sourceTree = "<group>"; };
 		3283D0FF2552069700C08D02 /* ToggleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleTableViewCell.swift; sourceTree = "<group>"; };
 		3283D1002552069700C08D02 /* ToggleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToggleTableViewCell.xib; sourceTree = "<group>"; };
 		32892C0823E39FBC000B1C3E /* AddMangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMangaViewController.swift; sourceTree = "<group>"; };
@@ -742,6 +748,9 @@
 				32F998DF2557592E00897299 /* Fakes */,
 				320ED4DE24832C9700F5BECF /* Mock Classes */,
 				84A831FE221D90CC00CEE1C9 /* CoreDataManagerTests.swift */,
+				327300832561E8AB009854EE /* StringExtensionTests.swift */,
+				327300892561EAD9009854EE /* BoolExtensionTests.swift */,
+				3273008E2561EBCF009854EE /* CGSizeExtensionTests.swift */,
 				32F998C625574CC400897299 /* Coordinators */,
 				84A83200221D90CC00CEE1C9 /* Info.plist */,
 			);
@@ -1254,8 +1263,11 @@
 			files = (
 				32F998BD25574C6C00897299 /* AddMangasCoordinatorTests.swift in Sources */,
 				320ED4D924831D2900F5BECF /* FakeUploadServer.swift in Sources */,
+				327300842561E8AB009854EE /* StringExtensionTests.swift in Sources */,
 				3219C2B02511103600915DE1 /* MockCollectionViewControllerDelgate.swift in Sources */,
+				3273008A2561EAD9009854EE /* BoolExtensionTests.swift in Sources */,
 				320ED4D72483189F00F5BECF /* FakeNavigation.swift in Sources */,
+				3273008F2561EBCF009854EE /* CGSizeExtensionTests.swift in Sources */,
 				328F62A7255A03D8000CA225 /* InMemoryCoreDataManager.swift in Sources */,
 				32F998B925574C4C00897299 /* AppCoordinatorTests.swift in Sources */,
 				320ED4D32483178C00F5BECF /* FakeLibraryViewControllerDelegate.swift in Sources */,
