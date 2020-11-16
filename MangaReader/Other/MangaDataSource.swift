@@ -24,26 +24,16 @@ class MangaDataSource: NSObject {
     private let cache = NSCache<NSString, UIImage>()
     private var queue = [(PageViewController, Int)]()
 
-    init?(manga: Manga) {
+    init?(manga: Manga, readerBuilder: (_ path: String, _ completion: @escaping (Reader) -> Void) -> Void) {
         self.manga = manga
         super.init()
         guard let path = manga.filePath else {
             return nil
         }
-        initReader(path: path)
-    }
 
-    private func initReader(path: String) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            do {
-                if path.lowercased().hasSuffix("cbz") || path.lowercased().hasSuffix("zip") {
-                    self.mangaReader = try CBZReader(fileName: path)
-                } else {
-                    self.mangaReader = try CBRReader(fileName: path)
-                }
-            } catch let error {
-                print("Error creating reader \(error.localizedDescription)")
-            }
+        // Injection of async dependency
+        readerBuilder(path) { reader in
+            self.mangaReader = reader
             self.clearQueue()
             self.preloadPages()
         }

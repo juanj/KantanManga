@@ -33,7 +33,21 @@ class ViewMangaCoordinator: NSObject, Coordinator {
         self.delegate = delegate
         self.originFrame = originFrame
         self.ocr = ocr
-        mangaDataSource = MangaDataSource(manga: manga)
+        mangaDataSource = MangaDataSource(manga: manga, readerBuilder: { (path, completion) in
+            DispatchQueue.global(qos: .userInitiated).async {
+                do {
+                    let reader: Reader
+                    if path.lowercased().hasSuffix("cbz") || path.lowercased().hasSuffix("zip") {
+                        reader = try CBZReader(fileName: path)
+                    } else {
+                        reader = try CBRReader(fileName: path)
+                    }
+                    completion(reader)
+                } catch let error {
+                    print("Error creating reader \(error.localizedDescription)")
+                }
+            }
+        })
     }
 
     func start() {
