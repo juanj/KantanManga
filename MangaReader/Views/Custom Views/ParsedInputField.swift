@@ -199,7 +199,7 @@ class ParsedInputField: UIControl {
         let tokenizer = Tokenizer()
         let tokens = tokenizer.parse(sentence)
         let words = WordPaser.parse(tokens: tokens)
-        analyzedSentence = words.map { JapaneseWord(text: $0.word, rootForm: $0.tokens[0].originalForm ?? $0.word, furigana: getFurigana(text: $0.word, reading: $0.reading)) }
+        analyzedSentence = words.map { JapaneseWord(text: $0.word, rootForm: $0.tokens[0].originalForm ?? $0.word, furigana: FuriganaUtils.getFurigana(text: $0.word, reading: $0.reading)) }
         loadText()
     }
 
