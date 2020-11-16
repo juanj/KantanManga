@@ -9,6 +9,12 @@
 import Foundation
 
 class FuriganaUtils {
+    private struct Prematch {
+        let pattern: String
+        let numberOfGroups: Int
+        let substrings: [String]
+    }
+
     static func unicodeScalatToString(_ scalar: String.UnicodeScalarView.Element) -> String {
         var string = ""
         string.unicodeScalars.append(scalar)
@@ -16,20 +22,44 @@ class FuriganaUtils {
     }
 
     static func getFurigana(text: String, reading: String?) -> [Furigana] {
-        var furigana = [Furigana]()
-        var parts = [(String, String)]()
+        let preMatch = getPrematch(text: text)
 
+        guard let regex = try? NSRegularExpression(pattern: "^\(preMatch.pattern)$"),
+              let reading = reading?.applyingTransform(.hiraganaToKatakana, reverse: true) else {
+            return []
+        }
+
+        var furigana = [Furigana]()
+        let fullReadingRange = NSRange(reading.startIndex..<reading.endIndex, in: reading)
+        regex.enumerateMatches(in: reading, range: fullReadingRange) { (match, _, stop) in
+            guard let match = match, match.numberOfRanges == preMatch.numberOfGroups else { return }
+            var pickKanji = 1
+            var position = 0
+            for substring in preMatch.substrings {
+                if substring.unicodeScalars.first?.properties.isIdeographic == true {
+                    guard let range = Range(match.range(at: pickKanji), in: reading) else { return }
+                    furigana.append(Furigana(kana: String(reading[range]), range: NSRange(location: position, length: substring.count)))
+                    pickKanji += 1
+                }
+                position += substring.count
+            }
+            stop.pointee = true
+        }
+
+        return furigana
+    }
+
+    private static func getPrematch(text: String) -> Prematch {
         var pattern = ""
-        var numberOfGroupos = 1
+        var numberOfGroups = 1
         var isLastTokenKanji = false
         var substrings = [String]()
-
         for character in text.unicodeScalars {
             if character.properties.isIdeographic {
                 if !isLastTokenKanji {
                     isLastTokenKanji = true
                     pattern += "(.*)"
-                    numberOfGroupos += 1
+                    numberOfGroups += 1
                     substrings.append(unicodeScalatToString(character))
                 } else {
                     substrings[substrings.count - 1].unicodeScalars.append(character)
@@ -40,34 +70,7 @@ class FuriganaUtils {
                 pattern += unicodeScalatToString(character).applyingTransform(.hiraganaToKatakana, reverse: true) ?? unicodeScalatToString(character)
             }
         }
-        guard let regex = try? NSRegularExpression(pattern: "^\(pattern)$", options: []), let reading = reading?.applyingTransform(.hiraganaToKatakana, reverse: true) else {
-            return furigana
-        }
-        let nsrange = NSRange(reading.startIndex..<reading.endIndex, in: reading)
-        regex.enumerateMatches(in: reading, options: [], range: nsrange) { (match, _, stop) in
-            guard let match = match else { return }
-            if match.numberOfRanges == numberOfGroupos {
-                var pickKanji = 1
-                for substring in substrings {
-                    if substring.unicodeScalars.first?.properties.isIdeographic ?? false {
-                        guard let range = Range(match.range(at: pickKanji), in: reading) else { return }
-                        parts.append((substring, String(reading[range])))
-                        pickKanji += 1
-                    } else {
-                        parts.append((substring, substring))
-                    }
-                }
-                stop.pointee = true
-            }
-        }
-        var position = 0
-        for part in parts {
-            if part.0.unicodeScalars.first!.properties.isIdeographic {
-                furigana.append(Furigana(kana: part.1, range: NSRange(location: position, length: part.0.count)))
-            }
-            position += part.0.count
-        }
 
-        return furigana
+        return Prematch(pattern: pattern, numberOfGroups: numberOfGroups, substrings: substrings)
     }
 }
