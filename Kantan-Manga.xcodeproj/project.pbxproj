@@ -19,6 +19,7 @@
 		3219C2AA251100D200915DE1 /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3219C2A8251100D200915DE1 /* CollectionViewController.xib */; };
 		3219C2B02511103600915DE1 /* MockCollectionViewControllerDelgate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219C2AE25110E2900915DE1 /* MockCollectionViewControllerDelgate.swift */; };
 		3219C2B22511103A00915DE1 /* MockCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219C2AC25110D7D00915DE1 /* MockCollectionViewController.swift */; };
+		321C69A22562FA4E00296A1F /* FuriganaUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C69A12562FA4E00296A1F /* FuriganaUtilsTests.swift */; };
 		3229B1C62541D60B00C4E166 /* KanjiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3229B1C32541D60B00C4E166 /* KanjiCollectionViewCell.swift */; };
 		3229B1C82541D60B00C4E166 /* KanjiCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3229B1C42541D60B00C4E166 /* KanjiCollectionViewCell.xib */; };
 		322C5B602483125A00C0BAB1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C5B5F2483125A00C0BAB1 /* Coordinator.swift */; };
@@ -223,6 +224,7 @@
 		3219C2A8251100D200915DE1 /* CollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewController.xib; sourceTree = "<group>"; };
 		3219C2AC25110D7D00915DE1 /* MockCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCollectionViewController.swift; sourceTree = "<group>"; };
 		3219C2AE25110E2900915DE1 /* MockCollectionViewControllerDelgate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCollectionViewControllerDelgate.swift; sourceTree = "<group>"; };
+		321C69A12562FA4E00296A1F /* FuriganaUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuriganaUtilsTests.swift; sourceTree = "<group>"; };
 		3229B1C32541D60B00C4E166 /* KanjiCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiCollectionViewCell.swift; sourceTree = "<group>"; };
 		3229B1C42541D60B00C4E166 /* KanjiCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KanjiCollectionViewCell.xib; sourceTree = "<group>"; };
 		322C5B5B24830C2500C0BAB1 /* FakeLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLibraryViewController.swift; sourceTree = "<group>"; };
@@ -754,6 +756,7 @@
 				327300892561EAD9009854EE /* BoolExtensionTests.swift */,
 				3273008E2561EBCF009854EE /* CGSizeExtensionTests.swift */,
 				327300932561EF6A009854EE /* UIViewExtensionTests.swift */,
+				321C69A12562FA4E00296A1F /* FuriganaUtilsTests.swift */,
 				32F998C625574CC400897299 /* Coordinators */,
 				84A83200221D90CC00CEE1C9 /* Info.plist */,
 			);
@@ -1274,6 +1277,7 @@
 				3273008F2561EBCF009854EE /* CGSizeExtensionTests.swift in Sources */,
 				328F62A7255A03D8000CA225 /* InMemoryCoreDataManager.swift in Sources */,
 				32F998B925574C4C00897299 /* AppCoordinatorTests.swift in Sources */,
+				321C69A22562FA4E00296A1F /* FuriganaUtilsTests.swift in Sources */,
 				320ED4D32483178C00F5BECF /* FakeLibraryViewControllerDelegate.swift in Sources */,
 				32A110B7255859860099A768 /* FakeLibraryViewController.swift in Sources */,
 				32A110BC255859970099A768 /* FakeCoreDataManager.swift in Sources */,

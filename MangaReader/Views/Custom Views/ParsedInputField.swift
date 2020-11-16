@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Furigana {
+struct Furigana: Equatable {
     let kana: String
     let range: NSRange
 }
