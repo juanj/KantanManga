@@ -69,6 +69,18 @@ class AppCoordinatorTests: XCTestCase {
         XCTAssertNotNil(appCoordinator.childCoordinators.first as? SettingsCoordinator)
     }
 
+    func testLibraryViewControllerDelegateDidSelectCollection_withOneCollection_pushesCollectionViewController() {
+        let mockNavigation = FakeNavigation()
+        let stubCoreDataManager = InMemoryCoreDataManager()
+        let appCoordinator = createAppCoordinator(navigable: mockNavigation, coreDataManager: stubCoreDataManager)
+        let collection = stubCoreDataManager.insertCollection(name: "Test")!
+        let libraryViewController = FakeLibraryViewController(collections: [collection])
+
+        appCoordinator.didSelectCollection(libraryViewController, collection: collection, rotations: [])
+
+        XCTAssertNotNil(mockNavigation.viewControllers.last as? CollectionViewController)
+    }
+
     // MARK: AddMangasCoordinatorDelegate
     func testAddMangasCoordinatorDelegateDidEnd_removesCoordinator() {
         let appCoordinator = createAppCoordinator()

@@ -21,6 +21,7 @@
 		3219C2AA251100D200915DE1 /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3219C2A8251100D200915DE1 /* CollectionViewController.xib */; };
 		3219C2B02511103600915DE1 /* MockCollectionViewControllerDelgate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219C2AE25110E2900915DE1 /* MockCollectionViewControllerDelgate.swift */; };
 		3219C2B22511103A00915DE1 /* MockCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219C2AC25110D7D00915DE1 /* MockCollectionViewController.swift */; };
+		3219DC0425641F8100E2FB3D /* FakeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219DC0325641F8100E2FB3D /* FakeCollectionView.swift */; };
 		321C69A22562FA4E00296A1F /* FuriganaUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C69A12562FA4E00296A1F /* FuriganaUtilsTests.swift */; };
 		3229B1C62541D60B00C4E166 /* KanjiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3229B1C32541D60B00C4E166 /* KanjiCollectionViewCell.swift */; };
 		3229B1C82541D60B00C4E166 /* KanjiCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3229B1C42541D60B00C4E166 /* KanjiCollectionViewCell.xib */; };
@@ -228,6 +229,7 @@
 		3219C2A8251100D200915DE1 /* CollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewController.xib; sourceTree = "<group>"; };
 		3219C2AC25110D7D00915DE1 /* MockCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCollectionViewController.swift; sourceTree = "<group>"; };
 		3219C2AE25110E2900915DE1 /* MockCollectionViewControllerDelgate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCollectionViewControllerDelgate.swift; sourceTree = "<group>"; };
+		3219DC0325641F8100E2FB3D /* FakeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCollectionView.swift; sourceTree = "<group>"; };
 		321C69A12562FA4E00296A1F /* FuriganaUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuriganaUtilsTests.swift; sourceTree = "<group>"; };
 		3229B1C32541D60B00C4E166 /* KanjiCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiCollectionViewCell.swift; sourceTree = "<group>"; };
 		3229B1C42541D60B00C4E166 /* KanjiCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KanjiCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -671,6 +673,7 @@
 				320ED4D824831D2900F5BECF /* FakeUploadServer.swift */,
 				320ED4DA248326F300F5BECF /* FakeAddMangasCoordinatorDelegate.swift */,
 				32194C9C256317A4007539B1 /* FakeReader.swift */,
+				3219DC0325641F8100E2FB3D /* FakeCollectionView.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -1288,6 +1291,7 @@
 				320ED4D32483178C00F5BECF /* FakeLibraryViewControllerDelegate.swift in Sources */,
 				32A110B7255859860099A768 /* FakeLibraryViewController.swift in Sources */,
 				32A110BC255859970099A768 /* FakeCoreDataManager.swift in Sources */,
+				3219DC0425641F8100E2FB3D /* FakeCollectionView.swift in Sources */,
 				320ED4DD2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift in Sources */,
 				32C3512F24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift in Sources */,
 				32F998C125574C8E00897299 /* ViewMangaCoordinatorTests.swift in Sources */,

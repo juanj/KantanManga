@@ -9,8 +9,19 @@
 @testable import Kantan_Manga
 
 class FakeLibraryViewController: LibraryViewController {
-    init() {
-        super.init(delegate: FakeLibraryViewControllerDelegate(), collections: [])
+    private let strongReferenceFakeCollection = FakeCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+
+    override var collectionView: UICollectionView! {
+        get {
+            return strongReferenceFakeCollection
+        }
+        set {
+            _ = newValue
+        }
+    }
+
+    init(collections: [MangaCollectionable] = []) {
+        super.init(delegate: FakeLibraryViewControllerDelegate(), collections: collections)
     }
 
     required init?(coder: NSCoder) {
