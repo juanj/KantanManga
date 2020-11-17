@@ -26,6 +26,19 @@ class MangaDataSourceTests: XCTestCase {
         XCTAssertEqual(pages.count, 2)
     }
 
+    func testInitialConfiguration_withOldDoublePages_reusesPages() {
+        let emptyManga = createEmptyManga()
+        let dataSource = MangaDataSource(manga: emptyManga) { _, completion in
+            completion(FakeReader(fileName: "test.cbz"))
+        }!
+
+        let (_, oldPages) = dataSource.initialConfiguration(with: .landscapeLeft, startingPage: 0)
+        let (_, newPages) = dataSource.initialConfiguration(with: .landscapeLeft, and: oldPages, startingPage: 0)
+
+        XCTAssertTrue(oldPages.first === newPages.first)
+        XCTAssertTrue(oldPages.last === newPages.last)
+    }
+
     func testInitialConfiguration_inLandscapeForceToggle_returns1Page() {
         let emptyManga = createEmptyManga()
         let dataSource = MangaDataSource(manga: emptyManga) { _, completion in
@@ -47,6 +60,18 @@ class MangaDataSourceTests: XCTestCase {
         let (_, pages) = dataSource.initialConfiguration(with: .portrait, startingPage: 0)
 
         XCTAssertEqual(pages.count, 1)
+    }
+
+    func testInitialConfiguration_withOldPage_reusesPage() {
+        let emptyManga = createEmptyManga()
+        let dataSource = MangaDataSource(manga: emptyManga) { _, completion in
+            completion(FakeReader(fileName: "test.cbz"))
+        }!
+
+        let (_, oldPages) = dataSource.initialConfiguration(with: .portrait, startingPage: 0)
+        let (_, newPages) = dataSource.initialConfiguration(with: .portrait, and: oldPages, startingPage: 0)
+
+        XCTAssertTrue(oldPages.first === newPages.first)
     }
 
     func testInitialConfiguration_inPortraitForceToggle_returns2Page() {
