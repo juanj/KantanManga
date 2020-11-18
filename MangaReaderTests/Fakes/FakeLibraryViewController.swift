@@ -9,11 +9,9 @@
 @testable import Kantan_Manga
 
 class FakeLibraryViewController: LibraryViewController {
-    private let strongReferenceFakeCollection = FakeCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-
     override var collectionView: UICollectionView! {
         get {
-            return strongReferenceFakeCollection
+            return FakeCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         }
         set {
             _ = newValue

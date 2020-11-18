@@ -136,6 +136,7 @@ extension AppCoordinator: AddMangasCoordinatorDelegate {
     }
 }
 
+// MARK: ViewMangaCoordinatorDelegate
 extension AppCoordinator: ViewMangaCoordinatorDelegate {
     func didEnd(_ viewMangaCoordinator: ViewMangaCoordinator) {
         removeChildCoordinator(type: ViewMangaCoordinator.self)
