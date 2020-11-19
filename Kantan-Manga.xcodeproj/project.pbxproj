@@ -76,6 +76,7 @@
 		326344A3247DD98B00F683AB /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326344A2247DD98B00F683AB /* Reader.swift */; };
 		326344A5247DDAF800F683AB /* CBRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326344A4247DDAF800F683AB /* CBRReader.swift */; };
 		326429DE25406FE500D7C992 /* Kanji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326429DD25406FE500D7C992 /* Kanji.swift */; };
+		326D4F9925671257001B70AC /* FakeSelectCollectionTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326D4F9825671257001B70AC /* FakeSelectCollectionTableViewControllerDelegate.swift */; };
 		326DC88625462DFD0003B9A3 /* KanjisGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326DC88525462DFD0003B9A3 /* KanjisGroup.swift */; };
 		326FDE7924A7F8350042CB8A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326FDE7824A7F8350042CB8A /* SettingsTableViewController.swift */; };
 		326FDE7B24A7FBFB0042CB8A /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326FDE7A24A7FBFB0042CB8A /* SettingsCoordinator.swift */; };
@@ -285,6 +286,7 @@
 		326344A2247DD98B00F683AB /* Reader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
 		326344A4247DDAF800F683AB /* CBRReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBRReader.swift; sourceTree = "<group>"; };
 		326429DD25406FE500D7C992 /* Kanji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kanji.swift; sourceTree = "<group>"; };
+		326D4F9825671257001B70AC /* FakeSelectCollectionTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSelectCollectionTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		326DC88525462DFD0003B9A3 /* KanjisGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjisGroup.swift; sourceTree = "<group>"; };
 		326FDE7824A7F8350042CB8A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		326FDE7A24A7FBFB0042CB8A /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
@@ -674,6 +676,7 @@
 				32194C9C256317A4007539B1 /* FakeReader.swift */,
 				3219DC0325641F8100E2FB3D /* FakeCollectionView.swift */,
 				3219C2AE25110E2900915DE1 /* FakeCollectionViewControllerDelgate.swift */,
+				326D4F9825671257001B70AC /* FakeSelectCollectionTableViewControllerDelegate.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -1281,6 +1284,7 @@
 				320ED4D924831D2900F5BECF /* FakeUploadServer.swift in Sources */,
 				327300842561E8AB009854EE /* StringExtensionTests.swift in Sources */,
 				3219C2B02511103600915DE1 /* FakeCollectionViewControllerDelgate.swift in Sources */,
+				326D4F9925671257001B70AC /* FakeSelectCollectionTableViewControllerDelegate.swift in Sources */,
 				3273008A2561EAD9009854EE /* BoolExtensionTests.swift in Sources */,
 				320ED4D72483189F00F5BECF /* FakeNavigation.swift in Sources */,
 				3273008F2561EBCF009854EE /* CGSizeExtensionTests.swift in Sources */,

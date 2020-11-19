@@ -144,6 +144,7 @@ extension AppCoordinator: ViewMangaCoordinatorDelegate {
     }
 }
 
+// MARK: SelectCollectionTableViewControllerDelegate
 extension AppCoordinator: SelectCollectionTableViewControllerDelegate {
     func selectCollection(_ selectCollectionTableViewController: SelectCollectionTableViewController, collection: MangaCollection) {
         guard let manga = movingManga else { return }

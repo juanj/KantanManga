@@ -30,6 +30,11 @@ class AppCoordinatorTests: XCTestCase {
         return viewMangaCoordinator
     }
 
+    func createCollectionViewController() -> CollectionViewController {
+        let collectionViewController = FakeCollectionViewController(delegate: FakeCollectionViewControllerDelgate(), collection: EmptyMangaCollection(mangas: []), sourcePoint: .zero, initialRotations: [])
+        return collectionViewController
+    }
+
     func testStart_withEmptyNavigation_pushesLibraryViewController() {
         let mockNavigation = FakeNavigation()
         let appCoordinator = createAppCoordinator(navigable: mockNavigation)
@@ -116,7 +121,7 @@ class AppCoordinatorTests: XCTestCase {
         let stubCoreDataManager = InMemoryCoreDataManager()
         let appCoordinator = createAppCoordinator(coreDataManager: stubCoreDataManager)
         let manga = stubCoreDataManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 0, filePath: "")!
-        let collectionViewController = FakeCollectionViewController(delegate: FakeCollectionViewControllerDelgate(), collection: EmptyMangaCollection(mangas: []), sourcePoint: .zero, initialRotations: [])
+        let collectionViewController = createCollectionViewController()
 
         appCoordinator.didSelectManga(collectionViewController, manga: manga, cellFrame: .zero)
 
@@ -127,7 +132,7 @@ class AppCoordinatorTests: XCTestCase {
         let mockCoreDataManager = InMemoryCoreDataManager()
         let appCoordinator = createAppCoordinator(coreDataManager: mockCoreDataManager)
         let manga = mockCoreDataManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 0, filePath: "")!
-        let collectionViewController = FakeCollectionViewController(delegate: FakeCollectionViewControllerDelgate(), collection: EmptyMangaCollection(mangas: []), sourcePoint: .zero, initialRotations: [])
+        let collectionViewController = createCollectionViewController()
 
         appCoordinator.didSelectDeleteManga(collectionViewController, manga: manga)
 
@@ -138,7 +143,7 @@ class AppCoordinatorTests: XCTestCase {
         let mockCoreDataManager = InMemoryCoreDataManager()
         let appCoordinator = createAppCoordinator(coreDataManager: mockCoreDataManager)
         let manga = mockCoreDataManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 0, filePath: "")!
-        let collectionViewController = FakeCollectionViewController(delegate: FakeCollectionViewControllerDelgate(), collection: EmptyMangaCollection(mangas: []), sourcePoint: .zero, initialRotations: [])
+        let collectionViewController = createCollectionViewController()
 
         appCoordinator.didSelectRenameManga(collectionViewController, manga: manga, name: "Demo Manga")
 
@@ -150,7 +155,7 @@ class AppCoordinatorTests: XCTestCase {
         let stubCoreDataManager = InMemoryCoreDataManager()
         let appCoordinator = createAppCoordinator(navigable: mockNavigation, coreDataManager: stubCoreDataManager)
         let manga = stubCoreDataManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 0, filePath: "")!
-        let collectionViewController = FakeCollectionViewController(delegate: FakeCollectionViewControllerDelgate(), collection: EmptyMangaCollection(mangas: []), sourcePoint: .zero, initialRotations: [])
+        let collectionViewController = createCollectionViewController()
 
         appCoordinator.didSelectMoveManga(collectionViewController, manga: manga)
 
@@ -188,4 +193,65 @@ class AppCoordinatorTests: XCTestCase {
 
         XCTAssertEqual(appCoordinator.childCoordinators.count, 0)
     }
+
+    // MARK: SelectCollectionTableViewControllerDelegate
+    func testSelectCollectionTableViewControllerDelegateSelectCollection_withPreviouslySelectedManga_changesMangaCollection() {
+        let mockCoreDataManager = InMemoryCoreDataManager()
+        let appCoordinator = createAppCoordinator(coreDataManager: mockCoreDataManager)
+        let manga = mockCoreDataManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 0, filePath: "")!
+        let collectionViewController = createCollectionViewController()
+        appCoordinator.didSelectMoveManga(collectionViewController, manga: manga)
+        let collection = mockCoreDataManager.insertCollection(name: "Test")!
+
+        appCoordinator.selectCollection(SelectCollectionTableViewController(delegate: FakeSelectCollectionTableViewControllerDelegate(), collections: [collection]), collection: collection)
+
+        XCTAssertEqual(mockCoreDataManager.fetchAllCollections()?.first?.mangas, [manga])
+    }
+
+    func testSelectCollectionTableViewControllerDelegateAddCollection_withPreviouslySelectedManga_createsCollection() {
+        let mockCoreDataManager = InMemoryCoreDataManager()
+        let appCoordinator = createAppCoordinator(coreDataManager: mockCoreDataManager)
+        let manga = mockCoreDataManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 0, filePath: "")!
+        let collectionViewController = createCollectionViewController()
+        appCoordinator.didSelectMoveManga(collectionViewController, manga: manga)
+
+        appCoordinator.addCollection(SelectCollectionTableViewController(delegate: FakeSelectCollectionTableViewControllerDelegate(), collections: []), name: "Test Collection")
+
+        XCTAssertEqual(mockCoreDataManager.fetchAllCollections()?.first?.name, "Test Collection")
+    }
+
+    // MARK: UINavigationControllerDelegate
+    func testUINavigationControllerDelegateAnimationControllerFor_formLibraryViewControllerToCollectionViewController_returnsOpenCollectionAnimationController() {
+        let appCoordinator = createAppCoordinator()
+
+        // Needed for setting indexPath
+        let stubCoreDataManager = InMemoryCoreDataManager()
+        let collection = stubCoreDataManager.insertCollection(name: "Test")!
+        let libraryViewController = FakeLibraryViewController(collections: [collection])
+        appCoordinator.didSelectCollection(libraryViewController, collection: collection, rotations: [])
+
+        let animationController = appCoordinator.navigationController(UINavigationController(), animationControllerFor: .push,
+                                                                      from: FakeLibraryViewController(),
+                                                                      to: FakeCollectionViewController(delegate: FakeCollectionViewControllerDelgate(), collection: EmptyMangaCollection(mangas: []), sourcePoint: .zero, initialRotations: []))
+
+        XCTAssertNotNil(animationController as? OpenCollectionAnimationController)
+    }
+
+    func testUINavigationControllerDelegateAnimationControllerFor_formCollectionViewControllerToLibraryViewController_returnsOpenCollectionAnimationController() {
+        let appCoordinator = createAppCoordinator()
+
+        // Needed for setting indexPath
+        let stubCoreDataManager = InMemoryCoreDataManager()
+        let collection = stubCoreDataManager.insertCollection(name: "Test")!
+        let libraryViewController = FakeLibraryViewController(collections: [collection])
+        appCoordinator.didSelectCollection(libraryViewController, collection: collection, rotations: [])
+
+        let animationController = appCoordinator.navigationController(UINavigationController(), animationControllerFor: .push,
+                                                                      from: FakeCollectionViewController(delegate: FakeCollectionViewControllerDelgate(), collection: EmptyMangaCollection(mangas: []), sourcePoint: .zero, initialRotations: []),
+                                                                      to: FakeLibraryViewController())
+
+        XCTAssertNotNil(animationController as? OpenCollectionAnimationController)
+    }
+
+    
 }
