@@ -27,6 +27,16 @@ class AddMangasCoordinatorTests: XCTestCase {
         XCTAssertTrue(mockUploadServer.stopCalled)
     }
 
+    func testWebUploaderDidDeleteItemAtPath_withMangaWithPath_deletesManga() {
+        let mockCoreDataManager = InMemoryCoreDataManager()
+        let addMangasCoordinator = TestsFactories.createAddMangasCoordinator(coreDataManager: mockCoreDataManager)
+        mockCoreDataManager.insertManga(name: "Test", coverData: Data(), totalPages: 0, filePath: "test.cbz")
+
+        addMangasCoordinator.webUploader(FakeUploadServer(), didDeleteItemAtPath: "test.cbz")
+
+        XCTAssertEqual(mockCoreDataManager.fetchAllMangas()?.count, 0)
+    }
+
     // MARK: WebServerViewControllerDelegate
     func testWebServerDelegateDidSelectBack_stopsServer() {
         let mockUploadServer = FakeUploadServer()
