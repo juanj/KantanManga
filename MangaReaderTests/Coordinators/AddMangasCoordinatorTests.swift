@@ -22,7 +22,7 @@ class AddMangasCoordinatorTests: XCTestCase {
     // MARK: GCDWebUploaderDelegate
     func testWebUploaderDidUploadFileAtPath_stopsServer() {
         let mockUploadServer = FakeUploadServer()
-        let addMangasCoordinator = AddMangasCoordinator(navigation: FakeNavigation(), sourceButton: UIBarButtonItem(), uploadServer: mockUploadServer, coreDataManager: FakeCoreDataManager(), delegate: FakeAddMangasCoordinatorDelegate())
+        let addMangasCoordinator =  TestsFactories.createAddMangasCoordinator(uploadServer: mockUploadServer)
         addMangasCoordinator.webUploader(mockUploadServer, didUploadFileAtPath: "")
         XCTAssertTrue(mockUploadServer.stopCalled)
     }

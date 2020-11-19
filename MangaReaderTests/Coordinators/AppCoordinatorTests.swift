@@ -12,32 +12,9 @@ class AppCoordinatorTests: XCTestCase {
     var navigation: Navigable!
     var appCoordinator: AppCoordinator!
 
-    func createAppCoordinator(navigable: Navigable = FakeNavigation(), coreDataManager: CoreDataManageable = InMemoryCoreDataManager()) -> AppCoordinator {
-        let appCoordinator = AppCoordinator(navigation: navigable, coreDataManager: coreDataManager)
-        return appCoordinator
-    }
-
-    func createAddMangasCoordinator() -> AddMangasCoordinator {
-        let addMangasCoordinator = AddMangasCoordinator(navigation: FakeNavigation(), sourceButton: UIBarButtonItem(), uploadServer: FakeUploadServer(), coreDataManager: InMemoryCoreDataManager(), delegate: FakeAddMangasCoordinatorDelegate())
-        return addMangasCoordinator
-    }
-
-    func createViewMangaCoordinator() -> ViewMangaCoordinator {
-        let inMemoryCoreDataManager = InMemoryCoreDataManager()
-        let manga = inMemoryCoreDataManager.insertManga(name: "Test", coverData: Data(), totalPages: 0, filePath: "")!
-        let viewMangaCoordinator = ViewMangaCoordinator(navigation: FakeNavigation(), coreDataManager: inMemoryCoreDataManager, manga: manga, delegate: FakeViewMangaCoordinatorDelegate(), originFrame: .zero, ocr: FakeImageOcr())
-
-        return viewMangaCoordinator
-    }
-
-    func createCollectionViewController() -> CollectionViewController {
-        let collectionViewController = FakeCollectionViewController(delegate: FakeCollectionViewControllerDelgate(), collection: EmptyMangaCollection(mangas: []), sourcePoint: .zero, initialRotations: [])
-        return collectionViewController
-    }
-
     func testStart_withEmptyNavigation_pushesLibraryViewController() {
         let mockNavigation = FakeNavigation()
-        let appCoordinator = createAppCoordinator(navigable: mockNavigation)
+        let appCoordinator = TestsFactories.createAppCoordinator(navigable: mockNavigation)
         appCoordinator.start()
 
         let topViewController = mockNavigation.viewControllers.first
@@ -46,7 +23,7 @@ class AppCoordinatorTests: XCTestCase {
     }
 
     func testLoadCollections_noCollections_returnsEmptyArray() {
-        let appCoordinator = createAppCoordinator()
+        let appCoordinator = TestsFactories.createAppCoordinator()
 
         let collections = appCoordinator.loadCollections()
 
@@ -55,7 +32,7 @@ class AppCoordinatorTests: XCTestCase {
 
     func testLoadCollections_oneMangaWithoutCollection_returnsNoCollectionCollection() {
         let stubCoreDataManager = InMemoryCoreDataManager()
-        let appCoordinator = createAppCoordinator(coreDataManager: stubCoreDataManager)
+        let appCoordinator = TestsFactories.createAppCoordinator(coreDataManager: stubCoreDataManager)
         stubCoreDataManager.insertManga(name: "Test", coverData: Data(), totalPages: 0, filePath: "")
 
         let collections = appCoordinator.loadCollections()
@@ -65,7 +42,7 @@ class AppCoordinatorTests: XCTestCase {
 
     // MARK: LibraryViewControllerDelegate
     func testLibraryViewControllerDelegateDidSelectAdd_startsAddMangasCoordinator() {
-        let appCoordinator = createAppCoordinator()
+        let appCoordinator = TestsFactories.createAppCoordinator()
         let libraryViewController = FakeLibraryViewController()
 
         appCoordinator.didSelectAdd(libraryViewController, button: UIBarButtonItem())
@@ -74,7 +51,7 @@ class AppCoordinatorTests: XCTestCase {
     }
 
     func testLibraryViewControllerDelegateDidSelectSettings_startsSettingsCoordinator() {
-        let appCoordinator = createAppCoordinator()
+        let appCoordinator = TestsFactories.createAppCoordinator()
         let libraryViewController = FakeLibraryViewController()
 
         appCoordinator.didSelectSettings(libraryViewController)
@@ -85,7 +62,7 @@ class AppCoordinatorTests: XCTestCase {
     func testLibraryViewControllerDelegateDidSelectCollection_withOneCollection_pushesCollectionViewController() {
         let mockNavigation = FakeNavigation()
         let stubCoreDataManager = InMemoryCoreDataManager()
-        let appCoordinator = createAppCoordinator(navigable: mockNavigation, coreDataManager: stubCoreDataManager)
+        let appCoordinator = TestsFactories.createAppCoordinator(navigable: mockNavigation, coreDataManager: stubCoreDataManager)
         let collection = stubCoreDataManager.insertCollection(name: "Test")!
         let libraryViewController = FakeLibraryViewController(collections: [collection])
 
@@ -96,7 +73,7 @@ class AppCoordinatorTests: XCTestCase {
 
     func testLibraryViewControllerDelegateDidSelectDeleteCollection_withOneCollection_deletesTheCollection() {
         let coreDataManager = InMemoryCoreDataManager()
-        let appCoordinator = createAppCoordinator(coreDataManager: coreDataManager)
+        let appCoordinator = TestsFactories.createAppCoordinator(coreDataManager: coreDataManager)
         let collection = coreDataManager.insertCollection(name: "Test")!
         let libraryViewController = FakeLibraryViewController(collections: [collection])
 
@@ -107,7 +84,7 @@ class AppCoordinatorTests: XCTestCase {
 
     func testLibraryViewControllerDelegateDidSelectRenameCollection_withOneCollectionNamedTest_renamesCollectionToDemo() {
         let coreDataManager = InMemoryCoreDataManager()
-        let appCoordinator = createAppCoordinator(coreDataManager: coreDataManager)
+        let appCoordinator = TestsFactories.createAppCoordinator(coreDataManager: coreDataManager)
         let collection = coreDataManager.insertCollection(name: "Test")!
         let libraryViewController = FakeLibraryViewController(collections: [collection])
 
@@ -119,9 +96,9 @@ class AppCoordinatorTests: XCTestCase {
     // MARK: CollectionViewControllerDelegate
     func testCollectionViewControllerDelegateDidSelectManga_withOneManga_startsViewMangaCoordinator() {
         let stubCoreDataManager = InMemoryCoreDataManager()
-        let appCoordinator = createAppCoordinator(coreDataManager: stubCoreDataManager)
+        let appCoordinator = TestsFactories.createAppCoordinator(coreDataManager: stubCoreDataManager)
         let manga = stubCoreDataManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 0, filePath: "")!
-        let collectionViewController = createCollectionViewController()
+        let collectionViewController = TestsFactories.createCollectionViewController()
 
         appCoordinator.didSelectManga(collectionViewController, manga: manga, cellFrame: .zero)
 
@@ -130,9 +107,9 @@ class AppCoordinatorTests: XCTestCase {
 
     func testCollectionViewControllerDelegateDidSelectDeleteManga_withOneManga_removesManga() {
         let mockCoreDataManager = InMemoryCoreDataManager()
-        let appCoordinator = createAppCoordinator(coreDataManager: mockCoreDataManager)
+        let appCoordinator = TestsFactories.createAppCoordinator(coreDataManager: mockCoreDataManager)
         let manga = mockCoreDataManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 0, filePath: "")!
-        let collectionViewController = createCollectionViewController()
+        let collectionViewController = TestsFactories.createCollectionViewController()
 
         appCoordinator.didSelectDeleteManga(collectionViewController, manga: manga)
 
@@ -141,9 +118,9 @@ class AppCoordinatorTests: XCTestCase {
 
     func testCollectionViewControllerDelegateDidSelectRenameManga_withMangaNamedTestManga_renamesMangaToDemoManga() {
         let mockCoreDataManager = InMemoryCoreDataManager()
-        let appCoordinator = createAppCoordinator(coreDataManager: mockCoreDataManager)
+        let appCoordinator = TestsFactories.createAppCoordinator(coreDataManager: mockCoreDataManager)
         let manga = mockCoreDataManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 0, filePath: "")!
-        let collectionViewController = createCollectionViewController()
+        let collectionViewController = TestsFactories.createCollectionViewController()
 
         appCoordinator.didSelectRenameManga(collectionViewController, manga: manga, name: "Demo Manga")
 
@@ -153,9 +130,9 @@ class AppCoordinatorTests: XCTestCase {
     func testCollectionViewControllerDelegateDidSelectMoveManga_withMangaWithoutCollection_presentsSelectCollectionTableViewController() {
         let mockNavigation = FakeNavigation()
         let stubCoreDataManager = InMemoryCoreDataManager()
-        let appCoordinator = createAppCoordinator(navigable: mockNavigation, coreDataManager: stubCoreDataManager)
+        let appCoordinator = TestsFactories.createAppCoordinator(navigable: mockNavigation, coreDataManager: stubCoreDataManager)
         let manga = stubCoreDataManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 0, filePath: "")!
-        let collectionViewController = createCollectionViewController()
+        let collectionViewController = TestsFactories.createCollectionViewController()
 
         appCoordinator.didSelectMoveManga(collectionViewController, manga: manga)
 
@@ -164,8 +141,8 @@ class AppCoordinatorTests: XCTestCase {
 
     // MARK: AddMangasCoordinatorDelegate
     func testAddMangasCoordinatorDelegateDidEnd_removesCoordinator() {
-        let appCoordinator = createAppCoordinator()
-        let addMangasCoordinator = createAddMangasCoordinator()
+        let appCoordinator = TestsFactories.createAppCoordinator()
+        let addMangasCoordinator = TestsFactories.createAddMangasCoordinator()
         appCoordinator.childCoordinators.append(addMangasCoordinator)
 
         appCoordinator.didEnd(addMangasCoordinator)
@@ -174,8 +151,8 @@ class AppCoordinatorTests: XCTestCase {
     }
 
     func testAddMangasCoordinatorDelegateCancel_removesCoordinator() {
-        let appCoordinator = createAppCoordinator()
-        let addMangasCoordinator = createAddMangasCoordinator()
+        let appCoordinator = TestsFactories.createAppCoordinator()
+        let addMangasCoordinator = TestsFactories.createAddMangasCoordinator()
         appCoordinator.childCoordinators.append(addMangasCoordinator)
 
         appCoordinator.cancel(addMangasCoordinator)
@@ -185,8 +162,8 @@ class AppCoordinatorTests: XCTestCase {
 
     // MARK: ViewMangaCoordinatorDelegate
     func testViewMangaCoordinatorDelegateDidEnd_withActiveViewMangaCoordinatorDelegate_removesCoordinator() {
-        let appCoordinator = createAppCoordinator()
-        let viewMangaCoordinator = createViewMangaCoordinator()
+        let appCoordinator = TestsFactories.createAppCoordinator()
+        let viewMangaCoordinator = TestsFactories.createViewMangaCoordinator()
         appCoordinator.childCoordinators.append(viewMangaCoordinator)
 
         appCoordinator.didEnd(viewMangaCoordinator)
@@ -197,9 +174,9 @@ class AppCoordinatorTests: XCTestCase {
     // MARK: SelectCollectionTableViewControllerDelegate
     func testSelectCollectionTableViewControllerDelegateSelectCollection_withPreviouslySelectedManga_changesMangaCollection() {
         let mockCoreDataManager = InMemoryCoreDataManager()
-        let appCoordinator = createAppCoordinator(coreDataManager: mockCoreDataManager)
+        let appCoordinator = TestsFactories.createAppCoordinator(coreDataManager: mockCoreDataManager)
         let manga = mockCoreDataManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 0, filePath: "")!
-        let collectionViewController = createCollectionViewController()
+        let collectionViewController = TestsFactories.createCollectionViewController()
         appCoordinator.didSelectMoveManga(collectionViewController, manga: manga)
         let collection = mockCoreDataManager.insertCollection(name: "Test")!
 
@@ -210,9 +187,9 @@ class AppCoordinatorTests: XCTestCase {
 
     func testSelectCollectionTableViewControllerDelegateAddCollection_withPreviouslySelectedManga_createsCollection() {
         let mockCoreDataManager = InMemoryCoreDataManager()
-        let appCoordinator = createAppCoordinator(coreDataManager: mockCoreDataManager)
+        let appCoordinator = TestsFactories.createAppCoordinator(coreDataManager: mockCoreDataManager)
         let manga = mockCoreDataManager.insertManga(name: "Test Manga", coverData: Data(), totalPages: 0, filePath: "")!
-        let collectionViewController = createCollectionViewController()
+        let collectionViewController = TestsFactories.createCollectionViewController()
         appCoordinator.didSelectMoveManga(collectionViewController, manga: manga)
 
         appCoordinator.addCollection(SelectCollectionTableViewController(delegate: FakeSelectCollectionTableViewControllerDelegate(), collections: []), name: "Test Collection")
@@ -222,7 +199,7 @@ class AppCoordinatorTests: XCTestCase {
 
     // MARK: UINavigationControllerDelegate
     func testUINavigationControllerDelegateAnimationControllerFor_formLibraryViewControllerToCollectionViewController_returnsOpenCollectionAnimationController() {
-        let appCoordinator = createAppCoordinator()
+        let appCoordinator = TestsFactories.createAppCoordinator()
 
         // Needed for setting indexPath
         let stubCoreDataManager = InMemoryCoreDataManager()
@@ -238,7 +215,7 @@ class AppCoordinatorTests: XCTestCase {
     }
 
     func testUINavigationControllerDelegateAnimationControllerFor_formCollectionViewControllerToLibraryViewController_returnsOpenCollectionAnimationController() {
-        let appCoordinator = createAppCoordinator()
+        let appCoordinator = TestsFactories.createAppCoordinator()
 
         // Needed for setting indexPath
         let stubCoreDataManager = InMemoryCoreDataManager()
