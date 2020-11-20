@@ -110,7 +110,6 @@ PODS:
   - SQLite.swift (0.12.2):
     - SQLite.swift/standard (= 0.12.2)
   - SQLite.swift/standard (0.12.2)
-  - TesseractOCRiOS (4.0.0)
   - UnrarKit (2.9):
     - UnrarKit/unrar-lib (= 2.9)
   - UnrarKit/unrar-lib (2.9)
@@ -121,7 +120,6 @@ DEPENDENCIES:
   - Firebase/MLVision
   - GCDWebServer/WebUploader (~> 3.0)
   - SQLite.swift (~> 0.12.0)
-  - TesseractOCRiOS (from `git://github.com/parallaxe/Tesseract-OCR-iOS.git`, branch `macos-support`)
   - UnrarKit
   - ZIPFoundation (~> 0.9)
 
@@ -148,16 +146,6 @@ SPEC REPOS:
     - UnrarKit
     - ZIPFoundation
 
-EXTERNAL SOURCES:
-  TesseractOCRiOS:
-    :branch: macos-support
-    :git: git://github.com/parallaxe/Tesseract-OCR-iOS.git
-
-CHECKOUT OPTIONS:
-  TesseractOCRiOS:
-    :commit: d16bb14e136d875bd5a519febe9e3c103d212647
-    :git: git://github.com/parallaxe/Tesseract-OCR-iOS.git
-
 SPEC CHECKSUMS:
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
   FirebaseAnalytics: 3bb096873ee0d7fa4b6c70f5e9166b6da413cc7f
@@ -177,10 +165,9 @@ SPEC CHECKSUMS:
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
-  TesseractOCRiOS: f51bbcd27d84b9ac59950790413a7e4219e84483
   UnrarKit: 99e3f0222a98a212188e1a6975dcf5aa798d26dd
   ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: ebfd9440e9c4642ded048025317eb558d3a7200e
+PODFILE CHECKSUM: e586bfa264b8bad430256f743adcbe07031bc01c
 
 COCOAPODS: 1.10.0

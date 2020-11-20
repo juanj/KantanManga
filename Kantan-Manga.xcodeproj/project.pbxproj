@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,6 +25,8 @@
 		321C69A22562FA4E00296A1F /* FuriganaUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C69A12562FA4E00296A1F /* FuriganaUtilsTests.swift */; };
 		3229B1C62541D60B00C4E166 /* KanjiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3229B1C32541D60B00C4E166 /* KanjiCollectionViewCell.swift */; };
 		3229B1C82541D60B00C4E166 /* KanjiCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3229B1C42541D60B00C4E166 /* KanjiCollectionViewCell.xib */; };
+		322C04B725680FE700BD5A51 /* Tesseract+PageSegmentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C04B525680FE700BD5A51 /* Tesseract+PageSegmentation.swift */; };
+		322C04C02568100900BD5A51 /* SwiftyTesseract in Frameworks */ = {isa = PBXBuildFile; productRef = 322C04BF2568100900BD5A51 /* SwiftyTesseract */; };
 		322C5B602483125A00C0BAB1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C5B5F2483125A00C0BAB1 /* Coordinator.swift */; };
 		322E600A255AE00D00D18266 /* CoreDataManagerIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322E5FCC255ADE7C00D18266 /* CoreDataManagerIntegrationTests.swift */; };
 		322E603B255AE03600D18266 /* InMemoryCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F62A1255A03A7000CA225 /* InMemoryCoreDataManager.swift */; };
@@ -235,6 +237,7 @@
 		321C69A12562FA4E00296A1F /* FuriganaUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuriganaUtilsTests.swift; sourceTree = "<group>"; };
 		3229B1C32541D60B00C4E166 /* KanjiCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiCollectionViewCell.swift; sourceTree = "<group>"; };
 		3229B1C42541D60B00C4E166 /* KanjiCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KanjiCollectionViewCell.xib; sourceTree = "<group>"; };
+		322C04B525680FE700BD5A51 /* Tesseract+PageSegmentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tesseract+PageSegmentation.swift"; sourceTree = "<group>"; };
 		322C5B5B24830C2500C0BAB1 /* FakeLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLibraryViewController.swift; sourceTree = "<group>"; };
 		322C5B5F2483125A00C0BAB1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		322E5FCC255ADE7C00D18266 /* CoreDataManagerIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerIntegrationTests.swift; sourceTree = "<group>"; };
@@ -410,6 +413,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				322C04C02568100900BD5A51 /* SwiftyTesseract in Frameworks */,
 				ED0C9C9A3BB0262753847EC3 /* Pods_Kantan_Manga.framework in Frameworks */,
 				324BB96E2498369B006241E8 /* mecab.framework in Frameworks */,
 			);
@@ -536,6 +540,7 @@
 				325199B32479D96400DA6908 /* ImageOCR.swift */,
 				325199B62479D9E000DA6908 /* GoogleVisionOCR.swift */,
 				325199C32479E20700DA6908 /* TesseractOCR.swift */,
+				322C04B525680FE700BD5A51 /* Tesseract+PageSegmentation.swift */,
 			);
 			path = OCR;
 			sourceTree = "<group>";
@@ -916,6 +921,9 @@
 				326280DA253DD29F0070F5DA /* PBXTargetDependency */,
 			);
 			name = "Kantan-Manga";
+			packageProductDependencies = (
+				322C04BF2568100900BD5A51 /* SwiftyTesseract */,
+			);
 			productName = MangaReader;
 			productReference = 84A831E3221D90CA00CEE1C9 /* Kantan Manga.app */;
 			productType = "com.apple.product-type.application";
@@ -976,6 +984,9 @@
 				Base,
 			);
 			mainGroup = 84A831DA221D90CA00CEE1C9;
+			packageReferences = (
+				322C04BE2568100900BD5A51 /* XCRemoteSwiftPackageReference "SwiftyTesseract" */,
+			);
 			productRefGroup = 84A831E4221D90CA00CEE1C9 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -1243,6 +1254,7 @@
 				843FA7DF221DEDDF00B86B52 /* AddMangasCoordinator.swift in Sources */,
 				32A1517225326D76002B3920 /* CircleView.swift in Sources */,
 				843FA7E9221DFE9E00B86B52 /* CBZReader.swift in Sources */,
+				322C04B725680FE700BD5A51 /* Tesseract+PageSegmentation.swift in Sources */,
 				8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */,
 				3249F2D7250BBC18004C514E /* MangaCollectionCollectionViewCell.swift in Sources */,
 				325199B42479D96400DA6908 /* ImageOCR.swift in Sources */,
@@ -1642,8 +1654,6 @@
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
-					"\"TesseractOCR\"",
-					"-framework",
 					"\"UIKit\"",
 					"-framework",
 					"\"ZIPFoundation\"",
@@ -1741,8 +1751,6 @@
 					"\"StoreKit\"",
 					"-framework",
 					"\"SystemConfiguration\"",
-					"-framework",
-					"\"TesseractOCR\"",
 					"-framework",
 					"\"UIKit\"",
 					"-framework",
@@ -1854,6 +1862,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		322C04BE2568100900BD5A51 /* XCRemoteSwiftPackageReference "SwiftyTesseract" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyTesseract/SwiftyTesseract.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		322C04BF2568100900BD5A51 /* SwiftyTesseract */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 322C04BE2568100900BD5A51 /* XCRemoteSwiftPackageReference "SwiftyTesseract" */;
+			productName = SwiftyTesseract;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		84A831ED221D90CA00CEE1C9 /* MangaReader.xcdatamodeld */ = {

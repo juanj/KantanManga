@@ -7,28 +7,25 @@
 //
 
 import Foundation
-import TesseractOCR
+import SwiftyTesseract
 
 class TesseractOCR: ImageOCR {
     enum TesseractError: Error {
         case recognitionError
     }
 
-    private let tesseract = G8Tesseract(language: "jpn_vert")
+    private let tesseract = Tesseract(language: .custom("jpn_vert"))
 
     func recognize(image: UIImage, _ callback: @escaping (Result<String, Error>) -> Void) {
-        if let tesseract = tesseract {
-            tesseract.engineMode = .lstmOnly
-            tesseract.pageSegmentationMode = .singleBlockVertText
-            tesseract.image = image
-            DispatchQueue.global(qos: .utility).async {
-                tesseract.recognize()
-                if let text = tesseract.recognizedText {
-                    let cleanText = text.replacingOccurrences(of: "\n", with: "  ").trimmingCharacters(in: .whitespacesAndNewlines)
-                    callback(.success(cleanText))
-                } else {
-                    callback(.failure(TesseractError.recognitionError))
-                }
+        tesseract.pageSegmentationMode = .singleBlockVerticalText
+        DispatchQueue.global(qos: .utility).async {
+            let result: Result<String, Tesseract.Error> = self.tesseract.performOCR(on: image)
+            switch result {
+            case .success(let text):
+                let cleanText = text.replacingOccurrences(of: "\n", with: "  ").trimmingCharacters(in: .whitespacesAndNewlines)
+                callback(.success(cleanText))
+            case .failure:
+                callback(.failure(TesseractError.recognitionError))
             }
         }
     }
