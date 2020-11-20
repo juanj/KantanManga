@@ -11,7 +11,7 @@ import XCTest
 class AddMangasCoordinatorTests: XCTestCase {
     func testStart_presentsNavigationViewController() {
         let mockNavigation = FakeNavigation()
-        let addMangasCoordinator = AddMangasCoordinator(navigation: mockNavigation, sourceButton: UIBarButtonItem(), uploadServer: FakeUploadServer(), coreDataManager: FakeCoreDataManager(), delegate: FakeAddMangasCoordinatorDelegate())
+        let addMangasCoordinator = TestsFactories.createAddMangasCoordinator(navigable: mockNavigation)
 
         addMangasCoordinator.start()
         let topViewController = mockNavigation.presentedViewController
@@ -40,7 +40,7 @@ class AddMangasCoordinatorTests: XCTestCase {
     // MARK: WebServerViewControllerDelegate
     func testWebServerDelegateDidSelectBack_stopsServer() {
         let mockUploadServer = FakeUploadServer()
-        let addMangasCoordinator = AddMangasCoordinator(navigation: FakeNavigation(), sourceButton: UIBarButtonItem(), uploadServer: mockUploadServer, coreDataManager: FakeCoreDataManager(), delegate: FakeAddMangasCoordinatorDelegate())
+        let addMangasCoordinator = TestsFactories.createAddMangasCoordinator(uploadServer: mockUploadServer)
         addMangasCoordinator.didSelectBack(WebServerViewController())
         XCTAssertTrue(mockUploadServer.stopCalled)
     }
@@ -48,11 +48,21 @@ class AddMangasCoordinatorTests: XCTestCase {
     // MARK: AddMangaViewControllerDelegate
     func testAddMangaViewControllerDelegateDidSelectBack_dismissesViewcontroller() {
         let mockNavigation = FakeNavigation()
-        let addMangasCoordinator = AddMangasCoordinator(navigation: mockNavigation, sourceButton: UIBarButtonItem(), uploadServer: FakeUploadServer(), coreDataManager: FakeCoreDataManager(), delegate: FakeAddMangasCoordinatorDelegate())
+        let addMangasCoordinator = TestsFactories.createAddMangasCoordinator(navigable: mockNavigation)
         mockNavigation.presentedViewController = UIViewController()
 
         addMangasCoordinator.cancel(AddMangaViewController(delegate: MockAddMangaViewControllerDelegate()))
 
         XCTAssertNil(mockNavigation.presentedViewController)
+    }
+
+    func testAddMangaViewControllerDelegateSave_withPreviouslySelectedPath_callsCreateMangaWith() {
+        let mockCoreDataManager = FakeCoreDataManager()
+        let addMangaCoordinator = TestsFactories.createAddMangasCoordinator(coreDataManager: mockCoreDataManager)
+        addMangaCoordinator.webUploader(FakeUploadServer(), didUploadFileAtPath: "Test.cbz")
+
+        addMangaCoordinator.save(AddMangaViewController(delegate: MockAddMangaViewControllerDelegate()), name: "Test")
+
+        XCTAssertTrue(mockCoreDataManager.createMangaWithCalls.contains(where: { ($0["path"] as? String) == "Test.cbz" && ($0["name"] as? String) == "Test" }))
     }
 }

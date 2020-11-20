@@ -9,53 +9,36 @@ import Foundation
 @testable import Kantan_Manga
 
 class FakeCoreDataManager: CoreDataManageable {
-    var lastDeletedFile: String?
-    var mangas = [Manga]()
+    var createMangaWithCalls = [[String: Any]]()
 
+    // Not implemented methods
     func saveContext() {}
     func deleteAllData() {}
     func refreshAll() {}
-
-    func insertManga(name: String, coverData: Data, totalPages: Int16, filePath: String, collection: MangaCollection?) -> Manga? {
-        return nil
-    }
-
-    func createMangaWith(filePath path: String, name: String?, collection: MangaCollection?, callback: @escaping (Manga?) -> Void) {}
     func delete(manga: Manga) {}
     func deleteAllMangas() {}
-
-    func fetchAllMangas() -> [Manga]? {
-        return []
-    }
-    func getMangaWith(filePath path: String) -> Manga? {
-        return nil
-    }
-
-    func getMangasWithoutCollection() -> [Manga]? {
-        return mangas
-    }
-
     func updateManga(manga: Manga) {}
-
-    func insertCollection(name: String) -> MangaCollection? {
-        return nil
-    }
-
     func delete(collection: MangaCollection) {}
     func deleteAllCollections() {}
-
-    func fetchAllCollections() -> [MangaCollection]? {
-        return []
-    }
-
-    func searchCollectionsWith(name: String) -> [MangaCollection]? {
-        return []
-    }
-
-    func searchCollectionsStartWith(name: String) -> [MangaCollection]? {
-        return []
-    }
-
     func updateCollection(_ collection: MangaCollection) {}
     func createDemoManga(completion: @escaping () -> Void) {}
+}
+
+// Empty methods
+extension FakeCoreDataManager {
+    func insertManga(name: String, coverData: Data, totalPages: Int16, filePath: String, collection: MangaCollection?) -> Manga? { nil }
+    func fetchAllMangas() -> [Manga]? { [] }
+    func getMangaWith(filePath path: String) -> Manga? { nil }
+    func getMangasWithoutCollection() -> [Manga]? { [] }
+    func insertCollection(name: String) -> MangaCollection? { nil }
+    func fetchAllCollections() -> [MangaCollection]? { [] }
+    func searchCollectionsWith(name: String) -> [MangaCollection]? { [] }
+    func searchCollectionsStartWith(name: String) -> [MangaCollection]? { [] }
+}
+
+// Mock methods
+extension FakeCoreDataManager {
+    func createMangaWith(filePath path: String, name: String?, collection: MangaCollection?, callback: @escaping (Manga?) -> Void) {
+        createMangaWithCalls.append(["path": path, "name": name as Any])
+    }
 }
