@@ -78,6 +78,7 @@
 		326344A3247DD98B00F683AB /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326344A2247DD98B00F683AB /* Reader.swift */; };
 		326344A5247DDAF800F683AB /* CBRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326344A4247DDAF800F683AB /* CBRReader.swift */; };
 		326429DE25406FE500D7C992 /* Kanji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326429DD25406FE500D7C992 /* Kanji.swift */; };
+		326857DF2569CF9D000B0C83 /* TestableAddMangasCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326857DE2569CF9D000B0C83 /* TestableAddMangasCoordinator.swift */; };
 		326D4F9925671257001B70AC /* FakeSelectCollectionTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326D4F9825671257001B70AC /* FakeSelectCollectionTableViewControllerDelegate.swift */; };
 		326D4F9F2567172E001B70AC /* TestsFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326D4F9E2567172E001B70AC /* TestsFactories.swift */; };
 		326DC88625462DFD0003B9A3 /* KanjisGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326DC88525462DFD0003B9A3 /* KanjisGroup.swift */; };
@@ -290,6 +291,7 @@
 		326344A2247DD98B00F683AB /* Reader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
 		326344A4247DDAF800F683AB /* CBRReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBRReader.swift; sourceTree = "<group>"; };
 		326429DD25406FE500D7C992 /* Kanji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kanji.swift; sourceTree = "<group>"; };
+		326857DE2569CF9D000B0C83 /* TestableAddMangasCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableAddMangasCoordinator.swift; sourceTree = "<group>"; };
 		326D4F9825671257001B70AC /* FakeSelectCollectionTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSelectCollectionTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		326D4F9E2567172E001B70AC /* TestsFactories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsFactories.swift; sourceTree = "<group>"; };
 		326DC88525462DFD0003B9A3 /* KanjisGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjisGroup.swift; sourceTree = "<group>"; };
@@ -545,6 +547,14 @@
 			path = OCR;
 			sourceTree = "<group>";
 		};
+		326857E42569D5C4000B0C83 /* Testables */ = {
+			isa = PBXGroup;
+			children = (
+				326857DE2569CF9D000B0C83 /* TestableAddMangasCoordinator.swift */,
+			);
+			path = Testables;
+			sourceTree = "<group>";
+		};
 		326D4FA725671769001B70AC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -774,6 +784,7 @@
 		84A831FD221D90CC00CEE1C9 /* MangaReaderTests */ = {
 			isa = PBXGroup;
 			children = (
+				326857E42569D5C4000B0C83 /* Testables */,
 				328F629F255A0395000CA225 /* Helpers */,
 				32F998DF2557592E00897299 /* Fakes */,
 				320ED4DE24832C9700F5BECF /* Mock Classes */,
@@ -1307,6 +1318,7 @@
 				320ED4D924831D2900F5BECF /* FakeUploadServer.swift in Sources */,
 				327300842561E8AB009854EE /* StringExtensionTests.swift in Sources */,
 				3219C2B02511103600915DE1 /* FakeCollectionViewControllerDelgate.swift in Sources */,
+				326857DF2569CF9D000B0C83 /* TestableAddMangasCoordinator.swift in Sources */,
 				326D4F9925671257001B70AC /* FakeSelectCollectionTableViewControllerDelegate.swift in Sources */,
 				3273008A2561EAD9009854EE /* BoolExtensionTests.swift in Sources */,
 				320ED4D72483189F00F5BECF /* FakeNavigation.swift in Sources */,

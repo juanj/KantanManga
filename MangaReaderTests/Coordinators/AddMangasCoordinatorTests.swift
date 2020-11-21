@@ -65,4 +65,24 @@ class AddMangasCoordinatorTests: XCTestCase {
 
         XCTAssertTrue(mockCoreDataManager.createMangaWithCalls.contains(where: { ($0["path"] as? String) == "Test.cbz" && ($0["name"] as? String) == "Test" }))
     }
+
+    func testAddMangaViewControllerDelegateSelectManga_withEmptyNavigation_pushesFileSourceViewController() {
+        let addMangaCoordinator = TestsFactories.createTestableAddMangasCoordinator()
+        let mockNavigation = FakeNavigation()
+        addMangaCoordinator.presentableNavigable = mockNavigation
+
+        addMangaCoordinator.selectManga(AddMangaViewController(delegate: MockAddMangaViewControllerDelegate()))
+
+        XCTAssertNotNil(mockNavigation.viewControllers.first as? FileSourceViewController)
+    }
+
+    func testAddMangaViewControllerDelegateSelectCollection_withEmptyNavigation_pushesSelectCollectionTableViewController() {
+        let addMangaCoordinator = TestsFactories.createTestableAddMangasCoordinator()
+        let mockNavigation = FakeNavigation()
+        addMangaCoordinator.presentableNavigable = mockNavigation
+
+        addMangaCoordinator.selectCollection(AddMangaViewController(delegate: MockAddMangaViewControllerDelegate()))
+
+        XCTAssertNotNil(mockNavigation.viewControllers.first as? SelectCollectionTableViewController)
+    }
 }

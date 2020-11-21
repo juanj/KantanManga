@@ -18,6 +18,11 @@ final class TestsFactories {
         return addMangasCoordinator
     }
 
+    static func createTestableAddMangasCoordinator(navigable: Navigable = FakeNavigation(), uploadServer: GCDWebUploader = FakeUploadServer(), coreDataManager: CoreDataManageable = InMemoryCoreDataManager(), delegate: AddMangasCoordinatorDelegate = FakeAddMangasCoordinatorDelegate()) -> TestableAddMangasCoordinator {
+        let addMangasCoordinator = TestableAddMangasCoordinator(navigation: navigable, sourceButton: UIBarButtonItem(), uploadServer: uploadServer, coreDataManager: coreDataManager, delegate: delegate)
+        return addMangasCoordinator
+    }
+
     static func createViewMangaCoordinator() -> ViewMangaCoordinator {
         let inMemoryCoreDataManager = InMemoryCoreDataManager()
         let manga = inMemoryCoreDataManager.insertManga(name: "Test", coverData: Data(), totalPages: 0, filePath: "")!
