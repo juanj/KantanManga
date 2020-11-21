@@ -18,7 +18,7 @@ protocol AddMangasCoordinatorDelegate: AnyObject {
 class AddMangasCoordinator: NSObject, Coordinator {
     var childCoordinators = [Coordinator]()
     private var navigation: Navigable
-    private var presentedNavigationController = UINavigationController()
+    private lazy var presentedNavigationController = createPresentableNavigation()
     private var sourceButton: UIBarButtonItem
     private var uploadServer: GCDWebUploader
     private let coreDataManager: CoreDataManageable
@@ -38,14 +38,20 @@ class AddMangasCoordinator: NSObject, Coordinator {
 
     func start() {
         let addMangaView = AddMangaViewController(delegate: self)
-        presentedNavigationController.pushViewController(addMangaView, animated: true)
-        presentedNavigationController.modalPresentationStyle = .popover
-        presentedNavigationController.popoverPresentationController?.barButtonItem = self.sourceButton
-        presentedNavigationController.popoverPresentationController?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-        presentedNavigationController.presentationController?.delegate = self
-        navigation.present(presentedNavigationController, animated: true, completion: nil)
+        let presentedNavigation = createPresentableNavigation()
+        presentedNavigation.setViewControllers([addMangaView], animated: false)
+        navigation.present(presentedNavigation, animated: true, completion: nil)
 
         addMangaViewController = addMangaView
+    }
+
+    func createPresentableNavigation() -> Navigable {
+        let presentableNavigation = UINavigationController()
+        presentableNavigation.modalPresentationStyle = .popover
+        presentableNavigation.popoverPresentationController?.barButtonItem = self.sourceButton
+        presentableNavigation.popoverPresentationController?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        presentableNavigation.presentationController?.delegate = self
+        return presentableNavigation
     }
 
     private func initWebServer() {

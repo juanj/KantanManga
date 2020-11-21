@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol Navigable: AnyObject {
+protocol Navigable: UIViewController {
     var delegate: UINavigationControllerDelegate? { get set }
     var viewControllers: [UIViewController] { get }
     func pushViewController(_ viewController: UIViewController, animated: Bool)
@@ -18,6 +18,8 @@ protocol Navigable: AnyObject {
     func dismiss(animated: Bool, completion: (() -> Void)?)
     func setViewControllers(_ viewControllers: [UIViewController], animated: Bool)
     func setNavigationBarHidden(_ hidden: Bool, animated: Bool)
+    @discardableResult
+    func popToRootViewController(animated: Bool) -> [UIViewController]?
 }
 
 extension UINavigationController: Navigable {}
