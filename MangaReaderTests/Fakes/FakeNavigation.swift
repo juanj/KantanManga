@@ -8,14 +8,23 @@
 
 @testable import Kantan_Manga
 
-class FakeNavigation: Navigable {
-    var delegate: UINavigationControllerDelegate?
+class FakeNavigation: UIViewController, Navigable {
+    weak var delegate: UINavigationControllerDelegate?
     var viewControllers = [UIViewController]()
-    var presentedViewController: UIViewController?
+    override var presentedViewController: UIViewController? {
+        get {
+            return lastPresented
+        }
+        set {
+            lastPresented = newValue
+        }
+    }
     var navigationBarHidden = false
 
-    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-        presentedViewController = viewControllerToPresent
+    private var lastPresented: UIViewController?
+
+    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+        lastPresented = viewControllerToPresent
     }
 
     func popViewController(animated: Bool) -> UIViewController? {
@@ -31,11 +40,17 @@ class FakeNavigation: Navigable {
         self.viewControllers = viewControllers
     }
 
-    func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        presentedViewController = nil
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        lastPresented = nil
     }
 
     func setNavigationBarHidden(_ hidden: Bool, animated: Bool) {
         navigationBarHidden = hidden
+    }
+
+    func popToRootViewController(animated: Bool) -> [UIViewController]? {
+        let viewControllers = self.viewControllers
+        self.viewControllers = []
+        return viewControllers
     }
 }
