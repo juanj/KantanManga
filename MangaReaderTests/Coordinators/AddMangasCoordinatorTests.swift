@@ -125,4 +125,41 @@ class AddMangasCoordinatorTests: XCTestCase {
 
         XCTAssertNotNil(mockNavigation.presentedViewController as? UIDocumentPickerViewController)
     }
+
+    // MARK: SelectCollectionTableViewControllerDelegate
+    func testSelectCollection_withSelectCollectionTableViewControllerOnTheNavigationStack_popsViewController() {
+        let mockNavigation = FakeNavigation()
+        let stubCoreDataManager = InMemoryCoreDataManager()
+        let collection = stubCoreDataManager.insertCollection(name: "Test")!
+        let addMangasCoordinator = TestsFactories.createTestableAddMangasCoordinator()
+        addMangasCoordinator.presentableNavigable = mockNavigation
+
+        let selectCollectionView = SelectCollectionTableViewController(delegate: FakeSelectCollectionTableViewControllerDelegate(), collections: [collection])
+        mockNavigation.pushViewController(selectCollectionView, animated: false)
+        addMangasCoordinator.selectCollection(selectCollectionView, collection: collection)
+
+        XCTAssertEqual(mockNavigation.viewControllers.count, 0)
+    }
+
+    func testAddCollection_withSelectCollectionTableViewControllerOnTheNavigationStack_popsViewController() {
+        let mockNavigation = FakeNavigation()
+        let addMangasCoordinator = TestsFactories.createTestableAddMangasCoordinator()
+        addMangasCoordinator.presentableNavigable = mockNavigation
+
+        let selectCollectionView = SelectCollectionTableViewController(delegate: FakeSelectCollectionTableViewControllerDelegate(), collections: [])
+        mockNavigation.pushViewController(selectCollectionView, animated: false)
+        addMangasCoordinator.addCollection(selectCollectionView, name: "Test")
+
+        XCTAssertEqual(mockNavigation.viewControllers.count, 0)
+    }
+
+    func testAddCollection_with0createdCollections_createsCollection() {
+        let mockCoreDataManager = InMemoryCoreDataManager()
+        let addMangasCoordinator = TestsFactories.createAddMangasCoordinator(coreDataManager: mockCoreDataManager)
+
+        let selectCollectionView = SelectCollectionTableViewController(delegate: FakeSelectCollectionTableViewControllerDelegate(), collections: [])
+        addMangasCoordinator.addCollection(selectCollectionView, name: "Test")
+
+        XCTAssertEqual(mockCoreDataManager.fetchAllCollections()?.count, 1)
+    }
 }
