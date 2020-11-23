@@ -116,7 +116,7 @@ class AddMangasCoordinatorTests: XCTestCase {
         XCTAssertNotNil(mockNavigation.viewControllers.last as? WebServerViewController)
     }
 
-    func testFileSourceViewControllerDelegateOpenLocalFiles_withEmptyNavigation_pushesUIDocumentPickerViewController() {
+    func testFileSourceViewControllerDelegateOpenLocalFiles_withEmptyNavigation_presentsUIDocumentPickerViewController() {
         let mockNavigation = FakeNavigation()
         let addMangaCoordinator = TestsFactories.createTestableAddMangasCoordinator()
         addMangaCoordinator.presentableNavigable = mockNavigation
