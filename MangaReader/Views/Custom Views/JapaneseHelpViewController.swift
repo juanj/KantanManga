@@ -19,7 +19,7 @@ class JapaneseHelpViewController: UIViewController {
     private weak var delegate: JapaneseHelpViewControllerDelegate?
 
     private var dictView = DictionaryView(maxHeight: 500)
-    private var parsedInputView: ParsedInputField!
+    private lazy var parsedInputView: ParsedInputField = ParsedInputField(delegate: self)
 
     init(delegate: JapaneseHelpViewControllerDelegate) {
         self.delegate = delegate
@@ -36,7 +36,6 @@ class JapaneseHelpViewController: UIViewController {
     }
 
     private func setupView() {
-        parsedInputView = ParsedInputField(delegate: self)
         parsedInputView.translatesAutoresizingMaskIntoConstraints = false
         dictView.translatesAutoresizingMaskIntoConstraints = false
 

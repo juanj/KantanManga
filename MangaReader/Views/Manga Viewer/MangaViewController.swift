@@ -24,7 +24,7 @@ class MangaViewController: UIViewController {
 
     private var pageController: UIPageViewController!
     private var selectionView = SelectionView()
-    private var japaneseHelp: JapaneseHelpViewController!
+    private lazy var japaneseHelp: JapaneseHelpViewController = JapaneseHelpViewController(delegate: self)
     private var japaneseHelpBottomConstraint: NSLayoutConstraint!
     private let progressBar = UISlider()
     private var oldPageValue = 0
@@ -130,7 +130,6 @@ class MangaViewController: UIViewController {
     }
 
     private func configureJapaneseHelpView() {
-        japaneseHelp = JapaneseHelpViewController(delegate: self)
         japaneseHelp.view.translatesAutoresizingMaskIntoConstraints = false
         addChild(japaneseHelp)
         view.addSubview(japaneseHelp.view)
