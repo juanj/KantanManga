@@ -58,30 +58,30 @@ class AddMangasCoordinatorTests: XCTestCase {
 
     func testAddMangaViewControllerDelegateSave_withPreviouslySelectedPath_callsCreateMangaWith() {
         let mockCoreDataManager = FakeCoreDataManager()
-        let addMangaCoordinator = TestsFactories.createAddMangasCoordinator(coreDataManager: mockCoreDataManager)
-        addMangaCoordinator.webUploader(FakeUploadServer(), didUploadFileAtPath: "Test.cbz")
+        let addMangasCoordinator = TestsFactories.createAddMangasCoordinator(coreDataManager: mockCoreDataManager)
+        addMangasCoordinator.webUploader(FakeUploadServer(), didUploadFileAtPath: "Test.cbz")
 
-        addMangaCoordinator.save(AddMangaViewController(delegate: MockAddMangaViewControllerDelegate()), name: "Test")
+        addMangasCoordinator.save(AddMangaViewController(delegate: MockAddMangaViewControllerDelegate()), name: "Test")
 
         XCTAssertTrue(mockCoreDataManager.createMangaWithCalls.contains(where: { ($0["path"] as? String) == "Test.cbz" && ($0["name"] as? String) == "Test" }))
     }
 
     func testAddMangaViewControllerDelegateSelectManga_withEmptyNavigation_pushesFileSourceViewController() {
-        let addMangaCoordinator = TestsFactories.createTestableAddMangasCoordinator()
+        let addMangasCoordinator = TestsFactories.createTestableAddMangasCoordinator()
         let mockNavigation = FakeNavigation()
-        addMangaCoordinator.presentableNavigable = mockNavigation
+        addMangasCoordinator.presentableNavigable = mockNavigation
 
-        addMangaCoordinator.selectManga(AddMangaViewController(delegate: MockAddMangaViewControllerDelegate()))
+        addMangasCoordinator.selectManga(AddMangaViewController(delegate: MockAddMangaViewControllerDelegate()))
 
         XCTAssertNotNil(mockNavigation.viewControllers.first as? FileSourceViewController)
     }
 
     func testAddMangaViewControllerDelegateSelectCollection_withEmptyNavigation_pushesSelectCollectionTableViewController() {
-        let addMangaCoordinator = TestsFactories.createTestableAddMangasCoordinator()
+        let addMangasCoordinator = TestsFactories.createTestableAddMangasCoordinator()
         let mockNavigation = FakeNavigation()
-        addMangaCoordinator.presentableNavigable = mockNavigation
+        addMangasCoordinator.presentableNavigable = mockNavigation
 
-        addMangaCoordinator.selectCollection(AddMangaViewController(delegate: MockAddMangaViewControllerDelegate()))
+        addMangasCoordinator.selectCollection(AddMangaViewController(delegate: MockAddMangaViewControllerDelegate()))
 
         XCTAssertNotNil(mockNavigation.viewControllers.first as? SelectCollectionTableViewController)
     }
@@ -89,9 +89,9 @@ class AddMangasCoordinatorTests: XCTestCase {
     // MARK: UIAdaptivePresentationControllerDelegate
     func testUIAdaptivePresentationControllerDelegatePresentationControllerDidDismiss_whilePresented_callsCancelOnDelegate() {
         let mockDelegate = FakeAddMangasCoordinatorDelegate()
-        let addMangaCoordinator = TestsFactories.createAddMangasCoordinator(delegate: mockDelegate)
+        let addMangasCoordinator = TestsFactories.createAddMangasCoordinator(delegate: mockDelegate)
 
-        addMangaCoordinator.presentationControllerDidDismiss(UIPresentationController(presentedViewController: UIViewController(), presenting: nil))
+        addMangasCoordinator.presentationControllerDidDismiss(UIPresentationController(presentedViewController: UIViewController(), presenting: nil))
 
         XCTAssertTrue(mockDelegate.cancelCalled)
     }
@@ -99,29 +99,29 @@ class AddMangasCoordinatorTests: XCTestCase {
     // MARK: FileSourceViewControllerDelegate
     func testFileSourceViewControllerDelegateOpenWebServer_withStopedWebServer_startsWebServer() {
         let mockUploadServer = FakeUploadServer()
-        let addMangaCoordinator = TestsFactories.createAddMangasCoordinator(uploadServer: mockUploadServer)
+        let addMangasCoordinator = TestsFactories.createAddMangasCoordinator(uploadServer: mockUploadServer)
 
-        addMangaCoordinator.openWebServer(FileSourceViewController(delegate: FakeFileSourceViewControllerDelegate()))
+        addMangasCoordinator.openWebServer(FileSourceViewController(delegate: FakeFileSourceViewControllerDelegate()))
 
         XCTAssertTrue(mockUploadServer.startCalled)
     }
 
     func testFileSourceViewControllerDelegateOpenWebServer_withEmptyNavigation_pushesWebServerViewController() {
         let mockNavigation = FakeNavigation()
-        let addMangaCoordinator = TestsFactories.createTestableAddMangasCoordinator()
-        addMangaCoordinator.presentableNavigable = mockNavigation
+        let addMangasCoordinator = TestsFactories.createTestableAddMangasCoordinator()
+        addMangasCoordinator.presentableNavigable = mockNavigation
 
-        addMangaCoordinator.openWebServer(FileSourceViewController(delegate: FakeFileSourceViewControllerDelegate()))
+        addMangasCoordinator.openWebServer(FileSourceViewController(delegate: FakeFileSourceViewControllerDelegate()))
 
         XCTAssertNotNil(mockNavigation.viewControllers.last as? WebServerViewController)
     }
 
     func testFileSourceViewControllerDelegateOpenLocalFiles_withEmptyNavigation_presentsUIDocumentPickerViewController() {
         let mockNavigation = FakeNavigation()
-        let addMangaCoordinator = TestsFactories.createTestableAddMangasCoordinator()
-        addMangaCoordinator.presentableNavigable = mockNavigation
+        let addMangasCoordinator = TestsFactories.createTestableAddMangasCoordinator()
+        addMangasCoordinator.presentableNavigable = mockNavigation
 
-        addMangaCoordinator.openLocalFiles(FileSourceViewController(delegate: FakeFileSourceViewControllerDelegate()))
+        addMangasCoordinator.openLocalFiles(FileSourceViewController(delegate: FakeFileSourceViewControllerDelegate()))
 
         XCTAssertNotNil(mockNavigation.presentedViewController as? UIDocumentPickerViewController)
     }
