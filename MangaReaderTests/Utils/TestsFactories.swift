@@ -23,10 +23,14 @@ final class TestsFactories {
         return addMangasCoordinator
     }
 
-    static func createViewMangaCoordinator() -> ViewMangaCoordinator {
-        let inMemoryCoreDataManager = InMemoryCoreDataManager()
-        let manga = inMemoryCoreDataManager.insertManga(name: "Test", coverData: Data(), totalPages: 0, filePath: "")!
-        let viewMangaCoordinator = ViewMangaCoordinator(navigation: FakeNavigation(), coreDataManager: inMemoryCoreDataManager, manga: manga, delegate: FakeViewMangaCoordinatorDelegate(), originFrame: .zero, ocr: FakeImageOcr())
+    static func createViewMangaCoordinator(navigable: Navigable = FakeNavigation(), coreDataManager: CoreDataManageable = InMemoryCoreDataManager(), manga: Manga? = nil, delegate: ViewMangaCoordinatorDelegate = FakeViewMangaCoordinatorDelegate(), ocr: ImageOCR = FakeImageOcr()) -> ViewMangaCoordinator {
+        let aManga: Manga
+        if let manga = manga {
+            aManga = manga
+        } else {
+            aManga = coreDataManager.insertManga(name: "Test", coverData: Data(), totalPages: 0, filePath: "", collection: nil)!
+        }
+        let viewMangaCoordinator = ViewMangaCoordinator(navigation: navigable, coreDataManager: coreDataManager, manga: aManga, delegate: delegate, originFrame: .zero, ocr: ocr)
 
         return viewMangaCoordinator
     }
@@ -34,5 +38,25 @@ final class TestsFactories {
     static func createCollectionViewController() -> CollectionViewController {
         let collectionViewController = FakeCollectionViewController(delegate: FakeCollectionViewControllerDelgate(), collection: EmptyMangaCollection(mangas: []), sourcePoint: .zero, initialRotations: [])
         return collectionViewController
+    }
+
+    static func createMangaViewController(manga: Manga? = nil, dataSource: MangaDataSource? = nil, delegate: MangaViewControllerDelegate = FakeMangaViewControllerDelegate(), firstTime: Bool = false) -> MangaViewController {
+        let aManga: Manga
+        if let manga = manga {
+            aManga = manga
+        } else {
+            let inMemoryCoreDataManager = InMemoryCoreDataManager()
+            aManga = inMemoryCoreDataManager.insertManga(name: "Test", coverData: Data(), totalPages: 0, filePath: "")!
+        }
+
+        let aDataSource: MangaDataSource
+        if let dataSource = dataSource {
+            aDataSource = dataSource
+        } else {
+            aDataSource = MangaDataSource(manga: aManga, readerBuilder: { $1(FakeReader(fileName: $0)) })!
+        }
+
+        let mangaViewController = MangaViewController(manga: aManga, dataSource: aDataSource, delegate: delegate, firstTime: firstTime)
+        return mangaViewController
     }
 }

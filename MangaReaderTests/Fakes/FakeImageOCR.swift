@@ -8,5 +8,9 @@
 @testable import Kantan_Manga
 
 class FakeImageOcr: ImageOCR {
-    func recognize(image: UIImage, _ callback: @escaping (Result<String, Error>) -> Void) {}
+    var recognizeCalls = [UIImage]()
+    func recognize(image: UIImage, _ callback: @escaping (Result<String, Error>) -> Void) {
+        recognizeCalls.append(image)
+        callback(.success("Test"))
+    }
 }

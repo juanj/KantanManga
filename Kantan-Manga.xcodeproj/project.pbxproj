@@ -90,6 +90,7 @@
 		3273008A2561EAD9009854EE /* BoolExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327300892561EAD9009854EE /* BoolExtensionTests.swift */; };
 		3273008F2561EBCF009854EE /* CGSizeExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3273008E2561EBCF009854EE /* CGSizeExtensionTests.swift */; };
 		327300942561EF6A009854EE /* UIViewExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327300932561EF6A009854EE /* UIViewExtensionTests.swift */; };
+		327A8F55256BFC4900BB778E /* FakeMangaViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A8F54256BFC4900BB778E /* FakeMangaViewControllerDelegate.swift */; };
 		327BC9EE255C2AA400521574 /* demo1.cbz in Resources */ = {isa = PBXBuildFile; fileRef = 3232F32325276DED00DA77B8 /* demo1.cbz */; };
 		3283D1012552069700C08D02 /* ToggleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3283D0FF2552069700C08D02 /* ToggleTableViewCell.swift */; };
 		3283D1022552069700C08D02 /* ToggleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3283D1002552069700C08D02 /* ToggleTableViewCell.xib */; };
@@ -119,7 +120,6 @@
 		32B67064252E09FF00F89D7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32B67063252E09FE00F89D7A /* GoogleService-Info.plist */; };
 		32C1EEF32539DE04001F59A0 /* FocusOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1EEF22539DE04001F59A0 /* FocusOverlayView.swift */; };
 		32C3512F24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C3512E24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift */; };
-		32C351332484645700D1EB42 /* MockOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C351322484645700D1EB42 /* MockOCR.swift */; };
 		32C49CD725168A0F000A9607 /* OpenCollectionAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */; };
 		32E322182481A531007BC017 /* ParsedInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E322152481A531007BC017 /* ParsedInputField.swift */; };
 		32E3221C2481A67D007BC017 /* JapaneseHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */; };
@@ -304,6 +304,7 @@
 		327300892561EAD9009854EE /* BoolExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolExtensionTests.swift; sourceTree = "<group>"; };
 		3273008E2561EBCF009854EE /* CGSizeExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGSizeExtensionTests.swift; sourceTree = "<group>"; };
 		327300932561EF6A009854EE /* UIViewExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensionTests.swift; sourceTree = "<group>"; };
+		327A8F54256BFC4900BB778E /* FakeMangaViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMangaViewControllerDelegate.swift; sourceTree = "<group>"; };
 		3283D0FF2552069700C08D02 /* ToggleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleTableViewCell.swift; sourceTree = "<group>"; };
 		3283D1002552069700C08D02 /* ToggleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToggleTableViewCell.xib; sourceTree = "<group>"; };
 		32892C0823E39FBC000B1C3E /* AddMangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMangaViewController.swift; sourceTree = "<group>"; };
@@ -330,7 +331,6 @@
 		32B67063252E09FE00F89D7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		32C1EEF22539DE04001F59A0 /* FocusOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusOverlayView.swift; sourceTree = "<group>"; };
 		32C3512E24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeViewMangaCoordinatorDelegate.swift; sourceTree = "<group>"; };
-		32C351322484645700D1EB42 /* MockOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOCR.swift; sourceTree = "<group>"; };
 		32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCollectionAnimationController.swift; sourceTree = "<group>"; };
 		32E322152481A531007BC017 /* ParsedInputField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsedInputField.swift; sourceTree = "<group>"; };
 		32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseHelpViewController.swift; sourceTree = "<group>"; };
@@ -438,7 +438,6 @@
 			isa = PBXGroup;
 			children = (
 				320ED4DC2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift */,
-				32C351322484645700D1EB42 /* MockOCR.swift */,
 			);
 			path = "Mock Classes";
 			sourceTree = "<group>";
@@ -705,6 +704,7 @@
 				3219C2AE25110E2900915DE1 /* FakeCollectionViewControllerDelgate.swift */,
 				326D4F9825671257001B70AC /* FakeSelectCollectionTableViewControllerDelegate.swift */,
 				32345A61256B3EC800C495F2 /* FakeFileSourceViewControllerDelegate.swift */,
+				327A8F54256BFC4900BB778E /* FakeMangaViewControllerDelegate.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -1319,6 +1319,7 @@
 				32F998BD25574C6C00897299 /* AddMangasCoordinatorTests.swift in Sources */,
 				327300942561EF6A009854EE /* UIViewExtensionTests.swift in Sources */,
 				320ED4D924831D2900F5BECF /* FakeUploadServer.swift in Sources */,
+				327A8F55256BFC4900BB778E /* FakeMangaViewControllerDelegate.swift in Sources */,
 				327300842561E8AB009854EE /* StringExtensionTests.swift in Sources */,
 				3219C2B02511103600915DE1 /* FakeCollectionViewControllerDelgate.swift in Sources */,
 				326857DF2569CF9D000B0C83 /* TestableAddMangasCoordinator.swift in Sources */,
@@ -1340,7 +1341,6 @@
 				32F998C125574C8E00897299 /* ViewMangaCoordinatorTests.swift in Sources */,
 				32A110D22558609B0099A768 /* FakeImageOCR.swift in Sources */,
 				84A831FF221D90CC00CEE1C9 /* CoreDataManagerTests.swift in Sources */,
-				32C351332484645700D1EB42 /* MockOCR.swift in Sources */,
 				32194C9D256317A4007539B1 /* FakeReader.swift in Sources */,
 				3219C2B22511103A00915DE1 /* FakeCollectionViewController.swift in Sources */,
 				320ED4DB248326F300F5BECF /* FakeAddMangasCoordinatorDelegate.swift in Sources */,
