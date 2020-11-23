@@ -39,6 +39,7 @@
 		32326F892435613E00FCE8E5 /* cbz.svg in Resources */ = {isa = PBXBuildFile; fileRef = 32326F882435613E00FCE8E5 /* cbz.svg */; };
 		32326F8D243566FD00FCE8E5 /* cbz.png in Resources */ = {isa = PBXBuildFile; fileRef = 32326F8C243566FD00FCE8E5 /* cbz.png */; };
 		3232F32525276DED00DA77B8 /* demo1.cbz in Resources */ = {isa = PBXBuildFile; fileRef = 3232F32325276DED00DA77B8 /* demo1.cbz */; };
+		32345A62256B3EC800C495F2 /* FakeFileSourceViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32345A61256B3EC800C495F2 /* FakeFileSourceViewControllerDelegate.swift */; };
 		32350AA8247C723C002D100D /* WordParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32350AA7247C723C002D100D /* WordParser.swift */; };
 		3238DF3A24D7840200DE8782 /* WordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3238DF3924D7840200DE8782 /* WordButton.swift */; };
 		3239C5B9254DD06500EFB39A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3239C5B8254DD06500EFB39A /* Settings.bundle */; };
@@ -253,6 +254,7 @@
 		32326F882435613E00FCE8E5 /* cbz.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cbz.svg; sourceTree = "<group>"; };
 		32326F8C243566FD00FCE8E5 /* cbz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cbz.png; sourceTree = "<group>"; };
 		3232F32325276DED00DA77B8 /* demo1.cbz */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo1.cbz; sourceTree = "<group>"; };
+		32345A61256B3EC800C495F2 /* FakeFileSourceViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeFileSourceViewControllerDelegate.swift; sourceTree = "<group>"; };
 		32350AA7247C723C002D100D /* WordParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordParser.swift; sourceTree = "<group>"; };
 		3238DF3924D7840200DE8782 /* WordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordButton.swift; sourceTree = "<group>"; };
 		3239C5B8254DD06500EFB39A /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -702,6 +704,7 @@
 				3219DC0325641F8100E2FB3D /* FakeCollectionView.swift */,
 				3219C2AE25110E2900915DE1 /* FakeCollectionViewControllerDelgate.swift */,
 				326D4F9825671257001B70AC /* FakeSelectCollectionTableViewControllerDelegate.swift */,
+				32345A61256B3EC800C495F2 /* FakeFileSourceViewControllerDelegate.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -1341,6 +1344,7 @@
 				32194C9D256317A4007539B1 /* FakeReader.swift in Sources */,
 				3219C2B22511103A00915DE1 /* FakeCollectionViewController.swift in Sources */,
 				320ED4DB248326F300F5BECF /* FakeAddMangasCoordinatorDelegate.swift in Sources */,
+				32345A62256B3EC800C495F2 /* FakeFileSourceViewControllerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

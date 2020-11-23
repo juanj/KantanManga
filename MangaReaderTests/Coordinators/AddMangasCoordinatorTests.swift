@@ -85,4 +85,44 @@ class AddMangasCoordinatorTests: XCTestCase {
 
         XCTAssertNotNil(mockNavigation.viewControllers.first as? SelectCollectionTableViewController)
     }
+
+    // MARK: UIAdaptivePresentationControllerDelegate
+    func testUIAdaptivePresentationControllerDelegatePresentationControllerDidDismiss_whilePresented_callsCancelOnDelegate() {
+        let mockDelegate = FakeAddMangasCoordinatorDelegate()
+        let addMangaCoordinator = TestsFactories.createAddMangasCoordinator(delegate: mockDelegate)
+
+        addMangaCoordinator.presentationControllerDidDismiss(UIPresentationController(presentedViewController: UIViewController(), presenting: nil))
+
+        XCTAssertTrue(mockDelegate.cancelCalled)
+    }
+
+    // MARK: FileSourceViewControllerDelegate
+    func testFileSourceViewControllerDelegateOpenWebServer_withStopedWebServer_startsWebServer() {
+        let mockUploadServer = FakeUploadServer()
+        let addMangaCoordinator = TestsFactories.createAddMangasCoordinator(uploadServer: mockUploadServer)
+
+        addMangaCoordinator.openWebServer(FileSourceViewController(delegate: FakeFileSourceViewControllerDelegate()))
+
+        XCTAssertTrue(mockUploadServer.startCalled)
+    }
+
+    func testFileSourceViewControllerDelegateOpenWebServer_withEmptyNavigation_pushesWebServerViewController() {
+        let mockNavigation = FakeNavigation()
+        let addMangaCoordinator = TestsFactories.createTestableAddMangasCoordinator()
+        addMangaCoordinator.presentableNavigable = mockNavigation
+
+        addMangaCoordinator.openWebServer(FileSourceViewController(delegate: FakeFileSourceViewControllerDelegate()))
+
+        XCTAssertNotNil(mockNavigation.viewControllers.last as? WebServerViewController)
+    }
+
+    func testFileSourceViewControllerDelegateOpenLocalFiles_withEmptyNavigation_pushesUIDocumentPickerViewController() {
+        let mockNavigation = FakeNavigation()
+        let addMangaCoordinator = TestsFactories.createTestableAddMangasCoordinator()
+        addMangaCoordinator.presentableNavigable = mockNavigation
+
+        addMangaCoordinator.openLocalFiles(FileSourceViewController(delegate: FakeFileSourceViewControllerDelegate()))
+
+        XCTAssertNotNil(mockNavigation.presentedViewController as? UIDocumentPickerViewController)
+    }
 }
