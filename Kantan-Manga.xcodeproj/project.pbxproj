@@ -60,6 +60,8 @@
 		324BB99824983DF7006241E8 /* dicrc in Resources */ = {isa = PBXBuildFile; fileRef = 324BB98F24983DF7006241E8 /* dicrc */; };
 		324BB99924983DF7006241E8 /* right-id.def in Resources */ = {isa = PBXBuildFile; fileRef = 324BB99024983DF7006241E8 /* right-id.def */; };
 		324BB99A24983DF7006241E8 /* char.bin in Resources */ = {isa = PBXBuildFile; fileRef = 324BB99124983DF7006241E8 /* char.bin */; };
+		3250E89B256D54E000CBFA37 /* FakeViewerSettingsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3250E89A256D54E000CBFA37 /* FakeViewerSettingsViewControllerDelegate.swift */; };
+		3250E8A1256D568100CBFA37 /* TestableViewMangaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3250E8A0256D568100CBFA37 /* TestableViewMangaCoordinator.swift */; };
 		325199B42479D96400DA6908 /* ImageOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325199B32479D96400DA6908 /* ImageOCR.swift */; };
 		325199B72479D9E000DA6908 /* GoogleVisionOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325199B62479D9E000DA6908 /* GoogleVisionOCR.swift */; };
 		325199BB2479DE0D00DA6908 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 325199B92479DE0D00DA6908 /* tessdata */; };
@@ -274,6 +276,8 @@
 		324BB98F24983DF7006241E8 /* dicrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dicrc; sourceTree = "<group>"; };
 		324BB99024983DF7006241E8 /* right-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "right-id.def"; sourceTree = "<group>"; };
 		324BB99124983DF7006241E8 /* char.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = char.bin; sourceTree = "<group>"; };
+		3250E89A256D54E000CBFA37 /* FakeViewerSettingsViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeViewerSettingsViewControllerDelegate.swift; sourceTree = "<group>"; };
+		3250E8A0256D568100CBFA37 /* TestableViewMangaCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableViewMangaCoordinator.swift; sourceTree = "<group>"; };
 		325199B32479D96400DA6908 /* ImageOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOCR.swift; sourceTree = "<group>"; };
 		325199B62479D9E000DA6908 /* GoogleVisionOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleVisionOCR.swift; sourceTree = "<group>"; };
 		325199B92479DE0D00DA6908 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
@@ -552,6 +556,7 @@
 			isa = PBXGroup;
 			children = (
 				326857DE2569CF9D000B0C83 /* TestableAddMangasCoordinator.swift */,
+				3250E8A0256D568100CBFA37 /* TestableViewMangaCoordinator.swift */,
 			);
 			path = Testables;
 			sourceTree = "<group>";
@@ -705,6 +710,7 @@
 				326D4F9825671257001B70AC /* FakeSelectCollectionTableViewControllerDelegate.swift */,
 				32345A61256B3EC800C495F2 /* FakeFileSourceViewControllerDelegate.swift */,
 				327A8F54256BFC4900BB778E /* FakeMangaViewControllerDelegate.swift */,
+				3250E89A256D54E000CBFA37 /* FakeViewerSettingsViewControllerDelegate.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -1337,12 +1343,14 @@
 				32A110BC255859970099A768 /* FakeCoreDataManager.swift in Sources */,
 				3219DC0425641F8100E2FB3D /* FakeCollectionView.swift in Sources */,
 				320ED4DD2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift in Sources */,
+				3250E89B256D54E000CBFA37 /* FakeViewerSettingsViewControllerDelegate.swift in Sources */,
 				32C3512F24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift in Sources */,
 				32F998C125574C8E00897299 /* ViewMangaCoordinatorTests.swift in Sources */,
 				32A110D22558609B0099A768 /* FakeImageOCR.swift in Sources */,
 				84A831FF221D90CC00CEE1C9 /* CoreDataManagerTests.swift in Sources */,
 				32194C9D256317A4007539B1 /* FakeReader.swift in Sources */,
 				3219C2B22511103A00915DE1 /* FakeCollectionViewController.swift in Sources */,
+				3250E8A1256D568100CBFA37 /* TestableViewMangaCoordinator.swift in Sources */,
 				320ED4DB248326F300F5BECF /* FakeAddMangasCoordinatorDelegate.swift in Sources */,
 				32345A62256B3EC800C495F2 /* FakeFileSourceViewControllerDelegate.swift in Sources */,
 			);

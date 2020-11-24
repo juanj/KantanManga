@@ -78,4 +78,70 @@ class ViewMangaCoordinatorTests: XCTestCase {
 
         XCTAssertEqual(mockCoreDataManager.fetchAllMangas()?.first?.currentPage, 5)
     }
+
+    // MARK: UINavigationControllerDelegate
+    func testUINavigationControllerDelegateAnimationControllerFor_fromCollectionViewController_isOpenMangaAnimationController() {
+        let viewMangaCoordinator = TestsFactories.createViewMangaCoordinator()
+
+        let animationController = viewMangaCoordinator.navigationController(UINavigationController(), animationControllerFor: .push, from: FakeCollectionViewController(delegate: FakeCollectionViewControllerDelgate(), collection: EmptyMangaCollection(mangas: []), sourcePoint: .zero, initialRotations: []), to: UIViewController())
+
+        XCTAssertNotNil(animationController as? OpenMangaAnimationController)
+    }
+
+    func testUINavigationControllerDelegateAnimationControllerFor_fromGenericViewcontroller_isNill() {
+        let viewMangaCoordinator = TestsFactories.createViewMangaCoordinator()
+
+        let animationController = viewMangaCoordinator.navigationController(UINavigationController(), animationControllerFor: .push, from: UIViewController(), to: UIViewController())
+
+        XCTAssertNil(animationController)
+    }
+
+    // MARK: ViewerSettingsViewControllerDelegate
+    func testViewerSettingsViewControllerDelegateUpdatePagesSetting_withDoublePagedTrue_forcesToggleModeOnDataSource() {
+        let stubCoreDataManager = InMemoryCoreDataManager()
+        let manga = stubCoreDataManager.insertManga(name: "Test", coverData: Data(), totalPages: 0, filePath: "")!
+        let mockDataSource = MangaDataSource(manga: manga, readerBuilder: { $1(FakeReader(fileName: $0)) })!
+        let viewMangaCoordinator = TestsFactories.createTestableViewMangaCoordinator(mangaDataSource: mockDataSource)
+
+        mockDataSource.forceToggleMode = false
+        viewMangaCoordinator.updatePagesSetting(ViewerSettingsViewController(settings: [], delegate: FakeViewerSettingsViewControllerDelegate()), setting: .doublePaged(true), newValue: .bool(value: true))
+
+        XCTAssertTrue(mockDataSource.forceToggleMode)
+    }
+
+    func testViewerSettingsViewControllerDelegateUpdatePagesSetting_withOffsetByOneTrue_setsPagesOffsetTrue() {
+        let stubCoreDataManager = InMemoryCoreDataManager()
+        let manga = stubCoreDataManager.insertManga(name: "Test", coverData: Data(), totalPages: 0, filePath: "")!
+        let mockDataSource = MangaDataSource(manga: manga, readerBuilder: { $1(FakeReader(fileName: $0)) })!
+        let viewMangaCoordinator = TestsFactories.createTestableViewMangaCoordinator(mangaDataSource: mockDataSource)
+
+        mockDataSource.pagesOffset = false
+        viewMangaCoordinator.updatePagesSetting(ViewerSettingsViewController(settings: [], delegate: FakeViewerSettingsViewControllerDelegate()), setting: .offsetByOne(true), newValue: .bool(value: true))
+
+        XCTAssertTrue(mockDataSource.pagesOffset)
+    }
+
+    func testViewerSettingsViewControllerDelegateUpdatePageNumbersSetting_withPageOffset10_setsPageTextOffset10() {
+        let stubCoreDataManager = InMemoryCoreDataManager()
+        let manga = stubCoreDataManager.insertManga(name: "Test", coverData: Data(), totalPages: 0, filePath: "")!
+        let mockDataSource = MangaDataSource(manga: manga, readerBuilder: { $1(FakeReader(fileName: $0)) })!
+        let viewMangaCoordinator = TestsFactories.createTestableViewMangaCoordinator(mangaDataSource: mockDataSource)
+
+        mockDataSource.pageTextOffset = 0
+        viewMangaCoordinator.updatePageNumbersSetting(ViewerSettingsViewController(settings: [], delegate: FakeViewerSettingsViewControllerDelegate()), setting: .offsetPageNumbesr(10), newValue: .number(value: 10))
+
+        XCTAssertEqual(mockDataSource.pageTextOffset, 10)
+    }
+
+    func testViewerSettingsViewControllerDelegateUpdatePageNumbersSetting_withHidePageNumbersTrue_setshHidePageLabelTrue() {
+        let stubCoreDataManager = InMemoryCoreDataManager()
+        let manga = stubCoreDataManager.insertManga(name: "Test", coverData: Data(), totalPages: 0, filePath: "")!
+        let mockDataSource = MangaDataSource(manga: manga, readerBuilder: { $1(FakeReader(fileName: $0)) })!
+        let viewMangaCoordinator = TestsFactories.createTestableViewMangaCoordinator(mangaDataSource: mockDataSource)
+
+        mockDataSource.hidePageLabel = false
+        viewMangaCoordinator.updatePageNumbersSetting(ViewerSettingsViewController(settings: [], delegate: FakeViewerSettingsViewControllerDelegate()), setting: .hidePageNumbers(true), newValue: .bool(value: true))
+
+        XCTAssertTrue(mockDataSource.hidePageLabel)
+    }
 }

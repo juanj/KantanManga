@@ -33,7 +33,8 @@ class ViewMangaCoordinator: NSObject, Coordinator {
         self.delegate = delegate
         self.originFrame = originFrame
         self.ocr = ocr
-        mangaDataSource = MangaDataSource(manga: manga, readerBuilder: { (path, completion) in
+        super.init()
+        mangaDataSource = createMangaDataSource(manga: manga, readerBuilder: { (path, completion) in
             DispatchQueue.global(qos: .userInitiated).async {
                 do {
                     let reader: Reader
@@ -61,6 +62,10 @@ class ViewMangaCoordinator: NSObject, Coordinator {
         navigation.setNavigationBarHidden(true, animated: false)
         navigation.pushViewController(mangaViewController, animated: true)
         self.mangaViewController = mangaViewController
+    }
+
+    func createMangaDataSource(manga: Manga, readerBuilder: (String, @escaping (Reader) -> Void) -> Void) -> MangaDataSource? {
+        MangaDataSource(manga: manga, readerBuilder: readerBuilder)
     }
 }
 

@@ -35,6 +35,18 @@ final class TestsFactories {
         return viewMangaCoordinator
     }
 
+    static func createTestableViewMangaCoordinator(navigable: Navigable = FakeNavigation(), coreDataManager: CoreDataManageable = InMemoryCoreDataManager(), manga: Manga? = nil, delegate: ViewMangaCoordinatorDelegate = FakeViewMangaCoordinatorDelegate(), ocr: ImageOCR = FakeImageOcr(), mangaDataSource: MangaDataSource? = nil) -> TestableViewMangaCoordinator {
+        let aManga: Manga
+        if let manga = manga {
+            aManga = manga
+        } else {
+            aManga = coreDataManager.insertManga(name: "Test", coverData: Data(), totalPages: 0, filePath: "", collection: nil)!
+        }
+        let viewMangaCoordinator = TestableViewMangaCoordinator(navigation: navigable, coreDataManager: coreDataManager, manga: aManga, delegate: delegate, originFrame: .zero, ocr: ocr, mangaDataSource: mangaDataSource)
+
+        return viewMangaCoordinator
+    }
+
     static func createCollectionViewController() -> CollectionViewController {
         let collectionViewController = FakeCollectionViewController(delegate: FakeCollectionViewControllerDelgate(), collection: EmptyMangaCollection(mangas: []), sourcePoint: .zero, initialRotations: [])
         return collectionViewController

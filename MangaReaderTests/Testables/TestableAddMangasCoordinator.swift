@@ -10,6 +10,10 @@
 class TestableAddMangasCoordinator: AddMangasCoordinator {
     var presentableNavigable: Navigable?
     override func createPresentableNavigation() -> Navigable {
-        return presentableNavigable ?? FakeNavigation()
+        if let navigation = presentableNavigable {
+            return navigation
+        } else {
+            return super.createPresentableNavigation()
+        }
     }
 }
