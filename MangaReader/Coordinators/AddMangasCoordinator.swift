@@ -38,9 +38,8 @@ class AddMangasCoordinator: NSObject, Coordinator {
 
     func start() {
         let addMangaView = AddMangaViewController(delegate: self)
-        let presentedNavigation = createPresentableNavigation()
-        presentedNavigation.setViewControllers([addMangaView], animated: false)
-        navigation.present(presentedNavigation, animated: true, completion: nil)
+        presentedNavigationController.setViewControllers([addMangaView], animated: false)
+        navigation.present(presentedNavigationController, animated: true, completion: nil)
 
         addMangaViewController = addMangaView
     }
