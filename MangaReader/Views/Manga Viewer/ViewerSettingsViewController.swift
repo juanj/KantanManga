@@ -10,6 +10,7 @@ import UIKit
 protocol ViewerSettingsViewControllerDelegate: AnyObject {
     func updatePagesSetting(_ viewerSettingsViewController: ViewerSettingsViewController, setting: ViewerPagesSettings, newValue: SettingValue)
     func updatePageNumbersSetting(_ viewerSettingsViewController: ViewerSettingsViewController, setting: ViewerPageNumberSettings, newValue: SettingValue)
+    func didSelectDone(_ viewerSettingsViewController: ViewerSettingsViewController)
 }
 
 class ViewerSettingsViewController: UIViewController {
@@ -29,11 +30,20 @@ class ViewerSettingsViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        title = "Viewer Settings"
+        configureNavBar()
         settingsTableView.register(UINib(nibName: "ToggleTableViewCell", bundle: nil), forCellReuseIdentifier: "toggleSettingsCell")
         settingsTableView.register(UINib(nibName: "NumberTableViewCell", bundle: nil), forCellReuseIdentifier: "numberSettingsCell")
         settingsTableView.dataSource = self
         settingsTableView.allowsSelection = false
+    }
+
+    private func configureNavBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+        title = "Viewer Settings"
+    }
+
+    @objc func done() {
+        delegate?.didSelectDone(self)
     }
 }
 

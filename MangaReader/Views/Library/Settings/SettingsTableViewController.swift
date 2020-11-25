@@ -12,6 +12,7 @@ protocol SettingsTableViewControllerDelegate: AnyObject {
     func didSelectAbout(_ settingsTableViewController: SettingsTableViewController)
     func didSelectLoadDemo(_ settingsTableViewController: SettingsTableViewController)
     func didSelectAcknowledgments(_ settingsTableViewController: SettingsTableViewController)
+    func didSelectClose(_ settingsTableViewController: SettingsTableViewController)
 }
 
 class SettingsTableViewController: UITableViewController {
@@ -39,7 +40,7 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Settings"
+        configureNavBar()
         configureTableView()
         configureActivityIndicator()
     }
@@ -54,6 +55,11 @@ class SettingsTableViewController: UITableViewController {
         activityIndicator.stopAnimating()
     }
 
+    private func configureNavBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(close))
+        title = "Settings"
+    }
+
     private func configureTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SettingsCell")
         tableView.tableFooterView = UIView()
@@ -64,6 +70,10 @@ class SettingsTableViewController: UITableViewController {
         view.addSubview(activityIndicator)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.addCenterConstraintsTo(view)
+    }
+
+    @objc func close() {
+        delegate?.didSelectClose(self)
     }
 }
 

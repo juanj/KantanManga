@@ -157,4 +157,8 @@ extension ViewMangaCoordinator: ViewerSettingsViewControllerDelegate {
             mangaViewController?.reloadPageController()
         }
     }
+
+    func didSelectDone(_ viewerSettingsViewController: ViewerSettingsViewController) {
+        navigation.dismiss(animated: true, completion: nil)
+    }
 }

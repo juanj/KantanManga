@@ -55,4 +55,8 @@ extension SettingsCoordinator: SettingsTableViewControllerDelegate {
         hostingView.title = "Acknowledgments"
         presentedNavigationController.pushViewController(hostingView, animated: true)
     }
+
+    func didSelectClose(_ settingsTableViewController: SettingsTableViewController) {
+        navigation.dismiss(animated: true, completion: nil)
+    }
 }
