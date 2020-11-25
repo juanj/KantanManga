@@ -32,6 +32,7 @@ class SettingsCoordinator: Coordinator {
     }
 }
 
+// MARK: SettingsTableViewControllerDelegate
 extension SettingsCoordinator: SettingsTableViewControllerDelegate {
     func didSelectAbout(_ settingsTableViewController: SettingsTableViewController) {
         let hostingView = UIHostingController(rootView: AboutView())

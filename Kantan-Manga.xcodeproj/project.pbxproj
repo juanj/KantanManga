@@ -68,6 +68,9 @@
 		325199C42479E20700DA6908 /* TesseractOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325199C32479E20700DA6908 /* TesseractOCR.swift */; };
 		325199CA2479E9B900DA6908 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 325199B92479DE0D00DA6908 /* tessdata */; };
 		32537156253B843E005B8EC1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32537155253B843E005B8EC1 /* UIView+Extension.swift */; };
+		3257C018256F0E2200C4C702 /* SettingsCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3257C017256F0E2200C4C702 /* SettingsCoordinatorTests.swift */; };
+		3257C01E256F0F4700C4C702 /* FakeSettingsCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3257C01D256F0F4700C4C702 /* FakeSettingsCoordinatorDelegate.swift */; };
+		3257C023256F0FC000C4C702 /* FakeSettingsTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3257C022256F0FC000C4C702 /* FakeSettingsTableViewControllerDelegate.swift */; };
 		3259D1B423C4D9A2003BA7C2 /* FuriganaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */; };
 		325CFC1D2480582700110F31 /* DictionaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CFC1C2480582700110F31 /* DictionaryView.swift */; };
 		325CFC21248060AD00110F31 /* DictionaryEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CFC20248060AD00110F31 /* DictionaryEntryView.swift */; };
@@ -283,6 +286,9 @@
 		325199B92479DE0D00DA6908 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		325199C32479E20700DA6908 /* TesseractOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesseractOCR.swift; sourceTree = "<group>"; };
 		32537155253B843E005B8EC1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		3257C017256F0E2200C4C702 /* SettingsCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinatorTests.swift; sourceTree = "<group>"; };
+		3257C01D256F0F4700C4C702 /* FakeSettingsCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSettingsCoordinatorDelegate.swift; sourceTree = "<group>"; };
+		3257C022256F0FC000C4C702 /* FakeSettingsTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSettingsTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		3258141023C5051A00C31E02 /* mecabrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mecabrc; path = /Users/juanjosemeneses/Documents/MangaReader/mecabrc; sourceTree = "<absolute>"; };
 		3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuriganaUtils.swift; sourceTree = "<group>"; };
 		325CFC1C2480582700110F31 /* DictionaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryView.swift; sourceTree = "<group>"; };
@@ -688,6 +694,7 @@
 				32F998B825574C4C00897299 /* AppCoordinatorTests.swift */,
 				32F998BC25574C6C00897299 /* AddMangasCoordinatorTests.swift */,
 				32F998C025574C8E00897299 /* ViewMangaCoordinatorTests.swift */,
+				3257C017256F0E2200C4C702 /* SettingsCoordinatorTests.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -711,6 +718,8 @@
 				32345A61256B3EC800C495F2 /* FakeFileSourceViewControllerDelegate.swift */,
 				327A8F54256BFC4900BB778E /* FakeMangaViewControllerDelegate.swift */,
 				3250E89A256D54E000CBFA37 /* FakeViewerSettingsViewControllerDelegate.swift */,
+				3257C01D256F0F4700C4C702 /* FakeSettingsCoordinatorDelegate.swift */,
+				3257C022256F0FC000C4C702 /* FakeSettingsTableViewControllerDelegate.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -1322,7 +1331,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3257C01E256F0F4700C4C702 /* FakeSettingsCoordinatorDelegate.swift in Sources */,
 				32F998BD25574C6C00897299 /* AddMangasCoordinatorTests.swift in Sources */,
+				3257C018256F0E2200C4C702 /* SettingsCoordinatorTests.swift in Sources */,
 				327300942561EF6A009854EE /* UIViewExtensionTests.swift in Sources */,
 				320ED4D924831D2900F5BECF /* FakeUploadServer.swift in Sources */,
 				327A8F55256BFC4900BB778E /* FakeMangaViewControllerDelegate.swift in Sources */,
@@ -1338,6 +1349,7 @@
 				32194C9725630E27007539B1 /* MangaDataSourceTests.swift in Sources */,
 				32F998B925574C4C00897299 /* AppCoordinatorTests.swift in Sources */,
 				321C69A22562FA4E00296A1F /* FuriganaUtilsTests.swift in Sources */,
+				3257C023256F0FC000C4C702 /* FakeSettingsTableViewControllerDelegate.swift in Sources */,
 				320ED4D32483178C00F5BECF /* FakeLibraryViewControllerDelegate.swift in Sources */,
 				32A110B7255859860099A768 /* FakeLibraryViewController.swift in Sources */,
 				32A110BC255859970099A768 /* FakeCoreDataManager.swift in Sources */,

@@ -144,4 +144,14 @@ class ViewMangaCoordinatorTests: XCTestCase {
 
         XCTAssertTrue(mockDataSource.hidePageLabel)
     }
+
+    func testViewerSettingsViewControllerDelegateDidSelectDone_withPResentedViewController_dismissViewController() {
+        let mockNavigation = FakeNavigation()
+        let viewMangaCoordinator = TestsFactories.createViewMangaCoordinator(navigable: mockNavigation)
+
+        mockNavigation.present(UIViewController(), animated: false)
+        viewMangaCoordinator.didSelectDone(ViewerSettingsViewController(settings: [], delegate: FakeViewerSettingsViewControllerDelegate()))
+
+        XCTAssertNil(mockNavigation.presentedViewController)
+    }
 }

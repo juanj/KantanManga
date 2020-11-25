@@ -10,4 +10,5 @@
 class FakeViewerSettingsViewControllerDelegate: ViewerSettingsViewControllerDelegate {
     func updatePagesSetting(_ viewerSettingsViewController: ViewerSettingsViewController, setting: ViewerPagesSettings, newValue: SettingValue) {}
     func updatePageNumbersSetting(_ viewerSettingsViewController: ViewerSettingsViewController, setting: ViewerPageNumberSettings, newValue: SettingValue) {}
+    func didSelectDone(_ viewerSettingsViewController: ViewerSettingsViewController) {}
 }

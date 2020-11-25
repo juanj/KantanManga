@@ -8,6 +8,7 @@
 @testable import Kantan_Manga
 
 final class TestsFactories {
+    // MARK: Coordinators
     static func createAppCoordinator(navigable: Navigable = FakeNavigation(), coreDataManager: CoreDataManageable = InMemoryCoreDataManager()) -> AppCoordinator {
         let appCoordinator = AppCoordinator(navigation: navigable, coreDataManager: coreDataManager)
         return appCoordinator
@@ -47,6 +48,12 @@ final class TestsFactories {
         return viewMangaCoordinator
     }
 
+    static func createSettingsCoordinator(navigable: Navigable = FakeNavigation(), coreDataManager: CoreDataManageable = InMemoryCoreDataManager(), delegate: SettingsCoordinatorDelegate = FakeSettingsCoordinatorDelegate()) -> SettingsCoordinator {
+        let settingsCoordinator = SettingsCoordinator(navigation: navigable, coreDataManager: coreDataManager, delegate: delegate)
+        return settingsCoordinator
+    }
+
+    // MARK: ViewControllers
     static func createCollectionViewController() -> CollectionViewController {
         let collectionViewController = FakeCollectionViewController(delegate: FakeCollectionViewControllerDelgate(), collection: EmptyMangaCollection(mangas: []), sourcePoint: .zero, initialRotations: [])
         return collectionViewController
