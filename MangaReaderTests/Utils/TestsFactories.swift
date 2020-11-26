@@ -36,7 +36,7 @@ final class TestsFactories {
         return viewMangaCoordinator
     }
 
-    static func createTestableViewMangaCoordinator(navigable: Navigable = FakeNavigation(), coreDataManager: CoreDataManageable = InMemoryCoreDataManager(), manga: Manga? = nil, delegate: ViewMangaCoordinatorDelegate = FakeViewMangaCoordinatorDelegate(), ocr: ImageOCR = FakeImageOcr(), mangaDataSource: MangaDataSource? = nil) -> TestableViewMangaCoordinator {
+    static func createTestableViewMangaCoordinator(navigable: Navigable = FakeNavigation(), coreDataManager: CoreDataManageable = InMemoryCoreDataManager(), manga: Manga? = nil, delegate: ViewMangaCoordinatorDelegate = FakeViewMangaCoordinatorDelegate(), ocr: ImageOCR = FakeImageOcr(), mangaDataSource: MangaDataSourceable? = nil) -> TestableViewMangaCoordinator {
         let aManga: Manga
         if let manga = manga {
             aManga = manga
@@ -59,7 +59,7 @@ final class TestsFactories {
         return collectionViewController
     }
 
-    static func createMangaViewController(manga: Manga? = nil, dataSource: MangaDataSource? = nil, delegate: MangaViewControllerDelegate = FakeMangaViewControllerDelegate(), firstTime: Bool = false) -> MangaViewController {
+    static func createMangaViewController(manga: Manga? = nil, dataSource: MangaDataSourceable? = nil, delegate: MangaViewControllerDelegate = FakeMangaViewControllerDelegate(), firstTime: Bool = false) -> MangaViewController {
         let aManga: Manga
         if let manga = manga {
             aManga = manga
@@ -68,7 +68,7 @@ final class TestsFactories {
             aManga = inMemoryCoreDataManager.insertManga(name: "Test", coverData: Data(), totalPages: 0, filePath: "")!
         }
 
-        let aDataSource: MangaDataSource
+        let aDataSource: MangaDataSourceable
         if let dataSource = dataSource {
             aDataSource = dataSource
         } else {

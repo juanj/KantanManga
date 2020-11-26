@@ -22,7 +22,7 @@ class ViewMangaCoordinator: NSObject, Coordinator {
     private let manga: Manga
     private let originFrame: CGRect
 
-    private var mangaDataSource: MangaDataSource!
+    private var mangaDataSource: MangaDataSourceable!
     private var mangaViewController: MangaViewController?
     private var ocr: ImageOCR
 
@@ -64,7 +64,7 @@ class ViewMangaCoordinator: NSObject, Coordinator {
         self.mangaViewController = mangaViewController
     }
 
-    func createMangaDataSource(manga: Manga, readerBuilder: (String, @escaping (Reader) -> Void) -> Void) -> MangaDataSource? {
+    func createMangaDataSource(manga: Manga, readerBuilder: (String, @escaping (Reader) -> Void) -> Void) -> MangaDataSourceable? {
         MangaDataSource(manga: manga, readerBuilder: readerBuilder)
     }
 }

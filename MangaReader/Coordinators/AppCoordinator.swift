@@ -12,7 +12,7 @@ import CoreData
 class AppCoordinator: NSObject, Coordinator {
     var childCoordinators = [Coordinator]()
 
-    private var currentMangaDataSource: MangaDataSource?
+    private var currentMangaDataSource: MangaDataSourceable?
     private var libraryView: LibraryViewController?
     private var collectionView: CollectionViewController?
     private var collectionIndexPath: IndexPath?

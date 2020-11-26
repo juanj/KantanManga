@@ -18,7 +18,7 @@ protocol MangaViewControllerDelegate: AnyObject {
 
 class MangaViewController: UIViewController {
     private let manga: Manga
-    private let dataSource: MangaDataSource
+    private let dataSource: MangaDataSourceable
     private weak var delegate: MangaViewControllerDelegate?
     private let firstTime: Bool
 
@@ -45,7 +45,7 @@ class MangaViewController: UIViewController {
         return fullScreen
     }
 
-    init(manga: Manga, dataSource: MangaDataSource, delegate: MangaViewControllerDelegate, firstTime: Bool = false) {
+    init(manga: Manga, dataSource: MangaDataSourceable, delegate: MangaViewControllerDelegate, firstTime: Bool = false) {
         self.manga = manga
         self.dataSource = dataSource
         self.delegate = delegate
@@ -443,7 +443,7 @@ extension MangaViewController: UIGestureRecognizerDelegate {
 }
 
 extension MangaViewController: MangaDataSourceDelegate {
-    func shouldLoadPage(_ mangaDataSource: MangaDataSource) -> Bool {
+    func shouldLoadPage(_ mangaDataSource: MangaDataSourceable) -> Bool {
         return !(isPageAnimating || ocrEnabled)
     }
 }

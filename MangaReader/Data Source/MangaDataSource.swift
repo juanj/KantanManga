@@ -9,10 +9,10 @@
 import UIKit
 
 protocol MangaDataSourceDelegate: AnyObject {
-    func shouldLoadPage(_ mangaDataSource: MangaDataSource) -> Bool
+    func shouldLoadPage(_ mangaDataSource: MangaDataSourceable) -> Bool
 }
 
-class MangaDataSource: NSObject {
+class MangaDataSource: NSObject, MangaDataSourceable {
     var forceToggleMode = false
     var pagesOffset = false
     var pageTextOffset = 0
@@ -24,7 +24,7 @@ class MangaDataSource: NSObject {
     private let cache = NSCache<NSString, UIImage>()
     private var queue = [(PageViewController, Int)]()
 
-    init?(manga: Manga, readerBuilder: (_ path: String, _ completion: @escaping (Reader) -> Void) -> Void) {
+    required init?(manga: Manga, readerBuilder: (_ path: String, _ completion: @escaping (Reader) -> Void) -> Void) {
         self.manga = manga
         super.init()
         guard let path = manga.filePath else {

@@ -127,6 +127,7 @@
 		32C3512F24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C3512E24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift */; };
 		32C49CD725168A0F000A9607 /* OpenCollectionAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */; };
 		32CFA5EE256FEE200083F300 /* MangaViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA5ED256FEE200083F300 /* MangaViewControllerTests.swift */; };
+		32CFA5F7256FF16E0083F300 /* MangaDataSourceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA5F6256FF16E0083F300 /* MangaDataSourceable.swift */; };
 		32E322182481A531007BC017 /* ParsedInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E322152481A531007BC017 /* ParsedInputField.swift */; };
 		32E3221C2481A67D007BC017 /* JapaneseHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */; };
 		32E37987252A6A6000ED4BAC /* AcknowledgmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */; };
@@ -344,6 +345,7 @@
 		32C3512E24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeViewMangaCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCollectionAnimationController.swift; sourceTree = "<group>"; };
 		32CFA5ED256FEE200083F300 /* MangaViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaViewControllerTests.swift; sourceTree = "<group>"; };
+		32CFA5F6256FF16E0083F300 /* MangaDataSourceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDataSourceable.swift; sourceTree = "<group>"; };
 		32E322152481A531007BC017 /* ParsedInputField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsedInputField.swift; sourceTree = "<group>"; };
 		32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseHelpViewController.swift; sourceTree = "<group>"; };
 		32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgmentsView.swift; sourceTree = "<group>"; };
@@ -649,6 +651,15 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		32CFA5F5256FF1590083F300 /* Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				841B795B221F305A00659FA2 /* MangaDataSource.swift */,
+				32CFA5F6256FF16E0083F300 /* MangaDataSourceable.swift */,
+			);
+			path = "Data Source";
+			sourceTree = "<group>";
+		};
 		32F1B9F824369CAA00AE367D /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -750,7 +761,6 @@
 			isa = PBXGroup;
 			children = (
 				3232F32325276DED00DA77B8 /* demo1.cbz */,
-				841B795B221F305A00659FA2 /* MangaDataSource.swift */,
 				323205AD238DBCE4009E8362 /* SelectionView.swift */,
 				3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */,
 				325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */,
@@ -799,6 +809,7 @@
 				84A8321A221D94D400CEE1C9 /* Views */,
 				84A83217221D922200CEE1C9 /* Coordinators */,
 				841B795A221F303900659FA2 /* Other */,
+				32CFA5F5256FF1590083F300 /* Data Source */,
 				84A831E6221D90CA00CEE1C9 /* AppDelegate.swift */,
 				84A831F0221D90CC00CEE1C9 /* Assets.xcassets */,
 				84A831F2221D90CC00CEE1C9 /* LaunchScreen.storyboard */,
@@ -1323,6 +1334,7 @@
 				3219C2A9251100D200915DE1 /* CollectionViewController.swift in Sources */,
 				326344A3247DD98B00F683AB /* Reader.swift in Sources */,
 				32F998D52557535500897299 /* Navigable.swift in Sources */,
+				32CFA5F7256FF16E0083F300 /* MangaDataSourceable.swift in Sources */,
 				329ACA8A2552ED15002953C5 /* NumberTableViewCell.swift in Sources */,
 				3238DF3A24D7840200DE8782 /* WordButton.swift in Sources */,
 				322ECF3924FF280B0013FD21 /* Bool+Extension.swift in Sources */,
