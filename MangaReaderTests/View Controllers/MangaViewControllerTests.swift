@@ -34,4 +34,13 @@ class MangaViewControllerTests: XCTestCase {
 
         XCTAssertTrue(buttonsImages.contains(UIImage(systemName: "gear")!))
     }
+
+    func testViewDidLoad_withEmptyManga_callsInitialConfigurationOnDataSource() {
+        let mockDataSource = FakeMangaDataSorce()
+        let mangaViewController = TestsFactories.createMangaViewController(dataSource: mockDataSource)
+
+        mangaViewController.loadViewIfNeeded()
+
+        XCTAssertTrue(mockDataSource.initialConfigurationCalled)
+    }
 }

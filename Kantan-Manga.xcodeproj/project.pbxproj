@@ -128,6 +128,7 @@
 		32C49CD725168A0F000A9607 /* OpenCollectionAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */; };
 		32CFA5EE256FEE200083F300 /* MangaViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA5ED256FEE200083F300 /* MangaViewControllerTests.swift */; };
 		32CFA5F7256FF16E0083F300 /* MangaDataSourceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA5F6256FF16E0083F300 /* MangaDataSourceable.swift */; };
+		32CFA5FF256FF34A0083F300 /* FakeMangaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA5FE256FF34A0083F300 /* FakeMangaDataSource.swift */; };
 		32E322182481A531007BC017 /* ParsedInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E322152481A531007BC017 /* ParsedInputField.swift */; };
 		32E3221C2481A67D007BC017 /* JapaneseHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */; };
 		32E37987252A6A6000ED4BAC /* AcknowledgmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */; };
@@ -346,6 +347,7 @@
 		32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCollectionAnimationController.swift; sourceTree = "<group>"; };
 		32CFA5ED256FEE200083F300 /* MangaViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaViewControllerTests.swift; sourceTree = "<group>"; };
 		32CFA5F6256FF16E0083F300 /* MangaDataSourceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDataSourceable.swift; sourceTree = "<group>"; };
+		32CFA5FE256FF34A0083F300 /* FakeMangaDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMangaDataSource.swift; sourceTree = "<group>"; };
 		32E322152481A531007BC017 /* ParsedInputField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsedInputField.swift; sourceTree = "<group>"; };
 		32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseHelpViewController.swift; sourceTree = "<group>"; };
 		32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgmentsView.swift; sourceTree = "<group>"; };
@@ -741,6 +743,7 @@
 				3250E89A256D54E000CBFA37 /* FakeViewerSettingsViewControllerDelegate.swift */,
 				3257C01D256F0F4700C4C702 /* FakeSettingsCoordinatorDelegate.swift */,
 				3257C022256F0FC000C4C702 /* FakeSettingsTableViewControllerDelegate.swift */,
+				32CFA5FE256FF34A0083F300 /* FakeMangaDataSource.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -1360,6 +1363,7 @@
 				327300942561EF6A009854EE /* UIViewExtensionTests.swift in Sources */,
 				320ED4D924831D2900F5BECF /* FakeUploadServer.swift in Sources */,
 				327A8F55256BFC4900BB778E /* FakeMangaViewControllerDelegate.swift in Sources */,
+				32CFA5FF256FF34A0083F300 /* FakeMangaDataSource.swift in Sources */,
 				327300842561E8AB009854EE /* StringExtensionTests.swift in Sources */,
 				3219C2B02511103600915DE1 /* FakeCollectionViewControllerDelgate.swift in Sources */,
 				326857DF2569CF9D000B0C83 /* TestableAddMangasCoordinator.swift in Sources */,
