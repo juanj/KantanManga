@@ -43,4 +43,14 @@ class MangaViewControllerTests: XCTestCase {
 
         XCTAssertTrue(mockDataSource.initialConfigurationCalled)
     }
+
+    func testViewDidLoad__pageControllerIsConstrainedToBorders() {
+        let mangaViewController = TestsFactories.createMangaViewController()
+
+        mangaViewController.loadViewIfNeeded()
+        let constraints = ConstraintsUtils.getConstraintsWithFirstItem(ofType: "_UIPageViewControllerContentView", constraints: mangaViewController.view.constraints)
+
+        // TODO: Test anchor type
+        XCTAssertEqual(constraints.filter { ($0.secondItem as? UIView) == mangaViewController.view }.count, 4)
+    }
 }

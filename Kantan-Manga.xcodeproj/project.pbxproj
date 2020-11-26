@@ -129,6 +129,7 @@
 		32CFA5EE256FEE200083F300 /* MangaViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA5ED256FEE200083F300 /* MangaViewControllerTests.swift */; };
 		32CFA5F7256FF16E0083F300 /* MangaDataSourceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA5F6256FF16E0083F300 /* MangaDataSourceable.swift */; };
 		32CFA5FF256FF34A0083F300 /* FakeMangaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA5FE256FF34A0083F300 /* FakeMangaDataSource.swift */; };
+		32CFA604256FF7340083F300 /* ConstraintsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA603256FF7340083F300 /* ConstraintsUtils.swift */; };
 		32E322182481A531007BC017 /* ParsedInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E322152481A531007BC017 /* ParsedInputField.swift */; };
 		32E3221C2481A67D007BC017 /* JapaneseHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */; };
 		32E37987252A6A6000ED4BAC /* AcknowledgmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */; };
@@ -348,6 +349,7 @@
 		32CFA5ED256FEE200083F300 /* MangaViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaViewControllerTests.swift; sourceTree = "<group>"; };
 		32CFA5F6256FF16E0083F300 /* MangaDataSourceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDataSourceable.swift; sourceTree = "<group>"; };
 		32CFA5FE256FF34A0083F300 /* FakeMangaDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMangaDataSource.swift; sourceTree = "<group>"; };
+		32CFA603256FF7340083F300 /* ConstraintsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintsUtils.swift; sourceTree = "<group>"; };
 		32E322152481A531007BC017 /* ParsedInputField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsedInputField.swift; sourceTree = "<group>"; };
 		32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseHelpViewController.swift; sourceTree = "<group>"; };
 		32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgmentsView.swift; sourceTree = "<group>"; };
@@ -577,6 +579,7 @@
 			isa = PBXGroup;
 			children = (
 				326D4F9E2567172E001B70AC /* TestsFactories.swift */,
+				32CFA603256FF7340083F300 /* ConstraintsUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1384,6 +1387,7 @@
 				3219DC0425641F8100E2FB3D /* FakeCollectionView.swift in Sources */,
 				320ED4DD2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift in Sources */,
 				3250E89B256D54E000CBFA37 /* FakeViewerSettingsViewControllerDelegate.swift in Sources */,
+				32CFA604256FF7340083F300 /* ConstraintsUtils.swift in Sources */,
 				32C3512F24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift in Sources */,
 				32F998C125574C8E00897299 /* ViewMangaCoordinatorTests.swift in Sources */,
 				32A110D22558609B0099A768 /* FakeImageOCR.swift in Sources */,
