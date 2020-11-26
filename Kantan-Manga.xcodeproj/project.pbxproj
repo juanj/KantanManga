@@ -126,6 +126,7 @@
 		32C1EEF32539DE04001F59A0 /* FocusOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1EEF22539DE04001F59A0 /* FocusOverlayView.swift */; };
 		32C3512F24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C3512E24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift */; };
 		32C49CD725168A0F000A9607 /* OpenCollectionAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */; };
+		32CFA5EE256FEE200083F300 /* MangaViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA5ED256FEE200083F300 /* MangaViewControllerTests.swift */; };
 		32E322182481A531007BC017 /* ParsedInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E322152481A531007BC017 /* ParsedInputField.swift */; };
 		32E3221C2481A67D007BC017 /* JapaneseHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */; };
 		32E37987252A6A6000ED4BAC /* AcknowledgmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */; };
@@ -342,6 +343,7 @@
 		32C1EEF22539DE04001F59A0 /* FocusOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusOverlayView.swift; sourceTree = "<group>"; };
 		32C3512E24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeViewMangaCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCollectionAnimationController.swift; sourceTree = "<group>"; };
+		32CFA5ED256FEE200083F300 /* MangaViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaViewControllerTests.swift; sourceTree = "<group>"; };
 		32E322152481A531007BC017 /* ParsedInputField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsedInputField.swift; sourceTree = "<group>"; };
 		32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseHelpViewController.swift; sourceTree = "<group>"; };
 		32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgmentsView.swift; sourceTree = "<group>"; };
@@ -639,6 +641,14 @@
 			path = Transitions;
 			sourceTree = "<group>";
 		};
+		32CFA5EB256FEE060083F300 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				32CFA5ED256FEE200083F300 /* MangaViewControllerTests.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		32F1B9F824369CAA00AE367D /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -813,6 +823,7 @@
 				327300932561EF6A009854EE /* UIViewExtensionTests.swift */,
 				321C69A12562FA4E00296A1F /* FuriganaUtilsTests.swift */,
 				32194C9625630E27007539B1 /* MangaDataSourceTests.swift */,
+				32CFA5EB256FEE060083F300 /* View Controllers */,
 				32F998C625574CC400897299 /* Coordinators */,
 				84A83200221D90CC00CEE1C9 /* Info.plist */,
 				326D4FA725671769001B70AC /* Utils */,
@@ -1345,6 +1356,7 @@
 				320ED4D72483189F00F5BECF /* FakeNavigation.swift in Sources */,
 				3273008F2561EBCF009854EE /* CGSizeExtensionTests.swift in Sources */,
 				326D4F9F2567172E001B70AC /* TestsFactories.swift in Sources */,
+				32CFA5EE256FEE200083F300 /* MangaViewControllerTests.swift in Sources */,
 				328F62A7255A03D8000CA225 /* InMemoryCoreDataManager.swift in Sources */,
 				32194C9725630E27007539B1 /* MangaDataSourceTests.swift in Sources */,
 				32F998B925574C4C00897299 /* AppCoordinatorTests.swift in Sources */,
