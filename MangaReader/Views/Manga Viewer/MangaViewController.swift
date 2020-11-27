@@ -24,7 +24,7 @@ class MangaViewController: UIViewController {
 
     private var pageController: UIPageViewController!
     private var selectionView = SelectionView()
-    private lazy var japaneseHelp: JapaneseHelpViewController = JapaneseHelpViewController(delegate: self)
+    private lazy var japaneseHelp = JapaneseHelpViewController(delegate: self)
     private var japaneseHelpBottomConstraint: NSLayoutConstraint!
     private let progressBar = UISlider()
     private var oldPageValue = 0
