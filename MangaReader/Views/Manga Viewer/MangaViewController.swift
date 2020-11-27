@@ -180,7 +180,7 @@ class MangaViewController: UIViewController {
     }
 
     private func configureOverlay() {
-        guard let ocrButtonView = navigationItem.rightBarButtonItems?.first?.value(forKey: "view") as? UIView else { return }
+        let ocrButtonView = (navigationItem.rightBarButtonItems?.first?.value(forKey: "view") as? UIView) ?? UIView(frame: .zero)
         let overlay = FocusOverlayView(delegate: self, centerOn: ocrButtonView, circleRadius: 50)
         // Add overlay to window rootViewController, this way is on top of the navigationBar
         if let window = UIApplication.shared.windows.first, let view = window.rootViewController?.view {
