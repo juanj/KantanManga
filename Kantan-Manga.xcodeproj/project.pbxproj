@@ -84,6 +84,7 @@
 		326344A3247DD98B00F683AB /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326344A2247DD98B00F683AB /* Reader.swift */; };
 		326344A5247DDAF800F683AB /* CBRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326344A4247DDAF800F683AB /* CBRReader.swift */; };
 		326429DE25406FE500D7C992 /* Kanji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326429DD25406FE500D7C992 /* Kanji.swift */; };
+		3267AE92257142CA00806D5B /* DictionaryImporterError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3267AE91257142CA00806D5B /* DictionaryImporterError.swift */; };
 		326857DF2569CF9D000B0C83 /* TestableAddMangasCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326857DE2569CF9D000B0C83 /* TestableAddMangasCoordinator.swift */; };
 		326D4F9925671257001B70AC /* FakeSelectCollectionTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326D4F9825671257001B70AC /* FakeSelectCollectionTableViewControllerDelegate.swift */; };
 		326D4F9F2567172E001B70AC /* TestsFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326D4F9E2567172E001B70AC /* TestsFactories.swift */; };
@@ -108,6 +109,8 @@
 		328F62A7255A03D8000CA225 /* InMemoryCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F62A1255A03A7000CA225 /* InMemoryCoreDataManager.swift */; };
 		3292ADA22535DCF8004E8441 /* DemoOcrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3292ADA12535DCF8004E8441 /* DemoOcrView.swift */; };
 		3296181C2555943B0020C5AF /* SettingValueChangeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3296181B2555943B0020C5AF /* SettingValueChangeDelegate.swift */; };
+		3298D7D025713BB4005FB8F2 /* DictionaryImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298D7CF25713BB4005FB8F2 /* DictionaryImporter.swift */; };
+		3298D7D725713D66005FB8F2 /* DictionaryIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */; };
 		329ACA8A2552ED15002953C5 /* NumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA882552ED15002953C5 /* NumberTableViewCell.swift */; };
 		329ACA8B2552ED15002953C5 /* NumberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 329ACA892552ED15002953C5 /* NumberTableViewCell.xib */; };
 		329ACA9A2552EFD7002953C5 /* ViewerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA992552EFD7002953C5 /* ViewerSettings.swift */; };
@@ -307,6 +310,7 @@
 		326344A2247DD98B00F683AB /* Reader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
 		326344A4247DDAF800F683AB /* CBRReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBRReader.swift; sourceTree = "<group>"; };
 		326429DD25406FE500D7C992 /* Kanji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kanji.swift; sourceTree = "<group>"; };
+		3267AE91257142CA00806D5B /* DictionaryImporterError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryImporterError.swift; sourceTree = "<group>"; };
 		326857DE2569CF9D000B0C83 /* TestableAddMangasCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableAddMangasCoordinator.swift; sourceTree = "<group>"; };
 		326D4F9825671257001B70AC /* FakeSelectCollectionTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSelectCollectionTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		326D4F9E2567172E001B70AC /* TestsFactories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsFactories.swift; sourceTree = "<group>"; };
@@ -330,6 +334,8 @@
 		328F62A1255A03A7000CA225 /* InMemoryCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryCoreDataManager.swift; sourceTree = "<group>"; };
 		3292ADA12535DCF8004E8441 /* DemoOcrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoOcrView.swift; sourceTree = "<group>"; };
 		3296181B2555943B0020C5AF /* SettingValueChangeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingValueChangeDelegate.swift; sourceTree = "<group>"; };
+		3298D7CF25713BB4005FB8F2 /* DictionaryImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryImporter.swift; sourceTree = "<group>"; };
+		3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryIndex.swift; sourceTree = "<group>"; };
 		329ACA882552ED15002953C5 /* NumberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTableViewCell.swift; sourceTree = "<group>"; };
 		329ACA892552ED15002953C5 /* NumberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberTableViewCell.xib; sourceTree = "<group>"; };
 		329ACA992552EFD7002953C5 /* ViewerSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerSettings.swift; sourceTree = "<group>"; };
@@ -602,6 +608,17 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		3298D7D525713D44005FB8F2 /* Dictionary */ = {
+			isa = PBXGroup;
+			children = (
+				325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */,
+				3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */,
+				3298D7CF25713BB4005FB8F2 /* DictionaryImporter.swift */,
+				3267AE91257142CA00806D5B /* DictionaryImporterError.swift */,
+			);
+			path = Dictionary;
+			sourceTree = "<group>";
+		};
 		329ACA8F2552ED27002953C5 /* Settings Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -769,7 +786,6 @@
 				3232F32325276DED00DA77B8 /* demo1.cbz */,
 				323205AD238DBCE4009E8362 /* SelectionView.swift */,
 				3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */,
-				325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */,
 				32FA3C7B24367428001EB0DF /* String+Extension.swift */,
 				322ECF3824FF280B0013FD21 /* Bool+Extension.swift */,
 				322EF654250FB05800F35E72 /* CGSize+Extension.swift */,
@@ -884,6 +900,7 @@
 				329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */,
 				32AF5BCD2512567900E96C9F /* MangaCollectionable.swift */,
 				32AF5BD0251256E600E96C9F /* EmptyMangaCollection.swift */,
+				3298D7D525713D44005FB8F2 /* Dictionary */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1310,6 +1327,7 @@
 				3283D1012552069700C08D02 /* ToggleTableViewCell.swift in Sources */,
 				843FA7DF221DEDDF00B86B52 /* AddMangasCoordinator.swift in Sources */,
 				32A1517225326D76002B3920 /* CircleView.swift in Sources */,
+				3267AE92257142CA00806D5B /* DictionaryImporterError.swift in Sources */,
 				843FA7E9221DFE9E00B86B52 /* CBZReader.swift in Sources */,
 				322C04B725680FE700BD5A51 /* Tesseract+PageSegmentation.swift in Sources */,
 				8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */,
@@ -1320,6 +1338,8 @@
 				320F277323C2046900D9930F /* Token.swift in Sources */,
 				84A831E7221D90CA00CEE1C9 /* AppDelegate.swift in Sources */,
 				3292ADA22535DCF8004E8441 /* DemoOcrView.swift in Sources */,
+				3298D7D025713BB4005FB8F2 /* DictionaryImporter.swift in Sources */,
+				3298D7D725713D66005FB8F2 /* DictionaryIndex.swift in Sources */,
 				3259D1B423C4D9A2003BA7C2 /* FuriganaUtils.swift in Sources */,
 				328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */,
 				84A8321D221D951500CEE1C9 /* LibraryViewController.swift in Sources */,
