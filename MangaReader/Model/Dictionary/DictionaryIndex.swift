@@ -17,4 +17,8 @@ struct DictionaryIndex: Decodable {
     let url: String?
     let description: String?
     let attribution: String?
+
+    var fileVersion: Int {
+        return version ?? format ?? 0
+    }
 }

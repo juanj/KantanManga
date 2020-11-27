@@ -20,7 +20,7 @@ struct DictionaryImporter {
         // TODO: Check if dictionary already exists
     }
 
-    func importIndex(zip: Archive) throws -> DictionaryIndex {
+    private func importIndex(zip: Archive) throws -> DictionaryIndex {
         guard let indexFile = zip["index.json"] else {
             throw DictionaryImporterError.indexNotFound
         }
