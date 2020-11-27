@@ -50,7 +50,8 @@ class MangaViewControllerTests: XCTestCase {
         mangaViewController.loadViewIfNeeded()
         let constraints = ConstraintsUtils.getConstraintsWithFirstItem(ofType: "_UIPageViewControllerContentView", constraints: mangaViewController.view.constraints)
 
-        // TODO: Test anchor type
-        XCTAssertEqual(constraints.filter { ($0.secondItem as? UIView) == mangaViewController.view }.count, 4)
+        let anchors = constraints.map { $0.firstAnchor }
+            .map { ConstraintsUtils.getAnchorName($0) }
+        XCTAssertEqual(Set(anchors), ["top", "bottom", "left", "right"])
     }
 }

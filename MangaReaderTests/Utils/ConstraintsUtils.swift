@@ -23,4 +23,8 @@ final class ConstraintsUtils {
             }
         return filteredConstrainst
     }
+
+    static func getAnchorName(_ anchor: NSLayoutAnchor<AnyObject>) -> String {
+        String(String(describing: anchor).split(separator: ".")[1].split(separator: "\"")[0])
+    }
 }
