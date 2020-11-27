@@ -212,7 +212,7 @@ class MangaViewController: UIViewController {
         }
     }
 
-    func startAtFullScreen() {
+    private func startAtFullScreen() {
         fullScreen = true
         navigationController?.setNavigationBarHidden(true, animated: false)
         setNeedsStatusBarAppearanceUpdate()
