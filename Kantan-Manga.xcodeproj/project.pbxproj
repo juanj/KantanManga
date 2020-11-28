@@ -44,6 +44,17 @@
 		3238DF3A24D7840200DE8782 /* WordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3238DF3924D7840200DE8782 /* WordButton.swift */; };
 		3239C5B9254DD06500EFB39A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3239C5B8254DD06500EFB39A /* Settings.bundle */; };
 		323CD90A23CB7107007FFC58 /* jamdict.db in Resources */ = {isa = PBXBuildFile; fileRef = 323CD90923CB7107007FFC58 /* jamdict.db */; };
+		3241F8572572ACD800A4FC04 /* KanjiEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8562572ACD800A4FC04 /* KanjiEntry.swift */; };
+		3241F8602572AE7F00A4FC04 /* TermEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F85F2572AE7F00A4FC04 /* TermEntry.swift */; };
+		3241F86B2572B04700A4FC04 /* TermMetaEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F86A2572B04700A4FC04 /* TermMetaEntry.swift */; };
+		3241F8702572B1EF00A4FC04 /* KanjiMetaEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F86F2572B1EF00A4FC04 /* KanjiMetaEntry.swift */; };
+		3241F8782572B2F400A4FC04 /* TagEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8772572B2F400A4FC04 /* TagEntry.swift */; };
+		3241F87E2572B47D00A4FC04 /* DictionaryIndexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F87D2572B47D00A4FC04 /* DictionaryIndexTests.swift */; };
+		3241F8862572B6D200A4FC04 /* TagEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8852572B6D200A4FC04 /* TagEntryTests.swift */; };
+		3241F88F2572BAE000A4FC04 /* TermEntryV1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F88E2572BAE000A4FC04 /* TermEntryV1Tests.swift */; };
+		3241F8972572C18900A4FC04 /* TermEntryV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8962572C18900A4FC04 /* TermEntryV1.swift */; };
+		3241F89F2572C1A700A4FC04 /* TermEntryV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F89E2572C1A700A4FC04 /* TermEntryV3.swift */; };
+		3241F8A72572C25300A4FC04 /* TermEntryV3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8A62572C25300A4FC04 /* TermEntryV3Tests.swift */; };
 		3247543C2551FD120025AB06 /* ViewerSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3247543A2551FD120025AB06 /* ViewerSettingsViewController.swift */; };
 		3247543D2551FD120025AB06 /* ViewerSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3247543B2551FD120025AB06 /* ViewerSettingsViewController.xib */; };
 		3249F2D7250BBC18004C514E /* MangaCollectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */; };
@@ -271,6 +282,17 @@
 		3238DF3924D7840200DE8782 /* WordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordButton.swift; sourceTree = "<group>"; };
 		3239C5B8254DD06500EFB39A /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		323CD90923CB7107007FFC58 /* jamdict.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = jamdict.db; sourceTree = "<group>"; };
+		3241F8562572ACD800A4FC04 /* KanjiEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiEntry.swift; sourceTree = "<group>"; };
+		3241F85F2572AE7F00A4FC04 /* TermEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermEntry.swift; sourceTree = "<group>"; };
+		3241F86A2572B04700A4FC04 /* TermMetaEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermMetaEntry.swift; sourceTree = "<group>"; };
+		3241F86F2572B1EF00A4FC04 /* KanjiMetaEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiMetaEntry.swift; sourceTree = "<group>"; };
+		3241F8772572B2F400A4FC04 /* TagEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagEntry.swift; sourceTree = "<group>"; };
+		3241F87D2572B47D00A4FC04 /* DictionaryIndexTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryIndexTests.swift; sourceTree = "<group>"; };
+		3241F8852572B6D200A4FC04 /* TagEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagEntryTests.swift; sourceTree = "<group>"; };
+		3241F88E2572BAE000A4FC04 /* TermEntryV1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermEntryV1Tests.swift; sourceTree = "<group>"; };
+		3241F8962572C18900A4FC04 /* TermEntryV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermEntryV1.swift; sourceTree = "<group>"; };
+		3241F89E2572C1A700A4FC04 /* TermEntryV3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermEntryV3.swift; sourceTree = "<group>"; };
+		3241F8A62572C25300A4FC04 /* TermEntryV3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermEntryV3Tests.swift; sourceTree = "<group>"; };
 		3247543A2551FD120025AB06 /* ViewerSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerSettingsViewController.swift; sourceTree = "<group>"; };
 		3247543B2551FD120025AB06 /* ViewerSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewerSettingsViewController.xib; sourceTree = "<group>"; };
 		3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollectionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -475,6 +497,31 @@
 			path = "Kantan-MangaIntegrationTests";
 			sourceTree = "<group>";
 		};
+		3241F85E2572AE1600A4FC04 /* Entries */ = {
+			isa = PBXGroup;
+			children = (
+				3241F8562572ACD800A4FC04 /* KanjiEntry.swift */,
+				3241F86F2572B1EF00A4FC04 /* KanjiMetaEntry.swift */,
+				3241F85F2572AE7F00A4FC04 /* TermEntry.swift */,
+				3241F8962572C18900A4FC04 /* TermEntryV1.swift */,
+				3241F89E2572C1A700A4FC04 /* TermEntryV3.swift */,
+				3241F86A2572B04700A4FC04 /* TermMetaEntry.swift */,
+				3241F8772572B2F400A4FC04 /* TagEntry.swift */,
+			);
+			path = Entries;
+			sourceTree = "<group>";
+		};
+		3241F87C2572B45D00A4FC04 /* Codables */ = {
+			isa = PBXGroup;
+			children = (
+				3241F87D2572B47D00A4FC04 /* DictionaryIndexTests.swift */,
+				3241F8852572B6D200A4FC04 /* TagEntryTests.swift */,
+				3241F88E2572BAE000A4FC04 /* TermEntryV1Tests.swift */,
+				3241F8A62572C25300A4FC04 /* TermEntryV3Tests.swift */,
+			);
+			path = Codables;
+			sourceTree = "<group>";
+		};
 		324BB954249835DD006241E8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -611,8 +658,9 @@
 		3298D7D525713D44005FB8F2 /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
-				325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */,
 				3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */,
+				3241F85E2572AE1600A4FC04 /* Entries */,
+				325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */,
 				3298D7CF25713BB4005FB8F2 /* DictionaryImporter.swift */,
 				3267AE91257142CA00806D5B /* DictionaryImporterError.swift */,
 			);
@@ -845,6 +893,7 @@
 		84A831FD221D90CC00CEE1C9 /* MangaReaderTests */ = {
 			isa = PBXGroup;
 			children = (
+				3241F87C2572B45D00A4FC04 /* Codables */,
 				326857E42569D5C4000B0C83 /* Testables */,
 				328F629F255A0395000CA225 /* Helpers */,
 				32F998DF2557592E00897299 /* Fakes */,
@@ -1311,6 +1360,7 @@
 				32C49CD725168A0F000A9607 /* OpenCollectionAnimationController.swift in Sources */,
 				329E30E923E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift in Sources */,
 				32350AA8247C723C002D100D /* WordParser.swift in Sources */,
+				3241F86B2572B04700A4FC04 /* TermMetaEntry.swift in Sources */,
 				32892C0A23E39FBC000B1C3E /* AddMangaViewController.swift in Sources */,
 				84A83219221D923800CEE1C9 /* AppCoordinator.swift in Sources */,
 				843FA7EC221E0BE900B86B52 /* PageViewController.swift in Sources */,
@@ -1341,6 +1391,7 @@
 				3298D7D025713BB4005FB8F2 /* DictionaryImporter.swift in Sources */,
 				3298D7D725713D66005FB8F2 /* DictionaryIndex.swift in Sources */,
 				3259D1B423C4D9A2003BA7C2 /* FuriganaUtils.swift in Sources */,
+				3241F8602572AE7F00A4FC04 /* TermEntry.swift in Sources */,
 				328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */,
 				84A8321D221D951500CEE1C9 /* LibraryViewController.swift in Sources */,
 				326FDE7B24A7FBFB0042CB8A /* SettingsCoordinator.swift in Sources */,
@@ -1357,19 +1408,24 @@
 				325199B72479D9E000DA6908 /* GoogleVisionOCR.swift in Sources */,
 				322C5B602483125A00C0BAB1 /* Coordinator.swift in Sources */,
 				3296181C2555943B0020C5AF /* SettingValueChangeDelegate.swift in Sources */,
+				3241F89F2572C1A700A4FC04 /* TermEntryV3.swift in Sources */,
 				3219C2A9251100D200915DE1 /* CollectionViewController.swift in Sources */,
 				326344A3247DD98B00F683AB /* Reader.swift in Sources */,
 				32F998D52557535500897299 /* Navigable.swift in Sources */,
 				32CFA5F7256FF16E0083F300 /* MangaDataSourceable.swift in Sources */,
+				3241F8782572B2F400A4FC04 /* TagEntry.swift in Sources */,
 				329ACA8A2552ED15002953C5 /* NumberTableViewCell.swift in Sources */,
 				3238DF3A24D7840200DE8782 /* WordButton.swift in Sources */,
+				3241F8972572C18900A4FC04 /* TermEntryV1.swift in Sources */,
 				322ECF3924FF280B0013FD21 /* Bool+Extension.swift in Sources */,
+				3241F8572572ACD800A4FC04 /* KanjiEntry.swift in Sources */,
 				326344A5247DDAF800F683AB /* CBRReader.swift in Sources */,
 				32A1516C253260C0002B3920 /* OnboardingViewController.swift in Sources */,
 				84A83224221DB10400CEE1C9 /* MangaCollectionViewCell.swift in Sources */,
 				326FDE7F24A80BB20042CB8A /* AboutView.swift in Sources */,
 				84A83221221D9F7000CEE1C9 /* CoreDataManager.swift in Sources */,
 				326FDE7924A7F8350042CB8A /* SettingsTableViewController.swift in Sources */,
+				3241F8702572B1EF00A4FC04 /* KanjiMetaEntry.swift in Sources */,
 				84A831EF221D90CA00CEE1C9 /* MangaReader.xcdatamodeld in Sources */,
 				325199C42479E20700DA6908 /* TesseractOCR.swift in Sources */,
 				325CFC21248060AD00110F31 /* DictionaryEntryView.swift in Sources */,
@@ -1381,7 +1437,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3257C01E256F0F4700C4C702 /* FakeSettingsCoordinatorDelegate.swift in Sources */,
+				3241F8862572B6D200A4FC04 /* TagEntryTests.swift in Sources */,
 				32F998BD25574C6C00897299 /* AddMangasCoordinatorTests.swift in Sources */,
+				3241F87E2572B47D00A4FC04 /* DictionaryIndexTests.swift in Sources */,
 				3257C018256F0E2200C4C702 /* SettingsCoordinatorTests.swift in Sources */,
 				327300942561EF6A009854EE /* UIViewExtensionTests.swift in Sources */,
 				320ED4D924831D2900F5BECF /* FakeUploadServer.swift in Sources */,
@@ -1390,6 +1448,7 @@
 				327300842561E8AB009854EE /* StringExtensionTests.swift in Sources */,
 				3219C2B02511103600915DE1 /* FakeCollectionViewControllerDelgate.swift in Sources */,
 				326857DF2569CF9D000B0C83 /* TestableAddMangasCoordinator.swift in Sources */,
+				3241F88F2572BAE000A4FC04 /* TermEntryV1Tests.swift in Sources */,
 				326D4F9925671257001B70AC /* FakeSelectCollectionTableViewControllerDelegate.swift in Sources */,
 				3273008A2561EAD9009854EE /* BoolExtensionTests.swift in Sources */,
 				320ED4D72483189F00F5BECF /* FakeNavigation.swift in Sources */,
@@ -1409,6 +1468,7 @@
 				3250E89B256D54E000CBFA37 /* FakeViewerSettingsViewControllerDelegate.swift in Sources */,
 				32CFA604256FF7340083F300 /* ConstraintsUtils.swift in Sources */,
 				32C3512F24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift in Sources */,
+				3241F8A72572C25300A4FC04 /* TermEntryV3Tests.swift in Sources */,
 				32F998C125574C8E00897299 /* ViewMangaCoordinatorTests.swift in Sources */,
 				32A110D22558609B0099A768 /* FakeImageOCR.swift in Sources */,
 				84A831FF221D90CC00CEE1C9 /* CoreDataManagerTests.swift in Sources */,
