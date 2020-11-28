@@ -55,6 +55,7 @@
 		3241F8972572C18900A4FC04 /* TermEntryV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8962572C18900A4FC04 /* TermEntryV1.swift */; };
 		3241F89F2572C1A700A4FC04 /* TermEntryV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F89E2572C1A700A4FC04 /* TermEntryV3.swift */; };
 		3241F8A72572C25300A4FC04 /* TermEntryV3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8A62572C25300A4FC04 /* TermEntryV3Tests.swift */; };
+		3241F8AC2572D64000A4FC04 /* TermMetaEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8AB2572D64000A4FC04 /* TermMetaEntryTests.swift */; };
 		3247543C2551FD120025AB06 /* ViewerSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3247543A2551FD120025AB06 /* ViewerSettingsViewController.swift */; };
 		3247543D2551FD120025AB06 /* ViewerSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3247543B2551FD120025AB06 /* ViewerSettingsViewController.xib */; };
 		3249F2D7250BBC18004C514E /* MangaCollectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */; };
@@ -293,6 +294,7 @@
 		3241F8962572C18900A4FC04 /* TermEntryV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermEntryV1.swift; sourceTree = "<group>"; };
 		3241F89E2572C1A700A4FC04 /* TermEntryV3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermEntryV3.swift; sourceTree = "<group>"; };
 		3241F8A62572C25300A4FC04 /* TermEntryV3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermEntryV3Tests.swift; sourceTree = "<group>"; };
+		3241F8AB2572D64000A4FC04 /* TermMetaEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermMetaEntryTests.swift; sourceTree = "<group>"; };
 		3247543A2551FD120025AB06 /* ViewerSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerSettingsViewController.swift; sourceTree = "<group>"; };
 		3247543B2551FD120025AB06 /* ViewerSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewerSettingsViewController.xib; sourceTree = "<group>"; };
 		3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollectionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				3241F8852572B6D200A4FC04 /* TagEntryTests.swift */,
 				3241F88E2572BAE000A4FC04 /* TermEntryV1Tests.swift */,
 				3241F8A62572C25300A4FC04 /* TermEntryV3Tests.swift */,
+				3241F8AB2572D64000A4FC04 /* TermMetaEntryTests.swift */,
 			);
 			path = Codables;
 			sourceTree = "<group>";
@@ -1449,6 +1452,7 @@
 				3219C2B02511103600915DE1 /* FakeCollectionViewControllerDelgate.swift in Sources */,
 				326857DF2569CF9D000B0C83 /* TestableAddMangasCoordinator.swift in Sources */,
 				3241F88F2572BAE000A4FC04 /* TermEntryV1Tests.swift in Sources */,
+				3241F8AC2572D64000A4FC04 /* TermMetaEntryTests.swift in Sources */,
 				326D4F9925671257001B70AC /* FakeSelectCollectionTableViewControllerDelegate.swift in Sources */,
 				3273008A2561EAD9009854EE /* BoolExtensionTests.swift in Sources */,
 				320ED4D72483189F00F5BECF /* FakeNavigation.swift in Sources */,

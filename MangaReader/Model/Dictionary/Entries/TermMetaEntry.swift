@@ -9,9 +9,21 @@ import Foundation
 
 struct TermMetaEntry {
     enum Mode {
-        case freq, pitch
+        case freq(frequency: Int, reading: String? = nil)
+        case pitch(reading: String, pitches: [PitchAccent])
     }
+
+    struct PitchAccent {
+        let position: Int
+        let tags: [String]?
+    }
+
     let character: String
     let mode: Mode
-    let data: String // TODO: implement "freq/pitch" objects
+}
+
+extension TermMetaEntry: CustomStringConvertible {
+    var description: String {
+        return "\(character), \(mode)"
+    }
 }
