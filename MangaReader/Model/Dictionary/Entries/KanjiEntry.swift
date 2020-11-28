@@ -18,6 +18,6 @@ protocol KanjiEntry: CustomStringConvertible {
 
 extension KanjiEntry {
     var description: String {
-        return "\(character), (\(onyomi)), (\(kunyomi)), (\(tags)), \(meanings), \(stats)"
+        return "\(character), (\(onyomi)), (\(kunyomi)), (\(tags)), \(meanings), \(stats.sorted { $0.key > $1.key })"
     }
 }
