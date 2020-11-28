@@ -114,4 +114,38 @@ class TermEntryV3Tests: XCTestCase {
 
         XCTAssertEqual(term.description, TermEntryV3(expression: "油かす", reading: "あぶらかす", definitionTags: "n food", rules: "", score: 5, glossary: [.image(path: "test.png", width: 500, height: 250, title: "Test image", description: "A test image", pixelated: true)], sequence: 1695150, termTags: "").description)
     }
+
+    func testDecode_withMixedImageAndTextObjects_decodesObject() throws {
+        let json = """
+        [
+            "画像",
+            "がぞう",
+            "tag1 tag2",
+            "",
+            33,
+            [
+                "definition1a (画像, がぞう)",
+                {
+                    "type": "text",
+                    "text": "another"
+                },
+                {
+                    "type": "image",
+                    "path": "image.gif",
+                    "width": 350,
+                    "height": 350,
+                    "description": "An image",
+                    "pixelated": true
+                }
+            ],
+            7,
+            "tag3 tag4 tag5"
+        ]
+        """
+        let decoder = JSONDecoder()
+
+        let term = try decoder.decode(TermEntryV3.self, from: json.data(using: .utf8)!)
+
+        XCTAssertEqual(term.description, TermEntryV3(expression: "画像", reading: "がぞう", definitionTags: "tag1 tag2", rules: "", score: 33, glossary: [.text("definition1a (画像, がぞう)"), .text("another"), .image(path: "image.gif", width: 350, height: 350, title: nil, description: "An image", pixelated: true)], sequence: 7, termTags: "tag3 tag4 tag5").description)
+    }
 }
