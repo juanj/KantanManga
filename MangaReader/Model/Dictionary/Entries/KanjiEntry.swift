@@ -7,11 +7,17 @@
 
 import Foundation
 
-struct KanjiEntry {
-    let character: String
-    let onyomi: String
-    let kunyomi: String
-    let tags: String
-    let meanings: [String]
-    let stats: [String]
+protocol KanjiEntry: CustomStringConvertible {
+    var character: String { get }
+    var onyomi: String { get }
+    var kunyomi: String { get }
+    var tags: String { get }
+    var meanings: [String] { get }
+    var stats: [String: String] { get }
+}
+
+extension KanjiEntry {
+    var description: String {
+        return "\(character), (\(onyomi)), (\(kunyomi)), (\(tags)), \(meanings), \(stats)"
+    }
 }
