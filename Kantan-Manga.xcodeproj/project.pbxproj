@@ -60,6 +60,7 @@
 		3241F8B92572E11800A4FC04 /* KanjiEntryV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8B82572E11800A4FC04 /* KanjiEntryV3.swift */; };
 		3241F8C12572E18500A4FC04 /* KanjiEntryV1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8C02572E18500A4FC04 /* KanjiEntryV1Tests.swift */; };
 		3241F8C62572E1A600A4FC04 /* KanjiEntryV3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8C52572E1A600A4FC04 /* KanjiEntryV3Tests.swift */; };
+		3241F8CE2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8CD2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift */; };
 		3247543C2551FD120025AB06 /* ViewerSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3247543A2551FD120025AB06 /* ViewerSettingsViewController.swift */; };
 		3247543D2551FD120025AB06 /* ViewerSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3247543B2551FD120025AB06 /* ViewerSettingsViewController.xib */; };
 		3249F2D7250BBC18004C514E /* MangaCollectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */; };
@@ -303,6 +304,7 @@
 		3241F8B82572E11800A4FC04 /* KanjiEntryV3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiEntryV3.swift; sourceTree = "<group>"; };
 		3241F8C02572E18500A4FC04 /* KanjiEntryV1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiEntryV1Tests.swift; sourceTree = "<group>"; };
 		3241F8C52572E1A600A4FC04 /* KanjiEntryV3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiEntryV3Tests.swift; sourceTree = "<group>"; };
+		3241F8CD2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiMetaEntryTests.swift; sourceTree = "<group>"; };
 		3247543A2551FD120025AB06 /* ViewerSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerSettingsViewController.swift; sourceTree = "<group>"; };
 		3247543B2551FD120025AB06 /* ViewerSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewerSettingsViewController.xib; sourceTree = "<group>"; };
 		3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollectionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -533,6 +535,7 @@
 				3241F8AB2572D64000A4FC04 /* TermMetaEntryTests.swift */,
 				3241F8C02572E18500A4FC04 /* KanjiEntryV1Tests.swift */,
 				3241F8C52572E1A600A4FC04 /* KanjiEntryV3Tests.swift */,
+				3241F8CD2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift */,
 			);
 			path = Codables;
 			sourceTree = "<group>";
@@ -1477,6 +1480,7 @@
 				328F62A7255A03D8000CA225 /* InMemoryCoreDataManager.swift in Sources */,
 				32194C9725630E27007539B1 /* MangaDataSourceTests.swift in Sources */,
 				32F998B925574C4C00897299 /* AppCoordinatorTests.swift in Sources */,
+				3241F8CE2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift in Sources */,
 				321C69A22562FA4E00296A1F /* FuriganaUtilsTests.swift in Sources */,
 				3241F8C62572E1A600A4FC04 /* KanjiEntryV3Tests.swift in Sources */,
 				3257C023256F0FC000C4C702 /* FakeSettingsTableViewControllerDelegate.swift in Sources */,

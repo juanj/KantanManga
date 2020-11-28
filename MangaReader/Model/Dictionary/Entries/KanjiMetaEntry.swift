@@ -9,10 +9,39 @@ import Foundation
 
 struct KanjiMetaEntry {
     enum Category {
-        case freq
+        case freq(Int)
     }
 
     let character: String
     let category: Category
-    let data: String
+}
+
+extension KanjiMetaEntry: CustomStringConvertible {
+    var description: String {
+        return "\(character), \(category)"
+    }
+}
+
+extension KanjiMetaEntry: Decodable {
+    init(from decoder: Decoder) throws {
+        var values = try decoder.unkeyedContainer()
+        character = try values.decode(String.self)
+        let type = try values.decode(String.self)
+
+        switch type {
+        case "freq":
+            do {
+                let frequency: Int
+                if let freq = try? values.decode(Int.self) {
+                    frequency = freq
+                } else {
+                    let freq = try values.decode(String.self)
+                    frequency = Int(freq) ?? 0
+                }
+                category = .freq(frequency)
+            }
+        default:
+            category = .freq(0)
+        }
+    }
 }
