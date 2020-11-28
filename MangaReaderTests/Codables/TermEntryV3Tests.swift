@@ -9,21 +9,109 @@ import XCTest
 @testable import Kantan_Manga
 
 class TermEntryV3Tests: XCTestCase {
-    func testDecode_withOneGlossaryItem_decodesObject() throws {
+    func testDecode_withOneStringGlossaryItem_decodesObject() throws {
         let json = #"["油かす", "あぶらかす", "n food", "", 5, ["deep-fried meat (esp. beef offal) resembling a pork rind"], 1695150, ""]"#
         let decoder = JSONDecoder()
 
         let term = try decoder.decode(TermEntryV3.self, from: json.data(using: .utf8)!)
 
-        XCTAssertEqual(term, TermEntryV3(expression: "油かす", reading: "あぶらかす", definitionTags: "n food", rules: "", score: 5, glossary: ["deep-fried meat (esp. beef offal) resembling a pork rind"], sequence: 1695150, termTags: ""))
+        XCTAssertEqual(term.description, TermEntryV3(expression: "油かす", reading: "あぶらかす", definitionTags: "n food", rules: "", score: 5, glossary: [.text("deep-fried meat (esp. beef offal) resembling a pork rind")], sequence: 1695150, termTags: "").description)
     }
 
-    func testDecode_withMultipleGlossaryItems_decodesObject() throws {
+    func testDecode_withMultipleStringGlossaryItems_decodesObject() throws {
         let json = #"["油かす", "あぶらかす", "n food", "", 5, ["deep-fried meat (esp. beef offal) resembling a pork rind", "another1", "another2"], 1695150, ""]"#
         let decoder = JSONDecoder()
 
         let term = try decoder.decode(TermEntryV3.self, from: json.data(using: .utf8)!)
 
-        XCTAssertEqual(term, TermEntryV3(expression: "油かす", reading: "あぶらかす", definitionTags: "n food", rules: "", score: 5, glossary: ["deep-fried meat (esp. beef offal) resembling a pork rind", "another1", "another2"], sequence: 1695150, termTags: ""))
+        XCTAssertEqual(term.description, TermEntryV3(expression: "油かす", reading: "あぶらかす", definitionTags: "n food", rules: "", score: 5, glossary: [.text("deep-fried meat (esp. beef offal) resembling a pork rind"), .text("another1"), .text("another2")], sequence: 1695150, termTags: "").description)
+    }
+
+    func testDecode_withOneTextObjectGlossaryItem_decodesObject() throws {
+        let json = """
+        [
+            "油かす",
+            "あぶらかす",
+            "n food",
+            "",
+            5,
+            [
+                {
+                    "type": "text",
+                    "text": "deep-fried meat (esp. beef offal) resembling a pork rind"
+                }
+            ],
+            1695150,
+            ""
+        ]
+        """
+        let decoder = JSONDecoder()
+
+        let term = try decoder.decode(TermEntryV3.self, from: json.data(using: .utf8)!)
+
+        XCTAssertEqual(term.description, TermEntryV3(expression: "油かす", reading: "あぶらかす", definitionTags: "n food", rules: "", score: 5, glossary: [.text("deep-fried meat (esp. beef offal) resembling a pork rind")], sequence: 1695150, termTags: "").description)
+    }
+
+    func testDecode_withMultipleTextObjectGlossaryItems_decodesObject() throws {
+        let json = """
+        [
+            "油かす",
+            "あぶらかす",
+            "n food",
+            "",
+            5,
+            [
+                {
+                    "type": "text",
+                    "text": "deep-fried meat (esp. beef offal) resembling a pork rind"
+                },
+                {
+                    "type": "text",
+                    "text": "another1"
+                },
+                {
+                    "type": "text",
+                    "text": "another2"
+                }
+            ],
+            1695150,
+            ""
+        ]
+        """
+        let decoder = JSONDecoder()
+
+        let term = try decoder.decode(TermEntryV3.self, from: json.data(using: .utf8)!)
+
+        XCTAssertEqual(term.description, TermEntryV3(expression: "油かす", reading: "あぶらかす", definitionTags: "n food", rules: "", score: 5, glossary: [.text("deep-fried meat (esp. beef offal) resembling a pork rind"), .text("another1"), .text("another2")], sequence: 1695150, termTags: "").description)
+    }
+
+    func testDecode_withOneImageObjectGlossaryItem_decodesObject() throws {
+        let json = """
+        [
+            "油かす",
+            "あぶらかす",
+            "n food",
+            "",
+            5,
+            [
+                {
+                    "type": "image",
+                    "path": "test.png",
+                    "width": 500,
+                    "height": 250,
+                    "title": "Test image",
+                    "description": "A test image",
+                    "pixelated": true
+                }
+            ],
+            1695150,
+            ""
+        ]
+        """
+        let decoder = JSONDecoder()
+
+        let term = try decoder.decode(TermEntryV3.self, from: json.data(using: .utf8)!)
+
+        XCTAssertEqual(term.description, TermEntryV3(expression: "油かす", reading: "あぶらかす", definitionTags: "n food", rules: "", score: 5, glossary: [.image(path: "test.png", width: 500, height: 250, title: "Test image", description: "A test image", pixelated: true)], sequence: 1695150, termTags: "").description)
     }
 }

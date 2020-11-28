@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct TermEntryV1: TermEntry, Equatable {
+struct TermEntryV1: TermEntry {
     let expression: String
     let reading: String
     let definitionTags: String?
     let rules: String
     let score: Int
-    let glossary: [String]
+    let glossary: [GlossaryItem]
     let sequence = 0
     let termTags = ""
 }
@@ -31,6 +31,6 @@ extension TermEntryV1: Decodable {
         while !values.isAtEnd {
             glossary.append(try values.decode(String.self))
         }
-        self.glossary = glossary
+        self.glossary = glossary.map { GlossaryItem.text($0) }
     }
 }

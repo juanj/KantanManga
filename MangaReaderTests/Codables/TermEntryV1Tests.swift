@@ -15,7 +15,7 @@ class TermEntryV1Tests: XCTestCase {
 
         let term = try decoder.decode(TermEntryV1.self, from: json.data(using: .utf8)!)
 
-        XCTAssertEqual(term, TermEntryV1(expression: "油かす", reading: "あぶらかす", definitionTags: "n food", rules: "", score: 5, glossary: ["deep-fried meat (esp. beef offal) resembling a pork rind"]))
+        XCTAssertEqual(term.description, TermEntryV1(expression: "油かす", reading: "あぶらかす", definitionTags: "n food", rules: "", score: 5, glossary: [.text("deep-fried meat (esp. beef offal) resembling a pork rind")]).description)
     }
 
     func testDecode_withMultipleGlossaryItems_decodesObject() throws {
@@ -24,6 +24,6 @@ class TermEntryV1Tests: XCTestCase {
 
         let term = try decoder.decode(TermEntryV1.self, from: json.data(using: .utf8)!)
 
-        XCTAssertEqual(term, TermEntryV1(expression: "油かす", reading: "あぶらかす", definitionTags: "n food", rules: "", score: 5, glossary: ["deep-fried meat (esp. beef offal) resembling a pork rind", "another1", "another2"]))
+        XCTAssertEqual(term.description, TermEntryV1(expression: "油かす", reading: "あぶらかす", definitionTags: "n food", rules: "", score: 5, glossary: [.text("deep-fried meat (esp. beef offal) resembling a pork rind"), .text("another1"), .text("another2")]).description)
     }
 }
