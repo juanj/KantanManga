@@ -24,7 +24,7 @@ class TermMetaEntryTests: XCTestCase {
 
         let termMeta = try decoder.decode(TermMetaEntry.self, from: json.data(using: .utf8)!)
 
-        XCTAssertEqual(termMeta.description, TermMetaEntry(character: "打", mode: .freq(frequency: 1, reading: "だ")).description)
+        XCTAssertEqual(termMeta.description, TermMetaEntry(character: "打", mode: .freq(frequency: 4, reading: "だ")).description)
     }
 
     func testDecode_withTypePitch_decodesObject() throws {
