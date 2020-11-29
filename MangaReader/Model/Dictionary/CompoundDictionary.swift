@@ -1,5 +1,5 @@
 //
-//  JapaneseDictionary.swift
+//  CompoundDictionary.swift
 //  MangaReader
 //
 //  Created by Juan on 10/01/20.
@@ -20,8 +20,8 @@ enum DictionaryError: Error {
     case dictionaryAlreadyExists
 }
 
-class JapaneseDictionary {
-    static let shared = JapaneseDictionary()
+class CompoundDictionary {
+    private var db: Connection?
 
     func createDataBase(fileName: String = "dic.db", fileManager: FileManager = .default) throws {
         guard let libraryUrl = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).first else {

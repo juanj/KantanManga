@@ -92,7 +92,7 @@
 		3259D1B423C4D9A2003BA7C2 /* FuriganaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */; };
 		325CFC1D2480582700110F31 /* DictionaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CFC1C2480582700110F31 /* DictionaryView.swift */; };
 		325CFC21248060AD00110F31 /* DictionaryEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CFC20248060AD00110F31 /* DictionaryEntryView.swift */; };
-		325DA0B923C8F50700A627BD /* JapaneseDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */; };
+		325DA0B923C8F50700A627BD /* CompoundDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325DA0B823C8F50700A627BD /* CompoundDictionary.swift */; };
 		326280D7253DD29F0070F5DA /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326280D6253DD29F0070F5DA /* KeyboardViewController.swift */; };
 		326280DB253DD29F0070F5DA /* Kantan-Keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 326280D4253DD29F0070F5DA /* Kantan-Keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		32628103253DD3970070F5DA /* RadicalsDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32628102253DD3970070F5DA /* RadicalsDictionary.swift */; };
@@ -336,7 +336,7 @@
 		3259D1B323C4D9A2003BA7C2 /* FuriganaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuriganaUtils.swift; sourceTree = "<group>"; };
 		325CFC1C2480582700110F31 /* DictionaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryView.swift; sourceTree = "<group>"; };
 		325CFC20248060AD00110F31 /* DictionaryEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEntryView.swift; sourceTree = "<group>"; };
-		325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseDictionary.swift; sourceTree = "<group>"; };
+		325DA0B823C8F50700A627BD /* CompoundDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompoundDictionary.swift; sourceTree = "<group>"; };
 		326280D4253DD29F0070F5DA /* Kantan-Keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Kantan-Keyboard.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		326280D6253DD29F0070F5DA /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		326280D8253DD29F0070F5DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -680,7 +680,7 @@
 			children = (
 				3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */,
 				3241F85E2572AE1600A4FC04 /* Entries */,
-				325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */,
+				325DA0B823C8F50700A627BD /* CompoundDictionary.swift */,
 				32454E7E25742304005036CC /* DBRepresentation.swift */,
 				3298D7CF25713BB4005FB8F2 /* DictionaryImporter.swift */,
 				3267AE91257142CA00806D5B /* DictionaryImporterError.swift */,
@@ -1394,7 +1394,7 @@
 				8418696D222495FE00C689DC /* Manga.swift in Sources */,
 				32C1EEF32539DE04001F59A0 /* FocusOverlayView.swift in Sources */,
 				32FA3C7C24367428001EB0DF /* String+Extension.swift in Sources */,
-				325DA0B923C8F50700A627BD /* JapaneseDictionary.swift in Sources */,
+				325DA0B923C8F50700A627BD /* CompoundDictionary.swift in Sources */,
 				32454E7F25742304005036CC /* DBRepresentation.swift in Sources */,
 				32AF5BCE2512567900E96C9F /* MangaCollectionable.swift in Sources */,
 				3283D1012552069700C08D02 /* ToggleTableViewCell.swift in Sources */,

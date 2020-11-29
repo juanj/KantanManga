@@ -66,7 +66,7 @@ extension JapaneseHelpViewController: ParsedInputFieldDelegate {
     }
 
     func didSelectWord(_ analyzeTextView: ParsedInputField, word: JapaneseWord) {
-        let dict = JapaneseDictionary()
+        let dict = CompoundDictionary()
         let words = dict.findWord(word: word.rootForm)
         dictView.setEntries(entries: words)
         delegate?.didOpenDictionary(self)

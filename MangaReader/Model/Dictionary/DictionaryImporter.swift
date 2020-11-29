@@ -38,9 +38,9 @@ struct DictionaryImporter {
         let termMetaList: [TermMetaEntry] = try readFileSequence(fileFormat: DictionaryImporter.termMetaBankFileFormat, zip: zipFile)
         let kanjiMetaList: [KanjiMetaEntry] = try readFileSequence(fileFormat: DictionaryImporter.kanjiMetaBankFileFormat, zip: zipFile)
         let tagList: [TagEntry] = try readFileSequence(fileFormat: DictionaryImporter.tagBankFileFormat, zip: zipFile)
-
         // TODO: Read 'old' tags
 
+        
     }
 
     private func importIndex(zip: Archive) throws -> DictionaryIndex {

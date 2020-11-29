@@ -10,4 +10,5 @@ import Foundation
 enum DictionaryImporterError: Error {
     case canNotReadFile
     case indexNotFound
+    case dictionaryAlreadyExists
 }
