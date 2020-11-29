@@ -16,15 +16,16 @@ struct DictionaryImporter {
     static let kanjiMetaBankFileFormat = "kanji_meta_bank_%d.json"
     static let tagBankFileFormat = "tag_bank_%d.json"
 
-    //let connection : Connection
-    func importDictionary(path: URL) throws {
+    func importDictionary(path: URL, to compoundDictionary: CompoundDictionary) throws {
         guard let zipFile = Archive(url: path, accessMode: .read) else {
             throw DictionaryImporterError.canNotReadFile
         }
 
         let index = try importIndex(zip: zipFile)
 
-        // TODO: Check if dictionary already exists
+        guard compoundDictionary.dictionaryExists(title: index.title, revision: index.revision) else {
+            throw DictionaryImporterError.dictionaryAlreadyExists
+        }
 
         let termList: [TermEntry]
         let kanjiList: [KanjiEntry]

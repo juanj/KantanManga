@@ -42,6 +42,21 @@ class CompoundDictionary {
         try DBRepresentation.Tags.createTable(in: db)
     }
 
+    func dictionaryExists(title: String, revision: String) -> Bool {
+        guard let db = db else { return false }
+        do {
+            let count = try db.scalar(
+                DBRepresentation.Dictionaries.table.filter(
+                    DBRepresentation.Dictionaries.title == title &&
+                        DBRepresentation.Dictionaries.revision == revision
+                ).count
+            )
+            return count < 1
+        } catch {
+            return false
+        }
+    }
+
     func findWord(word: String) -> [DictionaryResult] {
         guard let dictUrl = Bundle.main.url(forResource: "jamdict", withExtension: "db") else {
             return []
