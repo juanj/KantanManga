@@ -61,6 +61,7 @@
 		3241F8C12572E18500A4FC04 /* KanjiEntryV1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8C02572E18500A4FC04 /* KanjiEntryV1Tests.swift */; };
 		3241F8C62572E1A600A4FC04 /* KanjiEntryV3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8C52572E1A600A4FC04 /* KanjiEntryV3Tests.swift */; };
 		3241F8CE2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8CD2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift */; };
+		32454E7F25742304005036CC /* DBRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32454E7E25742304005036CC /* DBRepresentation.swift */; };
 		3247543C2551FD120025AB06 /* ViewerSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3247543A2551FD120025AB06 /* ViewerSettingsViewController.swift */; };
 		3247543D2551FD120025AB06 /* ViewerSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3247543B2551FD120025AB06 /* ViewerSettingsViewController.xib */; };
 		3249F2D7250BBC18004C514E /* MangaCollectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */; };
@@ -305,6 +306,7 @@
 		3241F8C02572E18500A4FC04 /* KanjiEntryV1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiEntryV1Tests.swift; sourceTree = "<group>"; };
 		3241F8C52572E1A600A4FC04 /* KanjiEntryV3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiEntryV3Tests.swift; sourceTree = "<group>"; };
 		3241F8CD2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiMetaEntryTests.swift; sourceTree = "<group>"; };
+		32454E7E25742304005036CC /* DBRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBRepresentation.swift; sourceTree = "<group>"; };
 		3247543A2551FD120025AB06 /* ViewerSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerSettingsViewController.swift; sourceTree = "<group>"; };
 		3247543B2551FD120025AB06 /* ViewerSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewerSettingsViewController.xib; sourceTree = "<group>"; };
 		3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollectionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -679,6 +681,7 @@
 				3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */,
 				3241F85E2572AE1600A4FC04 /* Entries */,
 				325DA0B823C8F50700A627BD /* JapaneseDictionary.swift */,
+				32454E7E25742304005036CC /* DBRepresentation.swift */,
 				3298D7CF25713BB4005FB8F2 /* DictionaryImporter.swift */,
 				3267AE91257142CA00806D5B /* DictionaryImporterError.swift */,
 			);
@@ -1392,6 +1395,7 @@
 				32C1EEF32539DE04001F59A0 /* FocusOverlayView.swift in Sources */,
 				32FA3C7C24367428001EB0DF /* String+Extension.swift in Sources */,
 				325DA0B923C8F50700A627BD /* JapaneseDictionary.swift in Sources */,
+				32454E7F25742304005036CC /* DBRepresentation.swift in Sources */,
 				32AF5BCE2512567900E96C9F /* MangaCollectionable.swift in Sources */,
 				3283D1012552069700C08D02 /* ToggleTableViewCell.swift in Sources */,
 				843FA7DF221DEDDF00B86B52 /* AddMangasCoordinator.swift in Sources */,

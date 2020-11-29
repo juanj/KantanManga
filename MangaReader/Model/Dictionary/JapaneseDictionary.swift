@@ -15,8 +15,32 @@ struct DictionaryResult {
     let entryId: Int64
 }
 
+enum DictionaryError: Error {
+    case canNotGetLibraryURL
+    case dictionaryAlreadyExists
+}
+
 class JapaneseDictionary {
     static let shared = JapaneseDictionary()
+
+    func createDataBase(fileName: String = "dic.db", fileManager: FileManager = .default) throws {
+        guard let libraryUrl = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).first else {
+            throw DictionaryError.canNotGetLibraryURL
+        }
+
+        let dbUrl = libraryUrl.appendingPathComponent(fileName)
+        guard fileManager.fileExists(atPath: dbUrl.absoluteString) else {
+            throw DictionaryError.dictionaryAlreadyExists
+        }
+
+        let db = try Connection(dbUrl.absoluteString)
+        try DBRepresentation.Dictionaries.createTable(in: db)
+        try DBRepresentation.Kanji.createTable(in: db)
+        try DBRepresentation.KanjiMeta.createTable(in: db)
+        try DBRepresentation.Terms.createTable(in: db)
+        try DBRepresentation.TermsMeta.createTable(in: db)
+        try DBRepresentation.Tags.createTable(in: db)
+    }
 
     func findWord(word: String) -> [DictionaryResult] {
         guard let dictUrl = Bundle.main.url(forResource: "jamdict", withExtension: "db") else {
