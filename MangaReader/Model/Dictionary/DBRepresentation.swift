@@ -9,21 +9,22 @@ import Foundation
 import SQLite
 
 class DBRepresentation {
+    static let encoder = JSONEncoder()
     struct Dictionaries {
         static let table = Table("dictionaries")
 
         static let id = Expression<Int64>("id")
         static let title = Expression<String>("title")
         static let revision = Expression<String>("revision")
-        static let sequenced = Expression<Bool>("sequenced")
+        static let sequenced = Expression<Bool?>("sequenced")
         static let version = Expression<Int64>("version")
-        static let author = Expression<String>("author")
-        static let url = Expression<String>("url")
-        static let description = Expression<String>("description")
-        static let attribution = Expression<String>("attribution")
+        static let author = Expression<String?>("author")
+        static let url = Expression<String?>("url")
+        static let description = Expression<String?>("description")
+        static let attribution = Expression<String?>("attribution")
 
         static func createTable(in db: Connection) throws {
-            try db.run(DBRepresentation.Dictionaries.table.create { table in
+            try db.run(table.create { table in
                 table.column(id, primaryKey: .autoincrement)
                 table.column(title)
                 table.column(revision)
@@ -35,6 +36,19 @@ class DBRepresentation {
                 table.column(attribution)
             })
         }
+
+        static func insert(in db: Connection, index: DictionaryIndex) throws -> Int64 {
+            return try db.run(table.insert(
+                title <- index.title,
+                revision <- index.revision,
+                sequenced <- index.sequenced,
+                version <- Int64(index.fileVersion.rawValue),
+                author <- index.author,
+                url <- index.author,
+                description <- index.description,
+                attribution <- index.attribution
+            ))
+        }
     }
 
     struct Terms {
@@ -43,7 +57,7 @@ class DBRepresentation {
         static let id = Expression<Int64>("id")
         static let dictionary = Expression<Int64>("dictionary")
         static let expression = Expression<String>("expression")
-        static let definitionTags = Expression<String>("definitionTags")
+        static let definitionTags = Expression<String?>("definitionTags")
         static let rules = Expression<String>("rules")
         static let score = Expression<Int64>("score")
         static let glossary = Expression<String>("glossary")
@@ -51,9 +65,9 @@ class DBRepresentation {
         static let termTags = Expression<String>("termTags")
 
         static func createTable(in db: Connection) throws {
-            try db.run(DBRepresentation.Terms.table.create { table in
+            try db.run(table.create { table in
                 table.column(id, primaryKey: .autoincrement)
-                table.column(dictionary, references: DBRepresentation.Dictionaries.table, DBRepresentation.Dictionaries.id)
+                table.column(dictionary, references: Dictionaries.table, Dictionaries.id)
                 table.column(expression)
                 table.column(definitionTags)
                 table.column(rules)
@@ -62,6 +76,20 @@ class DBRepresentation {
                 table.column(sequence)
                 table.column(termTags)
             })
+        }
+
+        static func insert(in db: Connection, term: TermEntry, dictionary: Int64) throws {
+            let glossary = String(data: try encoder.encode(term.glossary), encoding: .utf8) ?? ""
+            try db.run(table.insert(
+                self.dictionary <- dictionary,
+                expression <- term.expression,
+                definitionTags <- term.definitionTags,
+                rules <- term.rules,
+                score <- Int64(term.score),
+                self.glossary <- glossary,
+                sequence <- Int64(term.sequence),
+                termTags <- term.termTags
+            ))
         }
     }
 
@@ -74,12 +102,21 @@ class DBRepresentation {
         static let mode = Expression<String>("mode")
 
         static func createTable(in db: Connection) throws {
-            try db.run(DBRepresentation.TermsMeta.table.create { table in
+            try db.run(table.create { table in
                 table.column(id, primaryKey: .autoincrement)
-                table.column(dictionary, references: DBRepresentation.Dictionaries.table, DBRepresentation.Dictionaries.id)
+                table.column(dictionary, references: Dictionaries.table, Dictionaries.id)
                 table.column(character)
                 table.column(mode)
             })
+        }
+
+        static func insert(in db: Connection, termMeta: TermMetaEntry, dictionary: Int64) throws {
+            let mode = String(data: try encoder.encode(termMeta.mode), encoding: .utf8) ?? ""
+            try db.run(table.insert(
+                self.dictionary <- dictionary,
+                character <- termMeta.character,
+                self.mode <- mode
+            ))
         }
     }
 
@@ -96,9 +133,9 @@ class DBRepresentation {
         static let stats = Expression<String>("stats")
 
         static func createTable(in db: Connection) throws {
-            try db.run(DBRepresentation.Kanji.table.create { table in
+            try db.run(table.create { table in
                 table.column(id, primaryKey: .autoincrement)
-                table.column(dictionary, references: DBRepresentation.Dictionaries.table, DBRepresentation.Dictionaries.id)
+                table.column(dictionary, references: Dictionaries.table, Dictionaries.id)
                 table.column(character)
                 table.column(onyomi)
                 table.column(kunyomi)
@@ -118,9 +155,9 @@ class DBRepresentation {
         static let category = Expression<String>("category")
 
         static func createTable(in db: Connection) throws {
-            try db.run(DBRepresentation.KanjiMeta.table.create { table in
+            try db.run(table.create { table in
                 table.column(id, primaryKey: .autoincrement)
-                table.column(dictionary, references: DBRepresentation.Dictionaries.table, DBRepresentation.Dictionaries.id)
+                table.column(dictionary, references: Dictionaries.table, Dictionaries.id)
                 table.column(character)
                 table.column(category)
             })
@@ -138,9 +175,9 @@ class DBRepresentation {
         static let score = Expression<Int64>("score")
 
         static func createTable(in db: Connection) throws {
-            try db.run(DBRepresentation.Tags.table.create { table in
+            try db.run(table.create { table in
                 table.column(id, primaryKey: .autoincrement)
-                table.column(dictionary, references: DBRepresentation.Dictionaries.table, DBRepresentation.Dictionaries.id)
+                table.column(dictionary, references: Dictionaries.table, Dictionaries.id)
                 table.column(category)
                 table.column(order)
                 table.column(notes)
