@@ -23,7 +23,7 @@ struct DictionaryImporter {
 
         let index = try importIndex(zip: zipFile)
 
-        guard compoundDictionary.dictionaryExists(title: index.title, revision: index.revision) else {
+        guard try compoundDictionary.dictionaryExists(title: index.title, revision: index.revision) else {
             throw DictionaryImporterError.dictionaryAlreadyExists
         }
 
@@ -40,8 +40,9 @@ struct DictionaryImporter {
         let kanjiMetaList: [KanjiMetaEntry] = try readFileSequence(fileFormat: DictionaryImporter.kanjiMetaBankFileFormat, zip: zipFile)
         let tagList: [TagEntry] = try readFileSequence(fileFormat: DictionaryImporter.tagBankFileFormat, zip: zipFile)
         // TODO: Read 'old' tags
-
         
+        let dictionary = Dictionary(index: index, termList: termList, termMetaList: termMetaList, kanjiList: kanjiList, kanjiMetaList: kanjiMetaList, tags: tagList)
+        try compoundDictionary.addDictionary(dictionary)
     }
 
     private func importIndex(zip: Archive) throws -> DictionaryIndex {

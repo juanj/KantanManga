@@ -18,6 +18,8 @@ struct DictionaryResult {
 enum DictionaryError: Error {
     case canNotGetLibraryURL
     case dictionaryAlreadyExists
+    case noConnection
+    case dbFileNotFound
 }
 
 class CompoundDictionary {
@@ -29,21 +31,37 @@ class CompoundDictionary {
         }
 
         let dbUrl = libraryUrl.appendingPathComponent(fileName)
-        guard fileManager.fileExists(atPath: dbUrl.absoluteString) else {
+        guard !fileManager.fileExists(atPath: dbUrl.path) else {
             throw DictionaryError.dictionaryAlreadyExists
         }
 
-        let db = try Connection(dbUrl.absoluteString)
+        let db = try Connection(dbUrl.path)
         try DBRepresentation.Dictionaries.createTable(in: db)
         try DBRepresentation.Kanji.createTable(in: db)
         try DBRepresentation.KanjiMeta.createTable(in: db)
         try DBRepresentation.Terms.createTable(in: db)
         try DBRepresentation.TermsMeta.createTable(in: db)
         try DBRepresentation.Tags.createTable(in: db)
+        self.db = db
     }
 
-    func dictionaryExists(title: String, revision: String) -> Bool {
-        guard let db = db else { return false }
+    func removeDataBase(fileName: String = "dic.db", fileManager: FileManager = .default) throws {
+        guard let libraryUrl = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).first else {
+            throw DictionaryError.canNotGetLibraryURL
+        }
+
+        let dbUrl = libraryUrl.appendingPathComponent(fileName)
+        guard fileManager.fileExists(atPath: dbUrl.path) else {
+            throw DictionaryError.dbFileNotFound
+        }
+
+        try fileManager.removeItem(at: dbUrl)
+    }
+
+    func dictionaryExists(title: String, revision: String) throws -> Bool {
+        guard let db = db else {
+            throw DictionaryError.noConnection
+        }
         do {
             let count = try db.scalar(
                 DBRepresentation.Dictionaries.table.filter(
@@ -54,6 +72,21 @@ class CompoundDictionary {
             return count < 1
         } catch {
             return false
+        }
+    }
+
+    func addDictionary(_ dictionary: Dictionary) throws {
+        guard let db = db else {
+            throw DictionaryError.noConnection
+        }
+        try db.transaction {
+            let dictionaryId = try DBRepresentation.Dictionaries.insert(in: db, index: dictionary.index)
+            for term in dictionary.termList {
+                try DBRepresentation.Terms.insert(in: db, term: term, dictionary: dictionaryId)
+            }
+            for termMeta in dictionary.termMetaList {
+                try DBRepresentation.TermsMeta.insert(in: db, termMeta: termMeta, dictionary: dictionaryId)
+            }
         }
     }
 
