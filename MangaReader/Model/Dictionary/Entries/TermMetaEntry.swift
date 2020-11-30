@@ -7,19 +7,55 @@
 
 import Foundation
 
+struct PitchAccent: Codable {
+    let position: Int
+    let tags: [String]?
+}
+
+enum TermMetaMode {
+    case freq(frequency: Int, reading: String? = nil)
+    case pitch(reading: String, pitches: [PitchAccent])
+}
+
 struct TermMetaEntry {
-    enum Mode {
-        case freq(frequency: Int, reading: String? = nil)
-        case pitch(reading: String, pitches: [PitchAccent])
-    }
-
-    struct PitchAccent: Decodable {
-        let position: Int
-        let tags: [String]?
-    }
-
     let character: String
-    let mode: Mode
+    let mode: TermMetaMode
+}
+
+extension TermMetaMode: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case type, frequency, reading, pitches
+    }
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let type = try values.decode(String.self, forKey: .type)
+        switch type {
+        case "freq":
+            let frequency = try values.decode(Int.self, forKey: .frequency)
+            let reading = try? values.decode(String.self, forKey: .reading)
+            self = .freq(frequency: frequency, reading: reading)
+        case "pitch":
+            let reading = try values.decode(String.self, forKey: .reading)
+            let pitches = try values.decode([PitchAccent].self, forKey: .pitches)
+            self = .pitch(reading: reading, pitches: pitches)
+        default:
+            self = .freq(frequency: 0)
+        }
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .freq(let frquency, let reading):
+            try container.encode("freq", forKey: .type)
+            try container.encode(frquency, forKey: .frequency)
+            try container.encode(reading, forKey: .reading)
+        case .pitch(let reading, let pitches):
+            try container.encode("pitch", forKey: .type)
+            try container.encode(reading, forKey: .reading)
+            try container.encode(pitches, forKey: .pitches)
+        }
+    }
 }
 
 extension TermMetaEntry: CustomStringConvertible {
