@@ -93,6 +93,10 @@ class CompoundDictionary {
             for kanji in dictionary.kanjiList {
                 try DBRepresentation.Kanji.insert(in: db, kanji: kanji, dictionary: dictionaryId)
             }
+
+            for kanjiMeta in dictionary.kanjiMetaList {
+                try DBRepresentation.KanjiMeta.insert(in: db, kanjiMeta: kanjiMeta, dictionary: dictionaryId)
+            } 
         }
     }
 

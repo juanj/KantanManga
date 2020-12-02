@@ -174,6 +174,15 @@ class DBRepresentation {
                 table.column(category)
             })
         }
+
+        static func insert(in db: Connection, kanjiMeta: KanjiMetaEntry, dictionary: Int64) throws {
+            let category = try encoder.encode(kanjiMeta.category)
+            try db.run(table.insert(
+                self.dictionary <- dictionary,
+                character <- kanjiMeta.character,
+                self.category <- String(data: category, encoding: .utf8) ?? ""
+            ))
+        }
     }
 
     struct Tags {
