@@ -146,6 +146,7 @@ class DBRepresentation {
         }
 
         static func insert(in db: Connection, kanji: KanjiEntry, dictionary: Int64) throws {
+            let meanings = try encoder.encode(kanji.meanings)
             let stats = try encoder.encode(kanji.stats)
             try db.run(table.insert(
                 self.dictionary <- dictionary,
@@ -153,6 +154,7 @@ class DBRepresentation {
                 onyomi <- kanji.onyomi,
                 kunyomi <- kanji.kunyomi,
                 tags <- kanji.tags,
+                self.meanings <- String(data: meanings, encoding: .utf8) ?? "",
                 self.stats <- String(data: stats, encoding: .utf8) ?? ""
             ))
         }
