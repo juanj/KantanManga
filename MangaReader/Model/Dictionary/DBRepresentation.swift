@@ -191,7 +191,7 @@ class DBRepresentation {
         static let id = Expression<Int64>("id")
         static let dictionary = Expression<Int64>("dictionary")
         static let category = Expression<String>("category")
-        static let order = Expression<Int64>("order")
+        static let order = Expression<Int64?>("order")
         static let notes = Expression<String>("notes")
         static let score = Expression<Int64>("score")
 
@@ -204,6 +204,16 @@ class DBRepresentation {
                 table.column(notes)
                 table.column(score)
             })
+        }
+
+        static func insert(in db: Connection, tag: TagEntry, dictionary: Int64) throws {
+            try db.run(table.insert(
+                self.dictionary <- dictionary,
+                category <- tag.category,
+                order <- Int64(tag.order),
+                notes <- tag.notes,
+                score <- Int64(tag.score)
+            ))
         }
     }
 }
