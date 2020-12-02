@@ -80,12 +80,18 @@ class CompoundDictionary {
             throw DictionaryError.noConnection
         }
         try db.transaction {
+            // TODO: Save dictionary media
             let dictionaryId = try DBRepresentation.Dictionaries.insert(in: db, index: dictionary.index)
             for term in dictionary.termList {
                 try DBRepresentation.Terms.insert(in: db, term: term, dictionary: dictionaryId)
             }
+
             for termMeta in dictionary.termMetaList {
                 try DBRepresentation.TermsMeta.insert(in: db, termMeta: termMeta, dictionary: dictionaryId)
+            }
+
+            for kanji in dictionary.kanjiList {
+                try DBRepresentation.Kanji.insert(in: db, kanji: kanji, dictionary: dictionaryId)
             }
         }
     }

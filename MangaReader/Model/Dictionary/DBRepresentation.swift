@@ -144,6 +144,18 @@ class DBRepresentation {
                 table.column(stats)
             })
         }
+
+        static func insert(in db: Connection, kanji: KanjiEntry, dictionary: Int64) throws {
+            let stats = try encoder.encode(kanji.stats)
+            try db.run(table.insert(
+                self.dictionary <- dictionary,
+                character <- kanji.character,
+                onyomi <- kanji.onyomi,
+                kunyomi <- kanji.kunyomi,
+                tags <- kanji.tags,
+                self.stats <- String(data: stats, encoding: .utf8) ?? ""
+            ))
+        }
     }
 
     struct KanjiMeta {
