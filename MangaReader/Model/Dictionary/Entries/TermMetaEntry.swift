@@ -49,7 +49,7 @@ extension TermMetaEntry.Mode: Codable {
         case .freq(let frquency, let reading):
             try container.encode("freq", forKey: .type)
             try container.encode(frquency, forKey: .frequency)
-            try container.encode(reading, forKey: .reading)
+            try container.encodeIfPresent(reading, forKey: .reading)
         case .pitch(let reading, let pitches):
             try container.encode("pitch", forKey: .type)
             try container.encode(reading, forKey: .reading)
