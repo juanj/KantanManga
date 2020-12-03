@@ -7,22 +7,22 @@
 
 import Foundation
 
-struct PitchAccent: Codable {
-    let position: Int
-    let tags: [String]?
-}
-
-enum TermMetaMode {
-    case freq(frequency: Int, reading: String? = nil)
-    case pitch(reading: String, pitches: [PitchAccent])
-}
-
 struct TermMetaEntry {
+    struct PitchAccent: Codable {
+        let position: Int
+        let tags: [String]?
+    }
+
+    enum Mode {
+        case freq(frequency: Int, reading: String? = nil)
+        case pitch(reading: String, pitches: [PitchAccent])
+    }
+
     let character: String
-    let mode: TermMetaMode
+    let mode: Mode
 }
 
-extension TermMetaMode: Codable {
+extension TermMetaEntry.Mode: Codable {
     private enum CodingKeys: String, CodingKey {
         case type, frequency, reading, pitches
     }
@@ -36,7 +36,7 @@ extension TermMetaMode: Codable {
             self = .freq(frequency: frequency, reading: reading)
         case "pitch":
             let reading = try values.decode(String.self, forKey: .reading)
-            let pitches = try values.decode([PitchAccent].self, forKey: .pitches)
+            let pitches = try values.decode([TermMetaEntry.PitchAccent].self, forKey: .pitches)
             self = .pitch(reading: reading, pitches: pitches)
         default:
             self = .freq(frequency: 0)
