@@ -8,8 +8,15 @@
 import Foundation
 
 struct KanjiMetaEntry {
-    enum Category {
+    enum Category: CustomStringConvertible {
         case freq(Int)
+
+        var description: String {
+            switch self {
+            case .freq(let freq):
+                return "freq \(freq)"
+            }
+        }
     }
 
     let character: String
