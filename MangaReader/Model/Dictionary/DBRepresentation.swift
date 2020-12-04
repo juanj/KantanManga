@@ -57,6 +57,7 @@ class DBRepresentation {
         static let id = Expression<Int64>("id")
         static let dictionary = Expression<Int64>("dictionary")
         static let expression = Expression<String>("expression")
+        static let reading = Expression<String>("reading")
         static let definitionTags = Expression<String?>("definitionTags")
         static let rules = Expression<String>("rules")
         static let score = Expression<Int64>("score")
@@ -69,6 +70,7 @@ class DBRepresentation {
                 table.column(id, primaryKey: .autoincrement)
                 table.column(dictionary, references: Dictionaries.table, Dictionaries.id)
                 table.column(expression)
+                table.column(reading)
                 table.column(definitionTags)
                 table.column(rules)
                 table.column(score)
@@ -83,6 +85,7 @@ class DBRepresentation {
             try db.run(table.insert(
                 self.dictionary <- dictionary,
                 expression <- term.expression,
+                reading <- term.reading,
                 definitionTags <- term.definitionTags,
                 rules <- term.rules,
                 score <- Int64(term.score),
