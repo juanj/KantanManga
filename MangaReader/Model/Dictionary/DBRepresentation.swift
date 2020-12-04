@@ -94,6 +94,10 @@ class DBRepresentation {
                 termTags <- term.termTags
             ))
         }
+
+        static func searchQuery(term: String) -> Table {
+            table.filter(expression.like(term) || reading.like(term))
+        }
     }
 
     struct TermsMeta {

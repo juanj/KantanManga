@@ -40,7 +40,7 @@ struct DictionaryImporter {
         let kanjiMetaList: [KanjiMetaEntry] = try readFileSequence(fileFormat: DictionaryImporter.kanjiMetaBankFileFormat, zip: zipFile)
         let tagList: [TagEntry] = try readFileSequence(fileFormat: DictionaryImporter.tagBankFileFormat, zip: zipFile)
         // TODO: Read 'old' tags
-        
+
         let dictionary = Dictionary(index: index, termList: termList, termMetaList: termMetaList, kanjiList: kanjiList, kanjiMetaList: kanjiMetaList, tags: tagList)
         try compoundDictionary.addDictionary(dictionary)
     }

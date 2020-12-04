@@ -25,6 +25,19 @@ enum DictionaryError: Error {
 class CompoundDictionary {
     private var db: Connection?
 
+    func connectToDataBase(fileName: String = "dic.db", fileManager: FileManager = .default) throws {
+        guard let libraryUrl = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).first else {
+            throw DictionaryError.canNotGetLibraryURL
+        }
+
+        let dbUrl = libraryUrl.appendingPathComponent(fileName)
+        guard fileManager.fileExists(atPath: dbUrl.path) else {
+            throw DictionaryError.dbFileNotFound
+        }
+
+        db = try Connection(dbUrl.path)
+    }
+
     func createDataBase(fileName: String = "dic.db", fileManager: FileManager = .default) throws {
         guard let libraryUrl = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).first else {
             throw DictionaryError.canNotGetLibraryURL
@@ -102,6 +115,19 @@ class CompoundDictionary {
                 try DBRepresentation.Tags.insert(in: db, tag: tag, dictionary: dictionaryId)
             }
         }
+    }
+
+    func findTerm(term: String) throws -> [DictionaryResult] {
+        guard let db = db else {
+            throw DictionaryError.noConnection
+        }
+
+        var results = [DictionaryResult]()
+        for term in try db.prepare(DBRepresentation.Terms.searchQuery(term: term)) {
+            results.append(DictionaryResult(word: [term[DBRepresentation.Terms.expression], term[DBRepresentation.Terms.reading]], meanings: [term[DBRepresentation.Terms.glossary]], entryId: term[DBRepresentation.Terms.id]))
+        }
+
+        return results
     }
 
     func findWord(word: String) -> [DictionaryResult] {
