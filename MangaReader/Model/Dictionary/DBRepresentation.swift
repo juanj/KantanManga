@@ -49,6 +49,11 @@ class DBRepresentation {
                 attribution <- index.attribution
             ))
         }
+
+        static func toDictionaryIndex(_ row: Row) -> DictionaryIndex? {
+            let version = DictionaryIndex.Version(rawValue: Int(row[self.version])) ?? .v3
+            return DictionaryIndex(title: row[title], revision: row[revision], sequenced: row[sequenced], format: version, version: version, author: row[author], url: row[url], description: row[description], attribution: row[attribution])
+        }
     }
 
     struct Terms {

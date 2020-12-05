@@ -88,6 +88,21 @@ class CompoundDictionary {
         }
     }
 
+    func getDictionaries() throws -> [DictionaryIndex] {
+        guard let db = db else {
+            throw DictionaryError.noConnection
+        }
+
+        var dictionaries = [DictionaryIndex]()
+        for row in try db.prepare(DBRepresentation.Dictionaries.table) {
+            if let dictionary = DBRepresentation.Dictionaries.toDictionaryIndex(row) {
+                dictionaries.append(dictionary)
+            }
+        }
+
+        return dictionaries
+    }
+
     func addDictionary(_ dictionary: Dictionary) throws {
         guard let db = db else {
             throw DictionaryError.noConnection
