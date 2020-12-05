@@ -53,6 +53,11 @@ final class TestsFactories {
         return settingsCoordinator
     }
 
+    static func createDictionariesCoordinator(navigable: Navigable = FakeNavigation()) -> DictionariesCoordinator {
+        let dictionariesCoordinator = DictionariesCoordinator(navigation: navigable)
+        return dictionariesCoordinator
+    }
+
     // MARK: ViewControllers
     static func createCollectionViewController() -> CollectionViewController {
         let collectionViewController = FakeCollectionViewController(delegate: FakeCollectionViewControllerDelgate(), collection: EmptyMangaCollection(mangas: []), sourcePoint: .zero, initialRotations: [])

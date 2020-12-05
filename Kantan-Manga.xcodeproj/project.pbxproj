@@ -152,6 +152,10 @@
 		32CFA5F7256FF16E0083F300 /* MangaDataSourceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA5F6256FF16E0083F300 /* MangaDataSourceable.swift */; };
 		32CFA5FF256FF34A0083F300 /* FakeMangaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA5FE256FF34A0083F300 /* FakeMangaDataSource.swift */; };
 		32CFA604256FF7340083F300 /* ConstraintsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA603256FF7340083F300 /* ConstraintsUtils.swift */; };
+		32DDEF0C257C20420063E813 /* DictionariesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DDEF0B257C20420063E813 /* DictionariesCoordinator.swift */; };
+		32DDEF33257C20F80063E813 /* DictionariesCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DDEF11257C20BA0063E813 /* DictionariesCoordinatorTests.swift */; };
+		32DDEF3C257C21DD0063E813 /* DictionariesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DDEF3A257C21DD0063E813 /* DictionariesViewController.swift */; };
+		32DDEF3D257C21DD0063E813 /* DictionariesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DDEF3B257C21DD0063E813 /* DictionariesViewController.xib */; };
 		32E322182481A531007BC017 /* ParsedInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E322152481A531007BC017 /* ParsedInputField.swift */; };
 		32E3221C2481A67D007BC017 /* JapaneseHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */; };
 		32E37987252A6A6000ED4BAC /* AcknowledgmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */; };
@@ -394,6 +398,10 @@
 		32CFA5F6256FF16E0083F300 /* MangaDataSourceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDataSourceable.swift; sourceTree = "<group>"; };
 		32CFA5FE256FF34A0083F300 /* FakeMangaDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMangaDataSource.swift; sourceTree = "<group>"; };
 		32CFA603256FF7340083F300 /* ConstraintsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintsUtils.swift; sourceTree = "<group>"; };
+		32DDEF0B257C20420063E813 /* DictionariesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionariesCoordinator.swift; sourceTree = "<group>"; };
+		32DDEF11257C20BA0063E813 /* DictionariesCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionariesCoordinatorTests.swift; sourceTree = "<group>"; };
+		32DDEF3A257C21DD0063E813 /* DictionariesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionariesViewController.swift; sourceTree = "<group>"; };
+		32DDEF3B257C21DD0063E813 /* DictionariesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DictionariesViewController.xib; sourceTree = "<group>"; };
 		32E322152481A531007BC017 /* ParsedInputField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsedInputField.swift; sourceTree = "<group>"; };
 		32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseHelpViewController.swift; sourceTree = "<group>"; };
 		32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgmentsView.swift; sourceTree = "<group>"; };
@@ -665,6 +673,8 @@
 				326FDE7824A7F8350042CB8A /* SettingsTableViewController.swift */,
 				326FDE7E24A80BB20042CB8A /* AboutView.swift */,
 				32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */,
+				32DDEF3A257C21DD0063E813 /* DictionariesViewController.swift */,
+				32DDEF3B257C21DD0063E813 /* DictionariesViewController.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -810,6 +820,7 @@
 				32F998BC25574C6C00897299 /* AddMangasCoordinatorTests.swift */,
 				32F998C025574C8E00897299 /* ViewMangaCoordinatorTests.swift */,
 				3257C017256F0E2200C4C702 /* SettingsCoordinatorTests.swift */,
+				32DDEF11257C20BA0063E813 /* DictionariesCoordinatorTests.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -946,6 +957,7 @@
 				328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */,
 				326FDE7A24A7FBFB0042CB8A /* SettingsCoordinator.swift */,
 				32F998D42557535500897299 /* Navigable.swift */,
+				32DDEF0B257C20420063E813 /* DictionariesCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -1209,6 +1221,7 @@
 				324BB99A24983DF7006241E8 /* char.bin in Resources */,
 				325199BB2479DE0D00DA6908 /* tessdata in Resources */,
 				3239C5B9254DD06500EFB39A /* Settings.bundle in Resources */,
+				32DDEF3D257C21DD0063E813 /* DictionariesViewController.xib in Resources */,
 				84A8321E221D951500CEE1C9 /* LibraryViewController.xib in Resources */,
 				329ACA8B2552ED15002953C5 /* NumberTableViewCell.xib in Resources */,
 				324BB99824983DF7006241E8 /* dicrc in Resources */,
@@ -1412,8 +1425,10 @@
 				325199B42479D96400DA6908 /* ImageOCR.swift in Sources */,
 				328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */,
 				32E3221C2481A67D007BC017 /* JapaneseHelpViewController.swift in Sources */,
+				32DDEF0C257C20420063E813 /* DictionariesCoordinator.swift in Sources */,
 				320F277323C2046900D9930F /* Token.swift in Sources */,
 				84A831E7221D90CA00CEE1C9 /* AppDelegate.swift in Sources */,
+				32DDEF3C257C21DD0063E813 /* DictionariesViewController.swift in Sources */,
 				3292ADA22535DCF8004E8441 /* DemoOcrView.swift in Sources */,
 				3298D7D025713BB4005FB8F2 /* DictionaryImporter.swift in Sources */,
 				3298D7D725713D66005FB8F2 /* DictionaryIndex.swift in Sources */,
@@ -1492,6 +1507,7 @@
 				321C69A22562FA4E00296A1F /* FuriganaUtilsTests.swift in Sources */,
 				3241F8C62572E1A600A4FC04 /* KanjiEntryV3Tests.swift in Sources */,
 				3257C023256F0FC000C4C702 /* FakeSettingsTableViewControllerDelegate.swift in Sources */,
+				32DDEF33257C20F80063E813 /* DictionariesCoordinatorTests.swift in Sources */,
 				320ED4D32483178C00F5BECF /* FakeLibraryViewControllerDelegate.swift in Sources */,
 				32A110B7255859860099A768 /* FakeLibraryViewController.swift in Sources */,
 				32A110BC255859970099A768 /* FakeCoreDataManager.swift in Sources */,
