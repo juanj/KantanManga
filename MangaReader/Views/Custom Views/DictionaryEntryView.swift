@@ -28,10 +28,11 @@ class DictionaryEntryView: UIView {
         title.numberOfLines = 0
         title.text = entry.term // TODO: Add furigana
 
-        let body = UILabel()
+        let body = UITextView()
+        body.isEditable = false
         body.font = .systemFont(ofSize: 20)
         body.translatesAutoresizingMaskIntoConstraints = false
-        body.numberOfLines = 0
+        body.isScrollEnabled = false
         body.text = entry.meanings
             .compactMap { item in
                 if case .text(let text) = item {
