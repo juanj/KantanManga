@@ -12,7 +12,7 @@ import SQLite
 struct DictionaryResult {
     let term: String
     let reading: String
-    let meanings: [GlossaryItem]
+    var meanings: [GlossaryItem]
 }
 
 enum DictionaryError: Error {
@@ -129,6 +129,20 @@ class CompoundDictionary {
             }
         }
 
-        return results
+        return mergeResults(results)
+    }
+
+    private func mergeResults(_ results: [DictionaryResult]) -> [DictionaryResult] {
+        var mergedResults = [DictionaryResult]()
+
+        for result in results {
+            if let entryIndex = mergedResults.firstIndex(where: { $0.reading == result.reading && $0.term == result.term }) {
+                mergedResults[entryIndex].meanings += result.meanings
+            } else {
+                mergedResults.append(result)
+            }
+        }
+
+        return mergedResults
     }
 }
