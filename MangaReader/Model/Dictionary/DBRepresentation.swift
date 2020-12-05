@@ -98,6 +98,20 @@ class DBRepresentation {
         static func searchQuery(term: String) -> Table {
             table.filter(expression.like(term) || reading.like(term))
         }
+
+        static func toDictionaryResult(_ row: Row) -> DictionaryResult? {
+            let expression = row[self.expression]
+            let reading = row[self.reading]
+            guard let glossary = row[self.glossary].data(using: .utf8) else { return nil }
+            let decoder = JSONDecoder()
+            do {
+                let meanings = try decoder.decode([GlossaryItem].self, from: glossary)
+                return DictionaryResult(term: expression, reading: reading, meanings: meanings)
+            } catch let error {
+                print(error.localizedDescription)
+                return nil
+            }
+        }
     }
 
     struct TermsMeta {
