@@ -60,4 +60,10 @@ extension SettingsCoordinator: SettingsTableViewControllerDelegate {
     func didSelectClose(_ settingsTableViewController: SettingsTableViewController) {
         navigation.dismiss(animated: true, completion: nil)
     }
+
+    func didSelectDictionaries(_ settingsTableViewController: SettingsTableViewController) {
+        let dictionariesCoordinator = DictionariesCoordinator(navigation: presentedNavigationController)
+        childCoordinators.append(dictionariesCoordinator)
+        dictionariesCoordinator.start()
+    }
 }

@@ -23,6 +23,10 @@ enum DictionaryError: Error {
 }
 
 class CompoundDictionary {
+    var isConnected: Bool {
+        return db != nil
+    }
+
     private var db: Connection?
 
     func connectToDataBase(fileName: String = "dic.db", fileManager: FileManager = .default) throws {

@@ -11,11 +11,17 @@ class DictionariesCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
 
     private let navigationController: Navigable
-    init(navigation: Navigable) {
+    private let compoundDictionary: CompoundDictionary
+    init(navigation: Navigable, compoundDictionary: CompoundDictionary = CompoundDictionary()) {
         navigationController = navigation
+        self.compoundDictionary = compoundDictionary
     }
 
     func start() {
-        navigationController.pushViewController(DictionariesViewController(), animated: true)
+        if !compoundDictionary.isConnected {
+            try? compoundDictionary.connectToDataBase()
+        }
+        let dictionaries = (try? compoundDictionary.getDictionaries()) ?? []
+        navigationController.pushViewController(DictionariesViewController(dictionaries: dictionaries), animated: true)
     }
 }

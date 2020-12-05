@@ -20,4 +20,12 @@ class SettingsCoordinatorTests: XCTestCase {
 
         XCTAssertNil(mockNavigation.presentedViewController)
     }
+
+    func testSettingsTableViewControllerDelegateDidSelectDictionaries_withEmptyChilds_startsDictionariesCoordinator() {
+        let settingsCoordinator = TestsFactories.createSettingsCoordinator()
+
+        settingsCoordinator.didSelectDictionaries(SettingsTableViewController(delegate: FakeSettingsTableViewControllerDelegate()))
+
+        XCTAssertNotNil(settingsCoordinator.childCoordinators.last as? DictionariesCoordinator)
+    }
 }
