@@ -54,6 +54,10 @@ class DBRepresentation {
             let version = DictionaryIndex.Version(rawValue: Int(row[self.version])) ?? .v3
             return DictionaryIndex(title: row[title], revision: row[revision], sequenced: row[sequenced], format: version, version: version, author: row[author], url: row[url], description: row[description], attribution: row[attribution])
         }
+
+        static func deleteQuery(id: Int64) -> Table {
+            return table.filter(self.id == id)
+        }
     }
 
     struct Terms {
@@ -73,7 +77,7 @@ class DBRepresentation {
         static func createTable(in db: Connection) throws {
             try db.run(table.create { table in
                 table.column(id, primaryKey: .autoincrement)
-                table.column(dictionary, references: Dictionaries.table, Dictionaries.id)
+                table.column(dictionary)
                 table.column(expression)
                 table.column(reading)
                 table.column(definitionTags)
@@ -82,6 +86,7 @@ class DBRepresentation {
                 table.column(glossary)
                 table.column(sequence)
                 table.column(termTags)
+                table.foreignKey(dictionary, references: Dictionaries.table, Dictionaries.id, delete: .cascade)
             })
         }
 
@@ -130,9 +135,10 @@ class DBRepresentation {
         static func createTable(in db: Connection) throws {
             try db.run(table.create { table in
                 table.column(id, primaryKey: .autoincrement)
-                table.column(dictionary, references: Dictionaries.table, Dictionaries.id)
+                table.column(dictionary)
                 table.column(character)
                 table.column(mode)
+                table.foreignKey(dictionary, references: Dictionaries.table, Dictionaries.id, delete: .cascade)
             })
         }
 
@@ -161,13 +167,14 @@ class DBRepresentation {
         static func createTable(in db: Connection) throws {
             try db.run(table.create { table in
                 table.column(id, primaryKey: .autoincrement)
-                table.column(dictionary, references: Dictionaries.table, Dictionaries.id)
+                table.column(dictionary)
                 table.column(character)
                 table.column(onyomi)
                 table.column(kunyomi)
                 table.column(tags)
                 table.column(meanings)
                 table.column(stats)
+                table.foreignKey(dictionary, references: Dictionaries.table, Dictionaries.id, delete: .cascade)
             })
         }
 
@@ -197,9 +204,10 @@ class DBRepresentation {
         static func createTable(in db: Connection) throws {
             try db.run(table.create { table in
                 table.column(id, primaryKey: .autoincrement)
-                table.column(dictionary, references: Dictionaries.table, Dictionaries.id)
+                table.column(dictionary)
                 table.column(character)
                 table.column(category)
+                table.foreignKey(dictionary, references: Dictionaries.table, Dictionaries.id, delete: .cascade)
             })
         }
 
@@ -226,11 +234,12 @@ class DBRepresentation {
         static func createTable(in db: Connection) throws {
             try db.run(table.create { table in
                 table.column(id, primaryKey: .autoincrement)
-                table.column(dictionary, references: Dictionaries.table, Dictionaries.id)
+                table.column(dictionary)
                 table.column(category)
                 table.column(order)
                 table.column(notes)
                 table.column(score)
+                table.foreignKey(dictionary, references: Dictionaries.table, Dictionaries.id, delete: .cascade)
             })
         }
 

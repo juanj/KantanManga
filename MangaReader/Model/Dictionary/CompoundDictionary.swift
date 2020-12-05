@@ -29,6 +29,12 @@ class CompoundDictionary {
 
     private var db: Connection?
 
+    private func connectTo(url: URL) throws -> Connection {
+        let db = try Connection(url.path)
+        try db.execute("PRAGMA foreign_keys = ON;")
+        return db
+    }
+
     func connectToDataBase(fileName: String = "dic.db", fileManager: FileManager = .default) throws {
         guard let libraryUrl = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).first else {
             throw DictionaryError.canNotGetLibraryURL
@@ -39,7 +45,7 @@ class CompoundDictionary {
             throw DictionaryError.dbFileNotFound
         }
 
-        db = try Connection(dbUrl.path)
+        db = try connectTo(url: dbUrl)
     }
 
     func createDataBase(fileName: String = "dic.db", fileManager: FileManager = .default) throws {
@@ -52,7 +58,7 @@ class CompoundDictionary {
             throw DictionaryError.dictionaryAlreadyExists
         }
 
-        let db = try Connection(dbUrl.path)
+        let db = try connectTo(url: dbUrl)
         try DBRepresentation.Dictionaries.createTable(in: db)
         try DBRepresentation.Kanji.createTable(in: db)
         try DBRepresentation.KanjiMeta.createTable(in: db)
@@ -134,6 +140,14 @@ class CompoundDictionary {
                 try DBRepresentation.Tags.insert(in: db, tag: tag, dictionary: dictionaryId)
             }
         }
+    }
+
+    func deleteDictionary(id: Int64) throws {
+        guard let db = db else {
+            throw DictionaryError.noConnection
+        }
+
+        try db.run(DBRepresentation.Dictionaries.deleteQuery(id: id).delete())
     }
 
     func findTerm(term: String) throws -> [DictionaryResult] {
