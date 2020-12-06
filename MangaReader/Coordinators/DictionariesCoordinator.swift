@@ -30,7 +30,7 @@ class DictionariesCoordinator: NSObject, Coordinator {
 
 extension DictionariesCoordinator: DictionariesViewControllerDelegate {
     func didSelectAdd(_ dictionariesViewController: DictionariesViewController) {
-        let filesView = UIDocumentPickerViewController(documentTypes: ["public.zip-archive"], in: .open)
+        let filesView = UIDocumentPickerViewController(documentTypes: ["public.zip-archive"], in: .import)
         filesView.allowsMultipleSelection = false
         filesView.title = "Select dictionary file"
         filesView.delegate = self
