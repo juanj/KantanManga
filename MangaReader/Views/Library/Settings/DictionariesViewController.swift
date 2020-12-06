@@ -7,12 +7,18 @@
 
 import UIKit
 
+protocol DictionariesViewControllerDelegate: AnyObject {
+    func didSelectAdd(_ dictionariesViewController: DictionariesViewController)
+}
+
 class DictionariesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private var dictionaries: [DictionaryIndex]
-    init(dictionaries: [DictionaryIndex]) {
+    private weak var delegate: DictionariesViewControllerDelegate?
+    init(dictionaries: [DictionaryIndex], delegate: DictionariesViewControllerDelegate) {
         self.dictionaries = dictionaries
+        self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -24,11 +30,21 @@ class DictionariesViewController: UIViewController {
         super.viewDidLoad()
 
         configureTableView()
+        configureNavBar()
     }
 
     private func configureTableView() {
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "dictionaryCell")
+    }
+
+    private func configureNavBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
+        title = "Manage dictionaries"
+    }
+
+    @objc func add() {
+        delegate?.didSelectAdd(self)
     }
 }
 
