@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import GRDB
 
 struct Radical: Equatable {
     let character: String
@@ -40,5 +41,22 @@ struct Radical: Equatable {
         ]
 
         return exceptions[character] ?? character
+    }
+}
+
+extension Radical: TableRecord {
+    enum Columns: String, ColumnExpression {
+        case rowId, data
+        case strokeCount = "stroke_count"
+    }
+
+    static var databaseTableName: String = "radk_radicals"
+}
+
+extension Radical: FetchableRecord {
+    init(row: Row) {
+        rowId = row[Columns.rowId]
+        character = row[Columns.data]
+        strokeCount = row[Columns.strokeCount]
     }
 }

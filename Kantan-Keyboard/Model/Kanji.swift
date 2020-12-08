@@ -6,9 +6,30 @@
 //
 
 import Foundation
+import GRDB
 
 struct Kanji: Equatable {
     let character: String
-    let strokeCount: Int
+    var strokeCount: Int
     let rowId: Int64
+
+    func withStrokeCount(_ count: Int) -> Kanji {
+        Kanji(character: character, strokeCount: count, rowId: rowId)
+    }
+}
+
+extension Kanji: TableRecord {
+    enum Columns: String, ColumnExpression {
+        case data, rowId
+    }
+
+    static var databaseTableName = "radk_kanji"
+}
+
+extension Kanji: FetchableRecord {
+    init(row: Row) {
+        character = row[Columns.data]
+        rowId = row[Columns.rowId]
+        strokeCount = 0
+    }
 }

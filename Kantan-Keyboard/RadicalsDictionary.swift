@@ -6,11 +6,11 @@
 //
 
 import Foundation
-import SQLite
+import GRDB
 
 class RadicalsDictionary {
-    private let radkDb: Connection
-    private let kanjidicDb: Connection
+    private let radkDbQueue: DatabaseQueue
+    private let kanjidicDbQueue: DatabaseQueue
 
     init?() {
         guard let radkDbUrl = Bundle.main.url(forResource: "radk.sqlite", withExtension: "db"),
@@ -18,21 +18,28 @@ class RadicalsDictionary {
             return nil
         }
         do {
-            radkDb = try Connection(radkDbUrl.absoluteString, readonly: true)
-            kanjidicDb = try Connection(kanjidicDbUrl.absoluteString, readonly: true)
+            var radkConfiguration = Configuration()
+            radkConfiguration.readonly = true
+            radkConfiguration.label = "RadkDB"
+            radkDbQueue = try DatabaseQueue(path: radkDbUrl.absoluteString, configuration: radkConfiguration)
+
+            var kanjidicConfiguration = Configuration()
+            kanjidicConfiguration.readonly = true
+            kanjidicConfiguration.label = "KanjidicDB"
+            kanjidicDbQueue = try DatabaseQueue(path: kanjidicDbUrl.absoluteString, configuration: kanjidicConfiguration)
         } catch {
             return nil
         }
     }
 
     func getRadicals() -> [Radical] {
-        let radicalsTable = Table("radk_radicals")
-        let radicalColumn = Expression<String>("data")
-        let strokeCountColumn = Expression<Int>("stroke_count")
-
         do {
-            let entries = Array(try radkDb.prepare(radicalsTable.select(rowid, radicalColumn, strokeCountColumn).order(strokeCountColumn.asc)))
-            return entries.map { Radical(character: $0[radicalColumn], strokeCount: $0[strokeCountColumn], rowId: $0[rowid]) }
+            let radicals = try radkDbQueue.read { db in
+                try Radical
+                    .order(Radical.Columns.strokeCount.asc)
+                    .fetchAll(db)
+            }
+            return radicals
         } catch {
             return []
         }
@@ -40,37 +47,47 @@ class RadicalsDictionary {
 
     func getKanjiWith(radicals: [Radical]) -> [Kanji] {
         var radicals = radicals
-        let radkKanjiRadicalTable = Table("radk_kanji_radical")
-        let radkKanjiIdColumn = Expression<Int64>("kanji_id")
-        let radkRadicalIdColumn = Expression<Int64>("radical_id")
-
-        let radkKanjiTable = Table("radk_kanji")
-        let radkDataColumn = Expression<String>("data")
-
-        let kanjidicKanjiTable = Table("kanjidict_kanji")
-        let kanjidicLiteralColumn = Expression<String>("literal")
-        let kanjidicStrokeCountColumn = Expression<Int>("stroke_count")
-
         guard let firstRadical = radicals.popLast() else {
             return []
         }
 
         do {
-            var kanjiIds = Array(try radkDb.prepare(radkKanjiRadicalTable.filter(radkRadicalIdColumn == firstRadical.rowId)))
-                .map { $0[radkKanjiIdColumn] }
-
-            for radical in radicals {
-                kanjiIds = Array(try radkDb.prepare(radkKanjiRadicalTable.filter(kanjiIds.contains(radkKanjiIdColumn) && radkRadicalIdColumn == radical.rowId)))
-                    .map { $0[radkKanjiIdColumn] }
+            var kanjiIds = try radkDbQueue.read { db in
+                try KanjiRadicalRelation
+                    .filter(KanjiRadicalRelation.Columns.radicalId == firstRadical.rowId)
+                    .fetchAll(db)
+                    .map(\.kanjiId)
             }
 
-            let kanjiRows = Array(try radkDb.prepare(radkKanjiTable.select(rowid, radkDataColumn).filter(kanjiIds.contains(rowid)).order(radkDataColumn.desc)))
-            let kanjiCharacters = kanjiRows.map { $0[radkDataColumn] }
-            let kanjiInfo = Array(try kanjidicDb.prepare(kanjidicKanjiTable.select(kanjidicLiteralColumn, kanjidicStrokeCountColumn).filter(kanjiCharacters.contains(kanjidicLiteralColumn)).order(kanjidicLiteralColumn.desc)))
+            for radical in radicals {
+                kanjiIds = try radkDbQueue.read { db in
+                    try KanjiRadicalRelation
+                        .filter(kanjiIds.contains(KanjiRadicalRelation.Columns.kanjiId) && KanjiRadicalRelation.Columns.radicalId == radical.rowId)
+                        .fetchAll(db)
+                        .map(\.kanjiId)
+                }
+            }
+
+            let kanjiRows = try radkDbQueue.read { db in
+                try Kanji
+                    .filter(kanjiIds.contains(Kanji.Columns.rowId))
+                    .order(Kanji.Columns.data.desc)
+                    .fetchAll(db)
+            }
+
+            let kanjiCharacters = kanjiRows.map(\.character)
+
+            // TODO: Merge radk and kanjidic to query only one table
+            let kanjiInfo = try kanjidicDbQueue.read { db in
+                try DicKanji
+                    .filter(kanjiCharacters.contains(DicKanji.Columns.character))
+                    .order(DicKanji.Columns.character.desc)
+                    .fetchAll(db)
+            }
 
             // It's safe to assume all kanjis contained in radkfile are in kanjidic
             let kanjis = zip(kanjiRows, kanjiInfo)
-                .map { Kanji(character: $0.0[radkDataColumn], strokeCount: $0.1[kanjidicStrokeCountColumn], rowId: $0.0[rowid]) }
+                .map { $0.0.withStrokeCount($0.1.strokeCount)}
             return kanjis.sorted(by: { $0.strokeCount < $1.strokeCount })
         } catch {
             return []
@@ -83,18 +100,19 @@ class RadicalsDictionary {
         }
 
         let kanjiIds = getKanjiWith(radicals: selection).map(\.rowId)
-        let kanjiRadicalTable = Table("radk_kanji_radical")
-        let kanjiIdColumn = Expression<Int64>("kanji_id")
-        let radicalIdColumn = Expression<Int64>("radical_id")
-
-        let radicalsTable = Table("radk_radicals")
-        let radicalColumn = Expression<String>("data")
-        let strokeCountColumn = Expression<Int>("stroke_count")
-
         do {
-            let radicalIds = Array(try radkDb.prepare(kanjiRadicalTable.filter(kanjiIds.contains(kanjiIdColumn)))).map { $0[radicalIdColumn] }
-            return Array(try radkDb.prepare(radicalsTable.select(rowid, radicalColumn, strokeCountColumn).filter(radicalIds.contains(rowid))))
-                .map { Radical(character: $0[radicalColumn], strokeCount: $0[strokeCountColumn], rowId: $0[rowid]) }
+            let radicalIds = try radkDbQueue.read { db in
+                try KanjiRadicalRelation
+                    .filter(kanjiIds.contains(KanjiRadicalRelation.Columns.kanjiId))
+                    .fetchAll(db)
+                    .map(\.radicalId)
+            }
+
+            return try radkDbQueue.read { db in
+                try Radical
+                    .filter(radicalIds.contains(Radical.Columns.rowId))
+                    .fetchAll(db)
+            }
         } catch {
             return []
         }
