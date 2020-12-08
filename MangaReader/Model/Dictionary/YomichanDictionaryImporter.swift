@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SQLite
+import GRDB
 import ZIPFoundation
 
 struct YomichanDictionaryImporter: DictionaryImporter {
@@ -41,7 +41,7 @@ struct YomichanDictionaryImporter: DictionaryImporter {
         let tagList: [TagEntry] = try readFileSequence(fileFormat: YomichanDictionaryImporter.tagBankFileFormat, zip: zipFile)
         // TODO: Read 'old' tags
 
-        let dictionary = Dictionary(index: index, termList: termList, termMetaList: termMetaList, kanjiList: kanjiList, kanjiMetaList: kanjiMetaList, tags: tagList)
+        let dictionary = DecodedDictionary(index: index, termList: termList, termMetaList: termMetaList, kanjiList: kanjiList, kanjiMetaList: kanjiMetaList, tags: tagList)
         try compoundDictionary.addDictionary(dictionary)
     }
 

@@ -14,9 +14,9 @@ protocol DictionariesViewControllerDelegate: AnyObject {
 class DictionariesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
-    private var dictionaries: [DictionaryIndex]
+    private var dictionaries: [Dictionary]
     private weak var delegate: DictionariesViewControllerDelegate?
-    init(dictionaries: [DictionaryIndex], delegate: DictionariesViewControllerDelegate) {
+    init(dictionaries: [Dictionary], delegate: DictionariesViewControllerDelegate) {
         self.dictionaries = dictionaries
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)

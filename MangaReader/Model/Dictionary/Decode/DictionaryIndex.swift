@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import GRDB
 
 struct DictionaryIndex: Decodable, Equatable {
     enum Version: Int, Decodable {
@@ -27,4 +28,8 @@ struct DictionaryIndex: Decodable, Equatable {
     var fileVersion: Version {
         return version ?? format ?? .v1
     }
+}
+
+extension DictionaryIndex: TableRecord {
+    
 }

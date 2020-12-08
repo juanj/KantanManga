@@ -12,7 +12,7 @@ class DictionaryView: UIView {
 
     private let scrollView = UIScrollView()
     private let stackView = UIStackView()
-    private var entries = [DictionaryResult]()
+    private var entries = [Term]()
     private var entriesViews = [DictionaryEntryView]()
     private let maxHeight: CGFloat
     private var scrollViewHeightConstraint: NSLayoutConstraint!
@@ -51,7 +51,7 @@ class DictionaryView: UIView {
         stackView.addArrangedSubview(zeroView)
     }
 
-    func setEntries(entries: [DictionaryResult]) {
+    func setEntries(entries: [Term]) {
         for entryView in entriesViews {
             stackView.removeArrangedSubview(entryView)
             entryView.removeFromSuperview()

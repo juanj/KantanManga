@@ -110,9 +110,6 @@ PODS:
   - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.11)
   - Protobuf (3.13.0)
-  - SQLite.swift (0.12.2):
-    - SQLite.swift/standard (= 0.12.2)
-  - SQLite.swift/standard (0.12.2)
   - UnrarKit (2.9):
     - UnrarKit/unrar-lib (= 2.9)
   - UnrarKit/unrar-lib (2.9)
@@ -123,7 +120,6 @@ DEPENDENCIES:
   - Firebase/MLVision
   - GCDWebServer/WebUploader (~> 3.0)
   - GRDB.swift
-  - SQLite.swift (~> 0.12.0)
   - UnrarKit
   - ZIPFoundation (~> 0.9)
 
@@ -147,7 +143,6 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - Protobuf
-    - SQLite.swift
     - UnrarKit
     - ZIPFoundation
 
@@ -170,10 +165,9 @@ SPEC CHECKSUMS:
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
-  SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   UnrarKit: 99e3f0222a98a212188e1a6975dcf5aa798d26dd
   ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: e27ae62e56722e4719b546fc8162cd3c24a321dd
+PODFILE CHECKSUM: f9d420e0fef1a24d885495a77c380a81227d0606
 
 COCOAPODS: 1.10.0

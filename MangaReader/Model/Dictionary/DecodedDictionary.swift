@@ -1,5 +1,5 @@
 //
-//  Dictionary.swift
+//  DecodedDictionary.swift
 //  Kantan-Manga
 //
 //  Created by Juan on 29/11/20.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Dictionary {
+struct DecodedDictionary {
     let index: DictionaryIndex
     let termList: [TermEntry]
     let termMetaList: [TermMetaEntry]

@@ -10,7 +10,7 @@ target 'Kantan-Manga' do
   pod 'GCDWebServer/WebUploader', '~> 3.0'
   pod 'Firebase/Core'
   pod 'Firebase/MLVision'
-  pod 'SQLite.swift', '~> 0.12.0'
+  pod 'GRDB.swift'
   pod 'UnrarKit'
   target 'Kantan-MangaTests' do
     inherit! :search_paths

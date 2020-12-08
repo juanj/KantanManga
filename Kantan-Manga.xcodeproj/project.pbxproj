@@ -62,7 +62,7 @@
 		3241F8C62572E1A600A4FC04 /* KanjiEntryV3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8C52572E1A600A4FC04 /* KanjiEntryV3Tests.swift */; };
 		3241F8CE2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8CD2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift */; };
 		32454E7F25742304005036CC /* DBRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32454E7E25742304005036CC /* DBRepresentation.swift */; };
-		32454E8E25742ACF005036CC /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32454E8D25742ACF005036CC /* Dictionary.swift */; };
+		32454E8E25742ACF005036CC /* DecodedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32454E8D25742ACF005036CC /* DecodedDictionary.swift */; };
 		3247543C2551FD120025AB06 /* ViewerSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3247543A2551FD120025AB06 /* ViewerSettingsViewController.swift */; };
 		3247543D2551FD120025AB06 /* ViewerSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3247543B2551FD120025AB06 /* ViewerSettingsViewController.xib */; };
 		3249F2D7250BBC18004C514E /* MangaCollectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */; };
@@ -89,6 +89,12 @@
 		32537156253B843E005B8EC1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32537155253B843E005B8EC1 /* UIView+Extension.swift */; };
 		32542B7F2580248200ED357A /* KanjiRadicalRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32542B7E2580248200ED357A /* KanjiRadicalRelation.swift */; };
 		32542B852580292A00ED357A /* DicKanji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32542B842580292A00ED357A /* DicKanji.swift */; };
+		32542BCB258031E000ED357A /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32542BCA258031E000ED357A /* Dictionary.swift */; };
+		32542BD32580335600ED357A /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32542BD22580335600ED357A /* Term.swift */; };
+		32542BD82580352600ED357A /* TermMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32542BD72580352600ED357A /* TermMeta.swift */; };
+		32542BDD258035FA00ED357A /* Kanji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32542BDC258035FA00ED357A /* Kanji.swift */; };
+		32542BE2258036DA00ED357A /* KanjiMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32542BE1258036DA00ED357A /* KanjiMeta.swift */; };
+		32542BE7258037C900ED357A /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32542BE6258037C900ED357A /* Tag.swift */; };
 		3257C018256F0E2200C4C702 /* SettingsCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3257C017256F0E2200C4C702 /* SettingsCoordinatorTests.swift */; };
 		3257C01E256F0F4700C4C702 /* FakeSettingsCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3257C01D256F0F4700C4C702 /* FakeSettingsCoordinatorDelegate.swift */; };
 		3257C023256F0FC000C4C702 /* FakeSettingsTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3257C022256F0FC000C4C702 /* FakeSettingsTableViewControllerDelegate.swift */; };
@@ -318,7 +324,7 @@
 		3241F8C52572E1A600A4FC04 /* KanjiEntryV3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiEntryV3Tests.swift; sourceTree = "<group>"; };
 		3241F8CD2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiMetaEntryTests.swift; sourceTree = "<group>"; };
 		32454E7E25742304005036CC /* DBRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBRepresentation.swift; sourceTree = "<group>"; };
-		32454E8D25742ACF005036CC /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		32454E8D25742ACF005036CC /* DecodedDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodedDictionary.swift; sourceTree = "<group>"; };
 		3247543A2551FD120025AB06 /* ViewerSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerSettingsViewController.swift; sourceTree = "<group>"; };
 		3247543B2551FD120025AB06 /* ViewerSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewerSettingsViewController.xib; sourceTree = "<group>"; };
 		3249F2D5250BBC18004C514E /* MangaCollectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollectionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -343,6 +349,12 @@
 		32537155253B843E005B8EC1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		32542B7E2580248200ED357A /* KanjiRadicalRelation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiRadicalRelation.swift; sourceTree = "<group>"; };
 		32542B842580292A00ED357A /* DicKanji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicKanji.swift; sourceTree = "<group>"; };
+		32542BCA258031E000ED357A /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		32542BD22580335600ED357A /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
+		32542BD72580352600ED357A /* TermMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermMeta.swift; sourceTree = "<group>"; };
+		32542BDC258035FA00ED357A /* Kanji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kanji.swift; sourceTree = "<group>"; };
+		32542BE1258036DA00ED357A /* KanjiMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiMeta.swift; sourceTree = "<group>"; };
+		32542BE6258037C900ED357A /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		3257C017256F0E2200C4C702 /* SettingsCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinatorTests.swift; sourceTree = "<group>"; };
 		3257C01D256F0F4700C4C702 /* FakeSettingsCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSettingsCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		3257C022256F0FC000C4C702 /* FakeSettingsTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSettingsTableViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -589,6 +601,28 @@
 			path = "mecab-ios/ipadic";
 			sourceTree = "<group>";
 		};
+		32542BC42580314100ED357A /* Decode */ = {
+			isa = PBXGroup;
+			children = (
+				3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */,
+				3241F85E2572AE1600A4FC04 /* Entries */,
+			);
+			path = Decode;
+			sourceTree = "<group>";
+		};
+		32542BC62580315600ED357A /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				32542BCA258031E000ED357A /* Dictionary.swift */,
+				32542BD22580335600ED357A /* Term.swift */,
+				32542BD72580352600ED357A /* TermMeta.swift */,
+				32542BDC258035FA00ED357A /* Kanji.swift */,
+				32542BE1258036DA00ED357A /* KanjiMeta.swift */,
+				32542BE6258037C900ED357A /* Tag.swift */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
 		325813FC23C5050700C31E02 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -704,14 +738,14 @@
 		3298D7D525713D44005FB8F2 /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
-				3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */,
-				3241F85E2572AE1600A4FC04 /* Entries */,
+				32542BC62580315600ED357A /* DB */,
+				32542BC42580314100ED357A /* Decode */,
 				325DA0B823C8F50700A627BD /* CompoundDictionary.swift */,
 				32454E7E25742304005036CC /* DBRepresentation.swift */,
 				3298D7CF25713BB4005FB8F2 /* YomichanDictionaryImporter.swift */,
 				32A3437E257D4F0D003337D0 /* DictionaryImporter.swift */,
 				3267AE91257142CA00806D5B /* DictionaryImporterError.swift */,
-				32454E8D25742ACF005036CC /* Dictionary.swift */,
+				32454E8D25742ACF005036CC /* DecodedDictionary.swift */,
 			);
 			path = Dictionary;
 			sourceTree = "<group>";
@@ -1411,12 +1445,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				323205AE238DBCE4009E8362 /* SelectionView.swift in Sources */,
-				32454E8E25742ACF005036CC /* Dictionary.swift in Sources */,
+				32454E8E25742ACF005036CC /* DecodedDictionary.swift in Sources */,
 				3241F8B92572E11800A4FC04 /* KanjiEntryV3.swift in Sources */,
 				32F998CF25574EC800897299 /* CoreDataManageable.swift in Sources */,
 				322EF658250FB49700F35E72 /* AspectAlignImage.swift in Sources */,
 				320F277423C2046900D9930F /* Tokenizer.swift in Sources */,
 				32C49CD725168A0F000A9607 /* OpenCollectionAnimationController.swift in Sources */,
+				32542BD32580335600ED357A /* Term.swift in Sources */,
 				329E30E923E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift in Sources */,
 				32350AA8247C723C002D100D /* WordParser.swift in Sources */,
 				3241F86B2572B04700A4FC04 /* TermMetaEntry.swift in Sources */,
@@ -1444,6 +1479,7 @@
 				3249F2D7250BBC18004C514E /* MangaCollectionCollectionViewCell.swift in Sources */,
 				325199B42479D96400DA6908 /* ImageOCR.swift in Sources */,
 				328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */,
+				32542BDD258035FA00ED357A /* Kanji.swift in Sources */,
 				32E3221C2481A67D007BC017 /* JapaneseHelpViewController.swift in Sources */,
 				32DDEF0C257C20420063E813 /* DictionariesCoordinator.swift in Sources */,
 				320F277323C2046900D9930F /* Token.swift in Sources */,
@@ -1451,6 +1487,7 @@
 				32DDEF3C257C21DD0063E813 /* DictionariesViewController.swift in Sources */,
 				3292ADA22535DCF8004E8441 /* DemoOcrView.swift in Sources */,
 				3298D7D025713BB4005FB8F2 /* YomichanDictionaryImporter.swift in Sources */,
+				32542BE7258037C900ED357A /* Tag.swift in Sources */,
 				3298D7D725713D66005FB8F2 /* DictionaryIndex.swift in Sources */,
 				3259D1B423C4D9A2003BA7C2 /* FuriganaUtils.swift in Sources */,
 				3241F8602572AE7F00A4FC04 /* TermEntry.swift in Sources */,
@@ -1463,6 +1500,7 @@
 				32A34383257D4F2D003337D0 /* DictionaryImporter.swift in Sources */,
 				841B795C221F305A00659FA2 /* MangaDataSource.swift in Sources */,
 				329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */,
+				32542BCB258031E000ED357A /* Dictionary.swift in Sources */,
 				3247543C2551FD120025AB06 /* ViewerSettingsViewController.swift in Sources */,
 				32E37987252A6A6000ED4BAC /* AcknowledgmentsView.swift in Sources */,
 				32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */,
@@ -1472,10 +1510,12 @@
 				325199B72479D9E000DA6908 /* GoogleVisionOCR.swift in Sources */,
 				322C5B602483125A00C0BAB1 /* Coordinator.swift in Sources */,
 				3296181C2555943B0020C5AF /* SettingValueChangeDelegate.swift in Sources */,
+				32542BD82580352600ED357A /* TermMeta.swift in Sources */,
 				3241F89F2572C1A700A4FC04 /* TermEntryV3.swift in Sources */,
 				3219C2A9251100D200915DE1 /* CollectionViewController.swift in Sources */,
 				326344A3247DD98B00F683AB /* Reader.swift in Sources */,
 				32F998D52557535500897299 /* Navigable.swift in Sources */,
+				32542BE2258036DA00ED357A /* KanjiMeta.swift in Sources */,
 				32CFA5F7256FF16E0083F300 /* MangaDataSourceable.swift in Sources */,
 				3241F8782572B2F400A4FC04 /* TagEntry.swift in Sources */,
 				329ACA8A2552ED15002953C5 /* NumberTableViewCell.swift in Sources */,
@@ -1866,8 +1906,6 @@
 					"-framework",
 					"\"MobileCoreServices\"",
 					"-framework",
-					"\"SQLite\"",
-					"-framework",
 					"\"Security\"",
 					"-framework",
 					"\"StoreKit\"",
@@ -1963,8 +2001,6 @@
 					"\"LocalAuthentication\"",
 					"-framework",
 					"\"MobileCoreServices\"",
-					"-framework",
-					"\"SQLite\"",
 					"-framework",
 					"\"Security\"",
 					"-framework",

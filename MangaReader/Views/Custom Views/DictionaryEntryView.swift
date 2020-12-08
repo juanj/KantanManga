@@ -9,8 +9,8 @@
 import Foundation
 
 class DictionaryEntryView: UIView {
-    private let entry: DictionaryResult
-    init(entry: DictionaryResult) {
+    private let entry: Term
+    init(entry: Term) {
         self.entry = entry
         super.init(frame: .zero)
 
@@ -26,21 +26,21 @@ class DictionaryEntryView: UIView {
         title.font = .systemFont(ofSize: 40)
         title.translatesAutoresizingMaskIntoConstraints = false
         title.numberOfLines = 0
-        title.text = entry.term // TODO: Add furigana
+        title.text = entry.expression // TODO: Add furigana
 
         let body = UITextView()
         body.isEditable = false
         body.font = .systemFont(ofSize: 20)
         body.translatesAutoresizingMaskIntoConstraints = false
         body.isScrollEnabled = false
-        body.text = entry.meanings
-            .compactMap { item in
+        body.text = entry.glossary
+            /*.compactMap { item in
                 if case .text(let text) = item {
                     return text
                 }
                 return nil
             }
-            .map { "• " + $0 } .joined(separator: "\n")
+            .map { "• " + $0 } .joined(separator: "\n")*/
 
         let separator = UIView()
         separator.translatesAutoresizingMaskIntoConstraints = false
