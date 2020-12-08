@@ -24,6 +24,7 @@ extension Kanji: TableRecord {
     }
 
     static var databaseTableName = "radk_kanji"
+    static var databaseSelection: [SQLSelectable] = [AllColumns(), Columns.rowId]
 }
 
 extension Kanji: FetchableRecord {

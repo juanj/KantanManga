@@ -51,6 +51,7 @@ extension Radical: TableRecord {
     }
 
     static var databaseTableName: String = "radk_radicals"
+    static var databaseSelection: [SQLSelectable] = [AllColumns(), Columns.rowId]
 }
 
 extension Radical: FetchableRecord {
