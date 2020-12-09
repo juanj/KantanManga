@@ -34,13 +34,13 @@ class DictionaryEntryView: UIView {
         body.translatesAutoresizingMaskIntoConstraints = false
         body.isScrollEnabled = false
         body.text = entry.glossary
-            /*.compactMap { item in
+            .compactMap { item in
                 if case .text(let text) = item {
                     return text
                 }
                 return nil
             }
-            .map { "• " + $0 } .joined(separator: "\n")*/
+            .map { "• " + $0 } .joined(separator: "\n")
 
         let separator = UIView()
         separator.translatesAutoresizingMaskIntoConstraints = false

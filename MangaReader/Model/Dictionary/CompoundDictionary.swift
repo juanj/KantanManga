@@ -20,6 +20,7 @@ enum DictionaryError: Error {
     case dictionaryAlreadyExists
     case noConnection
     case dbFileNotFound
+    case dictionaryIndexNotInserted
 }
 
 class CompoundDictionary {
@@ -113,9 +114,22 @@ class CompoundDictionary {
 
         // TODO: Insert DecodedDictionary
 
+        var dictionary = Dictionary(from: decodedDictionary.index)
         try db.write { db in
-            var dictionary = Dictionary(from: decodedDictionary.index)
             try dictionary.insert(db)
+        }
+
+        guard let dictionaryId = dictionary.id else {
+            throw DictionaryError.dictionaryIndexNotInserted
+        }
+
+        try db.write { db in
+            let terms = decodedDictionary
+                .termList
+                .map { Term(from: $0, dictionaryId: dictionaryId) }
+            for var term in terms {
+                try term.insert(db)
+            }
         }
         /*try db.transaction {
             // TODO: Save dictionary media
