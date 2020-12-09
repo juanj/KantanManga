@@ -9,10 +9,10 @@ import Foundation
 import GRDB
 
 struct TermMeta {
-    let id: Int // = Expression<Int64>("id")
-    let dictionary: Int // = Expression<Int64>("dictionary")
-    let character: Int // = Expression<String>("character")
-    let mode: String // = Expression<String>("mode")
+    let id: Int
+    let dictionary: Int
+    let character: Int
+    let mode: String
 }
 
 extension TermMeta: TableRecord {

@@ -9,16 +9,16 @@ import Foundation
 import GRDB
 
 struct Term {
-    let id: Int // = Expression<Int64>("id")
-    let dictionary: Int // = Expression<Int64>("dictionary")
-    let expression: String // = Expression<String>("expression")
-    let reading: String // = Expression<String>("reading")
-    let definitionTags: String? // = Expression<String?>("definitionTags")
-    let rules: String // = Expression<String>("rules")
-    let score: Int // = Expression<Int64>("score")
-    let glossary: String // = Expression<String>("glossary")
-    let sequence: Int // = Expression<Int64>("sequence")
-    let termTags: String // = Expression<String>("termTags")
+    let id: Int
+    let dictionary: Int
+    let expression: String
+    let reading: String
+    let definitionTags: String?
+    let rules: String
+    let score: Int
+    let glossary: String
+    let sequence: Int
+    let termTags: String
 }
 
 extension Term: TableRecord {

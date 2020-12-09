@@ -61,7 +61,6 @@
 		3241F8C12572E18500A4FC04 /* KanjiEntryV1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8C02572E18500A4FC04 /* KanjiEntryV1Tests.swift */; };
 		3241F8C62572E1A600A4FC04 /* KanjiEntryV3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8C52572E1A600A4FC04 /* KanjiEntryV3Tests.swift */; };
 		3241F8CE2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8CD2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift */; };
-		32454E7F25742304005036CC /* DBRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32454E7E25742304005036CC /* DBRepresentation.swift */; };
 		32454E8E25742ACF005036CC /* DecodedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32454E8D25742ACF005036CC /* DecodedDictionary.swift */; };
 		3247543C2551FD120025AB06 /* ViewerSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3247543A2551FD120025AB06 /* ViewerSettingsViewController.swift */; };
 		3247543D2551FD120025AB06 /* ViewerSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3247543B2551FD120025AB06 /* ViewerSettingsViewController.xib */; };
@@ -95,6 +94,7 @@
 		32542BDD258035FA00ED357A /* Kanji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32542BDC258035FA00ED357A /* Kanji.swift */; };
 		32542BE2258036DA00ED357A /* KanjiMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32542BE1258036DA00ED357A /* KanjiMeta.swift */; };
 		32542BE7258037C900ED357A /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32542BE6258037C900ED357A /* Tag.swift */; };
+		32542BEF25803CDC00ED357A /* DBMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32542BEE25803CDC00ED357A /* DBMigrator.swift */; };
 		3257C018256F0E2200C4C702 /* SettingsCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3257C017256F0E2200C4C702 /* SettingsCoordinatorTests.swift */; };
 		3257C01E256F0F4700C4C702 /* FakeSettingsCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3257C01D256F0F4700C4C702 /* FakeSettingsCoordinatorDelegate.swift */; };
 		3257C023256F0FC000C4C702 /* FakeSettingsTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3257C022256F0FC000C4C702 /* FakeSettingsTableViewControllerDelegate.swift */; };
@@ -323,7 +323,6 @@
 		3241F8C02572E18500A4FC04 /* KanjiEntryV1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiEntryV1Tests.swift; sourceTree = "<group>"; };
 		3241F8C52572E1A600A4FC04 /* KanjiEntryV3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiEntryV3Tests.swift; sourceTree = "<group>"; };
 		3241F8CD2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiMetaEntryTests.swift; sourceTree = "<group>"; };
-		32454E7E25742304005036CC /* DBRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBRepresentation.swift; sourceTree = "<group>"; };
 		32454E8D25742ACF005036CC /* DecodedDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodedDictionary.swift; sourceTree = "<group>"; };
 		3247543A2551FD120025AB06 /* ViewerSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerSettingsViewController.swift; sourceTree = "<group>"; };
 		3247543B2551FD120025AB06 /* ViewerSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewerSettingsViewController.xib; sourceTree = "<group>"; };
@@ -355,6 +354,7 @@
 		32542BDC258035FA00ED357A /* Kanji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kanji.swift; sourceTree = "<group>"; };
 		32542BE1258036DA00ED357A /* KanjiMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiMeta.swift; sourceTree = "<group>"; };
 		32542BE6258037C900ED357A /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		32542BEE25803CDC00ED357A /* DBMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBMigrator.swift; sourceTree = "<group>"; };
 		3257C017256F0E2200C4C702 /* SettingsCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinatorTests.swift; sourceTree = "<group>"; };
 		3257C01D256F0F4700C4C702 /* FakeSettingsCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSettingsCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		3257C022256F0FC000C4C702 /* FakeSettingsTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSettingsTableViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -619,6 +619,7 @@
 				32542BDC258035FA00ED357A /* Kanji.swift */,
 				32542BE1258036DA00ED357A /* KanjiMeta.swift */,
 				32542BE6258037C900ED357A /* Tag.swift */,
+				32542BEE25803CDC00ED357A /* DBMigrator.swift */,
 			);
 			path = DB;
 			sourceTree = "<group>";
@@ -741,7 +742,6 @@
 				32542BC62580315600ED357A /* DB */,
 				32542BC42580314100ED357A /* Decode */,
 				325DA0B823C8F50700A627BD /* CompoundDictionary.swift */,
-				32454E7E25742304005036CC /* DBRepresentation.swift */,
 				3298D7CF25713BB4005FB8F2 /* YomichanDictionaryImporter.swift */,
 				32A3437E257D4F0D003337D0 /* DictionaryImporter.swift */,
 				3267AE91257142CA00806D5B /* DictionaryImporterError.swift */,
@@ -1467,13 +1467,13 @@
 				32C1EEF32539DE04001F59A0 /* FocusOverlayView.swift in Sources */,
 				32FA3C7C24367428001EB0DF /* String+Extension.swift in Sources */,
 				325DA0B923C8F50700A627BD /* CompoundDictionary.swift in Sources */,
-				32454E7F25742304005036CC /* DBRepresentation.swift in Sources */,
 				32AF5BCE2512567900E96C9F /* MangaCollectionable.swift in Sources */,
 				3283D1012552069700C08D02 /* ToggleTableViewCell.swift in Sources */,
 				843FA7DF221DEDDF00B86B52 /* AddMangasCoordinator.swift in Sources */,
 				32A1517225326D76002B3920 /* CircleView.swift in Sources */,
 				3267AE92257142CA00806D5B /* DictionaryImporterError.swift in Sources */,
 				843FA7E9221DFE9E00B86B52 /* CBZReader.swift in Sources */,
+				32542BEF25803CDC00ED357A /* DBMigrator.swift in Sources */,
 				322C04B725680FE700BD5A51 /* Tesseract+PageSegmentation.swift in Sources */,
 				8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */,
 				3249F2D7250BBC18004C514E /* MangaCollectionCollectionViewCell.swift in Sources */,

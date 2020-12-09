@@ -61,7 +61,8 @@ class CompoundDictionary {
         }
 
         let db = try connectTo(url: dbUrl)
-        // TODO: Create and run migrations
+        let migrator = DBMigrator()
+        try migrator.migrate(db: db)
         self.db = db
     }
 
