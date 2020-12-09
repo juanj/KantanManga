@@ -9,15 +9,27 @@ import Foundation
 import GRDB
 
 struct Dictionary {
-    let id: Int
+    var id: Int?
     let title: String
     let revision: String
     let sequenced: Bool?
-    let version: Int64
+    let version: Int
     let author: String?
     let url: String?
     let description: String?
-    let attribution: String
+    let attribution: String?
+
+    init(from index: DictionaryIndex) {
+        id = nil
+        title = index.title
+        revision = index.revision
+        sequenced = index.sequenced
+        version = index.fileVersion.rawValue
+        author = index.author
+        url = index.url
+        description = index.description
+        attribution = index.attribution
+    }
 }
 
 extension Dictionary: TableRecord {
@@ -39,5 +51,22 @@ extension Dictionary: FetchableRecord {
         url = row[Columns.url]
         description = row[Columns.description]
         attribution = row[Columns.attribution]
+    }
+}
+
+extension Dictionary: MutablePersistableRecord {
+    func encode(to container: inout PersistenceContainer) {
+        container[Columns.title] = title
+        container[Columns.revision] = revision
+        container[Columns.sequenced] = sequenced
+        container[Columns.version] = version
+        container[Columns.author] = author
+        container[Columns.url] = url
+        container[Columns.description] = description
+        container[Columns.attribution] = attribution
+    }
+
+    mutating func didInsert(with rowID: Int64, for column: String?) {
+        id = Int(rowID)
     }
 }

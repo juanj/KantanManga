@@ -106,14 +106,18 @@ class CompoundDictionary {
         }
     }
 
-    func addDictionary(_ dictionary: DecodedDictionary) throws {
+    func addDictionary(_ decodedDictionary: DecodedDictionary) throws {
         guard let db = db else {
             throw DictionaryError.noConnection
         }
 
         // TODO: Insert DecodedDictionary
-        /*
-        try db.transaction {
+
+        try db.write { db in
+            var dictionary = Dictionary(from: decodedDictionary.index)
+            try dictionary.insert(db)
+        }
+        /*try db.transaction {
             // TODO: Save dictionary media
             let dictionaryId = try DBRepresentation.Dictionaries.insert(in: db, index: dictionary.index)
             for term in dictionary.termList {
