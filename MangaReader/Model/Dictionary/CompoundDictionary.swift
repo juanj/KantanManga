@@ -175,10 +175,8 @@ class CompoundDictionary {
             throw DictionaryError.noConnection
         }
 
-        try db.write { db in
-            try Dictionary
-                .filter(Dictionary.Columns.id == id)
-                .deleteAll(db)
+        _ = try db.write { db in
+            try Dictionary.deleteOne(db, key: id)
         }
     }
 
