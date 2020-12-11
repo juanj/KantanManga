@@ -175,12 +175,11 @@ class CompoundDictionary {
             throw DictionaryError.noConnection
         }
 
-        // TODO: Delete dictionary
-        /*try db.write { db in
+        try db.write { db in
             try Dictionary
                 .filter(Dictionary.Columns.id == id)
-                .deleteAll()
-        }*/
+                .deleteAll(db)
+        }
     }
 
     func findTerm(term: String) throws -> [Term] {
