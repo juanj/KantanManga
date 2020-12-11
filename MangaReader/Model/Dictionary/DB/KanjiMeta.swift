@@ -9,10 +9,31 @@ import Foundation
 import GRDB
 
 struct KanjiMeta {
-    let id: Int
+    static let encoder = JSONEncoder()
+    static let decoder = JSONDecoder()
+
+    enum Category: CustomStringConvertible {
+        case freq(Int)
+
+        var description: String {
+            switch self {
+            case .freq(let freq):
+                return "freq \(freq)"
+            }
+        }
+    }
+
+    private(set) var id: Int?
     let dictionary: Int
     let character: String
-    let category: String
+    let category: Category
+
+    init(from kanjiMetaEntry: KanjiMetaEntry, dictionaryId: Int) {
+        id = nil
+        dictionary = dictionaryId
+        character = kanjiMetaEntry.character
+        category = kanjiMetaEntry.category
+    }
 }
 
 extension KanjiMeta: TableRecord {
@@ -28,6 +49,50 @@ extension KanjiMeta: FetchableRecord {
         id = row[Columns.id]
         dictionary = row[Columns.dictionary]
         character = row[Columns.character]
-        category = row[Columns.category]
+        category = (try? KanjiMeta.decoder.decode(Category.self, from: (row[Columns.category] as String).data(using: .utf8) ?? Data())) ?? .freq(0)
+    }
+}
+
+extension KanjiMeta: MutablePersistableRecord {
+    func encode(to container: inout PersistenceContainer) {
+        container[Columns.dictionary] = dictionary
+        container[Columns.character] = character
+
+        // For some reason JSONEncoder delays memory release causing a huge memory usage
+        // Adding an autorelease pool solves the issue
+        autoreleasepool {
+            container[Columns.category] = (try? TermMeta.encoder.encode(category)) ?? ""
+        }
+    }
+
+    mutating func didInsert(with rowID: Int64, for column: String?) {
+        id = Int(rowID)
+    }
+}
+
+extension KanjiMeta.Category: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case type, frequency
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let type = try values.decode(String.self, forKey: .type)
+        switch type {
+        case "freq":
+            let frequency = try values.decode(Int.self, forKey: .frequency)
+            self = .freq(frequency)
+        default:
+            self = .freq(0)
+        }
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .freq(let frquency):
+            try container.encode("freq", forKey: .type)
+            try container.encode(frquency, forKey: .frequency)
+        }
     }
 }

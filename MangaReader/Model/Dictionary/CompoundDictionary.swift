@@ -151,12 +151,16 @@ class CompoundDictionary {
             }
         }
 
+        try db.write { db in
+            let kanjisMeta = decodedDictionary
+                .kanjiMetaList
+                .map { KanjiMeta(from: $0, dictionaryId: dictionaryId) }
+            for var kanjiMeta in kanjisMeta {
+                try kanjiMeta.insert(db)
+            }
+        }
 
         /*try db.transaction {
-            for kanjiMeta in dictionary.kanjiMetaList {
-                try DBRepresentation.KanjiMeta.insert(in: db, kanjiMeta: kanjiMeta, dictionary: dictionaryId)
-            }
-
             for tag in dictionary.tags {
                 try DBRepresentation.Tags.insert(in: db, tag: tag, dictionary: dictionaryId)
             }

@@ -8,46 +8,8 @@
 import Foundation
 
 struct KanjiMetaEntry {
-    enum Category: CustomStringConvertible {
-        case freq(Int)
-
-        var description: String {
-            switch self {
-            case .freq(let freq):
-                return "freq \(freq)"
-            }
-        }
-    }
-
     let character: String
-    let category: Category
-}
-
-extension KanjiMetaEntry.Category: Codable {
-    private enum CodingKeys: String, CodingKey {
-        case type, frequency
-    }
-
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        let type = try values.decode(String.self, forKey: .type)
-        switch type {
-        case "freq":
-            let frequency = try values.decode(Int.self, forKey: .frequency)
-            self = .freq(frequency)
-        default:
-            self = .freq(0)
-        }
-    }
-
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        switch self {
-        case .freq(let frquency):
-            try container.encode("freq", forKey: .type)
-            try container.encode(frquency, forKey: .frequency)
-        }
-    }
+    let category: KanjiMeta.Category
 }
 
 extension KanjiMetaEntry: CustomStringConvertible {
