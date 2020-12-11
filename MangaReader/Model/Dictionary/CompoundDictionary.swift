@@ -160,11 +160,14 @@ class CompoundDictionary {
             }
         }
 
-        /*try db.transaction {
-            for tag in dictionary.tags {
-                try DBRepresentation.Tags.insert(in: db, tag: tag, dictionary: dictionaryId)
+        try db.write { db in
+            let tags = decodedDictionary
+                .tags
+                .map { Tag(from: $0, dictionaryId: dictionaryId) }
+            for var tag in tags {
+                try tag.insert(db)
             }
-        }*/
+        }
     }
 
     func deleteDictionary(id: Int) throws {
