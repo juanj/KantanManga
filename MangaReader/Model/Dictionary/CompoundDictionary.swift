@@ -112,8 +112,6 @@ class CompoundDictionary {
             throw DictionaryError.noConnection
         }
 
-        // TODO: Insert DecodedDictionary
-
         var dictionary = Dictionary(from: decodedDictionary.index)
         try db.write { db in
             try dictionary.insert(db)
