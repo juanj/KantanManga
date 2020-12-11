@@ -9,7 +9,7 @@ import Foundation
 import GRDB
 
 struct Dictionary {
-    var id: Int?
+    private(set) var id: Int?
     let title: String
     let revision: String
     let sequenced: Bool?

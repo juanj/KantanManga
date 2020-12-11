@@ -12,7 +12,7 @@ struct Term {
     static let encoder = JSONEncoder()
     static let decoder = JSONDecoder()
 
-    var id: Int?
+    private(set) var id: Int?
     let dictionary: Int
     let expression: String
     let reading: String

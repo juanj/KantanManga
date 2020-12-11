@@ -8,54 +8,8 @@
 import Foundation
 
 struct TermMetaEntry {
-    struct PitchAccent: Codable {
-        let position: Int
-        let tags: [String]?
-    }
-
-    enum Mode {
-        case freq(frequency: Int, reading: String? = nil)
-        case pitch(reading: String, pitches: [PitchAccent])
-    }
-
     let character: String
-    let mode: Mode
-}
-
-extension TermMetaEntry.Mode: Codable {
-    private enum CodingKeys: String, CodingKey {
-        case type, frequency, reading, pitches
-    }
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        let type = try values.decode(String.self, forKey: .type)
-        switch type {
-        case "freq":
-            let frequency = try values.decode(Int.self, forKey: .frequency)
-            let reading = try? values.decode(String.self, forKey: .reading)
-            self = .freq(frequency: frequency, reading: reading)
-        case "pitch":
-            let reading = try values.decode(String.self, forKey: .reading)
-            let pitches = try values.decode([TermMetaEntry.PitchAccent].self, forKey: .pitches)
-            self = .pitch(reading: reading, pitches: pitches)
-        default:
-            self = .freq(frequency: 0)
-        }
-    }
-
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        switch self {
-        case .freq(let frquency, let reading):
-            try container.encode("freq", forKey: .type)
-            try container.encode(frquency, forKey: .frequency)
-            try container.encodeIfPresent(reading, forKey: .reading)
-        case .pitch(let reading, let pitches):
-            try container.encode("pitch", forKey: .type)
-            try container.encode(reading, forKey: .reading)
-            try container.encode(pitches, forKey: .pitches)
-        }
-    }
+    let mode: TermMeta.Mode
 }
 
 extension TermMetaEntry: CustomStringConvertible {
@@ -108,7 +62,7 @@ extension TermMetaEntry: Decodable {
         case "pitch":
             let item = try values.nestedContainer(keyedBy: PitchKeys.self)
             let reading = try item.decode(String.self, forKey: .reading)
-            let pitches = try item.decode([PitchAccent].self, forKey: .pitches)
+            let pitches = try item.decode([TermMeta.PitchAccent].self, forKey: .pitches)
 
             mode = .pitch(reading: reading, pitches: pitches)
         default:

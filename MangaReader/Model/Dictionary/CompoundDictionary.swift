@@ -123,6 +123,7 @@ class CompoundDictionary {
             throw DictionaryError.dictionaryIndexNotInserted
         }
 
+        // TODO: Save dictionary media
         try db.write { db in
             let terms = decodedDictionary
                 .termList
@@ -131,17 +132,18 @@ class CompoundDictionary {
                 try term.insert(db)
             }
         }
+
+        try db.write { db in
+            let termsMeta = decodedDictionary
+                .termMetaList
+                .map { TermMeta(from: $0, dictionaryId: dictionaryId) }
+            for var termMeta in termsMeta {
+                try termMeta.insert(db)
+            }
+        }
+
+
         /*try db.transaction {
-            // TODO: Save dictionary media
-            let dictionaryId = try DBRepresentation.Dictionaries.insert(in: db, index: dictionary.index)
-            for term in dictionary.termList {
-                try DBRepresentation.Terms.insert(in: db, term: term, dictionary: dictionaryId)
-            }
-
-            for termMeta in dictionary.termMetaList {
-                try DBRepresentation.TermsMeta.insert(in: db, termMeta: termMeta, dictionary: dictionaryId)
-            }
-
             for kanji in dictionary.kanjiList {
                 try DBRepresentation.Kanji.insert(in: db, kanji: kanji, dictionary: dictionaryId)
             }
