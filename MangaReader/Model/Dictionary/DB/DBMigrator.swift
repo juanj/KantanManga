@@ -48,7 +48,7 @@ struct DBMigrator {
 
             try db.create(table: "termsMeta", body: { table in
                 table.autoIncrementedPrimaryKey("id")
-                table.column("character", .integer).notNull()
+                table.column("character", .text).notNull()
                 table.column("mode", .text).notNull()
                 table.column("dictionary").references("dictionaries", onDelete: .cascade).notNull()
             })
