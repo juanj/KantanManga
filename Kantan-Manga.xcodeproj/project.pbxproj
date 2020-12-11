@@ -141,6 +141,8 @@
 		329ACA8A2552ED15002953C5 /* NumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA882552ED15002953C5 /* NumberTableViewCell.swift */; };
 		329ACA8B2552ED15002953C5 /* NumberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 329ACA892552ED15002953C5 /* NumberTableViewCell.xib */; };
 		329ACA9A2552EFD7002953C5 /* ViewerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA992552EFD7002953C5 /* ViewerSettings.swift */; };
+		329C87672583BF5D001EA423 /* TermMetaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329C87662583BF5D001EA423 /* TermMetaTests.swift */; };
+		329C87702583BFCE001EA423 /* KanjiMetaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329C876F2583BFCE001EA423 /* KanjiMetaTests.swift */; };
 		329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E30E623E9CEE000AD13A3 /* MangaCollection.swift */; };
 		329E30E923E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */; };
 		32A110B7255859860099A768 /* FakeLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C5B5B24830C2500C0BAB1 /* FakeLibraryViewController.swift */; };
@@ -401,6 +403,8 @@
 		329ACA882552ED15002953C5 /* NumberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTableViewCell.swift; sourceTree = "<group>"; };
 		329ACA892552ED15002953C5 /* NumberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberTableViewCell.xib; sourceTree = "<group>"; };
 		329ACA992552EFD7002953C5 /* ViewerSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerSettings.swift; sourceTree = "<group>"; };
+		329C87662583BF5D001EA423 /* TermMetaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermMetaTests.swift; sourceTree = "<group>"; };
+		329C876F2583BFCE001EA423 /* KanjiMetaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiMetaTests.swift; sourceTree = "<group>"; };
 		329E30E623E9CEE000AD13A3 /* MangaCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollection.swift; sourceTree = "<group>"; };
 		329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MangaCollection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32A110D12558609B0099A768 /* FakeImageOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeImageOCR.swift; sourceTree = "<group>"; };
@@ -572,6 +576,8 @@
 				3241F8C02572E18500A4FC04 /* KanjiEntryV1Tests.swift */,
 				3241F8C52572E1A600A4FC04 /* KanjiEntryV3Tests.swift */,
 				3241F8CD2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift */,
+				329C87662583BF5D001EA423 /* TermMetaTests.swift */,
+				329C876F2583BFCE001EA423 /* KanjiMetaTests.swift */,
 			);
 			path = Codables;
 			sourceTree = "<group>";
@@ -1583,12 +1589,14 @@
 				32F998C125574C8E00897299 /* ViewMangaCoordinatorTests.swift in Sources */,
 				32A110D22558609B0099A768 /* FakeImageOCR.swift in Sources */,
 				84A831FF221D90CC00CEE1C9 /* CoreDataManagerTests.swift in Sources */,
+				329C87702583BFCE001EA423 /* KanjiMetaTests.swift in Sources */,
 				32194C9D256317A4007539B1 /* FakeReader.swift in Sources */,
 				3219C2B22511103A00915DE1 /* FakeCollectionViewController.swift in Sources */,
 				3250E8A1256D568100CBFA37 /* TestableViewMangaCoordinator.swift in Sources */,
 				320ED4DB248326F300F5BECF /* FakeAddMangasCoordinatorDelegate.swift in Sources */,
 				32A3436C257D49C9003337D0 /* FakeDictionariesViewControllerDelegate.swift in Sources */,
 				32345A62256B3EC800C495F2 /* FakeFileSourceViewControllerDelegate.swift in Sources */,
+				329C87672583BF5D001EA423 /* TermMetaTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
