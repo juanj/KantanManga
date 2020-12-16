@@ -28,6 +28,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appCoordinator.start()
         window?.makeKeyAndVisible()
 
+        let compoundDictionary = CompoundDictionary()
+
+        do {
+            try compoundDictionary.removeDataBase()
+            try compoundDictionary.createDataBase()
+        } catch let error {
+            print(error)
+        }
+
         self.coreDataManager = coreDataManager
         return true
     }

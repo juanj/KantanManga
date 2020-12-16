@@ -13,6 +13,7 @@ protocol DictionariesViewControllerDelegate: AnyObject {
 
 class DictionariesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     private var dictionaries: [Dictionary]
     private weak var delegate: DictionariesViewControllerDelegate?
@@ -31,6 +32,21 @@ class DictionariesViewController: UIViewController {
 
         configureTableView()
         configureNavBar()
+    }
+
+    func setDictionaries(_ dictionaries: [Dictionary]) {
+        self.dictionaries = dictionaries
+        tableView.reloadData()
+    }
+
+    func startLoading() {
+        view.isUserInteractionEnabled = false
+        activityIndicator.startAnimating()
+    }
+
+    func endLoading() {
+        view.isUserInteractionEnabled = true
+        activityIndicator.stopAnimating()
     }
 
     private func configureTableView() {

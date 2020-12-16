@@ -10,6 +10,8 @@ import UIKit
 class DictionariesCoordinator: NSObject, Coordinator {
     var childCoordinators = [Coordinator]()
 
+    private var dictionariesViewController: DictionariesViewController?
+
     private let importer: DictionaryImporter
     private let navigationController: Navigable
     private let compoundDictionary: CompoundDictionary
@@ -24,7 +26,14 @@ class DictionariesCoordinator: NSObject, Coordinator {
             try? compoundDictionary.connectToDataBase()
         }
         let dictionaries = (try? compoundDictionary.getDictionaries()) ?? []
-        navigationController.pushViewController(DictionariesViewController(dictionaries: dictionaries, delegate: self), animated: true)
+        let dictionariesViewController = DictionariesViewController(dictionaries: dictionaries, delegate: self)
+        navigationController.pushViewController(dictionariesViewController, animated: true)
+        self.dictionariesViewController = dictionariesViewController
+    }
+
+    private func refreshDictionaries() {
+        let dictionaries = (try? compoundDictionary.getDictionaries()) ?? []
+        dictionariesViewController?.setDictionaries(dictionaries)
     }
 }
 
@@ -47,10 +56,20 @@ extension DictionariesCoordinator: UIDocumentPickerDelegate {
             try? compoundDictionary.connectToDataBase()
         }
 
-        do {
-            try importer.importDictionary(path: fileUrl, to: compoundDictionary)
-        } catch let error {
-            print(error.localizedDescription)
+        self.dictionariesViewController?.startLoading()
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                try self.importer.importDictionary(path: fileUrl, to: self.compoundDictionary)
+                DispatchQueue.main.async {
+                    self.dictionariesViewController?.endLoading()
+                    self.refreshDictionaries()
+                }
+            } catch let error {
+                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.dictionariesViewController?.endLoading()
+                }
+            }
         }
     }
 }
