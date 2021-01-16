@@ -30,11 +30,11 @@ class DictionariesCoordinatorTests: XCTestCase {
 
     // MARK: UIDocumentPickerDelegate
     func testUIDocumentPickerDelegateDidPickDocumentsAt_withUrls_callsImportDictionaryOnDictionaryImporter() {
-        let mockImporter = FakeDictionaryImporter()
-        let dictionariesCoordinator = TestsFactories.createDictionariesCoordinator(importer: mockImporter)
+        let mockDecoder = FakeDictionaryDecoder()
+        let dictionariesCoordinator = TestsFactories.createDictionariesCoordinator(decoder: mockDecoder)
 
         dictionariesCoordinator.documentPicker(UIDocumentPickerViewController(documentTypes: [], in: .import), didPickDocumentsAt: [URL(string: "file:///test.zip")!])
 
-        XCTAssertTrue(mockImporter.importedDictionaries.contains { $0.0 == URL(string: "file:///test.zip")! })
+        XCTAssertTrue(mockDecoder.decodedDictionaries.contains { $0 == URL(string: "file:///test.zip")! })
     }
 }

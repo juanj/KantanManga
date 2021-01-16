@@ -53,8 +53,8 @@ final class TestsFactories {
         return settingsCoordinator
     }
 
-    static func createDictionariesCoordinator(navigable: Navigable = FakeNavigation(), importer: DictionaryImporter = FakeDictionaryImporter(), compoundDictionary: CompoundDictionary = FakeCompoundDictionary()) -> DictionariesCoordinator {
-        let dictionariesCoordinator = DictionariesCoordinator(navigation: navigable, compoundDictionary: compoundDictionary, importer: importer)
+    static func createDictionariesCoordinator(navigable: Navigable = FakeNavigation(), decoder: DictionaryDecoder = FakeDictionaryDecoder(), compoundDictionary: CompoundDictionary = FakeCompoundDictionary()) -> DictionariesCoordinator {
+        let dictionariesCoordinator = DictionariesCoordinator(navigation: navigable, compoundDictionary: compoundDictionary, dictionaryDecoder: decoder)
         return dictionariesCoordinator
     }
 

@@ -10,5 +10,5 @@
 class FakeCompoundDictionary: CompoundDictionary {
     override func connectToDataBase(fileName: String = "dic.db", fileManager: FileManager = .default) throws {}
     override func createDataBase(fileName: String = "dic.db", fileManager: FileManager = .default) throws {}
-    override func addDictionary(_ decodedDictionary: DecodedDictionary) throws {}
+    override func addDictionary(_ decodedDictionary: DecodedDictionary, progress: ((Float) -> Void)? = nil) throws {}
 }
