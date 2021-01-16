@@ -9,14 +9,14 @@ import Foundation
 import GRDB
 import ZIPFoundation
 
-struct YomichanDictionaryImporter: DictionaryImporter {
+struct YomichanDictionaryDecoder: DictionaryDecoder {
     static let termBankFileFormat = "term_bank_%d.json"
     static let termMetaBankFileFormat = "term_meta_bank_%d.json"
     static let kanjiBankFileFormat = "kanji_bank_%d.json"
     static let kanjiMetaBankFileFormat = "kanji_meta_bank_%d.json"
     static let tagBankFileFormat = "tag_bank_%d.json"
 
-    func importDictionary(path: URL, to compoundDictionary: CompoundDictionary) throws {
+    func decodeDictionary(path: URL, to compoundDictionary: CompoundDictionary) throws -> DecodedDictionary {
         guard let zipFile = Archive(url: path, accessMode: .read) else {
             throw DictionaryImporterError.canNotReadFile
         }
@@ -30,19 +30,17 @@ struct YomichanDictionaryImporter: DictionaryImporter {
         let termList: [TermEntry]
         let kanjiList: [KanjiEntry]
         if index.fileVersion == .v1 {
-            termList = try readFileSequence(fileFormat: YomichanDictionaryImporter.termBankFileFormat, zip: zipFile) as [TermEntryV1]
-            kanjiList = try readFileSequence(fileFormat: YomichanDictionaryImporter.kanjiBankFileFormat, zip: zipFile) as [KanjiEntryV1]
+            termList = try readFileSequence(fileFormat: YomichanDictionaryDecoder.termBankFileFormat, zip: zipFile) as [TermEntryV1]
+            kanjiList = try readFileSequence(fileFormat: YomichanDictionaryDecoder.kanjiBankFileFormat, zip: zipFile) as [KanjiEntryV1]
         } else {
-            termList = try readFileSequence(fileFormat: YomichanDictionaryImporter.termBankFileFormat, zip: zipFile) as [TermEntryV3]
-            kanjiList = try readFileSequence(fileFormat: YomichanDictionaryImporter.kanjiBankFileFormat, zip: zipFile) as [KanjiEntryV3]
+            termList = try readFileSequence(fileFormat: YomichanDictionaryDecoder.termBankFileFormat, zip: zipFile) as [TermEntryV3]
+            kanjiList = try readFileSequence(fileFormat: YomichanDictionaryDecoder.kanjiBankFileFormat, zip: zipFile) as [KanjiEntryV3]
         }
-        let termMetaList: [TermMetaEntry] = try readFileSequence(fileFormat: YomichanDictionaryImporter.termMetaBankFileFormat, zip: zipFile)
-        let kanjiMetaList: [KanjiMetaEntry] = try readFileSequence(fileFormat: YomichanDictionaryImporter.kanjiMetaBankFileFormat, zip: zipFile)
-        let tagList: [TagEntry] = try readFileSequence(fileFormat: YomichanDictionaryImporter.tagBankFileFormat, zip: zipFile)
-        // TODO: Read 'old' tags
+        let termMetaList: [TermMetaEntry] = try readFileSequence(fileFormat: YomichanDictionaryDecoder.termMetaBankFileFormat, zip: zipFile)
+        let kanjiMetaList: [KanjiMetaEntry] = try readFileSequence(fileFormat: YomichanDictionaryDecoder.kanjiMetaBankFileFormat, zip: zipFile)
+        let tagList: [TagEntry] = try readFileSequence(fileFormat: YomichanDictionaryDecoder.tagBankFileFormat, zip: zipFile)
 
-        let dictionary = DecodedDictionary(index: index, termList: termList, termMetaList: termMetaList, kanjiList: kanjiList, kanjiMetaList: kanjiMetaList, tags: tagList)
-        try compoundDictionary.addDictionary(dictionary)
+        return DecodedDictionary(index: index, termList: termList, termMetaList: termMetaList, kanjiList: kanjiList, kanjiMetaList: kanjiMetaList, tags: tagList)
     }
 
     private func importIndex(zip: Archive) throws -> DictionaryIndex {

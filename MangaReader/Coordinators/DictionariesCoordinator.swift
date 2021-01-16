@@ -12,13 +12,13 @@ class DictionariesCoordinator: NSObject, Coordinator {
 
     private var dictionariesViewController: DictionariesViewController?
 
-    private let importer: DictionaryImporter
+    private let dictionaryDecoder: DictionaryDecoder
     private let navigationController: Navigable
     private let compoundDictionary: CompoundDictionary
-    init(navigation: Navigable, compoundDictionary: CompoundDictionary = CompoundDictionary(), importer: DictionaryImporter = YomichanDictionaryImporter()) {
+    init(navigation: Navigable, compoundDictionary: CompoundDictionary = CompoundDictionary(), dictionaryDecoder: DictionaryDecoder = YomichanDictionaryDecoder()) {
         navigationController = navigation
         self.compoundDictionary = compoundDictionary
-        self.importer = importer
+        self.dictionaryDecoder = dictionaryDecoder
     }
 
     func start() {
@@ -59,7 +59,7 @@ extension DictionariesCoordinator: UIDocumentPickerDelegate {
         self.dictionariesViewController?.startLoading()
         DispatchQueue.global(qos: .userInitiated).async {
             do {
-                try self.importer.importDictionary(path: fileUrl, to: self.compoundDictionary)
+                let decodedDictionary = try self.dictionaryDecoder.decodeDictionary(path: fileUrl, to: self.compoundDictionary)
                 DispatchQueue.main.async {
                     self.dictionariesViewController?.endLoading()
                     self.refreshDictionaries()

@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol DictionaryImporter {
-    func importDictionary(path: URL, to compoundDictionary: CompoundDictionary) throws
+protocol DictionaryDecoder {
+    func decodeDictionary(path: URL, to compoundDictionary: CompoundDictionary) throws -> DecodedDictionary
 }
