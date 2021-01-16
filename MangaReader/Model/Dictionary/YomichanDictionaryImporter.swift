@@ -9,23 +9,25 @@ import Foundation
 import GRDB
 import ZIPFoundation
 
-struct YomichanDictionaryDecoder: DictionaryDecoder {
+class YomichanDictionaryDecoder: DictionaryDecoder {
     static let termBankFileFormat = "term_bank_%d.json"
     static let termMetaBankFileFormat = "term_meta_bank_%d.json"
     static let kanjiBankFileFormat = "kanji_bank_%d.json"
     static let kanjiMetaBankFileFormat = "kanji_meta_bank_%d.json"
     static let tagBankFileFormat = "tag_bank_%d.json"
 
-    func decodeDictionary(path: URL, to compoundDictionary: CompoundDictionary) throws -> DecodedDictionary {
+    private var currentProgress: Float = 0
+    private var numberOfFiles: Float = 1
+    private var progress: ((Float) -> Void)?
+    func decodeDictionary(path: URL, progress: ((Float) -> Void)?) throws -> DecodedDictionary {
         guard let zipFile = Archive(url: path, accessMode: .read) else {
-            throw DictionaryImporterError.canNotReadFile
+            throw DictionaryDecoderError.canNotReadFile
         }
 
+        self.currentProgress = 0
+        self.progress = progress
+        numberOfFiles = Float(zipFile.makeIterator().reduce(0, { $0 + ($1.type == .file ? 1 : 0) }))
         let index = try importIndex(zip: zipFile)
-
-        guard try compoundDictionary.dictionaryExists(title: index.title, revision: index.revision) else {
-            throw DictionaryImporterError.dictionaryAlreadyExists
-        }
 
         let termList: [TermEntry]
         let kanjiList: [KanjiEntry]
@@ -45,7 +47,7 @@ struct YomichanDictionaryDecoder: DictionaryDecoder {
 
     private func importIndex(zip: Archive) throws -> DictionaryIndex {
         guard let indexFile = zip["index.json"] else {
-            throw DictionaryImporterError.indexNotFound
+            throw DictionaryDecoderError.indexNotFound
         }
 
         var data = Data()
@@ -55,6 +57,7 @@ struct YomichanDictionaryDecoder: DictionaryDecoder {
 
         let decoder = JSONDecoder()
         let index = try decoder.decode(DictionaryIndex.self, from: data)
+        updateProgress()
         return index
     }
 
@@ -70,7 +73,14 @@ struct YomichanDictionaryDecoder: DictionaryDecoder {
             let entries = try decoder.decode([T].self, from: data)
             results.append(contentsOf: entries)
             index += 1
+            updateProgress()
         }
         return results
+    }
+
+    private func updateProgress() {
+        let step = 1 / numberOfFiles
+        currentProgress += step
+        progress?(currentProgress)
     }
 }
