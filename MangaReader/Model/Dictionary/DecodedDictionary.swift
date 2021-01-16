@@ -15,3 +15,14 @@ struct DecodedDictionary {
     let kanjiMetaList: [KanjiMetaEntry]
     let tags: [TagEntry]
 }
+
+extension DecodedDictionary {
+    var totalEntries: Int {
+        return 1 +
+            termList.count +
+            termMetaList.count +
+            kanjiList.count +
+            kanjiMetaList.count +
+            tags.count
+    }
+}

@@ -107,14 +107,18 @@ class CompoundDictionary {
         }
     }
 
-    func addDictionary(_ decodedDictionary: DecodedDictionary) throws {
+    func addDictionary(_ decodedDictionary: DecodedDictionary, progress: ((Float) -> Void)? = nil) throws {
         guard let db = db else {
             throw DictionaryError.noConnection
         }
+        let total = Float(decodedDictionary.totalEntries)
+        var currentProgress = 0
 
         var dictionary = Dictionary(from: decodedDictionary.index)
         try db.write { db in
             try dictionary.insert(db)
+            currentProgress += 1
+            progress?(Float(currentProgress)/total)
         }
 
         guard let dictionaryId = dictionary.id else {
@@ -128,6 +132,10 @@ class CompoundDictionary {
                 .map { Term(from: $0, dictionaryId: dictionaryId) }
             for var term in terms {
                 try term.insert(db)
+                currentProgress += 1
+                if currentProgress % 10000 == 0 {
+                    progress?(Float(currentProgress)/total)
+                }
             }
         }
 
@@ -137,6 +145,10 @@ class CompoundDictionary {
                 .map { TermMeta(from: $0, dictionaryId: dictionaryId) }
             for var termMeta in termsMeta {
                 try termMeta.insert(db)
+                currentProgress += 1
+                if currentProgress % 10000 == 0 {
+                    progress?(Float(currentProgress)/total)
+                }
             }
         }
 
@@ -146,6 +158,10 @@ class CompoundDictionary {
                 .map { Kanji(from: $0, dictionaryId: dictionaryId) }
             for var kanji in kanjis {
                 try kanji.insert(db)
+                currentProgress += 1
+                if currentProgress % 10000 == 0 {
+                    progress?(Float(currentProgress)/total)
+                }
             }
         }
 
@@ -155,6 +171,10 @@ class CompoundDictionary {
                 .map { KanjiMeta(from: $0, dictionaryId: dictionaryId) }
             for var kanjiMeta in kanjisMeta {
                 try kanjiMeta.insert(db)
+                currentProgress += 1
+                if currentProgress % 10000 == 0 {
+                    progress?(Float(currentProgress)/total)
+                }
             }
         }
 
@@ -164,8 +184,13 @@ class CompoundDictionary {
                 .map { Tag(from: $0, dictionaryId: dictionaryId) }
             for var tag in tags {
                 try tag.insert(db)
+                currentProgress += 1
+                if currentProgress % 10000 == 0 {
+                    progress?(Float(currentProgress)/total)
+                }
             }
         }
+        progress?(Float(currentProgress)/total)
     }
 
     func deleteDictionary(id: Int) throws {
