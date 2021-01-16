@@ -60,10 +60,14 @@ extension DictionariesCoordinator: UIDocumentPickerDelegate {
         DispatchQueue.global(qos: .userInitiated).async {
             do {
                 let decodedDictionary = try self.dictionaryDecoder.decodeDictionary(path: fileUrl, progress: { progress in
-                    print("Progress: \(progress*50)%")
+                    DispatchQueue.main.async {
+                        self.dictionariesViewController?.progressView.setProgress(progress * 0.5, animated: true)
+                    }
                 })
                 try self.compoundDictionary.addDictionary(decodedDictionary, progress: { progress in
-                    print("Progress: \(50+progress*50)%")
+                    DispatchQueue.main.async {
+                        self.dictionariesViewController?.progressView.setProgress(0.5 + progress * 0.5, animated: true)
+                    }
                 })
                 DispatchQueue.main.async {
                     self.dictionariesViewController?.endLoading()

@@ -14,6 +14,8 @@ protocol DictionariesViewControllerDelegate: AnyObject {
 class DictionariesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var loadingOverlay: UIView!
+    @IBOutlet weak var progressView: UIProgressView!
 
     private var dictionaries: [Dictionary]
     private weak var delegate: DictionariesViewControllerDelegate?
@@ -32,6 +34,7 @@ class DictionariesViewController: UIViewController {
 
         configureTableView()
         configureNavBar()
+        configureLoadingView()
     }
 
     func setDictionaries(_ dictionaries: [Dictionary]) {
@@ -42,11 +45,22 @@ class DictionariesViewController: UIViewController {
     func startLoading() {
         view.isUserInteractionEnabled = false
         activityIndicator.startAnimating()
+        self.loadingOverlay.alpha = 0
+        self.loadingOverlay.isHidden = false
+        UIView.animate(withDuration: 0.2) {
+            self.loadingOverlay.alpha = 1
+        }
     }
 
     func endLoading() {
         view.isUserInteractionEnabled = true
         activityIndicator.stopAnimating()
+        self.loadingOverlay.alpha = 1
+        UIView.animate(withDuration: 0.2) {
+            self.loadingOverlay.alpha = 0
+        } completion: { _ in
+            self.loadingOverlay.isHidden = true
+        }
     }
 
     private func configureTableView() {
@@ -57,6 +71,10 @@ class DictionariesViewController: UIViewController {
     private func configureNavBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
         title = "Manage dictionaries"
+    }
+
+    private func configureLoadingView() {
+        loadingOverlay.layer.cornerRadius = 15
     }
 
     @objc func add() {

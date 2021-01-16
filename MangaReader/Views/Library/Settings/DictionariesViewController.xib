@@ -12,6 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DictionariesViewController" customModule="Kantan_Manga" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="zBi-aJ-STs" id="hSe-3N-8qx"/>
+                <outlet property="loadingOverlay" destination="HhE-kj-tcO" id="1oa-lG-mHz"/>
+                <outlet property="progressView" destination="6e1-I7-BmL" id="Uvj-bb-lk3"/>
                 <outlet property="tableView" destination="bqq-bc-nLW" id="Wkh-D0-ev4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -25,28 +27,48 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="zBi-aJ-STs">
-                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
-                    <color key="color" systemColor="labelColor"/>
-                </activityIndicatorView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HhE-kj-tcO">
+                    <rect key="frame" x="57" y="395" width="300" height="106"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="YUZ-FU-Bfw">
+                            <rect key="frame" x="25" y="25" width="250" height="56"/>
+                            <subviews>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="zBi-aJ-STs">
+                                    <rect key="frame" x="0.0" y="0.0" width="250" height="37"/>
+                                    <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </activityIndicatorView>
+                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6e1-I7-BmL">
+                                    <rect key="frame" x="0.0" y="52" width="250" height="4"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="250" id="Zcx-hX-bQf"/>
+                                    </constraints>
+                                </progressView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="YUZ-FU-Bfw" firstAttribute="top" secondItem="HhE-kj-tcO" secondAttribute="top" constant="25" id="NfI-bJ-ZKu"/>
+                        <constraint firstAttribute="trailing" secondItem="YUZ-FU-Bfw" secondAttribute="trailing" constant="25" id="YgC-hO-3Ux"/>
+                        <constraint firstAttribute="bottom" secondItem="YUZ-FU-Bfw" secondAttribute="bottom" constant="25" id="fBS-wR-F51"/>
+                        <constraint firstItem="YUZ-FU-Bfw" firstAttribute="leading" secondItem="HhE-kj-tcO" secondAttribute="leading" constant="25" id="qte-R3-2Tg"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="zBi-aJ-STs" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="2IV-XK-OG0"/>
+                <constraint firstItem="HhE-kj-tcO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="1mk-AN-LZj"/>
                 <constraint firstAttribute="bottom" secondItem="bqq-bc-nLW" secondAttribute="bottom" id="BfV-Fb-p5H"/>
                 <constraint firstItem="bqq-bc-nLW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="aHc-en-1b4"/>
                 <constraint firstItem="bqq-bc-nLW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="auO-6g-9vg"/>
-                <constraint firstItem="zBi-aJ-STs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fuG-Bg-sD6"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bqq-bc-nLW" secondAttribute="trailing" id="q5t-vu-iHu"/>
+                <constraint firstItem="HhE-kj-tcO" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="tjZ-1y-UHs"/>
             </constraints>
             <point key="canvasLocation" x="142" y="103"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
