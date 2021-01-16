@@ -13,9 +13,9 @@ protocol DictionariesViewControllerDelegate: AnyObject {
 
 class DictionariesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loadingOverlay: UIView!
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var importingInfoLabel: UILabel!
 
     private var dictionaries: [Dictionary]
     private weak var delegate: DictionariesViewControllerDelegate?
@@ -44,9 +44,10 @@ class DictionariesViewController: UIViewController {
 
     func startLoading() {
         view.isUserInteractionEnabled = false
-        activityIndicator.startAnimating()
-        self.loadingOverlay.alpha = 0
-        self.loadingOverlay.isHidden = false
+        progressView.progress = 0
+        loadingOverlay.alpha = 0
+        loadingOverlay.isHidden = false
+        importingInfoLabel.text = "Loading dictionary..."
         UIView.animate(withDuration: 0.2) {
             self.loadingOverlay.alpha = 1
         }
@@ -54,7 +55,6 @@ class DictionariesViewController: UIViewController {
 
     func endLoading() {
         view.isUserInteractionEnabled = true
-        activityIndicator.stopAnimating()
         self.loadingOverlay.alpha = 1
         UIView.animate(withDuration: 0.2) {
             self.loadingOverlay.alpha = 0

@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DictionariesViewController" customModule="Kantan_Manga" customModuleProvider="target">
             <connections>
-                <outlet property="activityIndicator" destination="zBi-aJ-STs" id="hSe-3N-8qx"/>
+                <outlet property="importingInfoLabel" destination="68n-aw-fc8" id="gMk-ix-Ffz"/>
                 <outlet property="loadingOverlay" destination="HhE-kj-tcO" id="1oa-lG-mHz"/>
                 <outlet property="progressView" destination="6e1-I7-BmL" id="Uvj-bb-lk3"/>
                 <outlet property="tableView" destination="bqq-bc-nLW" id="Wkh-D0-ev4"/>
@@ -28,17 +28,19 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HhE-kj-tcO">
-                    <rect key="frame" x="57" y="395" width="300" height="106"/>
+                    <rect key="frame" x="57" y="400.5" width="300" height="95.5"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="YUZ-FU-Bfw">
-                            <rect key="frame" x="25" y="25" width="250" height="56"/>
+                            <rect key="frame" x="25" y="25" width="250" height="45.5"/>
                             <subviews>
-                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="zBi-aJ-STs">
-                                    <rect key="frame" x="0.0" y="0.0" width="250" height="37"/>
-                                    <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </activityIndicatorView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading dictionary..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68n-aw-fc8">
+                                    <rect key="frame" x="0.0" y="0.0" width="250" height="26.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6e1-I7-BmL">
-                                    <rect key="frame" x="0.0" y="52" width="250" height="4"/>
+                                    <rect key="frame" x="0.0" y="41.5" width="250" height="4"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="250" id="Zcx-hX-bQf"/>
                                     </constraints>

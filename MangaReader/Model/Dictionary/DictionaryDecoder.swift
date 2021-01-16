@@ -8,11 +8,11 @@
 import Foundation
 
 protocol DictionaryDecoder {
-    func decodeDictionary(path: URL, progress: ((Float) -> Void)?) throws -> DecodedDictionary
+    func decodeDictionary(path: URL, indexCallback: ((DictionaryIndex) -> Void)?, progress: ((Float) -> Void)?) throws -> DecodedDictionary
 }
 
 extension DictionaryDecoder {
-    func decodeDictionary(path: URL, progress: ((Float) -> Void)? = nil) throws -> DecodedDictionary {
-        try decodeDictionary(path: path, progress: progress)
+    func decodeDictionary(path: URL, indexCallback: ((DictionaryIndex) -> Void)? = nil, progress: ((Float) -> Void)? = nil) throws -> DecodedDictionary {
+        try decodeDictionary(path: path, indexCallback: indexCallback, progress: progress)
     }
 }

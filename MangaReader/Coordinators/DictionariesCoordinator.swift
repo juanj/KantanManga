@@ -59,13 +59,22 @@ extension DictionariesCoordinator: UIDocumentPickerDelegate {
         dictionariesViewController?.startLoading()
         DispatchQueue.global(qos: .userInitiated).async {
             do {
-                let decodedDictionary = try self.dictionaryDecoder.decodeDictionary(path: fileUrl, progress: { progress in
+                var index: DictionaryIndex?
+                let decodedDictionary = try self.dictionaryDecoder.decodeDictionary(path: fileUrl, indexCallback: { dictionaryIndex in
+                    index = dictionaryIndex
+                    DispatchQueue.main.async {
+                        self.dictionariesViewController?.importingInfoLabel.text = "Decoding \(dictionaryIndex.title)"
+                    }
+                }, progress: { progress in
                     DispatchQueue.main.async {
                         self.dictionariesViewController?.progressView.setProgress(progress * 0.5, animated: true)
                     }
                 })
                 try self.compoundDictionary.addDictionary(decodedDictionary, progress: { progress in
                     DispatchQueue.main.async {
+                        if let dictionaryIndex = index {
+                            self.dictionariesViewController?.importingInfoLabel.text = "Importing \(dictionaryIndex.title)"
+                        }
                         self.dictionariesViewController?.progressView.setProgress(0.5 + progress * 0.5, animated: true)
                     }
                 })
