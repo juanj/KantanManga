@@ -13,9 +13,9 @@ extension NSAttributedString.Key {
 }
 
 class DictionaryEntryView: UIView {
-    private let entry: Term
-    init(entry: Term) {
-        self.entry = entry
+    private let result: SearchResult
+    init(result: SearchResult) {
+        self.result = result
         super.init(frame: .zero)
 
         setupView()
@@ -27,12 +27,12 @@ class DictionaryEntryView: UIView {
 
     private func setupView() {
 
-        let annotation = CTRubyAnnotationCreateWithAttributes(.auto, .auto, .before, entry.reading as CFString, [
+        let annotation = CTRubyAnnotationCreateWithAttributes(.auto, .auto, .before, result.term.reading as CFString, [
             kCTForegroundColorAttributeName: UIColor.label,
             kCTRubyAnnotationSizeFactorAttributeName: 0.3
         ] as CFDictionary)
 
-        let annotatedString = NSAttributedString(string: entry.expression, attributes: [
+        let annotatedString = NSAttributedString(string: result.term.expression, attributes: [
             .foregroundColor: UIColor.label,
             .rubyAnnotation: annotation
         ])
@@ -49,7 +49,7 @@ class DictionaryEntryView: UIView {
         body.font = .systemFont(ofSize: 20)
         body.translatesAutoresizingMaskIntoConstraints = false
         body.isScrollEnabled = false
-        body.text = entry.glossary
+        body.text = result.term.glossary
             .compactMap { item in
                 if case .text(let text) = item {
                     return text
