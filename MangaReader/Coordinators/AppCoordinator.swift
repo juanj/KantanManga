@@ -32,6 +32,7 @@ class AppCoordinator: NSObject, Coordinator {
         UserDefaults.standard.setValue(true, forKey: "hasSeenOnboarding")
         navigation.pushViewController(library, animated: false)
         libraryView = library
+        loadDbIfNeeded()
     }
 
     func loadCollections() -> [MangaCollectionable] {
@@ -43,6 +44,24 @@ class AppCoordinator: NSObject, Coordinator {
             collections.append(contentsOf: allCollections)
         }
         return collections.filter { $0.mangas.count > 0 }
+    }
+
+    private func loadDbIfNeeded() {
+        do {
+            let compoundDictionary = CompoundDictionary()
+            try compoundDictionary.connectToDataBase()
+        } catch let error {
+            if (error as? DictionaryError) == .dbFileNotFound {
+                guard let libraryUrl = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first,
+                      let dictUrl = Bundle.main.url(forResource: "dic", withExtension: "db") else { return }
+
+                let lobaryDbUrl = libraryUrl.appendingPathComponent("dic.db")
+
+                DispatchQueue.global(qos: .utility).async {
+                    try? FileManager.default.copyItem(at: dictUrl, to: lobaryDbUrl)
+                }
+            }
+        }
     }
 }
 

@@ -43,7 +43,6 @@
 		32350AA8247C723C002D100D /* WordParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32350AA7247C723C002D100D /* WordParser.swift */; };
 		3238DF3A24D7840200DE8782 /* WordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3238DF3924D7840200DE8782 /* WordButton.swift */; };
 		3239C5B9254DD06500EFB39A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3239C5B8254DD06500EFB39A /* Settings.bundle */; };
-		323CD90A23CB7107007FFC58 /* jamdict.db in Resources */ = {isa = PBXBuildFile; fileRef = 323CD90923CB7107007FFC58 /* jamdict.db */; };
 		3241F8572572ACD800A4FC04 /* KanjiEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F8562572ACD800A4FC04 /* KanjiEntry.swift */; };
 		3241F8602572AE7F00A4FC04 /* TermEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F85F2572AE7F00A4FC04 /* TermEntry.swift */; };
 		3241F86B2572B04700A4FC04 /* TermMetaEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241F86A2572B04700A4FC04 /* TermMetaEntry.swift */; };
@@ -143,6 +142,7 @@
 		329ACA9A2552EFD7002953C5 /* ViewerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA992552EFD7002953C5 /* ViewerSettings.swift */; };
 		329C87672583BF5D001EA423 /* TermMetaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329C87662583BF5D001EA423 /* TermMetaTests.swift */; };
 		329C87702583BFCE001EA423 /* KanjiMetaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329C876F2583BFCE001EA423 /* KanjiMetaTests.swift */; };
+		329D418A25B4874400545FB0 /* dic.db in Resources */ = {isa = PBXBuildFile; fileRef = 329D418925B4874400545FB0 /* dic.db */; };
 		329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E30E623E9CEE000AD13A3 /* MangaCollection.swift */; };
 		329E30E923E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */; };
 		32A110B7255859860099A768 /* FakeLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C5B5B24830C2500C0BAB1 /* FakeLibraryViewController.swift */; };
@@ -307,7 +307,6 @@
 		32350AA7247C723C002D100D /* WordParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordParser.swift; sourceTree = "<group>"; };
 		3238DF3924D7840200DE8782 /* WordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordButton.swift; sourceTree = "<group>"; };
 		3239C5B8254DD06500EFB39A /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		323CD90923CB7107007FFC58 /* jamdict.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = jamdict.db; sourceTree = "<group>"; };
 		3241F8562572ACD800A4FC04 /* KanjiEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiEntry.swift; sourceTree = "<group>"; };
 		3241F85F2572AE7F00A4FC04 /* TermEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermEntry.swift; sourceTree = "<group>"; };
 		3241F86A2572B04700A4FC04 /* TermMetaEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermMetaEntry.swift; sourceTree = "<group>"; };
@@ -405,6 +404,7 @@
 		329ACA992552EFD7002953C5 /* ViewerSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerSettings.swift; sourceTree = "<group>"; };
 		329C87662583BF5D001EA423 /* TermMetaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermMetaTests.swift; sourceTree = "<group>"; };
 		329C876F2583BFCE001EA423 /* KanjiMetaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiMetaTests.swift; sourceTree = "<group>"; };
+		329D418925B4874400545FB0 /* dic.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dic.db; sourceTree = "<group>"; };
 		329E30E623E9CEE000AD13A3 /* MangaCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollection.swift; sourceTree = "<group>"; };
 		329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MangaCollection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32A110D12558609B0099A768 /* FakeImageOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeImageOCR.swift; sourceTree = "<group>"; };
@@ -634,8 +634,6 @@
 			isa = PBXGroup;
 			children = (
 				324BB98824983DF7006241E8 /* ipadic */,
-				32326F882435613E00FCE8E5 /* cbz.svg */,
-				323CD90923CB7107007FFC58 /* jamdict.db */,
 				3258141023C5051A00C31E02 /* mecabrc */,
 			);
 			name = Resources;
@@ -766,6 +764,15 @@
 				3296181B2555943B0020C5AF /* SettingValueChangeDelegate.swift */,
 			);
 			path = "Settings Cells";
+			sourceTree = "<group>";
+		};
+		329D418825B4872800545FB0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				32326F882435613E00FCE8E5 /* cbz.svg */,
+				329D418925B4874400545FB0 /* dic.db */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		32A1516025325F61002B3920 /* Onboarding */ = {
@@ -965,6 +972,7 @@
 		84A831E5221D90CA00CEE1C9 /* MangaReader */ = {
 			isa = PBXGroup;
 			children = (
+				329D418825B4872800545FB0 /* Resources */,
 				326344A1247DD94200F683AB /* OCR */,
 				326344A0247DD92900F683AB /* File Extraction */,
 				32634498247DD89B00F683AB /* Mecab */,
@@ -1263,6 +1271,7 @@
 				84A831F4221D90CC00CEE1C9 /* LaunchScreen.storyboard in Resources */,
 				32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */,
 				32A1516D253260C0002B3920 /* OnboardingViewController.xib in Resources */,
+				329D418A25B4874400545FB0 /* dic.db in Resources */,
 				324BB99924983DF7006241E8 /* right-id.def in Resources */,
 				3249F2D8250BBC18004C514E /* MangaCollectionCollectionViewCell.xib in Resources */,
 				324BB99324983DF7006241E8 /* left-id.def in Resources */,
@@ -1288,7 +1297,6 @@
 				32326F892435613E00FCE8E5 /* cbz.svg in Resources */,
 				3247543D2551FD120025AB06 /* ViewerSettingsViewController.xib in Resources */,
 				84A83225221DB10400CEE1C9 /* MangaCollectionViewCell.xib in Resources */,
-				323CD90A23CB7107007FFC58 /* jamdict.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
