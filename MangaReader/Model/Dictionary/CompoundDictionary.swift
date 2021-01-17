@@ -208,10 +208,12 @@ class CompoundDictionary {
             throw DictionaryError.noConnection
         }
 
-        return try db.read { db in
+       return try db.read { db in
             let request = Term.including(required: Term.dictionary)
-                .filter(Term.Columns.expression.like(term) || Term.Columns.reading.like(term))
-
+                .filter(
+                    Term.Columns.expression == term ||
+                    Term.Columns.reading == term
+                )
             return try SearchResult.fetchAll(db, request)
         }
     }

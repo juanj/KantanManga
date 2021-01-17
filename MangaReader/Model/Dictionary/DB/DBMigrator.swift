@@ -46,6 +46,9 @@ struct DBMigrator {
                 table.column("dictionaryId").references("dictionaries", onDelete: .cascade).notNull()
             })
 
+            try db.create(index: "idx_term_expression", on: "terms", columns: ["expression"])
+            try db.create(index: "idx_term_reading", on: "terms", columns: ["reading"])
+
             try db.create(table: "termsMeta", body: { table in
                 table.autoIncrementedPrimaryKey("id")
                 table.column("character", .text).notNull()
