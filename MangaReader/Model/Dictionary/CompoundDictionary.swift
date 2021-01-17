@@ -91,7 +91,7 @@ class CompoundDictionary {
                                 Dictionary.Columns.revision == revision)
                     .fetchCount(db)
             }
-            return count < 1
+            return count != 0
         } catch {
             return false
         }

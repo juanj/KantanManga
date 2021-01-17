@@ -7,7 +7,12 @@
 
 import Foundation
 
+protocol DictionaryDecoderDelegate: AnyObject {
+    func shouldContinueDecoding(dictionary: DictionaryIndex) -> Bool
+}
+
 protocol DictionaryDecoder {
+    var delegate: DictionaryDecoderDelegate? { get set }
     func decodeDictionary(path: URL, indexCallback: ((DictionaryIndex) -> Void)?, progress: ((Float) -> Void)?) throws -> DecodedDictionary
 }
 

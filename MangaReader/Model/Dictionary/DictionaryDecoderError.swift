@@ -10,4 +10,5 @@ import Foundation
 enum DictionaryDecoderError: Error {
     case canNotReadFile
     case indexNotFound
+    case decodeCancelled
 }

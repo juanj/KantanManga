@@ -16,6 +16,8 @@ class YomichanDictionaryDecoder: DictionaryDecoder {
     static let kanjiMetaBankFileFormat = "kanji_meta_bank_%d.json"
     static let tagBankFileFormat = "tag_bank_%d.json"
 
+    weak var delegate: DictionaryDecoderDelegate?
+
     private var currentProgress: Float = 0
     private var numberOfFiles: Float = 1
     private var progress: ((Float) -> Void)?
@@ -29,6 +31,9 @@ class YomichanDictionaryDecoder: DictionaryDecoder {
         numberOfFiles = Float(zipFile.makeIterator().reduce(0, { $0 + ($1.type == .file ? 1 : 0) }))
         let index = try importIndex(zip: zipFile)
         indexCallback?(index)
+        if let delegate = delegate, !delegate.shouldContinueDecoding(dictionary: index) {
+            throw DictionaryDecoderError.decodeCancelled
+        }
 
         let termList: [TermEntry]
         let kanjiList: [KanjiEntry]

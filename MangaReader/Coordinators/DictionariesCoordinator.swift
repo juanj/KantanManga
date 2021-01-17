@@ -12,13 +12,15 @@ class DictionariesCoordinator: NSObject, Coordinator {
 
     private var dictionariesViewController: DictionariesViewController?
 
-    private let dictionaryDecoder: DictionaryDecoder
+    private var dictionaryDecoder: DictionaryDecoder
     private let navigationController: Navigable
     private let compoundDictionary: CompoundDictionary
     init(navigation: Navigable, compoundDictionary: CompoundDictionary = CompoundDictionary(), dictionaryDecoder: DictionaryDecoder = YomichanDictionaryDecoder()) {
         navigationController = navigation
         self.compoundDictionary = compoundDictionary
         self.dictionaryDecoder = dictionaryDecoder
+        super.init()
+        self.dictionaryDecoder.delegate = self
     }
 
     func start() {
@@ -95,5 +97,19 @@ extension DictionariesCoordinator: UIDocumentPickerDelegate {
                 }
             }
         }
+    }
+}
+
+extension DictionariesCoordinator: DictionaryDecoderDelegate {
+    func shouldContinueDecoding(dictionary: DictionaryIndex) -> Bool {
+        if (try? compoundDictionary.dictionaryExists(title: dictionary.title, revision: dictionary.revision)) == true {
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Error", message: #"A dictionary with the title "\#(dictionary.title)" and version "\#(dictionary.revision)" already exists."#, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.navigationController.present(alert, animated: true, completion: nil)
+            }
+            return false
+        }
+        return true
     }
 }
