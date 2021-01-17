@@ -44,6 +44,20 @@ class DictionaryEntryView: UIView {
         title.numberOfLines = 0
         title.attributedText = annotatedString
 
+        let tagLabel = UILabel()
+        tagLabel.text = result.dictionary.title
+        tagLabel.textColor = .white
+        tagLabel.font = .systemFont(ofSize: 15, weight: .bold)
+
+        let tag = UIView()
+        tag.backgroundColor = .purple
+        tag.layer.cornerRadius = 5
+        tag.addSubview(tagLabel)
+        tag.translatesAutoresizingMaskIntoConstraints = false
+
+        tagLabel.translatesAutoresizingMaskIntoConstraints = false
+        tagLabel.addConstraintsTo(tag, spacing: .init(top: 5, left: 5, bottom: -5, right: -5))
+
         let body = UITextView()
         body.isEditable = false
         body.font = .systemFont(ofSize: 20)
@@ -63,13 +77,16 @@ class DictionaryEntryView: UIView {
         separator.backgroundColor = .systemGray
 
         addSubview(title)
+        addSubview(tag)
         addSubview(body)
         addSubview(separator)
 
         title.heightAnchor.constraint(equalToConstant: 75).isActive = true
         title.addConstraintsTo(self, sides: [.horizontal, .top])
+        tag.addConstraintsTo(self, sides: [.left])
+        tag.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5).isActive = true
         body.addConstraintsTo(self, sides: [.horizontal, .bottom], spacing: .init(bottom: -10))
-        body.topAnchor.constraint(equalTo: title.bottomAnchor).isActive = true
+        body.topAnchor.constraint(equalTo: tag.bottomAnchor).isActive = true
 
         // Separator constraints
         separator.addConstraintsTo(self, sides: [.horizontal, .bottom])
