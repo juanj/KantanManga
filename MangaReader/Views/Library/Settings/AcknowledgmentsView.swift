@@ -18,8 +18,8 @@ struct AcknowledgmentsView: View {
             Text("""
                 ZIPFoundation
                 GCDWebServer/WebUploader
-                SQLite.swift
-                TesseractOCRiOS
+                GRDB
+                SwiftTesseract
                 UnrarKit
                 MeCab - Nara Institute of Science and Technology / Taku Kudou
                 """)
@@ -27,11 +27,13 @@ struct AcknowledgmentsView: View {
                 .font(.title)
             Text("""
                 JMdict/EDICT
-                Github  Top-Ranger/jmdict-to-sqlite3
                 """)
             Text("Demo Manga")
                 .font(.title)
             Text("Hikaru Nakamura - Creative Commons")
+            Text("Other")
+                .font(.title)
+            Text("This app was heavily inspired by jisho.org and Yomichan web addon")
             Spacer()
         }
         .padding(20)
