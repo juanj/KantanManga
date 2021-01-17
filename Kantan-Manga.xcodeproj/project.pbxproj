@@ -143,6 +143,7 @@
 		329C87672583BF5D001EA423 /* TermMetaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329C87662583BF5D001EA423 /* TermMetaTests.swift */; };
 		329C87702583BFCE001EA423 /* KanjiMetaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329C876F2583BFCE001EA423 /* KanjiMetaTests.swift */; };
 		329D418A25B4874400545FB0 /* dic.db in Resources */ = {isa = PBXBuildFile; fileRef = 329D418925B4874400545FB0 /* dic.db */; };
+		329D418F25B49EC800545FB0 /* DatabaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329D418E25B49EC800545FB0 /* DatabaseUtils.swift */; };
 		329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E30E623E9CEE000AD13A3 /* MangaCollection.swift */; };
 		329E30E923E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */; };
 		32A110B7255859860099A768 /* FakeLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C5B5B24830C2500C0BAB1 /* FakeLibraryViewController.swift */; };
@@ -405,6 +406,7 @@
 		329C87662583BF5D001EA423 /* TermMetaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermMetaTests.swift; sourceTree = "<group>"; };
 		329C876F2583BFCE001EA423 /* KanjiMetaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiMetaTests.swift; sourceTree = "<group>"; };
 		329D418925B4874400545FB0 /* dic.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dic.db; sourceTree = "<group>"; };
+		329D418E25B49EC800545FB0 /* DatabaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseUtils.swift; sourceTree = "<group>"; };
 		329E30E623E9CEE000AD13A3 /* MangaCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollection.swift; sourceTree = "<group>"; };
 		329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MangaCollection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32A110D12558609B0099A768 /* FakeImageOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeImageOCR.swift; sourceTree = "<group>"; };
@@ -750,6 +752,7 @@
 				32A3437E257D4F0D003337D0 /* DictionaryDecoder.swift */,
 				3267AE91257142CA00806D5B /* DictionaryDecoderError.swift */,
 				32454E8D25742ACF005036CC /* DecodedDictionary.swift */,
+				329D418E25B49EC800545FB0 /* DatabaseUtils.swift */,
 			);
 			path = Dictionary;
 			sourceTree = "<group>";
@@ -1544,6 +1547,7 @@
 				84A83221221D9F7000CEE1C9 /* CoreDataManager.swift in Sources */,
 				326FDE7924A7F8350042CB8A /* SettingsTableViewController.swift in Sources */,
 				3241F8702572B1EF00A4FC04 /* KanjiMetaEntry.swift in Sources */,
+				329D418F25B49EC800545FB0 /* DatabaseUtils.swift in Sources */,
 				84A831EF221D90CA00CEE1C9 /* MangaReader.xcdatamodeld in Sources */,
 				325199C42479E20700DA6908 /* TesseractOCR.swift in Sources */,
 				325CFC21248060AD00110F31 /* DictionaryEntryView.swift in Sources */,

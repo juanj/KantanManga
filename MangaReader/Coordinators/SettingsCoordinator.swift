@@ -66,4 +66,19 @@ extension SettingsCoordinator: SettingsTableViewControllerDelegate {
         childCoordinators.append(dictionariesCoordinator)
         dictionariesCoordinator.start()
     }
+
+    func didSelectResetDictionaries(_ settingsTableViewController: SettingsTableViewController) {
+        let alert = UIAlertController(title: "Are you sure?", message: "This will delete all imported dictionaries and reset the dictionaries database to its initial state. This may help if the database has become damaged.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Reset", style: .destructive, handler: { _ in
+            guard let dictUrl = Bundle.main.url(forResource: "dic", withExtension: "db") else { return }
+            settingsTableViewController.startLoading()
+            DatabaseUtils.resetToInitialDatabase(initialPath: dictUrl) {
+                DispatchQueue.main.async {
+                    settingsTableViewController.endLoading()
+                }
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        settingsTableViewController.present(alert, animated: true, completion: nil)
+    }
 }

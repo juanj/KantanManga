@@ -52,14 +52,8 @@ class AppCoordinator: NSObject, Coordinator {
             try compoundDictionary.connectToDataBase()
         } catch let error {
             if (error as? DictionaryError) == .dbFileNotFound {
-                guard let libraryUrl = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first,
-                      let dictUrl = Bundle.main.url(forResource: "dic", withExtension: "db") else { return }
-
-                let lobaryDbUrl = libraryUrl.appendingPathComponent("dic.db")
-
-                DispatchQueue.global(qos: .utility).async {
-                    try? FileManager.default.copyItem(at: dictUrl, to: lobaryDbUrl)
-                }
+                guard let dictUrl = Bundle.main.url(forResource: "dic", withExtension: "db") else { return }
+                DatabaseUtils.resetToInitialDatabase(initialPath: dictUrl)
             }
         }
     }
