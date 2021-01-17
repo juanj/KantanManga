@@ -23,13 +23,13 @@ struct TermMeta {
     }
 
     private(set) var id: Int?
-    let dictionary: Int
+    let dictionaryId: Int
     let character: String
     let mode: Mode
 
     init(from termMetaEntry: TermMetaEntry, dictionaryId: Int) {
         id = nil
-        dictionary = dictionaryId
+        self.dictionaryId = dictionaryId
         character = termMetaEntry.character
         mode = termMetaEntry.mode
     }
@@ -37,7 +37,7 @@ struct TermMeta {
 
 extension TermMeta: TableRecord {
     enum Columns: String, ColumnExpression {
-        case id, dictionary, character, mode
+        case id, dictionaryId, character, mode
     }
 
     static var databaseTableName = "termsMeta"
@@ -46,7 +46,7 @@ extension TermMeta: TableRecord {
 extension TermMeta: FetchableRecord {
     init(row: Row) {
         id = row[Columns.id]
-        dictionary = row[Columns.dictionary]
+        dictionaryId = row[Columns.dictionaryId]
         character = row[Columns.character]
 
         mode = (try? TermMeta.decoder.decode(TermMeta.Mode.self, from: (row[Columns.mode] as String).data(using: .utf8) ?? Data())) ?? .freq(frequency: 0, reading: nil)
@@ -55,7 +55,7 @@ extension TermMeta: FetchableRecord {
 
 extension TermMeta: MutablePersistableRecord {
     func encode(to container: inout PersistenceContainer) {
-        container[Columns.dictionary] = dictionary
+        container[Columns.dictionaryId] = dictionaryId
         container[Columns.character] = character
 
         // For some reason JSONEncoder delays memory release causing a huge memory usage

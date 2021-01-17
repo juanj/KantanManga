@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-struct Dictionary {
+struct Dictionary: Decodable {
     private(set) var id: Int?
     let title: String
     let revision: String

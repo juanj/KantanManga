@@ -24,13 +24,13 @@ struct KanjiMeta {
     }
 
     private(set) var id: Int?
-    let dictionary: Int
+    let dictionaryId: Int
     let character: String
     let category: Category
 
     init(from kanjiMetaEntry: KanjiMetaEntry, dictionaryId: Int) {
         id = nil
-        dictionary = dictionaryId
+        self.dictionaryId = dictionaryId
         character = kanjiMetaEntry.character
         category = kanjiMetaEntry.category
     }
@@ -38,7 +38,7 @@ struct KanjiMeta {
 
 extension KanjiMeta: TableRecord {
     enum Columns: String, ColumnExpression {
-        case id, dictionary, character, category
+        case id, dictionaryId, character, category
     }
 
     static var databaseTableName = "kanjiMeta"
@@ -47,7 +47,7 @@ extension KanjiMeta: TableRecord {
 extension KanjiMeta: FetchableRecord {
     init(row: Row) {
         id = row[Columns.id]
-        dictionary = row[Columns.dictionary]
+        dictionaryId = row[Columns.dictionaryId]
         character = row[Columns.character]
         category = (try? KanjiMeta.decoder.decode(Category.self, from: (row[Columns.category] as String).data(using: .utf8) ?? Data())) ?? .freq(0)
     }
@@ -55,7 +55,7 @@ extension KanjiMeta: FetchableRecord {
 
 extension KanjiMeta: MutablePersistableRecord {
     func encode(to container: inout PersistenceContainer) {
-        container[Columns.dictionary] = dictionary
+        container[Columns.dictionaryId] = dictionaryId
         container[Columns.character] = character
 
         // For some reason JSONEncoder delays memory release causing a huge memory usage

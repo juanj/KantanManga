@@ -8,12 +8,12 @@
 import Foundation
 import GRDB
 
-struct Term {
+struct Term: Decodable {
     static let encoder = JSONEncoder()
     static let decoder = JSONDecoder()
 
     private(set) var id: Int?
-    let dictionary: Int
+    let dictionaryId: Int
     let expression: String
     let reading: String
     let definitionTags: String?
@@ -25,7 +25,7 @@ struct Term {
 
     init(from termEntry: TermEntry, dictionaryId: Int) {
         id = nil
-        dictionary = dictionaryId
+        self.dictionaryId = dictionaryId
         expression = termEntry.expression
         reading = termEntry.reading
         definitionTags = termEntry.definitionTags
@@ -39,16 +39,17 @@ struct Term {
 
 extension Term: TableRecord {
     enum Columns: String, ColumnExpression {
-        case id, dictionary, expression, reading, definitionTags, rules, score, glossary, sequence, termTags
+        case id, dictionaryId, expression, reading, definitionTags, rules, score, glossary, sequence, termTags
     }
 
     static var databaseTableName = "terms"
+    static var dictionary = belongsTo(Dictionary.self)
 }
 
 extension Term: FetchableRecord {
     init(row: Row) {
         id = row[Columns.id]
-        dictionary = row[Columns.dictionary]
+        dictionaryId = row[Columns.dictionaryId]
         expression = row[Columns.expression]
         reading = row[Columns.reading]
         definitionTags = row[Columns.definitionTags]
@@ -64,7 +65,7 @@ extension Term: FetchableRecord {
 
 extension Term: MutablePersistableRecord {
     func encode(to container: inout PersistenceContainer) {
-        container[Columns.dictionary] = dictionary
+        container[Columns.dictionaryId] = dictionaryId
         container[Columns.expression] = expression
         container[Columns.reading] = reading
         container[Columns.definitionTags] = definitionTags
@@ -82,5 +83,9 @@ extension Term: MutablePersistableRecord {
 
     mutating func didInsert(with rowID: Int64, for column: String?) {
         id = Int(rowID)
+    }
+
+    var dictionary: QueryInterfaceRequest<Dictionary> {
+        request(for: Term.dictionary)
     }
 }

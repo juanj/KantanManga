@@ -13,7 +13,7 @@ struct Kanji {
     static let decoder = JSONDecoder()
 
     private(set) var id: Int?
-    let dictionary: Int
+    let dictionaryId: Int
     let character: String
     let onyomi: String
     let kunyomi: String
@@ -22,7 +22,7 @@ struct Kanji {
     let stats: [String: String]
 
     init(from kanjiEntry: KanjiEntry, dictionaryId: Int) {
-        dictionary = dictionaryId
+        self.dictionaryId = dictionaryId
         character = kanjiEntry.character
         onyomi = kanjiEntry.onyomi
         kunyomi = kanjiEntry.kunyomi
@@ -34,7 +34,7 @@ struct Kanji {
 
 extension Kanji: TableRecord {
     enum Columns: String, ColumnExpression {
-        case id, dictionary, character, onyomi, kunyomi, tags, meanings, stats
+        case id, dictionaryId, character, onyomi, kunyomi, tags, meanings, stats
     }
 
     static var databaseTableName = "kanji"
@@ -43,7 +43,7 @@ extension Kanji: TableRecord {
 extension Kanji: FetchableRecord {
     init(row: Row) {
         id = row[Columns.id]
-        dictionary = row[Columns.dictionary]
+        dictionaryId = row[Columns.dictionaryId]
         character = row[Columns.character]
         onyomi = row[Columns.onyomi]
         kunyomi = row[Columns.kunyomi]
@@ -55,7 +55,7 @@ extension Kanji: FetchableRecord {
 
 extension Kanji: MutablePersistableRecord {
     func encode(to container: inout PersistenceContainer) {
-        container[Columns.dictionary] = dictionary
+        container[Columns.dictionaryId] = dictionaryId
         container[Columns.character] = character
         container[Columns.onyomi] = onyomi
         container[Columns.kunyomi] = kunyomi

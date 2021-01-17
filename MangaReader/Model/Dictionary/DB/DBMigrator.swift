@@ -43,14 +43,14 @@ struct DBMigrator {
                 table.column("glossary", .text).notNull()
                 table.column("sequence", .integer).notNull()
                 table.column("termTags", .text).notNull()
-                table.column("dictionary").references("dictionaries", onDelete: .cascade).notNull()
+                table.column("dictionaryId").references("dictionaries", onDelete: .cascade).notNull()
             })
 
             try db.create(table: "termsMeta", body: { table in
                 table.autoIncrementedPrimaryKey("id")
                 table.column("character", .text).notNull()
                 table.column("mode", .text).notNull()
-                table.column("dictionary").references("dictionaries", onDelete: .cascade).notNull()
+                table.column("dictionaryId").references("dictionaries", onDelete: .cascade).notNull()
             })
 
             try db.create(table: "kanji", body: { table in
@@ -61,14 +61,14 @@ struct DBMigrator {
                 table.column("tags", .text).notNull()
                 table.column("meanings", .text).notNull()
                 table.column("stats", .text).notNull()
-                table.column("dictionary").references("dictionaries", onDelete: .cascade).notNull()
+                table.column("dictionaryId").references("dictionaries", onDelete: .cascade).notNull()
             })
 
             try db.create(table: "kanjiMeta", body: { table in
                 table.autoIncrementedPrimaryKey("id")
                 table.column("character", .text).notNull()
                 table.column("category", .text).notNull()
-                table.column("dictionary").references("dictionaries", onDelete: .cascade).notNull()
+                table.column("dictionaryId").references("dictionaries", onDelete: .cascade).notNull()
             })
 
             try db.create(table: "tags", body: { table in
@@ -77,7 +77,7 @@ struct DBMigrator {
                 table.column("order", .integer)
                 table.column("notes", .text).notNull()
                 table.column("score", .integer).notNull()
-                table.column("dictionary").references("dictionaries", onDelete: .cascade).notNull()
+                table.column("dictionaryId").references("dictionaries", onDelete: .cascade).notNull()
             })
         }
     }

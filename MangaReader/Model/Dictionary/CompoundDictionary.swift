@@ -203,29 +203,16 @@ class CompoundDictionary {
         }
     }
 
-    func findTerm(term: String) throws -> [Term] {
+    func findTerm(term: String) throws -> [SearchResult] {
         guard let db = db else {
             throw DictionaryError.noConnection
         }
 
         return try db.read { db in
-            try Term
+            let request = Term.including(required: Term.dictionary)
                 .filter(Term.Columns.expression.like(term) || Term.Columns.reading.like(term))
-                .fetchAll(db)
+
+            return try SearchResult.fetchAll(db, request)
         }
-    }
-
-    private func mergeResults(_ results: [DictionaryResult]) -> [DictionaryResult] {
-        var mergedResults = [DictionaryResult]()
-
-        for result in results {
-            if let entryIndex = mergedResults.firstIndex(where: { $0.reading == result.reading && $0.term == result.term }) {
-                mergedResults[entryIndex].meanings += result.meanings
-            } else {
-                mergedResults.append(result)
-            }
-        }
-
-        return mergedResults
     }
 }
