@@ -8,6 +8,10 @@
 
 import Foundation
 
+extension NSAttributedString.Key {
+    static let rubyAnnotation: NSAttributedString.Key = kCTRubyAnnotationAttributeName as NSAttributedString.Key
+}
+
 class DictionaryEntryView: UIView {
     private let entry: Term
     init(entry: Term) {
@@ -22,11 +26,23 @@ class DictionaryEntryView: UIView {
     }
 
     private func setupView() {
+
+        let annotation = CTRubyAnnotationCreateWithAttributes(.auto, .auto, .before, entry.reading as CFString, [
+            kCTForegroundColorAttributeName: UIColor.label,
+            kCTRubyAnnotationSizeFactorAttributeName: 0.3
+        ] as CFDictionary)
+
+        let annotatedString = NSAttributedString(string: entry.expression, attributes: [
+            .foregroundColor: UIColor.label,
+            .rubyAnnotation: annotation
+        ])
+
         let title = UILabel()
+        title.isUserInteractionEnabled = false
         title.font = .systemFont(ofSize: 40)
         title.translatesAutoresizingMaskIntoConstraints = false
         title.numberOfLines = 0
-        title.text = entry.expression // TODO: Add furigana
+        title.attributedText = annotatedString
 
         let body = UITextView()
         body.isEditable = false
@@ -50,6 +66,7 @@ class DictionaryEntryView: UIView {
         addSubview(body)
         addSubview(separator)
 
+        title.heightAnchor.constraint(equalToConstant: 75).isActive = true
         title.addConstraintsTo(self, sides: [.horizontal, .top])
         body.addConstraintsTo(self, sides: [.horizontal, .bottom], spacing: .init(bottom: -10))
         body.topAnchor.constraint(equalTo: title.bottomAnchor).isActive = true
