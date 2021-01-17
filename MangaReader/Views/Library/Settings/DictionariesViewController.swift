@@ -9,6 +9,7 @@ import UIKit
 
 protocol DictionariesViewControllerDelegate: AnyObject {
     func didSelectAdd(_ dictionariesViewController: DictionariesViewController)
+    func didSelectDelete(_ dictionariesViewController: DictionariesViewController, dictionary: Dictionary)
 }
 
 class DictionariesViewController: UIViewController {
@@ -65,6 +66,7 @@ class DictionariesViewController: UIViewController {
 
     private func configureTableView() {
         tableView.dataSource = self
+        tableView.allowsSelection = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "dictionaryCell")
     }
 
@@ -93,5 +95,20 @@ extension DictionariesViewController: UITableViewDataSource {
         cell.textLabel?.text = dictionaries[indexPath.row].title
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if dictionaries.count > 1 {
+                delegate?.didSelectDelete(self, dictionary: dictionaries[indexPath.row])
+            } else {
+                let alert = UIAlertController(title: "Are you sure?", message: "You only have one dictionary. Deleting it will make the app show no results when searching a definition", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                    self.delegate?.didSelectDelete(self, dictionary: self.dictionaries[indexPath.row])
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                present(alert, animated: true, completion: nil)
+            }
+        }
     }
 }

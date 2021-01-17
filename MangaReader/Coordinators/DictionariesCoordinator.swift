@@ -45,6 +45,12 @@ extension DictionariesCoordinator: DictionariesViewControllerDelegate {
         filesView.delegate = self
         navigationController.present(filesView, animated: true, completion: nil)
     }
+
+    func didSelectDelete(_ dictionariesViewController: DictionariesViewController, dictionary: Dictionary) {
+        guard let id = dictionary.id else { return }
+        try? compoundDictionary.deleteDictionary(id: id)
+        refreshDictionaries()
+    }
 }
 
 extension DictionariesCoordinator: UIDocumentPickerDelegate {
