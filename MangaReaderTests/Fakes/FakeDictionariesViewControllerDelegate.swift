@@ -9,4 +9,5 @@
 
 class FakeDictionariesViewControllerDelegate: DictionariesViewControllerDelegate {
     func didSelectAdd(_ dictionariesViewController: DictionariesViewController) {}
+    func didSelectDelete(_ dictionariesViewController: DictionariesViewController, dictionary: Dictionary) {}
 }
