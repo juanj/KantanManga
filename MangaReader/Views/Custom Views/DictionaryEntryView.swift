@@ -26,13 +26,12 @@ class DictionaryEntryView: UIView {
     }
 
     private func setupView() {
-
-        let annotation = CTRubyAnnotationCreateWithAttributes(.auto, .auto, .before, result.term.reading as CFString, [
+        let annotation = CTRubyAnnotationCreateWithAttributes(.auto, .auto, .before, result.reading as CFString, [
             kCTForegroundColorAttributeName: UIColor.label,
             kCTRubyAnnotationSizeFactorAttributeName: 0.3
         ] as CFDictionary)
 
-        let annotatedString = NSAttributedString(string: result.term.expression, attributes: [
+        let annotatedString = NSAttributedString(string: result.expression, attributes: [
             .foregroundColor: UIColor.label,
             .rubyAnnotation: annotation
         ])
@@ -44,49 +43,58 @@ class DictionaryEntryView: UIView {
         title.numberOfLines = 0
         title.attributedText = annotatedString
 
-        let tagLabel = UILabel()
-        tagLabel.text = result.dictionary.title
-        tagLabel.textColor = .white
-        tagLabel.font = .systemFont(ofSize: 15, weight: .bold)
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
 
-        let tag = UIView()
-        tag.backgroundColor = .purple
-        tag.layer.cornerRadius = 5
-        tag.addSubview(tagLabel)
-        tag.translatesAutoresizingMaskIntoConstraints = false
+        for term in result.terms {
+            let termStackView = UIStackView()
+            termStackView.axis = .vertical
+            termStackView.alignment = .leading
 
-        tagLabel.translatesAutoresizingMaskIntoConstraints = false
-        tagLabel.addConstraintsTo(tag, spacing: .init(top: 5, left: 5, bottom: -5, right: -5))
+            let tagLabel = UILabel()
+            tagLabel.text = term.dictionary.title
+            tagLabel.textColor = .white
+            tagLabel.font = .systemFont(ofSize: 15, weight: .bold)
 
-        let body = UITextView()
-        body.isEditable = false
-        body.font = .systemFont(ofSize: 20)
-        body.translatesAutoresizingMaskIntoConstraints = false
-        body.isScrollEnabled = false
-        body.text = result.term.glossary
-            .compactMap { item in
-                if case .text(let text) = item {
-                    return text
+            let tag = UIView()
+            tag.backgroundColor = .purple
+            tag.layer.cornerRadius = 5
+            tag.addSubview(tagLabel)
+            termStackView.addArrangedSubview(tag)
+
+            tagLabel.translatesAutoresizingMaskIntoConstraints = false
+            tagLabel.addConstraintsTo(tag, spacing: .init(top: 5, left: 5, bottom: -5, right: -5))
+
+            let body = UITextView()
+            body.isEditable = false
+            body.font = .systemFont(ofSize: 20)
+            body.translatesAutoresizingMaskIntoConstraints = false
+            body.isScrollEnabled = false
+            body.text = term.term.glossary
+                .compactMap { item in
+                    if case .text(let text) = item {
+                        return text
+                    }
+                    return nil
                 }
-                return nil
-            }
-            .map { "• " + $0 } .joined(separator: "\n")
+                .map { "• " + $0 } .joined(separator: "\n")
+            termStackView.addArrangedSubview(body)
+            stackView.addArrangedSubview(termStackView)
+        }
 
         let separator = UIView()
         separator.translatesAutoresizingMaskIntoConstraints = false
         separator.backgroundColor = .systemGray
 
         addSubview(title)
-        addSubview(tag)
-        addSubview(body)
+        addSubview(stackView)
         addSubview(separator)
 
         title.heightAnchor.constraint(equalToConstant: 75).isActive = true
         title.addConstraintsTo(self, sides: [.horizontal, .top])
-        tag.addConstraintsTo(self, sides: [.left])
-        tag.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5).isActive = true
-        body.addConstraintsTo(self, sides: [.horizontal, .bottom], spacing: .init(bottom: -10))
-        body.topAnchor.constraint(equalTo: tag.bottomAnchor).isActive = true
+        stackView.addConstraintsTo(self, sides: [.horizontal, .bottom], spacing: .init(bottom: -10))
+        stackView.topAnchor.constraint(equalTo: title.bottomAnchor).isActive = true
 
         // Separator constraints
         separator.addConstraintsTo(self, sides: [.horizontal, .bottom])

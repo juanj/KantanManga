@@ -208,13 +208,28 @@ class CompoundDictionary {
             throw DictionaryError.noConnection
         }
 
-       return try db.read { db in
+        let results: [SearchTermResult] = try db.read { db in
             let request = Term.including(required: Term.dictionary)
                 .filter(
                     Term.Columns.expression == term ||
                     Term.Columns.reading == term
                 )
-            return try SearchResult.fetchAll(db, request)
+            return try SearchTermResult.fetchAll(db, request)
         }
+
+        return mergeResults(results: results)
+    }
+
+    func mergeResults(results: [SearchTermResult]) -> [SearchResult] {
+        var grouped = [String: SearchResult]()
+        for result in results {
+            if grouped[result.term.expression + result.term.reading] != nil {
+                grouped[result.term.expression + result.term.reading]?.terms.append(result)
+            } else {
+                grouped[result.term.expression + result.term.reading] = SearchResult(expression: result.term.expression, reading: result.term.reading, terms: [result])
+            }
+        }
+
+        return Array(grouped.values)
     }
 }
