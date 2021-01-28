@@ -95,11 +95,14 @@ class AddMangasCoordinator: NSObject, Coordinator {
 
 extension AddMangasCoordinator: GCDWebUploaderDelegate {
     func webUploader(_ uploader: GCDWebUploader, didUploadFileAtPath path: String) {
-        let soundID: SystemSoundID = 1307
-        AudioServicesPlaySystemSound(soundID)
-        filePath = path.lastPathComponent
-        uploadServer.stop()
-        loadFile()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            // Wait one second after upload so the page has time to refresh and don't show an error
+            let soundID: SystemSoundID = 1307
+            AudioServicesPlaySystemSound(soundID)
+            self.filePath = path.lastPathComponent
+            self.uploadServer.stop()
+            self.loadFile()
+        }
     }
 
     func webUploader(_ uploader: GCDWebUploader, didDeleteItemAtPath path: String) {
