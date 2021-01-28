@@ -132,6 +132,9 @@
 		328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */; };
 		328E90252544ABB500F1CF57 /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328E90242544ABB500F1CF57 /* KeyboardButton.swift */; };
 		328F62A7255A03D8000CA225 /* InMemoryCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F62A1255A03A7000CA225 /* InMemoryCoreDataManager.swift */; };
+		3290ECB425C370B300D4DE96 /* FAQ.html in Resources */ = {isa = PBXBuildFile; fileRef = 3290ECB325C370B300D4DE96 /* FAQ.html */; };
+		3290ECBA25C3710E00D4DE96 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3290ECB825C3710E00D4DE96 /* FAQViewController.swift */; };
+		3290ECBB25C3710E00D4DE96 /* FAQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3290ECB925C3710E00D4DE96 /* FAQViewController.xib */; };
 		3292ADA22535DCF8004E8441 /* DemoOcrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3292ADA12535DCF8004E8441 /* DemoOcrView.swift */; };
 		3296181C2555943B0020C5AF /* SettingValueChangeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3296181B2555943B0020C5AF /* SettingValueChangeDelegate.swift */; };
 		3298D7D025713BB4005FB8F2 /* YomichanDictionaryImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298D7CF25713BB4005FB8F2 /* YomichanDictionaryImporter.swift */; };
@@ -396,6 +399,9 @@
 		328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMangaCoordinator.swift; sourceTree = "<group>"; };
 		328E90242544ABB500F1CF57 /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 		328F62A1255A03A7000CA225 /* InMemoryCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryCoreDataManager.swift; sourceTree = "<group>"; };
+		3290ECB325C370B300D4DE96 /* FAQ.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = FAQ.html; sourceTree = "<group>"; };
+		3290ECB825C3710E00D4DE96 /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
+		3290ECB925C3710E00D4DE96 /* FAQViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FAQViewController.xib; sourceTree = "<group>"; };
 		3292ADA12535DCF8004E8441 /* DemoOcrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoOcrView.swift; sourceTree = "<group>"; };
 		3296181B2555943B0020C5AF /* SettingValueChangeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingValueChangeDelegate.swift; sourceTree = "<group>"; };
 		3298D7CF25713BB4005FB8F2 /* YomichanDictionaryImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YomichanDictionaryImporter.swift; sourceTree = "<group>"; };
@@ -721,6 +727,8 @@
 				32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */,
 				32DDEF3A257C21DD0063E813 /* DictionariesViewController.swift */,
 				32DDEF3B257C21DD0063E813 /* DictionariesViewController.xib */,
+				3290ECB825C3710E00D4DE96 /* FAQViewController.swift */,
+				3290ECB925C3710E00D4DE96 /* FAQViewController.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -765,6 +773,7 @@
 			children = (
 				32326F882435613E00FCE8E5 /* cbz.svg */,
 				329D41CF25B4BAC000545FB0 /* dic.db */,
+				3290ECB325C370B300D4DE96 /* FAQ.html */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1244,6 +1253,7 @@
 				324BB95A2498365E006241E8 /* mecabrc in Resources */,
 				32326F8724354ECC00FCE8E5 /* FileSourceViewController.xib in Resources */,
 				32892C0B23E39FBC000B1C3E /* AddMangaViewController.xib in Resources */,
+				3290ECB425C370B300D4DE96 /* FAQ.html in Resources */,
 				3232F32525276DED00DA77B8 /* demo1.cbz in Resources */,
 				32B67064252E09FF00F89D7A /* GoogleService-Info.plist in Resources */,
 				84A831F4221D90CC00CEE1C9 /* LaunchScreen.storyboard in Resources */,
@@ -1265,6 +1275,7 @@
 				324BB99524983DF7006241E8 /* matrix.bin in Resources */,
 				324BB99A24983DF7006241E8 /* char.bin in Resources */,
 				325199BB2479DE0D00DA6908 /* tessdata in Resources */,
+				3290ECBB25C3710E00D4DE96 /* FAQViewController.xib in Resources */,
 				3239C5B9254DD06500EFB39A /* Settings.bundle in Resources */,
 				32DDEF3D257C21DD0063E813 /* DictionariesViewController.xib in Resources */,
 				84A8321E221D951500CEE1C9 /* LibraryViewController.xib in Resources */,
@@ -1477,6 +1488,7 @@
 				322C04B725680FE700BD5A51 /* Tesseract+PageSegmentation.swift in Sources */,
 				8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */,
 				3249F2D7250BBC18004C514E /* MangaCollectionCollectionViewCell.swift in Sources */,
+				3290ECBA25C3710E00D4DE96 /* FAQViewController.swift in Sources */,
 				325199B42479D96400DA6908 /* ImageOCR.swift in Sources */,
 				328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */,
 				32542BDD258035FA00ED357A /* Kanji.swift in Sources */,

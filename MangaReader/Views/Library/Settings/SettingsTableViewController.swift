@@ -15,6 +15,7 @@ protocol SettingsTableViewControllerDelegate: AnyObject {
     func didSelectClose(_ settingsTableViewController: SettingsTableViewController)
     func didSelectDictionaries(_ settingsTableViewController: SettingsTableViewController)
     func didSelectResetDictionaries(_ settingsTableViewController: SettingsTableViewController)
+    func didSelectFAQ(_ settingsTableViewController: SettingsTableViewController)
 }
 
 class SettingsTableViewController: UITableViewController {
@@ -24,6 +25,7 @@ class SettingsTableViewController: UITableViewController {
         case acknowledgments
         case dictionaries = "Manage dictionaries"
         case resetDb = "Reset dictionaries database"
+        case faq = "FAQ"
     }
 
     private let sections = [
@@ -118,6 +120,8 @@ extension SettingsTableViewController {
             delegate?.didSelectDictionaries(self)
         case .resetDb:
             delegate?.didSelectResetDictionaries(self)
+        case .faq:
+            delegate?.didSelectFAQ(self)
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }

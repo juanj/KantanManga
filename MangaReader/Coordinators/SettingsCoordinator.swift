@@ -81,4 +81,8 @@ extension SettingsCoordinator: SettingsTableViewControllerDelegate {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         settingsTableViewController.present(alert, animated: true, completion: nil)
     }
+
+    func didSelectFAQ(_ settingsTableViewController: SettingsTableViewController) {
+        presentedNavigationController.pushViewController(FAQViewController(), animated: true)
+    }
 }
