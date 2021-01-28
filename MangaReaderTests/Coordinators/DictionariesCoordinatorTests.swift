@@ -35,6 +35,7 @@ class DictionariesCoordinatorTests: XCTestCase {
 
         dictionariesCoordinator.documentPicker(UIDocumentPickerViewController(documentTypes: [], in: .import), didPickDocumentsAt: [URL(string: "file:///test.zip")!])
 
+        print(mockDecoder.decodedDictionaries)
         XCTAssertTrue(mockDecoder.decodedDictionaries.contains { $0 == URL(string: "file:///test.zip")! })
     }
 }
