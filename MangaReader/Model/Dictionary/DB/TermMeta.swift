@@ -17,9 +17,18 @@ struct TermMeta {
         let tags: [String]?
     }
 
-    enum Mode {
+    enum Mode: CustomStringConvertible {
         case freq(frequency: Int, reading: String? = nil)
         case pitch(reading: String, pitches: [PitchAccent])
+
+        var description: String {
+            switch self {
+            case .freq(let frequency, _):
+                return "Freq \(frequency)"
+            case .pitch(_, let pitches):
+                return "Pitch  \(pitches)"
+            }
+        }
     }
 
     private(set) var id: Int?
@@ -41,6 +50,7 @@ extension TermMeta: TableRecord {
     }
 
     static var databaseTableName = "termsMeta"
+    static var dictionary = belongsTo(Dictionary.self)
 }
 
 extension TermMeta: FetchableRecord {
@@ -67,6 +77,10 @@ extension TermMeta: MutablePersistableRecord {
 
     mutating func didInsert(with rowID: Int64, for column: String?) {
         id = Int(rowID)
+    }
+
+    var dictionary: QueryInterfaceRequest<Dictionary> {
+        request(for: TermMeta.dictionary)
     }
 }
 

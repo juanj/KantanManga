@@ -217,16 +217,33 @@ class CompoundDictionary {
             return try SearchTermResult.fetchAll(db, request)
         }
 
-        return mergeResults(results: results)
+        let termMeta: [TermMetaSearchResult] = try db.read { db in
+            let request = TermMeta.including(required: TermMeta.dictionary)
+                .filter(
+                    results.map { $0.term.expression }
+                        .contains(TermMeta.Columns.character)
+                )
+            return try TermMetaSearchResult.fetchAll(db, request)
+        }
+
+        return mergeResults(results: results, termMeta: termMeta)
     }
 
-    func mergeResults(results: [SearchTermResult]) -> [SearchResult] {
+    private func mergeResults(results: [SearchTermResult], termMeta: [TermMetaSearchResult]) -> [SearchResult] {
+        let termMeta = termMeta.reduce([String: TermMetaSearchResult](), {
+            var dict = $0
+            dict[$1.termMeta.character] = $1
+            return dict
+        })
         var grouped = [String: SearchResult]()
         for result in results {
             if grouped[result.term.expression + result.term.reading] != nil {
                 grouped[result.term.expression + result.term.reading]?.terms.append(result)
             } else {
-                grouped[result.term.expression + result.term.reading] = SearchResult(expression: result.term.expression, reading: result.term.reading, terms: [result])
+                grouped[result.term.expression + result.term.reading] = SearchResult(expression: result.term.expression,
+                                                                                     reading: result.term.reading,
+                                                                                     terms: [result],
+                                                                                     meta: [termMeta[result.term.expression]].compactMap { $0 })
             }
         }
 

@@ -11,4 +11,5 @@ struct SearchResult {
     let expression: String
     let reading: String
     var terms: [SearchTermResult]
+    var meta: [TermMetaSearchResult]
 }

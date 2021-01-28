@@ -180,6 +180,7 @@
 		32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */; };
 		32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */; };
 		32F1B9FC24369E1100AE367D /* OpenMangaAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9FB24369E1100AE367D /* OpenMangaAnimationController.swift */; };
+		32F7746725B63F590058D80F /* TermMetaSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F7746625B63F590058D80F /* TermMetaSearchResult.swift */; };
 		32F998B925574C4C00897299 /* AppCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998B825574C4C00897299 /* AppCoordinatorTests.swift */; };
 		32F998BD25574C6C00897299 /* AddMangasCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998BC25574C6C00897299 /* AddMangasCoordinatorTests.swift */; };
 		32F998C125574C8E00897299 /* ViewMangaCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998C025574C8E00897299 /* ViewMangaCoordinatorTests.swift */; };
@@ -443,6 +444,7 @@
 		32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		32F1B9FB24369E1100AE367D /* OpenMangaAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMangaAnimationController.swift; sourceTree = "<group>"; };
+		32F7746625B63F590058D80F /* TermMetaSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermMetaSearchResult.swift; sourceTree = "<group>"; };
 		32F998B825574C4C00897299 /* AppCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTests.swift; sourceTree = "<group>"; };
 		32F998BC25574C6C00897299 /* AddMangasCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMangasCoordinatorTests.swift; sourceTree = "<group>"; };
 		32F998C025574C8E00897299 /* ViewMangaCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMangaCoordinatorTests.swift; sourceTree = "<group>"; };
@@ -633,6 +635,7 @@
 				32542BE6258037C900ED357A /* Tag.swift */,
 				32542BEE25803CDC00ED357A /* DBMigrator.swift */,
 				329D419325B4B10800545FB0 /* SearchTermResult.swift */,
+				32F7746625B63F590058D80F /* TermMetaSearchResult.swift */,
 			);
 			path = DB;
 			sourceTree = "<group>";
@@ -1556,6 +1559,7 @@
 				329D419425B4B10800545FB0 /* SearchTermResult.swift in Sources */,
 				3241F8702572B1EF00A4FC04 /* KanjiMetaEntry.swift in Sources */,
 				329D418F25B49EC800545FB0 /* DatabaseUtils.swift in Sources */,
+				32F7746725B63F590058D80F /* TermMetaSearchResult.swift in Sources */,
 				84A831EF221D90CA00CEE1C9 /* MangaReader.xcdatamodeld in Sources */,
 				325199C42479E20700DA6908 /* TesseractOCR.swift in Sources */,
 				325CFC21248060AD00110F31 /* DictionaryEntryView.swift in Sources */,
