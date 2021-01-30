@@ -163,6 +163,8 @@
 		32AD41D225B639EC0042626C /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AD41D125B639EC0042626C /* SearchResult.swift */; };
 		32AF5BCE2512567900E96C9F /* MangaCollectionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AF5BCD2512567900E96C9F /* MangaCollectionable.swift */; };
 		32AF5BD1251256E600E96C9F /* EmptyMangaCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AF5BD0251256E600E96C9F /* EmptyMangaCollection.swift */; };
+		32B518F825C595B00098ABA0 /* GlossaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B518F725C595B00098ABA0 /* GlossaryItem.swift */; };
+		32B5190125C5968F0098ABA0 /* GlossaryItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B518FC25C595D20098ABA0 /* GlossaryItemTests.swift */; };
 		32B67064252E09FF00F89D7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32B67063252E09FE00F89D7A /* GoogleService-Info.plist */; };
 		32C1EEF32539DE04001F59A0 /* FocusOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1EEF22539DE04001F59A0 /* FocusOverlayView.swift */; };
 		32C3512F24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C3512E24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift */; };
@@ -428,6 +430,8 @@
 		32AD41D125B639EC0042626C /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		32AF5BCD2512567900E96C9F /* MangaCollectionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollectionable.swift; sourceTree = "<group>"; };
 		32AF5BD0251256E600E96C9F /* EmptyMangaCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMangaCollection.swift; sourceTree = "<group>"; };
+		32B518F725C595B00098ABA0 /* GlossaryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryItem.swift; sourceTree = "<group>"; };
+		32B518FC25C595D20098ABA0 /* GlossaryItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryItemTests.swift; sourceTree = "<group>"; };
 		32B67063252E09FE00F89D7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		32C1EEF22539DE04001F59A0 /* FocusOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusOverlayView.swift; sourceTree = "<group>"; };
 		32C3512E24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeViewMangaCoordinatorDelegate.swift; sourceTree = "<group>"; };
@@ -558,6 +562,7 @@
 				3241F89E2572C1A700A4FC04 /* TermEntryV3.swift */,
 				3241F86A2572B04700A4FC04 /* TermMetaEntry.swift */,
 				3241F8772572B2F400A4FC04 /* TagEntry.swift */,
+				32B518F725C595B00098ABA0 /* GlossaryItem.swift */,
 			);
 			path = Entries;
 			sourceTree = "<group>";
@@ -575,6 +580,7 @@
 				3241F8CD2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift */,
 				329C87662583BF5D001EA423 /* TermMetaTests.swift */,
 				329C876F2583BFCE001EA423 /* KanjiMetaTests.swift */,
+				32B518FC25C595D20098ABA0 /* GlossaryItemTests.swift */,
 			);
 			path = Codables;
 			sourceTree = "<group>";
@@ -1536,6 +1542,7 @@
 				3241F8972572C18900A4FC04 /* TermEntryV1.swift in Sources */,
 				322ECF3924FF280B0013FD21 /* Bool+Extension.swift in Sources */,
 				3241F8572572ACD800A4FC04 /* KanjiEntry.swift in Sources */,
+				32B518F825C595B00098ABA0 /* GlossaryItem.swift in Sources */,
 				326344A5247DDAF800F683AB /* CBRReader.swift in Sources */,
 				32A1516C253260C0002B3920 /* OnboardingViewController.swift in Sources */,
 				84A83224221DB10400CEE1C9 /* MangaCollectionViewCell.swift in Sources */,
@@ -1560,6 +1567,7 @@
 				3241F8862572B6D200A4FC04 /* TagEntryTests.swift in Sources */,
 				32F998BD25574C6C00897299 /* AddMangasCoordinatorTests.swift in Sources */,
 				3241F87E2572B47D00A4FC04 /* DictionaryIndexTests.swift in Sources */,
+				32B5190125C5968F0098ABA0 /* GlossaryItemTests.swift in Sources */,
 				3257C018256F0E2200C4C702 /* SettingsCoordinatorTests.swift in Sources */,
 				327300942561EF6A009854EE /* UIViewExtensionTests.swift in Sources */,
 				320ED4D924831D2900F5BECF /* FakeUploadServer.swift in Sources */,

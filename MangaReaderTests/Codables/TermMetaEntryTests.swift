@@ -69,4 +69,22 @@ class TermMetaEntryTests: XCTestCase {
 
         XCTAssertEqual(termMeta.description, TermMetaEntry(character: "お手前", mode: .pitch(reading: "おてまえ", pitches: [.init(position: 2, tags: ["ptag1"]), .init(position: 2, tags: ["ptag2"]), .init(position: 0, tags: ["ptag2"])])).description)
     }
+
+    func testDecode_withFreqStringType_decodesObject() throws {
+        let json = #"["打", "freq", {"reading": "だ", "frequency": "4"}]"#
+        let decoder = JSONDecoder()
+
+        let termMeta = try decoder.decode(TermMetaEntry.self, from: json.data(using: .utf8)!)
+
+        XCTAssertEqual(termMeta.description, TermMetaEntry(character: "打", mode: .freq(frequency: 4, reading: "だ")).description)
+    }
+
+    func testDecode_withInvalidType_defaultsToFreq0NoReading() throws {
+        let json = #"["打", "nofreq", {"reading": "だ", "frequency": "4"}]"#
+        let decoder = JSONDecoder()
+
+        let termMeta = try decoder.decode(TermMetaEntry.self, from: json.data(using: .utf8)!)
+
+        XCTAssertEqual(termMeta.description, TermMetaEntry(character: "打", mode: .freq(frequency: 0, reading: nil)).description)
+    }
 }

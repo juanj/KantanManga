@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-struct DictionaryIndex: Decodable, Equatable {
+struct DictionaryIndex: Decodable, Equatable, TableRecord {
     enum Version: Int, Decodable {
         // swiftlint:disable:next identifier_name
         case v1 = 1, v2, v3
@@ -28,8 +28,4 @@ struct DictionaryIndex: Decodable, Equatable {
     var fileVersion: Version {
         return version ?? format ?? .v1
     }
-}
-
-extension DictionaryIndex: TableRecord {
-    
 }

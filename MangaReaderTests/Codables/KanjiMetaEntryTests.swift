@@ -26,4 +26,13 @@ class KanjiMetaEntryTests: XCTestCase {
 
         XCTAssertEqual(kanjiMeta.description, KanjiMetaEntry(character: "打", category: .freq(1)).description)
     }
+
+    func testDecode_withInvalidType_defaultsToFreq0() throws {
+        let json = #"["打", "nofreq", "1"]"#
+
+        let decoder = JSONDecoder()
+        let kanjiMeta = try decoder.decode(KanjiMetaEntry.self, from: json.data(using: .utf8)!)
+
+        XCTAssertEqual(kanjiMeta.description, KanjiMetaEntry(character: "打", category: .freq(0)).description)
+    }
 }

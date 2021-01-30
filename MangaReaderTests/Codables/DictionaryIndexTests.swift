@@ -54,4 +54,16 @@ class DictionaryIndexTests: XCTestCase {
 
         XCTAssertEqual(index, DictionaryIndex(title: "Test", revision: "v3", sequenced: nil, format: nil, version: .v3, author: nil, url: nil, description: nil, attribution: nil))
     }
+
+    func testFileVersion_withEmptyVersion_returnsFormat() {
+        let index = DictionaryIndex(title: "", revision: "", sequenced: nil, format: .v2, version: nil, author: nil, url: nil, description: nil, attribution: nil)
+
+        XCTAssertEqual(index.fileVersion.rawValue, 2)
+    }
+
+    func testFileVersion_withVersion_returnsVersion() {
+        let index = DictionaryIndex(title: "", revision: "", sequenced: nil, format: .v2, version: .v3, author: nil, url: nil, description: nil, attribution: nil)
+
+        XCTAssertEqual(index.fileVersion.rawValue, 3)
+    }
 }
