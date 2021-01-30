@@ -96,3 +96,9 @@ extension KanjiMeta.Category: Codable {
         }
     }
 }
+
+extension KanjiMeta: CustomStringConvertible {
+    var description: String {
+        "id: \(id ?? -1), dictionaryId: \(dictionaryId), character: \(character), category: \(category)"
+    }
+}
