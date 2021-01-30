@@ -73,3 +73,9 @@ extension Kanji: MutablePersistableRecord {
         id = Int(rowID)
     }
 }
+
+extension Kanji: CustomStringConvertible {
+    var description: String {
+        "id: \(id ?? -1), dictionaryId: \(dictionaryId), character: \(character), onyomi: \(onyomi), kunyomi: \(kunyomi), tags: \(tags), meanings: \(meanings), stats: \(stats)"
+    }
+}
