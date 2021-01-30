@@ -89,3 +89,9 @@ extension Term: MutablePersistableRecord {
         request(for: Term.dictionary)
     }
 }
+
+extension Term: CustomStringConvertible {
+    var description: String {
+        "id: \(id ?? -1), dictionaryId: \(dictionaryId), expression: \(expression), reading: \(reading), definitionTags: \(definitionTags ?? ""), rules: \(rules), score: \(score), glossary: \(glossary), sequence: \(sequence), termTags: \(termTags)"
+    }
+}

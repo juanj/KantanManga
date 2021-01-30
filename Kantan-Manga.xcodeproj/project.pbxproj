@@ -165,6 +165,7 @@
 		32AF5BD1251256E600E96C9F /* EmptyMangaCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AF5BD0251256E600E96C9F /* EmptyMangaCollection.swift */; };
 		32B518F825C595B00098ABA0 /* GlossaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B518F725C595B00098ABA0 /* GlossaryItem.swift */; };
 		32B5190125C5968F0098ABA0 /* GlossaryItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B518FC25C595D20098ABA0 /* GlossaryItemTests.swift */; };
+		32B5191225C59A8E0098ABA0 /* TermTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B5190A25C59A8C0098ABA0 /* TermTests.swift */; };
 		32B67064252E09FF00F89D7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32B67063252E09FE00F89D7A /* GoogleService-Info.plist */; };
 		32C1EEF32539DE04001F59A0 /* FocusOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1EEF22539DE04001F59A0 /* FocusOverlayView.swift */; };
 		32C3512F24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C3512E24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift */; };
@@ -432,6 +433,7 @@
 		32AF5BD0251256E600E96C9F /* EmptyMangaCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMangaCollection.swift; sourceTree = "<group>"; };
 		32B518F725C595B00098ABA0 /* GlossaryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryItem.swift; sourceTree = "<group>"; };
 		32B518FC25C595D20098ABA0 /* GlossaryItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryItemTests.swift; sourceTree = "<group>"; };
+		32B5190A25C59A8C0098ABA0 /* TermTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermTests.swift; sourceTree = "<group>"; };
 		32B67063252E09FE00F89D7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		32C1EEF22539DE04001F59A0 /* FocusOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusOverlayView.swift; sourceTree = "<group>"; };
 		32C3512E24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeViewMangaCoordinatorDelegate.swift; sourceTree = "<group>"; };
@@ -809,6 +811,23 @@
 			path = "Custom Views";
 			sourceTree = "<group>";
 		};
+		32B5190825C59A740098ABA0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				32B5190925C59A7B0098ABA0 /* DB */,
+				3241F87C2572B45D00A4FC04 /* Codables */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		32B5190925C59A7B0098ABA0 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				32B5190A25C59A8C0098ABA0 /* TermTests.swift */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
 		32C49CD82516ABBE000A9607 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1006,7 +1025,7 @@
 		84A831FD221D90CC00CEE1C9 /* MangaReaderTests */ = {
 			isa = PBXGroup;
 			children = (
-				3241F87C2572B45D00A4FC04 /* Codables */,
+				32B5190825C59A740098ABA0 /* Model */,
 				326857E42569D5C4000B0C83 /* Testables */,
 				328F629F255A0395000CA225 /* Helpers */,
 				32F998DF2557592E00897299 /* Fakes */,
@@ -1607,6 +1626,7 @@
 				32F998C125574C8E00897299 /* ViewMangaCoordinatorTests.swift in Sources */,
 				32A110D22558609B0099A768 /* FakeImageOCR.swift in Sources */,
 				84A831FF221D90CC00CEE1C9 /* CoreDataManagerTests.swift in Sources */,
+				32B5191225C59A8E0098ABA0 /* TermTests.swift in Sources */,
 				329C87702583BFCE001EA423 /* KanjiMetaTests.swift in Sources */,
 				32194C9D256317A4007539B1 /* FakeReader.swift in Sources */,
 				3219C2B22511103A00915DE1 /* FakeCollectionViewController.swift in Sources */,
