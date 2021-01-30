@@ -50,8 +50,14 @@ extension DictionariesCoordinator: DictionariesViewControllerDelegate {
 
     func didSelectDelete(_ dictionariesViewController: DictionariesViewController, dictionary: Dictionary) {
         guard let id = dictionary.id else { return }
-        try? compoundDictionary.deleteDictionary(id: id)
-        refreshDictionaries()
+        dictionariesViewController.startLoading(isDelete: true)
+        DispatchQueue.global(qos: .userInitiated).async {
+            try? self.compoundDictionary.deleteDictionary(id: id)
+            DispatchQueue.main.async {
+                self.refreshDictionaries()
+                dictionariesViewController.endLoading()
+            }
+        }
     }
 }
 

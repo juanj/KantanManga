@@ -43,12 +43,13 @@ class DictionariesViewController: UIViewController {
         tableView.reloadData()
     }
 
-    func startLoading() {
+    func startLoading(isDelete: Bool = false) {
         view.isUserInteractionEnabled = false
         progressView.progress = 0
         loadingOverlay.alpha = 0
         loadingOverlay.isHidden = false
-        importingInfoLabel.text = "Loading dictionary..."
+        importingInfoLabel.text = isDelete ? "Deleting dictionary... (This may take a couple of minutes)" : "Loading dictionary..."
+        progressView.isHidden = isDelete
         UIView.animate(withDuration: 0.2) {
             self.loadingOverlay.alpha = 1
         }
