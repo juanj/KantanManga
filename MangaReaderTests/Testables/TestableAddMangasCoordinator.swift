@@ -16,4 +16,8 @@ class TestableAddMangasCoordinator: AddMangasCoordinator {
             return super.createPresentableNavigation()
         }
     }
+
+    override func executeAfter(delay: DispatchTime, _ code: @escaping () -> Void) {
+        code()
+    }
 }

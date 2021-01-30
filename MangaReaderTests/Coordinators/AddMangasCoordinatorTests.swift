@@ -22,7 +22,7 @@ class AddMangasCoordinatorTests: XCTestCase {
     // MARK: GCDWebUploaderDelegate
     func testWebUploaderDidUploadFileAtPath_stopsServer() {
         let mockUploadServer = FakeUploadServer()
-        let addMangasCoordinator =  TestsFactories.createAddMangasCoordinator(uploadServer: mockUploadServer)
+        let addMangasCoordinator = TestsFactories.createTestableAddMangasCoordinator(uploadServer: mockUploadServer)
         addMangasCoordinator.webUploader(mockUploadServer, didUploadFileAtPath: "")
         XCTAssertTrue(mockUploadServer.stopCalled)
     }
@@ -58,11 +58,12 @@ class AddMangasCoordinatorTests: XCTestCase {
 
     func testAddMangaViewControllerDelegateSave_withPreviouslySelectedPath_callsCreateMangaWith() {
         let mockCoreDataManager = FakeCoreDataManager()
-        let addMangasCoordinator = TestsFactories.createAddMangasCoordinator(coreDataManager: mockCoreDataManager)
+        let addMangasCoordinator = TestsFactories.createTestableAddMangasCoordinator(coreDataManager: mockCoreDataManager)
         addMangasCoordinator.webUploader(FakeUploadServer(), didUploadFileAtPath: "Test.cbz")
 
         addMangasCoordinator.save(AddMangaViewController(delegate: MockAddMangaViewControllerDelegate()), name: "Test")
 
+        print(mockCoreDataManager.createMangaWithCalls)
         XCTAssertTrue(mockCoreDataManager.createMangaWithCalls.contains(where: { ($0["path"] as? String) == "Test.cbz" && ($0["name"] as? String) == "Test" }))
     }
 

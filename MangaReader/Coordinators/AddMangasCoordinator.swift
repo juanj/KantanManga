@@ -53,6 +53,13 @@ class AddMangasCoordinator: NSObject, Coordinator {
         return presentableNavigation
     }
 
+    func executeAfter(delay: DispatchTime, _ code: @escaping () -> Void) {
+        // Extract into overridable method for easier testing
+        DispatchQueue.main.asyncAfter(deadline: delay) {
+            code()
+        }
+    }
+
     private func initWebServer() {
         uploadServer.allowedFileExtensions = ["cbz", "zip", "rar", "cbr"]
         uploadServer.delegate = self
@@ -95,8 +102,8 @@ class AddMangasCoordinator: NSObject, Coordinator {
 
 extension AddMangasCoordinator: GCDWebUploaderDelegate {
     func webUploader(_ uploader: GCDWebUploader, didUploadFileAtPath path: String) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            // Wait one second after upload so the page has time to refresh and don't show an error
+        // Wait one second after upload so the page has time to refresh and don't show an error
+        executeAfter(delay: .now() + 1) {
             let soundID: SystemSoundID = 1307
             AudioServicesPlaySystemSound(soundID)
             self.filePath = path.lastPathComponent

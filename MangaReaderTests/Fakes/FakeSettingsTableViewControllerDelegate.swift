@@ -14,4 +14,5 @@ class FakeSettingsTableViewControllerDelegate: SettingsTableViewControllerDelega
     func didSelectClose(_ settingsTableViewController: SettingsTableViewController) {}
     func didSelectDictionaries(_ settingsTableViewController: SettingsTableViewController) {}
     func didSelectResetDictionaries(_ settingsTableViewController: SettingsTableViewController) {}
+    func didSelectFAQ(_ settingsTableViewController: SettingsTableViewController) {}
 }
