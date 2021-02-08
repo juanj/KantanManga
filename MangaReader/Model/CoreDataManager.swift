@@ -67,13 +67,9 @@ class CoreDataManager: CoreDataManageable {
         }
         let reader: Reader
         do {
-            if fileName.lowercased().hasSuffix("cbz") || fileName.lowercased().hasSuffix("zip") {
-                reader = try CBZReader(fileName: fileName)
-            } else {
-                reader = try CBRReader(fileName: fileName)
-            }
-        } catch {
-            print("Error creating reader")
+            reader = try GenericReader(fileName: fileName)
+        } catch let error {
+            print("Error creating reader: \(error.localizedDescription)")
             return
         }
         reader.readFirstEntry { (data) in

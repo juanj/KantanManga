@@ -10,10 +10,10 @@ import Foundation
 
 protocol Reader {
     typealias CallBack = (Data?) -> Void
+
+    var numberOfPages: Int { get }
     init(fileName: String) throws
     func readEntityAt(index: Int, _ callBack: CallBack?)
-
-    var numberOfPages: Int {get}
 }
 
 extension Reader {

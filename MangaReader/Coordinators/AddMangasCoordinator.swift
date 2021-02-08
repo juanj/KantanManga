@@ -61,7 +61,7 @@ class AddMangasCoordinator: NSObject, Coordinator {
     }
 
     private func initWebServer() {
-        uploadServer.allowedFileExtensions = ["cbz", "zip", "rar", "cbr"]
+        uploadServer.allowedFileExtensions = ["cbz", "zip", "rar", "cbr", "pdf"]
         uploadServer.delegate = self
         uploadServer.start()
     }
@@ -71,13 +71,9 @@ class AddMangasCoordinator: NSObject, Coordinator {
         guard let addMangaViewController = self.addMangaViewController else { return }
         let reader: Reader
         do {
-            if filePath.lowercased().hasSuffix("cbz") || filePath.lowercased().hasSuffix("zip") {
-                reader = try CBZReader(fileName: filePath)
-            } else {
-                reader = try CBRReader(fileName: filePath)
-            }
-        } catch {
-            print("Error creating reader")
+            reader = try GenericReader(fileName: filePath)
+        } catch let error {
+            print("Error creating reader: \(error.localizedDescription)")
             return
         }
         reader.readFirstEntry { (data) in
@@ -141,7 +137,7 @@ extension AddMangasCoordinator: AddMangaViewControllerDelegate {
             return
         }
         coreDataManager.createMangaWith(filePath: file, name: name, collection: collection) { (_) in
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 self.navigation.dismiss(animated: true, completion: nil)
                 self.delegate?.didEnd(self)
             }

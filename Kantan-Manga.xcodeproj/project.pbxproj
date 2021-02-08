@@ -129,6 +129,7 @@
 		32892C0B23E39FBC000B1C3E /* AddMangaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32892C0923E39FBC000B1C3E /* AddMangaViewController.xib */; };
 		328CD84125D1EC72005C2E3A /* PDFReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CD84025D1EC72005C2E3A /* PDFReader.swift */; };
 		328CD84725D1FCE6005C2E3A /* CGPDFObjectRef+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CD84625D1FCE6005C2E3A /* CGPDFObjectRef+Extension.swift */; };
+		328CD84C25D1FED1005C2E3A /* GenericReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CD84B25D1FED1005C2E3A /* GenericReader.swift */; };
 		328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DFB08238D96300095CBAB /* MangaViewController.swift */; };
 		328DFB0B238D96300095CBAB /* MangaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328DFB09238D96300095CBAB /* MangaViewController.xib */; };
 		328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */; };
@@ -403,6 +404,7 @@
 		32892C0923E39FBC000B1C3E /* AddMangaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMangaViewController.xib; sourceTree = "<group>"; };
 		328CD84025D1EC72005C2E3A /* PDFReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReader.swift; sourceTree = "<group>"; };
 		328CD84625D1FCE6005C2E3A /* CGPDFObjectRef+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPDFObjectRef+Extension.swift"; sourceTree = "<group>"; };
+		328CD84B25D1FED1005C2E3A /* GenericReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericReader.swift; sourceTree = "<group>"; };
 		328DFB08238D96300095CBAB /* MangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaViewController.swift; sourceTree = "<group>"; };
 		328DFB09238D96300095CBAB /* MangaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MangaViewController.xib; sourceTree = "<group>"; };
 		328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMangaCoordinator.swift; sourceTree = "<group>"; };
@@ -703,6 +705,7 @@
 				326344A2247DD98B00F683AB /* Reader.swift */,
 				326344A4247DDAF800F683AB /* CBRReader.swift */,
 				328CD84025D1EC72005C2E3A /* PDFReader.swift */,
+				328CD84B25D1FED1005C2E3A /* GenericReader.swift */,
 			);
 			path = "File Extraction";
 			sourceTree = "<group>";
@@ -1538,6 +1541,7 @@
 				3298D7D025713BB4005FB8F2 /* YomichanDictionaryImporter.swift in Sources */,
 				32542BE7258037C900ED357A /* Tag.swift in Sources */,
 				3298D7D725713D66005FB8F2 /* DictionaryIndex.swift in Sources */,
+				328CD84C25D1FED1005C2E3A /* GenericReader.swift in Sources */,
 				3259D1B423C4D9A2003BA7C2 /* FuriganaUtils.swift in Sources */,
 				32AD41D225B639EC0042626C /* SearchResult.swift in Sources */,
 				3241F8602572AE7F00A4FC04 /* TermEntry.swift in Sources */,

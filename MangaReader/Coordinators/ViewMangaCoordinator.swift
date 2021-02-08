@@ -37,15 +37,10 @@ class ViewMangaCoordinator: NSObject, Coordinator {
         mangaDataSource = createMangaDataSource(manga: manga, readerBuilder: { (path, completion) in
             DispatchQueue.global(qos: .userInitiated).async {
                 do {
-                    let reader: Reader
-                    if path.lowercased().hasSuffix("cbz") || path.lowercased().hasSuffix("zip") {
-                        reader = try CBZReader(fileName: path)
-                    } else {
-                        reader = try CBRReader(fileName: path)
-                    }
+                    let reader = try GenericReader(fileName: path)
                     completion(reader)
                 } catch let error {
-                    print("Error creating reader \(error.localizedDescription)")
+                    print("Error creating reader: \(error.localizedDescription)")
                 }
             }
         })
