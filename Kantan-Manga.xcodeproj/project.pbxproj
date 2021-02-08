@@ -127,6 +127,8 @@
 		3283D1022552069700C08D02 /* ToggleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3283D1002552069700C08D02 /* ToggleTableViewCell.xib */; };
 		32892C0A23E39FBC000B1C3E /* AddMangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32892C0823E39FBC000B1C3E /* AddMangaViewController.swift */; };
 		32892C0B23E39FBC000B1C3E /* AddMangaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32892C0923E39FBC000B1C3E /* AddMangaViewController.xib */; };
+		328CD84125D1EC72005C2E3A /* PDFReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CD84025D1EC72005C2E3A /* PDFReader.swift */; };
+		328CD84725D1FCE6005C2E3A /* CGPDFObjectRef+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CD84625D1FCE6005C2E3A /* CGPDFObjectRef+Extension.swift */; };
 		328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DFB08238D96300095CBAB /* MangaViewController.swift */; };
 		328DFB0B238D96300095CBAB /* MangaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328DFB09238D96300095CBAB /* MangaViewController.xib */; };
 		328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */; };
@@ -399,6 +401,8 @@
 		3283D1002552069700C08D02 /* ToggleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToggleTableViewCell.xib; sourceTree = "<group>"; };
 		32892C0823E39FBC000B1C3E /* AddMangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMangaViewController.swift; sourceTree = "<group>"; };
 		32892C0923E39FBC000B1C3E /* AddMangaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMangaViewController.xib; sourceTree = "<group>"; };
+		328CD84025D1EC72005C2E3A /* PDFReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReader.swift; sourceTree = "<group>"; };
+		328CD84625D1FCE6005C2E3A /* CGPDFObjectRef+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPDFObjectRef+Extension.swift"; sourceTree = "<group>"; };
 		328DFB08238D96300095CBAB /* MangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaViewController.swift; sourceTree = "<group>"; };
 		328DFB09238D96300095CBAB /* MangaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MangaViewController.xib; sourceTree = "<group>"; };
 		328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMangaCoordinator.swift; sourceTree = "<group>"; };
@@ -698,6 +702,7 @@
 				843FA7E8221DFE9E00B86B52 /* CBZReader.swift */,
 				326344A2247DD98B00F683AB /* Reader.swift */,
 				326344A4247DDAF800F683AB /* CBRReader.swift */,
+				328CD84025D1EC72005C2E3A /* PDFReader.swift */,
 			);
 			path = "File Extraction";
 			sourceTree = "<group>";
@@ -975,6 +980,7 @@
 				322ECF3824FF280B0013FD21 /* Bool+Extension.swift */,
 				322EF654250FB05800F35E72 /* CGSize+Extension.swift */,
 				32537155253B843E005B8EC1 /* UIView+Extension.swift */,
+				328CD84625D1FCE6005C2E3A /* CGPDFObjectRef+Extension.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -1540,7 +1546,9 @@
 				84A8321D221D951500CEE1C9 /* LibraryViewController.swift in Sources */,
 				326FDE7B24A7FBFB0042CB8A /* SettingsCoordinator.swift in Sources */,
 				329ACA9A2552EFD7002953C5 /* ViewerSettings.swift in Sources */,
+				328CD84725D1FCE6005C2E3A /* CGPDFObjectRef+Extension.swift in Sources */,
 				843FA7E2221DF0C300B86B52 /* WebServerViewController.swift in Sources */,
+				328CD84125D1EC72005C2E3A /* PDFReader.swift in Sources */,
 				32A34383257D4F2D003337D0 /* DictionaryDecoder.swift in Sources */,
 				841B795C221F305A00659FA2 /* MangaDataSource.swift in Sources */,
 				329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */,
