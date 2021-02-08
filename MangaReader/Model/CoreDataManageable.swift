@@ -14,7 +14,7 @@ protocol CoreDataManageable {
     func refreshAll()
     @discardableResult
     func insertManga(name: String, coverData: Data, totalPages: Int16, filePath: String, collection: MangaCollection?) -> Manga?
-    func createMangaWith(filePath path: String, name: String?, collection: MangaCollection?, callback: @escaping (Manga?) -> Void)
+    func createMangaWith(filePath path: String, name: String?, collection: MangaCollection?, completion: @escaping (Manga?) -> Void)
     func delete(manga: Manga)
     func deleteAllMangas()
     func fetchAllMangas() -> [Manga]?

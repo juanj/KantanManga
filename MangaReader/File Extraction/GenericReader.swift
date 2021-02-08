@@ -30,7 +30,7 @@ class GenericReader: Reader {
         }
     }
 
-    func readEntityAt(index: Int, _ callBack: CallBack?) {
-        reader.readEntityAt(index: index, callBack)
+    func readEntityAt(index: Int, _ completion: Completion?) {
+        reader.readEntityAt(index: index, completion)
     }
 }

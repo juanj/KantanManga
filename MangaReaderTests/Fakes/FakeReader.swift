@@ -16,8 +16,8 @@ class FakeReader: Reader {
         self.fileName = fileName
     }
 
-    func readEntityAt(index: Int, _ callBack: CallBack?) {
+    func readEntityAt(index: Int, _ completion: Completion?) {
         readEntries.append(index)
-        callBack?(UIImage(systemName: "0.circle.fill")?.pngData())
+        completion?(UIImage(systemName: "0.circle.fill")?.pngData())
     }
 }

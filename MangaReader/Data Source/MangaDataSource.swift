@@ -213,25 +213,25 @@ class MangaDataSource: NSObject, MangaDataSourceable {
 
     }
 
-    private func getImageForPage(index: Int, callBack: ((UIImage?) -> Void)? = nil) {
+    private func getImageForPage(index: Int, completion: ((UIImage?) -> Void)? = nil) {
         guard mangaReader != nil else {
-            callBack?(nil)
+            completion?(nil)
             return
         }
 
         if let imageInCache = cache.object(forKey: String(index) as NSString) {
-            callBack?(imageInCache)
+            completion?(imageInCache)
         } else {
             mangaReader.readEntityAt(index: index) { (data) in
                 guard let data = data, let image = UIImage(data: data) else {
-                    callBack?(nil)
+                    completion?(nil)
                     return
                 }
 
                 // Dictionaries are not thread safe.
                 DispatchQueue.main.async {
                     self.cache.setObject(image, forKey: String(index) as NSString)
-                    callBack?(image)
+                    completion?(image)
                 }
             }
         }

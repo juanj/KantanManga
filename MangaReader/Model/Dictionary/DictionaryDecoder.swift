@@ -13,11 +13,11 @@ protocol DictionaryDecoderDelegate: AnyObject {
 
 protocol DictionaryDecoder {
     var delegate: DictionaryDecoderDelegate? { get set }
-    func decodeDictionary(path: URL, indexCallback: ((DictionaryIndex) -> Void)?, progress: ((Float) -> Void)?) throws -> DecodedDictionary
+    func decodeDictionary(path: URL, indexCompletion: ((DictionaryIndex) -> Void)?, progress: ((Float) -> Void)?) throws -> DecodedDictionary
 }
 
 extension DictionaryDecoder {
-    func decodeDictionary(path: URL, indexCallback: ((DictionaryIndex) -> Void)? = nil, progress: ((Float) -> Void)? = nil) throws -> DecodedDictionary {
-        try decodeDictionary(path: path, indexCallback: indexCallback, progress: progress)
+    func decodeDictionary(path: URL, indexCompletion: ((DictionaryIndex) -> Void)? = nil, progress: ((Float) -> Void)? = nil) throws -> DecodedDictionary {
+        try decodeDictionary(path: path, indexCompletion: indexCompletion, progress: progress)
     }
 }

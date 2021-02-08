@@ -39,9 +39,9 @@ class CBZReader: Reader {
         }
     }
 
-    func readEntityAt(index: Int, _ callBack: Reader.CallBack?) {
+    func readEntityAt(index: Int, _ completion: Completion?) {
         guard index >= 0 && index < fileEntries.count else {
-            callBack?(nil)
+            completion?(nil)
             return
         }
 
@@ -50,15 +50,15 @@ class CBZReader: Reader {
             do {
                 var entryData = Data()
                 guard let archive = Archive(url: self.filePath, accessMode: .read) else {
-                    callBack?(nil)
+                    completion?(nil)
                     return
                 }
                 _ = try archive.extract(entry) { (data) in
                     entryData.append(data)
                 }
-                callBack?(entryData)
+                completion?(entryData)
             } catch {
-                callBack?(nil)
+                completion?(nil)
             }
         }
     }

@@ -21,7 +21,7 @@ class YomichanDictionaryDecoder: DictionaryDecoder {
     private var currentProgress: Float = 0
     private var numberOfFiles: Float = 1
     private var progress: ((Float) -> Void)?
-    func decodeDictionary(path: URL, indexCallback: ((DictionaryIndex) -> Void)?, progress: ((Float) -> Void)?) throws -> DecodedDictionary {
+    func decodeDictionary(path: URL, indexCompletion: ((DictionaryIndex) -> Void)?, progress: ((Float) -> Void)?) throws -> DecodedDictionary {
         guard let zipFile = Archive(url: path, accessMode: .read) else {
             throw DictionaryDecoderError.canNotReadFile
         }
@@ -30,7 +30,7 @@ class YomichanDictionaryDecoder: DictionaryDecoder {
         self.progress = progress
         numberOfFiles = Float(zipFile.makeIterator().reduce(0, { $0 + ($1.type == .file ? 1 : 0) }))
         let index = try importIndex(zip: zipFile)
-        indexCallback?(index)
+        indexCompletion?(index)
         if let delegate = delegate, !delegate.shouldContinueDecoding(dictionary: index) {
             throw DictionaryDecoderError.decodeCancelled
         }

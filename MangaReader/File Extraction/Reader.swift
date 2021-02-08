@@ -9,15 +9,15 @@
 import Foundation
 
 protocol Reader {
-    typealias CallBack = (Data?) -> Void
+    typealias Completion = (Data?) -> Void
 
     var numberOfPages: Int { get }
     init(fileName: String) throws
-    func readEntityAt(index: Int, _ callBack: CallBack?)
+    func readEntityAt(index: Int, _ completion: Completion?)
 }
 
 extension Reader {
-    func readFirstEntry(_ callBack: @escaping CallBack) {
-        readEntityAt(index: 0, callBack)
+    func readFirstEntry(_ completion: @escaping Completion) {
+        readEntityAt(index: 0, completion)
     }
 }

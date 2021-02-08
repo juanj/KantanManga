@@ -38,7 +38,7 @@ extension FakeCoreDataManager {
 
 // Mock methods
 extension FakeCoreDataManager {
-    func createMangaWith(filePath path: String, name: String?, collection: MangaCollection?, callback: @escaping (Manga?) -> Void) {
+    func createMangaWith(filePath path: String, name: String?, collection: MangaCollection?, completion: @escaping (Manga?) -> Void) {
         createMangaWithCalls.append(["path": path, "name": name as Any])
     }
 }

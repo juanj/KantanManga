@@ -16,16 +16,16 @@ class TesseractOCR: ImageOCR {
 
     private let tesseract = Tesseract(language: .custom("jpn_vert"))
 
-    func recognize(image: UIImage, _ callback: @escaping (Result<String, Error>) -> Void) {
+    func recognize(image: UIImage, _ completion: @escaping (Result<String, Error>) -> Void) {
         tesseract.pageSegmentationMode = .singleBlockVerticalText
         DispatchQueue.global(qos: .utility).async {
             let result: Result<String, Tesseract.Error> = self.tesseract.performOCR(on: image)
             switch result {
             case .success(let text):
                 let cleanText = text.replacingOccurrences(of: "\n", with: "  ").trimmingCharacters(in: .whitespacesAndNewlines)
-                callback(.success(cleanText))
+                completion(.success(cleanText))
             case .failure:
-                callback(.failure(TesseractError.recognitionError))
+                completion(.failure(TesseractError.recognitionError))
             }
         }
     }

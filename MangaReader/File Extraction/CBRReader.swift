@@ -32,9 +32,9 @@ class CBRReader: Reader {
         fileEntries = try archive.listFilenames()
     }
 
-    func readEntityAt(index: Int, _ callBack: Reader.CallBack?) {
+    func readEntityAt(index: Int, _ completion: Completion?) {
         guard index >= 0 && index < fileEntries.count else {
-            callBack?(nil)
+            completion?(nil)
             return
         }
 
@@ -43,9 +43,9 @@ class CBRReader: Reader {
             do {
                 let archive = try URKArchive(url: self.filePath)
                 let data = try archive.extractData(fromFile: entry)
-                callBack?(data)
+                completion?(data)
             } catch {
-                callBack?(nil)
+                completion?(nil)
             }
         }
     }

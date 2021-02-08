@@ -74,7 +74,7 @@ extension DictionariesCoordinator: UIDocumentPickerDelegate {
         DispatchQueue.global(qos: .userInitiated).async {
             do {
                 var index: DictionaryIndex?
-                let decodedDictionary = try self.dictionaryDecoder.decodeDictionary(path: fileUrl, indexCallback: { dictionaryIndex in
+                let decodedDictionary = try self.dictionaryDecoder.decodeDictionary(path: fileUrl, indexCompletion: { dictionaryIndex in
                     index = dictionaryIndex
                     DispatchQueue.main.async {
                         self.dictionariesViewController?.importingInfoLabel.text = "Decoding \(dictionaryIndex.title)"

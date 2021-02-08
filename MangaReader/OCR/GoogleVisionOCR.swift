@@ -17,18 +17,18 @@ class GoogleVistionOCR: ImageOCR {
         return options
     }()
 
-    func recognize(image: UIImage, _ callback: @escaping (Result<String, Error>) -> Void) {
+    func recognize(image: UIImage, _ completion: @escaping (Result<String, Error>) -> Void) {
         let textRecognizer = vision.cloudTextRecognizer(options: options)
         let visionImage = VisionImage(image: image)
         textRecognizer.process(visionImage) { result, error in
             if let error = error {
-                callback(.failure(error))
+                completion(.failure(error))
                 return
             }
             guard let result = result else { return }
 
             let text = result.text.replacingOccurrences(of: "\n", with: " ")
-            callback(.success(text))
+            completion(.success(text))
         }
     }
 }

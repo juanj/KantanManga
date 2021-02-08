@@ -49,18 +49,18 @@ class PDFReader: Reader {
         self.document = document
     }
 
-    func readEntityAt(index: Int, _ callBack: CallBack?) {
+    func readEntityAt(index: Int, _ completion: Completion?) {
         guard let page = document.page(at: index) else {
-            callBack?(nil)
+            completion?(nil)
             return
         }
 
         let extracted = extractImages(from: page) { image in
-            callBack?(image.data)
+            completion?(image.data)
         }
 
         if !extracted {
-            callBack?(nil)
+            completion?(nil)
         }
     }
 

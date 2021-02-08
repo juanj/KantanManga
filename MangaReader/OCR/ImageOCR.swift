@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ImageOCR {
-    func recognize(image: UIImage, _ callback: @escaping (Result<String, Error>) -> Void)
+    func recognize(image: UIImage, _ completion: @escaping (Result<String, Error>) -> Void)
 }
