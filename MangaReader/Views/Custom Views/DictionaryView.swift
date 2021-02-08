@@ -67,4 +67,8 @@ class DictionaryView: UIView {
         scrollViewHeightConstraint?.constant = min(stackView.frame.height, maxHeight)
         layoutIfNeeded()
     }
+
+    func scrollToTop() {
+        scrollView.contentOffset = .zero
+    }
 }

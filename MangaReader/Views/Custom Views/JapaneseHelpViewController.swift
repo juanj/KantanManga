@@ -72,6 +72,7 @@ extension JapaneseHelpViewController: ParsedInputFieldDelegate {
             let results = try dict.findTerm(term: word.rootForm)
             dictView.setEntries(entries: results)
             delegate?.didOpenDictionary(self)
+            dictView.scrollToTop()
         } catch let error {
             print(error.localizedDescription)
         }
