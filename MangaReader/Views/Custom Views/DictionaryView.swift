@@ -31,7 +31,9 @@ class DictionaryView: UIView {
     private func configureScrollView() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(scrollView)
-        scrollView.addConstraintsTo(self)
+        scrollView.addConstraintsTo(self, sides: .vertical)
+        scrollView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor).isActive = true
         scrollViewHeightConstraint = scrollView.heightAnchor.constraint(equalToConstant: 0)
         scrollViewHeightConstraint.isActive = true
         scrollView.backgroundColor = .systemBackground
