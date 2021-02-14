@@ -30,6 +30,10 @@ class CompoundDictionary {
 
     private var db: DatabaseQueue?
 
+    init(db: DatabaseQueue? = nil) {
+        self.db = db
+    }
+
     private func connectTo(url: URL) throws -> DatabaseQueue {
         var configuration = Configuration()
         configuration.label = "Dictionaries"
