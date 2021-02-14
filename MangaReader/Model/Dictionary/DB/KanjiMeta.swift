@@ -42,6 +42,7 @@ extension KanjiMeta: TableRecord {
     }
 
     static var databaseTableName = "kanjiMeta"
+    static var dictionary = belongsTo(Dictionary.self)
 }
 
 extension KanjiMeta: FetchableRecord {
@@ -67,6 +68,10 @@ extension KanjiMeta: MutablePersistableRecord {
 
     mutating func didInsert(with rowID: Int64, for column: String?) {
         id = Int(rowID)
+    }
+
+    var dictionary: QueryInterfaceRequest<Dictionary> {
+        request(for: KanjiMeta.dictionary)
     }
 }
 

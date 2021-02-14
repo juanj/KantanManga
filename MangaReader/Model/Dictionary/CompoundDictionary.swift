@@ -253,4 +253,30 @@ class CompoundDictionary {
 
         return Array(grouped.values)
     }
+
+    func findKanji(_ word: String) throws -> [KanjiSearchResult] {
+        let kanji = JapaneseUtils.splitKanji(word: word)
+
+        guard let db = db else {
+            throw DictionaryError.noConnection
+        }
+
+        let results: [KanjiSearchResult] = try db.read { db in
+            let request = Kanji.including(required: Kanji.dictionary)
+                .filter(
+                    kanji.contains(Kanji.Columns.character)
+                )
+            return try KanjiSearchResult.fetchAll(db, request)
+        }
+
+        let kanjiMeta: [KanjiMetaSearchResult] = try db.read { db in
+            let request = KanjiMeta.including(required: KanjiMeta.dictionary)
+                .filter(
+                    kanji.contains(KanjiMeta.Columns.character)
+                )
+            return try KanjiMetaSearchResult.fetchAll(db, request)
+        }
+
+        return results
+    }
 }

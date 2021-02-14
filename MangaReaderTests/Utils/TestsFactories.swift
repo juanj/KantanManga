@@ -6,6 +6,7 @@
 //
 
 @testable import Kantan_Manga
+import GRDB
 
 final class TestsFactories {
     // MARK: Coordinators
@@ -82,5 +83,16 @@ final class TestsFactories {
 
         let mangaViewController = MangaViewController(manga: aManga, dataSource: aDataSource, delegate: delegate, firstTime: firstTime)
         return mangaViewController
+    }
+
+    // MARK: Database
+    static func createTestDatabase() -> DatabaseQueue {
+        var configuration = Configuration()
+        configuration.label = "TEST Dictionaries"
+        configuration.foreignKeysEnabled = true
+        let db = DatabaseQueue(configuration: configuration)
+        let migrator = DBMigrator()
+        try! migrator.migrate(db: db) // swiftlint:disable:this force_try
+        return db
     }
 }
