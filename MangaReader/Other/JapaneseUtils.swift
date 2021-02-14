@@ -73,4 +73,15 @@ class JapaneseUtils {
 
         return Prematch(pattern: pattern, numberOfGroups: numberOfGroups, substrings: substrings)
     }
+
+    static func splitKanji(word: String) -> [String] {
+        guard let regex = try? NSRegularExpression(pattern: #"\p{han}"#) else { return [] }
+        let results = regex.matches(in: word,
+                                    range: NSRange(word.startIndex..., in: word))
+        let kanji =  results.compactMap { match -> String? in
+            guard let range = Range(match.range, in: word) else { return nil }
+            return String(word[range])
+        }
+        return kanji
+    }
 }

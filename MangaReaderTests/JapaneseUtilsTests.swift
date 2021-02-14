@@ -58,4 +58,36 @@ class JapaneseUtilsTests: XCTestCase {
             Furigana(kana: "うらづ", range: NSRange(location: 10, length: 2))
         ])
     }
+
+    func testSplitKanji_withSingleKanji_returnsKanji() {
+        let word = "私"
+
+        let kanji = JapaneseUtils.splitKanji(word: word)
+
+        XCTAssertEqual(kanji, ["私"])
+    }
+
+    func testSplitKanji_withMultipleKanji_returnsKanji() {
+        let word = "試験"
+
+        let kanji = JapaneseUtils.splitKanji(word: word)
+
+        XCTAssertEqual(kanji, ["試", "験"])
+    }
+
+    func testSplitKanji_withHiragana_returnsEmptyArray() {
+        let word = "しけん"
+
+        let kanji = JapaneseUtils.splitKanji(word: word)
+
+        XCTAssertEqual(kanji, [])
+    }
+
+    func testSplitKanji_withMixedHiragana_returnsEmptyArray() {
+        let word = "試験 しけん"
+
+        let kanji = JapaneseUtils.splitKanji(word: word)
+
+        XCTAssertEqual(kanji, ["試", "験"])
+    }
 }
