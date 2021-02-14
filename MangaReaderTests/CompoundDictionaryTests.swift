@@ -19,10 +19,15 @@ class CompoundDictionaryTests: XCTestCase {
             INSERT INTO dictionaries (title, revision, version)
             VALUES ('Test', '1', 1)
             """)
+            let dictionaryId = db.lastInsertedRowID
             try db.execute(sql: """
             INSERT INTO kanji (dictionaryId, character, onyomi, kunyomi, tags, meanings, stats)
-            VALUES (\(db.lastInsertedRowID), '試', '', '', '', '', ''),
-                   (\(db.lastInsertedRowID), '験', '', '', '', '', '')
+            VALUES (\(dictionaryId), '試', '', '', '', '', ''),
+                   (\(dictionaryId), '験', '', '', '', '', '')
+            """)
+            try db.execute(sql: """
+            INSERT INTO terms (dictionaryId, expression, reading, rules, score, glossary, sequence, termTags)
+            VALUES (\(dictionaryId), '試験', 'しけん', '', 0, '{"type": "text", "text": "examination; exam; test​"}', 0, '')
             """)
         }
     }
@@ -32,6 +37,15 @@ class CompoundDictionaryTests: XCTestCase {
         try! db.write { db in
             try db.execute(sql: "DELETE FROM dictionaries")
         }
+    }
+
+    func testFindTerm_withExistingTerm_returnsMergedResults() throws {
+        let term = "試験"
+        let compoundDictionary = CompoundDictionary(db: db)
+
+        let results = try compoundDictionary.findTerm(term)
+
+        XCTAssertEqual(results.first?.expression, term)
     }
 
     func testFindKanjis_withMultiKanjiWord_returnsKanjis() throws {
