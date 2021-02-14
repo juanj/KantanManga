@@ -207,7 +207,7 @@ class CompoundDictionary {
         }
     }
 
-    func findTerm(term: String) throws -> [SearchResult] {
+    func findTerm(_ term: String) throws -> [SearchResult] {
         guard let db = db else {
             throw DictionaryError.noConnection
         }
