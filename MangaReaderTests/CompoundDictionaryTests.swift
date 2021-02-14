@@ -27,7 +27,14 @@ class CompoundDictionaryTests: XCTestCase {
         }
     }
 
-    func testFindKanjis_withMultiKanjiWord_returnKanjis() throws {
+    override func tearDown() {
+        // swiftlint:disable:next force_try
+        try! db.write { db in
+            try db.execute(sql: "DELETE FROM dictionaries")
+        }
+    }
+
+    func testFindKanjis_withMultiKanjiWord_returnsKanjis() throws {
         let word = "試験"
         let compoundDictionary = CompoundDictionary(db: db)
 

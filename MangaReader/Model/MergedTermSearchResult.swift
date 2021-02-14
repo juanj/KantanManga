@@ -1,5 +1,5 @@
 //
-//  SearchResult.swift
+//  MergedTermSearchResult.swift
 //  Kantan-Manga
 //
 //  Created by Juan on 18/01/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchResult {
+struct MergedTermSearchResult {
     let expression: String
     let reading: String
     var terms: [SearchTermResult]

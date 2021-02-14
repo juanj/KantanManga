@@ -207,7 +207,7 @@ class CompoundDictionary {
         }
     }
 
-    func findTerm(_ term: String) throws -> [SearchResult] {
+    func findTerm(_ term: String) throws -> [MergedTermSearchResult] {
         guard let db = db else {
             throw DictionaryError.noConnection
         }
@@ -233,18 +233,14 @@ class CompoundDictionary {
         return mergeResults(results: results, termMeta: termMeta)
     }
 
-    private func mergeResults(results: [SearchTermResult], termMeta: [TermMetaSearchResult]) -> [SearchResult] {
-        let termMeta = termMeta.reduce([String: TermMetaSearchResult](), {
-            var dict = $0
-            dict[$1.termMeta.character] = $1
-            return dict
-        })
-        var grouped = [String: SearchResult]()
+    private func mergeResults(results: [SearchTermResult], termMeta: [TermMetaSearchResult]) -> [MergedTermSearchResult] {
+        let termMeta = termMeta.keyedBy(\.termMeta.character)
+        var grouped = [String: MergedTermSearchResult]()
         for result in results {
             if grouped[result.term.expression + result.term.reading] != nil {
                 grouped[result.term.expression + result.term.reading]?.terms.append(result)
             } else {
-                grouped[result.term.expression + result.term.reading] = SearchResult(expression: result.term.expression,
+                grouped[result.term.expression + result.term.reading] = MergedTermSearchResult(expression: result.term.expression,
                                                                                      reading: result.term.reading,
                                                                                      terms: [result],
                                                                                      meta: [termMeta[result.term.expression]].compactMap { $0 })
@@ -254,28 +250,28 @@ class CompoundDictionary {
         return Array(grouped.values)
     }
 
-    func findKanji(_ word: String) throws -> [KanjiSearchResult] {
+    func findKanji(_ word: String) throws -> [FullKanjiResult] {
         let kanji = JapaneseUtils.splitKanji(word: word)
 
         guard let db = db else {
             throw DictionaryError.noConnection
         }
 
-        let results: [KanjiSearchResult] = try db.read { db in
-            let request = Kanji.including(required: Kanji.dictionary)
-                .filter(
-                    kanji.contains(Kanji.Columns.character)
-                )
-            return try KanjiSearchResult.fetchAll(db, request)
-        }
-
-        let kanjiMeta: [KanjiMetaSearchResult] = try db.read { db in
+        let kanjiMeta = try db.read { db -> [KanjiMetaSearchResult] in
             let request = KanjiMeta.including(required: KanjiMeta.dictionary)
                 .filter(
                     kanji.contains(KanjiMeta.Columns.character)
                 )
             return try KanjiMetaSearchResult.fetchAll(db, request)
-        }
+        }.keyedBy(\.kanjiMeta.character)
+
+        let results = try db.read { db -> [KanjiSearchResult] in
+            let request = Kanji.including(required: Kanji.dictionary)
+                .filter(
+                    kanji.contains(Kanji.Columns.character)
+                )
+            return try KanjiSearchResult.fetchAll(db, request)
+        }.map { FullKanjiResult(kanjiResult: $0, metaResult: kanjiMeta[$0.kanji.character]) }
 
         return results
     }

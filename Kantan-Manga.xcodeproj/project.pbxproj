@@ -99,6 +99,9 @@
 		3257C01E256F0F4700C4C702 /* FakeSettingsCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3257C01D256F0F4700C4C702 /* FakeSettingsCoordinatorDelegate.swift */; };
 		3257C023256F0FC000C4C702 /* FakeSettingsTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3257C022256F0FC000C4C702 /* FakeSettingsTableViewControllerDelegate.swift */; };
 		3259D1B423C4D9A2003BA7C2 /* JapaneseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3259D1B323C4D9A2003BA7C2 /* JapaneseUtils.swift */; };
+		325C048925D97C5000170629 /* FullKanjiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325C048825D97C5000170629 /* FullKanjiResult.swift */; };
+		325C049125D97FB200170629 /* Sequence+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325C049025D97FB200170629 /* Sequence+Extension.swift */; };
+		325C049925D9823D00170629 /* SequenceExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325C049825D9823D00170629 /* SequenceExtensionTests.swift */; };
 		325CFC1D2480582700110F31 /* DictionaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CFC1C2480582700110F31 /* DictionaryView.swift */; };
 		325CFC21248060AD00110F31 /* DictionaryEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CFC20248060AD00110F31 /* DictionaryEntryView.swift */; };
 		325DA0B923C8F50700A627BD /* CompoundDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325DA0B823C8F50700A627BD /* CompoundDictionary.swift */; };
@@ -166,7 +169,7 @@
 		32A34377257D4EA4003337D0 /* FakeDictionaryDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A34376257D4EA4003337D0 /* FakeDictionaryDecoder.swift */; };
 		32A34383257D4F2D003337D0 /* DictionaryDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A3437E257D4F0D003337D0 /* DictionaryDecoder.swift */; };
 		32A7C1F8254317D70019D0BB /* kanjidic.sqlite.db in Resources */ = {isa = PBXBuildFile; fileRef = 32A7C1F6254317D70019D0BB /* kanjidic.sqlite.db */; };
-		32AD41D225B639EC0042626C /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AD41D125B639EC0042626C /* SearchResult.swift */; };
+		32AD41D225B639EC0042626C /* MergedTermSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AD41D125B639EC0042626C /* MergedTermSearchResult.swift */; };
 		32AF5BCE2512567900E96C9F /* MangaCollectionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AF5BCD2512567900E96C9F /* MangaCollectionable.swift */; };
 		32AF5BD1251256E600E96C9F /* EmptyMangaCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AF5BD0251256E600E96C9F /* EmptyMangaCollection.swift */; };
 		32B518F825C595B00098ABA0 /* GlossaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B518F725C595B00098ABA0 /* GlossaryItem.swift */; };
@@ -378,6 +381,9 @@
 		3257C022256F0FC000C4C702 /* FakeSettingsTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSettingsTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		3258141023C5051A00C31E02 /* mecabrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mecabrc; path = /Users/juanjosemeneses/Documents/MangaReader/mecabrc; sourceTree = "<absolute>"; };
 		3259D1B323C4D9A2003BA7C2 /* JapaneseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseUtils.swift; sourceTree = "<group>"; };
+		325C048825D97C5000170629 /* FullKanjiResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullKanjiResult.swift; sourceTree = "<group>"; };
+		325C049025D97FB200170629 /* Sequence+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extension.swift"; sourceTree = "<group>"; };
+		325C049825D9823D00170629 /* SequenceExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceExtensionTests.swift; sourceTree = "<group>"; };
 		325CFC1C2480582700110F31 /* DictionaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryView.swift; sourceTree = "<group>"; };
 		325CFC20248060AD00110F31 /* DictionaryEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEntryView.swift; sourceTree = "<group>"; };
 		325DA0B823C8F50700A627BD /* CompoundDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompoundDictionary.swift; sourceTree = "<group>"; };
@@ -442,7 +448,7 @@
 		32A34376257D4EA4003337D0 /* FakeDictionaryDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDictionaryDecoder.swift; sourceTree = "<group>"; };
 		32A3437E257D4F0D003337D0 /* DictionaryDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDecoder.swift; sourceTree = "<group>"; };
 		32A7C1F6254317D70019D0BB /* kanjidic.sqlite.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = kanjidic.sqlite.db; sourceTree = "<group>"; };
-		32AD41D125B639EC0042626C /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		32AD41D125B639EC0042626C /* MergedTermSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergedTermSearchResult.swift; sourceTree = "<group>"; };
 		32AF5BCD2512567900E96C9F /* MangaCollectionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollectionable.swift; sourceTree = "<group>"; };
 		32AF5BD0251256E600E96C9F /* EmptyMangaCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMangaCollection.swift; sourceTree = "<group>"; };
 		32B518F725C595B00098ABA0 /* GlossaryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryItem.swift; sourceTree = "<group>"; };
@@ -1000,6 +1006,7 @@
 				322EF654250FB05800F35E72 /* CGSize+Extension.swift */,
 				32537155253B843E005B8EC1 /* UIView+Extension.swift */,
 				328CD84625D1FCE6005C2E3A /* CGPDFObjectRef+Extension.swift */,
+				325C049025D97FB200170629 /* Sequence+Extension.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -1068,11 +1075,12 @@
 				327300932561EF6A009854EE /* UIViewExtensionTests.swift */,
 				321C69A12562FA4E00296A1F /* JapaneseUtilsTests.swift */,
 				32194C9625630E27007539B1 /* MangaDataSourceTests.swift */,
+				32336AB825D969F20092110A /* CompoundDictionaryTests.swift */,
+				325C049825D9823D00170629 /* SequenceExtensionTests.swift */,
 				32CFA5EB256FEE060083F300 /* View Controllers */,
 				32F998C625574CC400897299 /* Coordinators */,
 				84A83200221D90CC00CEE1C9 /* Info.plist */,
 				326D4FA725671769001B70AC /* Utils */,
-				32336AB825D969F20092110A /* CompoundDictionaryTests.swift */,
 			);
 			path = MangaReaderTests;
 			sourceTree = "<group>";
@@ -1115,7 +1123,8 @@
 				32AF5BCD2512567900E96C9F /* MangaCollectionable.swift */,
 				32AF5BD0251256E600E96C9F /* EmptyMangaCollection.swift */,
 				3298D7D525713D44005FB8F2 /* Dictionary */,
-				32AD41D125B639EC0042626C /* SearchResult.swift */,
+				32AD41D125B639EC0042626C /* MergedTermSearchResult.swift */,
+				325C048825D97C5000170629 /* FullKanjiResult.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1580,7 +1589,7 @@
 				3298D7D725713D66005FB8F2 /* DictionaryIndex.swift in Sources */,
 				328CD84C25D1FED1005C2E3A /* GenericReader.swift in Sources */,
 				3259D1B423C4D9A2003BA7C2 /* JapaneseUtils.swift in Sources */,
-				32AD41D225B639EC0042626C /* SearchResult.swift in Sources */,
+				32AD41D225B639EC0042626C /* MergedTermSearchResult.swift in Sources */,
 				3241F8602572AE7F00A4FC04 /* TermEntry.swift in Sources */,
 				328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */,
 				3241F8B12572E10C00A4FC04 /* KanjiEntryV1.swift in Sources */,
@@ -1589,6 +1598,7 @@
 				329ACA9A2552EFD7002953C5 /* ViewerSettings.swift in Sources */,
 				328CD84725D1FCE6005C2E3A /* CGPDFObjectRef+Extension.swift in Sources */,
 				843FA7E2221DF0C300B86B52 /* WebServerViewController.swift in Sources */,
+				325C048925D97C5000170629 /* FullKanjiResult.swift in Sources */,
 				328CD84125D1EC72005C2E3A /* PDFReader.swift in Sources */,
 				32A34383257D4F2D003337D0 /* DictionaryDecoder.swift in Sources */,
 				841B795C221F305A00659FA2 /* MangaDataSource.swift in Sources */,
@@ -1606,6 +1616,7 @@
 				32542BD82580352600ED357A /* TermMeta.swift in Sources */,
 				3241F89F2572C1A700A4FC04 /* TermEntryV3.swift in Sources */,
 				3219C2A9251100D200915DE1 /* CollectionViewController.swift in Sources */,
+				325C049125D97FB200170629 /* Sequence+Extension.swift in Sources */,
 				326344A3247DD98B00F683AB /* Reader.swift in Sources */,
 				32F998D52557535500897299 /* Navigable.swift in Sources */,
 				32542BE2258036DA00ED357A /* KanjiMeta.swift in Sources */,
@@ -1647,6 +1658,7 @@
 				327300942561EF6A009854EE /* UIViewExtensionTests.swift in Sources */,
 				320ED4D924831D2900F5BECF /* FakeUploadServer.swift in Sources */,
 				3241F8C12572E18500A4FC04 /* KanjiEntryV1Tests.swift in Sources */,
+				325C049925D9823D00170629 /* SequenceExtensionTests.swift in Sources */,
 				327A8F55256BFC4900BB778E /* FakeMangaViewControllerDelegate.swift in Sources */,
 				32A34372257D4E41003337D0 /* FakeCompoundDictionary.swift in Sources */,
 				32CFA5FF256FF34A0083F300 /* FakeMangaDataSource.swift in Sources */,

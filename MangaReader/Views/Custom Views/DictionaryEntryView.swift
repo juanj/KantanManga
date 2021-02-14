@@ -13,8 +13,8 @@ extension NSAttributedString.Key {
 }
 
 class DictionaryEntryView: UIView {
-    private let result: SearchResult
-    init(result: SearchResult) {
+    private let result: MergedTermSearchResult
+    init(result: MergedTermSearchResult) {
         self.result = result
         super.init(frame: .zero)
 
