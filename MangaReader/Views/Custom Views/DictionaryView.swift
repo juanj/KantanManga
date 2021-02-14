@@ -14,8 +14,8 @@ class DictionaryView: UIView {
     private let stackView = UIStackView()
     private var terms = [MergedTermSearchResult]()
     private var kanji = [FullKanjiResult]()
-    private var termsViews = [DictionaryEntryView]()
-    private var kanjiViews = [DictionaryEntryView]()
+    private var termsViews = [DictionaryTermEntryView]()
+    private var kanjiViews = [DictionaryKanjiEntryView]()
     private let maxHeight: CGFloat
     private var scrollViewHeightConstraint: NSLayoutConstraint!
 
@@ -63,7 +63,7 @@ class DictionaryView: UIView {
         termsViews.removeAll()
         self.terms = terms
         for term in terms {
-            let entryView = DictionaryEntryView(result: term)
+            let entryView = DictionaryTermEntryView(result: term)
             stackView.addArrangedSubview(entryView)
             termsViews.append(entryView)
         }
@@ -75,9 +75,9 @@ class DictionaryView: UIView {
         kanjiViews.removeAll()
         self.kanji = kanji
         for kanji in kanji {
-            /*let entryView = DictionaryEntryView(result: term)
-            stackView.addArrangedSubview(entryView)
-            entriesViews.append(entryView)*/
+            let kanjiView = DictionaryKanjiEntryView(kanji: kanji)
+            stackView.addArrangedSubview(kanjiView)
+            kanjiViews.append(kanjiView)
         }
 
         stackView.layoutIfNeeded()

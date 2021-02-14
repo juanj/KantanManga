@@ -102,8 +102,10 @@
 		325C048925D97C5000170629 /* FullKanjiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325C048825D97C5000170629 /* FullKanjiResult.swift */; };
 		325C049125D97FB200170629 /* Sequence+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325C049025D97FB200170629 /* Sequence+Extension.swift */; };
 		325C049925D9823D00170629 /* SequenceExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325C049825D9823D00170629 /* SequenceExtensionTests.swift */; };
+		325C04A925D99D3400170629 /* DictionaryKanjiEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325C04A825D99D3400170629 /* DictionaryKanjiEntryView.swift */; };
+		325C04AE25D99F0400170629 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325C04AD25D99F0400170629 /* UIColor+Extension.swift */; };
 		325CFC1D2480582700110F31 /* DictionaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CFC1C2480582700110F31 /* DictionaryView.swift */; };
-		325CFC21248060AD00110F31 /* DictionaryEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CFC20248060AD00110F31 /* DictionaryEntryView.swift */; };
+		325CFC21248060AD00110F31 /* DictionaryTermEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CFC20248060AD00110F31 /* DictionaryTermEntryView.swift */; };
 		325DA0B923C8F50700A627BD /* CompoundDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325DA0B823C8F50700A627BD /* CompoundDictionary.swift */; };
 		326280D7253DD29F0070F5DA /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326280D6253DD29F0070F5DA /* KeyboardViewController.swift */; };
 		326280DB253DD29F0070F5DA /* Kantan-Keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 326280D4253DD29F0070F5DA /* Kantan-Keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -384,8 +386,10 @@
 		325C048825D97C5000170629 /* FullKanjiResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullKanjiResult.swift; sourceTree = "<group>"; };
 		325C049025D97FB200170629 /* Sequence+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extension.swift"; sourceTree = "<group>"; };
 		325C049825D9823D00170629 /* SequenceExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceExtensionTests.swift; sourceTree = "<group>"; };
+		325C04A825D99D3400170629 /* DictionaryKanjiEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryKanjiEntryView.swift; sourceTree = "<group>"; };
+		325C04AD25D99F0400170629 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		325CFC1C2480582700110F31 /* DictionaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryView.swift; sourceTree = "<group>"; };
-		325CFC20248060AD00110F31 /* DictionaryEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEntryView.swift; sourceTree = "<group>"; };
+		325CFC20248060AD00110F31 /* DictionaryTermEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryTermEntryView.swift; sourceTree = "<group>"; };
 		325DA0B823C8F50700A627BD /* CompoundDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompoundDictionary.swift; sourceTree = "<group>"; };
 		326280D4253DD29F0070F5DA /* Kantan-Keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Kantan-Keyboard.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		326280D6253DD29F0070F5DA /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
@@ -835,7 +839,8 @@
 			children = (
 				32E322152481A531007BC017 /* ParsedInputField.swift */,
 				325CFC1C2480582700110F31 /* DictionaryView.swift */,
-				325CFC20248060AD00110F31 /* DictionaryEntryView.swift */,
+				325CFC20248060AD00110F31 /* DictionaryTermEntryView.swift */,
+				325C04A825D99D3400170629 /* DictionaryKanjiEntryView.swift */,
 				32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */,
 				3238DF3924D7840200DE8782 /* WordButton.swift */,
 				322EF657250FB49700F35E72 /* AspectAlignImage.swift */,
@@ -1007,6 +1012,7 @@
 				32537155253B843E005B8EC1 /* UIView+Extension.swift */,
 				328CD84625D1FCE6005C2E3A /* CGPDFObjectRef+Extension.swift */,
 				325C049025D97FB200170629 /* Sequence+Extension.swift */,
+				325C04AD25D99F0400170629 /* UIColor+Extension.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -1558,9 +1564,11 @@
 				325CFC1D2480582700110F31 /* DictionaryView.swift in Sources */,
 				32F1B9F3243685DC00AE367D /* SelectCollectionTableViewController.swift in Sources */,
 				32AF5BD1251256E600E96C9F /* EmptyMangaCollection.swift in Sources */,
+				325C04A925D99D3400170629 /* DictionaryKanjiEntryView.swift in Sources */,
 				32537156253B843E005B8EC1 /* UIView+Extension.swift in Sources */,
 				32F1B9FC24369E1100AE367D /* OpenMangaAnimationController.swift in Sources */,
 				8418696D222495FE00C689DC /* Manga.swift in Sources */,
+				325C04AE25D99F0400170629 /* UIColor+Extension.swift in Sources */,
 				32C1EEF32539DE04001F59A0 /* FocusOverlayView.swift in Sources */,
 				32FA3C7C24367428001EB0DF /* String+Extension.swift in Sources */,
 				325DA0B923C8F50700A627BD /* CompoundDictionary.swift in Sources */,
@@ -1640,7 +1648,7 @@
 				32F7746725B63F590058D80F /* TermMetaSearchResult.swift in Sources */,
 				84A831EF221D90CA00CEE1C9 /* MangaReader.xcdatamodeld in Sources */,
 				325199C42479E20700DA6908 /* TesseractOCR.swift in Sources */,
-				325CFC21248060AD00110F31 /* DictionaryEntryView.swift in Sources */,
+				325CFC21248060AD00110F31 /* DictionaryTermEntryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  DictionaryEntryView.swift
+//  DictionaryTermEntryView.swift
 //  MangaReader
 //
 //  Created by Juan on 28/05/20.
@@ -12,7 +12,7 @@ extension NSAttributedString.Key {
     static let rubyAnnotation: NSAttributedString.Key = kCTRubyAnnotationAttributeName as NSAttributedString.Key
 }
 
-class DictionaryEntryView: UIView {
+class DictionaryTermEntryView: UIView {
     private let result: MergedTermSearchResult
     init(result: MergedTermSearchResult) {
         self.result = result
