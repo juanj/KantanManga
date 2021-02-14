@@ -12,8 +12,10 @@ class DictionaryView: UIView {
 
     private let scrollView = UIScrollView()
     private let stackView = UIStackView()
-    private var entries = [MergedTermSearchResult]()
-    private var entriesViews = [DictionaryEntryView]()
+    private var terms = [MergedTermSearchResult]()
+    private var kanji = [FullKanjiResult]()
+    private var termsViews = [DictionaryEntryView]()
+    private var kanjiViews = [DictionaryEntryView]()
     private let maxHeight: CGFloat
     private var scrollViewHeightConstraint: NSLayoutConstraint!
 
@@ -53,18 +55,31 @@ class DictionaryView: UIView {
         stackView.addArrangedSubview(zeroView)
     }
 
-    func setEntries(entries: [MergedTermSearchResult]) {
-        for entryView in entriesViews {
-            stackView.removeArrangedSubview(entryView)
-            entryView.removeFromSuperview()
+    func setEntries(terms: [MergedTermSearchResult], kanji: [FullKanjiResult]) {
+        for termView in termsViews {
+            stackView.removeArrangedSubview(termView)
+            termView.removeFromSuperview()
         }
-        entriesViews.removeAll()
-        self.entries = entries
-        for entry in entries {
-            let entryView = DictionaryEntryView(result: entry)
+        termsViews.removeAll()
+        self.terms = terms
+        for term in terms {
+            let entryView = DictionaryEntryView(result: term)
             stackView.addArrangedSubview(entryView)
-            entriesViews.append(entryView)
+            termsViews.append(entryView)
         }
+
+        for kanjiView in kanjiViews {
+            stackView.removeArrangedSubview(kanjiView)
+            kanjiView.removeFromSuperview()
+        }
+        kanjiViews.removeAll()
+        self.kanji = kanji
+        for kanji in kanji {
+            /*let entryView = DictionaryEntryView(result: term)
+            stackView.addArrangedSubview(entryView)
+            entriesViews.append(entryView)*/
+        }
+
         stackView.layoutIfNeeded()
         scrollViewHeightConstraint?.constant = min(stackView.frame.height, maxHeight)
         layoutIfNeeded()

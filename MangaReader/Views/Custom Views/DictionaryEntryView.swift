@@ -47,13 +47,21 @@ class DictionaryEntryView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
 
+        var groupedTerms = [String: [SearchTermResult]]()
         for term in result.terms {
+            if groupedTerms[term.dictionary.title] != nil {
+                groupedTerms[term.dictionary.title]?.append(term)
+            } else {
+                groupedTerms[term.dictionary.title] = [term]
+            }
+        }
+
+        for group in groupedTerms {
             let termStackView = UIStackView()
             termStackView.axis = .vertical
-            termStackView.alignment = .leading
 
             let tagLabel = UILabel()
-            tagLabel.text = term.dictionary.title
+            tagLabel.text = group.key
             tagLabel.textColor = .white
             tagLabel.font = .systemFont(ofSize: 15, weight: .bold)
 
@@ -61,25 +69,42 @@ class DictionaryEntryView: UIView {
             tag.backgroundColor = .purple
             tag.layer.cornerRadius = 5
             tag.addSubview(tagLabel)
-            termStackView.addArrangedSubview(tag)
+
+            let spacingStack = UIStackView(arrangedSubviews: [tag, UIView()])
+            spacingStack.axis = .horizontal
+            termStackView.addArrangedSubview(spacingStack)
 
             tagLabel.translatesAutoresizingMaskIntoConstraints = false
             tagLabel.addConstraintsTo(tag, spacing: .init(top: 5, left: 5, bottom: -5, right: -5))
 
-            let body = UITextView()
-            body.isEditable = false
-            body.font = .systemFont(ofSize: 20)
-            body.translatesAutoresizingMaskIntoConstraints = false
-            body.isScrollEnabled = false
-            body.text = term.term.glossary
-                .compactMap { item in
-                    if case .text(let text) = item {
-                        return text
+            for term in group.value {
+                let bodyStackView = UIStackView()
+                bodyStackView.alignment = .center
+                bodyStackView.axis = .horizontal
+
+                let label = UILabel()
+                label.text = "-"
+                label.font = .systemFont(ofSize: 20)
+                label.widthAnchor.constraint(equalToConstant: 20).isActive = true
+                bodyStackView.addArrangedSubview(label)
+
+                let body = UITextView()
+                body.isEditable = false
+                body.font = .systemFont(ofSize: 20)
+                body.translatesAutoresizingMaskIntoConstraints = false
+                body.isScrollEnabled = false
+                body.text = term.term.glossary
+                    .compactMap { item in
+                        if case .text(let text) = item {
+                            return text
+                        }
+                        return nil
                     }
-                    return nil
-                }
-                .map { "• " + $0 } .joined(separator: "\n")
-            termStackView.addArrangedSubview(body)
+                    .map { "• " + $0 } .joined(separator: "\n")
+
+                bodyStackView.addArrangedSubview(body)
+                termStackView.addArrangedSubview(bodyStackView)
+            }
             stackView.addArrangedSubview(termStackView)
         }
 
