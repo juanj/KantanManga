@@ -1,5 +1,5 @@
 //
-//  FuriganaUtils.swift
+//  JapaneseUtils.swift
 //  MangaReader
 //
 //  Created by Juan on 7/01/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FuriganaUtils {
+class JapaneseUtils {
     private struct Prematch {
         let pattern: String
         let numberOfGroups: Int
