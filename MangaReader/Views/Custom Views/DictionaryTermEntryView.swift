@@ -46,6 +46,7 @@ class DictionaryTermEntryView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.spacing = 8
 
         var groupedTerms = [String: [SearchTermResult]]()
         for term in result.terms {
@@ -56,26 +57,21 @@ class DictionaryTermEntryView: UIView {
             }
         }
 
+        let tags = result.meta.map { createTag(text: "\($0.dictionary.title): \($0.termMeta.mode)", backgroundColor: .lightBlue) }
+        let tagsStackView = UIStackView(arrangedSubviews: tags + [UIView()])
+        tagsStackView.axis = .horizontal
+        tagsStackView.spacing = 8
+        stackView.addArrangedSubview(tagsStackView)
+
         for group in groupedTerms {
             let termStackView = UIStackView()
             termStackView.axis = .vertical
 
-            let tagLabel = UILabel()
-            tagLabel.text = group.key
-            tagLabel.textColor = .white
-            tagLabel.font = .systemFont(ofSize: 15, weight: .bold)
+            let dictionaryTag = createTag(text: group.key, backgroundColor: .purple)
 
-            let tag = UIView()
-            tag.backgroundColor = .purple
-            tag.layer.cornerRadius = 5
-            tag.addSubview(tagLabel)
-
-            let spacingStack = UIStackView(arrangedSubviews: [tag, UIView()])
+            let spacingStack = UIStackView(arrangedSubviews: [dictionaryTag, UIView()])
             spacingStack.axis = .horizontal
             termStackView.addArrangedSubview(spacingStack)
-
-            tagLabel.translatesAutoresizingMaskIntoConstraints = false
-            tagLabel.addConstraintsTo(tag, spacing: .init(top: 5, left: 5, bottom: -5, right: -5))
 
             for term in group.value {
                 let bodyStackView = UIStackView()
@@ -124,5 +120,22 @@ class DictionaryTermEntryView: UIView {
         // Separator constraints
         separator.addConstraintsTo(self, sides: [.horizontal, .bottom])
         separator.heightAnchor.constraint(equalToConstant: (1.0 / UIScreen.main.scale)).isActive = true
+    }
+
+    private func createTag(text: String, backgroundColor: UIColor) -> UIView {
+        let tagLabel = UILabel()
+        tagLabel.text = text
+        tagLabel.textColor = .white
+        tagLabel.font = .systemFont(ofSize: 15, weight: .bold)
+
+        let tag = UIView()
+        tag.backgroundColor = backgroundColor
+        tag.layer.cornerRadius = 5
+        tag.addSubview(tagLabel)
+
+        tagLabel.translatesAutoresizingMaskIntoConstraints = false
+        tagLabel.addConstraintsTo(tag, spacing: .init(top: 5, left: 5, bottom: -5, right: -5))
+
+        return tag
     }
 }
