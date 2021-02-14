@@ -12,6 +12,7 @@ class DictionaryView: UIView {
 
     private let scrollView = UIScrollView()
     private let stackView = UIStackView()
+    private let activityIndicator = UIActivityIndicatorView()
     private var terms = [MergedTermSearchResult]()
     private var kanji = [FullKanjiResult]()
     private var termsViews = [DictionaryTermEntryView]()
@@ -24,6 +25,7 @@ class DictionaryView: UIView {
         super.init(frame: .zero)
         configureScrollView()
         configureStackView()
+        configureLoader()
     }
 
     required init?(coder: NSCoder) {
@@ -53,6 +55,23 @@ class DictionaryView: UIView {
         // Add this zero frame view so the stackview can calculate its frame even when ther are no entries.
         let zeroView = UIView(frame: .zero)
         stackView.addArrangedSubview(zeroView)
+    }
+
+    private func configureLoader() {
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+
+        addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+    }
+
+    func startLoading() {
+        activityIndicator.startAnimating()
+    }
+
+    func endLoading() {
+        activityIndicator.stopAnimating()
     }
 
     func setEntries(terms: [MergedTermSearchResult], kanji: [FullKanjiResult]) {

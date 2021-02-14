@@ -67,15 +67,24 @@ extension JapaneseHelpViewController: ParsedInputFieldDelegate {
 
     func didSelectWord(_ analyzeTextView: ParsedInputField, word: JapaneseWord) {
         let dict = CompoundDictionary()
-        do {
-            try dict.connectToDataBase()
-            let termResults = try dict.findTerm(word.rootForm)
-            let kanjiResults = try dict.findKanji(word.text)
-            dictView.setEntries(terms: termResults, kanji: kanjiResults)
-            delegate?.didOpenDictionary(self)
-            dictView.scrollToTop()
-        } catch let error {
-            print(error.localizedDescription)
+        dictView.startLoading()
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                try dict.connectToDataBase()
+                let termResults = try dict.findTerm(word.rootForm)
+                let kanjiResults = try dict.findKanji(word.text)
+                DispatchQueue.main.async {
+                    self.dictView.setEntries(terms: termResults, kanji: kanjiResults)
+                    self.delegate?.didOpenDictionary(self)
+                    self.dictView.scrollToTop()
+                    self.dictView.endLoading()
+                }
+            } catch let error {
+                DispatchQueue.main.async {
+                    self.dictView.endLoading()
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
 }
