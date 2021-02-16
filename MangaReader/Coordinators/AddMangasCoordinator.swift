@@ -171,7 +171,7 @@ extension AddMangasCoordinator: FileSourceViewControllerDelegate {
     }
 
     func openLocalFiles(_ fileSourceViewController: FileSourceViewController) {
-        let filesView = UIDocumentPickerViewController(documentTypes: ["public.zip-archive", "com.rarlab.rar-archive"], in: .import)
+        let filesView = UIDocumentPickerViewController(documentTypes: ["public.zip-archive", "com.rarlab.rar-archive", "com.adobe.pdf"], in: .import)
         filesView.allowsMultipleSelection = false
         filesView.title = "Local files"
         filesView.delegate = self
