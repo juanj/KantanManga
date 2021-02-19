@@ -24,6 +24,8 @@ class JapaneseHelpViewController: UIViewController {
     init(delegate: JapaneseHelpViewControllerDelegate) {
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
+
+        dictView.delegate = self
     }
 
     required init?(coder: NSCoder) {
@@ -51,21 +53,7 @@ class JapaneseHelpViewController: UIViewController {
         parsedInputView.addGestureRecognizer(panGesture)
     }
 
-    func setSentence(text: String) {
-        parsedInputView.sentence = text
-    }
-
-    @objc func handlePan(pan: UIPanGestureRecognizer) {
-        delegate?.handlePan(self, pan: pan)
-    }
-}
-
-extension JapaneseHelpViewController: ParsedInputFieldDelegate {
-    func willBeginEditing(_ parsedInputField: ParsedInputField) {
-        dictView.setEntries(terms: [], kanji: [])
-    }
-
-    func didSelectWord(_ analyzeTextView: ParsedInputField, word: JapaneseWord) {
+    private func lookupWord(_ word: JapaneseWord) {
         let dict = CompoundDictionary()
         dictView.startLoading()
         DispatchQueue.global(qos: .userInitiated).async {
@@ -87,6 +75,24 @@ extension JapaneseHelpViewController: ParsedInputFieldDelegate {
             }
         }
     }
+
+    func setSentence(text: String) {
+        parsedInputView.sentence = text
+    }
+
+    @objc func handlePan(pan: UIPanGestureRecognizer) {
+        delegate?.handlePan(self, pan: pan)
+    }
+}
+
+extension JapaneseHelpViewController: ParsedInputFieldDelegate {
+    func willBeginEditing(_ parsedInputField: ParsedInputField) {
+        dictView.setEntries(terms: [], kanji: [])
+    }
+
+    func didSelectWord(_ analyzeTextView: ParsedInputField, word: JapaneseWord) {
+        lookupWord(word)
+    }
 }
 
 extension JapaneseHelpViewController: UIGestureRecognizerDelegate {
@@ -96,6 +102,17 @@ extension JapaneseHelpViewController: UIGestureRecognizerDelegate {
         // Only trigger when the gesture is vertical
         let velocity = panGestureRecognizer.velocity(in: inputView)
         return abs(velocity.y) > abs(velocity.x)
+    }
+}
+
+extension JapaneseHelpViewController: DictionaryViewDelegate {
+    func lookup(_ dictionaryView: DictionaryView, text: String) {
+        let tokenizer = Tokenizer()
+        let tokens = tokenizer.parse(text)
+        let words = WordPaser.parse(tokens: tokens)
+        if let first = words.first?.toJapaneseWord() {
+            lookupWord(first)
+        }
     }
 }
 

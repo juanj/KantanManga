@@ -199,7 +199,7 @@ class ParsedInputField: UIControl {
         let tokenizer = Tokenizer()
         let tokens = tokenizer.parse(sentence)
         let words = WordPaser.parse(tokens: tokens)
-        analyzedSentence = words.map { JapaneseWord(text: $0.word, rootForm: $0.tokens[0].originalForm ?? $0.word, furigana: JapaneseUtils.getFurigana(text: $0.word, reading: $0.reading)) }
+        analyzedSentence = words.map { $0.toJapaneseWord() }
         loadText()
     }
 
@@ -235,7 +235,6 @@ extension ParsedInputField: UITextFieldDelegate {
 }
 
 protocol ParsedInputFieldDelegate: AnyObject {
-    //func handlePan(analyzeTextView: ParsedInputField, pan: UIPanGestureRecognizer)
     func willBeginEditing(_ parsedInputField: ParsedInputField)
     func didSelectWord(_ parsedInputField: ParsedInputField, word: JapaneseWord)
 }
