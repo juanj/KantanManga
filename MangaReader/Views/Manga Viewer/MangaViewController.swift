@@ -67,6 +67,7 @@ class MangaViewController: UIViewController {
         configureJapaneseHelpView()
         configureProgressBar()
         configureKeyboard()
+        configureGestures()
 
         if !firstTime {
             startAtFullScreen()
@@ -170,6 +171,11 @@ class MangaViewController: UIViewController {
 
     private func configureKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+
+    private func configureGestures() {
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress))
+        view.addGestureRecognizer(longPressGesture)
     }
 
     func reloadPageController() {
@@ -313,6 +319,20 @@ class MangaViewController: UIViewController {
         pageController.setViewControllers(pages, direction: page > oldPageValue ? .reverse : .forward, animated: true, completion: nil)
         delegate?.pageDidChange(self, manga: manga, newPage: pages[0].pageNumber)
         oldPageValue = page
+    }
+
+    @objc func longPress(tap: UILongPressGestureRecognizer) {
+        guard tap.state == .began else { return }
+        if !ocrEnabled {
+            let animation = CABasicAnimation(keyPath: "transform.scale")
+            animation.fromValue = 1
+            animation.toValue = 1.01
+            animation.autoreverses = true
+            animation.duration = 0.1
+
+            view.layer.add(animation, forKey: nil)
+            toggleOcr()
+        }
     }
 }
 
