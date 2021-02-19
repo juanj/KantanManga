@@ -328,17 +328,18 @@ class MangaViewController: UIViewController {
     }
 
     @objc func longPress(tap: UILongPressGestureRecognizer) {
-        guard tap.state == .began else { return }
-        if !ocrEnabled {
-            let animation = CABasicAnimation(keyPath: "transform.scale")
-            animation.fromValue = 1
-            animation.toValue = 1.01
-            animation.autoreverses = true
-            animation.duration = 0.1
-
-            view.layer.add(animation, forKey: nil)
-            toggleOcr()
-        }
+        guard tap.state == .began &&
+                !ocrEnabled,
+              let subview = view.hitTest(tap.location(in: view), with: nil),
+              subview.isDescendant(of: pageController.view) else { return }
+        let animation = CABasicAnimation(keyPath: "transform.scale")
+        animation.fromValue = 1
+        animation.toValue = 1.01
+        animation.autoreverses = true
+        animation.duration = 0.1
+        
+        view.layer.add(animation, forKey: nil)
+        toggleOcr()
     }
 }
 
