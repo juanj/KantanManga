@@ -121,4 +121,14 @@ extension PageViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return scrollView.subviews.first
     }
+
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        let zoom = scrollView.zoomScale
+        if zoom > 1 {
+            let overscrollOffset = 25 * zoom
+            scrollView.contentInset = UIEdgeInsets(top: overscrollOffset, left: overscrollOffset, bottom: overscrollOffset, right: overscrollOffset)
+        } else {
+            scrollView.contentInset = .zero
+        }
+    }
 }
