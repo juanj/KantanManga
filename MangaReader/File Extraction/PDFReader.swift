@@ -60,7 +60,8 @@ class PDFReader: Reader {
         }
 
         if !extracted {
-            completion?(nil)
+            // Image extration failed. Fall back to rendering the page as an image
+            completion?(renderPDF(page: page))
         }
     }
 
@@ -73,6 +74,7 @@ class PDFReader: Reader {
             return false
         }
 
+        var foundImage = false
         if let xObject = resources[CGPDFDictionaryGetDictionary, "XObject"] {
             func extractImage(key: UnsafePointer<Int8>, object: CGPDFObjectRef, info: UnsafeMutableRawPointer?) -> Bool {
                 guard let stream: CGPDFStreamRef = object[CGPDFObjectGetValue, .stream] else { return true }
@@ -95,12 +97,37 @@ class PDFReader: Reader {
                     data: data
                   )
                 )
+                foundImage = true
 
-                return true
+                // Stop iteration. Only want the first image
+                return false
             }
 
             CGPDFDictionaryApplyBlock(xObject, extractImage, nil)
         }
-        return true
+        return foundImage
+    }
+
+    private func renderPDF(page: PDFPage) -> Data? {
+        guard let page = page.pageRef else { return nil }
+
+        // Double page size to try to preserve quality
+        let pageRect = page.getBoxRect(.mediaBox).applying(CGAffineTransform(scaleX: 2, y: 2))
+
+        let renderer = UIGraphicsImageRenderer(size: pageRect.size)
+        let img = renderer.image { ctx in
+            UIColor.white.set()
+            ctx.fill(pageRect)
+
+            // Flip UIKit coordinates
+            ctx.cgContext.translateBy(x: 0.0, y: pageRect.size.height)
+            ctx.cgContext.scaleBy(x: 1.0, y: -1.0)
+
+            ctx.cgContext.scaleBy(x: 2, y: 2)
+
+            ctx.cgContext.drawPDFPage(page)
+        }
+
+        return img.jpegData(compressionQuality: 1)
     }
 }
