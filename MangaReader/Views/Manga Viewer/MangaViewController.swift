@@ -68,6 +68,7 @@ class MangaViewController: UIViewController {
         configureProgressBar()
         configureKeyboard()
         configureGestures()
+        configureMenuActions()
 
         if !firstTime {
             startAtFullScreen()
@@ -216,6 +217,11 @@ class MangaViewController: UIViewController {
 
             self.overlay = overlay
         }
+    }
+
+    private func configureMenuActions() {
+        let item = UIMenuItem(title: "Search in Dictionary", action: Selector(("lookup:")))
+        UIMenuController.shared.menuItems = [item]
     }
 
     private func startAtFullScreen() {

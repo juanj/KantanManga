@@ -27,6 +27,10 @@ class WordPaser {
         var word = ""
         var partOfSpeech: PartOfSpeech?
         var reading = ""
+
+        func toJapaneseWord() -> JapaneseWord {
+            JapaneseWord(text: word, rootForm: tokens[0].originalForm ?? word, furigana: JapaneseUtils.getFurigana(text: word, reading: reading))
+        }
     }
 
     class func parse( tokens: [Token]) -> [Word] {

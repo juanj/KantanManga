@@ -8,7 +8,12 @@
 
 import Foundation
 
+protocol DictionaryViewDelegate: AnyObject {
+    func lookup(_ dictionaryView: DictionaryView, text: String)
+}
+
 class DictionaryView: UIView {
+    weak var delegate: DictionaryViewDelegate?
 
     private let scrollView = UIScrollView()
     private let stackView = UIStackView()
@@ -83,6 +88,7 @@ class DictionaryView: UIView {
         self.terms = terms
         for term in terms {
             let entryView = DictionaryTermEntryView(result: term)
+            entryView.delegate = self
             stackView.addArrangedSubview(entryView)
             termsViews.append(entryView)
         }
@@ -106,5 +112,11 @@ class DictionaryView: UIView {
 
     func scrollToTop() {
         scrollView.contentOffset = .zero
+    }
+}
+
+extension DictionaryView: DictionaryTermEntryViewDelegate {
+    func lookupText(_ dictionaryTermEntryView: DictionaryTermEntryView, text: String) {
+        delegate?.lookup(self, text: text)
     }
 }

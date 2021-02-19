@@ -12,8 +12,16 @@ extension NSAttributedString.Key {
     static let rubyAnnotation: NSAttributedString.Key = kCTRubyAnnotationAttributeName as NSAttributedString.Key
 }
 
+protocol DictionaryTermEntryViewDelegate: AnyObject {
+    func lookupText(_ dictionaryTermEntryView: DictionaryTermEntryView, text: String)
+}
+
 class DictionaryTermEntryView: UIView {
+    weak var delegate: DictionaryTermEntryViewDelegate?
+
     private let result: MergedTermSearchResult
+    private var definitionTextViews = [UITextView]()
+
     init(result: MergedTermSearchResult) {
         self.result = result
         super.init(frame: .zero)
@@ -23,6 +31,13 @@ class DictionaryTermEntryView: UIView {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if action == #selector(lookup(_ :)) {
+            return true
+        }
+        return super.canPerformAction(action, withSender: sender)
     }
 
     private func setupView() {
@@ -100,6 +115,8 @@ class DictionaryTermEntryView: UIView {
 
                 bodyStackView.addArrangedSubview(body)
                 termStackView.addArrangedSubview(bodyStackView)
+
+                definitionTextViews.append(body)
             }
             stackView.addArrangedSubview(termStackView)
         }
@@ -137,5 +154,13 @@ class DictionaryTermEntryView: UIView {
         tagLabel.addConstraintsTo(tag, spacing: .init(top: 5, left: 5, bottom: -5, right: -5))
 
         return tag
+    }
+
+    @objc func lookup(_ sender: Any?) {
+        if let textView = definitionTextViews.first(where: { $0.isFirstResponder }),
+           let range = textView.selectedTextRange,
+           let text = textView.text(in: range) {
+            delegate?.lookupText(self, text: text)
+        }
     }
 }
