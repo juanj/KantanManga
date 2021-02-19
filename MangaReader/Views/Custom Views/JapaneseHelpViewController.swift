@@ -111,6 +111,7 @@ extension JapaneseHelpViewController: DictionaryViewDelegate {
         let tokens = tokenizer.parse(text)
         let words = WordPaser.parse(tokens: tokens)
         if let first = words.first?.toJapaneseWord() {
+            parsedInputView.clearSelection()
             lookupWord(first)
         }
     }

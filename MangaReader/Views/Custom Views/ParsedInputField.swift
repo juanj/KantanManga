@@ -49,6 +49,10 @@ class ParsedInputField: UIControl {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func clearSelection() {
+        buttons.forEach { $0.isSelected = false }
+    }
+
     private func initView() {
         configureStyle()
         configureBlur()
@@ -204,7 +208,7 @@ class ParsedInputField: UIControl {
     }
 
     @objc func openDetail(button: UIButton) {
-        buttons.forEach { $0.isSelected = false }
+        clearSelection()
         button.isSelected = true
         let word = analyzedSentence[button.tag]
         delegate?.didSelectWord(self, word: word)
