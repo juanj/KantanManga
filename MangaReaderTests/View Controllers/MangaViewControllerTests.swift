@@ -169,4 +169,15 @@ class MangaViewControllerTests: XCTestCase {
 
         XCTAssertTrue(mockDataSource.initialConfigurationCalled)
     }
+
+    func testBeganLongPress_withNoOcrEnabled_togglesOcr() {
+        let mangaViewController = TestsFactories.createMangaViewController(firstTime: true)
+
+        mangaViewController.loadViewIfNeeded()
+        let tap = UILongPressGestureRecognizer()
+        tap.state = .began
+        mangaViewController.longPress(tap: tap)
+
+        XCTAssertTrue(mangaViewController.prefersStatusBarHidden)
+    }
 }
