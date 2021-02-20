@@ -82,6 +82,7 @@ class AddMangasCoordinator: NSObject, Coordinator {
                 addMangaViewController.coverImageView.image = UIImage(data: data)
                 addMangaViewController.selectFileButton.setTitle(filePath, for: .normal)
                 addMangaViewController.selectFileButton.setTitleColor(.label, for: .normal)
+                addMangaViewController.hasFile = true
                 if addMangaViewController.nameTextField.text == nil || addMangaViewController.nameTextField.text!.isEmpty {
                     let name: String = {
                         var splited = filePath.split(separator: ".")
@@ -90,6 +91,7 @@ class AddMangasCoordinator: NSObject, Coordinator {
                     }()
                     addMangaViewController.nameTextField.text = name
                 }
+                addMangaViewController.refresh()
             }
         }
         presentedNavigationController.popToRootViewController(animated: true)

@@ -20,8 +20,15 @@ class AddMangaViewController: UIViewController {
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var selectFileButton: UIButton!
     @IBOutlet weak var selectCollectionButton: UIButton!
+    private var doneButton: UIBarButtonItem!
     private weak var delegate: AddMangaViewControllerDelegate?
     private var fileName: String?
+
+    var hasFile: Bool = false {
+        didSet {
+            doneButton.isEnabled = isFill()
+        }
+    }
 
     init(delegate: AddMangaViewControllerDelegate) {
         self.delegate = delegate
@@ -35,6 +42,7 @@ class AddMangaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
+        configureTextField()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -44,8 +52,22 @@ class AddMangaViewController: UIViewController {
 
     private func configureNavBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(save))
+        doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(save))
+        doneButton.isEnabled = false
+        navigationItem.rightBarButtonItem = doneButton
         title = "Add manga"
+    }
+
+    private func configureTextField() {
+        nameTextField.addTarget(self, action: #selector(refresh), for: .editingChanged)
+    }
+
+    private func isFill() -> Bool {
+        if hasFile, let text = nameTextField.text, !text.isEmpty {
+            return true
+        } else {
+            return false
+        }
     }
 
     @objc func cancel() {
@@ -62,5 +84,9 @@ class AddMangaViewController: UIViewController {
 
     @objc func save() {
         delegate?.save(self, name: nameTextField.text)
+    }
+
+    @objc func refresh() {
+        doneButton.isEnabled = isFill()
     }
 }
