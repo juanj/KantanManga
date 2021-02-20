@@ -327,11 +327,18 @@ class MangaViewController: UIViewController {
         oldPageValue = page
     }
 
-    @objc func longPress(tap: UILongPressGestureRecognizer) {
+    func isValidTap(_ tap: UILongPressGestureRecognizer) -> Bool {
         guard tap.state == .began &&
                 !ocrEnabled,
               let subview = view.hitTest(tap.location(in: view), with: nil),
-              subview.isDescendant(of: pageController.view) else { return }
+              subview.isDescendant(of: pageController.view) else {
+            return false
+        }
+        return true
+    }
+
+    @objc func longPress(tap: UILongPressGestureRecognizer) {
+        guard isValidTap(tap) else { return }
         let animation = CABasicAnimation(keyPath: "transform.scale")
         animation.fromValue = 1
         animation.toValue = 1.01

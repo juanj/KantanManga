@@ -171,7 +171,7 @@ class MangaViewControllerTests: XCTestCase {
     }
 
     func testBeganLongPress_withNoOcrEnabled_togglesOcr() {
-        let mangaViewController = TestsFactories.createMangaViewController(firstTime: true)
+        let mangaViewController = TestsFactories.createMangaViewController(firstTime: true, testable: true)
 
         mangaViewController.loadViewIfNeeded()
         let tap = UILongPressGestureRecognizer()
