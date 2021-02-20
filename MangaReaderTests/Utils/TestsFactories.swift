@@ -65,7 +65,7 @@ final class TestsFactories {
         return collectionViewController
     }
 
-    static func createMangaViewController(manga: Manga? = nil, dataSource: MangaDataSourceable? = nil, delegate: MangaViewControllerDelegate = FakeMangaViewControllerDelegate(), firstTime: Bool = false) -> MangaViewController {
+    static func createMangaViewController(manga: Manga? = nil, dataSource: MangaDataSourceable? = nil, delegate: MangaViewControllerDelegate = FakeMangaViewControllerDelegate(), firstTime: Bool = false, testable: Bool = false) -> MangaViewController {
         let aManga: Manga
         if let manga = manga {
             aManga = manga
@@ -81,8 +81,13 @@ final class TestsFactories {
             aDataSource = MangaDataSource(manga: aManga, readerBuilder: { $1(FakeReader(fileName: $0)) })!
         }
 
-        let mangaViewController = MangaViewController(manga: aManga, dataSource: aDataSource, delegate: delegate, firstTime: firstTime)
-        return mangaViewController
+        if testable {
+            let mangaViewController = TestableMangaViewController(manga: aManga, dataSource: aDataSource, delegate: delegate, firstTime: firstTime)
+            return mangaViewController
+        } else {
+            let mangaViewController = MangaViewController(manga: aManga, dataSource: aDataSource, delegate: delegate, firstTime: firstTime)
+            return mangaViewController
+        }
     }
 
     // MARK: Database
