@@ -22,7 +22,7 @@ class TesseractOCR: ImageOCR {
             let result: Result<String, Tesseract.Error> = self.tesseract.performOCR(on: image)
             switch result {
             case .success(let text):
-                let cleanText = text.replacingOccurrences(of: "\n", with: "  ").trimmingCharacters(in: .whitespacesAndNewlines)
+                let cleanText = self.cleanOutput(text)
                 completion(.success(cleanText))
             case .failure:
                 completion(.failure(TesseractError.recognitionError))
@@ -30,4 +30,14 @@ class TesseractOCR: ImageOCR {
         }
     }
 
+    private func cleanOutput(_ output: String) -> String {
+        var notAllowed = CharacterSet.decimalDigits // Remove numbers
+        notAllowed.formUnion(CharacterSet("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ".unicodeScalars)) // And latin characters
+        notAllowed.formUnion(CharacterSet(#"-_/\()|〔〕[]{}%:<>"#.unicodeScalars)) // Some symbols
+        let cleanUnicodeScalars = output.replacingOccurrences(of: "\n", with: "  ") // Make text one line
+            .trimmingCharacters(in: .whitespacesAndNewlines) // Remove extra padding
+            .unicodeScalars
+            .filter { !notAllowed.contains($0) }
+        return String(cleanUnicodeScalars)
+    }
 }
