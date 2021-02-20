@@ -115,7 +115,10 @@ extension ViewMangaCoordinator: MangaViewControllerDelegate {
         coreDataManager.updateManga(manga: manga)
     }
 
-    func didTapCreateAnkiCard(_ mangaViewController: MangaViewController, image: UIImage, sentence: String, term: SearchTermResult) {}
+    func didTapCreateAnkiCard(_ mangaViewController: MangaViewController, image: UIImage, sentence: String, dictionaryResult: SearchTermResult) {
+        let navigationController = UINavigationController(rootViewController: CreateAnkiCardViewController(image: image, sentence: sentence, term: dictionaryResult.term))
+        navigation.present(navigationController, animated: true, completion: nil)
+    }
 }
 
 extension ViewMangaCoordinator: UINavigationControllerDelegate {
