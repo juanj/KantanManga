@@ -148,6 +148,7 @@
 		3290ECBB25C3710E00D4DE96 /* FAQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3290ECB925C3710E00D4DE96 /* FAQViewController.xib */; };
 		3292ADA22535DCF8004E8441 /* DemoOcrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3292ADA12535DCF8004E8441 /* DemoOcrView.swift */; };
 		3296181C2555943B0020C5AF /* SettingValueChangeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3296181B2555943B0020C5AF /* SettingValueChangeDelegate.swift */; };
+		3297E3CC25E1A18900743C8B /* IndexPathButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3CB25E1A18900743C8B /* IndexPathButton.swift */; };
 		3298D7D025713BB4005FB8F2 /* YomichanDictionaryImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298D7CF25713BB4005FB8F2 /* YomichanDictionaryImporter.swift */; };
 		3298D7D725713D66005FB8F2 /* DictionaryIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */; };
 		329ACA8A2552ED15002953C5 /* NumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA882552ED15002953C5 /* NumberTableViewCell.swift */; };
@@ -431,6 +432,7 @@
 		3290ECB925C3710E00D4DE96 /* FAQViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FAQViewController.xib; sourceTree = "<group>"; };
 		3292ADA12535DCF8004E8441 /* DemoOcrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoOcrView.swift; sourceTree = "<group>"; };
 		3296181B2555943B0020C5AF /* SettingValueChangeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingValueChangeDelegate.swift; sourceTree = "<group>"; };
+		3297E3CB25E1A18900743C8B /* IndexPathButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexPathButton.swift; sourceTree = "<group>"; };
 		3298D7CF25713BB4005FB8F2 /* YomichanDictionaryImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YomichanDictionaryImporter.swift; sourceTree = "<group>"; };
 		3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryIndex.swift; sourceTree = "<group>"; };
 		329ACA882552ED15002953C5 /* NumberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTableViewCell.swift; sourceTree = "<group>"; };
@@ -846,6 +848,7 @@
 				322EF657250FB49700F35E72 /* AspectAlignImage.swift */,
 				32A1517125326D76002B3920 /* CircleView.swift */,
 				32C1EEF22539DE04001F59A0 /* FocusOverlayView.swift */,
+				3297E3CB25E1A18900743C8B /* IndexPathButton.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -1582,6 +1585,7 @@
 				322C04B725680FE700BD5A51 /* Tesseract+PageSegmentation.swift in Sources */,
 				8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */,
 				3249F2D7250BBC18004C514E /* MangaCollectionCollectionViewCell.swift in Sources */,
+				3297E3CC25E1A18900743C8B /* IndexPathButton.swift in Sources */,
 				3290ECBA25C3710E00D4DE96 /* FAQViewController.swift in Sources */,
 				325199B42479D96400DA6908 /* ImageOCR.swift in Sources */,
 				328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */,

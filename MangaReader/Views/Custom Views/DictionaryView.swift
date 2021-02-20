@@ -10,6 +10,7 @@ import Foundation
 
 protocol DictionaryViewDelegate: AnyObject {
     func lookup(_ dictionaryView: DictionaryView, text: String)
+    func createAnkiCard(_ dictionaryView: DictionaryView, term: SearchTermResult)
 }
 
 class DictionaryView: UIView {
@@ -118,5 +119,9 @@ class DictionaryView: UIView {
 extension DictionaryView: DictionaryTermEntryViewDelegate {
     func lookupText(_ dictionaryTermEntryView: DictionaryTermEntryView, text: String) {
         delegate?.lookup(self, text: text)
+    }
+
+    func createAnkiCard(_ dictionaryTermEntryView: DictionaryTermEntryView, term: SearchTermResult) {
+        delegate?.createAnkiCard(self, term: term)
     }
 }

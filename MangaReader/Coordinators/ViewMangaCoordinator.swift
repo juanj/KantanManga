@@ -114,6 +114,8 @@ extension ViewMangaCoordinator: MangaViewControllerDelegate {
         manga.currentPage = Int16(newPage)
         coreDataManager.updateManga(manga: manga)
     }
+
+    func didTapCreateAnkiCard(_ mangaViewController: MangaViewController, image: UIImage, sentence: String, term: SearchTermResult) {}
 }
 
 extension ViewMangaCoordinator: UINavigationControllerDelegate {
