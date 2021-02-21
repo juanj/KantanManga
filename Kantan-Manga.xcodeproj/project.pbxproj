@@ -174,6 +174,7 @@
 		329E30E923E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */; };
 		329E459A25E2C534000B0FAE /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E459925E2C534000B0FAE /* AppCoordinator.swift */; };
 		329E45A225E2C552000B0FAE /* SentencesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E45A125E2C552000B0FAE /* SentencesCoordinator.swift */; };
+		329E45AB25E2C99F000B0FAE /* SentencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E45AA25E2C99F000B0FAE /* SentencesViewController.swift */; };
 		32A110B7255859860099A768 /* FakeLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C5B5B24830C2500C0BAB1 /* FakeLibraryViewController.swift */; };
 		32A110BC255859970099A768 /* FakeCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998E02557594700897299 /* FakeCoreDataManager.swift */; };
 		32A110D22558609B0099A768 /* FakeImageOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A110D12558609B0099A768 /* FakeImageOCR.swift */; };
@@ -470,6 +471,7 @@
 		329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MangaCollection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		329E459925E2C534000B0FAE /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		329E45A125E2C552000B0FAE /* SentencesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentencesCoordinator.swift; sourceTree = "<group>"; };
+		329E45AA25E2C99F000B0FAE /* SentencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentencesViewController.swift; sourceTree = "<group>"; };
 		32A110D12558609B0099A768 /* FakeImageOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeImageOCR.swift; sourceTree = "<group>"; };
 		32A1516A253260C0002B3920 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		32A1516B253260C0002B3920 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
@@ -854,6 +856,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		329E45A925E2C98F000B0FAE /* Sentences */ = {
+			isa = PBXGroup;
+			children = (
+				329E45AA25E2C99F000B0FAE /* SentencesViewController.swift */,
+			);
+			path = Sentences;
+			sourceTree = "<group>";
+		};
 		32A1516025325F61002B3920 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -1151,6 +1161,7 @@
 				32AAD56E23DF7038009B3BCE /* Custom Views */,
 				32F1B9FA24369CEB00AE367D /* Manga Viewer */,
 				32F1B9F824369CAA00AE367D /* Library */,
+				329E45A925E2C98F000B0FAE /* Sentences */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1668,6 +1679,7 @@
 				32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */,
 				32E322182481A531007BC017 /* ParsedInputField.swift in Sources */,
 				32326F8624354ECC00FCE8E5 /* FileSourceViewController.swift in Sources */,
+				329E45AB25E2C99F000B0FAE /* SentencesViewController.swift in Sources */,
 				322EF655250FB05800F35E72 /* CGSize+Extension.swift in Sources */,
 				325199B72479D9E000DA6908 /* GoogleVisionOCR.swift in Sources */,
 				322C5B602483125A00C0BAB1 /* Coordinator.swift in Sources */,

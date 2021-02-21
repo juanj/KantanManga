@@ -24,7 +24,7 @@ class AppCoordinator: Coordinator {
         let sentencesNavigation = createSentencesNavigation()
 
         let libraryCoordinator = LibraryCoordinator(navigation: libraryNavigation, coreDataManager: coreDataManager)
-        let sentencesCoordinator = SentencesCoordinator()
+        let sentencesCoordinator = SentencesCoordinator(navigation: sentencesNavigation, coreDataManager: coreDataManager)
 
         childCoordinators.append(libraryCoordinator)
         childCoordinators.append(sentencesCoordinator)
