@@ -37,4 +37,14 @@ class CreateAnkiCardCoordinatorTests: XCTestCase {
 
         XCTAssertTrue(mockDelegate.didEndCalled)
     }
+
+    func testCancel_withPresentedNavigation_dismissNavigation() {
+        let mockNavigation = FakeNavigation()
+        let createAnkiCardCoordinator = TestsFactories.createCreateAnkiCardCoordinator(navigable: mockNavigation)
+
+        mockNavigation.present(UIViewController(), animated: false)
+        createAnkiCardCoordinator.cancel(TestsFactories.createCreateAnkiCardViewController())
+
+        XCTAssertNil(mockNavigation.presentedViewController)
+    }
 }
