@@ -253,6 +253,66 @@ class CoreDataManager: CoreDataManageable {
         }
     }
 
+    // MARK: AnkiCard Methods
+    func insertAnkiCard(sentence: String, definition: String, image: UIImage?) -> AnkiCard? {
+        let managedContext = persistentContainer.viewContext
+        let ankiCard = AnkiCard(context: managedContext, sentence: sentence, definition: definition, image: image)
+        do {
+            try managedContext.save()
+            return ankiCard
+        } catch let error as NSError {
+            print("Couldn't save AnkiCard. \(error), \(error.userInfo)")
+            return nil
+        }
+    }
+
+    func delete(ankiCard: AnkiCard) {
+        let managedContext = persistentContainer.viewContext
+        managedContext.delete(ankiCard)
+
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Couldn't delete AnkiCard \(error), \(error.userInfo)")
+        }
+    }
+
+    func deleteAllAnkiCards() {
+        let fetchRequest = AnkiCard.createFetchRequest()
+        do {
+            let ankiCards = try persistentContainer.viewContext.fetch(fetchRequest)
+            for case let ankiCard as NSManagedObject in ankiCards {
+                persistentContainer.viewContext.delete(ankiCard)
+            }
+
+            try persistentContainer.viewContext.save()
+        } catch let error as NSError {
+            print("Error when deleting all AnkiCards. \(error), \(error.userInfo)")
+        }
+    }
+
+    func fetchAllAnkiCards() -> [AnkiCard]? {
+        let managedContext = persistentContainer.viewContext
+        let fetchRequest = AnkiCard.createFetchRequest()
+
+        do {
+            let ankiCards = try managedContext.fetch(fetchRequest)
+            return ankiCards
+        } catch let error as NSError {
+            print("Couldn't fetch all AnkiCards. \(error), \(error.userInfo)")
+            return nil
+        }
+    }
+
+    func update(ankiCard: AnkiCard) {
+        let context = persistentContainer.viewContext
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("Could not update AnkiCard \(error), \(error.userInfo)")
+        }
+    }
+
     // MARK: Utils
     func createDemoManga(completion: @escaping () -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {

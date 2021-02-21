@@ -158,6 +158,8 @@
 		3297E3F925E1D81900743C8B /* FakeCreateAnkiCardCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3F825E1D81900743C8B /* FakeCreateAnkiCardCoordinatorDelegate.swift */; };
 		3297E3FE25E1D94500743C8B /* FakeCreateAnkiCardViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3FD25E1D94500743C8B /* FakeCreateAnkiCardViewControllerDelegate.swift */; };
 		3297E40A25E1DB0100743C8B /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 3297E40925E1DB0100743C8B /* CropViewController */; };
+		3297E40F25E1E51000743C8B /* AnkiCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E40E25E1E51000743C8B /* AnkiCard.swift */; };
+		3297E41425E1E5E200743C8B /* AnkiCard+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E41325E1E5E200743C8B /* AnkiCard+CoreDataProperties.swift */; };
 		3298D7D025713BB4005FB8F2 /* YomichanDictionaryImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298D7CF25713BB4005FB8F2 /* YomichanDictionaryImporter.swift */; };
 		3298D7D725713D66005FB8F2 /* DictionaryIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */; };
 		329ACA8A2552ED15002953C5 /* NumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA882552ED15002953C5 /* NumberTableViewCell.swift */; };
@@ -450,6 +452,8 @@
 		3297E3F325E1D64100743C8B /* TestableMangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableMangaViewController.swift; sourceTree = "<group>"; };
 		3297E3F825E1D81900743C8B /* FakeCreateAnkiCardCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCreateAnkiCardCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		3297E3FD25E1D94500743C8B /* FakeCreateAnkiCardViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCreateAnkiCardViewControllerDelegate.swift; sourceTree = "<group>"; };
+		3297E40E25E1E51000743C8B /* AnkiCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiCard.swift; sourceTree = "<group>"; };
+		3297E41325E1E5E200743C8B /* AnkiCard+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnkiCard+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3298D7CF25713BB4005FB8F2 /* YomichanDictionaryImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YomichanDictionaryImporter.swift; sourceTree = "<group>"; };
 		3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryIndex.swift; sourceTree = "<group>"; };
 		329ACA882552ED15002953C5 /* NumberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTableViewCell.swift; sourceTree = "<group>"; };
@@ -1155,6 +1159,8 @@
 				8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */,
 				329E30E623E9CEE000AD13A3 /* MangaCollection.swift */,
 				329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */,
+				3297E40E25E1E51000743C8B /* AnkiCard.swift */,
+				3297E41325E1E5E200743C8B /* AnkiCard+CoreDataProperties.swift */,
 				32AF5BCD2512567900E96C9F /* MangaCollectionable.swift */,
 				32AF5BD0251256E600E96C9F /* EmptyMangaCollection.swift */,
 				3298D7D525713D44005FB8F2 /* Dictionary */,
@@ -1593,6 +1599,7 @@
 				84A83219221D923800CEE1C9 /* AppCoordinator.swift in Sources */,
 				843FA7EC221E0BE900B86B52 /* PageViewController.swift in Sources */,
 				32792AC725D971BD00D0B96D /* KanjiMetaSearchResult.swift in Sources */,
+				3297E41425E1E5E200743C8B /* AnkiCard+CoreDataProperties.swift in Sources */,
 				325CFC1D2480582700110F31 /* DictionaryView.swift in Sources */,
 				32F1B9F3243685DC00AE367D /* SelectCollectionTableViewController.swift in Sources */,
 				32AF5BD1251256E600E96C9F /* EmptyMangaCollection.swift in Sources */,
@@ -1607,6 +1614,7 @@
 				32AF5BCE2512567900E96C9F /* MangaCollectionable.swift in Sources */,
 				3283D1012552069700C08D02 /* ToggleTableViewCell.swift in Sources */,
 				843FA7DF221DEDDF00B86B52 /* AddMangasCoordinator.swift in Sources */,
+				3297E40F25E1E51000743C8B /* AnkiCard.swift in Sources */,
 				32A1517225326D76002B3920 /* CircleView.swift in Sources */,
 				3267AE92257142CA00806D5B /* DictionaryDecoderError.swift in Sources */,
 				843FA7E9221DFE9E00B86B52 /* CBZReader.swift in Sources */,
