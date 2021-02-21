@@ -14,7 +14,7 @@ extension NSAttributedString.Key {
 
 protocol DictionaryTermEntryViewDelegate: AnyObject {
     func lookupText(_ dictionaryTermEntryView: DictionaryTermEntryView, text: String)
-    func createAnkiCard(_ dictionaryTermEntryView: DictionaryTermEntryView, term: SearchTermResult)
+    func createSentence(_ dictionaryTermEntryView: DictionaryTermEntryView, term: SearchTermResult)
 }
 
 class DictionaryTermEntryView: UIView {
@@ -179,6 +179,6 @@ class DictionaryTermEntryView: UIView {
     @objc func addToAnki(_ sender: UserInfoButton) {
         guard let termIndex = sender.userInfo as? TermIndex,
               let term = groupedTerms[termIndex.group]?[termIndex.index] else { return }
-        delegate?.createAnkiCard(self, term: term)
+        delegate?.createSentence(self, term: term)
     }
 }

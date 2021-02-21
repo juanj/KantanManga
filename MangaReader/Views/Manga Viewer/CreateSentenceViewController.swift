@@ -1,5 +1,5 @@
 //
-//  CreateAnkiCardViewController.swift
+//  CreateSentenceViewController.swift
 //  Kantan-Manga
 //
 //  Created by Juan on 20/02/21.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol CreateAnkiCardViewControllerDelegate: AnyObject {
-    func cancel(_ createAnkiCardViewController: CreateAnkiCardViewController)
-    func save(_ createAnkiCardViewController: CreateAnkiCardViewController, sentence: String, definition: String)
-    func editImage(_ createAnkiCardViewController: CreateAnkiCardViewController)
+protocol CreateSentenceViewControllerDelegate: AnyObject {
+    func cancel(_ createSentenceViewController: CreateSentenceViewController)
+    func save(_ createSentenceViewController: CreateSentenceViewController, sentence: String, definition: String)
+    func editImage(_ createSentenceViewController: CreateSentenceViewController)
 }
 
-class CreateAnkiCardViewController: UIViewController {
+class CreateSentenceViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var sentenceTextField: UITextField!
     @IBOutlet weak var definitionTextView: UITextView!
@@ -22,8 +22,8 @@ class CreateAnkiCardViewController: UIViewController {
     private let image: UIImage
     private let sentence: String
     private let term: Term
-    private weak var delegate: CreateAnkiCardViewControllerDelegate?
-    init(image: UIImage, sentence: String, term: Term, delegate: CreateAnkiCardViewControllerDelegate) {
+    private weak var delegate: CreateSentenceViewControllerDelegate?
+    init(image: UIImage, sentence: String, term: Term, delegate: CreateSentenceViewControllerDelegate) {
         self.image = image
         self.sentence = sentence
         self.term = term

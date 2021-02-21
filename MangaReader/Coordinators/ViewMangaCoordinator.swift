@@ -115,10 +115,10 @@ extension ViewMangaCoordinator: MangaViewControllerDelegate {
         coreDataManager.updateManga(manga: manga)
     }
 
-    func didTapCreateAnkiCard(_ mangaViewController: MangaViewController, image: UIImage, sentence: String, dictionaryResult: SearchTermResult) {
-        let createAnkiCardCoordinator = CreateAnkiCardCoordinator(navigation: navigation, image: image, sentence: sentence, term: dictionaryResult.term, coreDataManager: coreDataManager, delegate: self)
-        childCoordinators.append(createAnkiCardCoordinator)
-        createAnkiCardCoordinator.start()
+    func didTapCreateSentence(_ mangaViewController: MangaViewController, image: UIImage, sentence: String, dictionaryResult: SearchTermResult) {
+        let createSentenceCoordinator = CreateSentenceCoordinator(navigation: navigation, image: image, sentence: sentence, term: dictionaryResult.term, coreDataManager: coreDataManager, delegate: self)
+        childCoordinators.append(createSentenceCoordinator)
+        createSentenceCoordinator.start()
     }
 }
 
@@ -164,8 +164,8 @@ extension ViewMangaCoordinator: ViewerSettingsViewControllerDelegate {
     }
 }
 
-extension ViewMangaCoordinator: CreateAnkiCardCoordinatorDelegate {
-    func didEnd(_ createAnkiCardCoordinator: CreateAnkiCardCoordinator) {
-        removeChildCoordinator(type: CreateAnkiCardCoordinator.self)
+extension ViewMangaCoordinator: CreateSentenceCoordinatorDelegate {
+    func didEnd(_ createSentenceCoordinator: CreateSentenceCoordinator) {
+        removeChildCoordinator(type: CreateSentenceCoordinator.self)
     }
 }

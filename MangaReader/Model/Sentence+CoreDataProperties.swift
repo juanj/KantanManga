@@ -1,5 +1,5 @@
 //
-//  AnkiCard+CoreDataProperties.swift
+//  Sentence+CoreDataProperties.swift
 //  Kantan-Manga
 //
 //  Created by Juan on 20/02/21.
@@ -7,9 +7,9 @@
 
 import CoreData
 
-extension AnkiCard {
-    @nonobjc public class func createFetchRequest() -> NSFetchRequest<AnkiCard> {
-        return NSFetchRequest<AnkiCard>(entityName: "AnkiCard")
+extension Sentence {
+    @nonobjc public class func createFetchRequest() -> NSFetchRequest<Sentence> {
+        return NSFetchRequest<Sentence>(entityName: "Sentence")
     }
 
     @NSManaged public var sentence: String

@@ -1,5 +1,5 @@
 //
-//  TestableCreateAnkiCardCoordinator.swift
+//  TestableCreateSentenceCoordinator.swift
 //  Kantan-MangaTests
 //
 //  Created by Juan on 20/02/21.
@@ -7,7 +7,7 @@
 
 @testable import Kantan_Manga
 
-class TestableCreateAnkiCardCoordinator: CreateAnkiCardCoordinator {
+class TestableCreateSentenceCoordinator: CreateSentenceCoordinator {
     var presentableNavigable: Navigable?
     override func createPresentableNavigation() -> Navigable {
         if let navigation = presentableNavigable {

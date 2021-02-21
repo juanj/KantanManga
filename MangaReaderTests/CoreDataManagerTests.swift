@@ -209,63 +209,63 @@ class CoreDataManagerTests: XCTestCase {
         XCTAssertEqual(testCollection.name, "Test Collection")
     }
 
-    func testInsertAnkiCard_withInMemoryCoreDataManager_insertsAnkiCard() {
+    func testInsertSentence_withInMemoryCoreDataManager_insertsSentence() {
         let coreDataManager = InMemoryCoreDataManager()
 
-        coreDataManager.insertAnkiCard(sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)
 
-        XCTAssertEqual(coreDataManager.fetchAllAnkiCards()?.count, 1)
+        XCTAssertEqual(coreDataManager.fetchAllSentences()?.count, 1)
     }
 
-    func testDeleteAnkiCard_afterInsertingMultipleAnkiCards_deletesAnkiCard() {
+    func testDeleteSentence_afterInsertingMultipleSentences_deletesSentence() {
         let coreDataManager = InMemoryCoreDataManager()
 
-        coreDataManager.insertAnkiCard(sentence: "Test", definition: "Definition", image: nil)
-        coreDataManager.insertAnkiCard(sentence: "Test", definition: "Definition", image: nil)
-        coreDataManager.insertAnkiCard(sentence: "Test", definition: "Definition", image: nil)
-        let ankiCard = coreDataManager.insertAnkiCard(sentence: "Test", definition: "Definition", image: nil)!
-        coreDataManager.delete(ankiCard: ankiCard)
+        coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)
+        let sentence = coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)!
+        coreDataManager.delete(sentence: sentence)
 
-        XCTAssertEqual(coreDataManager.fetchAllAnkiCards()?.count, 3)
+        XCTAssertEqual(coreDataManager.fetchAllSentences()?.count, 3)
     }
 
-    func testDeleteAllAnkiCards_afterInsertingMultipleAnkiCards_deletesAllAnkiCards() {
+    func testDeleteAllSentences_afterInsertingMultipleSentences_deletesAllSentences() {
         let coreDataManager = InMemoryCoreDataManager()
 
-        coreDataManager.insertAnkiCard(sentence: "Test", definition: "Definition", image: nil)
-        coreDataManager.insertAnkiCard(sentence: "Test", definition: "Definition", image: nil)
-        coreDataManager.insertAnkiCard(sentence: "Test", definition: "Definition", image: nil)
-        coreDataManager.insertAnkiCard(sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)
 
-        coreDataManager.deleteAllAnkiCards()
+        coreDataManager.deleteAllSentences()
 
-        XCTAssertEqual(coreDataManager.fetchAllAnkiCards()?.count, 0)
+        XCTAssertEqual(coreDataManager.fetchAllSentences()?.count, 0)
     }
 
-    func testFetchAllAnkiCards_afterInsertingMultipleAnkiCards_returnsAllAnkiCards() {
+    func testFetchAllSentences_afterInsertingMultipleSentences_returnsAllSentences() {
         let coreDataManager = InMemoryCoreDataManager()
 
-        let card1 = coreDataManager.insertAnkiCard(sentence: "Test", definition: "Definition", image: nil)!
-        let card2 = coreDataManager.insertAnkiCard(sentence: "Test", definition: "Definition", image: nil)!
-        let card3 = coreDataManager.insertAnkiCard(sentence: "Test", definition: "Definition", image: nil)!
-        let card4 = coreDataManager.insertAnkiCard(sentence: "Test", definition: "Definition", image: nil)!
+        let card1 = coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)!
+        let card2 = coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)!
+        let card3 = coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)!
+        let card4 = coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)!
 
-        let allCards = coreDataManager.fetchAllAnkiCards()!
+        let allCards = coreDataManager.fetchAllSentences()!
 
         XCTAssertEqual(Set(allCards), Set([card1, card2, card3, card4]))
     }
 
-    func testUpdateAnkiCard_afterInserting_updatesCard() {
+    func testUpdateSentence_afterInserting_updatesCard() {
         let coreDataManager = InMemoryCoreDataManager()
 
-        let card = coreDataManager.insertAnkiCard(sentence: "Test", definition: "Definition", image: nil)!
+        let card = coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)!
 
         card.sentence = "Test Sentence"
         card.definition = "Test Definition"
         card.imageData = "ABC".data(using: .utf8)
 
-        coreDataManager.update(ankiCard: card)
-        let updatedCard = coreDataManager.fetchAllAnkiCards()![0]
+        coreDataManager.update(sentence: card)
+        let updatedCard = coreDataManager.fetchAllSentences()![0]
 
         XCTAssertEqual(updatedCard, card)
     }

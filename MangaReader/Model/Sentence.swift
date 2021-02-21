@@ -1,5 +1,5 @@
 //
-//  AnkiCard.swift
+//  Sentence.swift
 //  Kantan-Manga
 //
 //  Created by Juan on 20/02/21.
@@ -7,8 +7,8 @@
 
 import CoreData
 
-@objc(AnkiCard)
-public class AnkiCard: NSManagedObject {
+@objc(Sentence)
+public class Sentence: NSManagedObject {
     var image: UIImage?
 
     convenience init(context: NSManagedObjectContext, sentence: String, definition: String, image: UIImage?) {

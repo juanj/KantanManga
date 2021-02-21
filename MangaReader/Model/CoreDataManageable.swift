@@ -36,11 +36,11 @@ protocol CoreDataManageable {
     func searchCollectionsStartWith(name: String) -> [MangaCollection]?
     func updateCollection(_ collection: MangaCollection)
 
-    // AnkiCard methods
+    // Sentence methods
     @discardableResult
-    func insertAnkiCard(sentence: String, definition: String, image: UIImage?) -> AnkiCard?
-    func delete(ankiCard: AnkiCard)
-    func deleteAllAnkiCards()
-    func fetchAllAnkiCards() -> [AnkiCard]?
-    func update(ankiCard: AnkiCard)
+    func insertSentence(sentence: String, definition: String, image: UIImage?) -> Sentence?
+    func delete(sentence: Sentence)
+    func deleteAllSentences()
+    func fetchAllSentences() -> [Sentence]?
+    func update(sentence: Sentence)
 }

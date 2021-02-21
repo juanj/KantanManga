@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="AnkiCard" representedClassName="AnkiCard" syncable="YES">
-        <attribute name="definition" attributeType="String"/>
-        <attribute name="imageData" optional="YES" attributeType="Binary"/>
-        <attribute name="sentence" attributeType="String"/>
-    </entity>
     <entity name="Manga" representedClassName="Manga" syncable="YES">
         <attribute name="coverData" optional="YES" attributeType="Binary"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -19,9 +14,14 @@
         <attribute name="name" attributeType="String"/>
         <relationship name="mangasInCollection" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Manga" inverseName="mangaCollection" inverseEntity="Manga"/>
     </entity>
+    <entity name="Sentence" representedClassName="Sentence" syncable="YES">
+        <attribute name="definition" attributeType="String"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary"/>
+        <attribute name="sentence" attributeType="String"/>
+    </entity>
     <elements>
+        <element name="Sentence" positionX="-441" positionY="-36" width="128" height="88"/>
         <element name="Manga" positionX="-615" positionY="-139" width="128" height="163"/>
         <element name="MangaCollection" positionX="-297" positionY="-9" width="128" height="73"/>
-        <element name="AnkiCard" positionX="-441" positionY="-36" width="128" height="88"/>
     </elements>
 </model>

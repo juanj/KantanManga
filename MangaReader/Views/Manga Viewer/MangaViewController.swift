@@ -14,7 +14,7 @@ protocol MangaViewControllerDelegate: AnyObject {
     func didSelectSectionOfImage(_ mangaViewController: MangaViewController, image: UIImage)
     func didTapSettings(_ mangaViewController: MangaViewController)
     func pageDidChange(_ mangaViewController: MangaViewController, manga: Manga, newPage: Int)
-    func didTapCreateAnkiCard(_ mangaViewController: MangaViewController, image: UIImage, sentence: String, dictionaryResult: SearchTermResult)
+    func didTapCreateSentence(_ mangaViewController: MangaViewController, image: UIImage, sentence: String, dictionaryResult: SearchTermResult)
 }
 
 class MangaViewController: UIViewController {
@@ -470,7 +470,7 @@ extension MangaViewController: JapaneseHelpViewControllerDelegate {
         }
     }
 
-    func createAnkiCard(_ japaneseHelpViewController: JapaneseHelpViewController, sentence: String, term: SearchTermResult) {
+    func createSentence(_ japaneseHelpViewController: JapaneseHelpViewController, sentence: String, term: SearchTermResult) {
         guard let pages = pageController.viewControllers as? [PageViewController] else { return }
         let images = pages.compactMap(\.pageImage)
         let imageWidth = images.map(\.size.width)
@@ -487,7 +487,7 @@ extension MangaViewController: JapaneseHelpViewControllerDelegate {
             }
         }
 
-        delegate?.didTapCreateAnkiCard(self, image: image, sentence: sentence, dictionaryResult: term)
+        delegate?.didTapCreateSentence(self, image: image, sentence: sentence, dictionaryResult: term)
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  CreateAnkiCardCoordinator.swift
+//  CreateSentenceCoordinator.swift
 //  Kantan-Manga
 //
 //  Created by Juan on 20/02/21.
@@ -8,25 +8,25 @@
 import Foundation
 import CropViewController
 
-protocol CreateAnkiCardCoordinatorDelegate: AnyObject {
-    func didEnd(_ createAnkiCardCoordinator: CreateAnkiCardCoordinator)
+protocol CreateSentenceCoordinatorDelegate: AnyObject {
+    func didEnd(_ createSentenceCoordinator: CreateSentenceCoordinator)
 }
 
-class CreateAnkiCardCoordinator: NSObject, Coordinator {
+class CreateSentenceCoordinator: NSObject, Coordinator {
     var childCoordinators = [Coordinator]()
 
     private var presentedNavigation: Navigable!
     private var currentCrop: CGRect?
     private var croppedImage: UIImage?
-    private var createAnkiCardViewController: CreateAnkiCardViewController?
+    private var createSentenceViewController: CreateSentenceViewController?
 
     private let navigation: Navigable
     private let image: UIImage
     private let sentence: String
     private let term: Term
     private let coreDataManager: CoreDataManageable
-    private weak var delegate: CreateAnkiCardCoordinatorDelegate?
-    init(navigation: Navigable, image: UIImage, sentence: String, term: Term, coreDataManager: CoreDataManageable, delegate: CreateAnkiCardCoordinatorDelegate?) {
+    private weak var delegate: CreateSentenceCoordinatorDelegate?
+    init(navigation: Navigable, image: UIImage, sentence: String, term: Term, coreDataManager: CoreDataManageable, delegate: CreateSentenceCoordinatorDelegate?) {
         self.navigation = navigation
         self.image = image
         self.sentence = sentence
@@ -36,12 +36,12 @@ class CreateAnkiCardCoordinator: NSObject, Coordinator {
     }
 
     func start() {
-        let createAnkiCardViewController = CreateAnkiCardViewController(image: image, sentence: sentence, term: term, delegate: self)
+        let createSentenceViewController = CreateSentenceViewController(image: image, sentence: sentence, term: term, delegate: self)
         presentedNavigation = createPresentableNavigation()
-        presentedNavigation.setViewControllers([createAnkiCardViewController], animated: false)
+        presentedNavigation.setViewControllers([createSentenceViewController], animated: false)
 
         navigation.present(presentedNavigation, animated: true, completion: nil)
-        self.createAnkiCardViewController = createAnkiCardViewController
+        self.createSentenceViewController = createSentenceViewController
     }
 
     func createPresentableNavigation() -> Navigable {
@@ -49,19 +49,19 @@ class CreateAnkiCardCoordinator: NSObject, Coordinator {
     }
 }
 
-extension CreateAnkiCardCoordinator: CreateAnkiCardViewControllerDelegate {
-    func cancel(_ createAnkiCardViewController: CreateAnkiCardViewController) {
+extension CreateSentenceCoordinator: CreateSentenceViewControllerDelegate {
+    func cancel(_ createSentenceViewController: CreateSentenceViewController) {
         navigation.dismiss(animated: true, completion: nil)
         delegate?.didEnd(self)
     }
 
-    func save(_ createAnkiCardViewController: CreateAnkiCardViewController, sentence: String, definition: String) {
-        coreDataManager.insertAnkiCard(sentence: sentence, definition: definition, image: croppedImage ?? image)
+    func save(_ createSentenceViewController: CreateSentenceViewController, sentence: String, definition: String) {
+        coreDataManager.insertSentence(sentence: sentence, definition: definition, image: croppedImage ?? image)
         navigation.dismiss(animated: true, completion: nil)
         delegate?.didEnd(self)
     }
 
-    func editImage(_ createAnkiCardViewController: CreateAnkiCardViewController) {
+    func editImage(_ createSentenceViewController: CreateSentenceViewController) {
         let cropViewController = CropViewController(image: image)
         if let currentCrop = currentCrop {
             cropViewController.imageCropFrame = currentCrop
@@ -77,11 +77,11 @@ extension CreateAnkiCardCoordinator: CreateAnkiCardViewControllerDelegate {
     }
 }
 
-extension CreateAnkiCardCoordinator: CropViewControllerDelegate {
+extension CreateSentenceCoordinator: CropViewControllerDelegate {
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
         currentCrop = cropRect
         croppedImage = image
-        createAnkiCardViewController?.setImage(image)
+        createSentenceViewController?.setImage(image)
 
         cropViewController.dismiss(animated: true, completion: nil)
     }

@@ -253,64 +253,64 @@ class CoreDataManager: CoreDataManageable {
         }
     }
 
-    // MARK: AnkiCard Methods
+    // MARK: Sentence Methods
     @discardableResult
-    func insertAnkiCard(sentence: String, definition: String, image: UIImage?) -> AnkiCard? {
+    func insertSentence(sentence: String, definition: String, image: UIImage?) -> Sentence? {
         let managedContext = persistentContainer.viewContext
-        let ankiCard = AnkiCard(context: managedContext, sentence: sentence, definition: definition, image: image)
+        let sentence = Sentence(context: managedContext, sentence: sentence, definition: definition, image: image)
         do {
             try managedContext.save()
-            return ankiCard
+            return sentence
         } catch let error as NSError {
-            print("Couldn't save AnkiCard. \(error), \(error.userInfo)")
+            print("Couldn't save Sentence. \(error), \(error.userInfo)")
             return nil
         }
     }
 
-    func delete(ankiCard: AnkiCard) {
+    func delete(sentence: Sentence) {
         let managedContext = persistentContainer.viewContext
-        managedContext.delete(ankiCard)
+        managedContext.delete(sentence)
 
         do {
             try managedContext.save()
         } catch let error as NSError {
-            print("Couldn't delete AnkiCard \(error), \(error.userInfo)")
+            print("Couldn't delete Sentence \(error), \(error.userInfo)")
         }
     }
 
-    func deleteAllAnkiCards() {
-        let fetchRequest = AnkiCard.createFetchRequest()
+    func deleteAllSentences() {
+        let fetchRequest = Sentence.createFetchRequest()
         do {
-            let ankiCards = try persistentContainer.viewContext.fetch(fetchRequest)
-            for case let ankiCard as NSManagedObject in ankiCards {
-                persistentContainer.viewContext.delete(ankiCard)
+            let sentences = try persistentContainer.viewContext.fetch(fetchRequest)
+            for case let sentence as NSManagedObject in sentences {
+                persistentContainer.viewContext.delete(sentence)
             }
 
             try persistentContainer.viewContext.save()
         } catch let error as NSError {
-            print("Error when deleting all AnkiCards. \(error), \(error.userInfo)")
+            print("Error when deleting all Sentences. \(error), \(error.userInfo)")
         }
     }
 
-    func fetchAllAnkiCards() -> [AnkiCard]? {
+    func fetchAllSentences() -> [Sentence]? {
         let managedContext = persistentContainer.viewContext
-        let fetchRequest = AnkiCard.createFetchRequest()
+        let fetchRequest = Sentence.createFetchRequest()
 
         do {
-            let ankiCards = try managedContext.fetch(fetchRequest)
-            return ankiCards
+            let sentences = try managedContext.fetch(fetchRequest)
+            return sentences
         } catch let error as NSError {
-            print("Couldn't fetch all AnkiCards. \(error), \(error.userInfo)")
+            print("Couldn't fetch all Sentences. \(error), \(error.userInfo)")
             return nil
         }
     }
 
-    func update(ankiCard: AnkiCard) {
+    func update(sentence: Sentence) {
         let context = persistentContainer.viewContext
         do {
             try context.save()
         } catch let error as NSError {
-            print("Could not update AnkiCard \(error), \(error.userInfo)")
+            print("Could not update Sentence \(error), \(error.userInfo)")
         }
     }
 
