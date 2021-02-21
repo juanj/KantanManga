@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol CreateAnkiCardViewControllerDelegate: AnyObject {
+    func cancel(_ createAnkiCardViewController: CreateAnkiCardViewController)
+    func save(_ createAnkiCardViewController: CreateAnkiCardViewController)
+    func editImage(_ createAnkiCardViewController: CreateAnkiCardViewController)
+}
+
 class CreateAnkiCardViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var sentenceTextField: UITextField!
@@ -16,10 +22,12 @@ class CreateAnkiCardViewController: UIViewController {
     private let image: UIImage
     private let sentence: String
     private let term: Term
-    init(image: UIImage, sentence: String, term: Term) {
+    private weak var delegate: CreateAnkiCardViewControllerDelegate?
+    init(image: UIImage, sentence: String, term: Term, delegate: CreateAnkiCardViewControllerDelegate) {
         self.image = image
         self.sentence = sentence
         self.term = term
+        self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -33,6 +41,7 @@ class CreateAnkiCardViewController: UIViewController {
         loadData()
         configureNavigationBar()
         configureScrollView()
+        configureGestures()
     }
 
     private func loadData() {
@@ -66,12 +75,22 @@ class CreateAnkiCardViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
-    @objc func cancel() {
+    private func configureGestures() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(editImage))
+        imageView.addGestureRecognizer(tapGesture)
+        imageView.isUserInteractionEnabled = true
+    }
 
+    @objc func cancel() {
+        delegate?.cancel(self)
     }
 
     @objc func save() {
+        delegate?.save(self)
+    }
 
+    @objc func editImage() {
+        delegate?.editImage(self)
     }
 
     @objc func handleKeyboard(notification: Notification) {

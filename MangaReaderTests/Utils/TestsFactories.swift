@@ -59,6 +59,16 @@ final class TestsFactories {
         return dictionariesCoordinator
     }
 
+    static func createCreateAnkiCardCoordinator(navigable: Navigable = FakeNavigation(), image: UIImage = UIImage(), sentence: String = "", term: Term = Term(from: TermEntryV1(expression: "", reading: "", definitionTags: "", rules: "", score: 0, glossary: []), dictionaryId: 0), delegate: CreateAnkiCardCoordinatorDelegate = FakeCreateAnkiCardCoordinatorDelegate()) -> CreateAnkiCardCoordinator {
+        let createAnkiCardCoordinator = CreateAnkiCardCoordinator(navigation: navigable, image: image, sentence: sentence, term: term, delegate: delegate)
+        return createAnkiCardCoordinator
+    }
+
+    static func createTestableCreateAnkiCardCoordinator(navigable: Navigable = FakeNavigation(), image: UIImage = UIImage(), sentence: String = "", term: Term = Term(from: TermEntryV1(expression: "", reading: "", definitionTags: "", rules: "", score: 0, glossary: []), dictionaryId: 0), delegate: CreateAnkiCardCoordinatorDelegate = FakeCreateAnkiCardCoordinatorDelegate()) -> TestableCreateAnkiCardCoordinator {
+        let createAnkiCardCoordinator = TestableCreateAnkiCardCoordinator(navigation: navigable, image: image, sentence: sentence, term: term, delegate: delegate)
+        return createAnkiCardCoordinator
+    }
+
     // MARK: ViewControllers
     static func createCollectionViewController() -> CollectionViewController {
         let collectionViewController = FakeCollectionViewController(delegate: FakeCollectionViewControllerDelgate(), collection: EmptyMangaCollection(mangas: []), sourcePoint: .zero, initialRotations: [])
@@ -90,6 +100,9 @@ final class TestsFactories {
         }
     }
 
+    static func createCreateAnkiCardViewController(image: UIImage = UIImage(), sentence: String = "", term: Term = Term(from: TermEntryV1(expression: "", reading: "", definitionTags: "", rules: "", score: 0, glossary: []), dictionaryId: 0), delegate: CreateAnkiCardViewControllerDelegate = FakeCreateAnkiCardViewControllerDelegate()) -> CreateAnkiCardViewController {
+        return CreateAnkiCardViewController(image: image, sentence: sentence, term: term, delegate: delegate)
+    }
     // MARK: Database
     static func createTestDatabase() -> DatabaseQueue {
         var configuration = Configuration()

@@ -116,8 +116,9 @@ extension ViewMangaCoordinator: MangaViewControllerDelegate {
     }
 
     func didTapCreateAnkiCard(_ mangaViewController: MangaViewController, image: UIImage, sentence: String, dictionaryResult: SearchTermResult) {
-        let navigationController = UINavigationController(rootViewController: CreateAnkiCardViewController(image: image, sentence: sentence, term: dictionaryResult.term))
-        navigation.present(navigationController, animated: true, completion: nil)
+        let createAnkiCardCoordinator = CreateAnkiCardCoordinator(navigation: navigation, image: image, sentence: sentence, term: dictionaryResult.term, delegate: self)
+        childCoordinators.append(createAnkiCardCoordinator)
+        createAnkiCardCoordinator.start()
     }
 }
 
@@ -160,5 +161,11 @@ extension ViewMangaCoordinator: ViewerSettingsViewControllerDelegate {
 
     func didSelectDone(_ viewerSettingsViewController: ViewerSettingsViewController) {
         navigation.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension ViewMangaCoordinator: CreateAnkiCardCoordinatorDelegate {
+    func didEnd(_ createAnkiCardCoordinator: CreateAnkiCardCoordinator) {
+        removeChildCoordinator(type: CreateAnkiCardCoordinator.self)
     }
 }

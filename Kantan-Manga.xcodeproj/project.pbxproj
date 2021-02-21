@@ -151,6 +151,13 @@
 		3297E3CC25E1A18900743C8B /* IndexPathButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3CB25E1A18900743C8B /* IndexPathButton.swift */; };
 		3297E3D325E1C42800743C8B /* CreateAnkiCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3D125E1C42700743C8B /* CreateAnkiCardViewController.swift */; };
 		3297E3D425E1C42800743C8B /* CreateAnkiCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3297E3D225E1C42700743C8B /* CreateAnkiCardViewController.xib */; };
+		3297E3DD25E1CFB100743C8B /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 3297E3DC25E1CFB100743C8B /* CropViewController */; };
+		3297E3E225E1D06F00743C8B /* CreateAnkiCardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3E125E1D06F00743C8B /* CreateAnkiCardCoordinator.swift */; };
+		3297E3E725E1D09400743C8B /* CreateAnkiCardCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3E625E1D09400743C8B /* CreateAnkiCardCoordinatorTests.swift */; };
+		3297E3EF25E1D43A00743C8B /* TestableCreateAnkiCardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3EE25E1D43A00743C8B /* TestableCreateAnkiCardCoordinator.swift */; };
+		3297E3F425E1D64100743C8B /* TestableMangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3F325E1D64100743C8B /* TestableMangaViewController.swift */; };
+		3297E3F925E1D81900743C8B /* FakeCreateAnkiCardCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3F825E1D81900743C8B /* FakeCreateAnkiCardCoordinatorDelegate.swift */; };
+		3297E3FE25E1D94500743C8B /* FakeCreateAnkiCardViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3FD25E1D94500743C8B /* FakeCreateAnkiCardViewControllerDelegate.swift */; };
 		3298D7D025713BB4005FB8F2 /* YomichanDictionaryImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298D7CF25713BB4005FB8F2 /* YomichanDictionaryImporter.swift */; };
 		3298D7D725713D66005FB8F2 /* DictionaryIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */; };
 		329ACA8A2552ED15002953C5 /* NumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA882552ED15002953C5 /* NumberTableViewCell.swift */; };
@@ -437,6 +444,12 @@
 		3297E3CB25E1A18900743C8B /* IndexPathButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexPathButton.swift; sourceTree = "<group>"; };
 		3297E3D125E1C42700743C8B /* CreateAnkiCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAnkiCardViewController.swift; sourceTree = "<group>"; };
 		3297E3D225E1C42700743C8B /* CreateAnkiCardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateAnkiCardViewController.xib; sourceTree = "<group>"; };
+		3297E3E125E1D06F00743C8B /* CreateAnkiCardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAnkiCardCoordinator.swift; sourceTree = "<group>"; };
+		3297E3E625E1D09400743C8B /* CreateAnkiCardCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAnkiCardCoordinatorTests.swift; sourceTree = "<group>"; };
+		3297E3EE25E1D43A00743C8B /* TestableCreateAnkiCardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableCreateAnkiCardCoordinator.swift; sourceTree = "<group>"; };
+		3297E3F325E1D64100743C8B /* TestableMangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableMangaViewController.swift; sourceTree = "<group>"; };
+		3297E3F825E1D81900743C8B /* FakeCreateAnkiCardCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCreateAnkiCardCoordinatorDelegate.swift; sourceTree = "<group>"; };
+		3297E3FD25E1D94500743C8B /* FakeCreateAnkiCardViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCreateAnkiCardViewControllerDelegate.swift; sourceTree = "<group>"; };
 		3298D7CF25713BB4005FB8F2 /* YomichanDictionaryImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YomichanDictionaryImporter.swift; sourceTree = "<group>"; };
 		3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryIndex.swift; sourceTree = "<group>"; };
 		329ACA882552ED15002953C5 /* NumberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTableViewCell.swift; sourceTree = "<group>"; };
@@ -551,6 +564,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				322C04C02568100900BD5A51 /* SwiftyTesseract in Frameworks */,
+				3297E3DD25E1CFB100743C8B /* CropViewController in Frameworks */,
 				324BB96E2498369B006241E8 /* mecab.framework in Frameworks */,
 				7C0535A2215AEB18055422F1 /* Pods_Kantan_Manga.framework in Frameworks */,
 			);
@@ -747,6 +761,8 @@
 			children = (
 				326857DE2569CF9D000B0C83 /* TestableAddMangasCoordinator.swift */,
 				3250E8A0256D568100CBFA37 /* TestableViewMangaCoordinator.swift */,
+				3297E3EE25E1D43A00743C8B /* TestableCreateAnkiCardCoordinator.swift */,
+				3297E3F325E1D64100743C8B /* TestableMangaViewController.swift */,
 			);
 			path = Testables;
 			sourceTree = "<group>";
@@ -961,6 +977,7 @@
 				32F998C025574C8E00897299 /* ViewMangaCoordinatorTests.swift */,
 				3257C017256F0E2200C4C702 /* SettingsCoordinatorTests.swift */,
 				32DDEF11257C20BA0063E813 /* DictionariesCoordinatorTests.swift */,
+				3297E3E625E1D09400743C8B /* CreateAnkiCardCoordinatorTests.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -990,6 +1007,8 @@
 				32A3436B257D49C9003337D0 /* FakeDictionariesViewControllerDelegate.swift */,
 				32A34371257D4E41003337D0 /* FakeCompoundDictionary.swift */,
 				32A34376257D4EA4003337D0 /* FakeDictionaryDecoder.swift */,
+				3297E3F825E1D81900743C8B /* FakeCreateAnkiCardCoordinatorDelegate.swift */,
+				3297E3FD25E1D94500743C8B /* FakeCreateAnkiCardViewControllerDelegate.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -1110,6 +1129,7 @@
 				326FDE7A24A7FBFB0042CB8A /* SettingsCoordinator.swift */,
 				32F998D42557535500897299 /* Navigable.swift */,
 				32DDEF0B257C20420063E813 /* DictionariesCoordinator.swift */,
+				3297E3E125E1D06F00743C8B /* CreateAnkiCardCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -1217,6 +1237,7 @@
 			name = "Kantan-Manga";
 			packageProductDependencies = (
 				322C04BF2568100900BD5A51 /* SwiftyTesseract */,
+				3297E3DC25E1CFB100743C8B /* CropViewController */,
 			);
 			productName = MangaReader;
 			productReference = 84A831E3221D90CA00CEE1C9 /* Kantan Manga.app */;
@@ -1280,6 +1301,7 @@
 			mainGroup = 84A831DA221D90CA00CEE1C9;
 			packageReferences = (
 				322C04BE2568100900BD5A51 /* XCRemoteSwiftPackageReference "SwiftyTesseract" */,
+				3297E3DB25E1CFB100743C8B /* XCRemoteSwiftPackageReference "TOCropViewController" */,
 			);
 			productRefGroup = 84A831E4221D90CA00CEE1C9 /* Products */;
 			projectDirPath = "";
@@ -1603,6 +1625,7 @@
 				84A831E7221D90CA00CEE1C9 /* AppDelegate.swift in Sources */,
 				32DDEF3C257C21DD0063E813 /* DictionariesViewController.swift in Sources */,
 				3292ADA22535DCF8004E8441 /* DemoOcrView.swift in Sources */,
+				3297E3E225E1D06F00743C8B /* CreateAnkiCardCoordinator.swift in Sources */,
 				3298D7D025713BB4005FB8F2 /* YomichanDictionaryImporter.swift in Sources */,
 				32542BE7258037C900ED357A /* Tag.swift in Sources */,
 				3298D7D725713D66005FB8F2 /* DictionaryIndex.swift in Sources */,
@@ -1668,11 +1691,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3297E3F925E1D81900743C8B /* FakeCreateAnkiCardCoordinatorDelegate.swift in Sources */,
 				3257C01E256F0F4700C4C702 /* FakeSettingsCoordinatorDelegate.swift in Sources */,
 				3241F8862572B6D200A4FC04 /* TagEntryTests.swift in Sources */,
 				32F998BD25574C6C00897299 /* AddMangasCoordinatorTests.swift in Sources */,
 				3241F87E2572B47D00A4FC04 /* DictionaryIndexTests.swift in Sources */,
 				32B5191F25C5C3750098ABA0 /* KanjiTests.swift in Sources */,
+				3297E3E725E1D09400743C8B /* CreateAnkiCardCoordinatorTests.swift in Sources */,
 				32B5190125C5968F0098ABA0 /* GlossaryItemTests.swift in Sources */,
 				3257C018256F0E2200C4C702 /* SettingsCoordinatorTests.swift in Sources */,
 				327300942561EF6A009854EE /* UIViewExtensionTests.swift in Sources */,
@@ -1698,6 +1723,7 @@
 				328F62A7255A03D8000CA225 /* InMemoryCoreDataManager.swift in Sources */,
 				32194C9725630E27007539B1 /* MangaDataSourceTests.swift in Sources */,
 				32F998B925574C4C00897299 /* AppCoordinatorTests.swift in Sources */,
+				3297E3FE25E1D94500743C8B /* FakeCreateAnkiCardViewControllerDelegate.swift in Sources */,
 				3241F8CE2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift in Sources */,
 				321C69A22562FA4E00296A1F /* JapaneseUtilsTests.swift in Sources */,
 				3241F8C62572E1A600A4FC04 /* KanjiEntryV3Tests.swift in Sources */,
@@ -1708,12 +1734,14 @@
 				32A110BC255859970099A768 /* FakeCoreDataManager.swift in Sources */,
 				3219DC0425641F8100E2FB3D /* FakeCollectionView.swift in Sources */,
 				32336AB925D969F20092110A /* CompoundDictionaryTests.swift in Sources */,
+				3297E3F425E1D64100743C8B /* TestableMangaViewController.swift in Sources */,
 				320ED4DD2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift in Sources */,
 				3250E89B256D54E000CBFA37 /* FakeViewerSettingsViewControllerDelegate.swift in Sources */,
 				32CFA604256FF7340083F300 /* ConstraintsUtils.swift in Sources */,
 				32C3512F24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift in Sources */,
 				3241F8A72572C25300A4FC04 /* TermEntryV3Tests.swift in Sources */,
 				32F998C125574C8E00897299 /* ViewMangaCoordinatorTests.swift in Sources */,
+				3297E3EF25E1D43A00743C8B /* TestableCreateAnkiCardCoordinator.swift in Sources */,
 				32A110D22558609B0099A768 /* FakeImageOCR.swift in Sources */,
 				84A831FF221D90CC00CEE1C9 /* CoreDataManagerTests.swift in Sources */,
 				32B5191225C59A8E0098ABA0 /* TermTests.swift in Sources */,
@@ -2260,6 +2288,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		3297E3DB25E1CFB100743C8B /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TimOliver/TOCropViewController.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2267,6 +2303,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 322C04BE2568100900BD5A51 /* XCRemoteSwiftPackageReference "SwiftyTesseract" */;
 			productName = SwiftyTesseract;
+		};
+		3297E3DC25E1CFB100743C8B /* CropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3297E3DB25E1CFB100743C8B /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = CropViewController;
 		};
 /* End XCSwiftPackageProductDependency section */
 
