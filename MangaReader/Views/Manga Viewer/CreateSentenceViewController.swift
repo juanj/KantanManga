@@ -69,7 +69,7 @@ class CreateSentenceViewController: UIViewController {
     }
 
     private func configureNavigationBar() {
-        title = "Create Anki Card"
+        title = "Save sentence"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
     }

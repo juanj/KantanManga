@@ -18,7 +18,7 @@ class CreateSentenceCoordinatorTests: XCTestCase {
         XCTAssertNotNil(mockNavigation.presentedViewController as? Navigable)
     }
 
-    func testStart_withNoPresentedView_setsRootViewControllerCreateAnkiViewController() {
+    func testStart_withNoPresentedView_setsRootViewControllerCreateSentenceViewController() {
         let presentedMockNavigation = FakeNavigation()
         let createSentenceCoordinator = TestsFactories.createTestableCreateSentenceCoordinator()
 

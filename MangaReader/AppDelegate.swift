@@ -12,7 +12,7 @@ import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    var libraryCoordinator: LibraryCoordinator!
+    var appCoordinator: AppCoordinator!
     var coreDataManager: CoreDataManageable?
 
     func application(_ application: UIApplication,
@@ -22,10 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = .systemBackground
 
         let navigationController = UINavigationController()
+        navigationController.isNavigationBarHidden = true
         window?.rootViewController = navigationController
         let coreDataManager = CoreDataManager()
-        libraryCoordinator = LibraryCoordinator(navigation: navigationController, coreDataManager: coreDataManager)
-        libraryCoordinator.start()
+        appCoordinator = AppCoordinator(navigation: navigationController, coreDataManager: coreDataManager)
+        appCoordinator.start()
         window?.makeKeyAndVisible()
 
         self.coreDataManager = coreDataManager
