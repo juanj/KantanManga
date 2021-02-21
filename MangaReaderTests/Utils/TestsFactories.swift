@@ -10,9 +10,9 @@ import GRDB
 
 final class TestsFactories {
     // MARK: Coordinators
-    static func createAppCoordinator(navigable: Navigable = FakeNavigation(), coreDataManager: CoreDataManageable = InMemoryCoreDataManager()) -> AppCoordinator {
-        let appCoordinator = AppCoordinator(navigation: navigable, coreDataManager: coreDataManager)
-        return appCoordinator
+    static func createLibraryCoordinator(navigable: Navigable = FakeNavigation(), coreDataManager: CoreDataManageable = InMemoryCoreDataManager()) -> LibraryCoordinator {
+        let libraryCoordinator = LibraryCoordinator(navigation: navigable, coreDataManager: coreDataManager)
+        return libraryCoordinator
     }
 
     static func createAddMangasCoordinator(navigable: Navigable = FakeNavigation(), uploadServer: GCDWebUploader = FakeUploadServer(), coreDataManager: CoreDataManageable = InMemoryCoreDataManager(), delegate: AddMangasCoordinatorDelegate = FakeAddMangasCoordinatorDelegate()) -> AddMangasCoordinator {

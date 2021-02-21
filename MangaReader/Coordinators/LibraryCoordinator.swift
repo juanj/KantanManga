@@ -1,5 +1,5 @@
 //
-//  AppCoordinator.swift
+//  LibraryCoordinator.swift
 //  MangaReader
 //
 //  Created by Juan on 2/20/19.
@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AppCoordinator: NSObject, Coordinator {
+class LibraryCoordinator: NSObject, Coordinator {
     var childCoordinators = [Coordinator]()
 
     private var currentMangaDataSource: MangaDataSourceable?
@@ -60,7 +60,7 @@ class AppCoordinator: NSObject, Coordinator {
 }
 
 // MARK: LibraryViewControllerDelegate
-extension AppCoordinator: LibraryViewControllerDelegate {
+extension LibraryCoordinator: LibraryViewControllerDelegate {
     func didSelectAdd(_ libraryViewController: LibraryViewController, button: UIBarButtonItem) {
         guard let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
             return
@@ -111,7 +111,7 @@ extension AppCoordinator: LibraryViewControllerDelegate {
 }
 
 // MARK: CollectionViewControllerDelegate
-extension AppCoordinator: CollectionViewControllerDelegate {
+extension LibraryCoordinator: CollectionViewControllerDelegate {
     func didSelectManga(_ collectionViewController: CollectionViewController, manga: Manga, cellFrame: CGRect) {
         let viewMangaCoordinator = ViewMangaCoordinator(navigation: navigation, coreDataManager: coreDataManager, manga: manga, delegate: self, originFrame: cellFrame, ocr: TesseractOCR())
         childCoordinators.append(viewMangaCoordinator)
@@ -138,7 +138,7 @@ extension AppCoordinator: CollectionViewControllerDelegate {
 }
 
 // MARK: AddMangasCoordinatorDelegate
-extension AppCoordinator: AddMangasCoordinatorDelegate {
+extension LibraryCoordinator: AddMangasCoordinatorDelegate {
     func didEnd(_ addMangasCoordinator: AddMangasCoordinator) {
         removeChildCoordinator(type: AddMangasCoordinator.self)
         libraryView?.setCollections(collections: loadCollections())
@@ -150,7 +150,7 @@ extension AppCoordinator: AddMangasCoordinatorDelegate {
 }
 
 // MARK: ViewMangaCoordinatorDelegate
-extension AppCoordinator: ViewMangaCoordinatorDelegate {
+extension LibraryCoordinator: ViewMangaCoordinatorDelegate {
     func didEnd(_ viewMangaCoordinator: ViewMangaCoordinator) {
         removeChildCoordinator(type: ViewMangaCoordinator.self)
         navigation.delegate = self
@@ -158,7 +158,7 @@ extension AppCoordinator: ViewMangaCoordinatorDelegate {
 }
 
 // MARK: SelectCollectionTableViewControllerDelegate
-extension AppCoordinator: SelectCollectionTableViewControllerDelegate {
+extension LibraryCoordinator: SelectCollectionTableViewControllerDelegate {
     func selectCollection(_ selectCollectionTableViewController: SelectCollectionTableViewController, collection: MangaCollection) {
         guard let manga = movingManga else { return }
         manga.mangaCollection = collection
@@ -183,14 +183,14 @@ extension AppCoordinator: SelectCollectionTableViewControllerDelegate {
 }
 
 // MARK: SettingsCoordinatorDelegate
-extension AppCoordinator: SettingsCoordinatorDelegate {
+extension LibraryCoordinator: SettingsCoordinatorDelegate {
     func didEnd(_ settingsCoordinator: SettingsCoordinator) {
         libraryView?.setCollections(collections: loadCollections())
     }
 }
 
 // MARK: UINavigationControllerDelegate
-extension AppCoordinator: UINavigationControllerDelegate {
+extension LibraryCoordinator: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         guard (fromVC is LibraryViewController || fromVC is CollectionViewController) &&
             (toVC is LibraryViewController || toVC is CollectionViewController),
