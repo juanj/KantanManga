@@ -10,6 +10,9 @@ import CoreData
 
 class CoreDataManager: CoreDataManageable {
     private lazy var persistentContainer: NSPersistentContainer = createContainer()
+    private var managedContext: NSManagedObjectContext {
+        persistentContainer.viewContext
+    }
 
     func createContainer() -> NSPersistentContainer {
         let container = NSPersistentContainer(name: "MangaReader")
@@ -42,19 +45,48 @@ class CoreDataManager: CoreDataManageable {
         persistentContainer.viewContext.refreshAllObjects()
     }
 
+    @discardableResult
+    private func saveContextOrPrintError(action: String = "") -> Bool {
+        var saved = false
+        do {
+            try managedContext.save()
+            saved = true
+        } catch let error as NSError {
+            print("CoreData error at \(action). \(error)")
+        }
+        return saved
+    }
+
+    private func deleteOrPrintError<T>(_ request: NSFetchRequest<T>) {
+        do {
+            let objects = try managedContext.fetch(request)
+            for case let object as NSManagedObject in objects {
+                managedContext.delete(object)
+            }
+        } catch let error as NSError {
+            print("Error deleting \(request.entityName ?? "object"). \(error), \(error.userInfo)")
+        }
+    }
+
+    private func fetchOrPrintError<T>(_ request: NSFetchRequest<T>) -> [T]? {
+        do {
+            let object = try managedContext.fetch(request)
+            return object
+        } catch let error as NSError {
+            print("Couldn't fetch \(request.entityName ?? "object"). \(error), \(error.userInfo)")
+            return nil
+        }
+    }
+
     // MARK: - Manga methods
     // MARK: Insert
     @discardableResult
     func insertManga(name: String, coverData: Data, totalPages: Int16, filePath: String, collection: MangaCollection? = nil) -> Manga? {
-        let managedContext = persistentContainer.viewContext
         let manga = Manga(context: managedContext, name: name, coverData: coverData, totalPages: totalPages, filePath: filePath, collection: collection)
-        do {
-            try managedContext.save()
+        if saveContextOrPrintError(action: "insert manga") {
             return manga
-        } catch let error as NSError {
-            print("Couldn't save Manga. \(error), \(error.userInfo)")
-            return nil
         }
+        return nil
     }
 
     func createMangaWith(filePath path: String, name: String? = nil, collection: MangaCollection? = nil, completion: @escaping (Manga?) -> Void) {
@@ -82,175 +114,89 @@ class CoreDataManager: CoreDataManageable {
 
     // MARK: Delete
     func delete(manga: Manga) {
-        let managedContext = persistentContainer.viewContext
         managedContext.delete(manga)
-
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Couldn't delete Manga \(error), \(error.userInfo)")
-        }
+        saveContextOrPrintError(action: "delete manga")
     }
 
     func deleteAllMangas() {
         let fetchRequest = Manga.createFetchRequest()
-        do {
-            let mangas = try persistentContainer.viewContext.fetch(fetchRequest)
-            for case let manga as NSManagedObject in mangas {
-                persistentContainer.viewContext.delete(manga)
-            }
-
-            try persistentContainer.viewContext.save()
-        } catch let error as NSError {
-            print("Error when deleting all Mangas. \(error), \(error.userInfo)")
-        }
+        deleteOrPrintError(fetchRequest)
+        saveContextOrPrintError(action: "delete all mangas")
     }
 
     // MARK: Fetch
     func fetchAllMangas() -> [Manga]? {
-        let managedContext = persistentContainer.viewContext
         let fetchRequest = Manga.createFetchRequest()
-
-        do {
-            let mangas = try managedContext.fetch(fetchRequest)
-            return mangas
-        } catch let error as NSError {
-            print("Couldn't fetch all Mangas. \(error), \(error.userInfo)")
-            return nil
-        }
+        return fetchOrPrintError(fetchRequest)
     }
 
     func getMangaWith(filePath path: String) -> Manga? {
-        let context = persistentContainer.viewContext
         let fetchRequest = Manga.createFetchRequest()
         fetchRequest.predicate = NSPredicate(format: "filePath = %@", path)
 
-        do {
-            let result = try context.fetch(fetchRequest)
-            return result.first
-        } catch let error as NSError {
-            print("Could't fetch Manga. \(error), \(error.userInfo)")
-            return nil
-        }
+        return fetchOrPrintError(fetchRequest)?.first
     }
 
     func getMangasWithoutCollection() -> [Manga]? {
-        let context = persistentContainer.viewContext
         let fetchRequest = Manga.createFetchRequest()
         fetchRequest.predicate = NSPredicate(format: "mangaCollection == nil")
 
-        do {
-            let result = try context.fetch(fetchRequest)
-            return result
-        } catch let error as NSError {
-            print("Could't fetch Mangas without a collection. \(error), \(error.userInfo)")
-            return nil
-        }
+        return fetchOrPrintError(fetchRequest)
     }
 
     // MARK: Update
     func updateManga(manga: Manga) {
-        let context = persistentContainer.viewContext
         manga.lastViewedAt = Date()
 
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print("Could not update Manga \(error), \(error.userInfo)")
-        }
+        saveContextOrPrintError(action: "update manga")
     }
 
     // MARK: - MangaCollection methods
     // MARK: Insert
     @discardableResult
     func insertCollection(name: String) -> MangaCollection? {
-        let context = persistentContainer.viewContext
-        let collection = MangaCollection(context: context, name: name)
-        do {
-            try context.save()
+        let collection = MangaCollection(context: managedContext, name: name)
+        if saveContextOrPrintError(action: "insert collection") {
             return collection
-        } catch let error {
-            print(error)
-            return nil
         }
+        return nil
     }
 
     // MARK: Delete
     func delete(collection: MangaCollection) {
-        let managedContext = persistentContainer.viewContext
         managedContext.delete(collection)
-
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Couldn't delete MangaCollection \(error), \(error.userInfo)")
-        }
+        saveContextOrPrintError(action: "delete collection")
     }
 
     func deleteAllCollections() {
         let fetchRequest = MangaCollection.createFetchRequest()
-        do {
-            let collections = try persistentContainer.viewContext.fetch(fetchRequest)
-            for case let collection as NSManagedObject in collections {
-                persistentContainer.viewContext.delete(collection)
-            }
-
-            try persistentContainer.viewContext.save()
-        } catch let error as NSError {
-            print("Error when deleting all MangaCollection. \(error), \(error.userInfo)")
-        }
+        deleteOrPrintError(fetchRequest)
+        saveContextOrPrintError(action: "delete all collections")
     }
 
     // MARK: Fetch
     func fetchAllCollections() -> [MangaCollection]? {
-        let managedContext = persistentContainer.viewContext
         let fetchRequest = MangaCollection.createFetchRequest()
-
-        do {
-            let collections = try managedContext.fetch(fetchRequest)
-            return collections
-        } catch let error as NSError {
-            print("Couldn't fetch all MangaCollection. \(error), \(error.userInfo)")
-            return nil
-        }
+        return fetchOrPrintError(fetchRequest)
     }
 
     func searchCollectionsWith(name: String) -> [MangaCollection]? {
-        let context = persistentContainer.viewContext
         let fetchRequest = MangaCollection.createFetchRequest()
         fetchRequest.predicate = NSPredicate(format: "name CONTAINS[cd] %@", name)
 
-        do {
-            let results = try context.fetch(fetchRequest)
-            return results
-        } catch let error as NSError {
-            print("Could't search MangaCollection. \(error), \(error.userInfo)")
-            return nil
-        }
+        return fetchOrPrintError(fetchRequest)
     }
 
     func searchCollectionsStartWith(name: String) -> [MangaCollection]? {
-        let context = persistentContainer.viewContext
         let fetchRequest = MangaCollection.createFetchRequest()
         fetchRequest.predicate = NSPredicate(format: "name BEGINSWITH[cd] %@", name)
 
-        do {
-            let results = try context.fetch(fetchRequest)
-            return results
-        } catch let error as NSError {
-            print("Could't search MangaCollection. \(error), \(error.userInfo)")
-            return nil
-        }
+        return fetchOrPrintError(fetchRequest)
     }
 
     // MARK: Update
     func updateCollection(_ collection: MangaCollection) {
-        let context = persistentContainer.viewContext
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print("Could not update Collection \(error), \(error.userInfo)")
-        }
+        saveContextOrPrintError(action: "update collection")
     }
 
     // MARK: Sentence Methods
@@ -258,60 +204,30 @@ class CoreDataManager: CoreDataManageable {
     func insertSentence(sentence: String, definition: String, image: UIImage?) -> Sentence? {
         let managedContext = persistentContainer.viewContext
         let sentence = Sentence(context: managedContext, sentence: sentence, definition: definition, image: image)
-        do {
-            try managedContext.save()
+        if saveContextOrPrintError(action: "insert sentence") {
             return sentence
-        } catch let error as NSError {
-            print("Couldn't save Sentence. \(error), \(error.userInfo)")
-            return nil
         }
+        return nil
     }
 
     func delete(sentence: Sentence) {
-        let managedContext = persistentContainer.viewContext
         managedContext.delete(sentence)
-
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Couldn't delete Sentence \(error), \(error.userInfo)")
-        }
+        saveContextOrPrintError(action: "delete sentence")
     }
 
     func deleteAllSentences() {
         let fetchRequest = Sentence.createFetchRequest()
-        do {
-            let sentences = try persistentContainer.viewContext.fetch(fetchRequest)
-            for case let sentence as NSManagedObject in sentences {
-                persistentContainer.viewContext.delete(sentence)
-            }
-
-            try persistentContainer.viewContext.save()
-        } catch let error as NSError {
-            print("Error when deleting all Sentences. \(error), \(error.userInfo)")
-        }
+        deleteOrPrintError(fetchRequest)
+        saveContextOrPrintError(action: "delete all sentences")
     }
 
     func fetchAllSentences() -> [Sentence]? {
-        let managedContext = persistentContainer.viewContext
         let fetchRequest = Sentence.createFetchRequest()
-
-        do {
-            let sentences = try managedContext.fetch(fetchRequest)
-            return sentences
-        } catch let error as NSError {
-            print("Couldn't fetch all Sentences. \(error), \(error.userInfo)")
-            return nil
-        }
+        return fetchOrPrintError(fetchRequest)
     }
 
     func update(sentence: Sentence) {
-        let context = persistentContainer.viewContext
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print("Could not update Sentence \(error), \(error.userInfo)")
-        }
+        saveContextOrPrintError(action: "update sentence")
     }
 
     // MARK: Utils
