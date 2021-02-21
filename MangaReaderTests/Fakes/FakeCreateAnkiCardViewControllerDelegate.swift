@@ -17,7 +17,7 @@ class FakeCreateAnkiCardViewControllerDelegate: CreateAnkiCardViewControllerDele
         cancelCalled = true
     }
 
-    func save(_ createAnkiCardViewController: CreateAnkiCardViewController) {
+    func save(_ createAnkiCardViewController: CreateAnkiCardViewController, sentence: String, definition: String) {
         saveCalled = true
     }
 

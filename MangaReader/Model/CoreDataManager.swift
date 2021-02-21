@@ -254,6 +254,7 @@ class CoreDataManager: CoreDataManageable {
     }
 
     // MARK: AnkiCard Methods
+    @discardableResult
     func insertAnkiCard(sentence: String, definition: String, image: UIImage?) -> AnkiCard? {
         let managedContext = persistentContainer.viewContext
         let ankiCard = AnkiCard(context: managedContext, sentence: sentence, definition: definition, image: image)

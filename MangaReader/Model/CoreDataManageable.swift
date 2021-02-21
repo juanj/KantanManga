@@ -37,6 +37,7 @@ protocol CoreDataManageable {
     func updateCollection(_ collection: MangaCollection)
 
     // AnkiCard methods
+    @discardableResult
     func insertAnkiCard(sentence: String, definition: String, image: UIImage?) -> AnkiCard?
     func delete(ankiCard: AnkiCard)
     func deleteAllAnkiCards()

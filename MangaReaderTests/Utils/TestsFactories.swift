@@ -59,13 +59,13 @@ final class TestsFactories {
         return dictionariesCoordinator
     }
 
-    static func createCreateAnkiCardCoordinator(navigable: Navigable = FakeNavigation(), image: UIImage = UIImage(), sentence: String = "", term: Term = Term(from: TermEntryV1(expression: "", reading: "", definitionTags: "", rules: "", score: 0, glossary: []), dictionaryId: 0), delegate: CreateAnkiCardCoordinatorDelegate = FakeCreateAnkiCardCoordinatorDelegate()) -> CreateAnkiCardCoordinator {
-        let createAnkiCardCoordinator = CreateAnkiCardCoordinator(navigation: navigable, image: image, sentence: sentence, term: term, delegate: delegate)
+    static func createCreateAnkiCardCoordinator(navigable: Navigable = FakeNavigation(), image: UIImage = UIImage(), sentence: String = "", term: Term = Term(from: TermEntryV1(expression: "", reading: "", definitionTags: "", rules: "", score: 0, glossary: []), dictionaryId: 0), coreDataManager: CoreDataManageable = FakeCoreDataManager(), delegate: CreateAnkiCardCoordinatorDelegate = FakeCreateAnkiCardCoordinatorDelegate()) -> CreateAnkiCardCoordinator {
+        let createAnkiCardCoordinator = CreateAnkiCardCoordinator(navigation: navigable, image: image, sentence: sentence, term: term, coreDataManager: coreDataManager, delegate: delegate)
         return createAnkiCardCoordinator
     }
 
-    static func createTestableCreateAnkiCardCoordinator(navigable: Navigable = FakeNavigation(), image: UIImage = UIImage(), sentence: String = "", term: Term = Term(from: TermEntryV1(expression: "", reading: "", definitionTags: "", rules: "", score: 0, glossary: []), dictionaryId: 0), delegate: CreateAnkiCardCoordinatorDelegate = FakeCreateAnkiCardCoordinatorDelegate()) -> TestableCreateAnkiCardCoordinator {
-        let createAnkiCardCoordinator = TestableCreateAnkiCardCoordinator(navigation: navigable, image: image, sentence: sentence, term: term, delegate: delegate)
+    static func createTestableCreateAnkiCardCoordinator(navigable: Navigable = FakeNavigation(), image: UIImage = UIImage(), sentence: String = "", term: Term = Term(from: TermEntryV1(expression: "", reading: "", definitionTags: "", rules: "", score: 0, glossary: []), dictionaryId: 0), coreDataManager: CoreDataManageable = FakeCoreDataManager(), delegate: CreateAnkiCardCoordinatorDelegate = FakeCreateAnkiCardCoordinatorDelegate()) -> TestableCreateAnkiCardCoordinator {
+        let createAnkiCardCoordinator = TestableCreateAnkiCardCoordinator(navigation: navigable, image: image, sentence: sentence, term: term, coreDataManager: coreDataManager, delegate: delegate)
         return createAnkiCardCoordinator
     }
 

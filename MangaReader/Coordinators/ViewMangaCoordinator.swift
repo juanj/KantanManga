@@ -116,7 +116,7 @@ extension ViewMangaCoordinator: MangaViewControllerDelegate {
     }
 
     func didTapCreateAnkiCard(_ mangaViewController: MangaViewController, image: UIImage, sentence: String, dictionaryResult: SearchTermResult) {
-        let createAnkiCardCoordinator = CreateAnkiCardCoordinator(navigation: navigation, image: image, sentence: sentence, term: dictionaryResult.term, delegate: self)
+        let createAnkiCardCoordinator = CreateAnkiCardCoordinator(navigation: navigation, image: image, sentence: sentence, term: dictionaryResult.term, coreDataManager: coreDataManager, delegate: self)
         childCoordinators.append(createAnkiCardCoordinator)
         createAnkiCardCoordinator.start()
     }

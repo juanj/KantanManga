@@ -9,7 +9,7 @@ import UIKit
 
 protocol CreateAnkiCardViewControllerDelegate: AnyObject {
     func cancel(_ createAnkiCardViewController: CreateAnkiCardViewController)
-    func save(_ createAnkiCardViewController: CreateAnkiCardViewController)
+    func save(_ createAnkiCardViewController: CreateAnkiCardViewController, sentence: String, definition: String)
     func editImage(_ createAnkiCardViewController: CreateAnkiCardViewController)
 }
 
@@ -90,7 +90,7 @@ class CreateAnkiCardViewController: UIViewController {
     }
 
     @objc func save() {
-        delegate?.save(self)
+        delegate?.save(self, sentence: sentenceTextField.text ?? "", definition: definitionTextView.text ?? "")
     }
 
     @objc func editImage() {

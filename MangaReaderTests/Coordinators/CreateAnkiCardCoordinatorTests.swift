@@ -47,4 +47,13 @@ class CreateAnkiCardCoordinatorTests: XCTestCase {
 
         XCTAssertNil(mockNavigation.presentedViewController)
     }
+
+    func testSave_withInMemoryCoreData_createsAnkiCard() {
+        let inMemoryCoreData = InMemoryCoreDataManager()
+        let createAnkiCardCoordinator = TestsFactories.createCreateAnkiCardCoordinator(coreDataManager: inMemoryCoreData)
+
+        createAnkiCardCoordinator.save(TestsFactories.createCreateAnkiCardViewController(), sentence: "Test", definition: "Definition")
+
+        XCTAssertEqual(inMemoryCoreData.fetchAllAnkiCards()?.count, 1)
+    }
 }

@@ -24,12 +24,14 @@ class CreateAnkiCardCoordinator: NSObject, Coordinator {
     private let image: UIImage
     private let sentence: String
     private let term: Term
+    private let coreDataManager: CoreDataManageable
     private weak var delegate: CreateAnkiCardCoordinatorDelegate?
-    init(navigation: Navigable, image: UIImage, sentence: String, term: Term, delegate: CreateAnkiCardCoordinatorDelegate?) {
+    init(navigation: Navigable, image: UIImage, sentence: String, term: Term, coreDataManager: CoreDataManageable, delegate: CreateAnkiCardCoordinatorDelegate?) {
         self.navigation = navigation
         self.image = image
         self.sentence = sentence
         self.term = term
+        self.coreDataManager = coreDataManager
         self.delegate = delegate
     }
 
@@ -53,8 +55,10 @@ extension CreateAnkiCardCoordinator: CreateAnkiCardViewControllerDelegate {
         delegate?.didEnd(self)
     }
 
-    func save(_ createAnkiCardViewController: CreateAnkiCardViewController) {
-
+    func save(_ createAnkiCardViewController: CreateAnkiCardViewController, sentence: String, definition: String) {
+        coreDataManager.insertAnkiCard(sentence: sentence, definition: definition, image: croppedImage ?? image)
+        navigation.dismiss(animated: true, completion: nil)
+        delegate?.didEnd(self)
     }
 
     func editImage(_ createAnkiCardViewController: CreateAnkiCardViewController) {
