@@ -44,6 +44,10 @@ class CreateAnkiCardViewController: UIViewController {
         configureGestures()
     }
 
+    func setImage(_ image: UIImage) {
+        imageView.image = image
+    }
+
     private func loadData() {
         imageView.image = image
         sentenceTextField.text = sentence

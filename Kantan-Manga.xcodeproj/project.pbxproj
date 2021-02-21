@@ -151,13 +151,13 @@
 		3297E3CC25E1A18900743C8B /* IndexPathButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3CB25E1A18900743C8B /* IndexPathButton.swift */; };
 		3297E3D325E1C42800743C8B /* CreateAnkiCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3D125E1C42700743C8B /* CreateAnkiCardViewController.swift */; };
 		3297E3D425E1C42800743C8B /* CreateAnkiCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3297E3D225E1C42700743C8B /* CreateAnkiCardViewController.xib */; };
-		3297E3DD25E1CFB100743C8B /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 3297E3DC25E1CFB100743C8B /* CropViewController */; };
 		3297E3E225E1D06F00743C8B /* CreateAnkiCardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3E125E1D06F00743C8B /* CreateAnkiCardCoordinator.swift */; };
 		3297E3E725E1D09400743C8B /* CreateAnkiCardCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3E625E1D09400743C8B /* CreateAnkiCardCoordinatorTests.swift */; };
 		3297E3EF25E1D43A00743C8B /* TestableCreateAnkiCardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3EE25E1D43A00743C8B /* TestableCreateAnkiCardCoordinator.swift */; };
 		3297E3F425E1D64100743C8B /* TestableMangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3F325E1D64100743C8B /* TestableMangaViewController.swift */; };
 		3297E3F925E1D81900743C8B /* FakeCreateAnkiCardCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3F825E1D81900743C8B /* FakeCreateAnkiCardCoordinatorDelegate.swift */; };
 		3297E3FE25E1D94500743C8B /* FakeCreateAnkiCardViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3FD25E1D94500743C8B /* FakeCreateAnkiCardViewControllerDelegate.swift */; };
+		3297E40A25E1DB0100743C8B /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 3297E40925E1DB0100743C8B /* CropViewController */; };
 		3298D7D025713BB4005FB8F2 /* YomichanDictionaryImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298D7CF25713BB4005FB8F2 /* YomichanDictionaryImporter.swift */; };
 		3298D7D725713D66005FB8F2 /* DictionaryIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */; };
 		329ACA8A2552ED15002953C5 /* NumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA882552ED15002953C5 /* NumberTableViewCell.swift */; };
@@ -564,7 +564,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				322C04C02568100900BD5A51 /* SwiftyTesseract in Frameworks */,
-				3297E3DD25E1CFB100743C8B /* CropViewController in Frameworks */,
+				3297E40A25E1DB0100743C8B /* CropViewController in Frameworks */,
 				324BB96E2498369B006241E8 /* mecab.framework in Frameworks */,
 				7C0535A2215AEB18055422F1 /* Pods_Kantan_Manga.framework in Frameworks */,
 			);
@@ -1237,7 +1237,7 @@
 			name = "Kantan-Manga";
 			packageProductDependencies = (
 				322C04BF2568100900BD5A51 /* SwiftyTesseract */,
-				3297E3DC25E1CFB100743C8B /* CropViewController */,
+				3297E40925E1DB0100743C8B /* CropViewController */,
 			);
 			productName = MangaReader;
 			productReference = 84A831E3221D90CA00CEE1C9 /* Kantan Manga.app */;
@@ -1301,7 +1301,7 @@
 			mainGroup = 84A831DA221D90CA00CEE1C9;
 			packageReferences = (
 				322C04BE2568100900BD5A51 /* XCRemoteSwiftPackageReference "SwiftyTesseract" */,
-				3297E3DB25E1CFB100743C8B /* XCRemoteSwiftPackageReference "TOCropViewController" */,
+				3297E40825E1DB0100743C8B /* XCRemoteSwiftPackageReference "TOCropViewController" */,
 			);
 			productRefGroup = 84A831E4221D90CA00CEE1C9 /* Products */;
 			projectDirPath = "";
@@ -2288,7 +2288,7 @@
 				minimumVersion = 4.0.0;
 			};
 		};
-		3297E3DB25E1CFB100743C8B /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+		3297E40825E1DB0100743C8B /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TimOliver/TOCropViewController.git";
 			requirement = {
@@ -2304,9 +2304,9 @@
 			package = 322C04BE2568100900BD5A51 /* XCRemoteSwiftPackageReference "SwiftyTesseract" */;
 			productName = SwiftyTesseract;
 		};
-		3297E3DC25E1CFB100743C8B /* CropViewController */ = {
+		3297E40925E1DB0100743C8B /* CropViewController */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3297E3DB25E1CFB100743C8B /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			package = 3297E40825E1DB0100743C8B /* XCRemoteSwiftPackageReference "TOCropViewController" */;
 			productName = CropViewController;
 		};
 /* End XCSwiftPackageProductDependency section */

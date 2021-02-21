@@ -6,15 +6,19 @@
 //
 
 import Foundation
+import CropViewController
 
 protocol CreateAnkiCardCoordinatorDelegate: AnyObject {
     func didEnd(_ createAnkiCardCoordinator: CreateAnkiCardCoordinator)
 }
 
-class CreateAnkiCardCoordinator: Coordinator {
+class CreateAnkiCardCoordinator: NSObject, Coordinator {
     var childCoordinators = [Coordinator]()
 
     private var presentedNavigation: Navigable!
+    private var currentCrop: CGRect?
+    private var croppedImage: UIImage?
+    private var createAnkiCardViewController: CreateAnkiCardViewController?
 
     private let navigation: Navigable
     private let image: UIImage
@@ -30,10 +34,12 @@ class CreateAnkiCardCoordinator: Coordinator {
     }
 
     func start() {
+        let createAnkiCardViewController = CreateAnkiCardViewController(image: image, sentence: sentence, term: term, delegate: self)
         presentedNavigation = createPresentableNavigation()
-        presentedNavigation.setViewControllers([CreateAnkiCardViewController(image: image, sentence: sentence, term: term, delegate: self)], animated: false)
+        presentedNavigation.setViewControllers([createAnkiCardViewController], animated: false)
 
         navigation.present(presentedNavigation, animated: true, completion: nil)
+        self.createAnkiCardViewController = createAnkiCardViewController
     }
 
     func createPresentableNavigation() -> Navigable {
@@ -52,6 +58,27 @@ extension CreateAnkiCardCoordinator: CreateAnkiCardViewControllerDelegate {
     }
 
     func editImage(_ createAnkiCardViewController: CreateAnkiCardViewController) {
+        let cropViewController = CropViewController(image: image)
+        if let currentCrop = currentCrop {
+            cropViewController.imageCropFrame = currentCrop
+        }
+        cropViewController.delegate = self
 
+        // Without this, there is a transition error and the presented navigation controller is removed
+        // https://github.com/TimOliver/TOCropViewController/issues/365
+        cropViewController.modalTransitionStyle = .crossDissolve
+        cropViewController.transitioningDelegate = nil
+
+        presentedNavigation.present(cropViewController, animated: true, completion: nil)
+    }
+}
+
+extension CreateAnkiCardCoordinator: CropViewControllerDelegate {
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        currentCrop = cropRect
+        croppedImage = image
+        createAnkiCardViewController?.setImage(image)
+
+        cropViewController.dismiss(animated: true, completion: nil)
     }
 }
