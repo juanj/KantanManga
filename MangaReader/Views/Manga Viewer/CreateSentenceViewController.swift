@@ -10,7 +10,13 @@ import UIKit
 protocol CreateSentenceViewControllerDelegate: AnyObject {
     func cancel(_ createSentenceViewController: CreateSentenceViewController)
     func save(_ createSentenceViewController: CreateSentenceViewController, sentence: String, definition: String)
+    func delete(_ createSentenceViewController: CreateSentenceViewController)
     func editImage(_ createSentenceViewController: CreateSentenceViewController)
+}
+
+extension CreateSentenceViewControllerDelegate {
+    // Optional method
+    func delete(_ createSentenceViewController: CreateSentenceViewController) {}
 }
 
 class CreateSentenceViewController: UIViewController {
@@ -22,11 +28,13 @@ class CreateSentenceViewController: UIViewController {
     private let image: UIImage?
     private let sentence: String
     private let definition: String
+    private let isExistingSentence: Bool
     private weak var delegate: CreateSentenceViewControllerDelegate?
-    init(image: UIImage?, sentence: String, definition: String, delegate: CreateSentenceViewControllerDelegate) {
+    init(image: UIImage?, sentence: String, definition: String, isExistingSentence: Bool, delegate: CreateSentenceViewControllerDelegate) {
         self.image = image
         self.sentence = sentence
         self.definition = definition
+        self.isExistingSentence = isExistingSentence
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
@@ -55,9 +63,15 @@ class CreateSentenceViewController: UIViewController {
     }
 
     private func configureNavigationBar() {
-        title = "Save sentence"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))]
+
+        if isExistingSentence {
+            title = "Edit sentence"
+            navigationItem.rightBarButtonItems?.append(UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteSentence)))
+        } else {
+            title = "Save sentence"
+        }
     }
 
     private func configureScrollView() {
@@ -77,6 +91,10 @@ class CreateSentenceViewController: UIViewController {
 
     @objc func save() {
         delegate?.save(self, sentence: sentenceTextField.text ?? "", definition: definitionTextView.text ?? "")
+    }
+
+    @objc func deleteSentence() {
+        delegate?.delete(self)
     }
 
     @objc func editImage() {

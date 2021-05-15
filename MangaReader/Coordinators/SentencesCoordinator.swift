@@ -41,6 +41,13 @@ extension SentencesCoordinator: SentencesViewControllerDelegate {
 }
 
 extension SentencesCoordinator: EditSentenceCoordinatorDelegate {
+    func didSelectDelete(_ createSentenceCoordinator: EditSentenceCoordinator) {
+        removeChildCoordinator(type: EditSentenceCoordinator.self)
+        guard let selectedSentence = selectedSentence else { return }
+        coreDataManager.delete(sentence: selectedSentence)
+        sentencesViewController?.sentences = coreDataManager.fetchAllSentences() ?? []
+    }
+
     func didCancel(_ createSentenceCoordinator: EditSentenceCoordinator) {
         removeChildCoordinator(type: EditSentenceCoordinator.self)
     }

@@ -11,6 +11,12 @@ import CropViewController
 protocol EditSentenceCoordinatorDelegate: AnyObject {
     func didCancel(_ createSentenceCoordinator: EditSentenceCoordinator)
     func didEnd(_ createSentenceCoordinator: EditSentenceCoordinator, image: UIImage?, sentence: String, definition: String)
+    func didSelectDelete(_ createSentenceCoordinator: EditSentenceCoordinator)
+}
+
+extension EditSentenceCoordinatorDelegate {
+    // Optional method
+    func didSelectDelete(_ createSentenceCoordinator: EditSentenceCoordinator) {}
 }
 
 class EditSentenceCoordinator: NSObject, Coordinator {
@@ -26,20 +32,22 @@ class EditSentenceCoordinator: NSObject, Coordinator {
     private let sentence: String
     private let definition: String
     private weak var delegate: EditSentenceCoordinatorDelegate?
-    init(navigation: Navigable, image: UIImage?, sentence: String, definition: String, delegate: EditSentenceCoordinatorDelegate?) {
+    private let isExistingSentence: Bool
+    init(navigation: Navigable, image: UIImage?, sentence: String, definition: String, delegate: EditSentenceCoordinatorDelegate?, isExistingSentence: Bool = false) {
         self.navigation = navigation
         self.image = image
         self.sentence = sentence
         self.definition = definition
         self.delegate = delegate
+        self.isExistingSentence = isExistingSentence
     }
 
     convenience init(navigation: Navigable, sentence: Sentence, delegate: EditSentenceCoordinatorDelegate) {
-        self.init(navigation: navigation, image: sentence.image, sentence: sentence.sentence, definition: sentence.definition, delegate: delegate)
+        self.init(navigation: navigation, image: sentence.image, sentence: sentence.sentence, definition: sentence.definition, delegate: delegate, isExistingSentence: true)
     }
 
     func start() {
-        let createSentenceViewController = CreateSentenceViewController(image: image, sentence: sentence, definition: definition, delegate: self)
+        let createSentenceViewController = CreateSentenceViewController(image: image, sentence: sentence, definition: definition, isExistingSentence: isExistingSentence, delegate: self)
         presentedNavigation = createPresentableNavigation()
         presentedNavigation.setViewControllers([createSentenceViewController], animated: false)
 
@@ -61,6 +69,19 @@ extension EditSentenceCoordinator: CreateSentenceViewControllerDelegate {
     func save(_ createSentenceViewController: CreateSentenceViewController, sentence: String, definition: String) {
         navigation.dismiss(animated: true, completion: nil)
         delegate?.didEnd(self, image: croppedImage ?? image, sentence: sentence, definition: definition)
+    }
+
+    func delete(_ createSentenceViewController: CreateSentenceViewController) {
+        let alert = UIAlertController(title: "Are you sure?", message: "Are you sure you want to delete this sentence?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+            alert.dismiss(animated: true) {
+                createSentenceViewController.dismiss(animated: true, completion: nil)
+            }
+            self.delegate?.didSelectDelete(self)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        createSentenceViewController.present(alert, animated: true, completion: nil)
     }
 
     func editImage(_ createSentenceViewController: CreateSentenceViewController) {
