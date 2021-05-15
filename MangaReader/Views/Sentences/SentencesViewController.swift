@@ -9,6 +9,7 @@ import UIKit
 
 protocol SentencesViewControllerDelegate: AnyObject {
     func refresh(_ sentencesViewController: SentencesViewController)
+    func didSelectSentence(_ sentencesViewController: SentencesViewController, sentence: Sentence)
 }
 
 class SentencesViewController: UIViewController {
@@ -16,7 +17,7 @@ class SentencesViewController: UIViewController {
 
     var sentences: [Sentence] {
         didSet {
-            tableView.reloadData()
+            refresh()
         }
     }
     private weak var delegate: SentencesViewControllerDelegate?
@@ -42,6 +43,10 @@ class SentencesViewController: UIViewController {
         delegate?.refresh(self)
     }
 
+    func refresh() {
+        tableView.reloadData()
+    }
+
     private func configureTableView() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +62,13 @@ class SentencesViewController: UIViewController {
     }
 }
 
-extension SentencesViewController: UITableViewDelegate {}
+extension SentencesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        delegate?.didSelectSentence(self, sentence: sentences[indexPath.row])
+    }
+}
 
 extension SentencesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
