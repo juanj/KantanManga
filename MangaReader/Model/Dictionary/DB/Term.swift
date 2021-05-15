@@ -23,6 +23,23 @@ struct Term: Decodable {
     let sequence: Int
     let termTags: String
 
+    var formattedDefinition: String {
+        var definition = ""
+        definition += "\(reading)"
+        if expression != reading {
+            definition += " 【\(expression)】"
+        }
+
+        for glossary in glossary {
+            switch glossary {
+            case .text(let text):
+                definition += "\n• \(text)"
+            default: break
+            }
+        }
+        return definition
+    }
+
     init(from termEntry: TermEntry, dictionaryId: Int) {
         id = nil
         self.dictionaryId = dictionaryId

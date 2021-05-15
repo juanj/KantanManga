@@ -8,11 +8,12 @@
 import Foundation
 import CropViewController
 
-protocol CreateSentenceCoordinatorDelegate: AnyObject {
-    func didEnd(_ createSentenceCoordinator: CreateSentenceCoordinator)
+protocol EditSentenceCoordinatorDelegate: AnyObject {
+    func didCancel(_ createSentenceCoordinator: EditSentenceCoordinator)
+    func didEnd(_ createSentenceCoordinator: EditSentenceCoordinator, image: UIImage?, sentence: String, definition: String)
 }
 
-class CreateSentenceCoordinator: NSObject, Coordinator {
+class EditSentenceCoordinator: NSObject, Coordinator {
     var childCoordinators = [Coordinator]()
 
     private var presentedNavigation: Navigable!
@@ -21,22 +22,24 @@ class CreateSentenceCoordinator: NSObject, Coordinator {
     private var createSentenceViewController: CreateSentenceViewController?
 
     private let navigation: Navigable
-    private let image: UIImage
+    private let image: UIImage?
     private let sentence: String
-    private let term: Term
-    private let coreDataManager: CoreDataManageable
-    private weak var delegate: CreateSentenceCoordinatorDelegate?
-    init(navigation: Navigable, image: UIImage, sentence: String, term: Term, coreDataManager: CoreDataManageable, delegate: CreateSentenceCoordinatorDelegate?) {
+    private let definition: String
+    private weak var delegate: EditSentenceCoordinatorDelegate?
+    init(navigation: Navigable, image: UIImage?, sentence: String, definition: String, delegate: EditSentenceCoordinatorDelegate?) {
         self.navigation = navigation
         self.image = image
         self.sentence = sentence
-        self.term = term
-        self.coreDataManager = coreDataManager
+        self.definition = definition
         self.delegate = delegate
     }
 
+    convenience init(navigation: Navigable, sentence: Sentence, delegate: EditSentenceCoordinatorDelegate) {
+        self.init(navigation: navigation, image: sentence.image, sentence: sentence.sentence, definition: sentence.definition, delegate: delegate)
+    }
+
     func start() {
-        let createSentenceViewController = CreateSentenceViewController(image: image, sentence: sentence, term: term, delegate: self)
+        let createSentenceViewController = CreateSentenceViewController(image: image, sentence: sentence, definition: definition, delegate: self)
         presentedNavigation = createPresentableNavigation()
         presentedNavigation.setViewControllers([createSentenceViewController], animated: false)
 
@@ -49,19 +52,19 @@ class CreateSentenceCoordinator: NSObject, Coordinator {
     }
 }
 
-extension CreateSentenceCoordinator: CreateSentenceViewControllerDelegate {
+extension EditSentenceCoordinator: CreateSentenceViewControllerDelegate {
     func cancel(_ createSentenceViewController: CreateSentenceViewController) {
         navigation.dismiss(animated: true, completion: nil)
-        delegate?.didEnd(self)
+        delegate?.didCancel(self)
     }
 
     func save(_ createSentenceViewController: CreateSentenceViewController, sentence: String, definition: String) {
-        coreDataManager.insertSentence(sentence: sentence, definition: definition, image: croppedImage ?? image)
         navigation.dismiss(animated: true, completion: nil)
-        delegate?.didEnd(self)
+        delegate?.didEnd(self, image: croppedImage ?? image, sentence: sentence, definition: definition)
     }
 
     func editImage(_ createSentenceViewController: CreateSentenceViewController) {
+        guard let image = image else { return }
         let cropViewController = CropViewController(image: image)
         if let currentCrop = currentCrop {
             cropViewController.imageCropFrame = currentCrop
@@ -77,7 +80,7 @@ extension CreateSentenceCoordinator: CreateSentenceViewControllerDelegate {
     }
 }
 
-extension CreateSentenceCoordinator: CropViewControllerDelegate {
+extension EditSentenceCoordinator: CropViewControllerDelegate {
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
         currentCrop = cropRect
         croppedImage = image

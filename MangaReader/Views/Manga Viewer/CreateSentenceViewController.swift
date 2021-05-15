@@ -19,14 +19,14 @@ class CreateSentenceViewController: UIViewController {
     @IBOutlet weak var definitionTextView: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
 
-    private let image: UIImage
+    private let image: UIImage?
     private let sentence: String
-    private let term: Term
+    private let definition: String
     private weak var delegate: CreateSentenceViewControllerDelegate?
-    init(image: UIImage, sentence: String, term: Term, delegate: CreateSentenceViewControllerDelegate) {
+    init(image: UIImage?, sentence: String, definition: String, delegate: CreateSentenceViewControllerDelegate) {
         self.image = image
         self.sentence = sentence
-        self.term = term
+        self.definition = definition
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
@@ -51,20 +51,6 @@ class CreateSentenceViewController: UIViewController {
     private func loadData() {
         imageView.image = image
         sentenceTextField.text = sentence
-
-        var definition = ""
-        definition += "\(term.reading)"
-        if term.expression != term.reading {
-            definition += " 【\(term.expression)】"
-        }
-
-        for glossary in term.glossary {
-            switch glossary {
-            case .text(let text):
-                definition += "\n• \(text)"
-            default: break
-            }
-        }
         definitionTextView.text = definition
     }
 

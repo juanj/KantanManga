@@ -151,7 +151,7 @@
 		3297E3CC25E1A18900743C8B /* IndexPathButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3CB25E1A18900743C8B /* IndexPathButton.swift */; };
 		3297E3D325E1C42800743C8B /* CreateSentenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3D125E1C42700743C8B /* CreateSentenceViewController.swift */; };
 		3297E3D425E1C42800743C8B /* CreateSentenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3297E3D225E1C42700743C8B /* CreateSentenceViewController.xib */; };
-		3297E3E225E1D06F00743C8B /* CreateSentenceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3E125E1D06F00743C8B /* CreateSentenceCoordinator.swift */; };
+		3297E3E225E1D06F00743C8B /* EditSentenceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3E125E1D06F00743C8B /* EditSentenceCoordinator.swift */; };
 		3297E3E725E1D09400743C8B /* CreateSentenceCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3E625E1D09400743C8B /* CreateSentenceCoordinatorTests.swift */; };
 		3297E3EF25E1D43A00743C8B /* TestableCreateSentenceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3EE25E1D43A00743C8B /* TestableCreateSentenceCoordinator.swift */; };
 		3297E3F425E1D64100743C8B /* TestableMangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3F325E1D64100743C8B /* TestableMangaViewController.swift */; };
@@ -449,7 +449,7 @@
 		3297E3CB25E1A18900743C8B /* IndexPathButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexPathButton.swift; sourceTree = "<group>"; };
 		3297E3D125E1C42700743C8B /* CreateSentenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSentenceViewController.swift; sourceTree = "<group>"; };
 		3297E3D225E1C42700743C8B /* CreateSentenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateSentenceViewController.xib; sourceTree = "<group>"; };
-		3297E3E125E1D06F00743C8B /* CreateSentenceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSentenceCoordinator.swift; sourceTree = "<group>"; };
+		3297E3E125E1D06F00743C8B /* EditSentenceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSentenceCoordinator.swift; sourceTree = "<group>"; };
 		3297E3E625E1D09400743C8B /* CreateSentenceCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSentenceCoordinatorTests.swift; sourceTree = "<group>"; };
 		3297E3EE25E1D43A00743C8B /* TestableCreateSentenceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableCreateSentenceCoordinator.swift; sourceTree = "<group>"; };
 		3297E3F325E1D64100743C8B /* TestableMangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableMangaViewController.swift; sourceTree = "<group>"; };
@@ -1149,7 +1149,7 @@
 				326FDE7A24A7FBFB0042CB8A /* SettingsCoordinator.swift */,
 				32F998D42557535500897299 /* Navigable.swift */,
 				32DDEF0B257C20420063E813 /* DictionariesCoordinator.swift */,
-				3297E3E125E1D06F00743C8B /* CreateSentenceCoordinator.swift */,
+				3297E3E125E1D06F00743C8B /* EditSentenceCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -1652,7 +1652,7 @@
 				84A831E7221D90CA00CEE1C9 /* AppDelegate.swift in Sources */,
 				32DDEF3C257C21DD0063E813 /* DictionariesViewController.swift in Sources */,
 				3292ADA22535DCF8004E8441 /* DemoOcrView.swift in Sources */,
-				3297E3E225E1D06F00743C8B /* CreateSentenceCoordinator.swift in Sources */,
+				3297E3E225E1D06F00743C8B /* EditSentenceCoordinator.swift in Sources */,
 				3298D7D025713BB4005FB8F2 /* YomichanDictionaryImporter.swift in Sources */,
 				32542BE7258037C900ED357A /* Tag.swift in Sources */,
 				3298D7D725713D66005FB8F2 /* DictionaryIndex.swift in Sources */,
