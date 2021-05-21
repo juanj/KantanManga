@@ -1,5 +1,5 @@
 //
-//  FakeCreateSentenceCoordinatorDelegate.swift
+//  FakeEditSentenceCoordinatorDelegate.swift
 //  Kantan-MangaTests
 //
 //  Created by Juan on 20/02/21.
@@ -7,9 +7,14 @@
 
 @testable import Kantan_Manga
 
-class FakeCreateSentenceCoordinatorDelegate: CreateSentenceCoordinatorDelegate {
+class FakeEditSentenceCoordinatorDelegate: EditSentenceCoordinatorDelegate {
+    var didCancelCalled = false
     var didEndCalled = false
-    func didEnd(_ createSentenceCoordinator: CreateSentenceCoordinator) {
+    func didCancel(_ createSentenceCoordinator: EditSentenceCoordinator) {
+        didCancelCalled = true
+    }
+
+    func didEnd(_ createSentenceCoordinator: EditSentenceCoordinator, image: UIImage?, sentence: String, definition: String) {
         didEndCalled = true
     }
 }

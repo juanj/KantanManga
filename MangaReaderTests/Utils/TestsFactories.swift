@@ -59,14 +59,14 @@ final class TestsFactories {
         return dictionariesCoordinator
     }
 
-    static func createCreateSentenceCoordinator(navigable: Navigable = FakeNavigation(), image: UIImage = UIImage(), sentence: String = "", term: Term = Term(from: TermEntryV1(expression: "", reading: "", definitionTags: "", rules: "", score: 0, glossary: []), dictionaryId: 0), coreDataManager: CoreDataManageable = FakeCoreDataManager(), delegate: CreateSentenceCoordinatorDelegate = FakeCreateSentenceCoordinatorDelegate()) -> CreateSentenceCoordinator {
-        let createSentenceCoordinator = CreateSentenceCoordinator(navigation: navigable, image: image, sentence: sentence, term: term, coreDataManager: coreDataManager, delegate: delegate)
-        return createSentenceCoordinator
+    static func createEditSentenceCoordinator(navigable: Navigable = FakeNavigation(), image: UIImage = UIImage(), sentence: String = "", definition: String = "", delegate: EditSentenceCoordinatorDelegate = FakeEditSentenceCoordinatorDelegate()) -> EditSentenceCoordinator {
+        let editSentenceCoordinator = EditSentenceCoordinator(navigation: navigable, image: image, sentence: sentence, definition: definition, delegate: delegate)
+        return editSentenceCoordinator
     }
 
-    static func createTestableCreateSentenceCoordinator(navigable: Navigable = FakeNavigation(), image: UIImage = UIImage(), sentence: String = "", term: Term = Term(from: TermEntryV1(expression: "", reading: "", definitionTags: "", rules: "", score: 0, glossary: []), dictionaryId: 0), coreDataManager: CoreDataManageable = FakeCoreDataManager(), delegate: CreateSentenceCoordinatorDelegate = FakeCreateSentenceCoordinatorDelegate()) -> TestableCreateSentenceCoordinator {
-        let createSentenceCoordinator = TestableCreateSentenceCoordinator(navigation: navigable, image: image, sentence: sentence, term: term, coreDataManager: coreDataManager, delegate: delegate)
-        return createSentenceCoordinator
+    static func createTestableEditSentenceCoordinator(navigable: Navigable = FakeNavigation(), image: UIImage = UIImage(), sentence: String = "", definition: String = "", delegate: EditSentenceCoordinatorDelegate = FakeEditSentenceCoordinatorDelegate()) -> TestableEditSentenceCoordinator {
+    let editSentenceCoordinator = TestableEditSentenceCoordinator(navigation: navigable, image: image, sentence: sentence, definition: definition, delegate: delegate)
+        return editSentenceCoordinator
     }
 
     // MARK: ViewControllers
@@ -100,8 +100,8 @@ final class TestsFactories {
         }
     }
 
-    static func createCreateSentenceViewController(image: UIImage = UIImage(), sentence: String = "", term: Term = Term(from: TermEntryV1(expression: "", reading: "", definitionTags: "", rules: "", score: 0, glossary: []), dictionaryId: 0), delegate: CreateSentenceViewControllerDelegate = FakeCreateSentenceViewControllerDelegate()) -> CreateSentenceViewController {
-        return CreateSentenceViewController(image: image, sentence: sentence, term: term, delegate: delegate)
+    static func createCreateSentenceViewController(image: UIImage = UIImage(), sentence: String = "", definition: String = "", isExistingSentence: Bool = false, delegate: CreateSentenceViewControllerDelegate = FakeCreateSentenceViewControllerDelegate()) -> CreateSentenceViewController {
+        return CreateSentenceViewController(image: image, sentence: sentence, definition: definition, isExistingSentence: isExistingSentence, delegate: delegate)
     }
     // MARK: Database
     static func createTestDatabase() -> DatabaseQueue {
