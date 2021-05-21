@@ -10,6 +10,7 @@ import UIKit
 protocol SentencesViewControllerDelegate: AnyObject {
     func refresh(_ sentencesViewController: SentencesViewController)
     func didSelectSentence(_ sentencesViewController: SentencesViewController, sentence: Sentence)
+    func didSelectSyncSentences(_ sentencesViewController: SentencesViewController)
 }
 
 class SentencesViewController: UIViewController {
@@ -59,6 +60,12 @@ class SentencesViewController: UIViewController {
 
     private func configureNavigationBar() {
         title = "Sentences"
+        let syncButton = UIBarButtonItem(image: UIImage(systemName: "arrow.clockwise"), style: .plain, target: self, action: #selector(syncSentences))
+        navigationItem.leftBarButtonItem = syncButton
+    }
+
+    @objc func syncSentences() {
+
     }
 }
 

@@ -38,6 +38,8 @@ extension SentencesCoordinator: SentencesViewControllerDelegate {
         childCoordinators.append(editSentenceCoordinator)
         editSentenceCoordinator.start()
     }
+
+    func didSelectSyncSentences(_ sentencesViewController: SentencesViewController) {}
 }
 
 extension SentencesCoordinator: EditSentenceCoordinatorDelegate {
