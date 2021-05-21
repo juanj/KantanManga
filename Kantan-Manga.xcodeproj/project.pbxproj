@@ -131,6 +131,9 @@
 		32792AC725D971BD00D0B96D /* KanjiMetaSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32792AC625D971BD00D0B96D /* KanjiMetaSearchResult.swift */; };
 		327A8F55256BFC4900BB778E /* FakeMangaViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A8F54256BFC4900BB778E /* FakeMangaViewControllerDelegate.swift */; };
 		327BC9EE255C2AA400521574 /* demo1.cbz in Resources */ = {isa = PBXBuildFile; fileRef = 3232F32325276DED00DA77B8 /* demo1.cbz */; };
+		327ED0DA26587BA50065E8E8 /* AnkiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327ED0D926587BA50065E8E8 /* AnkiConfig.swift */; };
+		327ED0DF26587DB60065E8E8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327ED0DE26587DB60065E8E8 /* Constants.swift */; };
+		327ED0E726587E960065E8E8 /* AnkiConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327ED0E626587E960065E8E8 /* AnkiConfigManager.swift */; };
 		3283D1012552069700C08D02 /* ToggleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3283D0FF2552069700C08D02 /* ToggleTableViewCell.swift */; };
 		3283D1022552069700C08D02 /* ToggleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3283D1002552069700C08D02 /* ToggleTableViewCell.xib */; };
 		32892C0A23E39FBC000B1C3E /* AddMangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32892C0823E39FBC000B1C3E /* AddMangaViewController.swift */; };
@@ -429,6 +432,9 @@
 		327300932561EF6A009854EE /* UIViewExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensionTests.swift; sourceTree = "<group>"; };
 		32792AC625D971BD00D0B96D /* KanjiMetaSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiMetaSearchResult.swift; sourceTree = "<group>"; };
 		327A8F54256BFC4900BB778E /* FakeMangaViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMangaViewControllerDelegate.swift; sourceTree = "<group>"; };
+		327ED0D926587BA50065E8E8 /* AnkiConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiConfig.swift; sourceTree = "<group>"; };
+		327ED0DE26587DB60065E8E8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		327ED0E626587E960065E8E8 /* AnkiConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiConfigManager.swift; sourceTree = "<group>"; };
 		3283D0FF2552069700C08D02 /* ToggleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleTableViewCell.swift; sourceTree = "<group>"; };
 		3283D1002552069700C08D02 /* ToggleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToggleTableViewCell.xib; sourceTree = "<group>"; };
 		32892C0823E39FBC000B1C3E /* AddMangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMangaViewController.swift; sourceTree = "<group>"; };
@@ -811,6 +817,15 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		327ED0D726587B910065E8E8 /* Anki */ = {
+			isa = PBXGroup;
+			children = (
+				327ED0D926587BA50065E8E8 /* AnkiConfig.swift */,
+				327ED0E626587E960065E8E8 /* AnkiConfigManager.swift */,
+			);
+			path = Anki;
+			sourceTree = "<group>";
+		};
 		328F629F255A0395000CA225 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1059,6 +1074,7 @@
 				328CD84625D1FCE6005C2E3A /* CGPDFObjectRef+Extension.swift */,
 				325C049025D97FB200170629 /* Sequence+Extension.swift */,
 				325C04AD25D99F0400170629 /* UIColor+Extension.swift */,
+				327ED0DE26587DB60065E8E8 /* Constants.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -1093,6 +1109,7 @@
 		84A831E5221D90CA00CEE1C9 /* MangaReader */ = {
 			isa = PBXGroup;
 			children = (
+				327ED0D726587B910065E8E8 /* Anki */,
 				329D418825B4872800545FB0 /* Resources */,
 				326344A1247DD94200F683AB /* OCR */,
 				326344A0247DD92900F683AB /* File Extraction */,
@@ -1667,6 +1684,7 @@
 				329ACA9A2552EFD7002953C5 /* ViewerSettings.swift in Sources */,
 				328CD84725D1FCE6005C2E3A /* CGPDFObjectRef+Extension.swift in Sources */,
 				843FA7E2221DF0C300B86B52 /* WebServerViewController.swift in Sources */,
+				327ED0DA26587BA50065E8E8 /* AnkiConfig.swift in Sources */,
 				325C048925D97C5000170629 /* FullKanjiResult.swift in Sources */,
 				3297E3D325E1C42800743C8B /* CreateSentenceViewController.swift in Sources */,
 				328CD84125D1EC72005C2E3A /* PDFReader.swift in Sources */,
@@ -1674,8 +1692,10 @@
 				841B795C221F305A00659FA2 /* MangaDataSource.swift in Sources */,
 				329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */,
 				32542BCB258031E000ED357A /* Dictionary.swift in Sources */,
+				327ED0E726587E960065E8E8 /* AnkiConfigManager.swift in Sources */,
 				3247543C2551FD120025AB06 /* ViewerSettingsViewController.swift in Sources */,
 				32E37987252A6A6000ED4BAC /* AcknowledgmentsView.swift in Sources */,
+				327ED0DF26587DB60065E8E8 /* Constants.swift in Sources */,
 				32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */,
 				32E322182481A531007BC017 /* ParsedInputField.swift in Sources */,
 				32326F8624354ECC00FCE8E5 /* FileSourceViewController.swift in Sources */,
