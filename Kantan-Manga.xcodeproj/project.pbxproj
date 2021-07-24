@@ -1971,7 +1971,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 77;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_TEAM = 25JHVANVX3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MangaReader/Info.plist;
@@ -1979,7 +1979,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2065,7 +2065,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 77;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_TEAM = 25JHVANVX3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MangaReader/Info.plist;
@@ -2073,7 +2073,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
