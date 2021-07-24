@@ -152,8 +152,8 @@ SPEC CHECKSUMS:
   FirebaseCore: 06a2b68af8901f2244eb989419eb89edc3789b4d
   FirebaseCoreDiagnostics: 35685db68b11fe7d19d2d8b557fd7e3a56ac81cc
   FirebaseInstallations: a46ae59915f0931e18814164849cd0354bea24ed
-  FirebaseMLCommon: 35216a0e17c90def1b9f647339aa42ba72ffe743
-  FirebaseMLVision: e6fb21d12ea17b91fda10853c9d0210b7e54254d
+  FirebaseMLCommon: 071ec79a1501694b1210b2148b82c233249b0351
+  FirebaseMLVision: c59bc912a5190c6398d494f8033c71036c73d2f3
   GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   GoogleAPIClientForREST: 4bb409633efcc2e1b3f945afe7e35039b5a61db2
   GoogleAppMeasurement: 65a1071e5f52f63ab03d0a4d814a54fd762d885a
