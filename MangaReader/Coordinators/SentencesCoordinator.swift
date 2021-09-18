@@ -45,7 +45,9 @@ extension SentencesCoordinator: SentencesViewControllerDelegate {
         if let config = ankiConfigManager.savedConfig() {
             // TODO: Sync sentences
         } else {
-            // TODO: Show config
+            let configureAnkiCoordinator = ConfigureAnkiCoordinator(navigation: navigation)
+            childCoordinators.append(configureAnkiCoordinator)
+            configureAnkiCoordinator.start()
         }
     }
 }
