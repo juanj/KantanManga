@@ -7,6 +7,13 @@
 
 import Foundation
 
+enum AnkiConnectManagerError: Error {
+    case missingData
+    case invalidResponse
+    case no200Response(code: Int)
+    case invalidAnkiConnectResponse(body: String)
+}
+
 class AnkiConnectManager {
     private let url: URL
     private let key: String?
@@ -45,18 +52,20 @@ class AnkiConnectManager {
                 return
             }
 
-            if let data = data {
-                do {
-                    let jsonDecoder = JSONDecoder()
-                    let response = try jsonDecoder.decode(AnkiConnectResponse<ResponseResult>.self, from: data)
-                    if let error = response.error {
-                        completion(.failure(AnkiConnectError(description: error)))
-                    } else {
-                        completion(.success(response.result))
-                    }
-                } catch {
-                    completion(.failure(error))
+            guard let data = data else {
+                completion(.failure(AnkiConnectManagerError.missingData))
+                return
+            }
+            do {
+                let jsonDecoder = JSONDecoder()
+                let response = try jsonDecoder.decode(AnkiConnectResponse<ResponseResult>.self, from: data)
+                if let error = response.error {
+                    completion(.failure(AnkiConnectError(description: error)))
+                } else {
+                    completion(.success(response.result))
                 }
+            } catch {
+                completion(.failure(error))
             }
         }
         task.resume()
