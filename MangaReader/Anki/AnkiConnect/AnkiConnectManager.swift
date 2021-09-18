@@ -77,6 +77,48 @@ class AnkiConnectManager {
         task.resume()
     }
 
+    func checkConnection(completion: @escaping (Result<Void, Error>) -> Void) {
+        let task = session.dataTask(with: url) { data, response, error in
+            let wrappedCompletion: (Result<Void, Error>) -> Void = { result in
+                DispatchQueue.main.async {
+                    completion(result)
+                }
+            }
+
+            if let error = error {
+                wrappedCompletion(.failure(error))
+                return
+            }
+
+            guard let response = response as? HTTPURLResponse else {
+                wrappedCompletion(.failure(AnkiConnectManagerError.invalidResponse))
+                return
+            }
+
+            guard response.statusCode == 200 else {
+                wrappedCompletion(.failure(AnkiConnectManagerError.no200Response(code: response.statusCode)))
+                return
+            }
+
+            guard let data = data else {
+                wrappedCompletion(.failure(AnkiConnectManagerError.missingData))
+                return
+            }
+
+            guard let responseString = String(data: data, encoding: .utf8) else {
+                wrappedCompletion(.failure(AnkiConnectManagerError.invalidResponse))
+                return
+            }
+
+            if responseString.starts(with: "AnkiConnect") {
+                wrappedCompletion(.success(()))
+            } else {
+                wrappedCompletion(.failure(AnkiConnectManagerError.invalidAnkiConnectResponse(body: responseString)))
+            }
+        }
+        task.resume()
+    }
+
     func getDeckNames(completion: @escaping (Result<[String], Error>) -> Void) {
         sendRequestFor(action: "deckNames", params: [String: String](), completion: completion)
     }
