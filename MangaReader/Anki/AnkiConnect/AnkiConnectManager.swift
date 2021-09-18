@@ -47,25 +47,31 @@ class AnkiConnectManager {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let task = session.dataTask(with: request) { data, response, error in
+            let wrappedCompletion: (Result<ResponseResult, Error>) -> Void = { result in
+                DispatchQueue.main.async {
+                    completion(result)
+                }
+            }
+
             if let error = error {
-                completion(.failure(error))
+                wrappedCompletion(.failure(error))
                 return
             }
 
             guard let data = data else {
-                completion(.failure(AnkiConnectManagerError.missingData))
+                wrappedCompletion(.failure(AnkiConnectManagerError.missingData))
                 return
             }
             do {
                 let jsonDecoder = JSONDecoder()
                 let response = try jsonDecoder.decode(AnkiConnectResponse<ResponseResult>.self, from: data)
                 if let error = response.error {
-                    completion(.failure(AnkiConnectError(description: error)))
+                    wrappedCompletion(.failure(AnkiConnectError(description: error)))
                 } else {
-                    completion(.success(response.result))
+                    wrappedCompletion(.success(response.result))
                 }
             } catch {
-                completion(.failure(error))
+                wrappedCompletion(.failure(error))
             }
         }
         task.resume()
