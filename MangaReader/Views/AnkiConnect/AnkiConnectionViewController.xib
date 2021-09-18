@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnkiConnectionViewController" customModule="Kantan_Manga" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="WM3-Jy-ZfK" id="sBx-XE-gUk"/>
                 <outlet property="continueButton" destination="UBV-Ra-Onb" id="var-EI-R4q"/>
                 <outlet property="hostTextField" destination="aNT-J3-L1M" id="daO-mx-dO3"/>
                 <outlet property="keyTextField" destination="QOo-T8-pht" id="sVx-tR-y1T"/>
@@ -44,13 +45,18 @@
                         </button>
                     </subviews>
                 </stackView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="WM3-Jy-ZfK">
+                    <rect key="frame" x="352.5" y="293" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="9Nw-Mk-sJt" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="5Od-ob-nz4"/>
                 <constraint firstItem="9Nw-Mk-sJt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cFq-1P-Cdt"/>
+                <constraint firstItem="WM3-Jy-ZfK" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="haJ-5X-l0C"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9Nw-Mk-sJt" secondAttribute="trailing" id="smp-CW-R1z"/>
+                <constraint firstItem="WM3-Jy-ZfK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wvG-wB-W1r"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

@@ -222,6 +222,7 @@
 		32EC1AD026F69F670059F143 /* AnkiSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EC1ACE26F69F670059F143 /* AnkiSettingsViewController.xib */; };
 		32EC1AD326F6A1230059F143 /* AnkiNamesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AD126F6A1230059F143 /* AnkiNamesListViewController.swift */; };
 		32EC1AD426F6A1230059F143 /* AnkiNamesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EC1AD226F6A1230059F143 /* AnkiNamesListViewController.xib */; };
+		32EC1AD626F6A2D70059F143 /* ConfigureAnkiCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AD526F6A2D70059F143 /* ConfigureAnkiCoordinator.swift */; };
 		32F1B9F3243685DC00AE367D /* SelectCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */; };
 		32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */; };
 		32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */; };
@@ -530,6 +531,7 @@
 		32EC1ACE26F69F670059F143 /* AnkiSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnkiSettingsViewController.xib; sourceTree = "<group>"; };
 		32EC1AD126F6A1230059F143 /* AnkiNamesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiNamesListViewController.swift; sourceTree = "<group>"; };
 		32EC1AD226F6A1230059F143 /* AnkiNamesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnkiNamesListViewController.xib; sourceTree = "<group>"; };
+		32EC1AD526F6A2D70059F143 /* ConfigureAnkiCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureAnkiCoordinator.swift; sourceTree = "<group>"; };
 		32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCollectionTableViewController.swift; sourceTree = "<group>"; };
 		32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCollectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -1212,6 +1214,7 @@
 				32F998D42557535500897299 /* Navigable.swift */,
 				32DDEF0B257C20420063E813 /* DictionariesCoordinator.swift */,
 				3297E3E125E1D06F00743C8B /* EditSentenceCoordinator.swift */,
+				32EC1AD526F6A2D70059F143 /* ConfigureAnkiCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -1740,6 +1743,7 @@
 				843FA7E2221DF0C300B86B52 /* WebServerViewController.swift in Sources */,
 				327ED0DA26587BA50065E8E8 /* AnkiConfig.swift in Sources */,
 				325C048925D97C5000170629 /* FullKanjiResult.swift in Sources */,
+				32EC1AD626F6A2D70059F143 /* ConfigureAnkiCoordinator.swift in Sources */,
 				3297E3D325E1C42800743C8B /* CreateSentenceViewController.swift in Sources */,
 				328CD84125D1EC72005C2E3A /* PDFReader.swift in Sources */,
 				32A34383257D4F2D003337D0 /* DictionaryDecoder.swift in Sources */,
