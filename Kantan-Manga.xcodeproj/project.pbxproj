@@ -216,6 +216,12 @@
 		32EC1AC326F68BE90059F143 /* AnkiConnectResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AC226F68BE90059F143 /* AnkiConnectResponse.swift */; };
 		32EC1AC526F68DF90059F143 /* AnkiConnectRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AC426F68DF90059F143 /* AnkiConnectRequest.swift */; };
 		32EC1AC726F697050059F143 /* AnkiConnectError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AC626F697050059F143 /* AnkiConnectError.swift */; };
+		32EC1ACB26F69E870059F143 /* AnkiConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AC926F69E870059F143 /* AnkiConnectionViewController.swift */; };
+		32EC1ACC26F69E870059F143 /* AnkiConnectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EC1ACA26F69E870059F143 /* AnkiConnectionViewController.xib */; };
+		32EC1ACF26F69F670059F143 /* AnkiSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1ACD26F69F670059F143 /* AnkiSettingsViewController.swift */; };
+		32EC1AD026F69F670059F143 /* AnkiSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EC1ACE26F69F670059F143 /* AnkiSettingsViewController.xib */; };
+		32EC1AD326F6A1230059F143 /* AnkiNamesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AD126F6A1230059F143 /* AnkiNamesListViewController.swift */; };
+		32EC1AD426F6A1230059F143 /* AnkiNamesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EC1AD226F6A1230059F143 /* AnkiNamesListViewController.xib */; };
 		32F1B9F3243685DC00AE367D /* SelectCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */; };
 		32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */; };
 		32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */; };
@@ -518,6 +524,12 @@
 		32EC1AC226F68BE90059F143 /* AnkiConnectResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiConnectResponse.swift; sourceTree = "<group>"; };
 		32EC1AC426F68DF90059F143 /* AnkiConnectRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiConnectRequest.swift; sourceTree = "<group>"; };
 		32EC1AC626F697050059F143 /* AnkiConnectError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiConnectError.swift; sourceTree = "<group>"; };
+		32EC1AC926F69E870059F143 /* AnkiConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiConnectionViewController.swift; sourceTree = "<group>"; };
+		32EC1ACA26F69E870059F143 /* AnkiConnectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnkiConnectionViewController.xib; sourceTree = "<group>"; };
+		32EC1ACD26F69F670059F143 /* AnkiSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiSettingsViewController.swift; sourceTree = "<group>"; };
+		32EC1ACE26F69F670059F143 /* AnkiSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnkiSettingsViewController.xib; sourceTree = "<group>"; };
+		32EC1AD126F6A1230059F143 /* AnkiNamesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiNamesListViewController.swift; sourceTree = "<group>"; };
+		32EC1AD226F6A1230059F143 /* AnkiNamesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnkiNamesListViewController.xib; sourceTree = "<group>"; };
 		32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCollectionTableViewController.swift; sourceTree = "<group>"; };
 		32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCollectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -971,6 +983,19 @@
 			path = AnkiConnect;
 			sourceTree = "<group>";
 		};
+		32EC1AC826F69E4F0059F143 /* AnkiConnect */ = {
+			isa = PBXGroup;
+			children = (
+				32EC1AC926F69E870059F143 /* AnkiConnectionViewController.swift */,
+				32EC1ACA26F69E870059F143 /* AnkiConnectionViewController.xib */,
+				32EC1ACD26F69F670059F143 /* AnkiSettingsViewController.swift */,
+				32EC1ACE26F69F670059F143 /* AnkiSettingsViewController.xib */,
+				32EC1AD126F6A1230059F143 /* AnkiNamesListViewController.swift */,
+				32EC1AD226F6A1230059F143 /* AnkiNamesListViewController.xib */,
+			);
+			path = AnkiConnect;
+			sourceTree = "<group>";
+		};
 		32F1B9F824369CAA00AE367D /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -1194,6 +1219,7 @@
 		84A8321A221D94D400CEE1C9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				32EC1AC826F69E4F0059F143 /* AnkiConnect */,
 				32A1516025325F61002B3920 /* Onboarding */,
 				32AAD56E23DF7038009B3BCE /* Custom Views */,
 				32F1B9FA24369CEB00AE367D /* Manga Viewer */,
@@ -1424,7 +1450,9 @@
 				84A831F4221D90CC00CEE1C9 /* LaunchScreen.storyboard in Resources */,
 				32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */,
 				32A1516D253260C0002B3920 /* OnboardingViewController.xib in Resources */,
+				32EC1AD426F6A1230059F143 /* AnkiNamesListViewController.xib in Resources */,
 				329D41D025B4BAC000545FB0 /* dic.db in Resources */,
+				32EC1AD026F69F670059F143 /* AnkiSettingsViewController.xib in Resources */,
 				324BB99924983DF7006241E8 /* right-id.def in Resources */,
 				3249F2D8250BBC18004C514E /* MangaCollectionCollectionViewCell.xib in Resources */,
 				324BB99324983DF7006241E8 /* left-id.def in Resources */,
@@ -1440,6 +1468,7 @@
 				324BB99524983DF7006241E8 /* matrix.bin in Resources */,
 				324BB99A24983DF7006241E8 /* char.bin in Resources */,
 				325199BB2479DE0D00DA6908 /* tessdata in Resources */,
+				32EC1ACC26F69E870059F143 /* AnkiConnectionViewController.xib in Resources */,
 				3290ECBB25C3710E00D4DE96 /* FAQViewController.xib in Resources */,
 				3239C5B9254DD06500EFB39A /* Settings.bundle in Resources */,
 				32DDEF3D257C21DD0063E813 /* DictionariesViewController.xib in Resources */,
@@ -1682,6 +1711,7 @@
 				3297E3CC25E1A18900743C8B /* IndexPathButton.swift in Sources */,
 				3290ECBA25C3710E00D4DE96 /* FAQViewController.swift in Sources */,
 				325199B42479D96400DA6908 /* ImageOCR.swift in Sources */,
+				32EC1ACF26F69F670059F143 /* AnkiSettingsViewController.swift in Sources */,
 				328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */,
 				32542BDD258035FA00ED357A /* Kanji.swift in Sources */,
 				32E3221C2481A67D007BC017 /* JapaneseHelpViewController.swift in Sources */,
@@ -1696,6 +1726,7 @@
 				32542BE7258037C900ED357A /* Tag.swift in Sources */,
 				3298D7D725713D66005FB8F2 /* DictionaryIndex.swift in Sources */,
 				328CD84C25D1FED1005C2E3A /* GenericReader.swift in Sources */,
+				32EC1AD326F6A1230059F143 /* AnkiNamesListViewController.swift in Sources */,
 				3259D1B423C4D9A2003BA7C2 /* JapaneseUtils.swift in Sources */,
 				32AD41D225B639EC0042626C /* MergedTermSearchResult.swift in Sources */,
 				3241F8602572AE7F00A4FC04 /* TermEntry.swift in Sources */,
@@ -1720,6 +1751,7 @@
 				32E37987252A6A6000ED4BAC /* AcknowledgmentsView.swift in Sources */,
 				327ED0DF26587DB60065E8E8 /* Constants.swift in Sources */,
 				32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */,
+				32EC1ACB26F69E870059F143 /* AnkiConnectionViewController.swift in Sources */,
 				32E322182481A531007BC017 /* ParsedInputField.swift in Sources */,
 				32326F8624354ECC00FCE8E5 /* FileSourceViewController.swift in Sources */,
 				329E45AB25E2C99F000B0FAE /* SentencesViewController.swift in Sources */,
