@@ -65,7 +65,7 @@ class SentencesViewController: UIViewController {
     }
 
     @objc func syncSentences() {
-
+        delegate?.didSelectSyncSentences(self)
     }
 }
 

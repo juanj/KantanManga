@@ -15,9 +15,11 @@ class SentencesCoordinator: Coordinator {
 
     private var navigation: Navigable
     private var coreDataManager: CoreDataManageable
-    init(navigation: Navigable, coreDataManager: CoreDataManageable) {
+    private var ankiConfigManager: AnkiConfigManager
+    init(navigation: Navigable, coreDataManager: CoreDataManageable, ankiConfigManager: AnkiConfigManager) {
         self.navigation = navigation
         self.coreDataManager = coreDataManager
+        self.ankiConfigManager = ankiConfigManager
     }
 
     func start() {
@@ -39,7 +41,13 @@ extension SentencesCoordinator: SentencesViewControllerDelegate {
         editSentenceCoordinator.start()
     }
 
-    func didSelectSyncSentences(_ sentencesViewController: SentencesViewController) {}
+    func didSelectSyncSentences(_ sentencesViewController: SentencesViewController) {
+        if let config = ankiConfigManager.savedConfig() {
+            // TODO: Sync sentences
+        } else {
+            // TODO: Show config
+        }
+    }
 }
 
 extension SentencesCoordinator: EditSentenceCoordinatorDelegate {
