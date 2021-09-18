@@ -14,4 +14,5 @@ struct AnkiConfig: Codable {
     let note: String
     let sentenceField: String
     let definitionField: String
+    let imageField: String?
 }
