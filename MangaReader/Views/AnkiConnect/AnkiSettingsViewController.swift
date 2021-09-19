@@ -55,9 +55,51 @@ class AnkiSettingsViewController: UIViewController {
         sentenceFieldTextField.delegate = self
         definitionFieldTextField.delegate = self
         imageFieldTextField.delegate = self
+
+        saveButton.isEnabled = false
+    }
+
+    func setDeck(_ deck: String) {
+        deckTextField.text = deck
+        checkFields()
+    }
+
+    func setNoteType(_ noteType: String) {
+        noteTypeTextField.text = noteType
+        checkFields()
+    }
+
+    func setSentenceField(_ sentenceField: String) {
+        sentenceFieldTextField.text = sentenceField
+        checkFields()
+    }
+
+    func setDefinitionField(_ definitionField: String) {
+        definitionFieldTextField.text = definitionField
+        checkFields()
+    }
+
+    func setImageField(_ imageField: String) {
+        imageFieldTextField.text = imageField
+        checkFields()
+    }
+
+    private func checkFields() {
+        guard let deck = deckTextField.text, !deck.isEmpty,
+              let noteType = noteTypeTextField.text, !noteType.isEmpty,
+              let sentenceField = sentenceFieldTextField.text, !sentenceField.isEmpty,
+              let definitionField = definitionFieldTextField.text, !definitionField.isEmpty,
+              let imageField = imageFieldTextField.text, !imageField.isEmpty
+        else {
+            saveButton.isEnabled = false
+            return
+        }
+
+        saveButton.isEnabled = true
     }
 
     @IBAction func save(_ sender: Any) {
+        delegate?.didSelectSave(self)
     }
 }
 
