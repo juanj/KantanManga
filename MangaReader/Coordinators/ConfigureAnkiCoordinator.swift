@@ -82,6 +82,7 @@ extension ConfigureAnkiCoordinator: AnkiConnectionViewControllerDelegate {
             switch result {
             case .success:
                 self?.host = host
+                self?.key = key
                 self?.showAnkiSettings()
             case let .failure(error):
                 self?.showError(message: error.localizedDescription)
