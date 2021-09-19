@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnkiSettingsViewController" customModule="Kantan_Manga" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="cPF-Ok-2Vd" id="hjf-ow-rj7"/>
                 <outlet property="deckTextField" destination="IXM-bU-tZi" id="L08-O3-ohk"/>
                 <outlet property="definitionFieldTextField" destination="y9h-Fp-lB8" id="pN9-fH-Dhh"/>
                 <outlet property="imageFieldTextField" destination="wwt-f6-SAe" id="OKL-X4-beO"/>
@@ -62,11 +63,16 @@
                         </button>
                     </subviews>
                 </stackView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="cPF-Ok-2Vd">
+                    <rect key="frame" x="340.5" y="315" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yqS-cl-83E" secondAttribute="trailing" id="05U-jh-hpe"/>
+                <constraint firstItem="cPF-Ok-2Vd" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="5TH-Zc-Qcj"/>
+                <constraint firstItem="cPF-Ok-2Vd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8eL-fn-cNm"/>
                 <constraint firstItem="yqS-cl-83E" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="DjE-jf-SsF"/>
                 <constraint firstItem="yqS-cl-83E" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="uVE-1V-jJb"/>
             </constraints>

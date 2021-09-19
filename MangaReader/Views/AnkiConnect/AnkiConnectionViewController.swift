@@ -30,7 +30,7 @@ class AnkiConnectionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Anki Connection"
+        title = "Connection"
 
         hostTextField.addTarget(self, action: #selector(checkFields), for: .editingChanged)
         continueButton.isEnabled = false
