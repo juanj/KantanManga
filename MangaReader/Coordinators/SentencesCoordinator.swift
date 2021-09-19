@@ -27,6 +27,16 @@ class SentencesCoordinator: Coordinator {
         navigation.setViewControllers([sentencesViewController], animated: false)
         self.sentencesViewController = sentencesViewController
     }
+
+    private func showAnkiConfiguration() {
+        let configureAnkiCoordinator = ConfigureAnkiCoordinator(
+            navigation: navigation,
+            ankiConfigManager: ankiConfigManager,
+            delegate: self
+        )
+        childCoordinators.append(configureAnkiCoordinator)
+        configureAnkiCoordinator.start()
+    }
 }
 
 extension SentencesCoordinator: SentencesViewControllerDelegate {
@@ -45,14 +55,12 @@ extension SentencesCoordinator: SentencesViewControllerDelegate {
         if let config = ankiConfigManager.savedConfig() {
             // TODO: Sync sentences
         } else {
-            let configureAnkiCoordinator = ConfigureAnkiCoordinator(
-                navigation: navigation,
-                ankiConfigManager: ankiConfigManager,
-                delegate: self
-            )
-            childCoordinators.append(configureAnkiCoordinator)
-            configureAnkiCoordinator.start()
+            showAnkiConfiguration()
         }
+    }
+
+    func didSelectConfigureAnki(_ sentencesViewController: SentencesViewController) {
+        showAnkiConfiguration()
     }
 }
 

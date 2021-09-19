@@ -11,6 +11,7 @@ protocol SentencesViewControllerDelegate: AnyObject {
     func refresh(_ sentencesViewController: SentencesViewController)
     func didSelectSentence(_ sentencesViewController: SentencesViewController, sentence: Sentence)
     func didSelectSyncSentences(_ sentencesViewController: SentencesViewController)
+    func didSelectConfigureAnki(_ sentencesViewController: SentencesViewController)
 }
 
 class SentencesViewController: UIViewController {
@@ -61,11 +62,17 @@ class SentencesViewController: UIViewController {
     private func configureNavigationBar() {
         title = "Sentences"
         let syncButton = UIBarButtonItem(image: UIImage(systemName: "arrow.clockwise"), style: .plain, target: self, action: #selector(syncSentences))
+        let config = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(configureAnki))
         navigationItem.leftBarButtonItem = syncButton
+        navigationItem.rightBarButtonItem = config
     }
 
     @objc func syncSentences() {
         delegate?.didSelectSyncSentences(self)
+    }
+
+    @objc func configureAnki() {
+        delegate?.didSelectConfigureAnki(self)
     }
 }
 
