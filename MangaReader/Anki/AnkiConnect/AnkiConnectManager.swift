@@ -12,6 +12,7 @@ enum AnkiConnectManagerError: Error {
     case invalidResponse
     case no200Response(code: Int)
     case invalidAnkiConnectResponse(body: String)
+    case emptyResult
 }
 
 class AnkiConnectManager {
@@ -67,8 +68,10 @@ class AnkiConnectManager {
                 let response = try jsonDecoder.decode(AnkiConnectResponse<ResponseResult>.self, from: data)
                 if let error = response.error {
                     wrappedCompletion(.failure(AnkiConnectError(description: error)))
+                } else if let result = response.result {
+                    wrappedCompletion(.success(result))
                 } else {
-                    wrappedCompletion(.success(response.result))
+                    wrappedCompletion(.failure(AnkiConnectManagerError.emptyResult))
                 }
             } catch {
                 wrappedCompletion(.failure(error))

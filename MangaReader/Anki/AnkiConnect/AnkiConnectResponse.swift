@@ -8,6 +8,6 @@
 import Foundation
 
 struct AnkiConnectResponse<Result: Decodable>: Decodable {
-    let result: Result
+    let result: Result?
     let error: String?
 }
