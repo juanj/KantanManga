@@ -201,6 +201,9 @@
 		32C1EEF32539DE04001F59A0 /* FocusOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1EEF22539DE04001F59A0 /* FocusOverlayView.swift */; };
 		32C3512F24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C3512E24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift */; };
 		32C49CD725168A0F000A9607 /* OpenCollectionAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */; };
+		32C541DA26F7640700E961C7 /* SyncSentencesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C541D926F7640700E961C7 /* SyncSentencesCoordinator.swift */; };
+		32C541E226F764EB00E961C7 /* TransferringSentencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C541E026F764EB00E961C7 /* TransferringSentencesViewController.swift */; };
+		32C541E326F764EB00E961C7 /* TransferringSentencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32C541E126F764EB00E961C7 /* TransferringSentencesViewController.xib */; };
 		32CFA5EE256FEE200083F300 /* MangaViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA5ED256FEE200083F300 /* MangaViewControllerTests.swift */; };
 		32CFA5F7256FF16E0083F300 /* MangaDataSourceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA5F6256FF16E0083F300 /* MangaDataSourceable.swift */; };
 		32CFA5FF256FF34A0083F300 /* FakeMangaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA5FE256FF34A0083F300 /* FakeMangaDataSource.swift */; };
@@ -223,6 +226,7 @@
 		32EC1AD326F6A1230059F143 /* AnkiNamesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AD126F6A1230059F143 /* AnkiNamesListViewController.swift */; };
 		32EC1AD426F6A1230059F143 /* AnkiNamesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EC1AD226F6A1230059F143 /* AnkiNamesListViewController.xib */; };
 		32EC1AD626F6A2D70059F143 /* ConfigureAnkiCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AD526F6A2D70059F143 /* ConfigureAnkiCoordinator.swift */; };
+		32EC1AD826F6C26D0059F143 /* CreateNoteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AD726F6C26D0059F143 /* CreateNoteRequest.swift */; };
 		32F1B9F3243685DC00AE367D /* SelectCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */; };
 		32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */; };
 		32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */; };
@@ -510,6 +514,9 @@
 		32C1EEF22539DE04001F59A0 /* FocusOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusOverlayView.swift; sourceTree = "<group>"; };
 		32C3512E24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeViewMangaCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCollectionAnimationController.swift; sourceTree = "<group>"; };
+		32C541D926F7640700E961C7 /* SyncSentencesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncSentencesCoordinator.swift; sourceTree = "<group>"; };
+		32C541E026F764EB00E961C7 /* TransferringSentencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferringSentencesViewController.swift; sourceTree = "<group>"; };
+		32C541E126F764EB00E961C7 /* TransferringSentencesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransferringSentencesViewController.xib; sourceTree = "<group>"; };
 		32CFA5ED256FEE200083F300 /* MangaViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaViewControllerTests.swift; sourceTree = "<group>"; };
 		32CFA5F6256FF16E0083F300 /* MangaDataSourceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDataSourceable.swift; sourceTree = "<group>"; };
 		32CFA5FE256FF34A0083F300 /* FakeMangaDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMangaDataSource.swift; sourceTree = "<group>"; };
@@ -532,6 +539,7 @@
 		32EC1AD126F6A1230059F143 /* AnkiNamesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiNamesListViewController.swift; sourceTree = "<group>"; };
 		32EC1AD226F6A1230059F143 /* AnkiNamesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnkiNamesListViewController.xib; sourceTree = "<group>"; };
 		32EC1AD526F6A2D70059F143 /* ConfigureAnkiCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureAnkiCoordinator.swift; sourceTree = "<group>"; };
+		32EC1AD726F6C26D0059F143 /* CreateNoteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteRequest.swift; sourceTree = "<group>"; };
 		32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCollectionTableViewController.swift; sourceTree = "<group>"; };
 		32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCollectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -981,6 +989,7 @@
 				32EC1AC226F68BE90059F143 /* AnkiConnectResponse.swift */,
 				32EC1AC426F68DF90059F143 /* AnkiConnectRequest.swift */,
 				32EC1AC626F697050059F143 /* AnkiConnectError.swift */,
+				32EC1AD726F6C26D0059F143 /* CreateNoteRequest.swift */,
 			);
 			path = AnkiConnect;
 			sourceTree = "<group>";
@@ -994,6 +1003,8 @@
 				32EC1ACE26F69F670059F143 /* AnkiSettingsViewController.xib */,
 				32EC1AD126F6A1230059F143 /* AnkiNamesListViewController.swift */,
 				32EC1AD226F6A1230059F143 /* AnkiNamesListViewController.xib */,
+				32C541E026F764EB00E961C7 /* TransferringSentencesViewController.swift */,
+				32C541E126F764EB00E961C7 /* TransferringSentencesViewController.xib */,
 			);
 			path = AnkiConnect;
 			sourceTree = "<group>";
@@ -1215,6 +1226,7 @@
 				32DDEF0B257C20420063E813 /* DictionariesCoordinator.swift */,
 				3297E3E125E1D06F00743C8B /* EditSentenceCoordinator.swift */,
 				32EC1AD526F6A2D70059F143 /* ConfigureAnkiCoordinator.swift */,
+				32C541D926F7640700E961C7 /* SyncSentencesCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -1478,6 +1490,7 @@
 				84A8321E221D951500CEE1C9 /* LibraryViewController.xib in Resources */,
 				329ACA8B2552ED15002953C5 /* NumberTableViewCell.xib in Resources */,
 				324BB99824983DF7006241E8 /* dicrc in Resources */,
+				32C541E326F764EB00E961C7 /* TransferringSentencesViewController.xib in Resources */,
 				843FA7ED221E0BE900B86B52 /* PageViewController.xib in Resources */,
 				843FA7E3221DF0C300B86B52 /* WebServerViewController.xib in Resources */,
 				32326F892435613E00FCE8E5 /* cbz.svg in Resources */,
@@ -1686,6 +1699,7 @@
 				84A83219221D923800CEE1C9 /* LibraryCoordinator.swift in Sources */,
 				843FA7EC221E0BE900B86B52 /* PageViewController.swift in Sources */,
 				32792AC725D971BD00D0B96D /* KanjiMetaSearchResult.swift in Sources */,
+				32EC1AD826F6C26D0059F143 /* CreateNoteRequest.swift in Sources */,
 				3297E41425E1E5E200743C8B /* Sentence+CoreDataProperties.swift in Sources */,
 				325CFC1D2480582700110F31 /* DictionaryView.swift in Sources */,
 				32F1B9F3243685DC00AE367D /* SelectCollectionTableViewController.swift in Sources */,
@@ -1700,6 +1714,7 @@
 				32FA3C7C24367428001EB0DF /* String+Extension.swift in Sources */,
 				325DA0B923C8F50700A627BD /* CompoundDictionary.swift in Sources */,
 				32AF5BCE2512567900E96C9F /* MangaCollectionable.swift in Sources */,
+				32C541E226F764EB00E961C7 /* TransferringSentencesViewController.swift in Sources */,
 				3283D1012552069700C08D02 /* ToggleTableViewCell.swift in Sources */,
 				843FA7DF221DEDDF00B86B52 /* AddMangasCoordinator.swift in Sources */,
 				3297E40F25E1E51000743C8B /* Sentence.swift in Sources */,
@@ -1714,6 +1729,7 @@
 				3297E3CC25E1A18900743C8B /* IndexPathButton.swift in Sources */,
 				3290ECBA25C3710E00D4DE96 /* FAQViewController.swift in Sources */,
 				325199B42479D96400DA6908 /* ImageOCR.swift in Sources */,
+				32C541DA26F7640700E961C7 /* SyncSentencesCoordinator.swift in Sources */,
 				32EC1ACF26F69F670059F143 /* AnkiSettingsViewController.swift in Sources */,
 				328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */,
 				32542BDD258035FA00ED357A /* Kanji.swift in Sources */,
@@ -1942,8 +1958,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EC5BFD4EEC2569EF68B26369 /* Pods-Kantan-Keyboard.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 77;
 				DEVELOPMENT_TEAM = 25JHVANVX3;
 				INFOPLIST_FILE = "Kantan-Keyboard/Info.plist";
@@ -1956,7 +1972,7 @@
 				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kantanmanga.Kantan-Keyboard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.kantanmanga.Kantan-Keyboard";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1967,8 +1983,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E53225541E09049E67A06DF /* Pods-Kantan-Keyboard.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 77;
 				DEVELOPMENT_TEAM = 25JHVANVX3;
 				INFOPLIST_FILE = "Kantan-Keyboard/Info.plist";
@@ -1981,7 +1997,7 @@
 				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kantanmanga.Kantan-Keyboard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.kantanmanga.Kantan-Keyboard";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2113,8 +2129,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 77;
 				DEVELOPMENT_TEAM = 25JHVANVX3;
 				ENABLE_BITCODE = NO;
@@ -2192,7 +2208,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kantanmanga;
 				PRODUCT_NAME = "Kantan Manga";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.kantanmanga";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MangaReader-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2207,8 +2223,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 77;
 				DEVELOPMENT_TEAM = 25JHVANVX3;
 				ENABLE_BITCODE = NO;
@@ -2286,7 +2302,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kantanmanga;
 				PRODUCT_NAME = "Kantan Manga";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.kantanmanga";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MangaReader-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

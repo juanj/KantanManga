@@ -37,6 +37,23 @@ class SentencesCoordinator: Coordinator {
         childCoordinators.append(configureAnkiCoordinator)
         configureAnkiCoordinator.start()
     }
+
+    private func startSync(config: AnkiConfig) {
+        guard let url = URL(string: "http://\(config.address)"),
+              let sentences = coreDataManager.fetchAllSentences()
+        else { return }
+
+        let ankiConnectManager = AnkiConnectManager(url: url, key: config.key)
+        let syncCoordinator = SyncSentencesCoordinator(
+            navigation: navigation,
+            ankiConfig: config,
+            ankiConnectManager: ankiConnectManager,
+            sentences: sentences,
+            delegate: self
+        )
+        childCoordinators.append(syncCoordinator)
+        syncCoordinator.start()
+    }
 }
 
 extension SentencesCoordinator: SentencesViewControllerDelegate {
@@ -53,7 +70,7 @@ extension SentencesCoordinator: SentencesViewControllerDelegate {
 
     func didSelectSyncSentences(_ sentencesViewController: SentencesViewController) {
         if let config = ankiConfigManager.savedConfig() {
-            // TODO: Sync sentences
+            startSync(config: config)
         } else {
             showAnkiConfiguration()
         }
@@ -92,5 +109,23 @@ extension SentencesCoordinator: EditSentenceCoordinatorDelegate {
 extension SentencesCoordinator: ConfigureAnkiCoordinatorDelegate {
     func didEnd(_ configureAnkiCoordinator: ConfigureAnkiCoordinator) {
         removeChildCoordinator(type: ConfigureAnkiCoordinator.self)
+    }
+}
+
+extension SentencesCoordinator: SyncSentencesCoordinatorDelegate {
+    func didEnd(_ syncSentencesCoordinator: SyncSentencesCoordinator) {
+        removeChildCoordinator(type: SyncSentencesCoordinator.self)
+        let alert = UIAlertController(
+            title: "Success",
+            message: "The sentences have been successfully transferred to Anki. Do you want to delete them?",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { _ in
+            self.coreDataManager.deleteAllSentences()
+            self.sentencesViewController?.sentences = self.coreDataManager.fetchAllSentences() ?? []
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+
+        navigation.present(alert, animated: true, completion: nil)
     }
 }

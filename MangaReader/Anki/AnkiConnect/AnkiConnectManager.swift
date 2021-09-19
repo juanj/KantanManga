@@ -133,4 +133,15 @@ class AnkiConnectManager {
     func getModelFields(_ model: String, completion: @escaping (Result<[String], Error>) -> Void) {
         sendRequestFor(action: "modelFieldNames", params: ["modelName": model], completion: completion)
     }
+
+    func addNoteWith(
+        model: String,
+        deck: String,
+        fields: [String: String],
+        picture: CreateNoteRequest.Picture?,
+        completion: @escaping (Result<Int, Error>) -> Void
+    ) {
+        let note = CreateNoteRequest(model: model, deck: deck, fields: fields, picture: picture)
+        sendRequestFor(action: "addNote", params: ["note": note], completion: completion)
+    }
 }
