@@ -88,8 +88,7 @@ class AnkiSettingsViewController: UIViewController {
         guard let deck = deckTextField.text, !deck.isEmpty,
               let noteType = noteTypeTextField.text, !noteType.isEmpty,
               let sentenceField = sentenceFieldTextField.text, !sentenceField.isEmpty,
-              let definitionField = definitionFieldTextField.text, !definitionField.isEmpty,
-              let imageField = imageFieldTextField.text, !imageField.isEmpty
+              let definitionField = definitionFieldTextField.text, !definitionField.isEmpty
         else {
             saveButton.isEnabled = false
             return

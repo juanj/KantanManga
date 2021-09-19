@@ -200,8 +200,7 @@ extension ConfigureAnkiCoordinator: AnkiSettingsViewControllerDelegate {
               let deck = deck,
               let model = model,
               let sentenceField = sentenceField,
-              let definitionField = definitionField,
-              let imageField = imageField
+              let definitionField = definitionField
         else { return }
 
         ankiConfigManager.saveConfig(
