@@ -63,7 +63,7 @@ class SyncSentencesCoordinator: Coordinator {
             for sentence in self.sentences {
                 let fields = [
                     self.ankiConfig.sentenceField: sentence.sentence,
-                    self.ankiConfig.definitionField: sentence.definition
+                    self.ankiConfig.definitionField: self.addAnkiNewLines(to: sentence.definition)
                 ]
 
                 var picture: CreateNoteRequest.Picture?
@@ -95,5 +95,9 @@ class SyncSentencesCoordinator: Coordinator {
                 self.delegate?.didEnd(self)
             }
         }
+    }
+
+    private func addAnkiNewLines(to string: String) -> String {
+        return string.replacingOccurrences(of: "\n", with: "</br>")
     }
 }
