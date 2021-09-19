@@ -7,12 +7,18 @@
 
 import Foundation
 
+protocol ConfigureAnkiCoordinatorDelegate: AnyObject {
+    func didEnd(_ configureAnkiCoordinator: ConfigureAnkiCoordinator)
+}
+
 class ConfigureAnkiCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
 
     private var presentedNavigation: Navigable!
     private var ankiConnectManager: AnkiConnectManager?
 
+    private var host: String?
+    private var key: String?
     private var deck: String?
     private var model: String?
     private var sentenceField: String?
@@ -21,9 +27,13 @@ class ConfigureAnkiCoordinator: Coordinator {
 
     private var namesCompletion: ((String) -> Void)?
 
-    private var navigation: Navigable
-    init(navigation: Navigable) {
+    private let navigation: Navigable
+    private let ankiConfigManager: AnkiConfigManager
+    private weak var delegate: ConfigureAnkiCoordinatorDelegate?
+    init(navigation: Navigable, ankiConfigManager: AnkiConfigManager, delegate: ConfigureAnkiCoordinatorDelegate) {
         self.navigation = navigation
+        self.ankiConfigManager = ankiConfigManager
+        self.delegate = delegate
     }
 
     func start() {
@@ -71,6 +81,7 @@ extension ConfigureAnkiCoordinator: AnkiConnectionViewControllerDelegate {
         ankiConnectManager?.checkConnection { [weak self] result in
             switch result {
             case .success:
+                self?.host = host
                 self?.showAnkiSettings()
             case let .failure(error):
                 self?.showError(message: error.localizedDescription)
@@ -184,7 +195,29 @@ extension ConfigureAnkiCoordinator: AnkiSettingsViewControllerDelegate {
     }
 
     func didSelectSave(_ ankiSettingsViewController: AnkiSettingsViewController) {
+        guard let host = host,
+              let deck = deck,
+              let model = model,
+              let sentenceField = sentenceField,
+              let definitionField = definitionField,
+              let imageField = imageField
+        else { return }
 
+        ankiConfigManager.saveConfig(
+            AnkiConfig(
+                address: host,
+                key: key,
+                deck: deck,
+                note: model,
+                sentenceField: sentenceField,
+                definitionField: definitionField,
+                imageField: imageField
+            )
+        )
+
+        navigation.dismiss(animated: true) {
+            self.delegate?.didEnd(self)
+        }
     }
 }
 

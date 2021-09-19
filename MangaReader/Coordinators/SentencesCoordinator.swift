@@ -45,7 +45,11 @@ extension SentencesCoordinator: SentencesViewControllerDelegate {
         if let config = ankiConfigManager.savedConfig() {
             // TODO: Sync sentences
         } else {
-            let configureAnkiCoordinator = ConfigureAnkiCoordinator(navigation: navigation)
+            let configureAnkiCoordinator = ConfigureAnkiCoordinator(
+                navigation: navigation,
+                ankiConfigManager: ankiConfigManager,
+                delegate: self
+            )
             childCoordinators.append(configureAnkiCoordinator)
             configureAnkiCoordinator.start()
         }
@@ -74,5 +78,11 @@ extension SentencesCoordinator: EditSentenceCoordinatorDelegate {
 
         coreDataManager.refreshAll()
         sentencesViewController?.refresh()
+    }
+}
+
+extension SentencesCoordinator: ConfigureAnkiCoordinatorDelegate {
+    func didEnd(_ configureAnkiCoordinator: ConfigureAnkiCoordinator) {
+        removeChildCoordinator(type: ConfigureAnkiCoordinator.self)
     }
 }
