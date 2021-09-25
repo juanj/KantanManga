@@ -139,7 +139,7 @@ class AnkiConnectManager {
         deck: String,
         fields: [String: String],
         picture: CreateNoteRequest.Picture?,
-        completion: @escaping (Result<Int, Error>) -> Void
+        completion: @escaping (Result<UInt, Error>) -> Void
     ) {
         let note = CreateNoteRequest(model: model, deck: deck, fields: fields, picture: picture)
         sendRequestFor(action: "addNote", params: ["note": note], completion: completion)
