@@ -95,9 +95,9 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.2.0):
     - GoogleUtilities/Logger
-  - GRDB.swift (5.3.0):
-    - GRDB.swift/standard (= 5.3.0)
-  - GRDB.swift/standard (5.3.0)
+  - GRDB.swift (5.12.0):
+    - GRDB.swift/standard (= 5.12.0)
+  - GRDB.swift/standard (5.12.0)
   - GTMSessionFetcher (1.5.0):
     - GTMSessionFetcher/Full (= 1.5.0)
   - GTMSessionFetcher/Core (1.5.0)
@@ -160,7 +160,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
   GoogleToolboxForMac: 1350d40e86a76f7863928d63bcb0b89c84c521c5
   GoogleUtilities: d866834472f1324d080496bc67ab3ce5d0d46027
-  GRDB.swift: 6d44795b19d716e9f09f19018c3bde5b71b67ae9
+  GRDB.swift: f94b00ac11ab22597771b6a47211d1c44284395a
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
@@ -168,6 +168,6 @@ SPEC CHECKSUMS:
   UnrarKit: 99e3f0222a98a212188e1a6975dcf5aa798d26dd
   ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: f9d420e0fef1a24d885495a77c380a81227d0606
+PODFILE CHECKSUM: 65dcca8d537dd5634722a26a73968a91d81a1357
 
 COCOAPODS: 1.10.0
