@@ -10,6 +10,8 @@ import UIKit
 protocol AnkiSettingsViewControllerDelegate: AnyObject {
     func didSelectDeck(_ ankiSettingsViewController: AnkiSettingsViewController)
     func didSelectNoteType(_ ankiSettingsViewController: AnkiSettingsViewController)
+    func didSelectWordField(_ ankiSettingsViewController: AnkiSettingsViewController)
+    func didSelectReadingField(_ ankiSettingsViewController: AnkiSettingsViewController)
     func didSelectSentenceField(_ ankiSettingsViewController: AnkiSettingsViewController)
     func didSelectDefinitionField(_ ankiSettingsViewController: AnkiSettingsViewController)
     func didSelectImageField(_ ankiSettingsViewController: AnkiSettingsViewController)
@@ -19,6 +21,8 @@ protocol AnkiSettingsViewControllerDelegate: AnyObject {
 class AnkiSettingsViewController: UIViewController {
     @IBOutlet weak var deckTextField: UITextField!
     @IBOutlet weak var noteTypeTextField: UITextField!
+    @IBOutlet weak var wordFieldTextField: UITextField!
+    @IBOutlet weak var readingFieldTextField: UITextField!
     @IBOutlet weak var sentenceFieldTextField: UITextField!
     @IBOutlet weak var definitionFieldTextField: UITextField!
     @IBOutlet weak var imageFieldTextField: UITextField!
@@ -52,6 +56,8 @@ class AnkiSettingsViewController: UIViewController {
 
         deckTextField.delegate = self
         noteTypeTextField.delegate = self
+        wordFieldTextField.delegate = self
+        readingFieldTextField.delegate = self
         sentenceFieldTextField.delegate = self
         definitionFieldTextField.delegate = self
         imageFieldTextField.delegate = self
@@ -66,6 +72,16 @@ class AnkiSettingsViewController: UIViewController {
 
     func setNoteType(_ noteType: String) {
         noteTypeTextField.text = noteType
+        checkFields()
+    }
+
+    func setWordField(_ wordField: String) {
+        wordFieldTextField.text = wordField
+        checkFields()
+    }
+
+    func setReadingField(_ readingField: String) {
+        readingFieldTextField.text = readingField
         checkFields()
     }
 
@@ -86,15 +102,22 @@ class AnkiSettingsViewController: UIViewController {
 
     private func checkFields() {
         guard let deck = deckTextField.text, !deck.isEmpty,
-              let noteType = noteTypeTextField.text, !noteType.isEmpty,
-              let sentenceField = sentenceFieldTextField.text, !sentenceField.isEmpty,
-              let definitionField = definitionFieldTextField.text, !definitionField.isEmpty
+              let noteType = noteTypeTextField.text, !noteType.isEmpty
         else {
             saveButton.isEnabled = false
             return
         }
 
-        saveButton.isEnabled = true
+        if wordFieldTextField.text?.isEmpty == false ||
+            readingFieldTextField.text?.isEmpty == false ||
+            sentenceFieldTextField.text?.isEmpty == false ||
+            definitionFieldTextField.text?.isEmpty == false ||
+            imageFieldTextField.text?.isEmpty == false
+        {
+            saveButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
+        }
     }
 
     @IBAction func save(_ sender: Any) {
@@ -109,6 +132,10 @@ extension AnkiSettingsViewController: UITextFieldDelegate {
             delegate?.didSelectDeck(self)
         case noteTypeTextField:
             delegate?.didSelectNoteType(self)
+        case wordFieldTextField:
+            delegate?.didSelectWordField(self)
+        case readingFieldTextField:
+            delegate?.didSelectReadingField(self)
         case sentenceFieldTextField:
             delegate?.didSelectSentenceField(self)
         case definitionFieldTextField:

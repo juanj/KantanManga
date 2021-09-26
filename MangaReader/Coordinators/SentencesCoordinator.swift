@@ -98,6 +98,8 @@ extension SentencesCoordinator: EditSentenceCoordinatorDelegate {
         removeChildCoordinator(type: EditSentenceCoordinator.self)
         guard let selectedSentence = selectedSentence else { return }
         selectedSentence.imageData = image?.jpegData(compressionQuality: 1)
+        selectedSentence.word = word
+        selectedSentence.reading = reading
         selectedSentence.sentence = sentence
         selectedSentence.definition = definition
         coreDataManager.update(sentence: selectedSentence)

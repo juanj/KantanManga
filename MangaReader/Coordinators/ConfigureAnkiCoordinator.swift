@@ -21,6 +21,8 @@ class ConfigureAnkiCoordinator: Coordinator {
     private var key: String?
     private var deck: String?
     private var model: String?
+    private var wordField: String?
+    private var readingField: String?
     private var sentenceField: String?
     private var definitionField: String?
     private var imageField: String?
@@ -62,6 +64,28 @@ class ConfigureAnkiCoordinator: Coordinator {
         namesCompletion = completion
         let ankiNamesListViewController = AnkiNamesListViewController(names: names, title: title, delegate: self)
         presentedNavigation.pushViewController(ankiNamesListViewController, animated: true)
+    }
+
+    private func getAndShowFields(
+        ankiSettingsViewController: AnkiSettingsViewController,
+        title: String,
+        completion: @escaping (String) -> Void
+    ) {
+        guard let model = model, !model.isEmpty else {
+            showError(message: "You need to select a note type first")
+            return
+        }
+
+        ankiSettingsViewController.startLoading()
+        ankiConnectManager?.getModelFields(model) { [weak self] result in
+            switch result {
+            case let .success(decks):
+                self?.showNamesList(names: decks, title: title, completion: completion)
+            case let .failure(error):
+                self?.showError(message: error.localizedDescription)
+            }
+            ankiSettingsViewController.endLoading()
+        }
     }
 }
 
@@ -129,78 +153,57 @@ extension ConfigureAnkiCoordinator: AnkiSettingsViewControllerDelegate {
         }
     }
 
-    func didSelectSentenceField(_ ankiSettingsViewController: AnkiSettingsViewController) {
-        guard let model = model, !model.isEmpty else {
-            showError(message: "You need to select a note type first")
-            return
+    func didSelectWordField(_ ankiSettingsViewController: AnkiSettingsViewController) {
+        getAndShowFields(ankiSettingsViewController: ankiSettingsViewController, title: "Word Field") { [weak self] field in
+            self?.wordField = field
+            ankiSettingsViewController.setWordField(field)
+            self?.presentedNavigation.popViewController(animated: true)
         }
-        ankiSettingsViewController.startLoading()
+    }
 
-        ankiConnectManager?.getModelFields(model) { [weak self] result in
-            switch result {
-            case let .success(fields):
-                self?.showNamesList(names: fields, title: "Fields", completion: { field in
-                    self?.sentenceField = field
-                    ankiSettingsViewController.setSentenceField(field)
-                    self?.presentedNavigation.popViewController(animated: true)
-                })
-            case let .failure(error):
-                self?.showError(message: error.localizedDescription)
-            }
-            ankiSettingsViewController.endLoading()
+    func didSelectReadingField(_ ankiSettingsViewController: AnkiSettingsViewController) {
+        getAndShowFields(ankiSettingsViewController: ankiSettingsViewController, title: "Reading Field") { [weak self] field in
+            self?.readingField = field
+            ankiSettingsViewController.setReadingField(field)
+            self?.presentedNavigation.popViewController(animated: true)
+        }
+    }
+
+    func didSelectSentenceField(_ ankiSettingsViewController: AnkiSettingsViewController) {
+        getAndShowFields(ankiSettingsViewController: ankiSettingsViewController, title: "Sentence Field") { [weak self] field in
+            self?.sentenceField = field
+            ankiSettingsViewController.setSentenceField(field)
+            self?.presentedNavigation.popViewController(animated: true)
         }
     }
 
     func didSelectDefinitionField(_ ankiSettingsViewController: AnkiSettingsViewController) {
-        guard let model = model, !model.isEmpty else {
-            showError(message: "You need to select a note type first")
-            return
-        }
-        ankiSettingsViewController.startLoading()
-
-        ankiConnectManager?.getModelFields(model) { [weak self] result in
-            switch result {
-            case let .success(fields):
-                self?.showNamesList(names: fields, title: "Fields", completion: { field in
-                    self?.definitionField = field
-                    ankiSettingsViewController.setDefinitionField(field)
-                    self?.presentedNavigation.popViewController(animated: true)
-                })
-            case let .failure(error):
-                self?.showError(message: error.localizedDescription)
-            }
-            ankiSettingsViewController.endLoading()
+        getAndShowFields(ankiSettingsViewController: ankiSettingsViewController, title: "Definition Field") { [weak self] field in
+            self?.definitionField = field
+            ankiSettingsViewController.setDefinitionField(field)
+            self?.presentedNavigation.popViewController(animated: true)
         }
     }
 
     func didSelectImageField(_ ankiSettingsViewController: AnkiSettingsViewController) {
-        guard let model = model, !model.isEmpty else {
-            showError(message: "You need to select a note type first")
-            return
-        }
-        ankiSettingsViewController.startLoading()
-
-        ankiConnectManager?.getModelFields(model) { [weak self] result in
-            switch result {
-            case let .success(fields):
-                self?.showNamesList(names: fields, title: "Fields", completion: { field in
-                    self?.imageField = field
-                    ankiSettingsViewController.setImageField(field)
-                    self?.presentedNavigation.popViewController(animated: true)
-                })
-            case let .failure(error):
-                self?.showError(message: error.localizedDescription)
-            }
-            ankiSettingsViewController.endLoading()
+        getAndShowFields(ankiSettingsViewController: ankiSettingsViewController, title: "Image Field") { [weak self] field in
+            self?.imageField = field
+            ankiSettingsViewController.setImageField(field)
+            self?.presentedNavigation.popViewController(animated: true)
         }
     }
 
     func didSelectSave(_ ankiSettingsViewController: AnkiSettingsViewController) {
         guard let host = host,
               let deck = deck,
-              let model = model,
-              let sentenceField = sentenceField,
-              let definitionField = definitionField
+              let model = model
+        else { return }
+
+        guard wordField != nil ||
+                readingField != nil ||
+                sentenceField != nil ||
+                definitionField != nil ||
+                imageField != nil
         else { return }
 
         ankiConfigManager.saveConfig(
@@ -209,6 +212,8 @@ extension ConfigureAnkiCoordinator: AnkiSettingsViewControllerDelegate {
                 key: key,
                 deck: deck,
                 note: model,
+                wordField: wordField,
+                readingField: readingField,
                 sentenceField: sentenceField,
                 definitionField: definitionField,
                 imageField: imageField

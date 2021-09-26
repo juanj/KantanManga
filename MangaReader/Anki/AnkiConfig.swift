@@ -12,7 +12,9 @@ struct AnkiConfig: Codable {
     let key: String?
     let deck: String
     let note: String
-    let sentenceField: String
-    let definitionField: String
+    let wordField: String?
+    let readingField: String?
+    let sentenceField: String?
+    let definitionField: String?
     let imageField: String?
 }

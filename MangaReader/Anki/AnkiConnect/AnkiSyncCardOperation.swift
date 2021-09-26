@@ -48,10 +48,7 @@ class AnkiSyncCardOperation: Operation {
     }
 
     override func main() {
-        let fields = [
-            config.sentenceField: sentence.sentence,
-            config.definitionField: addAnkiNewLines(to: sentence.definition)
-        ]
+        let fields = joinFields()
 
         var picture: CreateNoteRequest.Picture?
         if let imageData = sentence.imageData, let imageField = config.imageField {
@@ -79,6 +76,25 @@ class AnkiSyncCardOperation: Operation {
     }
 
     private func addAnkiNewLines(to string: String) -> String {
-        return string.replacingOccurrences(of: "\n", with: "</br>")
+        return string.replacingOccurrences(of: "\n", with: "<br />")
+    }
+
+    private func joinFields() -> [String: String] {
+        var fields = [String: String]()
+        let keys = [config.wordField, config.readingField, config.sentenceField, config.definitionField]
+        let values = [sentence.word, sentence.reading, sentence.sentence, addAnkiNewLines(to: sentence.definition)]
+
+        for (key, value) in zip(keys, values) {
+            guard let key = key else { continue }
+            if var currentValue = fields[key] {
+                currentValue += "<br />"
+                currentValue += value
+                fields[key] = currentValue
+            } else {
+                fields[key] = value
+            }
+        }
+
+        return fields
     }
 }
