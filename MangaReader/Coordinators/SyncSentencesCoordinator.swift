@@ -22,6 +22,8 @@ class SyncSentencesCoordinator: Coordinator {
             }
         }
     }
+    private var report = ""
+    private let operationQueue = OperationQueue()
 
     private let navigation: Navigable
     private let ankiConfig: AnkiConfig
@@ -56,48 +58,24 @@ class SyncSentencesCoordinator: Coordinator {
     }
 
     private func startSyncing() {
-        let group = DispatchGroup()
-        let dispatchQueue = DispatchQueue(label: "SentencesTransferQueue")
-
-        dispatchQueue.async {
-            for sentence in self.sentences {
-                let fields = [
-                    self.ankiConfig.sentenceField: sentence.sentence,
-                    self.ankiConfig.definitionField: self.addAnkiNewLines(to: sentence.definition)
-                ]
-
-                var picture: CreateNoteRequest.Picture?
-                if let imageData = sentence.imageData, let imageField = self.ankiConfig.imageField {
-                    picture = CreateNoteRequest.Picture(
-                        filename: "\(sentence.sentence).png",
-                        data: imageData.base64EncodedString(),
-                        fields: [imageField]
-                    )
+        for sentence in sentences {
+            let operation = AnkiSyncCardOperation(
+                sentence: sentence,
+                config: ankiConfig,
+                manager: ankiConnectManager
+            )
+            operation.completionBlock = { [weak self] in
+                DispatchQueue.main.async { [weak self] in
+                    if let error = operation.error {
+                        self?.report += "\(sentence.sentence) • failed with error: \(error.localizedDescription)\n"
+                    } else if let noteId = operation.noteId {
+                        self?.report += "\(sentence.sentence) • was successfully added to Anki. Note id: \(noteId)\n"
+                    } else {
+                        self?.report += "\(sentence.sentence) • did not failed with an error but the note id is not available\n"
+                    }
                 }
-                group.enter()
-                self.ankiConnectManager.addNoteWith(
-                    model: self.ankiConfig.note,
-                    deck: self.ankiConfig.deck,
-                    fields: fields,
-                    picture: picture
-                ) { [weak self] result in
-                    print(result)
-                    self?.progress += 1
-                    group.leave()
-                }
-                group.wait()
             }
+            operationQueue.addOperation(operation)
         }
-
-        group.notify(queue: .main) { [weak self] in
-            guard let self = self else { return }
-            self.navigation.dismiss(animated: true) {
-                self.delegate?.didEnd(self)
-            }
-        }
-    }
-
-    private func addAnkiNewLines(to string: String) -> String {
-        return string.replacingOccurrences(of: "\n", with: "</br>")
     }
 }
