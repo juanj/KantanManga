@@ -47,6 +47,7 @@ class SyncSentencesCoordinator: Coordinator {
         self.ankiConnectManager = ankiConnectManager
         self.sentences = sentences
         self.delegate = delegate
+        operationQueue.maxConcurrentOperationCount = 1
     }
 
     func start() {
