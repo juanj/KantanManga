@@ -19,7 +19,7 @@ class SyncSentencesCoordinator: Coordinator {
     private var progress = 0 {
         didSet {
             DispatchQueue.main.async {
-                self.transferringSentencesViewController?.setProgress(current: self.progress, total: self.sentences.count)
+                self.transferringSentencesViewController?.progress = self.progress
             }
         }
     }
@@ -50,7 +50,7 @@ class SyncSentencesCoordinator: Coordinator {
     }
 
     func start() {
-        let transferringSentencesViewController = TransferringSentencesViewController()
+        let transferringSentencesViewController = TransferringSentencesViewController(total: sentences.count)
         navigation.present(transferringSentencesViewController, animated: true, completion: nil)
 
         self.transferringSentencesViewController = transferringSentencesViewController
