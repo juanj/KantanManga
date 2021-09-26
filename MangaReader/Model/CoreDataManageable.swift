@@ -38,7 +38,7 @@ protocol CoreDataManageable {
 
     // Sentence methods
     @discardableResult
-    func insertSentence(sentence: String, definition: String, image: UIImage?) -> Sentence?
+    func insertSentence(word: String, reading: String, sentence: String, definition: String, image: UIImage?) -> Sentence?
     func delete(sentence: Sentence)
     func deleteAllSentences()
     func fetchAllSentences() -> [Sentence]?

@@ -11,8 +11,10 @@ import CoreData
 public class Sentence: NSManagedObject {
     var image: UIImage?
 
-    convenience init(context: NSManagedObjectContext, sentence: String, definition: String, image: UIImage?) {
+    convenience init(context: NSManagedObjectContext, word: String, reading: String, sentence: String, definition: String, image: UIImage?) {
         self.init(context: context)
+        self.word = word
+        self.reading = reading
         self.sentence = sentence
         self.definition = definition
         self.imageData = image?.jpegData(compressionQuality: 1)

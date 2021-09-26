@@ -10,7 +10,7 @@ import CropViewController
 
 protocol EditSentenceCoordinatorDelegate: AnyObject {
     func didCancel(_ createSentenceCoordinator: EditSentenceCoordinator)
-    func didEnd(_ createSentenceCoordinator: EditSentenceCoordinator, image: UIImage?, sentence: String, definition: String)
+    func didEnd(_ createSentenceCoordinator: EditSentenceCoordinator, image: UIImage?, word: String, reading: String, sentence: String, definition: String)
     func didSelectDelete(_ createSentenceCoordinator: EditSentenceCoordinator)
 }
 
@@ -29,13 +29,26 @@ class EditSentenceCoordinator: NSObject, Coordinator {
 
     private let navigation: Navigable
     private let image: UIImage?
+    private let word: String
+    private let reading: String
     private let sentence: String
     private let definition: String
     private weak var delegate: EditSentenceCoordinatorDelegate?
     private let isExistingSentence: Bool
-    init(navigation: Navigable, image: UIImage?, sentence: String, definition: String, delegate: EditSentenceCoordinatorDelegate?, isExistingSentence: Bool = false) {
+    init(
+        navigation: Navigable,
+        image: UIImage?,
+        word: String,
+        reading: String,
+        sentence: String,
+        definition: String,
+        delegate: EditSentenceCoordinatorDelegate?,
+        isExistingSentence: Bool = false
+    ) {
         self.navigation = navigation
         self.image = image
+        self.word = word
+        self.reading = reading
         self.sentence = sentence
         self.definition = definition
         self.delegate = delegate
@@ -43,11 +56,28 @@ class EditSentenceCoordinator: NSObject, Coordinator {
     }
 
     convenience init(navigation: Navigable, sentence: Sentence, delegate: EditSentenceCoordinatorDelegate) {
-        self.init(navigation: navigation, image: sentence.image, sentence: sentence.sentence, definition: sentence.definition, delegate: delegate, isExistingSentence: true)
+        self.init(
+            navigation: navigation,
+            image: sentence.image,
+            word: sentence.word,
+            reading: sentence.reading,
+            sentence: sentence.sentence,
+            definition: sentence.definition,
+            delegate: delegate,
+            isExistingSentence: true
+        )
     }
 
     func start() {
-        let createSentenceViewController = CreateSentenceViewController(image: image, sentence: sentence, definition: definition, isExistingSentence: isExistingSentence, delegate: self)
+        let createSentenceViewController = CreateSentenceViewController(
+            image: image,
+            word: word,
+            reading: reading,
+            sentence: sentence,
+            definition: definition,
+            isExistingSentence: isExistingSentence,
+            delegate: self
+        )
         presentedNavigation = createPresentableNavigation()
         presentedNavigation.setViewControllers([createSentenceViewController], animated: false)
 
@@ -61,14 +91,15 @@ class EditSentenceCoordinator: NSObject, Coordinator {
 }
 
 extension EditSentenceCoordinator: CreateSentenceViewControllerDelegate {
+
     func cancel(_ createSentenceViewController: CreateSentenceViewController) {
         navigation.dismiss(animated: true, completion: nil)
         delegate?.didCancel(self)
     }
 
-    func save(_ createSentenceViewController: CreateSentenceViewController, sentence: String, definition: String) {
+    func save(_ createSentenceViewController: CreateSentenceViewController, word: String, reading: String, sentence: String, definition: String) {
         navigation.dismiss(animated: true, completion: nil)
-        delegate?.didEnd(self, image: croppedImage ?? image, sentence: sentence, definition: definition)
+        delegate?.didEnd(self, image: croppedImage ?? image, word: word, reading: reading, sentence: sentence, definition: definition)
     }
 
     func delete(_ createSentenceViewController: CreateSentenceViewController) {

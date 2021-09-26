@@ -9,7 +9,7 @@ import UIKit
 
 protocol CreateSentenceViewControllerDelegate: AnyObject {
     func cancel(_ createSentenceViewController: CreateSentenceViewController)
-    func save(_ createSentenceViewController: CreateSentenceViewController, sentence: String, definition: String)
+    func save(_ createSentenceViewController: CreateSentenceViewController, word: String, reading: String, sentence: String, definition: String)
     func delete(_ createSentenceViewController: CreateSentenceViewController)
     func editImage(_ createSentenceViewController: CreateSentenceViewController)
 }
@@ -21,17 +21,31 @@ extension CreateSentenceViewControllerDelegate {
 
 class CreateSentenceViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var wordTextField: UITextField!
+    @IBOutlet weak var readingTextField: UITextField!
     @IBOutlet weak var sentenceTextField: UITextField!
     @IBOutlet weak var definitionTextView: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
 
     private let image: UIImage?
+    private let word: String
+    private let reading: String
     private let sentence: String
     private let definition: String
     private let isExistingSentence: Bool
     private weak var delegate: CreateSentenceViewControllerDelegate?
-    init(image: UIImage?, sentence: String, definition: String, isExistingSentence: Bool, delegate: CreateSentenceViewControllerDelegate) {
+    init(
+        image: UIImage?,
+        word: String,
+        reading: String,
+        sentence: String,
+        definition: String,
+        isExistingSentence: Bool,
+        delegate: CreateSentenceViewControllerDelegate
+    ) {
         self.image = image
+        self.word = word
+        self.reading = reading
         self.sentence = sentence
         self.definition = definition
         self.isExistingSentence = isExistingSentence
@@ -58,6 +72,8 @@ class CreateSentenceViewController: UIViewController {
 
     private func loadData() {
         imageView.image = image
+        wordTextField.text = word
+        readingTextField.text = reading
         sentenceTextField.text = sentence
         definitionTextView.text = definition
     }
@@ -90,7 +106,13 @@ class CreateSentenceViewController: UIViewController {
     }
 
     @objc func save() {
-        delegate?.save(self, sentence: sentenceTextField.text ?? "", definition: definitionTextView.text ?? "")
+        delegate?.save(
+            self,
+            word: wordTextField.text ?? "",
+            reading: readingTextField.text ?? "",
+            sentence: sentenceTextField.text ?? "",
+            definition: definitionTextView.text ?? ""
+        )
     }
 
     @objc func deleteSentence() {

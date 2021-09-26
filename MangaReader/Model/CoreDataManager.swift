@@ -201,9 +201,9 @@ class CoreDataManager: CoreDataManageable {
 
     // MARK: Sentence Methods
     @discardableResult
-    func insertSentence(sentence: String, definition: String, image: UIImage?) -> Sentence? {
+    func insertSentence(word: String, reading: String, sentence: String, definition: String, image: UIImage?) -> Sentence? {
         let managedContext = persistentContainer.viewContext
-        let sentence = Sentence(context: managedContext, sentence: sentence, definition: definition, image: image)
+        let sentence = Sentence(context: managedContext, word: word, reading: reading, sentence: sentence, definition: definition, image: image)
         if saveContextOrPrintError(action: "insert sentence") {
             return sentence
         }

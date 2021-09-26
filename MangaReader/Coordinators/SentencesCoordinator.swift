@@ -94,7 +94,7 @@ extension SentencesCoordinator: EditSentenceCoordinatorDelegate {
         removeChildCoordinator(type: EditSentenceCoordinator.self)
     }
 
-    func didEnd(_ createSentenceCoordinator: EditSentenceCoordinator, image: UIImage?, sentence: String, definition: String) {
+    func didEnd(_ createSentenceCoordinator: EditSentenceCoordinator, image: UIImage?, word: String, reading: String, sentence: String, definition: String) {
         removeChildCoordinator(type: EditSentenceCoordinator.self)
         guard let selectedSentence = selectedSentence else { return }
         selectedSentence.imageData = image?.jpegData(compressionQuality: 1)
