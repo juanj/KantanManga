@@ -15,6 +15,7 @@ class SyncSentencesCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
 
     private var transferringSentencesViewController: TransferringSentencesViewController?
+    private let operationQueue = OperationQueue()
     private var progress = 0 {
         didSet {
             DispatchQueue.main.async {
@@ -22,8 +23,12 @@ class SyncSentencesCoordinator: Coordinator {
             }
         }
     }
-    private var report = ""
-    private let operationQueue = OperationQueue()
+
+    private var report = "" {
+        didSet {
+            transferringSentencesViewController?.updateReport(report: report)
+        }
+    }
 
     private let navigation: Navigable
     private let ankiConfig: AnkiConfig
@@ -73,6 +78,7 @@ class SyncSentencesCoordinator: Coordinator {
                     } else {
                         self?.report += "\(sentence.sentence) • did not failed with an error but the note id is not available\n"
                     }
+                    self?.progress += 1
                 }
             }
             operationQueue.addOperation(operation)
