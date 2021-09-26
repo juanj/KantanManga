@@ -49,6 +49,7 @@ class SentencesCoordinator: Coordinator {
             ankiConfig: config,
             ankiConnectManager: ankiConnectManager,
             sentences: sentences,
+            coreDataManager: coreDataManager,
             delegate: self
         )
         childCoordinators.append(syncCoordinator)
@@ -115,17 +116,6 @@ extension SentencesCoordinator: ConfigureAnkiCoordinatorDelegate {
 extension SentencesCoordinator: SyncSentencesCoordinatorDelegate {
     func didEnd(_ syncSentencesCoordinator: SyncSentencesCoordinator) {
         removeChildCoordinator(type: SyncSentencesCoordinator.self)
-        let alert = UIAlertController(
-            title: "Success",
-            message: "The sentences have been successfully transferred to Anki. Do you want to delete them?",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { _ in
-            self.coreDataManager.deleteAllSentences()
-            self.sentencesViewController?.sentences = self.coreDataManager.fetchAllSentences() ?? []
-        }))
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-
-        navigation.present(alert, animated: true, completion: nil)
+        sentencesViewController?.sentences = coreDataManager.fetchAllSentences() ?? []
     }
 }
