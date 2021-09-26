@@ -227,6 +227,7 @@
 		32EC1AD426F6A1230059F143 /* AnkiNamesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EC1AD226F6A1230059F143 /* AnkiNamesListViewController.xib */; };
 		32EC1AD626F6A2D70059F143 /* ConfigureAnkiCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AD526F6A2D70059F143 /* ConfigureAnkiCoordinator.swift */; };
 		32EC1AD826F6C26D0059F143 /* CreateNoteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AD726F6C26D0059F143 /* CreateNoteRequest.swift */; };
+		32F0670A26FFE38F006B33C9 /* AnkiSyncCardOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F0670926FFE38F006B33C9 /* AnkiSyncCardOperation.swift */; };
 		32F1B9F3243685DC00AE367D /* SelectCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */; };
 		32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */; };
 		32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */; };
@@ -540,6 +541,7 @@
 		32EC1AD226F6A1230059F143 /* AnkiNamesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnkiNamesListViewController.xib; sourceTree = "<group>"; };
 		32EC1AD526F6A2D70059F143 /* ConfigureAnkiCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureAnkiCoordinator.swift; sourceTree = "<group>"; };
 		32EC1AD726F6C26D0059F143 /* CreateNoteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteRequest.swift; sourceTree = "<group>"; };
+		32F0670926FFE38F006B33C9 /* AnkiSyncCardOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiSyncCardOperation.swift; sourceTree = "<group>"; };
 		32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCollectionTableViewController.swift; sourceTree = "<group>"; };
 		32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCollectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -990,6 +992,7 @@
 				32EC1AC426F68DF90059F143 /* AnkiConnectRequest.swift */,
 				32EC1AC626F697050059F143 /* AnkiConnectError.swift */,
 				32EC1AD726F6C26D0059F143 /* CreateNoteRequest.swift */,
+				32F0670926FFE38F006B33C9 /* AnkiSyncCardOperation.swift */,
 			);
 			path = AnkiConnect;
 			sourceTree = "<group>";
@@ -1799,6 +1802,7 @@
 				32A1516C253260C0002B3920 /* OnboardingViewController.swift in Sources */,
 				84A83224221DB10400CEE1C9 /* MangaCollectionViewCell.swift in Sources */,
 				326FDE7F24A80BB20042CB8A /* AboutView.swift in Sources */,
+				32F0670A26FFE38F006B33C9 /* AnkiSyncCardOperation.swift in Sources */,
 				84A83221221D9F7000CEE1C9 /* CoreDataManager.swift in Sources */,
 				326FDE7924A7F8350042CB8A /* SettingsTableViewController.swift in Sources */,
 				329D419425B4B10800545FB0 /* SearchTermResult.swift in Sources */,
@@ -1960,7 +1964,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 77;
+				CURRENT_PROJECT_VERSION = 79;
 				DEVELOPMENT_TEAM = 25JHVANVX3;
 				INFOPLIST_FILE = "Kantan-Keyboard/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1969,7 +1973,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kantanmanga.Kantan-Keyboard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1985,7 +1989,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 77;
+				CURRENT_PROJECT_VERSION = 79;
 				DEVELOPMENT_TEAM = 25JHVANVX3;
 				INFOPLIST_FILE = "Kantan-Keyboard/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1994,7 +1998,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kantanmanga.Kantan-Keyboard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2131,7 +2135,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 77;
+				CURRENT_PROJECT_VERSION = 79;
 				DEVELOPMENT_TEAM = 25JHVANVX3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MangaReader/Info.plist;
@@ -2139,7 +2143,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2225,7 +2229,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 77;
+				CURRENT_PROJECT_VERSION = 79;
 				DEVELOPMENT_TEAM = 25JHVANVX3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MangaReader/Info.plist;
@@ -2233,7 +2237,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
