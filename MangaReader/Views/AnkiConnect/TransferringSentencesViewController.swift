@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol TransferringSentencesViewControllerDelegate: AnyObject {
+    func didSelectClose(_ transferringSentencesViewController: TransferringSentencesViewController)
+    func didSelectDone(_ transferringSentencesViewController: TransferringSentencesViewController)
+}
+
 class TransferringSentencesViewController: UIViewController {
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
@@ -18,9 +23,13 @@ class TransferringSentencesViewController: UIViewController {
         }
     }
 
+    private var doneButton: UIBarButtonItem?
+
     private let total: Int
-    init(total: Int) {
+    private weak var delegate: TransferringSentencesViewControllerDelegate?
+    init(total: Int, delegate: TransferringSentencesViewControllerDelegate) {
         self.total = total
+        self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -31,12 +40,35 @@ class TransferringSentencesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavBar()
         updateProgress()
+    }
+
+    private func configureNavBar() {
+        title = "Sync"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(close))
+
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(done))
+        doneButton.isEnabled = false
+        self.doneButton = doneButton
+
+        navigationItem.rightBarButtonItem = doneButton
     }
 
     private func updateProgress() {
         progressLabel?.text = "Transferring sentences to Anki (\(progress)/\(total))"
         progressView.progress = Float(progress)/Float(total)
+        if progress == total {
+            doneButton?.isEnabled = true
+        }
+    }
+
+    @objc func close() {
+        delegate?.didSelectClose(self)
+    }
+
+    @objc func done() {
+        delegate?.didSelectDone(self)
     }
 
     func updateReport(report: String) {
