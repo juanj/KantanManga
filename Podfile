@@ -9,7 +9,6 @@ target 'Kantan-Manga' do
   pod 'ZIPFoundation', '~> 0.9'
   pod 'GCDWebServer/WebUploader', '~> 3.0'
   pod 'Firebase/Core'
-  pod 'Firebase/MLVision'
   pod 'GRDB.swift'
   pod 'UnrarKit'
   target 'Kantan-MangaTests' do
