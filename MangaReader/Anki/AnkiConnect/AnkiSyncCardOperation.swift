@@ -53,7 +53,7 @@ class AnkiSyncCardOperation: Operation {
         var picture: CreateNoteRequest.Picture?
         if let imageData = sentence.imageData, let imageField = config.imageField {
             picture = CreateNoteRequest.Picture(
-                filename: "\(sentence.sentence).png",
+                filename: getFileName(),
                 data: imageData.base64EncodedString(),
                 fields: [imageField]
             )
@@ -96,5 +96,17 @@ class AnkiSyncCardOperation: Operation {
         }
 
         return fields
+    }
+
+    private func getFileName() -> String {
+        var components = ["KM"]
+        if !sentence.sentence.trimmingCharacters(in: .whitespaces).isEmpty {
+            components.append(sentence.sentence)
+        }
+        if !sentence.word.trimmingCharacters(in: .whitespaces).isEmpty {
+            components.append(sentence.word)
+        }
+
+        return components.joined(separator: "-").appending(".png")
     }
 }
