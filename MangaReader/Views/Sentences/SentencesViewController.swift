@@ -93,8 +93,16 @@ extension SentencesViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "sentenceCellId") else {
             fatalError("Failed to dequeue cell with reusable identifier sentenceCellId")
         }
+        let sentence = sentences[indexPath.row]
 
-        cell.textLabel?.text = sentences[indexPath.row].sentence
+        let displayText: String
+        if !sentence.sentence.trimmingCharacters(in: .whitespaces).isEmpty {
+            displayText = sentence.sentence
+        } else {
+            displayText = sentence.word
+        }
+
+        cell.textLabel?.text = displayText
 
         return cell
     }
