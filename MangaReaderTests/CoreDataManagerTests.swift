@@ -212,7 +212,7 @@ class CoreDataManagerTests: XCTestCase {
     func testInsertSentence_withInMemoryCoreDataManager_insertsSentence() {
         let coreDataManager = InMemoryCoreDataManager()
 
-        coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)
 
         XCTAssertEqual(coreDataManager.fetchAllSentences()?.count, 1)
     }
@@ -220,10 +220,10 @@ class CoreDataManagerTests: XCTestCase {
     func testDeleteSentence_afterInsertingMultipleSentences_deletesSentence() {
         let coreDataManager = InMemoryCoreDataManager()
 
-        coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)
-        coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)
-        coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)
-        let sentence = coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)!
+        coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)
+        let sentence = coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)!
         coreDataManager.delete(sentence: sentence)
 
         XCTAssertEqual(coreDataManager.fetchAllSentences()?.count, 3)
@@ -232,10 +232,10 @@ class CoreDataManagerTests: XCTestCase {
     func testDeleteAllSentences_afterInsertingMultipleSentences_deletesAllSentences() {
         let coreDataManager = InMemoryCoreDataManager()
 
-        coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)
-        coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)
-        coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)
-        coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)
 
         coreDataManager.deleteAllSentences()
 
@@ -245,10 +245,10 @@ class CoreDataManagerTests: XCTestCase {
     func testFetchAllSentences_afterInsertingMultipleSentences_returnsAllSentences() {
         let coreDataManager = InMemoryCoreDataManager()
 
-        let card1 = coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)!
-        let card2 = coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)!
-        let card3 = coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)!
-        let card4 = coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)!
+        let card1 = coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)!
+        let card2 = coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)!
+        let card3 = coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)!
+        let card4 = coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)!
 
         let allCards = coreDataManager.fetchAllSentences()!
 
@@ -258,7 +258,7 @@ class CoreDataManagerTests: XCTestCase {
     func testUpdateSentence_afterInserting_updatesCard() {
         let coreDataManager = InMemoryCoreDataManager()
 
-        let card = coreDataManager.insertSentence(sentence: "Test", definition: "Definition", image: nil)!
+        let card = coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)!
 
         card.sentence = "Test Sentence"
         card.definition = "Test Definition"

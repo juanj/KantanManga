@@ -17,7 +17,7 @@ class FakeCreateSentenceViewControllerDelegate: CreateSentenceViewControllerDele
         cancelCalled = true
     }
 
-    func save(_ createSentenceViewController: CreateSentenceViewController, sentence: String, definition: String) {
+    func save(_ createSentenceViewController: CreateSentenceViewController, word: String, reading: String, sentence: String, definition: String) {
         saveCalled = true
     }
 

@@ -25,6 +25,7 @@ class FakeCoreDataManager: CoreDataManageable {
     func delete(sentence: Sentence) {}
     func deleteAllSentences() {}
     func update(sentence: Sentence) {}
+    func insertSentence(word: String, reading: String, sentence: String, definition: String, image: UIImage?) -> Sentence? { nil }
 }
 
 // Empty methods

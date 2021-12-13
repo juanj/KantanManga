@@ -8,13 +8,15 @@
 @testable import Kantan_Manga
 
 class FakeEditSentenceCoordinatorDelegate: EditSentenceCoordinatorDelegate {
+
+
     var didCancelCalled = false
     var didEndCalled = false
     func didCancel(_ createSentenceCoordinator: EditSentenceCoordinator) {
         didCancelCalled = true
     }
 
-    func didEnd(_ createSentenceCoordinator: EditSentenceCoordinator, image: UIImage?, sentence: String, definition: String) {
+    func didEnd(_ createSentenceCoordinator: EditSentenceCoordinator, image: UIImage?, word: String, reading: String, sentence: String, definition: String) {
         didEndCalled = true
     }
 }
