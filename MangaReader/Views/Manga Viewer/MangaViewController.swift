@@ -339,6 +339,8 @@ class MangaViewController: UIViewController {
 
     @objc func longPress(tap: UILongPressGestureRecognizer) {
         guard isValidTap(tap) else { return }
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
         let animation = CABasicAnimation(keyPath: "transform.scale")
         animation.fromValue = 1
         animation.toValue = 1.01
