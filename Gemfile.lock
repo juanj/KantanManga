@@ -63,7 +63,7 @@ GEM
       public_suffix
       typhoeus (~> 1.0)
     cocoapods-deintegrate (1.0.4)
-    cocoapods-downloader (1.4.0)
+    cocoapods-downloader (1.6.3)
     cocoapods-keys (2.2.1)
       dotenv
       osx_keychain
