@@ -80,7 +80,6 @@
 		3250E89B256D54E000CBFA37 /* FakeViewerSettingsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3250E89A256D54E000CBFA37 /* FakeViewerSettingsViewControllerDelegate.swift */; };
 		3250E8A1256D568100CBFA37 /* TestableViewMangaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3250E8A0256D568100CBFA37 /* TestableViewMangaCoordinator.swift */; };
 		325199B42479D96400DA6908 /* ImageOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325199B32479D96400DA6908 /* ImageOCR.swift */; };
-		325199B72479D9E000DA6908 /* GoogleVisionOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325199B62479D9E000DA6908 /* GoogleVisionOCR.swift */; };
 		325199BB2479DE0D00DA6908 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 325199B92479DE0D00DA6908 /* tessdata */; };
 		325199C42479E20700DA6908 /* TesseractOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325199C32479E20700DA6908 /* TesseractOCR.swift */; };
 		325199CA2479E9B900DA6908 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 325199B92479DE0D00DA6908 /* tessdata */; };
@@ -366,7 +365,6 @@
 		3250E89A256D54E000CBFA37 /* FakeViewerSettingsViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeViewerSettingsViewControllerDelegate.swift; sourceTree = "<group>"; };
 		3250E8A0256D568100CBFA37 /* TestableViewMangaCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableViewMangaCoordinator.swift; sourceTree = "<group>"; };
 		325199B32479D96400DA6908 /* ImageOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOCR.swift; sourceTree = "<group>"; };
-		325199B62479D9E000DA6908 /* GoogleVisionOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleVisionOCR.swift; sourceTree = "<group>"; };
 		325199B92479DE0D00DA6908 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		325199C32479E20700DA6908 /* TesseractOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesseractOCR.swift; sourceTree = "<group>"; };
 		32537155253B843E005B8EC1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -731,7 +729,6 @@
 			isa = PBXGroup;
 			children = (
 				325199B32479D96400DA6908 /* ImageOCR.swift */,
-				325199B62479D9E000DA6908 /* GoogleVisionOCR.swift */,
 				325199C32479E20700DA6908 /* TesseractOCR.swift */,
 				322C04B525680FE700BD5A51 /* Tesseract+PageSegmentation.swift */,
 			);
@@ -1621,7 +1618,6 @@
 				32E322182481A531007BC017 /* ParsedInputField.swift in Sources */,
 				32326F8624354ECC00FCE8E5 /* FileSourceViewController.swift in Sources */,
 				322EF655250FB05800F35E72 /* CGSize+Extension.swift in Sources */,
-				325199B72479D9E000DA6908 /* GoogleVisionOCR.swift in Sources */,
 				322C5B602483125A00C0BAB1 /* Coordinator.swift in Sources */,
 				3296181C2555943B0020C5AF /* SettingValueChangeDelegate.swift in Sources */,
 				32542BD82580352600ED357A /* TermMeta.swift in Sources */,
@@ -2008,23 +2004,13 @@
 					"-framework",
 					"\"FirebaseCoreDiagnostics\"",
 					"-framework",
-					"\"FirebaseMLCommon\"",
-					"-framework",
-					"\"FirebaseMLVision\"",
-					"-framework",
 					"\"Foundation\"",
 					"-framework",
 					"\"GCDWebServer\"",
 					"-framework",
-					"\"GTMSessionFetcher\"",
-					"-framework",
-					"\"GoogleAPIClientForREST\"",
-					"-framework",
 					"\"GoogleAppMeasurement\"",
 					"-framework",
 					"\"GoogleDataTransport\"",
-					"-framework",
-					"\"GoogleToolboxForMac\"",
 					"-framework",
 					"\"GoogleUtilities\"",
 					"-framework",
@@ -2043,8 +2029,6 @@
 					"\"ZIPFoundation\"",
 					"-framework",
 					"\"nanopb\"",
-					"-framework",
-					"\"protobuf\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kantanmanga;
 				PRODUCT_NAME = "Kantan Manga";
@@ -2102,23 +2086,13 @@
 					"-framework",
 					"\"FirebaseCoreDiagnostics\"",
 					"-framework",
-					"\"FirebaseMLCommon\"",
-					"-framework",
-					"\"FirebaseMLVision\"",
-					"-framework",
 					"\"Foundation\"",
 					"-framework",
 					"\"GCDWebServer\"",
 					"-framework",
-					"\"GTMSessionFetcher\"",
-					"-framework",
-					"\"GoogleAPIClientForREST\"",
-					"-framework",
 					"\"GoogleAppMeasurement\"",
 					"-framework",
 					"\"GoogleDataTransport\"",
-					"-framework",
-					"\"GoogleToolboxForMac\"",
 					"-framework",
 					"\"GoogleUtilities\"",
 					"-framework",
@@ -2137,8 +2111,6 @@
 					"\"ZIPFoundation\"",
 					"-framework",
 					"\"nanopb\"",
-					"-framework",
-					"\"protobuf\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kantanmanga;
 				PRODUCT_NAME = "Kantan Manga";
