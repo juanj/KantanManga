@@ -92,6 +92,8 @@ class ConfigureAnkiCoordinator: Coordinator {
 
 extension ConfigureAnkiCoordinator: AnkiConnectionViewControllerDelegate {
     func didSelectSave(_ ankiConnectionViewController: AnkiConnectionViewController, host: String, key: String?) {
+        ankiConnectionViewController.view.endEditing(true)
+        ankiConnectionViewController.startLoading()
         localNetworkAuthorization = LocalNetworkAuthorization()
         localNetworkAuthorization?.requestAuthorization { [weak self] _ in
             // TODO: Handle local network access rejected
@@ -103,15 +105,12 @@ extension ConfigureAnkiCoordinator: AnkiConnectionViewControllerDelegate {
     private func saveHostAndKey(_ ankiConnectionViewController: AnkiConnectionViewController, host: String, key: String?) {
         let url = "http://\(host)"
         guard let url = URL(string: url) else {
+            ankiConnectionViewController.endLoading()
             showError(message: "Invalid host")
             return
         }
 
         ankiConnectManager = AnkiConnectManager(url: url, key: key)
-
-        ankiConnectionViewController.view.endEditing(true)
-        ankiConnectionViewController.startLoading()
-
         ankiConnectManager?.checkConnection { [weak self] result in
             switch result {
             case .success:
