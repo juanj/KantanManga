@@ -16,16 +16,17 @@ protocol AnkiSettingsViewControllerDelegate: AnyObject {
     func didSelectDefinitionField(_ ankiSettingsViewController: AnkiSettingsViewController)
     func didSelectImageField(_ ankiSettingsViewController: AnkiSettingsViewController)
     func didSelectSave(_ ankiSettingsViewController: AnkiSettingsViewController)
+    func hasEnoughInformation(_ ankiSettingsViewController: AnkiSettingsViewController) -> Bool
 }
 
 class AnkiSettingsViewController: UIViewController {
-    @IBOutlet weak var deckTextField: UITextField!
-    @IBOutlet weak var noteTypeTextField: UITextField!
-    @IBOutlet weak var wordFieldTextField: UITextField!
-    @IBOutlet weak var readingFieldTextField: UITextField!
-    @IBOutlet weak var sentenceFieldTextField: UITextField!
-    @IBOutlet weak var definitionFieldTextField: UITextField!
-    @IBOutlet weak var imageFieldTextField: UITextField!
+    @IBOutlet weak var deckButton: UIButton!
+    @IBOutlet weak var noteTypeButton: UIButton!
+    @IBOutlet weak var wordFieldButton: UIButton!
+    @IBOutlet weak var readingFieldButton: UIButton!
+    @IBOutlet weak var sentenceFieldButton: UIButton!
+    @IBOutlet weak var definitionFieldButton: UIButton!
+    @IBOutlet weak var imageFieldButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -54,69 +55,73 @@ class AnkiSettingsViewController: UIViewController {
         super.viewDidLoad()
         title = "Settings"
 
-        deckTextField.delegate = self
-        noteTypeTextField.delegate = self
-        wordFieldTextField.delegate = self
-        readingFieldTextField.delegate = self
-        sentenceFieldTextField.delegate = self
-        definitionFieldTextField.delegate = self
-        imageFieldTextField.delegate = self
-
         saveButton.isEnabled = false
     }
 
     func setDeck(_ deck: String) {
-        deckTextField.text = deck
+        deckButton.setTitle(deck, for: .normal)
+        deckButton.setTitleColor(.label, for: .normal)
         checkFields()
     }
 
     func setNoteType(_ noteType: String) {
-        noteTypeTextField.text = noteType
+        noteTypeButton.setTitle(noteType, for: .normal)
+        noteTypeButton.setTitleColor(.label, for: .normal)
         checkFields()
     }
 
     func setWordField(_ wordField: String) {
-        wordFieldTextField.text = wordField
+        wordFieldButton.setTitle(wordField, for: .normal)
+        wordFieldButton.setTitleColor(.label, for: .normal)
         checkFields()
     }
 
     func setReadingField(_ readingField: String) {
-        readingFieldTextField.text = readingField
+        readingFieldButton.setTitle(readingField, for: .normal)
+        readingFieldButton.setTitleColor(.label, for: .normal)
         checkFields()
     }
 
     func setSentenceField(_ sentenceField: String) {
-        sentenceFieldTextField.text = sentenceField
+        sentenceFieldButton.setTitle(sentenceField, for: .normal)
+        sentenceFieldButton.setTitleColor(.label, for: .normal)
         checkFields()
     }
 
     func setDefinitionField(_ definitionField: String) {
-        definitionFieldTextField.text = definitionField
+        definitionFieldButton.setTitle(definitionField, for: .normal)
+        definitionFieldButton.setTitleColor(.label, for: .normal)
         checkFields()
     }
 
     func setImageField(_ imageField: String) {
-        imageFieldTextField.text = imageField
+        imageFieldButton.setTitle(imageField, for: .normal)
+        imageFieldButton.setTitleColor(.label, for: .normal)
         checkFields()
     }
 
     private func checkFields() {
-        guard let deck = deckTextField.text, !deck.isEmpty,
-              let noteType = noteTypeTextField.text, !noteType.isEmpty
-        else {
-            saveButton.isEnabled = false
-            return
-        }
+        saveButton.isEnabled = delegate?.hasEnoughInformation(self) == true
+    }
 
-        if wordFieldTextField.text?.isEmpty == false ||
-            readingFieldTextField.text?.isEmpty == false ||
-            sentenceFieldTextField.text?.isEmpty == false ||
-            definitionFieldTextField.text?.isEmpty == false ||
-            imageFieldTextField.text?.isEmpty == false
-        {
-            saveButton.isEnabled = true
-        } else {
-            saveButton.isEnabled = false
+    @IBAction func selectField(_ button: UIButton) {
+        switch button {
+        case deckButton:
+            delegate?.didSelectDeck(self)
+        case noteTypeButton:
+            delegate?.didSelectNoteType(self)
+        case wordFieldButton:
+            delegate?.didSelectWordField(self)
+        case readingFieldButton:
+            delegate?.didSelectReadingField(self)
+        case sentenceFieldButton:
+            delegate?.didSelectSentenceField(self)
+        case definitionFieldButton:
+            delegate?.didSelectDefinitionField(self)
+        case imageFieldButton:
+            delegate?.didSelectImageField(self)
+        default:
+            break
         }
     }
 
@@ -126,25 +131,5 @@ class AnkiSettingsViewController: UIViewController {
 }
 
 extension AnkiSettingsViewController: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        switch textField {
-        case deckTextField:
-            delegate?.didSelectDeck(self)
-        case noteTypeTextField:
-            delegate?.didSelectNoteType(self)
-        case wordFieldTextField:
-            delegate?.didSelectWordField(self)
-        case readingFieldTextField:
-            delegate?.didSelectReadingField(self)
-        case sentenceFieldTextField:
-            delegate?.didSelectSentenceField(self)
-        case definitionFieldTextField:
-            delegate?.didSelectDefinitionField(self)
-        case imageFieldTextField:
-            delegate?.didSelectImageField(self)
-        default:
-            break
-        }
-        return false
-    }
+
 }

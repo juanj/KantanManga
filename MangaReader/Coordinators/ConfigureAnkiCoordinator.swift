@@ -233,6 +233,25 @@ extension ConfigureAnkiCoordinator: AnkiSettingsViewControllerDelegate {
             self.delegate?.didEnd(self)
         }
     }
+
+    func hasEnoughInformation(_ ankiSettingsViewController: AnkiSettingsViewController) -> Bool {
+        guard let deck = deck, !deck.isEmpty,
+              let model = model, !model.isEmpty
+        else {
+            return false
+        }
+
+        if wordField?.isEmpty == false ||
+            readingField?.isEmpty == false ||
+            sentenceField?.isEmpty == false ||
+            definitionField?.isEmpty == false ||
+            imageField?.isEmpty == false
+        {
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
 extension ConfigureAnkiCoordinator: AnkiNamesListViewControllerDelegate {
