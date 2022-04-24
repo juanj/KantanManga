@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D9DCB3F2814B556003B0E3A /* LocalNetworkAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9DCB3E2814B556003B0E3A /* LocalNetworkAuthorization.swift */; };
 		320ED4D32483178C00F5BECF /* FakeLibraryViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D22483178C00F5BECF /* FakeLibraryViewControllerDelegate.swift */; };
 		320ED4D72483189F00F5BECF /* FakeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D62483189F00F5BECF /* FakeNavigation.swift */; };
 		320ED4D924831D2900F5BECF /* FakeUploadServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D824831D2900F5BECF /* FakeUploadServer.swift */; };
@@ -322,6 +323,7 @@
 
 /* Begin PBXFileReference section */
 		0901E8129E5F6869799F9F4F /* Pods-Kantan-MangaIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-Kantan-MangaIntegrationTests/Pods-Kantan-MangaIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
+		0D9DCB3E2814B556003B0E3A /* LocalNetworkAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkAuthorization.swift; sourceTree = "<group>"; };
 		18F818CF5B3408FFE0E69E9A /* Pods_Kantan_Keyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_Keyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF63718FAD5FE59C8FD2441 /* Pods_Kantan_MangaIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B365FFD83C8EC3E373F83E0 /* Pods-Kantan-Keyboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Keyboard.release.xcconfig"; path = "Target Support Files/Pods-Kantan-Keyboard/Pods-Kantan-Keyboard.release.xcconfig"; sourceTree = "<group>"; };
@@ -863,6 +865,7 @@
 				32EC1ABF26F68B020059F143 /* AnkiConnect */,
 				327ED0D926587BA50065E8E8 /* AnkiConfig.swift */,
 				327ED0E626587E960065E8E8 /* AnkiConfigManager.swift */,
+				0D9DCB3E2814B556003B0E3A /* LocalNetworkAuthorization.swift */,
 			);
 			path = Anki;
 			sourceTree = "<group>";
@@ -1748,6 +1751,7 @@
 				32EC1AD326F6A1230059F143 /* AnkiNamesListViewController.swift in Sources */,
 				3259D1B423C4D9A2003BA7C2 /* JapaneseUtils.swift in Sources */,
 				32AD41D225B639EC0042626C /* MergedTermSearchResult.swift in Sources */,
+				0D9DCB3F2814B556003B0E3A /* LocalNetworkAuthorization.swift in Sources */,
 				3241F8602572AE7F00A4FC04 /* TermEntry.swift in Sources */,
 				32EC1AC326F68BE90059F143 /* AnkiConnectResponse.swift in Sources */,
 				328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */,

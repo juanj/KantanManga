@@ -16,6 +16,7 @@ class ConfigureAnkiCoordinator: Coordinator {
 
     private var presentedNavigation: Navigable!
     private var ankiConnectManager: AnkiConnectManager?
+    private var localNetworkAuthorization: LocalNetworkAuthorization?
 
     private var host: String?
     private var key: String?
@@ -91,6 +92,15 @@ class ConfigureAnkiCoordinator: Coordinator {
 
 extension ConfigureAnkiCoordinator: AnkiConnectionViewControllerDelegate {
     func didSelectSave(_ ankiConnectionViewController: AnkiConnectionViewController, host: String, key: String?) {
+        localNetworkAuthorization = LocalNetworkAuthorization()
+        localNetworkAuthorization?.requestAuthorization { [weak self] _ in
+            // TODO: Handle local network access rejected
+            self?.localNetworkAuthorization = nil
+            self?.saveHostAndKey(ankiConnectionViewController, host: host, key: key)
+        }
+    }
+
+    private func saveHostAndKey(_ ankiConnectionViewController: AnkiConnectionViewController, host: String, key: String?) {
         let url = "http://\(host)"
         guard let url = URL(string: url) else {
             showError(message: "Invalid host")
