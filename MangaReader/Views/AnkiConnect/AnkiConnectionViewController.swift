@@ -9,13 +9,14 @@ import UIKit
 
 protocol AnkiConnectionViewControllerDelegate: AnyObject {
     func didSelectSave(_ ankiConnectionViewController: AnkiConnectionViewController, host: String, key: String?)
+    func cancel(_ ankiConnectionViewController: AnkiConnectionViewController)
 }
 
 class AnkiConnectionViewController: UIViewController {
     @IBOutlet weak var hostTextField: UITextField!
     @IBOutlet weak var keyTextField: UITextField!
-    @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    private var continueButton: UIBarButtonItem!
 
     private weak var delegate: AnkiConnectionViewControllerDelegate?
 
@@ -30,10 +31,20 @@ class AnkiConnectionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Connection"
+        configureTextFields()
+        configureNavBar()
+    }
 
-        hostTextField.addTarget(self, action: #selector(checkFields), for: .editingChanged)
+    private func configureNavBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+        continueButton = UIBarButtonItem(title: "Connect", style: .plain, target: self, action: #selector(`continue`))
         continueButton.isEnabled = false
+        navigationItem.rightBarButtonItem = continueButton
+        title = "Anki connect configuration"
+    }
+
+    private func configureTextFields() {
+        hostTextField.addTarget(self, action: #selector(checkFields), for: .editingChanged)
     }
 
     func startLoading() {
@@ -54,8 +65,12 @@ class AnkiConnectionViewController: UIViewController {
         }
     }
 
-    @IBAction func `continue`(_ sender: Any) {
+    @objc func `continue`() {
         guard let host = hostTextField.text, let key = keyTextField.text else { return }
         delegate?.didSelectSave(self, host: host, key: key.isEmpty ? nil : key)
+    }
+
+    @objc func cancel() {
+        delegate?.cancel(self)
     }
 }

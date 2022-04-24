@@ -17,7 +17,6 @@
                 <outlet property="imageFieldButton" destination="awN-zM-EXW" id="HSc-nt-cK6"/>
                 <outlet property="noteTypeButton" destination="pb9-bx-HMT" id="FRl-Za-0nf"/>
                 <outlet property="readingFieldButton" destination="BvI-ME-wCX" id="lZl-89-l7j"/>
-                <outlet property="saveButton" destination="OFd-5Q-ANV" id="d9e-wr-TqD"/>
                 <outlet property="sentenceFieldButton" destination="ziW-s0-Lxr" id="8Pk-7G-G9i"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="wordFieldButton" destination="LXc-0L-xe5" id="7qT-SO-XJH"/>
@@ -29,7 +28,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yqS-cl-83E">
-                    <rect key="frame" x="0.0" y="44" width="701" height="338"/>
+                    <rect key="frame" x="0.0" y="44" width="701" height="308"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f5c-CL-ta0">
                             <rect key="frame" x="0.0" y="0.0" width="701" height="44"/>
@@ -318,13 +317,6 @@
                                 <constraint firstItem="XHQ-2z-FfA" firstAttribute="top" secondItem="awN-zM-EXW" secondAttribute="bottom" id="wzS-dz-LTJ"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OFd-5Q-ANV">
-                            <rect key="frame" x="0.0" y="308" width="701" height="30"/>
-                            <state key="normal" title="Save"/>
-                            <connections>
-                                <action selector="save:" destination="-1" eventType="touchUpInside" id="Hjy-4Y-jyn"/>
-                            </connections>
-                        </button>
                     </subviews>
                 </stackView>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="cPF-Ok-2Vd">

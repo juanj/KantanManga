@@ -17,6 +17,7 @@ protocol AnkiSettingsViewControllerDelegate: AnyObject {
     func didSelectImageField(_ ankiSettingsViewController: AnkiSettingsViewController)
     func didSelectSave(_ ankiSettingsViewController: AnkiSettingsViewController)
     func hasEnoughInformation(_ ankiSettingsViewController: AnkiSettingsViewController) -> Bool
+    func cancel(_ ankiSettingsViewController: AnkiSettingsViewController)
 }
 
 class AnkiSettingsViewController: UIViewController {
@@ -27,8 +28,9 @@ class AnkiSettingsViewController: UIViewController {
     @IBOutlet weak var sentenceFieldButton: UIButton!
     @IBOutlet weak var definitionFieldButton: UIButton!
     @IBOutlet weak var imageFieldButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
+    private var saveButton: UIBarButtonItem!
     
     private weak var delegate: AnkiSettingsViewControllerDelegate?
 
@@ -53,9 +55,19 @@ class AnkiSettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Settings"
-
+        configureNavigationBar()
         saveButton.isEnabled = false
+    }
+
+    private func configureNavigationBar() {
+        saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
+        saveButton.isEnabled = false
+        navigationItem.rightBarButtonItem = saveButton
+        title = "Deck and note"
+    }
+
+    private func checkFields() {
+        saveButton.isEnabled = delegate?.hasEnoughInformation(self) == true
     }
 
     func setDeck(_ deck: String) {
@@ -100,10 +112,6 @@ class AnkiSettingsViewController: UIViewController {
         checkFields()
     }
 
-    private func checkFields() {
-        saveButton.isEnabled = delegate?.hasEnoughInformation(self) == true
-    }
-
     @IBAction func selectField(_ button: UIButton) {
         switch button {
         case deckButton:
@@ -125,8 +133,12 @@ class AnkiSettingsViewController: UIViewController {
         }
     }
 
-    @IBAction func save(_ sender: Any) {
+    @objc func save() {
         delegate?.didSelectSave(self)
+    }
+
+    @objc func cancel() {
+        delegate?.cancel(self)
     }
 }
 

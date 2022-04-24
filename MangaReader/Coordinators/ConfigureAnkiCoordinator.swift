@@ -123,6 +123,12 @@ extension ConfigureAnkiCoordinator: AnkiConnectionViewControllerDelegate {
             ankiConnectionViewController.endLoading()
         }
     }
+
+    func cancel(_ ankiConnectionViewController: AnkiConnectionViewController) {
+        navigation.dismiss(animated: true) {
+            self.delegate?.didEnd(self)
+        }
+    }
 }
 
 extension ConfigureAnkiCoordinator: AnkiSettingsViewControllerDelegate {
@@ -250,6 +256,12 @@ extension ConfigureAnkiCoordinator: AnkiSettingsViewControllerDelegate {
             return true
         } else {
             return false
+        }
+    }
+
+    func cancel(_ ankiSettingsViewController: AnkiSettingsViewController) {
+        navigation.dismiss(animated: true) {
+            self.delegate?.didEnd(self)
         }
     }
 }

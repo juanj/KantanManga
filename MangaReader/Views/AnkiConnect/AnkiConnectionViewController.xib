@@ -12,7 +12,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnkiConnectionViewController" customModule="Kantan_Manga" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="WM3-Jy-ZfK" id="sBx-XE-gUk"/>
-                <outlet property="continueButton" destination="UBV-Ra-Onb" id="var-EI-R4q"/>
                 <outlet property="hostTextField" destination="nlJ-pU-CGw" id="MLz-WT-YKg"/>
                 <outlet property="keyTextField" destination="2MQ-6J-cIv" id="dUD-1C-fSW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -24,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9Nw-Mk-sJt">
-                    <rect key="frame" x="0.0" y="44" width="725" height="118"/>
+                    <rect key="frame" x="0.0" y="44" width="725" height="88"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="woI-et-R50">
                             <rect key="frame" x="0.0" y="0.0" width="725" height="44"/>
@@ -94,13 +93,6 @@
                                 </mask>
                             </variation>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBV-Ra-Onb">
-                            <rect key="frame" x="0.0" y="88" width="725" height="30"/>
-                            <state key="normal" title="Continue"/>
-                            <connections>
-                                <action selector="continue:" destination="-1" eventType="touchUpInside" id="DH8-Nj-Sen"/>
-                            </connections>
-                        </button>
                     </subviews>
                 </stackView>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="WM3-Jy-ZfK">
