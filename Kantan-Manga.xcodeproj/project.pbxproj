@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D9DCB3F2814B556003B0E3A /* LocalNetworkAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9DCB3E2814B556003B0E3A /* LocalNetworkAuthorization.swift */; };
+		0DD370062815F42B00B6279D /* SwiftyTesseract in Frameworks */ = {isa = PBXBuildFile; productRef = 0DD370052815F42B00B6279D /* SwiftyTesseract */; };
 		320ED4D32483178C00F5BECF /* FakeLibraryViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D22483178C00F5BECF /* FakeLibraryViewControllerDelegate.swift */; };
 		320ED4D72483189F00F5BECF /* FakeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D62483189F00F5BECF /* FakeNavigation.swift */; };
 		320ED4D924831D2900F5BECF /* FakeUploadServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D824831D2900F5BECF /* FakeUploadServer.swift */; };
@@ -26,7 +27,6 @@
 		3229B1C62541D60B00C4E166 /* KanjiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3229B1C32541D60B00C4E166 /* KanjiCollectionViewCell.swift */; };
 		3229B1C82541D60B00C4E166 /* KanjiCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3229B1C42541D60B00C4E166 /* KanjiCollectionViewCell.xib */; };
 		322C04B725680FE700BD5A51 /* Tesseract+PageSegmentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C04B525680FE700BD5A51 /* Tesseract+PageSegmentation.swift */; };
-		322C04C02568100900BD5A51 /* SwiftyTesseract in Frameworks */ = {isa = PBXBuildFile; productRef = 322C04BF2568100900BD5A51 /* SwiftyTesseract */; };
 		322C5B602483125A00C0BAB1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C5B5F2483125A00C0BAB1 /* Coordinator.swift */; };
 		322E600A255AE00D00D18266 /* CoreDataManagerIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322E5FCC255ADE7C00D18266 /* CoreDataManagerIntegrationTests.swift */; };
 		322E603B255AE03600D18266 /* InMemoryCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F62A1255A03A7000CA225 /* InMemoryCoreDataManager.swift */; };
@@ -165,6 +165,7 @@
 		3297E41425E1E5E200743C8B /* Sentence+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E41325E1E5E200743C8B /* Sentence+CoreDataProperties.swift */; };
 		3298D7D025713BB4005FB8F2 /* YomichanDictionaryImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298D7CF25713BB4005FB8F2 /* YomichanDictionaryImporter.swift */; };
 		3298D7D725713D66005FB8F2 /* DictionaryIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */; };
+		3298F10C26ACAC4F002CBC16 /* TestableMangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298F10B26ACAC4F002CBC16 /* TestableMangaViewController.swift */; };
 		329ACA8A2552ED15002953C5 /* NumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA882552ED15002953C5 /* NumberTableViewCell.swift */; };
 		329ACA8B2552ED15002953C5 /* NumberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 329ACA892552ED15002953C5 /* NumberTableViewCell.xib */; };
 		329ACA9A2552EFD7002953C5 /* ViewerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA992552EFD7002953C5 /* ViewerSettings.swift */; };
@@ -482,6 +483,7 @@
 		3297E41325E1E5E200743C8B /* Sentence+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sentence+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3298D7CF25713BB4005FB8F2 /* YomichanDictionaryImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YomichanDictionaryImporter.swift; sourceTree = "<group>"; };
 		3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryIndex.swift; sourceTree = "<group>"; };
+		3298F10B26ACAC4F002CBC16 /* TestableMangaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableMangaViewController.swift; sourceTree = "<group>"; };
 		329ACA882552ED15002953C5 /* NumberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTableViewCell.swift; sourceTree = "<group>"; };
 		329ACA892552ED15002953C5 /* NumberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberTableViewCell.xib; sourceTree = "<group>"; };
 		329ACA992552EFD7002953C5 /* ViewerSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerSettings.swift; sourceTree = "<group>"; };
@@ -611,10 +613,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				322C04C02568100900BD5A51 /* SwiftyTesseract in Frameworks */,
 				3297E40A25E1DB0100743C8B /* CropViewController in Frameworks */,
 				324BB96E2498369B006241E8 /* mecab.framework in Frameworks */,
 				8E8CEFB4C4BE0A944BDACF1E /* Pods_Kantan_Manga.framework in Frameworks */,
+				0DD370062815F42B00B6279D /* SwiftyTesseract in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -817,6 +819,7 @@
 		326857E42569D5C4000B0C83 /* Testables */ = {
 			isa = PBXGroup;
 			children = (
+				3298F10B26ACAC4F002CBC16 /* TestableMangaViewController.swift */,
 				326857DE2569CF9D000B0C83 /* TestableAddMangasCoordinator.swift */,
 				3250E8A0256D568100CBFA37 /* TestableViewMangaCoordinator.swift */,
 				3297E3EE25E1D43A00743C8B /* TestableCreateSentenceCoordinator.swift */,
@@ -1340,8 +1343,8 @@
 			);
 			name = "Kantan-Manga";
 			packageProductDependencies = (
-				322C04BF2568100900BD5A51 /* SwiftyTesseract */,
 				3297E40925E1DB0100743C8B /* CropViewController */,
+				0DD370052815F42B00B6279D /* SwiftyTesseract */,
 			);
 			productName = MangaReader;
 			productReference = 84A831E3221D90CA00CEE1C9 /* Kantan Manga.app */;
@@ -1404,8 +1407,8 @@
 			);
 			mainGroup = 84A831DA221D90CA00CEE1C9;
 			packageReferences = (
-				322C04BE2568100900BD5A51 /* XCRemoteSwiftPackageReference "SwiftyTesseract" */,
 				3297E40825E1DB0100743C8B /* XCRemoteSwiftPackageReference "TOCropViewController" */,
+				0DD370042815F42B00B6279D /* XCRemoteSwiftPackageReference "SwiftyTesseract" */,
 			);
 			productRefGroup = 84A831E4221D90CA00CEE1C9 /* Products */;
 			projectDirPath = "";
@@ -1832,6 +1835,7 @@
 				320ED4D924831D2900F5BECF /* FakeUploadServer.swift in Sources */,
 				3241F8C12572E18500A4FC04 /* KanjiEntryV1Tests.swift in Sources */,
 				325C049925D9823D00170629 /* SequenceExtensionTests.swift in Sources */,
+				3298F10C26ACAC4F002CBC16 /* TestableMangaViewController.swift in Sources */,
 				327A8F55256BFC4900BB778E /* FakeMangaViewControllerDelegate.swift in Sources */,
 				32A34372257D4E41003337D0 /* FakeCompoundDictionary.swift in Sources */,
 				32CFA5FF256FF34A0083F300 /* FakeMangaDataSource.swift in Sources */,
@@ -2135,9 +2139,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 79;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_TEAM = 25JHVANVX3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MangaReader/Info.plist;
@@ -2145,7 +2149,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.2.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2217,9 +2221,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 79;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_TEAM = 25JHVANVX3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MangaReader/Info.plist;
@@ -2227,7 +2231,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.2.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2386,7 +2390,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		322C04BE2568100900BD5A51 /* XCRemoteSwiftPackageReference "SwiftyTesseract" */ = {
+		0DD370042815F42B00B6279D /* XCRemoteSwiftPackageReference "SwiftyTesseract" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyTesseract/SwiftyTesseract.git";
 			requirement = {
@@ -2405,9 +2409,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		322C04BF2568100900BD5A51 /* SwiftyTesseract */ = {
+		0DD370052815F42B00B6279D /* SwiftyTesseract */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 322C04BE2568100900BD5A51 /* XCRemoteSwiftPackageReference "SwiftyTesseract" */;
+			package = 0DD370042815F42B00B6279D /* XCRemoteSwiftPackageReference "SwiftyTesseract" */;
 			productName = SwiftyTesseract;
 		};
 		3297E40925E1DB0100743C8B /* CropViewController */ = {
