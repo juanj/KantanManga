@@ -208,4 +208,65 @@ class CoreDataManagerTests: XCTestCase {
 
         XCTAssertEqual(testCollection.name, "Test Collection")
     }
+
+    func testInsertSentence_withInMemoryCoreDataManager_insertsSentence() {
+        let coreDataManager = InMemoryCoreDataManager()
+
+        coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)
+
+        XCTAssertEqual(coreDataManager.fetchAllSentences()?.count, 1)
+    }
+
+    func testDeleteSentence_afterInsertingMultipleSentences_deletesSentence() {
+        let coreDataManager = InMemoryCoreDataManager()
+
+        coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)
+        let sentence = coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)!
+        coreDataManager.delete(sentence: sentence)
+
+        XCTAssertEqual(coreDataManager.fetchAllSentences()?.count, 3)
+    }
+
+    func testDeleteAllSentences_afterInsertingMultipleSentences_deletesAllSentences() {
+        let coreDataManager = InMemoryCoreDataManager()
+
+        coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)
+        coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)
+
+        coreDataManager.deleteAllSentences()
+
+        XCTAssertEqual(coreDataManager.fetchAllSentences()?.count, 0)
+    }
+
+    func testFetchAllSentences_afterInsertingMultipleSentences_returnsAllSentences() {
+        let coreDataManager = InMemoryCoreDataManager()
+
+        let card1 = coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)!
+        let card2 = coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)!
+        let card3 = coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)!
+        let card4 = coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)!
+
+        let allCards = coreDataManager.fetchAllSentences()!
+
+        XCTAssertEqual(Set(allCards), Set([card1, card2, card3, card4]))
+    }
+
+    func testUpdateSentence_afterInserting_updatesCard() {
+        let coreDataManager = InMemoryCoreDataManager()
+
+        let card = coreDataManager.insertSentence(word: "Word", reading: "Reading", sentence: "Test", definition: "Definition", image: nil)!
+
+        card.sentence = "Test Sentence"
+        card.definition = "Test Definition"
+        card.imageData = "ABC".data(using: .utf8)
+
+        coreDataManager.update(sentence: card)
+        let updatedCard = coreDataManager.fetchAllSentences()![0]
+
+        XCTAssertEqual(updatedCard, card)
+    }
 }

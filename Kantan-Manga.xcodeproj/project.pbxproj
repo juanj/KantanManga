@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D9DCB3F2814B556003B0E3A /* LocalNetworkAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9DCB3E2814B556003B0E3A /* LocalNetworkAuthorization.swift */; };
+		0DD370062815F42B00B6279D /* SwiftyTesseract in Frameworks */ = {isa = PBXBuildFile; productRef = 0DD370052815F42B00B6279D /* SwiftyTesseract */; };
 		320ED4D32483178C00F5BECF /* FakeLibraryViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D22483178C00F5BECF /* FakeLibraryViewControllerDelegate.swift */; };
 		320ED4D72483189F00F5BECF /* FakeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D62483189F00F5BECF /* FakeNavigation.swift */; };
 		320ED4D924831D2900F5BECF /* FakeUploadServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ED4D824831D2900F5BECF /* FakeUploadServer.swift */; };
@@ -129,6 +131,9 @@
 		32792AC725D971BD00D0B96D /* KanjiMetaSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32792AC625D971BD00D0B96D /* KanjiMetaSearchResult.swift */; };
 		327A8F55256BFC4900BB778E /* FakeMangaViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A8F54256BFC4900BB778E /* FakeMangaViewControllerDelegate.swift */; };
 		327BC9EE255C2AA400521574 /* demo1.cbz in Resources */ = {isa = PBXBuildFile; fileRef = 3232F32325276DED00DA77B8 /* demo1.cbz */; };
+		327ED0DA26587BA50065E8E8 /* AnkiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327ED0D926587BA50065E8E8 /* AnkiConfig.swift */; };
+		327ED0DF26587DB60065E8E8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327ED0DE26587DB60065E8E8 /* Constants.swift */; };
+		327ED0E726587E960065E8E8 /* AnkiConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327ED0E626587E960065E8E8 /* AnkiConfigManager.swift */; };
 		3283D1012552069700C08D02 /* ToggleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3283D0FF2552069700C08D02 /* ToggleTableViewCell.swift */; };
 		3283D1022552069700C08D02 /* ToggleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3283D1002552069700C08D02 /* ToggleTableViewCell.xib */; };
 		32892C0A23E39FBC000B1C3E /* AddMangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32892C0823E39FBC000B1C3E /* AddMangaViewController.swift */; };
@@ -146,9 +151,20 @@
 		3290ECBB25C3710E00D4DE96 /* FAQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3290ECB925C3710E00D4DE96 /* FAQViewController.xib */; };
 		3292ADA22535DCF8004E8441 /* DemoOcrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3292ADA12535DCF8004E8441 /* DemoOcrView.swift */; };
 		3296181C2555943B0020C5AF /* SettingValueChangeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3296181B2555943B0020C5AF /* SettingValueChangeDelegate.swift */; };
+		3297E3CC25E1A18900743C8B /* IndexPathButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3CB25E1A18900743C8B /* IndexPathButton.swift */; };
+		3297E3D325E1C42800743C8B /* CreateSentenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3D125E1C42700743C8B /* CreateSentenceViewController.swift */; };
+		3297E3D425E1C42800743C8B /* CreateSentenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3297E3D225E1C42700743C8B /* CreateSentenceViewController.xib */; };
+		3297E3E225E1D06F00743C8B /* EditSentenceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3E125E1D06F00743C8B /* EditSentenceCoordinator.swift */; };
+		3297E3E725E1D09400743C8B /* CreateSentenceCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3E625E1D09400743C8B /* CreateSentenceCoordinatorTests.swift */; };
+		3297E3EF25E1D43A00743C8B /* TestableCreateSentenceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3EE25E1D43A00743C8B /* TestableCreateSentenceCoordinator.swift */; };
+		3297E3F425E1D64100743C8B /* TestableMangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3F325E1D64100743C8B /* TestableMangaViewController.swift */; };
+		3297E3F925E1D81900743C8B /* FakeCreateSentenceCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3F825E1D81900743C8B /* FakeCreateSentenceCoordinatorDelegate.swift */; };
+		3297E3FE25E1D94500743C8B /* FakeCreateSentenceViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E3FD25E1D94500743C8B /* FakeCreateSentenceViewControllerDelegate.swift */; };
+		3297E40A25E1DB0100743C8B /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 3297E40925E1DB0100743C8B /* CropViewController */; };
+		3297E40F25E1E51000743C8B /* Sentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E40E25E1E51000743C8B /* Sentence.swift */; };
+		3297E41425E1E5E200743C8B /* Sentence+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297E41325E1E5E200743C8B /* Sentence+CoreDataProperties.swift */; };
 		3298D7D025713BB4005FB8F2 /* YomichanDictionaryImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298D7CF25713BB4005FB8F2 /* YomichanDictionaryImporter.swift */; };
 		3298D7D725713D66005FB8F2 /* DictionaryIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */; };
-		3298F10A26ACAAA2002CBC16 /* SwiftyTesseract in Frameworks */ = {isa = PBXBuildFile; productRef = 3298F10926ACAAA2002CBC16 /* SwiftyTesseract */; };
 		3298F10C26ACAC4F002CBC16 /* TestableMangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298F10B26ACAC4F002CBC16 /* TestableMangaViewController.swift */; };
 		329ACA8A2552ED15002953C5 /* NumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329ACA882552ED15002953C5 /* NumberTableViewCell.swift */; };
 		329ACA8B2552ED15002953C5 /* NumberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 329ACA892552ED15002953C5 /* NumberTableViewCell.xib */; };
@@ -160,6 +176,9 @@
 		329D41D025B4BAC000545FB0 /* dic.db in Resources */ = {isa = PBXBuildFile; fileRef = 329D41CF25B4BAC000545FB0 /* dic.db */; };
 		329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E30E623E9CEE000AD13A3 /* MangaCollection.swift */; };
 		329E30E923E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */; };
+		329E459A25E2C534000B0FAE /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E459925E2C534000B0FAE /* AppCoordinator.swift */; };
+		329E45A225E2C552000B0FAE /* SentencesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E45A125E2C552000B0FAE /* SentencesCoordinator.swift */; };
+		329E45AB25E2C99F000B0FAE /* SentencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E45AA25E2C99F000B0FAE /* SentencesViewController.swift */; };
 		32A110B7255859860099A768 /* FakeLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C5B5B24830C2500C0BAB1 /* FakeLibraryViewController.swift */; };
 		32A110BC255859970099A768 /* FakeCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998E02557594700897299 /* FakeCoreDataManager.swift */; };
 		32A110D22558609B0099A768 /* FakeImageOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A110D12558609B0099A768 /* FakeImageOCR.swift */; };
@@ -183,6 +202,9 @@
 		32C1EEF32539DE04001F59A0 /* FocusOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1EEF22539DE04001F59A0 /* FocusOverlayView.swift */; };
 		32C3512F24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C3512E24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift */; };
 		32C49CD725168A0F000A9607 /* OpenCollectionAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */; };
+		32C541DA26F7640700E961C7 /* SyncSentencesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C541D926F7640700E961C7 /* SyncSentencesCoordinator.swift */; };
+		32C541E226F764EB00E961C7 /* TransferringSentencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C541E026F764EB00E961C7 /* TransferringSentencesViewController.swift */; };
+		32C541E326F764EB00E961C7 /* TransferringSentencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32C541E126F764EB00E961C7 /* TransferringSentencesViewController.xib */; };
 		32CFA5EE256FEE200083F300 /* MangaViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA5ED256FEE200083F300 /* MangaViewControllerTests.swift */; };
 		32CFA5F7256FF16E0083F300 /* MangaDataSourceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA5F6256FF16E0083F300 /* MangaDataSourceable.swift */; };
 		32CFA5FF256FF34A0083F300 /* FakeMangaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFA5FE256FF34A0083F300 /* FakeMangaDataSource.swift */; };
@@ -194,20 +216,31 @@
 		32E322182481A531007BC017 /* ParsedInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E322152481A531007BC017 /* ParsedInputField.swift */; };
 		32E3221C2481A67D007BC017 /* JapaneseHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */; };
 		32E37987252A6A6000ED4BAC /* AcknowledgmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */; };
+		32EC1AC126F68B430059F143 /* AnkiConnectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AC026F68B430059F143 /* AnkiConnectManager.swift */; };
+		32EC1AC326F68BE90059F143 /* AnkiConnectResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AC226F68BE90059F143 /* AnkiConnectResponse.swift */; };
+		32EC1AC526F68DF90059F143 /* AnkiConnectRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AC426F68DF90059F143 /* AnkiConnectRequest.swift */; };
+		32EC1AC726F697050059F143 /* AnkiConnectError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AC626F697050059F143 /* AnkiConnectError.swift */; };
+		32EC1ACB26F69E870059F143 /* AnkiConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AC926F69E870059F143 /* AnkiConnectionViewController.swift */; };
+		32EC1ACC26F69E870059F143 /* AnkiConnectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EC1ACA26F69E870059F143 /* AnkiConnectionViewController.xib */; };
+		32EC1ACF26F69F670059F143 /* AnkiSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1ACD26F69F670059F143 /* AnkiSettingsViewController.swift */; };
+		32EC1AD026F69F670059F143 /* AnkiSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EC1ACE26F69F670059F143 /* AnkiSettingsViewController.xib */; };
+		32EC1AD326F6A1230059F143 /* AnkiNamesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AD126F6A1230059F143 /* AnkiNamesListViewController.swift */; };
+		32EC1AD426F6A1230059F143 /* AnkiNamesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EC1AD226F6A1230059F143 /* AnkiNamesListViewController.xib */; };
+		32EC1AD626F6A2D70059F143 /* ConfigureAnkiCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AD526F6A2D70059F143 /* ConfigureAnkiCoordinator.swift */; };
+		32EC1AD826F6C26D0059F143 /* CreateNoteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EC1AD726F6C26D0059F143 /* CreateNoteRequest.swift */; };
+		32F0670A26FFE38F006B33C9 /* AnkiSyncCardOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F0670926FFE38F006B33C9 /* AnkiSyncCardOperation.swift */; };
 		32F1B9F3243685DC00AE367D /* SelectCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */; };
 		32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */; };
 		32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */; };
 		32F1B9FC24369E1100AE367D /* OpenMangaAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1B9FB24369E1100AE367D /* OpenMangaAnimationController.swift */; };
 		32F7746725B63F590058D80F /* TermMetaSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F7746625B63F590058D80F /* TermMetaSearchResult.swift */; };
-		32F998B925574C4C00897299 /* AppCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998B825574C4C00897299 /* AppCoordinatorTests.swift */; };
+		32F998B925574C4C00897299 /* LibraryCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998B825574C4C00897299 /* LibraryCoordinatorTests.swift */; };
 		32F998BD25574C6C00897299 /* AddMangasCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998BC25574C6C00897299 /* AddMangasCoordinatorTests.swift */; };
 		32F998C125574C8E00897299 /* ViewMangaCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998C025574C8E00897299 /* ViewMangaCoordinatorTests.swift */; };
 		32F998CF25574EC800897299 /* CoreDataManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998C725574D9300897299 /* CoreDataManageable.swift */; };
 		32F998D52557535500897299 /* Navigable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998D42557535500897299 /* Navigable.swift */; };
 		32FA3C7C24367428001EB0DF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3C7B24367428001EB0DF /* String+Extension.swift */; };
-		4DE0197AD54752DF729261B2 /* Pods_Kantan_MangaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 062169CB49F39195252805EF /* Pods_Kantan_MangaTests.framework */; };
-		4F6AFA55DF1C4224FD5438F6 /* Pods_Kantan_MangaIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE3ABC9E970B68978B04C4B4 /* Pods_Kantan_MangaIntegrationTests.framework */; };
-		7C0535A2215AEB18055422F1 /* Pods_Kantan_Manga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7245DB1F9B620EC4171034F /* Pods_Kantan_Manga.framework */; };
+		335C0CAEF530C6950751A1CF /* Pods_Kantan_MangaIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EF63718FAD5FE59C8FD2441 /* Pods_Kantan_MangaIntegrationTests.framework */; };
 		8418696D222495FE00C689DC /* Manga.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418696B222495FD00C689DC /* Manga.swift */; };
 		8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */; };
 		841B795C221F305A00659FA2 /* MangaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B795B221F305A00659FA2 /* MangaDataSource.swift */; };
@@ -222,13 +255,15 @@
 		84A831F1221D90CC00CEE1C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84A831F0221D90CC00CEE1C9 /* Assets.xcassets */; };
 		84A831F4221D90CC00CEE1C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A831F2221D90CC00CEE1C9 /* LaunchScreen.storyboard */; };
 		84A831FF221D90CC00CEE1C9 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A831FE221D90CC00CEE1C9 /* CoreDataManagerTests.swift */; };
-		84A83219221D923800CEE1C9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A83218221D923800CEE1C9 /* AppCoordinator.swift */; };
+		84A83219221D923800CEE1C9 /* LibraryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A83218221D923800CEE1C9 /* LibraryCoordinator.swift */; };
 		84A8321D221D951500CEE1C9 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8321B221D951500CEE1C9 /* LibraryViewController.swift */; };
 		84A8321E221D951500CEE1C9 /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A8321C221D951500CEE1C9 /* LibraryViewController.xib */; };
 		84A83221221D9F7000CEE1C9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A83220221D9F7000CEE1C9 /* CoreDataManager.swift */; };
 		84A83224221DB10400CEE1C9 /* MangaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A83222221DB10400CEE1C9 /* MangaCollectionViewCell.swift */; };
 		84A83225221DB10400CEE1C9 /* MangaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A83223221DB10400CEE1C9 /* MangaCollectionViewCell.xib */; };
-		D73B7039077522A60CFC0584 /* Pods_Kantan_Keyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB49A3DF85122A6D14821350 /* Pods_Kantan_Keyboard.framework */; };
+		8E8CEFB4C4BE0A944BDACF1E /* Pods_Kantan_Manga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 348377A94067C4DCD9AA178C /* Pods_Kantan_Manga.framework */; };
+		90CAE96FC07127A71E2298E1 /* Pods_Kantan_MangaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CE2F309A1EE516476DD455 /* Pods_Kantan_MangaTests.framework */; };
+		FC9DB3D19FF8C43F77E3EB6E /* Pods_Kantan_Keyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F818CF5B3408FFE0E69E9A /* Pods_Kantan_Keyboard.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -288,9 +323,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		062169CB49F39195252805EF /* Pods_Kantan_MangaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1048A26F639E12C076126CD2 /* Pods-Kantan-MangaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaTests.debug.xcconfig"; path = "Target Support Files/Pods-Kantan-MangaTests/Pods-Kantan-MangaTests.debug.xcconfig"; sourceTree = "<group>"; };
-		31AE17853F990847F1D9CE31 /* Pods-Kantan-MangaIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaIntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-Kantan-MangaIntegrationTests/Pods-Kantan-MangaIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0901E8129E5F6869799F9F4F /* Pods-Kantan-MangaIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-Kantan-MangaIntegrationTests/Pods-Kantan-MangaIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
+		0D9DCB3E2814B556003B0E3A /* LocalNetworkAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkAuthorization.swift; sourceTree = "<group>"; };
+		18F818CF5B3408FFE0E69E9A /* Pods_Kantan_Keyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_Keyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EF63718FAD5FE59C8FD2441 /* Pods_Kantan_MangaIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B365FFD83C8EC3E373F83E0 /* Pods-Kantan-Keyboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Keyboard.release.xcconfig"; path = "Target Support Files/Pods-Kantan-Keyboard/Pods-Kantan-Keyboard.release.xcconfig"; sourceTree = "<group>"; };
 		320ED4D22483178C00F5BECF /* FakeLibraryViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FakeLibraryViewControllerDelegate\U0003.swift"; sourceTree = "<group>"; };
 		320ED4D62483189F00F5BECF /* FakeNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNavigation.swift; sourceTree = "<group>"; };
 		320ED4D824831D2900F5BECF /* FakeUploadServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUploadServer.swift; sourceTree = "<group>"; };
@@ -394,7 +431,7 @@
 		326280D6253DD29F0070F5DA /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		326280D8253DD29F0070F5DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32628102253DD3970070F5DA /* RadicalsDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadicalsDictionary.swift; sourceTree = "<group>"; };
-		32628108253DD4320070F5DA /* radk.sqlite.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = radk.sqlite.db; sourceTree = "<group>"; };
+		32628108253DD4320070F5DA /* radk.sqlite.db */ = {isa = PBXFileReference; lastKnownFileType = text; path = radk.sqlite.db; sourceTree = "<group>"; };
 		3262810E253DD8EE0070F5DA /* Radical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Radical.swift; sourceTree = "<group>"; };
 		326344A2247DD98B00F683AB /* Reader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
 		326344A4247DDAF800F683AB /* CBRReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBRReader.swift; sourceTree = "<group>"; };
@@ -413,6 +450,9 @@
 		327300932561EF6A009854EE /* UIViewExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensionTests.swift; sourceTree = "<group>"; };
 		32792AC625D971BD00D0B96D /* KanjiMetaSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiMetaSearchResult.swift; sourceTree = "<group>"; };
 		327A8F54256BFC4900BB778E /* FakeMangaViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMangaViewControllerDelegate.swift; sourceTree = "<group>"; };
+		327ED0D926587BA50065E8E8 /* AnkiConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiConfig.swift; sourceTree = "<group>"; };
+		327ED0DE26587DB60065E8E8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		327ED0E626587E960065E8E8 /* AnkiConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiConfigManager.swift; sourceTree = "<group>"; };
 		3283D0FF2552069700C08D02 /* ToggleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleTableViewCell.swift; sourceTree = "<group>"; };
 		3283D1002552069700C08D02 /* ToggleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToggleTableViewCell.xib; sourceTree = "<group>"; };
 		32892C0823E39FBC000B1C3E /* AddMangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMangaViewController.swift; sourceTree = "<group>"; };
@@ -430,6 +470,17 @@
 		3290ECB925C3710E00D4DE96 /* FAQViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FAQViewController.xib; sourceTree = "<group>"; };
 		3292ADA12535DCF8004E8441 /* DemoOcrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoOcrView.swift; sourceTree = "<group>"; };
 		3296181B2555943B0020C5AF /* SettingValueChangeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingValueChangeDelegate.swift; sourceTree = "<group>"; };
+		3297E3CB25E1A18900743C8B /* IndexPathButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexPathButton.swift; sourceTree = "<group>"; };
+		3297E3D125E1C42700743C8B /* CreateSentenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSentenceViewController.swift; sourceTree = "<group>"; };
+		3297E3D225E1C42700743C8B /* CreateSentenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateSentenceViewController.xib; sourceTree = "<group>"; };
+		3297E3E125E1D06F00743C8B /* EditSentenceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSentenceCoordinator.swift; sourceTree = "<group>"; };
+		3297E3E625E1D09400743C8B /* CreateSentenceCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSentenceCoordinatorTests.swift; sourceTree = "<group>"; };
+		3297E3EE25E1D43A00743C8B /* TestableCreateSentenceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableCreateSentenceCoordinator.swift; sourceTree = "<group>"; };
+		3297E3F325E1D64100743C8B /* TestableMangaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableMangaViewController.swift; sourceTree = "<group>"; };
+		3297E3F825E1D81900743C8B /* FakeCreateSentenceCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCreateSentenceCoordinatorDelegate.swift; sourceTree = "<group>"; };
+		3297E3FD25E1D94500743C8B /* FakeCreateSentenceViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCreateSentenceViewControllerDelegate.swift; sourceTree = "<group>"; };
+		3297E40E25E1E51000743C8B /* Sentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sentence.swift; sourceTree = "<group>"; };
+		3297E41325E1E5E200743C8B /* Sentence+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sentence+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3298D7CF25713BB4005FB8F2 /* YomichanDictionaryImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YomichanDictionaryImporter.swift; sourceTree = "<group>"; };
 		3298D7D625713D66005FB8F2 /* DictionaryIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryIndex.swift; sourceTree = "<group>"; };
 		3298F10B26ACAC4F002CBC16 /* TestableMangaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableMangaViewController.swift; sourceTree = "<group>"; };
@@ -440,9 +491,12 @@
 		329C876F2583BFCE001EA423 /* KanjiMetaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiMetaTests.swift; sourceTree = "<group>"; };
 		329D418E25B49EC800545FB0 /* DatabaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseUtils.swift; sourceTree = "<group>"; };
 		329D419325B4B10800545FB0 /* SearchTermResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTermResult.swift; sourceTree = "<group>"; };
-		329D41CF25B4BAC000545FB0 /* dic.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dic.db; sourceTree = "<group>"; };
+		329D41CF25B4BAC000545FB0 /* dic.db */ = {isa = PBXFileReference; lastKnownFileType = text; path = dic.db; sourceTree = "<group>"; };
 		329E30E623E9CEE000AD13A3 /* MangaCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollection.swift; sourceTree = "<group>"; };
 		329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MangaCollection+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		329E459925E2C534000B0FAE /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		329E45A125E2C552000B0FAE /* SentencesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentencesCoordinator.swift; sourceTree = "<group>"; };
+		329E45AA25E2C99F000B0FAE /* SentencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentencesViewController.swift; sourceTree = "<group>"; };
 		32A110D12558609B0099A768 /* FakeImageOCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeImageOCR.swift; sourceTree = "<group>"; };
 		32A1516A253260C0002B3920 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		32A1516B253260C0002B3920 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
@@ -451,7 +505,7 @@
 		32A34371257D4E41003337D0 /* FakeCompoundDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCompoundDictionary.swift; sourceTree = "<group>"; };
 		32A34376257D4EA4003337D0 /* FakeDictionaryDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDictionaryDecoder.swift; sourceTree = "<group>"; };
 		32A3437E257D4F0D003337D0 /* DictionaryDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDecoder.swift; sourceTree = "<group>"; };
-		32A7C1F6254317D70019D0BB /* kanjidic.sqlite.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = kanjidic.sqlite.db; sourceTree = "<group>"; };
+		32A7C1F6254317D70019D0BB /* kanjidic.sqlite.db */ = {isa = PBXFileReference; lastKnownFileType = text; path = kanjidic.sqlite.db; sourceTree = "<group>"; };
 		32AD41D125B639EC0042626C /* MergedTermSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergedTermSearchResult.swift; sourceTree = "<group>"; };
 		32AF5BCD2512567900E96C9F /* MangaCollectionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollectionable.swift; sourceTree = "<group>"; };
 		32AF5BD0251256E600E96C9F /* EmptyMangaCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMangaCollection.swift; sourceTree = "<group>"; };
@@ -464,6 +518,9 @@
 		32C1EEF22539DE04001F59A0 /* FocusOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusOverlayView.swift; sourceTree = "<group>"; };
 		32C3512E24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeViewMangaCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		32C49CD625168A0F000A9607 /* OpenCollectionAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCollectionAnimationController.swift; sourceTree = "<group>"; };
+		32C541D926F7640700E961C7 /* SyncSentencesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncSentencesCoordinator.swift; sourceTree = "<group>"; };
+		32C541E026F764EB00E961C7 /* TransferringSentencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferringSentencesViewController.swift; sourceTree = "<group>"; };
+		32C541E126F764EB00E961C7 /* TransferringSentencesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransferringSentencesViewController.xib; sourceTree = "<group>"; };
 		32CFA5ED256FEE200083F300 /* MangaViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaViewControllerTests.swift; sourceTree = "<group>"; };
 		32CFA5F6256FF16E0083F300 /* MangaDataSourceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDataSourceable.swift; sourceTree = "<group>"; };
 		32CFA5FE256FF34A0083F300 /* FakeMangaDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMangaDataSource.swift; sourceTree = "<group>"; };
@@ -475,20 +532,35 @@
 		32E322152481A531007BC017 /* ParsedInputField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsedInputField.swift; sourceTree = "<group>"; };
 		32E3221B2481A67D007BC017 /* JapaneseHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseHelpViewController.swift; sourceTree = "<group>"; };
 		32E37986252A6A6000ED4BAC /* AcknowledgmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgmentsView.swift; sourceTree = "<group>"; };
+		32EC1AC026F68B430059F143 /* AnkiConnectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiConnectManager.swift; sourceTree = "<group>"; };
+		32EC1AC226F68BE90059F143 /* AnkiConnectResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiConnectResponse.swift; sourceTree = "<group>"; };
+		32EC1AC426F68DF90059F143 /* AnkiConnectRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiConnectRequest.swift; sourceTree = "<group>"; };
+		32EC1AC626F697050059F143 /* AnkiConnectError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiConnectError.swift; sourceTree = "<group>"; };
+		32EC1AC926F69E870059F143 /* AnkiConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiConnectionViewController.swift; sourceTree = "<group>"; };
+		32EC1ACA26F69E870059F143 /* AnkiConnectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnkiConnectionViewController.xib; sourceTree = "<group>"; };
+		32EC1ACD26F69F670059F143 /* AnkiSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiSettingsViewController.swift; sourceTree = "<group>"; };
+		32EC1ACE26F69F670059F143 /* AnkiSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnkiSettingsViewController.xib; sourceTree = "<group>"; };
+		32EC1AD126F6A1230059F143 /* AnkiNamesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiNamesListViewController.swift; sourceTree = "<group>"; };
+		32EC1AD226F6A1230059F143 /* AnkiNamesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnkiNamesListViewController.xib; sourceTree = "<group>"; };
+		32EC1AD526F6A2D70059F143 /* ConfigureAnkiCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureAnkiCoordinator.swift; sourceTree = "<group>"; };
+		32EC1AD726F6C26D0059F143 /* CreateNoteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteRequest.swift; sourceTree = "<group>"; };
+		32F0670926FFE38F006B33C9 /* AnkiSyncCardOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnkiSyncCardOperation.swift; sourceTree = "<group>"; };
 		32F1B9F2243685DC00AE367D /* SelectCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCollectionTableViewController.swift; sourceTree = "<group>"; };
 		32F1B9F4243688EC00AE367D /* NewCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		32F1B9F5243688EC00AE367D /* NewCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		32F1B9FB24369E1100AE367D /* OpenMangaAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMangaAnimationController.swift; sourceTree = "<group>"; };
 		32F7746625B63F590058D80F /* TermMetaSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermMetaSearchResult.swift; sourceTree = "<group>"; };
-		32F998B825574C4C00897299 /* AppCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTests.swift; sourceTree = "<group>"; };
+		32F998B825574C4C00897299 /* LibraryCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCoordinatorTests.swift; sourceTree = "<group>"; };
 		32F998BC25574C6C00897299 /* AddMangasCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMangasCoordinatorTests.swift; sourceTree = "<group>"; };
 		32F998C025574C8E00897299 /* ViewMangaCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMangaCoordinatorTests.swift; sourceTree = "<group>"; };
 		32F998C725574D9300897299 /* CoreDataManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManageable.swift; sourceTree = "<group>"; };
 		32F998D42557535500897299 /* Navigable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigable.swift; sourceTree = "<group>"; };
 		32F998E02557594700897299 /* FakeCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCoreDataManager.swift; sourceTree = "<group>"; };
 		32FA3C7B24367428001EB0DF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		67C32068B392C1F27367F209 /* Pods-Kantan-MangaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaTests.release.xcconfig"; path = "Target Support Files/Pods-Kantan-MangaTests/Pods-Kantan-MangaTests.release.xcconfig"; sourceTree = "<group>"; };
-		6E53225541E09049E67A06DF /* Pods-Kantan-Keyboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Keyboard.release.xcconfig"; path = "Target Support Files/Pods-Kantan-Keyboard/Pods-Kantan-Keyboard.release.xcconfig"; sourceTree = "<group>"; };
+		348377A94067C4DCD9AA178C /* Pods_Kantan_Manga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_Manga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		38CE2F309A1EE516476DD455 /* Pods_Kantan_MangaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F615E8C601090873960A04A /* Pods-Kantan-MangaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaTests.debug.xcconfig"; path = "Target Support Files/Pods-Kantan-MangaTests/Pods-Kantan-MangaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		66F8C6361DE9CB92A70EA0FC /* Pods-Kantan-Manga.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Manga.release.xcconfig"; path = "Target Support Files/Pods-Kantan-Manga/Pods-Kantan-Manga.release.xcconfig"; sourceTree = "<group>"; };
 		8418696B222495FD00C689DC /* Manga.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manga.swift; sourceTree = "<group>"; };
 		8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Manga+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		841B795B221F305A00659FA2 /* MangaDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDataSource.swift; sourceTree = "<group>"; };
@@ -508,19 +580,16 @@
 		84A831FA221D90CC00CEE1C9 /* Kantan-MangaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kantan-MangaTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A831FE221D90CC00CEE1C9 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		84A83200221D90CC00CEE1C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		84A83218221D923800CEE1C9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		84A83218221D923800CEE1C9 /* LibraryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCoordinator.swift; sourceTree = "<group>"; };
 		84A8321B221D951500CEE1C9 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		84A8321C221D951500CEE1C9 /* LibraryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
 		84A83220221D9F7000CEE1C9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		84A83222221DB10400CEE1C9 /* MangaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollectionViewCell.swift; sourceTree = "<group>"; };
 		84A83223221DB10400CEE1C9 /* MangaCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MangaCollectionViewCell.xib; sourceTree = "<group>"; };
-		891978D9250650393586170E /* Pods-Kantan-MangaIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-Kantan-MangaIntegrationTests/Pods-Kantan-MangaIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
-		C7669AF9992C490D6E75B7F7 /* Pods-Kantan-Manga.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Manga.debug.xcconfig"; path = "Target Support Files/Pods-Kantan-Manga/Pods-Kantan-Manga.debug.xcconfig"; sourceTree = "<group>"; };
-		CE3ABC9E970B68978B04C4B4 /* Pods_Kantan_MangaIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC5BFD4EEC2569EF68B26369 /* Pods-Kantan-Keyboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Keyboard.debug.xcconfig"; path = "Target Support Files/Pods-Kantan-Keyboard/Pods-Kantan-Keyboard.debug.xcconfig"; sourceTree = "<group>"; };
-		F7245DB1F9B620EC4171034F /* Pods_Kantan_Manga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_Manga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB49A3DF85122A6D14821350 /* Pods_Kantan_Keyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_Keyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FEE616A541F2ED376E236C34 /* Pods-Kantan-Manga.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Manga.release.xcconfig"; path = "Target Support Files/Pods-Kantan-Manga/Pods-Kantan-Manga.release.xcconfig"; sourceTree = "<group>"; };
+		BB4F98DF4528645A7395D25E /* Pods-Kantan-Keyboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Keyboard.debug.xcconfig"; path = "Target Support Files/Pods-Kantan-Keyboard/Pods-Kantan-Keyboard.debug.xcconfig"; sourceTree = "<group>"; };
+		BDED19DE0FF4DC38442F931E /* Pods-Kantan-MangaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaTests.release.xcconfig"; path = "Target Support Files/Pods-Kantan-MangaTests/Pods-Kantan-MangaTests.release.xcconfig"; sourceTree = "<group>"; };
+		E2D1450F80EB1E01A9A5C075 /* Pods-Kantan-MangaIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaIntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-Kantan-MangaIntegrationTests/Pods-Kantan-MangaIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F39A3A020208887BAF869343 /* Pods-Kantan-Manga.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Manga.debug.xcconfig"; path = "Target Support Files/Pods-Kantan-Manga/Pods-Kantan-Manga.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -528,7 +597,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F6AFA55DF1C4224FD5438F6 /* Pods_Kantan_MangaIntegrationTests.framework in Frameworks */,
+				335C0CAEF530C6950751A1CF /* Pods_Kantan_MangaIntegrationTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,7 +605,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D73B7039077522A60CFC0584 /* Pods_Kantan_Keyboard.framework in Frameworks */,
+				FC9DB3D19FF8C43F77E3EB6E /* Pods_Kantan_Keyboard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,9 +613,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3298F10A26ACAAA2002CBC16 /* SwiftyTesseract in Frameworks */,
+				3297E40A25E1DB0100743C8B /* CropViewController in Frameworks */,
 				324BB96E2498369B006241E8 /* mecab.framework in Frameworks */,
-				7C0535A2215AEB18055422F1 /* Pods_Kantan_Manga.framework in Frameworks */,
+				8E8CEFB4C4BE0A944BDACF1E /* Pods_Kantan_Manga.framework in Frameworks */,
+				0DD370062815F42B00B6279D /* SwiftyTesseract in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,13 +624,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DE0197AD54752DF729261B2 /* Pods_Kantan_MangaTests.framework in Frameworks */,
+				90CAE96FC07127A71E2298E1 /* Pods_Kantan_MangaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E763C2E08BBE28528A3048A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				18F818CF5B3408FFE0E69E9A /* Pods_Kantan_Keyboard.framework */,
+				348377A94067C4DCD9AA178C /* Pods_Kantan_Manga.framework */,
+				1EF63718FAD5FE59C8FD2441 /* Pods_Kantan_MangaIntegrationTests.framework */,
+				38CE2F309A1EE516476DD455 /* Pods_Kantan_MangaTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		320ED4DE24832C9700F5BECF /* Mock Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -741,6 +822,8 @@
 				3298F10B26ACAC4F002CBC16 /* TestableMangaViewController.swift */,
 				326857DE2569CF9D000B0C83 /* TestableAddMangasCoordinator.swift */,
 				3250E8A0256D568100CBFA37 /* TestableViewMangaCoordinator.swift */,
+				3297E3EE25E1D43A00743C8B /* TestableCreateSentenceCoordinator.swift */,
+				3297E3F325E1D64100743C8B /* TestableMangaViewController.swift */,
 			);
 			path = Testables;
 			sourceTree = "<group>";
@@ -777,6 +860,17 @@
 				32792AC625D971BD00D0B96D /* KanjiMetaSearchResult.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		327ED0D726587B910065E8E8 /* Anki */ = {
+			isa = PBXGroup;
+			children = (
+				32EC1ABF26F68B020059F143 /* AnkiConnect */,
+				327ED0D926587BA50065E8E8 /* AnkiConfig.swift */,
+				327ED0E626587E960065E8E8 /* AnkiConfigManager.swift */,
+				0D9DCB3E2814B556003B0E3A /* LocalNetworkAuthorization.swift */,
+			);
+			path = Anki;
 			sourceTree = "<group>";
 		};
 		328F629F255A0395000CA225 /* Helpers */ = {
@@ -824,6 +918,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		329E45A925E2C98F000B0FAE /* Sentences */ = {
+			isa = PBXGroup;
+			children = (
+				329E45AA25E2C99F000B0FAE /* SentencesViewController.swift */,
+			);
+			path = Sentences;
+			sourceTree = "<group>";
+		};
 		32A1516025325F61002B3920 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -846,6 +948,7 @@
 				322EF657250FB49700F35E72 /* AspectAlignImage.swift */,
 				32A1517125326D76002B3920 /* CircleView.swift */,
 				32C1EEF22539DE04001F59A0 /* FocusOverlayView.swift */,
+				3297E3CB25E1A18900743C8B /* IndexPathButton.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -895,6 +998,34 @@
 			path = "Data Source";
 			sourceTree = "<group>";
 		};
+		32EC1ABF26F68B020059F143 /* AnkiConnect */ = {
+			isa = PBXGroup;
+			children = (
+				32EC1AC026F68B430059F143 /* AnkiConnectManager.swift */,
+				32EC1AC226F68BE90059F143 /* AnkiConnectResponse.swift */,
+				32EC1AC426F68DF90059F143 /* AnkiConnectRequest.swift */,
+				32EC1AC626F697050059F143 /* AnkiConnectError.swift */,
+				32EC1AD726F6C26D0059F143 /* CreateNoteRequest.swift */,
+				32F0670926FFE38F006B33C9 /* AnkiSyncCardOperation.swift */,
+			);
+			path = AnkiConnect;
+			sourceTree = "<group>";
+		};
+		32EC1AC826F69E4F0059F143 /* AnkiConnect */ = {
+			isa = PBXGroup;
+			children = (
+				32EC1AC926F69E870059F143 /* AnkiConnectionViewController.swift */,
+				32EC1ACA26F69E870059F143 /* AnkiConnectionViewController.xib */,
+				32EC1ACD26F69F670059F143 /* AnkiSettingsViewController.swift */,
+				32EC1ACE26F69F670059F143 /* AnkiSettingsViewController.xib */,
+				32EC1AD126F6A1230059F143 /* AnkiNamesListViewController.swift */,
+				32EC1AD226F6A1230059F143 /* AnkiNamesListViewController.xib */,
+				32C541E026F764EB00E961C7 /* TransferringSentencesViewController.swift */,
+				32C541E126F764EB00E961C7 /* TransferringSentencesViewController.xib */,
+			);
+			path = AnkiConnect;
+			sourceTree = "<group>";
+		};
 		32F1B9F824369CAA00AE367D /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -939,6 +1070,8 @@
 				329ACA992552EFD7002953C5 /* ViewerSettings.swift */,
 				3247543A2551FD120025AB06 /* ViewerSettingsViewController.swift */,
 				3247543B2551FD120025AB06 /* ViewerSettingsViewController.xib */,
+				3297E3D125E1C42700743C8B /* CreateSentenceViewController.swift */,
+				3297E3D225E1C42700743C8B /* CreateSentenceViewController.xib */,
 				329ACA8F2552ED27002953C5 /* Settings Cells */,
 			);
 			path = "Manga Viewer";
@@ -947,11 +1080,12 @@
 		32F998C625574CC400897299 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				32F998B825574C4C00897299 /* AppCoordinatorTests.swift */,
+				32F998B825574C4C00897299 /* LibraryCoordinatorTests.swift */,
 				32F998BC25574C6C00897299 /* AddMangasCoordinatorTests.swift */,
 				32F998C025574C8E00897299 /* ViewMangaCoordinatorTests.swift */,
 				3257C017256F0E2200C4C702 /* SettingsCoordinatorTests.swift */,
 				32DDEF11257C20BA0063E813 /* DictionariesCoordinatorTests.swift */,
+				3297E3E625E1D09400743C8B /* CreateSentenceCoordinatorTests.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -981,6 +1115,8 @@
 				32A3436B257D49C9003337D0 /* FakeDictionariesViewControllerDelegate.swift */,
 				32A34371257D4E41003337D0 /* FakeCompoundDictionary.swift */,
 				32A34376257D4EA4003337D0 /* FakeDictionaryDecoder.swift */,
+				3297E3F825E1D81900743C8B /* FakeCreateSentenceCoordinatorDelegate.swift */,
+				3297E3FD25E1D94500743C8B /* FakeCreateSentenceViewControllerDelegate.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -988,14 +1124,14 @@
 		617052213212FD34D8988549 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EC5BFD4EEC2569EF68B26369 /* Pods-Kantan-Keyboard.debug.xcconfig */,
-				6E53225541E09049E67A06DF /* Pods-Kantan-Keyboard.release.xcconfig */,
-				C7669AF9992C490D6E75B7F7 /* Pods-Kantan-Manga.debug.xcconfig */,
-				FEE616A541F2ED376E236C34 /* Pods-Kantan-Manga.release.xcconfig */,
-				31AE17853F990847F1D9CE31 /* Pods-Kantan-MangaIntegrationTests.debug.xcconfig */,
-				891978D9250650393586170E /* Pods-Kantan-MangaIntegrationTests.release.xcconfig */,
-				1048A26F639E12C076126CD2 /* Pods-Kantan-MangaTests.debug.xcconfig */,
-				67C32068B392C1F27367F209 /* Pods-Kantan-MangaTests.release.xcconfig */,
+				BB4F98DF4528645A7395D25E /* Pods-Kantan-Keyboard.debug.xcconfig */,
+				2B365FFD83C8EC3E373F83E0 /* Pods-Kantan-Keyboard.release.xcconfig */,
+				F39A3A020208887BAF869343 /* Pods-Kantan-Manga.debug.xcconfig */,
+				66F8C6361DE9CB92A70EA0FC /* Pods-Kantan-Manga.release.xcconfig */,
+				E2D1450F80EB1E01A9A5C075 /* Pods-Kantan-MangaIntegrationTests.debug.xcconfig */,
+				0901E8129E5F6869799F9F4F /* Pods-Kantan-MangaIntegrationTests.release.xcconfig */,
+				4F615E8C601090873960A04A /* Pods-Kantan-MangaTests.debug.xcconfig */,
+				BDED19DE0FF4DC38442F931E /* Pods-Kantan-MangaTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1013,6 +1149,7 @@
 				328CD84625D1FCE6005C2E3A /* CGPDFObjectRef+Extension.swift */,
 				325C049025D97FB200170629 /* Sequence+Extension.swift */,
 				325C04AD25D99F0400170629 /* UIColor+Extension.swift */,
+				327ED0DE26587DB60065E8E8 /* Constants.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -1029,7 +1166,7 @@
 				84A831E4221D90CA00CEE1C9 /* Products */,
 				843FA7DA221DE69200B86B52 /* MangaReader-Bridging-Header.h */,
 				617052213212FD34D8988549 /* Pods */,
-				91243675B5D32FC44F9D737B /* Frameworks */,
+				2E763C2E08BBE28528A3048A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1047,6 +1184,7 @@
 		84A831E5221D90CA00CEE1C9 /* MangaReader */ = {
 			isa = PBXGroup;
 			children = (
+				327ED0D726587B910065E8E8 /* Anki */,
 				329D418825B4872800545FB0 /* Resources */,
 				326344A1247DD94200F683AB /* OCR */,
 				326344A0247DD92900F683AB /* File Extraction */,
@@ -1095,12 +1233,17 @@
 			isa = PBXGroup;
 			children = (
 				322C5B5F2483125A00C0BAB1 /* Coordinator.swift */,
-				84A83218221D923800CEE1C9 /* AppCoordinator.swift */,
+				329E459925E2C534000B0FAE /* AppCoordinator.swift */,
+				84A83218221D923800CEE1C9 /* LibraryCoordinator.swift */,
+				329E45A125E2C552000B0FAE /* SentencesCoordinator.swift */,
 				843FA7DE221DEDDF00B86B52 /* AddMangasCoordinator.swift */,
 				328DFB0C238D967C0095CBAB /* ViewMangaCoordinator.swift */,
 				326FDE7A24A7FBFB0042CB8A /* SettingsCoordinator.swift */,
 				32F998D42557535500897299 /* Navigable.swift */,
 				32DDEF0B257C20420063E813 /* DictionariesCoordinator.swift */,
+				3297E3E125E1D06F00743C8B /* EditSentenceCoordinator.swift */,
+				32EC1AD526F6A2D70059F143 /* ConfigureAnkiCoordinator.swift */,
+				32C541D926F7640700E961C7 /* SyncSentencesCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -1108,10 +1251,12 @@
 		84A8321A221D94D400CEE1C9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				32EC1AC826F69E4F0059F143 /* AnkiConnect */,
 				32A1516025325F61002B3920 /* Onboarding */,
 				32AAD56E23DF7038009B3BCE /* Custom Views */,
 				32F1B9FA24369CEB00AE367D /* Manga Viewer */,
 				32F1B9F824369CAA00AE367D /* Library */,
+				329E45A925E2C98F000B0FAE /* Sentences */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1126,6 +1271,8 @@
 				8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */,
 				329E30E623E9CEE000AD13A3 /* MangaCollection.swift */,
 				329E30E823E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift */,
+				3297E40E25E1E51000743C8B /* Sentence.swift */,
+				3297E41325E1E5E200743C8B /* Sentence+CoreDataProperties.swift */,
 				32AF5BCD2512567900E96C9F /* MangaCollectionable.swift */,
 				32AF5BD0251256E600E96C9F /* EmptyMangaCollection.swift */,
 				3298D7D525713D44005FB8F2 /* Dictionary */,
@@ -1135,17 +1282,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		91243675B5D32FC44F9D737B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FB49A3DF85122A6D14821350 /* Pods_Kantan_Keyboard.framework */,
-				F7245DB1F9B620EC4171034F /* Pods_Kantan_Manga.framework */,
-				CE3ABC9E970B68978B04C4B4 /* Pods_Kantan_MangaIntegrationTests.framework */,
-				062169CB49F39195252805EF /* Pods_Kantan_MangaTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1153,7 +1289,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 322E5FED255ADFFB00D18266 /* Build configuration list for PBXNativeTarget "Kantan-MangaIntegrationTests" */;
 			buildPhases = (
-				6AA79206EAC72DF68E5B8A7D /* [CP] Check Pods Manifest.lock */,
+				D1E95B415DC4FECE4CA19392 /* [CP] Check Pods Manifest.lock */,
 				322E5FE2255ADFFB00D18266 /* Sources */,
 				322E5FE3255ADFFB00D18266 /* Frameworks */,
 				322E5FE4255ADFFB00D18266 /* Resources */,
@@ -1172,7 +1308,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 326280E0253DD29F0070F5DA /* Build configuration list for PBXNativeTarget "Kantan-Keyboard" */;
 			buildPhases = (
-				A9BB4E63F977BD2793C89B06 /* [CP] Check Pods Manifest.lock */,
+				650AD6D89531628818C9935E /* [CP] Check Pods Manifest.lock */,
 				326280D0253DD29F0070F5DA /* Sources */,
 				326280D1253DD29F0070F5DA /* Frameworks */,
 				326280D2253DD29F0070F5DA /* Resources */,
@@ -1190,15 +1326,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84A8320E221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan-Manga" */;
 			buildPhases = (
-				2E0C3F79E8123FC72D7790AE /* [CP] Check Pods Manifest.lock */,
+				E8B5F6B0BF341123968721DC /* [CP] Check Pods Manifest.lock */,
 				84A831DF221D90CA00CEE1C9 /* Sources */,
 				84A831E0221D90CA00CEE1C9 /* Frameworks */,
 				84A831E1221D90CA00CEE1C9 /* Resources */,
 				8418695E222346F000C689DC /* ShellScript */,
 				324BB9702498369B006241E8 /* Embed Frameworks */,
 				326280DC253DD29F0070F5DA /* Embed App Extensions */,
-				5957BCFFBF435D2E8133C012 /* [CP] Embed Pods Frameworks */,
 				32B6F4BF25D2E7C400988FCF /* ShellScript */,
+				5114A1C4BF2B17C6670665E6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1207,7 +1343,8 @@
 			);
 			name = "Kantan-Manga";
 			packageProductDependencies = (
-				3298F10926ACAAA2002CBC16 /* SwiftyTesseract */,
+				3297E40925E1DB0100743C8B /* CropViewController */,
+				0DD370052815F42B00B6279D /* SwiftyTesseract */,
 			);
 			productName = MangaReader;
 			productReference = 84A831E3221D90CA00CEE1C9 /* Kantan Manga.app */;
@@ -1217,7 +1354,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84A83211221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan-MangaTests" */;
 			buildPhases = (
-				B99E2AD2476DF521F7A51E51 /* [CP] Check Pods Manifest.lock */,
+				059862527BC362A59CA4E53B /* [CP] Check Pods Manifest.lock */,
 				84A831F6221D90CC00CEE1C9 /* Sources */,
 				84A831F7221D90CC00CEE1C9 /* Frameworks */,
 				84A831F8221D90CC00CEE1C9 /* Resources */,
@@ -1270,7 +1407,8 @@
 			);
 			mainGroup = 84A831DA221D90CA00CEE1C9;
 			packageReferences = (
-				3298F10826ACAAA1002CBC16 /* XCRemoteSwiftPackageReference "SwiftyTesseract" */,
+				3297E40825E1DB0100743C8B /* XCRemoteSwiftPackageReference "TOCropViewController" */,
+				0DD370042815F42B00B6279D /* XCRemoteSwiftPackageReference "SwiftyTesseract" */,
 			);
 			productRefGroup = 84A831E4221D90CA00CEE1C9 /* Products */;
 			projectDirPath = "";
@@ -1324,6 +1462,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				324BB95A2498365E006241E8 /* mecabrc in Resources */,
+				3297E3D425E1C42800743C8B /* CreateSentenceViewController.xib in Resources */,
 				32326F8724354ECC00FCE8E5 /* FileSourceViewController.xib in Resources */,
 				32892C0B23E39FBC000B1C3E /* AddMangaViewController.xib in Resources */,
 				3290ECB425C370B300D4DE96 /* FAQ.html in Resources */,
@@ -1332,7 +1471,9 @@
 				84A831F4221D90CC00CEE1C9 /* LaunchScreen.storyboard in Resources */,
 				32F1B9F7243688EC00AE367D /* NewCollectionTableViewCell.xib in Resources */,
 				32A1516D253260C0002B3920 /* OnboardingViewController.xib in Resources */,
+				32EC1AD426F6A1230059F143 /* AnkiNamesListViewController.xib in Resources */,
 				329D41D025B4BAC000545FB0 /* dic.db in Resources */,
+				32EC1AD026F69F670059F143 /* AnkiSettingsViewController.xib in Resources */,
 				324BB99924983DF7006241E8 /* right-id.def in Resources */,
 				3249F2D8250BBC18004C514E /* MangaCollectionCollectionViewCell.xib in Resources */,
 				324BB99324983DF7006241E8 /* left-id.def in Resources */,
@@ -1348,12 +1489,14 @@
 				324BB99524983DF7006241E8 /* matrix.bin in Resources */,
 				324BB99A24983DF7006241E8 /* char.bin in Resources */,
 				325199BB2479DE0D00DA6908 /* tessdata in Resources */,
+				32EC1ACC26F69E870059F143 /* AnkiConnectionViewController.xib in Resources */,
 				3290ECBB25C3710E00D4DE96 /* FAQViewController.xib in Resources */,
 				3239C5B9254DD06500EFB39A /* Settings.bundle in Resources */,
 				32DDEF3D257C21DD0063E813 /* DictionariesViewController.xib in Resources */,
 				84A8321E221D951500CEE1C9 /* LibraryViewController.xib in Resources */,
 				329ACA8B2552ED15002953C5 /* NumberTableViewCell.xib in Resources */,
 				324BB99824983DF7006241E8 /* dicrc in Resources */,
+				32C541E326F764EB00E961C7 /* TransferringSentencesViewController.xib in Resources */,
 				843FA7ED221E0BE900B86B52 /* PageViewController.xib in Resources */,
 				843FA7E3221DF0C300B86B52 /* WebServerViewController.xib in Resources */,
 				32326F892435613E00FCE8E5 /* cbz.svg in Resources */,
@@ -1373,7 +1516,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2E0C3F79E8123FC72D7790AE /* [CP] Check Pods Manifest.lock */ = {
+		059862527BC362A59CA4E53B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1388,7 +1531,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Kantan-Manga-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Kantan-MangaTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1412,7 +1555,7 @@
 			shellPath = /bin/sh;
 			shellScript = "rm -rf \"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Frameworks/libtesseract.framework\"\n";
 		};
-		5957BCFFBF435D2E8133C012 /* [CP] Embed Pods Frameworks */ = {
+		5114A1C4BF2B17C6670665E6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1429,7 +1572,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kantan-Manga/Pods-Kantan-Manga-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6AA79206EAC72DF68E5B8A7D /* [CP] Check Pods Manifest.lock */ = {
+		650AD6D89531628818C9935E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1444,7 +1587,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Kantan-MangaIntegrationTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Kantan-Keyboard-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1468,7 +1611,7 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		A9BB4E63F977BD2793C89B06 /* [CP] Check Pods Manifest.lock */ = {
+		D1E95B415DC4FECE4CA19392 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1483,14 +1626,14 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Kantan-Keyboard-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Kantan-MangaIntegrationTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B99E2AD2476DF521F7A51E51 /* [CP] Check Pods Manifest.lock */ = {
+		E8B5F6B0BF341123968721DC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1505,7 +1648,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Kantan-MangaTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Kantan-Manga-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1552,20 +1695,24 @@
 				322EF658250FB49700F35E72 /* AspectAlignImage.swift in Sources */,
 				32336ABF25D96B550092110A /* KanjiSearchResult.swift in Sources */,
 				320F277423C2046900D9930F /* Tokenizer.swift in Sources */,
+				32EC1AC126F68B430059F143 /* AnkiConnectManager.swift in Sources */,
 				32C49CD725168A0F000A9607 /* OpenCollectionAnimationController.swift in Sources */,
 				32542BD32580335600ED357A /* Term.swift in Sources */,
 				329E30E923E9CFA100AD13A3 /* MangaCollection+CoreDataProperties.swift in Sources */,
 				32350AA8247C723C002D100D /* WordParser.swift in Sources */,
 				3241F86B2572B04700A4FC04 /* TermMetaEntry.swift in Sources */,
 				32892C0A23E39FBC000B1C3E /* AddMangaViewController.swift in Sources */,
-				84A83219221D923800CEE1C9 /* AppCoordinator.swift in Sources */,
+				84A83219221D923800CEE1C9 /* LibraryCoordinator.swift in Sources */,
 				843FA7EC221E0BE900B86B52 /* PageViewController.swift in Sources */,
 				32792AC725D971BD00D0B96D /* KanjiMetaSearchResult.swift in Sources */,
+				32EC1AD826F6C26D0059F143 /* CreateNoteRequest.swift in Sources */,
+				3297E41425E1E5E200743C8B /* Sentence+CoreDataProperties.swift in Sources */,
 				325CFC1D2480582700110F31 /* DictionaryView.swift in Sources */,
 				32F1B9F3243685DC00AE367D /* SelectCollectionTableViewController.swift in Sources */,
 				32AF5BD1251256E600E96C9F /* EmptyMangaCollection.swift in Sources */,
 				325C04A925D99D3400170629 /* DictionaryKanjiEntryView.swift in Sources */,
 				32537156253B843E005B8EC1 /* UIView+Extension.swift in Sources */,
+				329E459A25E2C534000B0FAE /* AppCoordinator.swift in Sources */,
 				32F1B9FC24369E1100AE367D /* OpenMangaAnimationController.swift in Sources */,
 				8418696D222495FE00C689DC /* Manga.swift in Sources */,
 				325C04AE25D99F0400170629 /* UIColor+Extension.swift in Sources */,
@@ -1573,17 +1720,23 @@
 				32FA3C7C24367428001EB0DF /* String+Extension.swift in Sources */,
 				325DA0B923C8F50700A627BD /* CompoundDictionary.swift in Sources */,
 				32AF5BCE2512567900E96C9F /* MangaCollectionable.swift in Sources */,
+				32C541E226F764EB00E961C7 /* TransferringSentencesViewController.swift in Sources */,
 				3283D1012552069700C08D02 /* ToggleTableViewCell.swift in Sources */,
 				843FA7DF221DEDDF00B86B52 /* AddMangasCoordinator.swift in Sources */,
+				3297E40F25E1E51000743C8B /* Sentence.swift in Sources */,
 				32A1517225326D76002B3920 /* CircleView.swift in Sources */,
 				3267AE92257142CA00806D5B /* DictionaryDecoderError.swift in Sources */,
 				843FA7E9221DFE9E00B86B52 /* CBZReader.swift in Sources */,
 				32542BEF25803CDC00ED357A /* DBMigrator.swift in Sources */,
+				329E45A225E2C552000B0FAE /* SentencesCoordinator.swift in Sources */,
 				322C04B725680FE700BD5A51 /* Tesseract+PageSegmentation.swift in Sources */,
 				8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */,
 				3249F2D7250BBC18004C514E /* MangaCollectionCollectionViewCell.swift in Sources */,
+				3297E3CC25E1A18900743C8B /* IndexPathButton.swift in Sources */,
 				3290ECBA25C3710E00D4DE96 /* FAQViewController.swift in Sources */,
 				325199B42479D96400DA6908 /* ImageOCR.swift in Sources */,
+				32C541DA26F7640700E961C7 /* SyncSentencesCoordinator.swift in Sources */,
+				32EC1ACF26F69F670059F143 /* AnkiSettingsViewController.swift in Sources */,
 				328DFB0D238D967C0095CBAB /* ViewMangaCoordinator.swift in Sources */,
 				32542BDD258035FA00ED357A /* Kanji.swift in Sources */,
 				32E3221C2481A67D007BC017 /* JapaneseHelpViewController.swift in Sources */,
@@ -1592,13 +1745,18 @@
 				84A831E7221D90CA00CEE1C9 /* AppDelegate.swift in Sources */,
 				32DDEF3C257C21DD0063E813 /* DictionariesViewController.swift in Sources */,
 				3292ADA22535DCF8004E8441 /* DemoOcrView.swift in Sources */,
+				3297E3E225E1D06F00743C8B /* EditSentenceCoordinator.swift in Sources */,
 				3298D7D025713BB4005FB8F2 /* YomichanDictionaryImporter.swift in Sources */,
+				32EC1AC526F68DF90059F143 /* AnkiConnectRequest.swift in Sources */,
 				32542BE7258037C900ED357A /* Tag.swift in Sources */,
 				3298D7D725713D66005FB8F2 /* DictionaryIndex.swift in Sources */,
 				328CD84C25D1FED1005C2E3A /* GenericReader.swift in Sources */,
+				32EC1AD326F6A1230059F143 /* AnkiNamesListViewController.swift in Sources */,
 				3259D1B423C4D9A2003BA7C2 /* JapaneseUtils.swift in Sources */,
 				32AD41D225B639EC0042626C /* MergedTermSearchResult.swift in Sources */,
+				0D9DCB3F2814B556003B0E3A /* LocalNetworkAuthorization.swift in Sources */,
 				3241F8602572AE7F00A4FC04 /* TermEntry.swift in Sources */,
+				32EC1AC326F68BE90059F143 /* AnkiConnectResponse.swift in Sources */,
 				328DFB0A238D96300095CBAB /* MangaViewController.swift in Sources */,
 				3241F8B12572E10C00A4FC04 /* KanjiEntryV1.swift in Sources */,
 				84A8321D221D951500CEE1C9 /* LibraryViewController.swift in Sources */,
@@ -1606,18 +1764,26 @@
 				329ACA9A2552EFD7002953C5 /* ViewerSettings.swift in Sources */,
 				328CD84725D1FCE6005C2E3A /* CGPDFObjectRef+Extension.swift in Sources */,
 				843FA7E2221DF0C300B86B52 /* WebServerViewController.swift in Sources */,
+				327ED0DA26587BA50065E8E8 /* AnkiConfig.swift in Sources */,
 				325C048925D97C5000170629 /* FullKanjiResult.swift in Sources */,
+				32EC1AD626F6A2D70059F143 /* ConfigureAnkiCoordinator.swift in Sources */,
+				3297E3D325E1C42800743C8B /* CreateSentenceViewController.swift in Sources */,
 				328CD84125D1EC72005C2E3A /* PDFReader.swift in Sources */,
 				32A34383257D4F2D003337D0 /* DictionaryDecoder.swift in Sources */,
 				841B795C221F305A00659FA2 /* MangaDataSource.swift in Sources */,
 				329E30E723E9CEE000AD13A3 /* MangaCollection.swift in Sources */,
 				32542BCB258031E000ED357A /* Dictionary.swift in Sources */,
+				327ED0E726587E960065E8E8 /* AnkiConfigManager.swift in Sources */,
 				3247543C2551FD120025AB06 /* ViewerSettingsViewController.swift in Sources */,
 				32E37987252A6A6000ED4BAC /* AcknowledgmentsView.swift in Sources */,
+				327ED0DF26587DB60065E8E8 /* Constants.swift in Sources */,
 				32F1B9F6243688EC00AE367D /* NewCollectionTableViewCell.swift in Sources */,
+				32EC1ACB26F69E870059F143 /* AnkiConnectionViewController.swift in Sources */,
 				32E322182481A531007BC017 /* ParsedInputField.swift in Sources */,
 				32326F8624354ECC00FCE8E5 /* FileSourceViewController.swift in Sources */,
+				329E45AB25E2C99F000B0FAE /* SentencesViewController.swift in Sources */,
 				322EF655250FB05800F35E72 /* CGSize+Extension.swift in Sources */,
+				32EC1AC726F697050059F143 /* AnkiConnectError.swift in Sources */,
 				322C5B602483125A00C0BAB1 /* Coordinator.swift in Sources */,
 				3296181C2555943B0020C5AF /* SettingValueChangeDelegate.swift in Sources */,
 				32542BD82580352600ED357A /* TermMeta.swift in Sources */,
@@ -1639,6 +1805,7 @@
 				32A1516C253260C0002B3920 /* OnboardingViewController.swift in Sources */,
 				84A83224221DB10400CEE1C9 /* MangaCollectionViewCell.swift in Sources */,
 				326FDE7F24A80BB20042CB8A /* AboutView.swift in Sources */,
+				32F0670A26FFE38F006B33C9 /* AnkiSyncCardOperation.swift in Sources */,
 				84A83221221D9F7000CEE1C9 /* CoreDataManager.swift in Sources */,
 				326FDE7924A7F8350042CB8A /* SettingsTableViewController.swift in Sources */,
 				329D419425B4B10800545FB0 /* SearchTermResult.swift in Sources */,
@@ -1655,11 +1822,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3297E3F925E1D81900743C8B /* FakeCreateSentenceCoordinatorDelegate.swift in Sources */,
 				3257C01E256F0F4700C4C702 /* FakeSettingsCoordinatorDelegate.swift in Sources */,
 				3241F8862572B6D200A4FC04 /* TagEntryTests.swift in Sources */,
 				32F998BD25574C6C00897299 /* AddMangasCoordinatorTests.swift in Sources */,
 				3241F87E2572B47D00A4FC04 /* DictionaryIndexTests.swift in Sources */,
 				32B5191F25C5C3750098ABA0 /* KanjiTests.swift in Sources */,
+				3297E3E725E1D09400743C8B /* CreateSentenceCoordinatorTests.swift in Sources */,
 				32B5190125C5968F0098ABA0 /* GlossaryItemTests.swift in Sources */,
 				3257C018256F0E2200C4C702 /* SettingsCoordinatorTests.swift in Sources */,
 				327300942561EF6A009854EE /* UIViewExtensionTests.swift in Sources */,
@@ -1685,7 +1854,8 @@
 				32CFA5EE256FEE200083F300 /* MangaViewControllerTests.swift in Sources */,
 				328F62A7255A03D8000CA225 /* InMemoryCoreDataManager.swift in Sources */,
 				32194C9725630E27007539B1 /* MangaDataSourceTests.swift in Sources */,
-				32F998B925574C4C00897299 /* AppCoordinatorTests.swift in Sources */,
+				32F998B925574C4C00897299 /* LibraryCoordinatorTests.swift in Sources */,
+				3297E3FE25E1D94500743C8B /* FakeCreateSentenceViewControllerDelegate.swift in Sources */,
 				3241F8CE2572EA4C00A4FC04 /* KanjiMetaEntryTests.swift in Sources */,
 				321C69A22562FA4E00296A1F /* JapaneseUtilsTests.swift in Sources */,
 				3241F8C62572E1A600A4FC04 /* KanjiEntryV3Tests.swift in Sources */,
@@ -1696,12 +1866,14 @@
 				32A110BC255859970099A768 /* FakeCoreDataManager.swift in Sources */,
 				3219DC0425641F8100E2FB3D /* FakeCollectionView.swift in Sources */,
 				32336AB925D969F20092110A /* CompoundDictionaryTests.swift in Sources */,
+				3297E3F425E1D64100743C8B /* TestableMangaViewController.swift in Sources */,
 				320ED4DD2483289D00F5BECF /* MockAddMangaViewControllerDelegate.swift in Sources */,
 				3250E89B256D54E000CBFA37 /* FakeViewerSettingsViewControllerDelegate.swift in Sources */,
 				32CFA604256FF7340083F300 /* ConstraintsUtils.swift in Sources */,
 				32C3512F24845D2800D1EB42 /* FakeViewMangaCoordinatorDelegate.swift in Sources */,
 				3241F8A72572C25300A4FC04 /* TermEntryV3Tests.swift in Sources */,
 				32F998C125574C8E00897299 /* ViewMangaCoordinatorTests.swift in Sources */,
+				3297E3EF25E1D43A00743C8B /* TestableCreateSentenceCoordinator.swift in Sources */,
 				32A110D22558609B0099A768 /* FakeImageOCR.swift in Sources */,
 				84A831FF221D90CC00CEE1C9 /* CoreDataManagerTests.swift in Sources */,
 				32B5191225C59A8E0098ABA0 /* TermTests.swift in Sources */,
@@ -1750,10 +1922,11 @@
 /* Begin XCBuildConfiguration section */
 		322E5FEE255ADFFB00D18266 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 31AE17853F990847F1D9CE31 /* Pods-Kantan-MangaIntegrationTests.debug.xcconfig */;
+			baseConfigurationReference = E2D1450F80EB1E01A9A5C075 /* Pods-Kantan-MangaIntegrationTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 25JHVANVX3;
 				INFOPLIST_FILE = "Kantan-MangaIntegrationTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1771,10 +1944,11 @@
 		};
 		322E5FEF255ADFFB00D18266 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 891978D9250650393586170E /* Pods-Kantan-MangaIntegrationTests.release.xcconfig */;
+			baseConfigurationReference = 0901E8129E5F6869799F9F4F /* Pods-Kantan-MangaIntegrationTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 25JHVANVX3;
 				INFOPLIST_FILE = "Kantan-MangaIntegrationTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1792,11 +1966,11 @@
 		};
 		326280DD253DD29F0070F5DA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC5BFD4EEC2569EF68B26369 /* Pods-Kantan-Keyboard.debug.xcconfig */;
+			baseConfigurationReference = BB4F98DF4528645A7395D25E /* Pods-Kantan-Keyboard.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 77;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 79;
 				DEVELOPMENT_TEAM = 25JHVANVX3;
 				INFOPLIST_FILE = "Kantan-Keyboard/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1805,10 +1979,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kantanmanga.Kantan-Keyboard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.kantanmanga.Kantan-Keyboard";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1817,11 +1991,11 @@
 		};
 		326280DE253DD29F0070F5DA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E53225541E09049E67A06DF /* Pods-Kantan-Keyboard.release.xcconfig */;
+			baseConfigurationReference = 2B365FFD83C8EC3E373F83E0 /* Pods-Kantan-Keyboard.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 77;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 79;
 				DEVELOPMENT_TEAM = 25JHVANVX3;
 				INFOPLIST_FILE = "Kantan-Keyboard/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1830,10 +2004,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kantanmanga.Kantan-Keyboard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.kantanmanga.Kantan-Keyboard";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1960,7 +2134,7 @@
 		};
 		84A8320F221D90CC00CEE1C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7669AF9992C490D6E75B7F7 /* Pods-Kantan-Manga.debug.xcconfig */;
+			baseConfigurationReference = F39A3A020208887BAF869343 /* Pods-Kantan-Manga.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2032,7 +2206,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kantanmanga;
 				PRODUCT_NAME = "Kantan Manga";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.kantanmanga";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MangaReader-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2042,7 +2216,7 @@
 		};
 		84A83210221D90CC00CEE1C9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FEE616A541F2ED376E236C34 /* Pods-Kantan-Manga.release.xcconfig */;
+			baseConfigurationReference = 66F8C6361DE9CB92A70EA0FC /* Pods-Kantan-Manga.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2114,7 +2288,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kantanmanga;
 				PRODUCT_NAME = "Kantan Manga";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.kantanmanga";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MangaReader-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2123,7 +2297,7 @@
 		};
 		84A83212221D90CC00CEE1C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1048A26F639E12C076126CD2 /* Pods-Kantan-MangaTests.debug.xcconfig */;
+			baseConfigurationReference = 4F615E8C601090873960A04A /* Pods-Kantan-MangaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2145,7 +2319,7 @@
 		};
 		84A83213221D90CC00CEE1C9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67C32068B392C1F27367F209 /* Pods-Kantan-MangaTests.release.xcconfig */;
+			baseConfigurationReference = BDED19DE0FF4DC38442F931E /* Pods-Kantan-MangaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2216,21 +2390,34 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3298F10826ACAAA1002CBC16 /* XCRemoteSwiftPackageReference "SwiftyTesseract" */ = {
+		0DD370042815F42B00B6279D /* XCRemoteSwiftPackageReference "SwiftyTesseract" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyTesseract/SwiftyTesseract.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.1;
+				minimumVersion = 4.0.0;
+			};
+		};
+		3297E40825E1DB0100743C8B /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TimOliver/TOCropViewController.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3298F10926ACAAA2002CBC16 /* SwiftyTesseract */ = {
+		0DD370052815F42B00B6279D /* SwiftyTesseract */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3298F10826ACAAA1002CBC16 /* XCRemoteSwiftPackageReference "SwiftyTesseract" */;
+			package = 0DD370042815F42B00B6279D /* XCRemoteSwiftPackageReference "SwiftyTesseract" */;
 			productName = SwiftyTesseract;
+		};
+		3297E40925E1DB0100743C8B /* CropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3297E40825E1DB0100743C8B /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = CropViewController;
 		};
 /* End XCSwiftPackageProductDependency section */
 

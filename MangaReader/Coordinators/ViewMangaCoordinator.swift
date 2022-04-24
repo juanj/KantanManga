@@ -114,6 +114,20 @@ extension ViewMangaCoordinator: MangaViewControllerDelegate {
         manga.currentPage = Int16(newPage)
         coreDataManager.updateManga(manga: manga)
     }
+
+    func didTapCreateSentence(_ mangaViewController: MangaViewController, image: UIImage, sentence: String, dictionaryResult: SearchTermResult) {
+        let createSentenceCoordinator = EditSentenceCoordinator(
+            navigation: navigation,
+            image: image,
+            word: dictionaryResult.term.expression,
+            reading: dictionaryResult.term.reading,
+            sentence: sentence,
+            definition: dictionaryResult.term.formattedDefinition,
+            delegate: self
+        )
+        childCoordinators.append(createSentenceCoordinator)
+        createSentenceCoordinator.start()
+    }
 }
 
 extension ViewMangaCoordinator: UINavigationControllerDelegate {
@@ -155,5 +169,16 @@ extension ViewMangaCoordinator: ViewerSettingsViewControllerDelegate {
 
     func didSelectDone(_ viewerSettingsViewController: ViewerSettingsViewController) {
         navigation.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension ViewMangaCoordinator: EditSentenceCoordinatorDelegate {
+    func didCancel(_ createSentenceCoordinator: EditSentenceCoordinator) {
+        removeChildCoordinator(type: EditSentenceCoordinator.self)
+    }
+
+    func didEnd(_ createSentenceCoordinator: EditSentenceCoordinator, image: UIImage?, word: String, reading: String, sentence: String, definition: String) {
+        coreDataManager.insertSentence(word: word, reading: reading, sentence: sentence, definition: definition, image: image)
+        removeChildCoordinator(type: EditSentenceCoordinator.self)
     }
 }

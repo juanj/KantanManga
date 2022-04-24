@@ -15,8 +15,8 @@ protocol Coordinator: AnyObject {
 
 extension Coordinator {
     func removeChildCoordinator<T: Coordinator>(type: T.Type) {
-        for (index, coordinator) in childCoordinators.enumerated() where coordinator is T {
-            childCoordinators.remove(at: index)
+        childCoordinators.removeAll { coordinator in
+            coordinator is T
         }
     }
 }

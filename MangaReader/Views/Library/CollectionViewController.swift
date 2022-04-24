@@ -29,6 +29,8 @@ class CollectionViewController: UIViewController {
         self.sourcePoint = sourcePoint
         self.initialRotations = initialRotations
         super.init(nibName: nil, bundle: nil)
+
+        hidesBottomBarWhenPushed = true
     }
 
     required init?(coder: NSCoder) {

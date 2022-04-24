@@ -115,9 +115,14 @@ extension JapaneseHelpViewController: DictionaryViewDelegate {
             lookupWord(first)
         }
     }
+
+    func createSentence(_ dictionaryView: DictionaryView, term: SearchTermResult) {
+        delegate?.createSentence(self, sentence: parsedInputView.sentence.replacingOccurrences(of: " ", with: ""), term: term)
+    }
 }
 
 protocol JapaneseHelpViewControllerDelegate: AnyObject {
     func handlePan(_ japaneseHelpViewController: JapaneseHelpViewController, pan: UIPanGestureRecognizer)
     func didOpenDictionary(_ japaneseHelpViewController: JapaneseHelpViewController)
+    func createSentence(_ japaneseHelpViewController: JapaneseHelpViewController, sentence: String, term: SearchTermResult)
 }

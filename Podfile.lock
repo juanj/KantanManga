@@ -82,19 +82,19 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.7.0):
     - GoogleUtilities/Logger
-  - GRDB.swift (5.3.0):
-    - GRDB.swift/standard (= 5.3.0)
-  - GRDB.swift/standard (5.3.0)
+  - GRDB.swift (5.22.0):
+    - GRDB.swift/standard (= 5.22.0)
+  - GRDB.swift/standard (5.22.0)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.0.0)
-  - UnrarKit (2.9):
-    - UnrarKit/unrar-lib (= 2.9)
-  - UnrarKit/unrar-lib (2.9)
-  - ZIPFoundation (0.9.11)
+  - UnrarKit (2.10):
+    - UnrarKit/unrar-lib (= 2.10)
+  - UnrarKit/unrar-lib (2.10)
+  - ZIPFoundation (0.9.13)
 
 DEPENDENCIES:
   - Firebase/Core
@@ -130,12 +130,12 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 71156240babd3cc6ced03e0d54816f01a880c730
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
-  GRDB.swift: 6d44795b19d716e9f09f19018c3bde5b71b67ae9
+  GRDB.swift: 8d5edd4ed9257973675790012fdc5519ab00f8f2
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
-  UnrarKit: 99e3f0222a98a212188e1a6975dcf5aa798d26dd
-  ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
+  UnrarKit: 62f535c7a34ec52d2514b9b148f33dcfa9a9dc39
+  ZIPFoundation: ae5b4b813d216d3bf0a148773267fff14bd51d37
 
-PODFILE CHECKSUM: 24309de5e178cb2ec0b5110bd605517297c05d51
+PODFILE CHECKSUM: 114ada969f4c556a961da006024715995cdd5450
 
 COCOAPODS: 1.11.3
