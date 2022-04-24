@@ -105,10 +105,10 @@ class DictionaryTermEntryView: UIView {
                 let ankiButton = UserInfoButton()
                 ankiButton.userInfo = TermIndex(group: group.key, index: termIndex)
                 ankiButton.addTarget(self, action: #selector(addToAnki(_ :)), for: .touchUpInside)
-                ankiButton.setImage(UIImage(named: "anki-icon"), for: .normal)
-                ankiButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
-                // Keep aspect ratio: 29:38
-                ankiButton.heightAnchor.constraint(equalTo: ankiButton.widthAnchor, multiplier: 1.31).isActive = true
+                ankiButton.setImage(
+                    UIImage(systemName: "doc.richtext", withConfiguration: UIImage.SymbolConfiguration(scale: .large)),
+                    for: .normal
+                )
                 bodyStackView.addArrangedSubview(ankiButton)
 
                 let body = UITextView()
