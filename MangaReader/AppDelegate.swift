@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = .systemBackground
 
         let navigationController = UINavigationController()
+        navigationController.isNavigationBarHidden = true
         window?.rootViewController = navigationController
         let coreDataManager = CoreDataManager()
         appCoordinator = AppCoordinator(navigation: navigationController, coreDataManager: coreDataManager)

@@ -10,9 +10,9 @@ import GRDB
 
 final class TestsFactories {
     // MARK: Coordinators
-    static func createAppCoordinator(navigable: Navigable = FakeNavigation(), coreDataManager: CoreDataManageable = InMemoryCoreDataManager()) -> AppCoordinator {
-        let appCoordinator = AppCoordinator(navigation: navigable, coreDataManager: coreDataManager)
-        return appCoordinator
+    static func createLibraryCoordinator(navigable: Navigable = FakeNavigation(), coreDataManager: CoreDataManageable = InMemoryCoreDataManager()) -> LibraryCoordinator {
+        let libraryCoordinator = LibraryCoordinator(navigation: navigable, coreDataManager: coreDataManager)
+        return libraryCoordinator
     }
 
     static func createAddMangasCoordinator(navigable: Navigable = FakeNavigation(), uploadServer: GCDWebUploader = FakeUploadServer(), coreDataManager: CoreDataManageable = InMemoryCoreDataManager(), delegate: AddMangasCoordinatorDelegate = FakeAddMangasCoordinatorDelegate()) -> AddMangasCoordinator {
@@ -59,6 +59,16 @@ final class TestsFactories {
         return dictionariesCoordinator
     }
 
+    static func createEditSentenceCoordinator(navigable: Navigable = FakeNavigation(), image: UIImage = UIImage(), word: String = "", reading: String = "", sentence: String = "", definition: String = "", delegate: EditSentenceCoordinatorDelegate = FakeEditSentenceCoordinatorDelegate()) -> EditSentenceCoordinator {
+        let editSentenceCoordinator = EditSentenceCoordinator(navigation: navigable, image: image, word: word, reading: reading, sentence: sentence, definition: definition, delegate: delegate)
+        return editSentenceCoordinator
+    }
+
+    static func createTestableEditSentenceCoordinator(navigable: Navigable = FakeNavigation(), image: UIImage = UIImage(), word: String = "", reading: String = "", sentence: String = "", definition: String = "", delegate: EditSentenceCoordinatorDelegate = FakeEditSentenceCoordinatorDelegate()) -> TestableEditSentenceCoordinator {
+    let editSentenceCoordinator = TestableEditSentenceCoordinator(navigation: navigable, image: image, word: word, reading: reading, sentence: sentence, definition: definition, delegate: delegate)
+        return editSentenceCoordinator
+    }
+
     // MARK: ViewControllers
     static func createCollectionViewController() -> CollectionViewController {
         let collectionViewController = FakeCollectionViewController(delegate: FakeCollectionViewControllerDelgate(), collection: EmptyMangaCollection(mangas: []), sourcePoint: .zero, initialRotations: [])
@@ -90,6 +100,9 @@ final class TestsFactories {
         }
     }
 
+    static func createCreateSentenceViewController(image: UIImage = UIImage(), word: String = "", reading: String = "", sentence: String = "", definition: String = "", isExistingSentence: Bool = false, delegate: CreateSentenceViewControllerDelegate = FakeCreateSentenceViewControllerDelegate()) -> CreateSentenceViewController {
+        return CreateSentenceViewController(image: image, word: word, reading: reading, sentence: sentence, definition: definition, isExistingSentence: isExistingSentence, delegate: delegate)
+    }
     // MARK: Database
     static func createTestDatabase() -> DatabaseQueue {
         var configuration = Configuration()

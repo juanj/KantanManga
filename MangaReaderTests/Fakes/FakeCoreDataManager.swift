@@ -22,6 +22,10 @@ class FakeCoreDataManager: CoreDataManageable {
     func deleteAllCollections() {}
     func updateCollection(_ collection: MangaCollection) {}
     func createDemoManga(completion: @escaping () -> Void) {}
+    func delete(sentence: Sentence) {}
+    func deleteAllSentences() {}
+    func update(sentence: Sentence) {}
+    func insertSentence(word: String, reading: String, sentence: String, definition: String, image: UIImage?) -> Sentence? { nil }
 }
 
 // Empty methods
@@ -34,6 +38,8 @@ extension FakeCoreDataManager {
     func fetchAllCollections() -> [MangaCollection]? { [] }
     func searchCollectionsWith(name: String) -> [MangaCollection]? { [] }
     func searchCollectionsStartWith(name: String) -> [MangaCollection]? { [] }
+    func insertSentence(sentence: String, definition: String, image: UIImage?) -> Sentence? { nil }
+    func fetchAllSentences() -> [Sentence]? { [] }
 }
 
 // Mock methods

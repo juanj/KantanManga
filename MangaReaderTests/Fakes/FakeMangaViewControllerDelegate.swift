@@ -11,6 +11,7 @@ class FakeMangaViewControllerDelegate: MangaViewControllerDelegate {
     var backCalled = false
     var openSettingsCalled = false
     var pageDidChangeCalled = false
+    var didTapCreateSentenceCalled = false
 
     func didTapPage(_ mangaViewController: MangaViewController, pageViewController: PageViewController) {}
     func back(_ mangaViewController: MangaViewController) {
@@ -23,5 +24,9 @@ class FakeMangaViewControllerDelegate: MangaViewControllerDelegate {
 
     func pageDidChange(_ mangaViewController: MangaViewController, manga: Manga, newPage: Int) {
         pageDidChangeCalled = true
+    }
+
+    func didTapCreateSentence(_ mangaViewController: MangaViewController, image: UIImage, sentence: String, dictionaryResult: SearchTermResult) {
+        didTapCreateSentenceCalled = true
     }
 }

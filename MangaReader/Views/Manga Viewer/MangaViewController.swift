@@ -14,6 +14,7 @@ protocol MangaViewControllerDelegate: AnyObject {
     func didSelectSectionOfImage(_ mangaViewController: MangaViewController, image: UIImage)
     func didTapSettings(_ mangaViewController: MangaViewController)
     func pageDidChange(_ mangaViewController: MangaViewController, manga: Manga, newPage: Int)
+    func didTapCreateSentence(_ mangaViewController: MangaViewController, image: UIImage, sentence: String, dictionaryResult: SearchTermResult)
 }
 
 class MangaViewController: UIViewController {
@@ -339,12 +340,16 @@ class MangaViewController: UIViewController {
 
     @objc func longPress(tap: UILongPressGestureRecognizer) {
         guard isValidTap(tap) else { return }
+
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+
         let animation = CABasicAnimation(keyPath: "transform.scale")
         animation.fromValue = 1
         animation.toValue = 1.01
         animation.autoreverses = true
         animation.duration = 0.1
-        
+
         view.layer.add(animation, forKey: nil)
         toggleOcr()
     }
@@ -467,6 +472,26 @@ extension MangaViewController: JapaneseHelpViewControllerDelegate {
                 self.view.layoutIfNeeded()
             }
         }
+    }
+
+    func createSentence(_ japaneseHelpViewController: JapaneseHelpViewController, sentence: String, term: SearchTermResult) {
+        guard let pages = pageController.viewControllers as? [PageViewController] else { return }
+        let images = pages.compactMap(\.pageImage)
+        let imageWidth = images.map(\.size.width)
+            .reduce(0, +)
+        let imageHeight = images.map(\.size.height).max() ?? 0
+
+        guard imageWidth > 0 && imageHeight > 0 else { return }
+
+        let renderer = UIGraphicsImageRenderer(bounds: CGRect(origin: .zero, size: CGSize(width: imageWidth, height: imageHeight)))
+        let image = renderer.image { context in
+            for image in images {
+                image.draw(at: .zero)
+                context.cgContext.translateBy(x: image.size.width, y: 0)
+            }
+        }
+
+        delegate?.didTapCreateSentence(self, image: image, sentence: sentence, dictionaryResult: term)
     }
 }
 

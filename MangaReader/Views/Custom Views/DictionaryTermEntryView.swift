@@ -14,18 +14,26 @@ extension NSAttributedString.Key {
 
 protocol DictionaryTermEntryViewDelegate: AnyObject {
     func lookupText(_ dictionaryTermEntryView: DictionaryTermEntryView, text: String)
+    func createSentence(_ dictionaryTermEntryView: DictionaryTermEntryView, term: SearchTermResult)
 }
 
 class DictionaryTermEntryView: UIView {
+    private struct TermIndex {
+        let group: String
+        let index: Int
+    }
+
     weak var delegate: DictionaryTermEntryViewDelegate?
 
     private let result: MergedTermSearchResult
     private var definitionTextViews = [UITextView]()
+    private var groupedTerms = [String: [SearchTermResult]]()
 
     init(result: MergedTermSearchResult) {
         self.result = result
         super.init(frame: .zero)
 
+        groupTerms()
         setupView()
     }
 
@@ -38,6 +46,16 @@ class DictionaryTermEntryView: UIView {
             return true
         }
         return super.canPerformAction(action, withSender: sender)
+    }
+
+    private func groupTerms() {
+        for term in result.terms {
+            if groupedTerms[term.dictionary.title] != nil {
+                groupedTerms[term.dictionary.title]?.append(term)
+            } else {
+                groupedTerms[term.dictionary.title] = [term]
+            }
+        }
     }
 
     private func setupView() {
@@ -63,15 +81,6 @@ class DictionaryTermEntryView: UIView {
         stackView.axis = .vertical
         stackView.spacing = 8
 
-        var groupedTerms = [String: [SearchTermResult]]()
-        for term in result.terms {
-            if groupedTerms[term.dictionary.title] != nil {
-                groupedTerms[term.dictionary.title]?.append(term)
-            } else {
-                groupedTerms[term.dictionary.title] = [term]
-            }
-        }
-
         let tags = result.meta.map { createTag(text: "\($0.dictionary.title): \($0.termMeta.mode)", backgroundColor: .lightBlue) }
         let tagsStackView = UIStackView(arrangedSubviews: tags + [UIView()])
         tagsStackView.axis = .horizontal
@@ -88,16 +97,19 @@ class DictionaryTermEntryView: UIView {
             spacingStack.axis = .horizontal
             termStackView.addArrangedSubview(spacingStack)
 
-            for term in group.value {
+            for (termIndex, term) in group.value.enumerated() {
                 let bodyStackView = UIStackView()
                 bodyStackView.alignment = .center
                 bodyStackView.axis = .horizontal
 
-                let label = UILabel()
-                label.text = "-"
-                label.font = .systemFont(ofSize: 20)
-                label.widthAnchor.constraint(equalToConstant: 20).isActive = true
-                bodyStackView.addArrangedSubview(label)
+                let ankiButton = UserInfoButton()
+                ankiButton.userInfo = TermIndex(group: group.key, index: termIndex)
+                ankiButton.addTarget(self, action: #selector(addToAnki(_ :)), for: .touchUpInside)
+                ankiButton.setImage(
+                    UIImage(systemName: "doc.richtext", withConfiguration: UIImage.SymbolConfiguration(scale: .large)),
+                    for: .normal
+                )
+                bodyStackView.addArrangedSubview(ankiButton)
 
                 let body = UITextView()
                 body.isEditable = false
@@ -162,5 +174,11 @@ class DictionaryTermEntryView: UIView {
            let text = textView.text(in: range) {
             delegate?.lookupText(self, text: text)
         }
+    }
+
+    @objc func addToAnki(_ sender: UserInfoButton) {
+        guard let termIndex = sender.userInfo as? TermIndex,
+              let term = groupedTerms[termIndex.group]?[termIndex.index] else { return }
+        delegate?.createSentence(self, term: term)
     }
 }

@@ -9,9 +9,12 @@ import Foundation
 import CoreData
 
 protocol CoreDataManageable {
+    // Data managing methos
     func saveContext ()
     func deleteAllData()
     func refreshAll()
+
+    // Manga methods
     @discardableResult
     func insertManga(name: String, coverData: Data, totalPages: Int16, filePath: String, collection: MangaCollection?) -> Manga?
     func createMangaWith(filePath path: String, name: String?, collection: MangaCollection?, completion: @escaping (Manga?) -> Void)
@@ -21,6 +24,9 @@ protocol CoreDataManageable {
     func getMangaWith(filePath path: String) -> Manga?
     func getMangasWithoutCollection() -> [Manga]?
     func updateManga(manga: Manga)
+    func createDemoManga(completion: @escaping () -> Void)
+
+    // Collection methods
     @discardableResult
     func insertCollection(name: String) -> MangaCollection?
     func delete(collection: MangaCollection)
@@ -29,5 +35,12 @@ protocol CoreDataManageable {
     func searchCollectionsWith(name: String) -> [MangaCollection]?
     func searchCollectionsStartWith(name: String) -> [MangaCollection]?
     func updateCollection(_ collection: MangaCollection)
-    func createDemoManga(completion: @escaping () -> Void)
+
+    // Sentence methods
+    @discardableResult
+    func insertSentence(word: String, reading: String, sentence: String, definition: String, image: UIImage?) -> Sentence?
+    func delete(sentence: Sentence)
+    func deleteAllSentences()
+    func fetchAllSentences() -> [Sentence]?
+    func update(sentence: Sentence)
 }
