@@ -240,7 +240,8 @@
 		32F998CF25574EC800897299 /* CoreDataManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998C725574D9300897299 /* CoreDataManageable.swift */; };
 		32F998D52557535500897299 /* Navigable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F998D42557535500897299 /* Navigable.swift */; };
 		32FA3C7C24367428001EB0DF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3C7B24367428001EB0DF /* String+Extension.swift */; };
-		335C0CAEF530C6950751A1CF /* Pods_Kantan_MangaIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EF63718FAD5FE59C8FD2441 /* Pods_Kantan_MangaIntegrationTests.framework */; };
+		5B55CF72FDE9ABE1A36BB9EB /* Pods_Kantan_MangaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC1796CD2E87EE4D5C4E8109 /* Pods_Kantan_MangaTests.framework */; };
+		695F56608B621A2A6A42BBC8 /* Pods_Kantan_Manga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2650AEEEA0C226D890AA8A2D /* Pods_Kantan_Manga.framework */; };
 		8418696D222495FE00C689DC /* Manga.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418696B222495FD00C689DC /* Manga.swift */; };
 		8418696E222495FE00C689DC /* Manga+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */; };
 		841B795C221F305A00659FA2 /* MangaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B795B221F305A00659FA2 /* MangaDataSource.swift */; };
@@ -261,9 +262,8 @@
 		84A83221221D9F7000CEE1C9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A83220221D9F7000CEE1C9 /* CoreDataManager.swift */; };
 		84A83224221DB10400CEE1C9 /* MangaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A83222221DB10400CEE1C9 /* MangaCollectionViewCell.swift */; };
 		84A83225221DB10400CEE1C9 /* MangaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A83223221DB10400CEE1C9 /* MangaCollectionViewCell.xib */; };
-		8E8CEFB4C4BE0A944BDACF1E /* Pods_Kantan_Manga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 348377A94067C4DCD9AA178C /* Pods_Kantan_Manga.framework */; };
-		90CAE96FC07127A71E2298E1 /* Pods_Kantan_MangaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CE2F309A1EE516476DD455 /* Pods_Kantan_MangaTests.framework */; };
-		FC9DB3D19FF8C43F77E3EB6E /* Pods_Kantan_Keyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F818CF5B3408FFE0E69E9A /* Pods_Kantan_Keyboard.framework */; };
+		C6DBA723BD4E75B611019070 /* Pods_Kantan_Keyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A0381BC06F64C28E2548150 /* Pods_Kantan_Keyboard.framework */; };
+		D97B4BA852CAF1F821F99163 /* Pods_Kantan_MangaIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B23E96365E0E708B48A68879 /* Pods_Kantan_MangaIntegrationTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -323,11 +323,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0901E8129E5F6869799F9F4F /* Pods-Kantan-MangaIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-Kantan-MangaIntegrationTests/Pods-Kantan-MangaIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 		0D9DCB3E2814B556003B0E3A /* LocalNetworkAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkAuthorization.swift; sourceTree = "<group>"; };
-		18F818CF5B3408FFE0E69E9A /* Pods_Kantan_Keyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_Keyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1EF63718FAD5FE59C8FD2441 /* Pods_Kantan_MangaIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B365FFD83C8EC3E373F83E0 /* Pods-Kantan-Keyboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Keyboard.release.xcconfig"; path = "Target Support Files/Pods-Kantan-Keyboard/Pods-Kantan-Keyboard.release.xcconfig"; sourceTree = "<group>"; };
+		1A6D7ECA5478269FC28519E9 /* Pods-Kantan-MangaIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaIntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-Kantan-MangaIntegrationTests/Pods-Kantan-MangaIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2650AEEEA0C226D890AA8A2D /* Pods_Kantan_Manga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_Manga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		320ED4D22483178C00F5BECF /* FakeLibraryViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FakeLibraryViewControllerDelegate\U0003.swift"; sourceTree = "<group>"; };
 		320ED4D62483189F00F5BECF /* FakeNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNavigation.swift; sourceTree = "<group>"; };
 		320ED4D824831D2900F5BECF /* FakeUploadServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUploadServer.swift; sourceTree = "<group>"; };
@@ -557,10 +555,10 @@
 		32F998D42557535500897299 /* Navigable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigable.swift; sourceTree = "<group>"; };
 		32F998E02557594700897299 /* FakeCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCoreDataManager.swift; sourceTree = "<group>"; };
 		32FA3C7B24367428001EB0DF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		348377A94067C4DCD9AA178C /* Pods_Kantan_Manga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_Manga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		38CE2F309A1EE516476DD455 /* Pods_Kantan_MangaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F615E8C601090873960A04A /* Pods-Kantan-MangaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaTests.debug.xcconfig"; path = "Target Support Files/Pods-Kantan-MangaTests/Pods-Kantan-MangaTests.debug.xcconfig"; sourceTree = "<group>"; };
-		66F8C6361DE9CB92A70EA0FC /* Pods-Kantan-Manga.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Manga.release.xcconfig"; path = "Target Support Files/Pods-Kantan-Manga/Pods-Kantan-Manga.release.xcconfig"; sourceTree = "<group>"; };
+		569AEBDB692331BC69E76517 /* Pods-Kantan-Keyboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Keyboard.debug.xcconfig"; path = "Target Support Files/Pods-Kantan-Keyboard/Pods-Kantan-Keyboard.debug.xcconfig"; sourceTree = "<group>"; };
+		5BF979CC36233DAEEE48B814 /* Pods-Kantan-Keyboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Keyboard.release.xcconfig"; path = "Target Support Files/Pods-Kantan-Keyboard/Pods-Kantan-Keyboard.release.xcconfig"; sourceTree = "<group>"; };
+		6909F3B5F5462F7DC54207E3 /* Pods-Kantan-Manga.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Manga.debug.xcconfig"; path = "Target Support Files/Pods-Kantan-Manga/Pods-Kantan-Manga.debug.xcconfig"; sourceTree = "<group>"; };
+		73DFD71C292FB83DEA991D19 /* Pods-Kantan-MangaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaTests.release.xcconfig"; path = "Target Support Files/Pods-Kantan-MangaTests/Pods-Kantan-MangaTests.release.xcconfig"; sourceTree = "<group>"; };
 		8418696B222495FD00C689DC /* Manga.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manga.swift; sourceTree = "<group>"; };
 		8418696C222495FE00C689DC /* Manga+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Manga+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		841B795B221F305A00659FA2 /* MangaDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDataSource.swift; sourceTree = "<group>"; };
@@ -586,10 +584,12 @@
 		84A83220221D9F7000CEE1C9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		84A83222221DB10400CEE1C9 /* MangaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaCollectionViewCell.swift; sourceTree = "<group>"; };
 		84A83223221DB10400CEE1C9 /* MangaCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MangaCollectionViewCell.xib; sourceTree = "<group>"; };
-		BB4F98DF4528645A7395D25E /* Pods-Kantan-Keyboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Keyboard.debug.xcconfig"; path = "Target Support Files/Pods-Kantan-Keyboard/Pods-Kantan-Keyboard.debug.xcconfig"; sourceTree = "<group>"; };
-		BDED19DE0FF4DC38442F931E /* Pods-Kantan-MangaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaTests.release.xcconfig"; path = "Target Support Files/Pods-Kantan-MangaTests/Pods-Kantan-MangaTests.release.xcconfig"; sourceTree = "<group>"; };
-		E2D1450F80EB1E01A9A5C075 /* Pods-Kantan-MangaIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaIntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-Kantan-MangaIntegrationTests/Pods-Kantan-MangaIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F39A3A020208887BAF869343 /* Pods-Kantan-Manga.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Manga.debug.xcconfig"; path = "Target Support Files/Pods-Kantan-Manga/Pods-Kantan-Manga.debug.xcconfig"; sourceTree = "<group>"; };
+		9A0381BC06F64C28E2548150 /* Pods_Kantan_Keyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_Keyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF8CE761D22A6DCA33882595 /* Pods-Kantan-Manga.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-Manga.release.xcconfig"; path = "Target Support Files/Pods-Kantan-Manga/Pods-Kantan-Manga.release.xcconfig"; sourceTree = "<group>"; };
+		B23E96365E0E708B48A68879 /* Pods_Kantan_MangaIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B64B738A331ECD90A6AF26D9 /* Pods-Kantan-MangaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaTests.debug.xcconfig"; path = "Target Support Files/Pods-Kantan-MangaTests/Pods-Kantan-MangaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BC1796CD2E87EE4D5C4E8109 /* Pods_Kantan_MangaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kantan_MangaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEFFF0308E09799CE28D8C6B /* Pods-Kantan-MangaIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kantan-MangaIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-Kantan-MangaIntegrationTests/Pods-Kantan-MangaIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -597,7 +597,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				335C0CAEF530C6950751A1CF /* Pods_Kantan_MangaIntegrationTests.framework in Frameworks */,
+				D97B4BA852CAF1F821F99163 /* Pods_Kantan_MangaIntegrationTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,7 +605,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC9DB3D19FF8C43F77E3EB6E /* Pods_Kantan_Keyboard.framework in Frameworks */,
+				C6DBA723BD4E75B611019070 /* Pods_Kantan_Keyboard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,8 +615,8 @@
 			files = (
 				3297E40A25E1DB0100743C8B /* CropViewController in Frameworks */,
 				324BB96E2498369B006241E8 /* mecab.framework in Frameworks */,
-				8E8CEFB4C4BE0A944BDACF1E /* Pods_Kantan_Manga.framework in Frameworks */,
 				0DD370062815F42B00B6279D /* SwiftyTesseract in Frameworks */,
+				695F56608B621A2A6A42BBC8 /* Pods_Kantan_Manga.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,24 +624,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90CAE96FC07127A71E2298E1 /* Pods_Kantan_MangaTests.framework in Frameworks */,
+				5B55CF72FDE9ABE1A36BB9EB /* Pods_Kantan_MangaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2E763C2E08BBE28528A3048A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				18F818CF5B3408FFE0E69E9A /* Pods_Kantan_Keyboard.framework */,
-				348377A94067C4DCD9AA178C /* Pods_Kantan_Manga.framework */,
-				1EF63718FAD5FE59C8FD2441 /* Pods_Kantan_MangaIntegrationTests.framework */,
-				38CE2F309A1EE516476DD455 /* Pods_Kantan_MangaTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		320ED4DE24832C9700F5BECF /* Mock Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -1124,14 +1113,14 @@
 		617052213212FD34D8988549 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BB4F98DF4528645A7395D25E /* Pods-Kantan-Keyboard.debug.xcconfig */,
-				2B365FFD83C8EC3E373F83E0 /* Pods-Kantan-Keyboard.release.xcconfig */,
-				F39A3A020208887BAF869343 /* Pods-Kantan-Manga.debug.xcconfig */,
-				66F8C6361DE9CB92A70EA0FC /* Pods-Kantan-Manga.release.xcconfig */,
-				E2D1450F80EB1E01A9A5C075 /* Pods-Kantan-MangaIntegrationTests.debug.xcconfig */,
-				0901E8129E5F6869799F9F4F /* Pods-Kantan-MangaIntegrationTests.release.xcconfig */,
-				4F615E8C601090873960A04A /* Pods-Kantan-MangaTests.debug.xcconfig */,
-				BDED19DE0FF4DC38442F931E /* Pods-Kantan-MangaTests.release.xcconfig */,
+				569AEBDB692331BC69E76517 /* Pods-Kantan-Keyboard.debug.xcconfig */,
+				5BF979CC36233DAEEE48B814 /* Pods-Kantan-Keyboard.release.xcconfig */,
+				6909F3B5F5462F7DC54207E3 /* Pods-Kantan-Manga.debug.xcconfig */,
+				AF8CE761D22A6DCA33882595 /* Pods-Kantan-Manga.release.xcconfig */,
+				1A6D7ECA5478269FC28519E9 /* Pods-Kantan-MangaIntegrationTests.debug.xcconfig */,
+				DEFFF0308E09799CE28D8C6B /* Pods-Kantan-MangaIntegrationTests.release.xcconfig */,
+				B64B738A331ECD90A6AF26D9 /* Pods-Kantan-MangaTests.debug.xcconfig */,
+				73DFD71C292FB83DEA991D19 /* Pods-Kantan-MangaTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1166,7 +1155,7 @@
 				84A831E4221D90CA00CEE1C9 /* Products */,
 				843FA7DA221DE69200B86B52 /* MangaReader-Bridging-Header.h */,
 				617052213212FD34D8988549 /* Pods */,
-				2E763C2E08BBE28528A3048A /* Frameworks */,
+				A78203EC6C3806E427CDB279 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1282,6 +1271,17 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		A78203EC6C3806E427CDB279 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A0381BC06F64C28E2548150 /* Pods_Kantan_Keyboard.framework */,
+				2650AEEEA0C226D890AA8A2D /* Pods_Kantan_Manga.framework */,
+				B23E96365E0E708B48A68879 /* Pods_Kantan_MangaIntegrationTests.framework */,
+				BC1796CD2E87EE4D5C4E8109 /* Pods_Kantan_MangaTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1289,7 +1289,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 322E5FED255ADFFB00D18266 /* Build configuration list for PBXNativeTarget "Kantan-MangaIntegrationTests" */;
 			buildPhases = (
-				D1E95B415DC4FECE4CA19392 /* [CP] Check Pods Manifest.lock */,
+				6D2970F64BFFE1844AA63979 /* [CP] Check Pods Manifest.lock */,
 				322E5FE2255ADFFB00D18266 /* Sources */,
 				322E5FE3255ADFFB00D18266 /* Frameworks */,
 				322E5FE4255ADFFB00D18266 /* Resources */,
@@ -1308,7 +1308,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 326280E0253DD29F0070F5DA /* Build configuration list for PBXNativeTarget "Kantan-Keyboard" */;
 			buildPhases = (
-				650AD6D89531628818C9935E /* [CP] Check Pods Manifest.lock */,
+				BD32B4BF1AABE904E59D4DE0 /* [CP] Check Pods Manifest.lock */,
 				326280D0253DD29F0070F5DA /* Sources */,
 				326280D1253DD29F0070F5DA /* Frameworks */,
 				326280D2253DD29F0070F5DA /* Resources */,
@@ -1326,7 +1326,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84A8320E221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan-Manga" */;
 			buildPhases = (
-				E8B5F6B0BF341123968721DC /* [CP] Check Pods Manifest.lock */,
+				93C674C2A133EFC3ACF49443 /* [CP] Check Pods Manifest.lock */,
 				84A831DF221D90CA00CEE1C9 /* Sources */,
 				84A831E0221D90CA00CEE1C9 /* Frameworks */,
 				84A831E1221D90CA00CEE1C9 /* Resources */,
@@ -1334,7 +1334,7 @@
 				324BB9702498369B006241E8 /* Embed Frameworks */,
 				326280DC253DD29F0070F5DA /* Embed App Extensions */,
 				32B6F4BF25D2E7C400988FCF /* ShellScript */,
-				5114A1C4BF2B17C6670665E6 /* [CP] Embed Pods Frameworks */,
+				4069C76A413330D5F3E27DC8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1354,7 +1354,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84A83211221D90CC00CEE1C9 /* Build configuration list for PBXNativeTarget "Kantan-MangaTests" */;
 			buildPhases = (
-				059862527BC362A59CA4E53B /* [CP] Check Pods Manifest.lock */,
+				EA0DB9F991C625575D33400B /* [CP] Check Pods Manifest.lock */,
 				84A831F6221D90CC00CEE1C9 /* Sources */,
 				84A831F7221D90CC00CEE1C9 /* Frameworks */,
 				84A831F8221D90CC00CEE1C9 /* Resources */,
@@ -1516,28 +1516,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		059862527BC362A59CA4E53B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Kantan-MangaTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		32B6F4BF25D2E7C400988FCF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1555,7 +1533,7 @@
 			shellPath = /bin/sh;
 			shellScript = "rm -rf \"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Frameworks/libtesseract.framework\"\n";
 		};
-		5114A1C4BF2B17C6670665E6 /* [CP] Embed Pods Frameworks */ = {
+		4069C76A413330D5F3E27DC8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1572,7 +1550,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kantan-Manga/Pods-Kantan-Manga-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		650AD6D89531628818C9935E /* [CP] Check Pods Manifest.lock */ = {
+		6D2970F64BFFE1844AA63979 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1587,7 +1565,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Kantan-Keyboard-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Kantan-MangaIntegrationTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1611,29 +1589,7 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		D1E95B415DC4FECE4CA19392 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Kantan-MangaIntegrationTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E8B5F6B0BF341123968721DC /* [CP] Check Pods Manifest.lock */ = {
+		93C674C2A133EFC3ACF49443 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1649,6 +1605,50 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Kantan-Manga-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD32B4BF1AABE904E59D4DE0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Kantan-Keyboard-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA0DB9F991C625575D33400B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Kantan-MangaTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1922,7 +1922,7 @@
 /* Begin XCBuildConfiguration section */
 		322E5FEE255ADFFB00D18266 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E2D1450F80EB1E01A9A5C075 /* Pods-Kantan-MangaIntegrationTests.debug.xcconfig */;
+			baseConfigurationReference = 1A6D7ECA5478269FC28519E9 /* Pods-Kantan-MangaIntegrationTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1944,7 +1944,7 @@
 		};
 		322E5FEF255ADFFB00D18266 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0901E8129E5F6869799F9F4F /* Pods-Kantan-MangaIntegrationTests.release.xcconfig */;
+			baseConfigurationReference = DEFFF0308E09799CE28D8C6B /* Pods-Kantan-MangaIntegrationTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1966,7 +1966,7 @@
 		};
 		326280DD253DD29F0070F5DA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB4F98DF4528645A7395D25E /* Pods-Kantan-Keyboard.debug.xcconfig */;
+			baseConfigurationReference = 569AEBDB692331BC69E76517 /* Pods-Kantan-Keyboard.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1991,7 +1991,7 @@
 		};
 		326280DE253DD29F0070F5DA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B365FFD83C8EC3E373F83E0 /* Pods-Kantan-Keyboard.release.xcconfig */;
+			baseConfigurationReference = 5BF979CC36233DAEEE48B814 /* Pods-Kantan-Keyboard.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -2134,7 +2134,7 @@
 		};
 		84A8320F221D90CC00CEE1C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F39A3A020208887BAF869343 /* Pods-Kantan-Manga.debug.xcconfig */;
+			baseConfigurationReference = 6909F3B5F5462F7DC54207E3 /* Pods-Kantan-Manga.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2214,7 +2214,7 @@
 		};
 		84A83210221D90CC00CEE1C9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 66F8C6361DE9CB92A70EA0FC /* Pods-Kantan-Manga.release.xcconfig */;
+			baseConfigurationReference = AF8CE761D22A6DCA33882595 /* Pods-Kantan-Manga.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2293,7 +2293,7 @@
 		};
 		84A83212221D90CC00CEE1C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4F615E8C601090873960A04A /* Pods-Kantan-MangaTests.debug.xcconfig */;
+			baseConfigurationReference = B64B738A331ECD90A6AF26D9 /* Pods-Kantan-MangaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2315,7 +2315,7 @@
 		};
 		84A83213221D90CC00CEE1C9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BDED19DE0FF4DC38442F931E /* Pods-Kantan-MangaTests.release.xcconfig */;
+			baseConfigurationReference = 73DFD71C292FB83DEA991D19 /* Pods-Kantan-MangaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
