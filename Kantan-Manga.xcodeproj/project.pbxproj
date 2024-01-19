@@ -2395,7 +2395,7 @@
 			repositoryURL = "https://github.com/SwiftyTesseract/SwiftyTesseract.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
+				minimumVersion = 4.0.1;
 			};
 		};
 		3297E40825E1DB0100743C8B /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
