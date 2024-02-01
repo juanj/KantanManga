@@ -104,7 +104,7 @@ class CoreDataManager: CoreDataManageable {
             print("Error creating reader: \(error.localizedDescription)")
             return
         }
-        reader.readFirstEntry { (data) in
+        reader.readFirstImageEntry { (data) in
             if let data = data {
                 let manga = self.insertManga(name: mangaName, coverData: data, totalPages: Int16(reader.numberOfPages), filePath: fileName, collection: collection)
                 completion(manga)

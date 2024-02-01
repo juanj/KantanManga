@@ -17,7 +17,19 @@ protocol Reader {
 }
 
 extension Reader {
-    func readFirstEntry(_ completion: @escaping Completion) {
-        readEntityAt(index: 0, completion)
+    private func readFirstImageEntry(startingIndex: Int, _ completion: @escaping Completion) {
+        readEntityAt(index: startingIndex) { (data) -> Void in
+            if let data = data, UIImage(data: data) != nil {
+                completion(data)
+            } else if startingIndex < numberOfPages - 1 {
+                readFirstImageEntry(startingIndex: startingIndex + 1, completion)
+            } else {
+                completion(nil)
+            }
+        }
+    }
+
+    func readFirstImageEntry(_ completion: @escaping Completion) {
+        readFirstImageEntry(startingIndex: 0, completion)
     }
 }

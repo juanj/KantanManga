@@ -76,7 +76,7 @@ class AddMangasCoordinator: NSObject, Coordinator {
             print("Error creating reader: \(error.localizedDescription)")
             return
         }
-        reader.readFirstEntry { (data) in
+        reader.readFirstImageEntry { (data) in
             guard let data = data else { return }
             DispatchQueue.main.async {
                 addMangaViewController.coverImageView.image = UIImage(data: data)
